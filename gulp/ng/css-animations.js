@@ -28,8 +28,8 @@ var styles = 'app/styles/';
 var animation = styles + 'animation/';
 
 var argv = require('yargs')
-  .default('cname', 'svv')
-  .argv;
+    .default('cname', 'svv')
+    .argv;
 
 
 var rm = argv.rm;
@@ -37,21 +37,21 @@ var cname = argv.cname;
 
 gulp.task('gsa', function () {
 
-  var initialFile = 'css-animations.styl';
-  var file = animation + initialFile;
+    var initialFile = 'css-animations.styl';
+    var file = animation + initialFile;
 
-  var initialInjection = 'css-animations.tpl';
-  var injection = templates + initialInjection;
+    var initialInjection = 'css-animations.tpl';
+    var injection = templates + initialInjection;
 
-  var fileStream = gulp.src(file);
+    var fileStream = gulp.src(file);
 
-  var fs = require('fs')
-  fs.readFile(injection, 'utf8', function (err, injStr) {
-    injStr = injStr.replace(/svv/g, cname);
+    var fs = require('fs')
+    fs.readFile(injection, 'utf8', function (err, injStr) {
+        injStr = injStr.replace(/svv/g, cname);
 
-    fileStream
-      .pipe(gulpif(rm!=true,injectString.append(injStr),replace(injStr,'')))
-      .pipe(concat(initialFile))
-      .pipe(gulp.dest(animation))
-  });
+        fileStream
+            .pipe(gulpif(rm != true, injectString.append(injStr), replace(injStr, '')))
+            .pipe(concat(initialFile))
+            .pipe(gulp.dest(animation))
+    });
 });

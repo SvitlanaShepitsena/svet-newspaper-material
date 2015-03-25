@@ -37,7 +37,7 @@
         "name": "a",
         "version": "0.2.0",
         "ignore": [
-            "test/"
+          "test/"
         ]
       }
     },
@@ -52,7 +52,7 @@
         "name": "a",
         "version": "0.2.0",
         "ignore": [
-            "test/"
+          "test/"
         ]
       }
     },
@@ -70,12 +70,12 @@
         "version": "0.2.2",
         "main": "main.js",
         "ignore": [
-            "bower.json",
-            "main.js",
-            "test/",
-            "more/docs",
-            "more/assets/",
-            "baz/"
+          "bower.json",
+          "main.js",
+          "test/",
+          "more/docs",
+          "more/assets/",
+          "baz/"
         ]
       }
     },

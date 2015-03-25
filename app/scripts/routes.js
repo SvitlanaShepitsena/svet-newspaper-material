@@ -11,11 +11,11 @@
                     controller: "HomeCtrl as home",
                     templateUrl: "scripts/home/views/homeCtrl.html"
                 })
-				.state("politics", {
-					url: "/politics", 
-					controller:"PoliticsCtrl as politics",
-					templateUrl: "scripts/politics/views/politicsCtrl.html"
-				})
+                .state("politics", {
+                    url: "/politics",
+                    controller: "PoliticsCtrl as politics",
+                    templateUrl: "scripts/politics/views/politicsCtrl.html"
+                })
 //#state'
         });
 
