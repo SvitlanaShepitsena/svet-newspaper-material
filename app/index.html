@@ -26,8 +26,8 @@
     </md-button>
 </md-toolbar>
 
-<!-- =Content-->
 <div flex layout="row">
+    <!-- =Left Sidebar-->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-primary md-hue-1 text-center">
             <h1 class="md-toolbar-tools">Наши новости</h1>
@@ -40,6 +40,7 @@
         </md-content>
     </md-sidenav>
 
+    <!-- =Content-->
     <md-content flex class="md-padding">
         <div layout="column" layout-fill layout-align="top center">
             <div ui-view=""></div>
@@ -47,6 +48,7 @@
         <div flex></div>
     </md-content>
 
+    <!-- =Right Sidebar-->
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-primary md-hue-1">
             <h1 class="md-toolbar-tools">Sidenav Left</h1>
@@ -93,6 +95,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-home-main-news.js"></script>
 <script src="scripts/home/directives/sv-footer.js"></script>
 <script src="scripts/home/directives/sv-nav-link.js"></script>
 <script src="scripts/home/directives/sv-news-sections-nav.js"></script>

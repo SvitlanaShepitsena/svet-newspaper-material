@@ -1,19 +1,29 @@
+.text-footer {
+  display: block;
+  font-size: 13px;
+  line-height: 16px;
+}
+@media screen and (max-width: 992px) {
+  .text-footer {
+    font-size: 11px;
+  }
+}
 @import '../scripts/politics/styles/politics.css';
 @import '../scripts/home/styles/home.css';
 .bg-black {
-  bg-color: #000;
+  background-color: #000;
 }
 .bg-black-1 {
-  bg-color: rgba(0,0,0,0.87);
+  background-color: rgba(0,0,0,0.87);
 }
 .bg-black-2 {
-  bg-color: rgba(0,0,0,0.54);
+  background-color: rgba(0,0,0,0.54);
 }
 .bg-black-3 {
-  bg-color: rgba(0,0,0,0.26);
+  background-color: rgba(0,0,0,0.26);
 }
 .bg-black-4 {
-  bg-color: rgba(0,0,0,0.12);
+  background-color: rgba(0,0,0,0.12);
 }
 .tc-black {
   color: #000;
@@ -31,19 +41,19 @@
   color: rgba(0,0,0,0.12);
 }
 .bg-white {
-  bg-color: #fff;
+  background-color: #fff;
 }
 .bg-white-1 {
-  bg-color: #fff;
+  background-color: #fff;
 }
 .bg-white-2 {
-  bg-color: rgba(255,255,255,0.7);
+  background-color: rgba(255,255,255,0.7);
 }
 .bg-white-3 {
-  bg-color: rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.3);
 }
 .bg-white-4 {
-  bg-color: rgba(255,255,255,0.12);
+  background-color: rgba(255,255,255,0.12);
 }
 .tc-white {
   color: #fff;
@@ -59,6 +69,17 @@
 }
 .tc-white-4 {
   color: rgba(255,255,255,0.12);
+}
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.img-responsive {
+  width: 100%;
 }
 .text-center {
   text-align: center;
