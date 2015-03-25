@@ -9,6 +9,6 @@
                 .icon("hangouts", "./assets/svg/hangouts.svg", 512)
                 .icon("twitter", "./assets/svg/twitter.svg", 512)
                 .icon("phone", "./assets/svg/phone.svg", 512);
-    });
+        });
 })();
 
