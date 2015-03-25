@@ -1,9 +1,9 @@
 {
-  "name": "material-start",
-  "private": true,
+  "name": "Svet NewsPaper",
+  "private":false,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS Material",
-  "repository": "https://github.com/angular/material-start",
+  "description": "",
+  "repository": "https://github.com/ChicagoBusinessIntelligence1/svet-newspaper-material",
   "license": "MIT",
   "devDependencies": {
     "karma": "~0.10",
