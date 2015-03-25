@@ -13,7 +13,7 @@
 
                 .state("app.home", {
                     url: "/home",
-                    controller: "HomeCtrl as home",
+                    controller: "HomeCtrl",
                     templateUrl: "scripts/home/views/homeCtrl.html"
                 })
 //#state'

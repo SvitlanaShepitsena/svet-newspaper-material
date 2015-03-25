@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('home')
-        .directive('svNavLink', function () {
+        .directive('svNavLink', function ($rootScope) {
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-nav-link.html',

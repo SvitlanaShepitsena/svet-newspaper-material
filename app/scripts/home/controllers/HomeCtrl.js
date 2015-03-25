@@ -4,7 +4,7 @@
     angular.module('home')
         .controller('HomeCtrl', function ($scope) {
             var home = this;
-
+            console.log('Hello!');
         });
 })();
 
