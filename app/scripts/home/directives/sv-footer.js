@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('home')
-        .directive('svNewsSectionsNav', function () {
+        .directive('svFooter', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/home/directives/sv-news-sections-nav.html',
+                templateUrl: 'scripts/home/directives/sv-footer.html',
                 bindToController: {
                     someObject: '=',
                     someString: '@',
@@ -16,6 +16,7 @@
                     var ctrl = this;
 
                 },
+
                 link: function ($scope, el, attrs) {
 
                 }

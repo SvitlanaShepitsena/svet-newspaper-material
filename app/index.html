@@ -42,7 +42,6 @@
     <md-content flex class="md-padding">
         <div layout="column" layout-fill layout-align="top center">
             <div ui-view=""></div>
-            <!--<div>At vero eos et accusamus et iusto odio dignissimos ducimus</div>-->
         </div>
         <div flex></div>
     </md-content>
@@ -59,10 +58,9 @@
     </md-sidenav>
 </div>
 <!-- =Footer-->
-<md-toolbar layout="row" class="md-primary md-hue-1">
+<sv-footer>
 
-</md-toolbar>
-
+</sv-footer>
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
 <script src="./bower_components/angular-aria/angular-aria.js"></script>
@@ -90,6 +88,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-footer.js"></script>
 <script src="scripts/home/directives/sv-nav-link.js"></script>
 <script src="scripts/home/directives/sv-news-sections-nav.js"></script>
 <script src="scripts/home/controllers/HomeCtrl.js"></script>
