@@ -14,7 +14,7 @@
 </head>
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main">
-
+<!-- =Header-->
 <md-toolbar layout="row">
     <md-button class="menu" hide-gt-md ng-click="toggleLeft()" aria-label="Show User List">
         <md-icon md-svg-icon="menu"></md-icon>
@@ -25,8 +25,8 @@
     </md-button>
 </md-toolbar>
 
+<!-- =Content-->
 <div flex layout="row">
-
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-indigo">
             <h1 class="md-toolbar-tools">Sidenav Left</h1>
@@ -57,8 +57,11 @@
             </md-button>
         </md-content>
     </md-sidenav>
-
 </div>
+<!-- =Footer-->
+<md-toolbar layout="row">
+
+</md-toolbar>
 
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
