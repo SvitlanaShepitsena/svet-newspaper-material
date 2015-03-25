@@ -34,27 +34,25 @@
         <md-content class="md-padding" ng-controller="LeftCtrl">
             <md-button ng-click="close()" class="md-primary" hide-gt-md>
                 Close Sidenav Left
-            </md-button>
-            <p hide-md show-gt-md>
-                This sidenav is locked open on your device. To go back to the default behavior,
-                narrow your display.
-            </p>
+            </md-button >
         </md-content>
     </md-sidenav>
+
     <md-content flex class="md-padding">
         <div layout="column" layout-fill layout-align="top center">
             <div ui-view=""></div>
         </div>
         <div flex></div>
     </md-content>
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-        <md-toolbar class="md-theme-light">
-            <h1 class="md-toolbar-tools">Sidenav Right</h1>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Sidenav Left</h1>
         </md-toolbar>
-        <md-content ng-controller="RightCtrl" class="md-padding">
-            <md-button ng-click="close()" class="md-primary">
-                Close Sidenav Right
-            </md-button>
+        <md-content class="md-padding" ng-controller="RightCtrl">
+            <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                Close Sidenav Left
+            </md-button >
         </md-content>
     </md-sidenav>
 </div>
@@ -71,6 +69,7 @@
 
 
 <script src="./scripts/app.js"></script>
+<script src="./scripts/home/controllers/MainCtrl.js"></script>
 <script src="./scripts/routes.js"></script>
 
 <!-- MODULES-->

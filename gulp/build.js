@@ -3,7 +3,6 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var plumber = require('gulp-plumber');
-var stylus = require('stylus');
 
 
 var $ = require('gulp-load-plugins')({
@@ -61,10 +60,6 @@ gulp.task('jade', function () {
 //    .pipe(gulp.dest('app/styles'))
 //})
 
-gulp.task('scripts', function () {
-    return gulp.src('app/scripts/**/*.js')
-        .pipe($.jshint())
-});
 
 gulp.task('partials', function () {
     return gulp.src('app/partials/**/*.html')
@@ -80,7 +75,7 @@ gulp.task('partials', function () {
         .pipe(gulp.dest('.tmp/partials'))
 });
 
-gulp.task('html', ['stylus', 'scripts', 'partials'], function () {
+gulp.task('html', ['stylus', 'partials'], function () {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
