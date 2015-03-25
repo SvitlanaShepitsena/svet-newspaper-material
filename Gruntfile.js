@@ -18,7 +18,7 @@ var enterInside = function (target, before, insert) {
         var temp = 0;
         before.forEach(function (txt) {
             // need to have a space in order not to be included in submodules. eg. common not to common.test
-            txt+=' ';
+            txt += ' ';
             temp = target.indexOf(txt, temp);
         });
         start = target.indexOf('>', temp) + 1;
@@ -239,7 +239,7 @@ module.exports = function (grunt) {
         var lname = cname;
 
         var name = lname.charAt(0).toUpperCase() + lname.substring(1);
-        var nameCamel =lname.charAt(0).toLowerCase() + lname.substring(1);
+        var nameCamel = lname.charAt(0).toLowerCase() + lname.substring(1);
 
         lname = nameCamel;
 
@@ -254,7 +254,7 @@ module.exports = function (grunt) {
         // register
         var state = '\t\t\t\t.state("' + _.str.dasherize(lname) + '", {\r\n' +
             '\t\t\t\t\turl: "/' + _.str.dasherize(lname) + '", \r\n' +
-            '\t\t\t\t\tcontroller:"' + name + 'Ctrl as '+ nameCamel+'",\r\n' +
+            '\t\t\t\t\tcontroller:"' + name + 'Ctrl as ' + nameCamel + '",\r\n' +
             '\t\t\t\t\ttemplateUrl: "scripts/' + moduleDirectirized + '/views/' + _.str.dasherize(lname) + 'Ctrl.html"\r\n' +
             '\t\t\t\t})\r\n';
 

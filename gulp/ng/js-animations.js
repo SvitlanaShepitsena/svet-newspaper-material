@@ -23,8 +23,8 @@ var styles = 'app/styles/';
 var animation = styles + 'animation/';
 
 var argv = require('yargs')
-  .default('cname', 'svv')
-  .argv;
+    .default('cname', 'svv')
+    .argv;
 
 var rm = argv.rm;
 var cname = argv.cname;
@@ -34,18 +34,17 @@ var injection = templates + initialInjection;
 var injectLine;
 var fs = require('fs')
 
-  gulp.task('gja', function () {
+gulp.task('gja', function () {
     fs.readFile(injection, 'utf8', function (err, injStr) {
-      injectLine = injStr.replace(/svv/g, cname);
-    return gulp.src(scripts + 'app.js')
-      .pipe(gulpif(rm != true, inject.append(injectLine), replace(injectLine, '')))
-      .pipe(gulp.dest(scripts));
+        injectLine = injStr.replace(/svv/g, cname);
+        return gulp.src(scripts + 'app.js')
+            .pipe(gulpif(rm != true, inject.append(injectLine), replace(injectLine, '')))
+            .pipe(gulp.dest(scripts));
     });
 
-  });
-
+});
 
 
 function escapeRegExp(str) {
-  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }

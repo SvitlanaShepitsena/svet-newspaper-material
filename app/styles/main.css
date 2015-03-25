@@ -1,17 +1,19 @@
 md-sidenav {
-  min-width: 240px !important;
-  max-width: 240px !important;
+    min-width: 240px !important;
+    max-width: 240px !important;
 }
+
 md-sidenav.md-locked-open {
-  width: 240px !important;
-  min-width: 240px !important;
-  max-width: 240px !important;
+    width: 240px !important;
+    min-width: 240px !important;
+    max-width: 240px !important;
 }
+
 .svet-logo {
-  position: relative;
-  line-height: 70px;
-  font-size: 30px;
-  color: #ef5350;
-  font-weight: 800;
-  font-family: "Roboto", sans-serif;
+    position: relative;
+    line-height: 70px;
+    font-size: 30px;
+    color: #ef5350;
+    font-weight: 800;
+    font-family: "Roboto", sans-serif;
 }
