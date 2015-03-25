@@ -24,11 +24,7 @@
 
 
 
-				.state("app.main", {
-					url: "/main", 
-					controller:"MainCtrl as main",
-					templateUrl: "scripts/main/views/mainCtrl.html"
-				})
+				
 //#state'
         });
 
