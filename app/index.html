@@ -15,11 +15,11 @@
 <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
 
 <md-toolbar layout="row">
-    <md-button class="menu" hide-gt-sm ng-click="ul.toggleLeft()" aria-label="Show User List">
+    <md-button class="menu" hide-gt-md ng-click="toggleLeft()" aria-label="Show User List">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
-    <h1>Angular Material - Starter App</h1>
-    <md-button hide-gt-sm ng-click="ul.toggleRight()" aria-label="Show Panel">
+    <h1>SVET</h1>
+    <md-button hide-gt-md ng-click="toggleRight()" aria-label="Show Panel">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
 </md-toolbar>
@@ -42,22 +42,7 @@
     </md-sidenav>
     <md-content flex class="md-padding">
         <div layout="column" layout-fill layout-align="top center">
-            <p>
-                The left sidenav will 'lock open' on a medium (>=960px wide) device.
-            </p>
 
-            <div>
-                <md-button ng-click="toggleLeft()"
-                           class="md-primary" hide-gt-md>
-                    Toggle left
-                </md-button>
-            </div>
-            <div>
-                <md-button ng-click="toggleRight()"
-                           class="md-primary">
-                    Toggle right
-                </md-button>
-            </div>
         </div>
         <div flex></div>
     </md-content>
