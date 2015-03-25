@@ -1,3 +1,13 @@
+.text-footer {
+  display: block;
+  font-size: 13px;
+  line-height: 16px;
+}
+@media screen and (max-width: 992px) {
+  .text-footer {
+    font-size: 11px;
+  }
+}
 @import '../scripts/politics/styles/politics.css';
 @import '../scripts/home/styles/home.css';
 .bg-black {
@@ -59,6 +69,14 @@
 }
 .tc-white-4 {
   color: rgba(255,255,255,0.12);
+}
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 .text-center {
   text-align: center;
