@@ -16,6 +16,11 @@
                     controller: "PoliticsCtrl as politics",
                     templateUrl: "scripts/politics/views/politicsCtrl.html"
                 })
+				.state("auth-btn", {
+					url: "/auth-btn", 
+					controller:"Auth-btnCtrl as auth-btn",
+					templateUrl: "scripts/auth/views/auth-btnCtrl.html"
+				})
 //#state'
         });
 
