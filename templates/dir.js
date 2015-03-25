@@ -8,9 +8,7 @@
                 templateUrl: 'scripts/#moduleDirectirized#/directives/#dname#.html',
                 scope: {},
                 bindToController: {
-                    someObject: '=',
-                    someString: '@',
-                    someExpr: '&'
+
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {

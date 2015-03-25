@@ -15,7 +15,7 @@
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main">
 <!-- =Header-->
-<md-toolbar layout="row"  class="md-primary md-hue-3">
+<md-toolbar layout="row" layout-align="center center"  class="md-primary md-hue-3">
     <md-button class="menu" hide-gt-md ng-click="toggleLeft()" aria-label="Show User List">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
@@ -85,6 +85,7 @@
 
 <!-- auth -->
 <script src="scripts/auth/authIndex.js"></script>
+<script src="scripts/auth/directives/sv-test.js"></script>
 <script src="scripts/auth/directives/sv-auth-btn.js"></script>
 
 <!-- politics -->

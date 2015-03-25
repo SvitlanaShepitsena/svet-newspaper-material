@@ -2,9 +2,10 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svAuthBtn', function ($mdToast) {
+        .directive('svTest', function () {
             return {
-                templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
+                replace: true,
+                templateUrl: 'scripts/auth/directives/sv-test.html',
                 scope: {},
                 bindToController: {
 
