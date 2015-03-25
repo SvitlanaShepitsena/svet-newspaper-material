@@ -6,25 +6,16 @@
             $urlRouterProvider.otherwise('/home');
 
             $stateProvider
-                //.state('app', {
-                //    abstract: true,
-                //    controller: 'MainCtrl as main',
-                //    resolve: {
-                //        news: function (NewsGeneratorServ) {
-                //            return NewsGeneratorServ.getPoliticalNews(25, true);
-                //        },
-                //        user: function (AuthServ) {
-                //            return AuthServ.getUser();
-                //        }
-                //    },
-                //    templateUrl: 'scripts/sections/home/views/main.html'
-                //
-                //});
+                .state('app', {
+                    abstract: true,
+                    controller: 'MainCtrl as main'
+                });
 
-
-
-
-				
+				.state("app.home", {
+					url: "/home", 
+					controller:"HomeCtrl as home",
+					templateUrl: "scripts/home/views/homeCtrl.html"
+				})
 //#state'
         });
 
