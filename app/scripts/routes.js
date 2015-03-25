@@ -7,12 +7,12 @@
 
             $stateProvider
                 .state('app', {
-                    abstract: true,
-                    controller: 'MainCtrl as main'
-                });
+                    abstract: true
+                    //controller: 'MainCtrl as main'
+                })
 
 				.state("app.home", {
-					url: "/home", 
+					url: "/home",
 					controller:"HomeCtrl as home",
 					templateUrl: "scripts/home/views/homeCtrl.html"
 				})

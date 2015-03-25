@@ -1,7 +1,19 @@
 (function () {
-		'home',
-    'use strict'
-    angular.module('app', ['ngMaterial','ui.router'])
+    'use strict';
+
+    angular.module('app', [
+
+        // modules
+
+        'home',
+
+
+        // 3rd party modules
+        'ngAnimate',
+        'ngMaterial',
+        'ui.router'
+    ])
+
         .config(function ($mdThemingProvider, $mdIconProvider) {
 
             $mdIconProvider
@@ -19,7 +31,7 @@
 
         })
         .controller('MainCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-
+            console.log('Hello');
             $scope.toggleLeft = function () {
                 $mdSidenav('left').toggle()
                     .then(function () {

@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.css"/>
     <link rel="stylesheet" href="assets/app.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column">
+<body ng-app="app" layout="column" ng-controller="MainCtrl as main">
 
 <md-toolbar layout="row">
     <md-button class="menu" hide-gt-md ng-click="toggleLeft()" aria-label="Show User List">
@@ -42,7 +43,7 @@
     </md-sidenav>
     <md-content flex class="md-padding">
         <div layout="column" layout-fill layout-align="top center">
-
+            <div ui-view=""></div>
         </div>
         <div flex></div>
     </md-content>
@@ -74,7 +75,6 @@
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
 <script src="scripts/home/controllers/HomeCtrl.js"></script>
-
 
 
 </body>
