@@ -39,7 +39,12 @@
         </md-content>
     </md-sidenav>
 
-    <md-content flex class="md-padding" ui-view="">
+    <md-content flex class="md-padding" >
+        <div layout="column" layout-fill layout-align="top center">
+            <div ui-view=""></div>
+            <!--<div>At vero eos et accusamus et iusto odio dignissimos ducimus</div>-->
+        </div>
+        <div flex></div>
     </md-content>
 
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
@@ -77,6 +82,10 @@
 <script src="./scripts/settings/constants.js"></script>
 
 <!-- MODULES-->
+
+<!-- politics -->
+<script src="scripts/politics/politicsIndex.js"></script>
+<script src="scripts/politics/controllers/PoliticsCtrl.js"></script>
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>

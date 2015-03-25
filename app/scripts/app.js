@@ -4,6 +4,7 @@
     angular.module('app', [
 
         // modules
+		'politics',
 
         'home',
         // 3rd party modules
