@@ -6,7 +6,6 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-news-sections-nav.html',
-                scope: {},
                 bindToController: {
                     someObject: '=',
                     someString: '@',

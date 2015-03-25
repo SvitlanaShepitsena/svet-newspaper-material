@@ -11,11 +11,11 @@
                     //controller: 'MainCtrl as main'
                 })
 
-				.state("app.home", {
-					url: "/home",
-					controller:"HomeCtrl as home",
-					templateUrl: "scripts/home/views/homeCtrl.html"
-				})
+                .state("app.home", {
+                    url: "/home",
+                    controller: "HomeCtrl as home",
+                    templateUrl: "scripts/home/views/homeCtrl.html"
+                })
 //#state'
         });
 

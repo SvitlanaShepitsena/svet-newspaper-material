@@ -1,1 +1,5 @@
-.well sv-nav-link Template
+md-item.aside-elem
+	md-item-content
+		md-button(ui-sref='{{url}}' ng-click='closeSideBar()')
+			i(class='mdi mdi-{{icon}}')
+			span.text &nbsp {{title}}

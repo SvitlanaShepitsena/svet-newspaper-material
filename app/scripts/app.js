@@ -6,8 +6,6 @@
         // modules
 
         'home',
-
-
         // 3rd party modules
         'ngAnimate',
         'ngMaterial',

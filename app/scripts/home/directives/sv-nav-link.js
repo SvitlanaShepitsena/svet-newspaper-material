@@ -6,7 +6,11 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-nav-link.html',
-                scope: {},
+                scope: {
+                    url: '@',
+                    title: '@',
+                    icon: '@'
+                },
                 bindToController: {
                     someObject: '=',
                     someString: '@',
@@ -19,6 +23,9 @@
                 },
 
                 link: function ($scope, el, attrs) {
+                    $scope.closeSideBar = function () {
+                        $rootScope.$broadcast('close:SideBars');
+                    };
 
                 }
             };
