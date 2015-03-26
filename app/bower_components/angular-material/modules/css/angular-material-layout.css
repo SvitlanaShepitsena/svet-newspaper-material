@@ -12,7 +12,7 @@
 */
 [layout] {
   box-sizing: border-box;
-  display: -webkit-flex;
+  display: -webkit-flex
   display: -ms-flexbox;
   display: flex; }
 
