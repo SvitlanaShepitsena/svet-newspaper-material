@@ -6,7 +6,13 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-one-article.html',
-                scope: {},
+                scope: {
+                    title: '@',
+                    body: '@',
+                    author: '@',
+                    sections: '=',
+                    date: '@'
+                },
                 bindToController: {
                     someObject: '=',
                     someString: '@',
