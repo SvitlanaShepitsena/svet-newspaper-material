@@ -4,11 +4,21 @@
     angular.module('home')
         .factory('ImageSizeServ', function ($q) {
             return {
-                getSync: function () {
+                getScaledHeight: function (imgUrl, scaledWidth) {
 
-                },
-                get: function () {
                     return $q(function (resolve, reject) {
+                        var img = new Image();
+                        var image = {};
+
+                        img.onload = function () {
+                            var realWidth = img.width;
+                            var realHeight = img.height;
+
+                            var widthRatio = scaledWidth/realWidth;
+
+                            resolve(Math.floor(realHeight*widthRatio));
+                        };
+                        img.src = imgUrl;
 
                     });
                 }

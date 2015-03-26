@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('home')
-        .directive('svHomeMainNews', function (ImageSizeServ) {
+        .directive('svHomeMainNews', function (ImageSizeServ, $window) {
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-home-main-news.html',
@@ -18,19 +18,20 @@
                 },
 
                 link: function ($scope, el, attrs) {
-                    $scope.imageurl = '/img/news/3-25-2015/gorlovka.jpg';
-                    $scope.image = {
-                        path: "",
-                        width: 0,
-                        height: 0
-                    }
-                    var img = new Image();
-                    img.onload = function () {
-                        $scope.image.width = img.width;
-                        $scope.image.height = img.height;
-                        $scope.image.path = '/img/news/3-25-2015/gorlovka.jpg';
-                    }
-                    img.src = $scope.imageurl;
+                    var imgUrl = '/img/news/3-25-2015/gorlovka.jpg';
+
+
+                    $scope.$watch('elImgWidth', function (newValue, oldValue) {
+
+                        $scope.elImgWidth = el.find('img')[0].clientWidth;
+                        ImageSizeServ.getScaledHeight(imgUrl, $scope.elImgWidth).then(function (height) {
+                            $scope.imgStyle = {height: height + 'px'};
+
+
+                        });
+                    });
+
+
                 }
             };
         });
