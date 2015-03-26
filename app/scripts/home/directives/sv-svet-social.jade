@@ -1,1 +1,25 @@
-.well sv-svet-social Template
+div(layout='column')
+	md-content.md-padding
+		.text-center(class='mb+')
+			a.mdc-display-inline-block(href='https://svet15.herokuapp.com/' target='_blank')
+				img.display-inline-block(ng-src="img/ad/svet.jpg")
+		.text-center
+			md-button.md-raised.text-info(ng-click='openBottomSheet()')
+				i.mdi.mdi-account-multiple
+				span.fs-caption &nbsp Svet on Social Media
+		div
+			ul.list(class='mt++')
+				li.list-row.list-row--has-separator
+					.list-row__primary
+						a(href="https://www.youtube.com/watch?v=fuVyrMp3BpI")
+							img(src="../img/ad/youtube-c.png" style='width:32px')
+					.list-row__content
+						a(href="https://www.youtube.com/watch?v=fuVyrMp3BpI")
+							.fs-body-1.text-subheader Youtube Channel
+				li.list-row.list-row--has-separator
+					.list-row__primary
+						a(href="https://itunes.apple.com/us/app/svet-local/id592739995?mt=8")
+							img(src="../img/ad/svet-app-64.png" style='width:32px; display:inline-block;')
+					.list-row__content
+						a(href="https://itunes.apple.com/us/app/svet-local/id592739995?mt=8")
+							.fs-body-1.text-subheader Svet Local App

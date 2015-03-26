@@ -6,7 +6,6 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-svet-social.html',
-                scope: {},
                 bindToController: {
                     someObject: '=',
                     someString: '@',
