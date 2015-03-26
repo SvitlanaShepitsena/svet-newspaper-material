@@ -29,13 +29,13 @@
 <div flex layout="row">
     <!-- =Left Sidebar-->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-theme-primary md-hue-1 text-center">
-            <h1 class="md-toolbar-tools">Наши новости</h1>
+        <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'
+                    ng-controller="LeftCtrl">
+            <md-button ng-click="close()" hide-gt-md="" aria-label="close" class="txt-white"><i
+                    class="mdi mdi-close"></i></md-button>
+            <span class="mdc-subhead">Наши новости</span>
         </md-toolbar>
-        <md-content class="md-padding" ng-controller="LeftCtrl">
-            <md-button ng-click="close()" class="md-primary" hide-gt-md>
-                Close Sidenav Left
-            </md-button>
+        <md-content class="md-padding">
             <sv-news-sections-nav></sv-news-sections-nav>
         </md-content>
     </md-sidenav>
@@ -50,13 +50,15 @@
 
     <!-- =Right Sidebar-->
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-theme-primary md-hue-1">
-            <h1 class="md-toolbar-tools">Sidenav Left</h1>
+        <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'
+                    ng-controller="RightCtrl">
+            <md-button ng-click="close()" hide-gt-md="" aria-label="close" class="txt-white"><i
+                    class="mdi mdi-close"></i></md-button>
+            <span class="mdc-subhead">Читателям и Партнерам</span>
         </md-toolbar>
+        <sv-svet-social></sv-svet-social>
+        <sv-clients-nav></sv-clients-nav>
         <md-content class="md-padding" ng-controller="RightCtrl">
-            <md-button ng-click="close()" class="md-primary" hide-gt-md>
-                Close Sidenav Left
-            </md-button>
         </md-content>
     </md-sidenav>
 </div>
@@ -96,7 +98,8 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
-<script src="scripts/home/services/ImageSizeServ.js"></script>
+<script src="scripts/home/directives/sv-clients-nav.js"></script>
+<script src="scripts/home/directives/sv-svet-social.js"></script>
 <script src="scripts/home/directives/sv-home-main-news.js"></script>
 <script src="scripts/home/directives/sv-footer.js"></script>
 <script src="scripts/home/directives/sv-nav-link.js"></script>
