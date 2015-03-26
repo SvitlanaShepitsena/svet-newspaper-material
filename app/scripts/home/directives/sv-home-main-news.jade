@@ -1,17 +1,9 @@
 div(layout-sm='column' layout-gt-sm='row' layout-fill layout-align="center")
 	div(flex='60')
-		md-card
+		md-card.md-padding(flex='')
 			md-content
-				img(src="img/news/3-25-2015/gorlovka.jpg")
-			md-card-content
-				h4 Итоги 24 марта: Отставка Коломойского и авиакатастрофа во Франции
+				img(ng-src="img/news/3-25-2015/gorlovka.jpg" ng-style='imgStyle')
+			h4 Итоги 24 марта: Отставка Коломойского и авиакатастрофа во Франции
 	div(flex='40')
-		md-card
-			md-card-content
-				h5.mdc-no-margin-top  Lorem ipsum dolor sit amet, ne quod novum mei.
-				h5(class='mt+')  Lorem ipsum dolor sit amet, ne quod novum mei.
-				h5(class='mt+')  Lorem ipsum dolor sit amet, ne quod novum mei.
-				h5(class='mt+')  Lorem ipsum dolor sit amet, ne quod novum mei.
-				h5(class='mt+')  Lorem ipsum dolor sit amet, ne quod novum mei.
-
-
+		md-content.md-padding(flex='')
+			h4.mdc-no-margin Итоги 25 марта: Публичный арест главы ГосЧС, прибытие бронемашин из США
