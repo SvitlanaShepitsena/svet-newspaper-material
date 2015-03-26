@@ -4,7 +4,7 @@
     angular.module('app', [
 
         // modules
-		'auth',
+		'article',
         'politics',
 
         'home',
