@@ -16,10 +16,15 @@
                     controller: "PoliticsCtrl as politics",
                     templateUrl: "scripts/politics/views/politicsCtrl.html"
                 })
-				.state("article", {
-					url: "/article", 
-					controller:"ArticleCtrl as article",
-					templateUrl: "scripts/article/views/articleCtrl.html"
+                .state("article", {
+                    url: "/article",
+                    controller: "ArticleCtrl as article",
+                    templateUrl: "scripts/article/views/articleCtrl.html"
+                })
+				.state("contact", {
+					url: "/contact", 
+					controller:"ContactCtrl as contact",
+					templateUrl: "scripts/contact/views/contactCtrl.html"
 				})
 //#state'
         });
