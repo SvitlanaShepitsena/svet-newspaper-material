@@ -6,11 +6,16 @@
             $urlRouterProvider.otherwise('/home');
 
             $stateProvider
-				.state("app", {
-					abstract: true,
-					controller:"AppCtrl as app",
-					template: "<div ui-view=''></div>"
-				})
+                .state("app", {
+                    abstract: true,
+                    controller: "AppCtrl as app",
+                    resolve: {
+                        user: function (AuthServ) {
+                            return AuthServ.getUser();
+                        }
+                    },
+                    template: "<div ui-view=''></div>"
+                })
                 .state("app.home", {
                     url: "/home",
                     controller: "HomeCtrl as home",
@@ -26,11 +31,11 @@
                     controller: "ArticleCtrl as article",
                     templateUrl: "scripts/article/views/articleCtrl.html"
                 })
-				.state("app.contact", {
-					url: "/contact",
-					controller:"ContactCtrl as contact",
-					templateUrl: "scripts/contact/views/contactCtrl.html"
-				})
+                .state("app.contact", {
+                    url: "/contact",
+                    controller: "ContactCtrl as contact",
+                    templateUrl: "scripts/contact/views/contactCtrl.html"
+                })
 //#state'
         });
 
