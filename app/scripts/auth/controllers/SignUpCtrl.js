@@ -11,7 +11,10 @@
 
             }
             signUp.createAccount = function () {
-                console.log(signUp.user);
+                AuthServ.createUser(signUp.user.email, signUp.user.pass).then(function (user) {
+
+                    }
+                )
             }
 
         });

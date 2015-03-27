@@ -84,13 +84,26 @@
                 },
 
                 createUser: function (email, password) {
+                    var that = this;
+
                     var deferred = $q.defer();
 
-                    var user;
-                    var newUser = this.getObj().$createUser({email: email, password:password});
-                    
+                    var newUser = this.getObj().$createUser({email: email, password: password});
+
                     newUser.then(function () {
-                        
+
+                        that.getObj().$authWithPassword({
+                            email: email,
+                            password: password
+                        }).then(function (authData) {
+                            console.log(authData);
+                            deferred.resolve(authData);
+                        }).catch(function (error) {
+                            deferred.reject(error);
+                            console.error("Error: ", error);
+                        });
+
+
                     })
 
 
@@ -98,7 +111,6 @@
                 }
 
             };
-        })
-    ;
+        });
 })
 ();
