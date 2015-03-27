@@ -26,6 +26,11 @@
 					controller:"ContactCtrl as contact",
 					templateUrl: "scripts/contact/views/contactCtrl.html"
 				})
+				.state("app", {
+					url: "/app", 
+					controller:"AppCtrl as app",
+					templateUrl: "scripts/home/views/appCtrl.html"
+				})
 //#state'
         });
 
