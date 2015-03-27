@@ -6,23 +6,28 @@
             $urlRouterProvider.otherwise('/home');
 
             $stateProvider
-                .state("home", {
+				.state("app", {
+					abstract: true,
+					controller:"AppCtrl as app",
+					template: "<div ui-view=''></div>"
+				})
+                .state("app.home", {
                     url: "/home",
                     controller: "HomeCtrl as home",
                     templateUrl: "scripts/home/views/homeCtrl.html"
                 })
-                .state("politics", {
+                .state("app.politics", {
                     url: "/politics",
                     controller: "PoliticsCtrl as politics",
                     templateUrl: "scripts/politics/views/politicsCtrl.html"
                 })
-                .state("article", {
+                .state("app.article", {
                     url: "/article",
                     controller: "ArticleCtrl as article",
                     templateUrl: "scripts/article/views/articleCtrl.html"
                 })
-				.state("contact", {
-					url: "/contact", 
+				.state("app.contact", {
+					url: "/contact",
 					controller:"ContactCtrl as contact",
 					templateUrl: "scripts/contact/views/contactCtrl.html"
 				})

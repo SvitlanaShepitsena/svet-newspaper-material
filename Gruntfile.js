@@ -234,7 +234,7 @@ module.exports = function (grunt) {
 //     C        //
         var d = 'app/scripts/' + moduleDirectirized + '/controllers/';
         var t = 'Ctrl' + '.js';
-        var ctrl = grunt.file.read('templates/ctrl.js');
+        var ctrl = grunt.file.read('templates/ctrl.j');
 
         var lname = cname;
 
@@ -252,7 +252,7 @@ module.exports = function (grunt) {
 ////////////////
 
         // register
-        var state = '\t\t\t\t.state("' + _.str.dasherize(lname) + '", {\r\n' +
+        var state = '\t\t\t\t.state("app.' + _.str.dasherize(lname) + '", {\r\n' +
             '\t\t\t\t\turl: "/' + _.str.dasherize(lname) + '", \r\n' +
             '\t\t\t\t\tcontroller:"' + name + 'Ctrl as ' + nameCamel + '",\r\n' +
             '\t\t\t\t\ttemplateUrl: "scripts/' + moduleDirectirized + '/views/' + _.str.dasherize(lname) + 'Ctrl.html"\r\n' +
