@@ -9,7 +9,7 @@ div(layout='row' layout-align="center center")
 					i.mdi.mdi-facebook
 				button.btn.btn--m.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
 					i.mdi.mdi-google-plus
-				button.btn.btn--m.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("")')
+				a.btn.btn--m.btn--fab(ui-sref='app.svet-login' lx-ripple='' ng-click='')
 					span.txt-svet-red S
 	div(ng-if='!!user')
 		.fab.ml
