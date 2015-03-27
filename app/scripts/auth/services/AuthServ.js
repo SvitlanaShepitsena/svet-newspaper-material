@@ -88,6 +88,10 @@
 
                     var user;
                     var newUser = this.getObj().$createUser({email: email, password:password});
+                    
+                    newUser.then(function () {
+                        
+                    })
 
 
                     return deferred.promise;
