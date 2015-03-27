@@ -13,6 +13,7 @@
         'home',
         // 3rd party modules
         'ngAnimate',
+        'lumx',
         'ngMaterial',
         'firebase',
         'ui.router'

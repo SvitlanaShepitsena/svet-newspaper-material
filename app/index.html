@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+
+    <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.css"/>
     <link rel="stylesheet" href="styles/lumx.css"/>
@@ -21,6 +24,7 @@
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
     <h1 class="svet-logo">SVET</h1>
+    <sv-auth-btn></sv-auth-btn>
     <md-button hide-gt-md ng-click="toggleRight()" aria-label="Show Panel">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
@@ -66,7 +70,12 @@
 <sv-footer>
 
 </sv-footer>
+
+<script src="./bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/velocity/velocity.js"></script>
+<script src="bower_components/moment/min/moment-with-locales.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
+<script src="bower_components/lumx/dist/lumx.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
 <script src="./bower_components/angular-aria/angular-aria.js"></script>
 <script src="./bower_components/angular-material/angular-material.js"></script>
@@ -87,13 +96,10 @@
 
 <!-- MODULES-->
 
-<!-- classified -->
-<script src="scripts/classified/classifiedIndex.js"></script>
-<script src="scripts/classified/directives/sv-post-classified-form.js"></script>
-<script src="scripts/classified/controllers/ClassifiedCtrl.js"></script>
-
+<!-- auth -->
 <script src="scripts/auth/authIndex.js"></script>
 <script src="scripts/auth/services/AuthServ.js"></script>
+<script src="scripts/auth/directives/sv-auth-btn.js"></script>
 
 <!-- contact -->
 <script src="scripts/contact/contactIndex.js"></script>
