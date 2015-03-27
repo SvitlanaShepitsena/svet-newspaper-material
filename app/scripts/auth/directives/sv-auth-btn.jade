@@ -12,7 +12,7 @@ div(layout='row' layout-align="end center")
 				button.btn.btn--s.btn--fab.tc-red-900.bgc-white(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
 					i.mdi.mdi-google-plus
 	div(ng-if='!!user')
-		.fab.l
+		.fab.l(style='display:box')
 			button.fab__primary.btn.btn--l.btn--fab(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
 				img(ng-src="{{user.avatar}}")
 			.fab__actions.fab__actions--bottom
