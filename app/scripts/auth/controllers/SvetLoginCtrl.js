@@ -2,16 +2,20 @@
     'use strict';
 
     angular.module('auth')
-        .controller('SvetLoginCtrl', function ($scope) {
+        .controller('SvetLoginCtrl', function ($scope,AuthServ,$rootScope, $state) {
             var login = this;
 
             login.user = {
-                email: '',
-                pass:''
-
+                email: 'user@gmail.com',
+                password:'12345'
             }
+
             login.singIn = function () {
-                console.log(login.user);
+                AuthServ.loginPassword(login.user.email,login.user.password).then(function (user) {
+                   $rootScope.user = user ;
+                    $state.go('app.home');
+
+                })
             }
 
         });
