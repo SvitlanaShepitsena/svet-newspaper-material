@@ -1,21 +1,19 @@
 div(layout='row' layout-align="end center")
-	div(ng-if='!user')
-		.fab.l
-			button.fab__primary.btn.btn--l.btn--fab(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
-				i.mdi.mdi-account
-				i.mdi.mdi-login
-			.fab__actions(ng-class="{'fab__actions--left':ctrl.gtSm,'fab__actions--down':ctrl.sm}" style='display:box; margin-top:-16px')
-				a.btn.btn--s.btn--fab.tc-red-500.bgc-white(lx-ripple='' ui-sref='app.svet-login')
-					span.fs-caption Svet
-				button.btn.btn--s.btn-blue.btn--fab.tc-blue-800.bgc-white(lx-ripple='' ng-click='ctrl.loginSvetUser("facebook")')
-					i.mdi.mdi-facebook
-				button.btn.btn--s.btn--fab.tc-red-900.bgc-white(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
-					i.mdi.mdi-google-plus
-	div(ng-if='!!user')
-		.fab.l
-			button.fab__primary.btn.btn--l.btn--fab(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
-				img(ng-src="{{user.avatar}}")
-			.fab__actions.fab__actions--left
-				button.btn.btn--s.btn--fab.bgc-white.tc-black(lx-ripple=''  ng-click='ctrl.logout()')
-					i.mdi.mdi-logout
+	.fab.l(ng-if='!user')
+		button.fab__primary.btn.btn--l.btn--fab(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
+			i.mdi.mdi-account
+			i.mdi.mdi-login
+		.fab__actions(ng-class="{'fab__actions--left':ctrl.gtSm,'fab__actions--down':ctrl.sm}" style='display:box; margin-top:-16px')
+			a.btn.btn--s.btn--fab.tc-red-500.bgc-white(lx-ripple='' ui-sref='app.svet-login')
+				span.fs-caption Svet
+			button.btn.btn--s.btn-blue.btn--fab.tc-blue-800.bgc-white(lx-ripple='' ng-click='ctrl.loginSvetUser("facebook")')
+				i.mdi.mdi-facebook
+			button.btn.btn--s.btn--fab.tc-red-900.bgc-white(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
+				i.mdi.mdi-google-plus
+	.fab.l(ng-if='!!user')
+		button.fab__primary.btn.btn--l.btn--fab(lx-ripple='')
+			img(ng-src="{{user.avatar}}")
+		.fab__actions.fab__actions--down(style='margin-top:-16px')
+			button.btn.btn--s.btn--fab.bgc-white.tc-black(lx-ripple=''  ng-click='ctrl.logout()')
+				i.mdi.mdi-logout
 
