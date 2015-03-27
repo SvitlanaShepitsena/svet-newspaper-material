@@ -1,6 +1,6 @@
 div(layout='row' layout-align="end center")
 	div(ng-if='!user')
-		.fab.l(style='display:box')
+		.fab.l
 			button.fab__primary.btn.btn--l.btn--fab(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
 				i.mdi.mdi-account
 				i.mdi.mdi-login
@@ -12,10 +12,10 @@ div(layout='row' layout-align="end center")
 				button.btn.btn--s.btn--fab.tc-red-900.bgc-white(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
 					i.mdi.mdi-google-plus
 	div(ng-if='!!user')
-		.fab.l(style='display:box')
+		.fab.l
 			button.fab__primary.btn.btn--l.btn--fab(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
 				img(ng-src="{{user.avatar}}")
-			.fab__actions.fab__actions--bottom
+			.fab__actions.fab__actions--left
 				button.btn.btn--s.btn--fab.bgc-white.tc-black(lx-ripple=''  ng-click='ctrl.logout()')
 					i.mdi.mdi-logout
 
