@@ -1,1 +1,13 @@
-.well content
+div
+	p Регистрация
+
+	form(name="registerForm" layout='column')
+		div
+			input(type='txt' placeholder='login' ng-model='signup.user.email')
+		div
+			input(type='password' placeholder='password' ng-model='signup.user.pass')
+
+		md-button(ng-click='signUp.createAccount()') Зарегистрироваться
+
+	div
+		a(ui-sref='app.svet-login') Войти

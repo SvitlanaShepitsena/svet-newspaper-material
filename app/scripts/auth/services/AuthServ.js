@@ -81,6 +81,16 @@
                     deferred.resolve(user);
 
                     return deferred.promise;
+                },
+
+                createUser: function (email, password) {
+                    var deferred = $q.defer();
+
+                    var user;
+                    var newUser = this.getObj().$createUser({email: email, password:password});
+
+
+                    return deferred.promise;
                 }
 
             };
