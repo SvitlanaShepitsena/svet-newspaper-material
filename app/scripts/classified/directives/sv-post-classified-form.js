@@ -1,0 +1,24 @@
+(function () {
+    'use strict';
+
+    angular.module('classified')
+        .directive('svPostClassifiedForm', function () {
+            return {
+                replace: true,
+                templateUrl: 'scripts/classified/directives/sv-post-classified-form.html',
+                scope: {},
+                bindToController: {
+
+                },
+                controllerAs: 'ctrl',
+                controller: function ($scope) {
+                    var ctrl = this;
+
+                },
+
+                link: function ($scope, el, attrs) {
+
+                }
+            };
+        });
+})();
