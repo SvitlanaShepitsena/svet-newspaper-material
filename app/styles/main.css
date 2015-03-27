@@ -96,6 +96,10 @@ body {
   display: inline-block;
 }
 /***************/
+/*=lumx custom typography*/
+.fs-subhead {
+  font-weight: 700;
+}
 .text-center {
   text-align: center !important;
 }
