@@ -6,12 +6,14 @@
         // modules
 		'contact',
 		'article',
+		'auth',
         'politics',
 
         'home',
         // 3rd party modules
         'ngAnimate',
         'ngMaterial',
+        'firebase',
         'ui.router'
     ])
 
