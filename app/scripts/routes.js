@@ -36,11 +36,11 @@
                     controller: "ContactCtrl as contact",
                     templateUrl: "scripts/contact/views/contactCtrl.html"
                 })
-				.state("app.classified", {
-					url: "/classified", 
-					controller:"ClassifiedCtrl as classified",
-					templateUrl: "scripts/classified/views/classifiedCtrl.html"
-				})
+                .state("app.classified", {
+                    url: "/classified",
+                    controller: "ClassifiedCtrl as classified",
+                    templateUrl: "scripts/classified/views/classifiedCtrl.html"
+                })
 //#state'
         });
 

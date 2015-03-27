@@ -6,10 +6,7 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/classified/directives/sv-post-classified-form.html',
-                scope: {},
-                bindToController: {
-
-                },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
