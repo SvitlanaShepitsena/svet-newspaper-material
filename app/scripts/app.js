@@ -4,6 +4,7 @@
     angular.module('app', [
 
         // modules
+		'classified',
 		'contact',
 		'article',
 		'auth',
