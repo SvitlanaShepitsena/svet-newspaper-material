@@ -16,7 +16,6 @@
                     var ctrl = this;
 
                 },
-
                 link: function ($scope, element, attr) {
                     $scope.openBottomSheet = function () {
                         $mdBottomSheet.show({
