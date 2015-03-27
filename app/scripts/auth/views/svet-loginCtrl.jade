@@ -11,7 +11,9 @@ div(layout flex layout-align='center')
 					lx-text-field(label='Password / Пароль', icon='lock', fixed-label='true')
 						input(type='password', ng-model='login.user.pass')
 				div
-					md-button.md-raised(ng-click='login.singIn()' class="mt++") Войти
+					md-button.md-raised(ng-click='login.singIn()' class="mt++")
+						i.mdi.mdi-arrow-right-bold &nbsp
+						| Войти
 			md-divider(class='mt+++')
 			div.mdc-text-right(class='mt')
 				a.fs-caption(ui-sref='app.sign-up') Зарегистрироваться
