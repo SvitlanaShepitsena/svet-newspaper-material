@@ -41,6 +41,11 @@
                     controller: "ClassifiedCtrl as classified",
                     templateUrl: "scripts/classified/views/classifiedCtrl.html"
                 })
+				.state("app.svet-login", {
+					url: "/svet-login", 
+					controller:"SvetLoginCtrl as svetLogin",
+					templateUrl: "scripts/auth/views/svet-loginCtrl.html"
+				})
 //#state'
         });
 

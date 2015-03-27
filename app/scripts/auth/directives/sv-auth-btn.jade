@@ -1,15 +1,15 @@
 div(layout='row' layout-align="center center")
 	div(ng-if='!user')
-		.fab.ml
-			button.fab__primary.btn.btn--m.bgc-indigo-300.btn--fab(lx-ripple='' )
+		.fab
+			button.fab__primary.btn.btn--xl.bgc-indigo-300.btn--fab(lx-ripple='' )
 				i.mdi.mdi-account
 				i.mdi.mdi-login(style='color:white !important')
 			.fab__actions.fab__actions--left
-				button.btn.btn--l.btn-blue.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("facebook")')
+				button.btn.btn--m.btn-blue.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("facebook")')
 					i.mdi.mdi-facebook
-				button.btn.btn--l.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
+				button.btn.btn--m.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
 					i.mdi.mdi-google-plus
-				button.btn.btn--l.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("")')
+				button.btn.btn--m.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("")')
 					span.txt-svet-red S
 	div(ng-if='!!user')
 		.fab.ml
