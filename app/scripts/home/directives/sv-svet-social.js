@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('home')
-        .directive('svSvetSocial', function () {
+        .directive('svSvetSocial', function ($mdBottomSheet) {
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-svet-social.html',
@@ -16,9 +16,12 @@
                     var ctrl = this;
 
                 },
-
-                link: function ($scope, el, attrs) {
-
+                link: function ($scope, element, attr) {
+                    $scope.openBottomSheet = function () {
+                        $mdBottomSheet.show({
+                            templateUrl: 'scripts/home/templates/social-bottom-list.html'
+                        });
+                    };
                 }
             };
         });

@@ -95,6 +95,13 @@ body {
 .mdc-display-inline-block {
   display: inline-block;
 }
+.mdc-link {
+  text-decoration: none !important;
+  display: inline-block;
+}
+.fw-700 {
+  font-weight: 700px !important;
+}
 /***************/
 /*=lumx custom typography*/
 .fs-subhead {
