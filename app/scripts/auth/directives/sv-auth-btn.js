@@ -5,6 +5,7 @@
         .directive('svAuthBtn', function (AuthServ,$rootScope) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
+                replace:true,
                 scope: {},
                 bindToController: {
 
