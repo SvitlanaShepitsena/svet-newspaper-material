@@ -1,21 +1,21 @@
-div(layout='row' layout-align="center center")
+div(layout='row' layout-align="end center")
 	div(ng-if='!user')
-		.fab
-			button.fab__primary.btn.btn--xl.bgc-indigo-300.btn--fab(lx-ripple='' )
+		.fab.l
+			button.fab__primary.btn.btn--l.bgc-indigo-300.btn--fab(lx-ripple='' class='mr+')
 				i.mdi.mdi-account
 				i.mdi.mdi-login(style='color:white !important')
 			.fab__actions.fab__actions--left
-				button.btn.btn--m.btn-blue.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("facebook")')
+				button.btn.btn--s.btn-blue.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("facebook")')
 					i.mdi.mdi-facebook
-				button.btn.btn--m.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
+				button.btn.btn--s.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
 					i.mdi.mdi-google-plus
-				a.btn.btn--m.btn--fab(ui-sref='app.svet-login' lx-ripple='' ng-click='')
+				button.btn.btn--s.btn--fab(lx-ripple='' ng-click='ctrl.loginSvetUser("")')
 					span.txt-svet-red S
 	div(ng-if='!!user')
-		.fab.ml
+		.fab.l
 			button.fab__primary.btn.btn--xl.btn--indigo.btn--fab(lx-ripple='')
 				img(ng-src="{{user.avatar}}")
 			.fab__actions.fab__actions--down
-				button.btn.btn--l.bgc-indigo-300.btn--fab(lx-ripple=''  ng-click='ctrl.logout()' style='color:white !important')
+				button.btn.btn--s.bgc-indigo-300.btn--fab(lx-ripple=''  ng-click='ctrl.logout()' style='color:white !important')
 					i.mdi.mdi-logout
 
