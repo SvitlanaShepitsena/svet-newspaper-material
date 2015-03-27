@@ -3,12 +3,15 @@
 
     angular.module('auth')
         .controller('SvetLoginCtrl', function ($scope) {
-            var svetLogin = this;
+            var login = this;
 
-            svetLogin.user = {
+            login.user = {
                 email: '',
                 pass:''
 
+            }
+            login.singIn = function () {
+                console.log(login.user);
             }
 
         });

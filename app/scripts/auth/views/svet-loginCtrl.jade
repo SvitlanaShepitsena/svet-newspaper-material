@@ -1,1 +1,8 @@
-.well content
+div
+	form(name="loginForm" layout='column')
+		div
+			input(type='txt' placeholder='login' ng-model='login.user.email')
+		div
+			input(type='password' placeholder='password' ng-model='login.user.pass')
+
+		md-button(ng-click='login.singIn()') Login
