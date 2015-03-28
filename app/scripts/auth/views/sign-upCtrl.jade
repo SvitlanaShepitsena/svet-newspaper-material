@@ -1,29 +1,24 @@
-div(layout='column' layout-fill flex)
-	md-card
+div(layout flex layout-align='center')
+	md-card(flex='' flex-gt-sm='60' flex-gt-md='80' flex-gt-lg='50')
 		md-card-content
-			form(layout='column' name="loginForm" layout-gt-sm='row' layout-gt-lg='column' layout-fill flex)
+			span.display-block.fs-title.mb Регистрация
+			md-divider
+			form.mt(layout='column' name="registerForm" layout-fill flex)
 				div(flex='')
-					lx-text-field(label='Name / Контактное Имя', icon='account', fixed-label='true')
+					lx-text-field(label='Name / Контактное Имя', icon='account')
 						input(type='text', ng-model='textFields.firstName')
 				div(flex='')
-					lx-text-field(label='Email / Электронный Адрес', icon='email', fixed-label='true')
+					lx-text-field(label='Email / Электронный Адрес', icon='email' ng-model='signUp.user.email')
 						input(type='email', ng-model='login.user.email')
 				div(flex='')
-					lx-text-field(label='Password / Пароль', icon='lock', fixed-label='true')
+					lx-text-field(label='Password / Пароль', icon='lock', ng-model='signUp.user.pass')
 						input(type='password', ng-model='login.user.pass')
-				md-button(ng-click='login.singIn()' class="mt++") Войти
-	div
-		a(ui-sref='app.sign-up') Зарегистрироваться
-div
-	p Регистрация
-
-	form(name="registerForm" layout='column')
-		div
-			input(type='txt' placeholder='login' ng-model='signUp.user.email')
-		div
-			input(type='password' placeholder='password' ng-model='signUp.user.pass')
-
-		md-button(ng-click='signUp.createAccount()') Зарегистрироваться
-
-	div
-		a(ui-sref='app.svet-login') Войти
+				div(flex='')
+					button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='signUp.createAccount()' class="mt++")
+						i.mdi.mdi-arrow-right-bold &nbsp
+						| Зарегистрироваться
+			md-divider(class='mt+++')
+			div(class='mt' layout='row' layout-align='space-between')
+				div.display-block.fs-body-1 Already have an account? &nbsp
+				div.mdc-text-right
+					button.btn.btn--s.btn--flat.fs-caption.btn--indigo(lx-ripple ui-sref='app.svet-login') Войти
