@@ -1,16 +1,16 @@
 div(layout flex layout-align='center')
-	md-card(flex='50')
+	md-card(flex='' flex-gt-sm='60' flex-gt-md='80' flex-gt-lg='50')
 		md-card-content
-			span.display-block.fs-display-1.mb Log In to Your Account
+			span.display-block.fs-title.mb Log In to Your Account
 			md-divider
-			form.mt(layout='column' name="loginForm" layout-gt-sm='row' layout-gt-lg='column' layout-fill flex)
+			form.mt(layout='column' name="loginForm" layout-fill flex)
 				div(flex='')
 					lx-text-field(label='Email / Электронный Адрес', icon='email', fixed-label='true')
 						input(type='email', ng-model='login.user.email')
 				div(flex='')
 					lx-text-field(label='Password / Пароль', icon='lock', fixed-label='true')
 						input(type='password', ng-model='login.user.password')
-				div
+				div(flex'')
 					md-button.md-raised(ng-click='login.singIn()' class="mt++")
 						i.mdi.mdi-arrow-right-bold &nbsp
 						| Войти
