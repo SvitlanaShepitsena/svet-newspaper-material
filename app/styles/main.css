@@ -71,6 +71,7 @@
 .tc-white-4 {
   color: rgba(255,255,255,0.12);
 }
+/*Bugs with Safari*/
 html,
 body {
   font-family: 'Roboto', sans-serif;

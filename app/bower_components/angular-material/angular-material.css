@@ -235,6 +235,8 @@ md-tab {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
 }
 
 [layout=row] {
@@ -824,6 +826,8 @@ md-tab {
     [layout-sm=column] {
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
         flex-direction: column;
     }
 
@@ -1275,6 +1279,8 @@ md-tab {
     [layout-gt-sm=column] {
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
         flex-direction: column;
     }
 
@@ -1735,6 +1741,8 @@ md-tab {
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
     }
 
     [layout-md=row] {
@@ -2186,6 +2194,8 @@ md-tab {
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
     }
 
     [layout-gt-md=row] {
@@ -2645,6 +2655,8 @@ md-tab {
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
     }
 
     [layout-lg=row] {
@@ -3100,6 +3112,8 @@ md-tab {
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
     }
 
     [layout-gt-lg=row] {
@@ -3873,6 +3887,8 @@ md-bottom-sheet.md-grid md-list {
 md-bottom-sheet.md-grid md-item {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     flex-direction: column;
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -3936,6 +3952,8 @@ md-bottom-sheet.md-grid md-item .md-item-content {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3950,6 +3968,8 @@ md-bottom-sheet.md-grid md-item .md-grid-item-content {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -4153,6 +4173,8 @@ md-card {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -4322,6 +4344,8 @@ md-dialog {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -4474,6 +4498,8 @@ md-input-container {
     display: -ms-flexbox;
     display: flex;
     position: relative;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -7397,6 +7423,8 @@ md-select-menu {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -7410,6 +7438,8 @@ md-select-menu {
 }
 
 md-select-menu.md-reverse {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column-reverse;
     -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
@@ -7476,6 +7506,10 @@ md-sidenav {
     z-index: 60;
     background-color: white;
     overflow: auto;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -8514,6 +8548,8 @@ md-toolbar {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
