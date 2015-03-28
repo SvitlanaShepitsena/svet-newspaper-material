@@ -3,7 +3,6 @@
 
     angular.module('app')
 
-
         .controller('MainCtrl', function ($scope, $timeout, $mdSidenav) {
             $scope.toggleLeft = function () {
                 $mdSidenav('left').toggle();

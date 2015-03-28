@@ -33,11 +33,10 @@
 <div flex layout="row">
     <!-- =Left Sidebar-->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'
-                    ng-controller="LeftCtrl">
-            <md-button ng-click="close()" hide-gt-md="" aria-label="close" class="txt-white"><i
-                    class="mdi mdi-close"></i></md-button>
+        <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'>
             <span class="mdc-subhead">Наши новости</span>
+            <md-button ng-click="close()" hide-gt-md="" class="txt-white" ng-controller="LeftCtrl"><i
+                    class="mdi mdi-close"></i></md-button>
         </md-toolbar>
         <md-content class="md-padding">
             <sv-news-sections-nav></sv-news-sections-nav>
