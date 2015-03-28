@@ -43,12 +43,12 @@ div(layout='column' layout-fill flex)
 					lx-text-field(label='Описание')
 						textarea(ng-model='textFields.description')
 			div.mt(layout-sm='column' layout-gt-sm='row' layout-fill flex layout-align='start')
-				md-button.md-raised.md-hue-1.m
+				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
 					i.mdi.mdi-content-save-all
 					| &nbsp Сохранить Темплейт
-				md-button.md-raised.md-hue-1.m
+				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
 					i.mdi.mdi-content-save
 					| &nbsp Сохранить Изменения
-				md-button.md-raised.md-hue-1.m
+				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
 					i.mdi.mdi-send
 					| &nbsp Разместить

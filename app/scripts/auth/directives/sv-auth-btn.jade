@@ -1,19 +1,19 @@
 div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 	.fab.l(ng-if='!user')
-		button.fab__primary.btn.btn--l.btn--fab(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
+		button.fab__primary.btn.btn--l.btn--fab.btn--white(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
 			i.mdi.mdi-account
 			i.mdi.mdi-login
 		.fab__actions(ng-class="{'fab__actions--left':ctrl.gtSm,'fab__actions--down':ctrl.sm}" style='margin-bottom:-4px')
-			a.btn.btn--m.btn--fab.tc-red-500.bgc-white(lx-ripple='' ui-sref='app.svet-login')
+			a.btn.btn--m.btn--fab.tc-red-500.btn--white(lx-ripple ui-sref='app.svet-login')
 				span.fs-caption Svet
-			button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.bgc-white(lx-ripple='' ng-click='ctrl.loginSvetUser("facebook")')
+			button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("facebook")')
 				i.mdi.mdi-facebook
-			button.btn.btn--m.btn--fab.tc-red-900.bgc-white(lx-ripple='' ng-click='ctrl.loginSvetUser("google")')
+			button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("google")')
 				i.mdi.mdi-google-plus
 	.fab.l(ng-if='!!user')
-		button.fab__primary.btn.btn--l.btn--fab(lx-ripple='' class="mr+")
+		button.fab__primary.btn.btn--l.btn--fab.btn--white(lx-ripple class="mr+")
 			img(ng-src="{{user.avatar}}")
 		.fab__actions.fab__actions--left( style='margin-bottom:-4px')
-			button.btn.btn--m.btn--fab.bgc-white.tc-black(lx-ripple='' ng-click='ctrl.logout()')
+			button.btn.btn--m.btn--fab.btn--white.tc-black(lx-ripple ng-click='ctrl.logout()')
 				i.mdi.mdi-logout
 
