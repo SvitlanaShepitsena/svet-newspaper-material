@@ -26,6 +26,15 @@
                 return user;
             }
 
+            function processUserPassword(data) {
+                var user = {};
+                user.id = data.google.cachedUserProfile.id;
+                user.fname = data.google.cachedUserProfile.given_name;
+                user.lname = data.google.cachedUserProfile.family_name;
+                user.url = data.google.cachedUserProfile.link;
+                user.avatar = data.google.cachedUserProfile.picture;
+                return user;
+            }
             return {
                 getObj: function () {
                     return $firebaseAuth(mainRef);
@@ -50,6 +59,26 @@
 
                     return deferred.promise;
 
+                },
+                loginPassword: function (email, password) {
+                    var deferred = $q.defer();
+
+                    this.getObj().$authWithPassword({
+                        email: email,
+                        password: password
+                    }).then(function (authData) {
+                        var at = email.indexOf('@');
+                        var userLogin = email.substring(0,at);
+                        authData = _.extend(authData,{
+                            login:userLogin,
+                            avatar:'img/auth/user.png'
+                        });
+                        deferred.resolve(authData);
+                    }).catch(function (error) {
+                        deferred.reject(error);
+                        console.error("Error: ", error);
+                    });
+                    return deferred.promise;
                 },
 
                 logout: function () {
@@ -84,13 +113,32 @@
                 },
 
                 createUser: function (email, password) {
+                    var that = this;
+
                     var deferred = $q.defer();
 
-                    var user;
-                    var newUser = this.getObj().$createUser({email: email, password:password});
-                    
+                    var newUser = this.getObj().$createUser({email: email, password: password});
+
                     newUser.then(function () {
-                        
+
+                        that.getObj().$authWithPassword({
+                            email: email,
+                            password: password
+                        }).then(function (authData) {
+                            var at = email.indexOf('@');
+                            var userLogin = email.substring(0,at);
+                            authData = _.extend(authData,{
+                                email:email,
+                                login:userLogin,
+                                avatar:'img/auth/user.png'
+                            });
+                            deferred.resolve(authData);
+                        }).catch(function (error) {
+                            deferred.reject(error);
+                            console.error("Error: ", error);
+                        });
+
+
                     })
 
 
@@ -98,7 +146,6 @@
                 }
 
             };
-        })
-    ;
+        });
 })
 ();
