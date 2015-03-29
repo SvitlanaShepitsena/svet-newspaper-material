@@ -56,6 +56,11 @@
                     controller: "PostArticleCtrl as postArticle",
                     templateUrl: "scripts/article/views/post-articleCtrl.html"
                 })
+				.state("app.create-article", {
+					url: "/create-article", 
+					controller:"CreateArticleCtrl as createArticle",
+					templateUrl: "scripts/article/views/create-articleCtrl.html"
+				})
 //#state'
         });
 
