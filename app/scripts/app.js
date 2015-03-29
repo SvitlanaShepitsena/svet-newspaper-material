@@ -14,6 +14,8 @@
         'home',
         // 3rd party modules
         'ngAnimate',
+        'ngTouch',
+        'ng-fastclick',
         'lumx',
         'ngMaterial',
         'firebase',
