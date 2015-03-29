@@ -20,7 +20,7 @@
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main">
 <!-- =Header-->
 <md-toolbar layout="row" class="md-primary md-hue-3">
-    <md-button class="menu" hide-gt-md sv-click-handler="" aria-label="Show User List">
+    <md-button class="menu" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
     <h1 class="svet-logo">SVET</h1>
@@ -35,7 +35,7 @@
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'>
             <span class="mdc-subhead">Наши новости</span>
-            <md-button sv-click-handler="" hide-gt-md="" aria-label="close left" class="txt-white" ng-controller="LeftCtrl"><i
+            <md-button sv-left-click-handler="" hide-gt-md="" aria-label="close left" class="txt-white" ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
         <md-content class="md-padding">
@@ -73,14 +73,6 @@
 </sv-footer>
 
 <script src="./bower_components/jquery/dist/jquery.js"></script>
-<script>
-    $( "button" ).click(function( event ) {
-        console.log(event);
-        event.preventDefault();
-    });
-</script>
-
-
 <script src="bower_components/velocity/velocity.js"></script>
 <script src="bower_components/moment/min/moment-with-locales.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
@@ -135,7 +127,6 @@
 <script src="scripts/home/homeIndex.js"></script>
 <script src="scripts/home/directives/sv-left-click-handler.js"></script>
 <script src="scripts/home/directives/sv-right-click-handler.js"></script>
-<script src="scripts/home/directives/sv-click-handler.js"></script>
 <script src="scripts/home/controllers/AppCtrl.js"></script>
 <script src="scripts/home/services/ImageSizeServ.js"></script>
 <script src="scripts/home/directives/sv-clients-nav.js"></script>
