@@ -10,6 +10,9 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
+                    ctrl.user = {
+                        fname:''
+                    };
 
                 },
 

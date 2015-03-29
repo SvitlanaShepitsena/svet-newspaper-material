@@ -11,7 +11,14 @@
                         $scope.$apply(function () {
                             $scope.toggleLeft();
                         });
-                    })
+                    });
+                    el.on('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $scope.$apply(function () {
+                            $scope.toggleLeft();
+                        });
+                    });
 
                 }
             };
