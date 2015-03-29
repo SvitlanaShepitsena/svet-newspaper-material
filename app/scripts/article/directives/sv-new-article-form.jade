@@ -1,1 +1,46 @@
-.well sv-new-article-form Template
+div(flex-container='column')
+	div(flex-container='row')
+		div(flex-item='')
+			button.btn.btn--l.btn--blue.btn--fab(lx-ripple='' lx-tooltip="Post the article")
+				i.mdi.mdi-send
+		div(flex-item='')
+			button.btn.btn--xl.btn--grey.tc-grey-700.btn--icon(lx-ripple='')
+				i.mdi.mdi-content-save
+			button.btn.btn--xl.btn--grey.tc-grey-700.btn--icon(lx-ripple='')
+				i.mdi.mdi-content-save-all
+			button.btn.btn--xl.btn--grey.tc-grey-700.btn--icon(lx-ripple='')
+				i.mdi.mdi-delete
+	div(flex-item='')
+		span.display-block.fs-display-1.txt-fontGrey(class='mt+') New Article
+		div.divider.divider--dark(class='mt++ mb++')
+
+	div(flex-container='row')
+		div(flex-item='8')
+			lx-text-field(label='Автор Статьи', disabled='true')
+				input(type='text', ng-model='textFields.disabled', ng-disabled='true')
+		div(flex-item='')
+			div(class='mt+')
+				lx-date-picker(model='datepicker.date', label='Pick a date', locale='fr', fixed-label='true', icon='calendar')
+	div(flex-container='row' class='m++')
+		div(flex-item='')
+			lx-dropdown
+				div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
+					| Выберите Тему
+				lx-dropdown-menu
+					ul
+						li
+							a.dropdown-link(ng-click='dropdownAlert()') Бизнес на продажу
+						li
+							a.dropdown-link Знакомства
+						li
+							a.dropdown-link Ищу работу
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.title }}
+			lx-text-field(label='Заголовок Статьи')
+				textarea(ng-model='textFields.title')
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.content }}
+			lx-text-field(label='Текст Статьи')
+				textarea(ng-model='textFields.content')
