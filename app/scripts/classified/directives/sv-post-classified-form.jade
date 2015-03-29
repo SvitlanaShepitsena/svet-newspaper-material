@@ -1,54 +1,47 @@
-div(layout='column' layout-fill flex)
-	md-card
-		md-card-content
-			div(layout-sm='column' layout-gt-sm='row' layout-gt-lg='column' layout-fill flex)
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Контактное Имя', icon='account', fixed-label='true')
-						input(type='text', ng-model='textFields.firstName')
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Электронный Адрес', icon='email', fixed-label='true')
-						input(type='email', ng-model='textFields.firstEmail')
-			div(layout-sm='column' layout-fill flex)
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Контактный Телефон', icon='phone', fixed-label='true')
-						input(type='email', ng-model='textFields.secondEmail')
-			div(layout-sm='column' layout-gt-sm='row' layout-fill flex)
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Страна')
-						input(type='text', ng-model='textFields.fixedAdress')
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Город')
-						input(type='text', ng-model='textFields.fixedAdress')
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Штат')
-						input(type='text', ng-model='textFields.fixedAdress')
-			div(layout-sm='column' layout-fill flex)
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Заголовок Объявления')
-						input(ng-model='textFields.description')
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Цена Товара / Услуги')
-						input(ng-model='textFields.description')
-			div(layout-sm='column' layout-fill flex  class='mb++')
-				div(flex='')
-					span.display-block
-					lx-text-field(label='Описание')
-						textarea(ng-model='textFields.description')
-			div.mt(layout-sm='column' layout-gt-sm='row' layout-fill flex layout-align='start')
-				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
-					i.mdi.mdi-content-save-all
-					| &nbsp Сохранить Темплейт
-				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
-					i.mdi.mdi-content-save
-					| &nbsp Сохранить Изменения
-				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
-					i.mdi.mdi-send
-					| &nbsp Разместить
+div(flex-container='column')
+	div(class='mt++', flex-container='row', flex-gutter='24')
+		div(flex-item='')
+			lx-text-field(label='Контактное Имя', fixed-label='true', icon='account')
+				input(type='text', ng-model='textFields.fixedFirstName')
+			lx-text-field(label='Контактный Телефон', fixed-label='true', icon='phone')
+				input(type='text', ng-model='textFields.fixedLastName')
+			lx-text-field(label='Электронный Адрес', fixed-label='true', icon='email')
+				input(type='email', ng-model='textFields.fixedEmail')
+	div(flex-container='row', flex-gutter='24')
+		div(flex-item='')
+			lx-text-field(label='Страна')
+				input(type='text', ng-model='textFields.country')
+		div(flex-item='')
+			lx-text-field(label='Город')
+				input(type='text', ng-model='textFields.city')
+		div(flex-item='')
+			lx-text-field(label='Штат')
+				input(type='text', ng-model='textFields.state')
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.description }}
+			lx-text-field(label='Заголовок Объявления')
+				textarea(ng-model='textFields.description')
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.description }}
+			lx-text-field(label='Цена Товара / Услуги')
+				textarea(ng-model='textFields.description')
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.description }}
+			lx-text-field(label='Описание')
+				textarea(ng-model='textFields.description')
+	div(flex-container='row')
+		div(flex-item='')
+			button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
+				i.mdi.mdi-content-save-all
+				| &nbsp Сохранить Темплейт
+		div(flex-item='')
+			button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
+				i.mdi.mdi-content-save
+				| &nbsp Сохранить Изменения
+		div(flex-item='')
+			button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
+				i.mdi.mdi-send
+				| &nbsp Разместить
