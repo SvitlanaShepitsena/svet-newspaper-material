@@ -15,33 +15,22 @@ form(name='article' flex-container='column')
 		div(flex-item='')
 			lx-dropdown
 				div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-					| Темa / Section
+					| {{ctrl.article.section || "Темa / Section"}}
 				lx-dropdown-menu
 					ul
-						li
-							a.dropdown-link Политика
-						li
-							a.dropdown-link Мы и Деньги
-						li
-							a.dropdown-link Культура
-						li
-							a.dropdown-link Общество
-						li
-							a.dropdown-link Мир
+						li(ng-repeat='s in ctrl.siteSections')
+							a(ng-click='ctrl.setSection(s)') {{s}}
+
 	div(flex-container='row')
 		div(flex-item='')
-			span.display-block {{ textFields.title }}
 			lx-text-field(label='Заголовок Статьи / Title')
-				textarea(ng-model='textFields.title')
+				textarea(ng-model='ctrl.article.title')
 	div(flex-container='row')
 		div(flex-item='')
-			span.display-block {{ textFields.content }}
 			lx-text-field(label='Текст Статьи / Content')
-				textarea(ng-model='textFields.content')
+				textarea(ng-model='ctrl.article.body')
 	div(flex-container='row')
 		div(flex-item='')
-			span.display-block {{ textFields.content }}
-			lx-text-field(label='Tags / Теги')
-				textarea(ng-model='textFields.content')
+			lx-text-field(label='Tags / Теги' ng-model="ctrl.article.tags")
 	div(flex-item='' class='mt++')
 		sv-manage-article-nav

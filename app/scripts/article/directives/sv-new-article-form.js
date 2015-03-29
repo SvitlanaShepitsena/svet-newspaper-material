@@ -11,6 +11,16 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
+                    ctrl.siteSections=[
+                        'Политика',
+                        'Мы и Деньги',
+                        'Культура',
+                        'Общество',
+                        'Мир',
+
+                    ]
+
+
                     ctrl.article = {
                         author: $rootScope.user.fname + ' ' + $rootScope.user.lname,
                         date: 'datepicker.date',
@@ -19,6 +29,9 @@
                         body: '',
                         tags: ''
 
+                    }
+                    ctrl.setSection = function (section) {
+                        ctrl.article.section = section;
                     }
 
                 },
