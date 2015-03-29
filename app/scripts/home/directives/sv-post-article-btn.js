@@ -6,7 +6,6 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-post-article-btn.html',
-                scope: {},
                 bindToController: {
 
                 },
