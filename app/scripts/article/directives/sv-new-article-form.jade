@@ -1,0 +1,47 @@
+div(flex-container='column')
+	div(flex-item='')
+		sv-manage-article-nav
+	div(flex-item='')
+		span.display-block.fs-display-1.txt-fontGrey(class='mt+') New Article
+		div.divider.divider--dark(class='mt++ mb++')
+	div(flex-container='row')
+		div(flex-item='8')
+			lx-text-field(label='Автор Статьи', disabled='true')
+				input(type='text', ng-model='textFields.disabled', ng-disabled='true')
+		div(flex-item='')
+			div(class='mt+')
+				lx-date-picker(model='datepicker.date', label='Pick a date', locale='fr', fixed-label='true', icon='calendar')
+	div(flex-container='row' class='m++')
+		div(flex-item='')
+			lx-dropdown
+				div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
+					| Темa / Section
+				lx-dropdown-menu
+					ul
+						li
+							a.dropdown-link(ng-click='dropdownAlert()') Политика
+						li
+							a.dropdown-link Мы и Деньги
+						li
+							a.dropdown-link Культура
+						li
+							a.dropdown-link Общество
+						li
+							a.dropdown-link Мир
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.title }}
+			lx-text-field(label='Заголовок Статьи / Title')
+				textarea(ng-model='textFields.title')
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.content }}
+			lx-text-field(label='Текст Статьи / Content')
+				textarea(ng-model='textFields.content')
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.content }}
+			lx-text-field(label='Tags / Теги')
+				textarea(ng-model='textFields.content')
+	div(flex-item='' class='mt++')
+		sv-manage-article-nav

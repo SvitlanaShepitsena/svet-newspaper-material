@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
     <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.css"/>
-    <link rel="stylesheet" href="styles/lumx.css"/>
+    <!--<link rel="stylesheet" href="styles/lumx.css"/>-->
     <link rel="stylesheet" href="assets/app.css"/>
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
@@ -39,6 +39,7 @@
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
         <md-content class="md-padding">
+            <sv-nav-btn url='app.create-article' title='New Article' icon='plus'></sv-nav-btn>
             <sv-news-sections-nav></sv-news-sections-nav>
         </md-content>
     </md-sidenav>
@@ -99,6 +100,9 @@
 
 <!-- MODULES-->
 
+<!-- aritcle -->
+<script src="scripts/aritcle/aritcleIndex.js"></script>
+
 <!-- classified -->
 <script src="scripts/classified/classifiedIndex.js"></script>
 <script src="scripts/classified/directives/sv-post-classified-form.js"></script>
@@ -117,6 +121,9 @@
 
 <!-- article -->
 <script src="scripts/article/articleIndex.js"></script>
+<script src="scripts/article/directives/sv-manage-article-nav.js"></script>
+<script src="scripts/article/directives/sv-new-article-form.js"></script>
+<script src="scripts/article/controllers/CreateArticleCtrl.js"></script>
 <script src="scripts/article/directives/sv-one-article.js"></script>
 <script src="scripts/article/controllers/ArticleCtrl.js"></script>
 
@@ -128,6 +135,7 @@
 <script src="scripts/home/homeIndex.js"></script>
 <script src="scripts/home/directives/sv-left-click-handler.js"></script>
 <script src="scripts/home/directives/sv-right-click-handler.js"></script>
+<script src="scripts/home/directives/sv-nav-btn.js"></script>
 <script src="scripts/home/controllers/AppCtrl.js"></script>
 <script src="scripts/home/services/ImageSizeServ.js"></script>
 <script src="scripts/home/directives/sv-clients-nav.js"></script>

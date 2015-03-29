@@ -4,10 +4,11 @@
     angular.module('app', [
 
         // modules
-        'classified',
-        'contact',
-        'article',
-        'auth',
+		'aritcle',
+		'classified',
+		'contact',
+		'article',
+		'auth',
         'politics',
 
         'home',

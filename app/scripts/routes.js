@@ -41,16 +41,21 @@
                     controller: "ClassifiedCtrl as classified",
                     templateUrl: "scripts/classified/views/classifiedCtrl.html"
                 })
-				.state("app.svet-login", {
-					url: "/svet-login",
-					controller:"SvetLoginCtrl as login",
-					templateUrl: "scripts/auth/views/svet-loginCtrl.html"
-				})
-				.state("app.sign-up", {
-					url: "/sign-up", 
-					controller:"SignUpCtrl as signUp",
-					templateUrl: "scripts/auth/views/sign-upCtrl.html"
-				})
+                .state("app.svet-login", {
+                    url: "/svet-login",
+                    controller: "SvetLoginCtrl as login",
+                    templateUrl: "scripts/auth/views/svet-loginCtrl.html"
+                })
+                .state("app.sign-up", {
+                    url: "/sign-up",
+                    controller: "SignUpCtrl as signUp",
+                    templateUrl: "scripts/auth/views/sign-upCtrl.html"
+                })
+                .state("app.create-article", {
+                    url: "/create-article",
+                    controller: "CreateArticleCtrl as createArticle",
+                    templateUrl: "scripts/article/views/create-articleCtrl.html"
+                })
 //#state'
         });
 
