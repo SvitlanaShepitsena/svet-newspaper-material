@@ -35,7 +35,8 @@
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'>
             <span class="mdc-subhead">Наши новости</span>
-            <md-button ng-click="close()" hide-gt-md="" aria-label="close left" class="txt-white" ng-controller="LeftCtrl"><i
+            <md-button ng-click="close()" hide-gt-md="" aria-label="close left" class="txt-white"
+                       ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
         <md-content class="md-padding">
@@ -124,6 +125,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-post-article-btn.js"></script>
 <script src="scripts/home/controllers/AppCtrl.js"></script>
 <script src="scripts/home/services/ImageSizeServ.js"></script>
 <script src="scripts/home/directives/sv-clients-nav.js"></script>
