@@ -40,7 +40,7 @@
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
         <md-content class="md-padding">
-            <sv-post-article-btn></sv-post-article-btn>
+            <sv-nav-btn url='app.politics' title='New Article' icon='plus'></sv-nav-btn>
             <sv-news-sections-nav></sv-news-sections-nav>
         </md-content>
     </md-sidenav>
@@ -117,6 +117,7 @@
 
 <!-- article -->
 <script src="scripts/article/articleIndex.js"></script>
+<script src="scripts/article/controllers/PostArticleCtrl.js"></script>
 <script src="scripts/article/directives/sv-one-article.js"></script>
 <script src="scripts/article/controllers/ArticleCtrl.js"></script>
 
@@ -126,7 +127,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
-<script src="scripts/home/directives/sv-post-article-btn.js"></script>
+<script src="scripts/home/directives/sv-nav-btn.js"></script>
 <script src="scripts/home/controllers/AppCtrl.js"></script>
 <script src="scripts/home/services/ImageSizeServ.js"></script>
 <script src="scripts/home/directives/sv-clients-nav.js"></script>

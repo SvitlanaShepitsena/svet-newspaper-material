@@ -51,6 +51,11 @@
 					controller:"SignUpCtrl as signUp",
 					templateUrl: "scripts/auth/views/sign-upCtrl.html"
 				})
+				.state("app.post-article", {
+					url: "/post-article", 
+					controller:"PostArticleCtrl as postArticle",
+					templateUrl: "scripts/article/views/post-articleCtrl.html"
+				})
 //#state'
         });
 
