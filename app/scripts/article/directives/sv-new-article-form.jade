@@ -25,22 +25,31 @@ div(flex-container='column')
 		div(flex-item='')
 			lx-dropdown
 				div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-					| Выберите Тему
+					| Темa / Section
 				lx-dropdown-menu
 					ul
 						li
-							a.dropdown-link(ng-click='dropdownAlert()') Бизнес на продажу
+							a.dropdown-link(ng-click='dropdownAlert()') Политика
 						li
-							a.dropdown-link Знакомства
+							a.dropdown-link Мы и Деньги
 						li
-							a.dropdown-link Ищу работу
+							a.dropdown-link Культура
+						li
+							a.dropdown-link Общество
+						li
+							a.dropdown-link Мир
 	div(flex-container='row')
 		div(flex-item='')
 			span.display-block {{ textFields.title }}
-			lx-text-field(label='Заголовок Статьи')
+			lx-text-field(label='Заголовок Статьи / Title')
 				textarea(ng-model='textFields.title')
 	div(flex-container='row')
 		div(flex-item='')
 			span.display-block {{ textFields.content }}
-			lx-text-field(label='Текст Статьи')
+			lx-text-field(label='Текст Статьи / Content')
+				textarea(ng-model='textFields.content')
+	div(flex-container='row')
+		div(flex-item='')
+			span.display-block {{ textFields.content }}
+			lx-text-field(label='Tags / Теги')
 				textarea(ng-model='textFields.content')
