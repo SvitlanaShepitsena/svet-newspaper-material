@@ -74,8 +74,8 @@
                         email: email,
                         password: password
                     }).then(function (authData) {
-
-                        deferred.resolve(authData);
+                        var user = processUserPassword(authData);
+                        deferred.resolve(user);
                     }).catch(function (error) {
                         deferred.reject(error);
                         console.error("Error: ", error);
