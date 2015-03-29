@@ -7,6 +7,37 @@ div(flex-container='column')
 				input(type='text', ng-model='textFields.fixedLastName')
 			lx-text-field(label='Электронный Адрес', fixed-label='true', icon='email')
 				input(type='email', ng-model='textFields.fixedEmail')
+	div(flex-container='row' class='m++')
+		div(flex-item='')
+			lx-dropdown
+				button.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
+					| Select a Category / Выберите категорию
+				lx-dropdown-menu
+					ul
+						li
+							a.dropdown-link(ng-click='dropdownAlert()') Бизнес на продажу
+						li
+							a.dropdown-link Знакомства
+						li
+							a.dropdown-link Ищу работу
+						li
+							a.dropdown-link Куплю
+						li
+							a.dropdown-link Продам
+						li
+							a.dropdown-link Недвижимость
+						li
+							a.dropdown-link Разное
+						li
+							a.dropdown-link Ремонт и обслуживание
+						li
+							a.dropdown-link Сдается
+						li
+							a.dropdown-link Требуются на работу
+						li
+							a.dropdown-link Уроки
+						li
+							a.dropdown-link Услуги
 	div(flex-container='row', flex-gutter='24')
 		div(flex-item='')
 			lx-text-field(label='Страна')
