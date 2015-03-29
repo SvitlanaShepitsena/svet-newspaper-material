@@ -5,7 +5,6 @@
         .controller('AppCtrl', function ($scope, user,$rootScope) {
             var app = this;
             $rootScope.user = user;
-            console.log(user);
 
         });
 })();

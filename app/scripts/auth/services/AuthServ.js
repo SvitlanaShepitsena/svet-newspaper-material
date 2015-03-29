@@ -27,14 +27,18 @@
             }
 
             function processUserPassword(data) {
-                var user = {};
-                user.id = data.google.cachedUserProfile.id;
-                user.fname = data.google.cachedUserProfile.given_name;
-                user.lname = data.google.cachedUserProfile.family_name;
-                user.url = data.google.cachedUserProfile.link;
-                user.avatar = data.google.cachedUserProfile.picture;
-                return user;
+                var email = data.password.email;
+
+                var at = email.indexOf('@');
+                var userLogin = email.substring(0, at);
+                data = _.extend(data, {
+                    login: userLogin,
+                    avatar: 'img/auth/user.png'
+                });
+
+                return data;
             }
+
             return {
                 getObj: function () {
                     return $firebaseAuth(mainRef);
@@ -49,6 +53,9 @@
                         }
                         if (provider === 'google') {
                             var user = processUserGoogle(data);
+                        }
+                        if (provider === 'password') {
+                            var user = processUserPassword(data);
                         }
                         deferred.resolve(user);
                     }).catch(function (error) {
@@ -67,12 +74,7 @@
                         email: email,
                         password: password
                     }).then(function (authData) {
-                        var at = email.indexOf('@');
-                        var userLogin = email.substring(0,at);
-                        authData = _.extend(authData,{
-                            login:userLogin,
-                            avatar:'img/auth/user.png'
-                        });
+
                         deferred.resolve(authData);
                     }).catch(function (error) {
                         deferred.reject(error);
@@ -103,6 +105,12 @@
                         if (data.facebook) {
                             user = processUserFb(data);
                         }
+
+
+                        if (data.password) {
+                            user = processUserPassword(data);
+                        }
+
                     } else {
 
                         user = null;
@@ -126,11 +134,11 @@
                             password: password
                         }).then(function (authData) {
                             var at = email.indexOf('@');
-                            var userLogin = email.substring(0,at);
-                            authData = _.extend(authData,{
-                                email:email,
-                                login:userLogin,
-                                avatar:'img/auth/user.png'
+                            var userLogin = email.substring(0, at);
+                            authData = _.extend(authData, {
+                                email: email,
+                                login: userLogin,
+                                avatar: 'img/auth/user.png'
                             });
                             deferred.resolve(authData);
                         }).catch(function (error) {
