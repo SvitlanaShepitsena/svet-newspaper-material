@@ -5,8 +5,6 @@
         .directive('svClickHandler', function () {
             return {
                 link: function ($scope, el, attrs) {
-                    console.log(el);
-
                     el.on('touchstart', function (e) {
                         e.preventDefault();
                         e.stopPropagation();

@@ -25,7 +25,7 @@
     </md-button>
     <h1 class="svet-logo">SVET</h1>
     <sv-auth-btn></sv-auth-btn>
-    <md-button ng-click="toggleRight()" hide-gt-md aria-label="Show Panel">
+    <md-button sv-right-click-handler="" hide-gt-md aria-label="Show Panel">
         <md-icon md-svg-icon="img/svg/dots-vertical.svg"></md-icon>
     </md-button>
 </md-toolbar>
@@ -55,7 +55,7 @@
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'
                     ng-controller="RightCtrl">
-            <md-button ng-click="close()" hide-gt-md="" aria-label="close right" class="txt-white"><i
+            <md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i
                     class="mdi mdi-close"></i></md-button>
             <span class="mdc-subhead">Читателям и Партнерам</span>
         </md-toolbar>
@@ -133,6 +133,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-left-click-handler.js"></script>
 <script src="scripts/home/directives/sv-right-click-handler.js"></script>
 <script src="scripts/home/directives/sv-click-handler.js"></script>
 <script src="scripts/home/controllers/AppCtrl.js"></script>
