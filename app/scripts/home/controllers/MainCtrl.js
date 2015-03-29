@@ -12,9 +12,9 @@
             };
         })
         .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-            //$scope.close = function () {
-            //    $mdSidenav('left').close();
-            //};
+            $scope.close = function () {
+                $mdSidenav('left').close();
+            };
         })
         .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
             $scope.close = function () {

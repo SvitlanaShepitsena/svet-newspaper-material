@@ -4,15 +4,17 @@
     angular.module('app', [
 
         // modules
-		'classified',
-		'contact',
-		'article',
-		'auth',
+        'classified',
+        'contact',
+        'article',
+        'auth',
         'politics',
 
         'home',
         // 3rd party modules
         'ngAnimate',
+        'ngTouch',
+        'ng-fastclick',
         'lumx',
         'ngMaterial',
         'firebase',
