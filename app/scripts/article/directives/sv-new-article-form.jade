@@ -1,19 +1,9 @@
 div(flex-container='column')
-	div(flex-container='row')
-		div(flex-item='')
-			button.btn.btn--l.btn--blue.btn--fab(lx-ripple='' lx-tooltip="Post the article")
-				i.mdi.mdi-send
-		div(flex-item='')
-			button.btn.btn--xl.btn--grey.tc-grey-700.btn--icon(lx-ripple='')
-				i.mdi.mdi-content-save
-			button.btn.btn--xl.btn--grey.tc-grey-700.btn--icon(lx-ripple='')
-				i.mdi.mdi-content-save-all
-			button.btn.btn--xl.btn--grey.tc-grey-700.btn--icon(lx-ripple='')
-				i.mdi.mdi-delete
+	div(flex-item='')
+		sv-manage-article-nav
 	div(flex-item='')
 		span.display-block.fs-display-1.txt-fontGrey(class='mt+') New Article
 		div.divider.divider--dark(class='mt++ mb++')
-
 	div(flex-container='row')
 		div(flex-item='8')
 			lx-text-field(label='Автор Статьи', disabled='true')
@@ -53,3 +43,5 @@ div(flex-container='column')
 			span.display-block {{ textFields.content }}
 			lx-text-field(label='Tags / Теги')
 				textarea(ng-model='textFields.content')
+	div(flex-item='' class='mt++')
+		sv-manage-article-nav

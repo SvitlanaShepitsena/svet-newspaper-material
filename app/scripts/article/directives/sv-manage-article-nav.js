@@ -7,9 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-manage-article-nav.html',
                 scope: {},
-                bindToController: {
-
-                },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
