@@ -18,29 +18,29 @@
                 },
 
                 link: function ($scope, el, attrs) {
-                    var imgUrl = '/img/news/3-25-2015/gorlovka.jpg';
-
-                    var w = angular.element($window);
-
-                    w.bind('resize', function () {
-                        console.log('resize');
-                        $scope.elImgWidth = el.find('img')[0].clientWidth;
-                        ImageSizeServ.getScaledHeight(imgUrl, $scope.elImgWidth).then(function (height) {
-                            $scope.imgStyle = {height: height + 'px'};
-
-                        });
-                    });
-
-
-                    $scope.$watch('elImgWidth', function (newValue, oldValue) {
-
-                        $scope.elImgWidth = el.find('img')[0].clientWidth;
-                        ImageSizeServ.getScaledHeight(imgUrl, $scope.elImgWidth).then(function (height) {
-                            $scope.imgStyle = {height: height + 'px'};
-
-
-                        });
-                    });
+                    //var imgUrl = '/img/news/3-25-2015/gorlovka.jpg';
+                    //
+                    //var w = angular.element($window);
+                    //
+                    //w.bind('resize', function () {
+                    //    console.log('resize');
+                    //    $scope.elImgWidth = el.find('img')[0].clientWidth;
+                    //    ImageSizeServ.getScaledHeight(imgUrl, $scope.elImgWidth).then(function (height) {
+                    //        $scope.imgStyle = {height: height + 'px'};
+                    //
+                    //    });
+                    //});
+                    //
+                    //
+                    //$scope.$watch('elImgWidth', function (newValue, oldValue) {
+                    //
+                    //    $scope.elImgWidth = el.find('img')[0].clientWidth;
+                    //    ImageSizeServ.getScaledHeight(imgUrl, $scope.elImgWidth).then(function (height) {
+                    //        $scope.imgStyle = {height: height + 'px'};
+                    //
+                    //
+                    //    });
+                    //});
 
 
                 }

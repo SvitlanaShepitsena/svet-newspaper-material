@@ -6,24 +6,21 @@
             return {
                 link: function ($scope, el, attrs) {
 
-                    el.on('touchstart', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
+                    el.on('touchstart', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
                         $scope.$apply(function () {
                             $scope.toggleRight();
                         });
                     })
-                    el.on('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
+                    el.on('click', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
                         $scope.$apply(function () {
                             $scope.toggleRight();
                         });
                     })
 
-                    $scope.$watch(function () {
-                        console.log('digest cycle');
-                    });
                 }
             };
         });
