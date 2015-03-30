@@ -1,21 +1,5 @@
-.btn-block {
-  width: 100%;
-}
-.auth-sm {
-  top: -10px !important;
-}
-.text-footer {
-  display: block;
-  font-size: 13px;
-  line-height: 16px;
-}
-@media screen and (max-width: 992px) {
-  .text-footer {
-    font-size: 11px;
-  }
-}
-@import '../scripts/politics/styles/politics.css';
 @import '../scripts/home/styles/home.css';
+@import '../scripts/politics/styles/politics.css';
 @import '../scripts/article/styles/article.css';
 .bg-black {
   background-color: #000;
