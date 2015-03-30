@@ -33,7 +33,7 @@
                 var userLogin = email.substring(0, at);
                 data = _.extend(data, {
                     login: userLogin,
-                    avatar: 'img/auth/user.png'
+                    avatar: 'img/auth/author.png'
                 });
 
                 return data;

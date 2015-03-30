@@ -1,6 +1,9 @@
 .btn-block {
   width: 100%;
 }
+.auth-sm {
+  top: -10px !important;
+}
 .text-footer {
   display: block;
   font-size: 13px;

@@ -1,7 +1,6 @@
 div(layout='row' layout-align='space-between' layout-margin='')
 	div(layout='row' flex='')
-		sv-nav-link(url='app.login.author-dashboard' title='Home' icon='home')
-		sv-nav-link(url='app.login.author-articles' title='My Articles' icon='file-document-box')
+		sv-nav-link(url='app.author-dashboard' title='Home' icon='home')
+		sv-nav-link( url='app.author-dashboard' title='My Articles' icon='file-document-box')
 	div.text-right(flex='')
-		button.btn.btn--m.btn--raised(lx-ripple='' ui-sref='app.login.create-article')
-			i.mdi.mdi-plus.fc-red-500
+		sv-nav-btn(url='app.create-article', title='New Article', icon='plus', color='grey')
