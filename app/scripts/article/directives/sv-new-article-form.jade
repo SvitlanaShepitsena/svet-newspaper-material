@@ -1,9 +1,18 @@
 form(name='article' flex-container='column')
-	//div(flex-item='')
-		//sv-manage-article-nav
 	div(flex-item='')
 		span.display-block.fs-display-1.txt-fontGrey(class='mt+') New Article
 		div.divider.divider--dark(class='mt++ mb++')
+	div(flex-container='column')
+		span.mdc-display-inline-block.fs-subhead(class='mb+') Выберите Тему: &nbsp
+		lx-dropdown(position='left')
+			//span.fs-subhead
+			button( class="btn btn--l btn--black btn--flat" lx-ripple lx-dropdown-toggle)
+				i.mdi.mdi-dots-vertical
+				span  {{ctrl.article.section || "Темa / Section"}}
+			lx-dropdown-menu
+				ul
+					li(ng-repeat='s in ctrl.siteSections')
+						a.dropdown-link(ng-click='ctrl.setSection(s)') {{s}}
 	div(flex-container='row')
 		div(flex-item='8')
 			lx-text-field(label='Автор Статьи')
@@ -12,16 +21,6 @@ form(name='article' flex-container='column')
 		div(flex-item='')
 			lx-text-field(label='Date')
 				input(ng-model='ctrl.article.date')
-	div(flex-container='row' class='m++')
-		div(flex-item='')
-			lx-dropdown
-				div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-					| {{ctrl.article.section || "Темa / Section"}}
-				lx-dropdown-menu
-					ul
-						li(ng-repeat='s in ctrl.siteSections')
-							a(ng-click='ctrl.setSection(s)') {{s}}
-
 	div(flex-container='row')
 		div(flex-item='')
 			lx-text-field(label='Заголовок Статьи / Title')

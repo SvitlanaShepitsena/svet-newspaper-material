@@ -49,6 +49,7 @@
                     //
                     //}
                     ctrl.article = {
+                        isDraft:true,
                         author: author,
                         date: getFormatedDate(),
                         section: getRandomSection(ctrl.siteSections),
