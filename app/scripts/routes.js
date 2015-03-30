@@ -56,6 +56,11 @@
                     controller: "CreateArticleCtrl as createArticle",
                     templateUrl: "scripts/article/views/create-articleCtrl.html"
                 })
+				.state("app.author-dashboard", {
+					url: "/author-dashboard", 
+					controller:"AuthorDashboardCtrl as authorDashboard",
+					templateUrl: "scripts/auth/views/author-dashboardCtrl.html"
+				})
 //#state'
         });
 
