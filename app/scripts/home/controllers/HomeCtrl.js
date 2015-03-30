@@ -2,8 +2,9 @@
     'use strict';
 
     angular.module('home')
-        .controller('HomeCtrl', function ($scope) {
+        .controller('HomeCtrl', function ($scope, $rootScope) {
             var home = this;
+
         });
 })();
 

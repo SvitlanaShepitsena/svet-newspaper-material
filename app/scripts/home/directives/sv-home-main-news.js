@@ -2,45 +2,32 @@
     'use strict';
 
     angular.module('home')
-        .directive('svHomeMainNews', function (ImageSizeServ, $window) {
+        .directive('svHomeMainNews', function (ImageSizeServ, $window, $rootScope) {
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-home-main-news.html',
-                bindToController: {
-                    someObject: '=',
-                    someString: '@',
-                    someExpr: '&'
-                },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
 
+                    $scope.$watch('news', function (newValue) {
+                        if (!newValue) {
+                            return;
+                        }
+                        var allNews = _.filter(_.toArray(newValue), function (oneNews) {
+                            return _.isObject(oneNews);
+                        });
+
+                        ctrl.mainNews = _.last(allNews);
+                        ctrl.hotNews = _.take(allNews,allNews.length-1);
+
+                    });
+
+
                 },
 
                 link: function ($scope, el, attrs) {
-                    //var imgUrl = '/img/news/3-25-2015/gorlovka.jpg';
-                    //
-                    //var w = angular.element($window);
-                    //
-                    //w.bind('resize', function () {
-                    //    console.log('resize');
-                    //    $scope.elImgWidth = el.find('img')[0].clientWidth;
-                    //    ImageSizeServ.getScaledHeight(imgUrl, $scope.elImgWidth).then(function (height) {
-                    //        $scope.imgStyle = {height: height + 'px'};
-                    //
-                    //    });
-                    //});
-                    //
-                    //
-                    //$scope.$watch('elImgWidth', function (newValue, oldValue) {
-                    //
-                    //    $scope.elImgWidth = el.find('img')[0].clientWidth;
-                    //    ImageSizeServ.getScaledHeight(imgUrl, $scope.elImgWidth).then(function (height) {
-                    //        $scope.imgStyle = {height: height + 'px'};
-                    //
-                    //
-                    //    });
-                    //});
 
 
                 }

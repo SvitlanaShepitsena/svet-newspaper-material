@@ -2,20 +2,21 @@
     'use strict';
 
     angular.module('article')
-        .factory('ArticleServ', function ($q, $firebaseArray, url) {
+        .factory('ArticleServ', function ($q, $firebaseArray, $firebaseObject, url) {
 
-            var ref = $firebaseArray(new Firebase(url + 'articles/'));
+            var refArr = $firebaseArray(new Firebase(url + 'articles/'));
+            var refObj = $firebaseObject(new Firebase(url + 'articles/'));
 
 
             return {
-                getSync: function () {
-
+                allObjRef: function () {
+                    return refObj;
                 },
                 add: function (article) {
                     return $q(function (resolve, reject) {
-                        ref.$add(article).then(function (uid) {
-                            resolve(uid);
-                        },
+                        refArr.$add(article).then(function (uid) {
+                                resolve(uid);
+                            },
                             function (error) {
                                 reject(error);
                             }

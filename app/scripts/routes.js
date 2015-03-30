@@ -13,6 +13,7 @@
                         user: function (AuthServ) {
                             return AuthServ.getUser();
                         }
+
                     },
                     template: "<div ui-view=''></div>"
                 })
