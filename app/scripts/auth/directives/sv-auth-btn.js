@@ -31,6 +31,9 @@
 
 
                     $rootScope.$watch('user', function (newVal, oldVal) {
+                        if (!newVal) {
+                            return;
+                        }
                         $scope.user = newVal;
                     })
 

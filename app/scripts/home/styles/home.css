@@ -2,7 +2,8 @@
   width: 100%;
 }
 .auth-sm {
-  top: -8px !important;
+  margin-bottom: -4px !important;
+  display: block !important;
 }
 /**********************
  =footer

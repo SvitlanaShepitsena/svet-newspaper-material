@@ -1,36 +1,45 @@
 div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 	.fab.l(ng-if='!user')
-		button.fab__primary.btn.btn--l.btn--fab.btn--white(lx-ripple='' ng-class="{'mr+':ctrl.gtSm}")
+		button.tc-black(lx-ripple='' ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}", class='fab__primary btn btn--white tc-black' )
 			i.mdi.mdi-account
 			i.mdi.mdi-login
-		.fab__actions(ng-class="{'fab__actions--left':ctrl.gtSm,'fab__actions--down':ctrl.sm, 'auth-sm':ctrl.sm} " )
-			a.btn.btn--m.btn--fab.tc-red-500.btn--white(lx-ripple ui-sref='app.svet-login')
+		.fab__actions(ng-class="{'fab__actions--left':ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
+			button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple ui-sref='app.svet-login' ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
 				span.fs-caption Svet
 			button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("facebook")')
 				i.mdi.mdi-facebook
 			button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("google")')
 				i.mdi.mdi-google-plus
+	span.fs-subhead Hello, {{user.name}}! &nbsp
 	lx-dropdown(position='right' ng-if='!!user')
 		button.btn.btn--l.btn--icon.btn--white.tc-black(lx-ripple class="mr+" lx-dropdown-toggle='')
 			img(ng-src="{{user.avatar}}")
-			| Author Name
 		lx-dropdown-menu
 			ul
 				li
-					a.dropdown-link(ng-click='dropdownAlert()') Notification
+					a.dropdown-link(ui-sref="app.author-dashboard")
+						i.mdi.mdi-view-dashboard &nbsp
+						| My Dashboard
 				li
-					a.dropdown-link Another action
+					a.dropdown-link(ng-click='dropdownAlert()')
+						i.mdi.mdi-view-list &nbsp
+						|  My Articles
+				li
+					a.dropdown-link(ng-click='dropdownAlert()')
+						i.mdi.mdi-format-list-numbers &nbsp
+						|  My Templates
+				li
+					a.dropdown-link(ui-sref='app.create-article')
+						i.mdi.mdi-playlist-plus &nbsp
+						| New Article
 				li.dropdown-divider
 				li
-					span.dropdown-link.dropdown-link--is-header Settings
+					a.dropdown-link(ng-click='dropdownAlert()')
+						i.mdi.mdi-settings &nbsp
+						| Settings
 				li
 					a.dropdown-link(ng-click='ctrl.logout()')
 						i.mdi.mdi-logout &nbsp
 						| Log Out
 
-		//button.fab__primary.btn.btn--l.btn--icon.btn--white(lx-ripple class="mr+")
-		//	img(ng-src="{{user.avatar}}")
-		//.fab__actions.fab__actions--left( style='margin-bottom:-4px')
-		//	button.btn.btn--m.btn--fab.btn--white.tc-black(lx-ripple ng-click='ctrl.logout()')
-		//		i.mdi.mdi-logout
 
