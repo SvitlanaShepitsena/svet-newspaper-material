@@ -10,6 +10,7 @@
                     url: '@',
                     title: '@',
                     color: '@',
+                    btnStyle: '@',
                     icon: '@'
                 },
                 bindToController: {},
