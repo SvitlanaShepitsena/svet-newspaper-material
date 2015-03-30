@@ -2,17 +2,14 @@
     'use strict';
 
     angular.module('home')
-        .directive('svNavBtn', function () {
+        .directive('svNavBtnBlock', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/home/directives/sv-nav-btn.html',
-                scope: {
-                    url: '@',
-                    title: '@',
-                    color: '@',
-                    icon: '@'
+                templateUrl: 'scripts/home/directives/sv-nav-btn-block.html',
+                scope: {},
+                bindToController: {
+
                 },
-                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
