@@ -4,11 +4,10 @@
     angular.module('app', [
 
         // modules
-		'aritcle',
-		'classified',
-		'contact',
-		'article',
-		'auth',
+        'classified',
+        'contact',
+        'article',
+        'auth',
         'politics',
 
         'home',
@@ -18,6 +17,7 @@
         'ng-fastclick',
         'lumx',
         'ngMaterial',
+        'toastr',
         'firebase',
         'ui.router'
     ])
@@ -37,6 +37,16 @@
                 .primaryPalette('grey')
                 .accentPalette('red');
 
+        }).factory('$exceptionHandler', function ($injector) {
+            return function (exception, cause) {
+                var $rootScope = $injector.get('$rootScope');
+                var toastr = $injector.get('toastr');
+                exception.message += ' (caused by "' + cause + '")';
+                toastr.error('ERROR!'+exception.message);
+                $rootScope.$broadcast('error');
+
+                throw exception;
+            };
         })
 
 })();
