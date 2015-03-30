@@ -24,13 +24,16 @@ form(name='article' flex-container='column')
 	div(flex-container='row')
 		div(flex-item='')
 			lx-text-field(label='Заголовок Статьи / Title')
-				textarea(ng-model='ctrl.article.title')
+				input(ng-model='ctrl.article.title')
 	div(flex-container='row')
 		div(flex-item='')
 			lx-text-field(label='Текст Статьи / Content')
-				textarea(ng-model='ctrl.article.body')
+				textarea(ng-model='ctrl.article.body') {{ctrl.article.body}}
 	div(flex-container='row')
 		div(flex-item='')
-			lx-text-field(label='Tags / Теги' ng-model="ctrl.article.tags")
+			lx-text-field(label='Tags / Теги')
+				input(ng-model='ctrl.article.tags')
+
+
 	div(flex-item='' class='mt++')
-		sv-manage-article-nav
+		sv-manage-article-nav(article='ctrl.article' datepicker='datepicker')

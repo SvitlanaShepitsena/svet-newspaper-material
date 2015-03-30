@@ -11,7 +11,7 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-                    ctrl.siteSections=[
+                    ctrl.siteSections = [
                         'Политика',
                         'Мы и Деньги',
                         'Культура',
@@ -19,11 +19,11 @@
                         'Мир',
 
                     ]
-
+                    ctrl.dateMod = '';
 
                     ctrl.article = {
                         author: $rootScope.user.fname + ' ' + $rootScope.user.lname,
-                        date: 'datepicker.date',
+                        date: '',
                         section: '',
                         title: '',
                         body: '',
