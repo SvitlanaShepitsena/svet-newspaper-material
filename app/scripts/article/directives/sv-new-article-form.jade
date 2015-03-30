@@ -8,9 +8,10 @@ form(name='article' flex-container='column')
 		div(flex-item='8')
 			lx-text-field(label='Автор Статьи')
 				input(type='text', ng-model='ctrl.article.author')
+	div(flex-container='row')
 		div(flex-item='')
-			div(class='mt+')
-				lx-date-picker(model='datepicker.date', label='Pick a date', locale='en', fixed-label='true', icon='calendar')
+			lx-text-field(label='Date')
+				input(ng-model='ctrl.article.date')
 	div(flex-container='row' class='m++')
 		div(flex-item='')
 			lx-dropdown
@@ -36,4 +37,4 @@ form(name='article' flex-container='column')
 
 
 	div(flex-item='' class='mt++')
-		sv-manage-article-nav(article='ctrl.article' datepicker='datepicker')
+		sv-manage-article-nav(article='ctrl.article')

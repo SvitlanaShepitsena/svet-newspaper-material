@@ -2,21 +2,25 @@
     'use strict';
 
     angular.module('article')
-        .directive('svManageArticleNav', function () {
+        .directive('svManageArticleNav', function (ArticleServ,toastr){
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-manage-article-nav.html',
                 scope: {},
                 bindToController: {
-                    article: '=',
-                    datepicker: '='
+                    article: '='
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
                     ctrl.saveArticle = function () {
-                        ctrl.article.date = ctrl.datepicker.date;
-                        console.log(ctrl.article);
+                        ArticleServ.add(ctrl.article).then(function (uid) {
+                                toastr.success('Статья сохранена в БД');
+                            },
+                            function (error) {
+                                console.log(error);
+                            }
+                        );
                     }
                 },
 

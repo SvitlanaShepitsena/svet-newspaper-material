@@ -2,7 +2,24 @@
     'use strict';
 
     angular.module('article')
-        .directive('svNewArticleForm', function (ArticleServ, $rootScope) {
+        .directive('svNewArticleForm', function ($rootScope) {
+            function getRandomSection(sections){
+                var randIndex =  Math.floor(Math.random() * sections.length);
+                return sections[randIndex];
+            }
+            function getRandomTags() {
+                var rTags = [];
+                for (var i = 0; i < 5; i++) {
+                    rTags.push(faker.lorem.words(1))
+                }
+                return rTags;
+            }
+
+            function getFormatedDate() {
+                var today = new Date();
+                return (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+            }
+
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
@@ -20,15 +37,24 @@
                     ];
                     ctrl.dateMod = '';
 
-                    var author = $rootScope.user.fname ? $rootScope.user.fname + ' ' + $rootScope.user.lname : '';
+                    //var author = $rootScope.user.fname ? $rootScope.user.fname + ' ' + $rootScope.user.lname : '';
+                    var author = faker.name.findName();
+                    //ctrl.article = {
+                    //    author: author,
+                    //    date: '',
+                    //    section: '',
+                    //    title: '',
+                    //    body: '',
+                    //    tags: ''
+                    //
+                    //}
                     ctrl.article = {
                         author: author,
-                        date: '',
-                        section: '',
-                        title: '',
-                        body: '',
-                        tags: ''
-
+                        date: getFormatedDate(),
+                        section: getRandomSection(ctrl.siteSections),
+                        title: _.startCase(faker.lorem.sentence()),
+                        body: faker.lorem.paragraphs(9),
+                        tags: getRandomTags()
                     }
                     ctrl.setSection = function (section) {
                         ctrl.article.section = section;
