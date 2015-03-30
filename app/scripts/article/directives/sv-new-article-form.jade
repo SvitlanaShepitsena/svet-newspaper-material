@@ -6,9 +6,9 @@ form(name='article' flex-container='column')
 		span.mdc-display-inline-block.fs-subhead(class='mb+') Выберите Тему: &nbsp
 		lx-dropdown(position='left')
 			//span.fs-subhead
-			button( class="btn btn--l btn--black btn--flat" lx-ripple lx-dropdown-toggle)
+			button.tc-blue-grey-400( class="btn btn--l btn--black btn--flat" lx-ripple lx-dropdown-toggle)
 				i.mdi.mdi-dots-vertical
-				span  {{ctrl.article.section || "Темa / Section"}}
+				span.fs-subhead {{ctrl.article.section || "Темa / Section"}}
 			lx-dropdown-menu
 				ul
 					li(ng-repeat='s in ctrl.siteSections')
@@ -16,7 +16,7 @@ form(name='article' flex-container='column')
 	div(flex-container='row')
 		div(flex-item='8')
 			lx-text-field(label='Автор Статьи')
-				input(type='text', ng-model='ctrl.article.author')
+				input.fs-subhead.tc-black-2(type='text', ng-model='ctrl.article.author')
 	div(flex-container='row')
 		div(flex-item='')
 			lx-text-field(label='Date')
@@ -24,7 +24,7 @@ form(name='article' flex-container='column')
 	div(flex-container='row')
 		div(flex-item='')
 			lx-text-field(label='Заголовок Статьи / Title')
-				input(ng-model='ctrl.article.title')
+				input.fs-subhead.tc-blue-grey-500(ng-model='ctrl.article.title')
 	div(flex-container='row')
 		div(flex-item='')
 			lx-text-field(label='Текст Статьи / Content')
@@ -32,7 +32,7 @@ form(name='article' flex-container='column')
 	div(flex-container='row')
 		div(flex-item='')
 			lx-text-field(label='Tags / Теги')
-				input(ng-model='ctrl.article.tags')
+				input.fs-capture.tc-blue-grey-400(ng-model='ctrl.article.tags')
 
 
 	div(flex-item='' class='mt++')
