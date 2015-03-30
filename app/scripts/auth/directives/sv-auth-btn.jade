@@ -10,9 +10,9 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 				i.mdi.mdi-facebook
 			button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("google")')
 				i.mdi.mdi-google-plus
-	span.fs-subhead Hello, {{user.name}}! &nbsp
+	span.fs-subhead(ng-if='!!user') Hello, {{user.name}}! &nbsp
 	lx-dropdown(position='right' ng-if='!!user')
-		button.btn.btn--l.btn--icon.btn--white.tc-black(lx-ripple class="mr+" lx-dropdown-toggle='')
+		button.btn.btn--s.btn--icon.btn--white.tc-black(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}")
 			img(ng-src="{{user.avatar}}")
 		lx-dropdown-menu
 			ul
@@ -27,7 +27,7 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 				li
 					a.dropdown-link(ng-click='dropdownAlert()')
 						i.mdi.mdi-format-list-numbers &nbsp
-						|  My Templates
+						|  My Drafts
 				li
 					a.dropdown-link(ui-sref='app.create-article')
 						i.mdi.mdi-playlist-plus &nbsp

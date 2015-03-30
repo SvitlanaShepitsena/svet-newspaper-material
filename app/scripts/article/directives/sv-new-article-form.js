@@ -3,21 +3,23 @@
 
     angular.module('article')
         .directive('svNewArticleForm', function ($rootScope) {
-            function getRandomSection(sections){
-                var randIndex =  Math.floor(Math.random() * sections.length);
+            function getRandomSection(sections) {
+                var randIndex = Math.floor(Math.random() * sections.length);
                 return sections[randIndex];
             }
+
             function getRandomTags() {
                 var rTags = [];
                 for (var i = 0; i < 5; i++) {
                     rTags.push(faker.lorem.words(1))
                 }
-                return rTags;
+
+                return rTags.join(', ');
             }
 
             function getFormatedDate() {
                 var today = new Date();
-                return (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+                return (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
             }
 
             return {
@@ -49,6 +51,7 @@
                     //
                     //}
                     ctrl.article = {
+                        isDraft: true,
                         author: author,
                         date: getFormatedDate(),
                         section: getRandomSection(ctrl.siteSections),
