@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('article')
-        .directive('svTopNews', function () {
+        .directive('svFreshNewsList', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/article/directives/sv-top-news.html',
+                templateUrl: 'scripts/article/directives/sv-fresh-news-list.html',
                 scope: {},
                 bindToController: {
-                    mainNews:'='
+
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {

@@ -1,11 +1,8 @@
 div(flex-container='row')
 	div(flex-item='7', flex-item-order='1')
-		.card.p.m
-			img(ng-src="img/news/3-25-2015/gorlovka.jpg" )
-			span.display-block.fs-subhead {{ctrl.mainNews.title}}
-			span.display-block.fs-body-2 {{ctrl.mainNews.body}}
+		sv-top-news(main-news = 'ctrl.mainNews')
 	div(flex-item='5', flex-item-order='2')
-		.card.p.m
+		.card.p.m;
 			span.display-block.fs-subhead
 				i.mdi.mdi-alarm &nbsp
 				| Свежие Новости
