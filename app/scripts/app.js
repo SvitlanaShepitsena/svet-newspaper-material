@@ -4,6 +4,7 @@
     angular.module('app', [
 
         // modules
+		'society',
 		'culture',
 		'money',
         'classified',
