@@ -74,8 +74,8 @@
                     controller: "AuthorArticlesCtrl as authorArticles",
                     templateUrl: "scripts/auth/views/author-articlesCtrl.html"
                 })
-				.state("app.author-drafts", {
-					url: "/author-drafts", 
+				.state("app.svet-profile.author-drafts", {
+					url: "/author-drafts",
 					controller:"AuthorDraftsCtrl as authorDrafts",
 					templateUrl: "scripts/auth/views/author-draftsCtrl.html"
 				})
