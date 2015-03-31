@@ -22,10 +22,31 @@
                     controller: "HomeCtrl as home",
                     templateUrl: "scripts/home/views/homeCtrl.html"
                 })
+                /*news sections*/
                 .state("app.politics", {
                     url: "/politics",
                     controller: "PoliticsCtrl as politics",
                     templateUrl: "scripts/politics/views/politicsCtrl.html"
+                })
+                .state("app.money", {
+                    url: "/money",
+                    controller: "MoneyCtrl as money",
+                    templateUrl: "scripts/money/views/moneyCtrl.html"
+                })
+                .state("app.culture", {
+                    url: "/culture",
+                    controller: "CultureCtrl as culture",
+                    templateUrl: "scripts/culture/views/cultureCtrl.html"
+                })
+                .state("app.society", {
+                    url: "/society",
+                    controller: "SocietyCtrl as society",
+                    templateUrl: "scripts/society/views/societyCtrl.html"
+                })
+                .state("app.world", {
+                    url: "/world",
+                    controller: "WorldCtrl as world",
+                    templateUrl: "scripts/world/views/worldCtrl.html"
                 })
                 .state("app.article", {
                     url: "/article",
@@ -74,32 +95,12 @@
                     controller: "AuthorArticlesCtrl as authorArticles",
                     templateUrl: "scripts/auth/views/author-articlesCtrl.html"
                 })
-				.state("app.svet-profile.author-drafts", {
-					url: "/author-drafts",
-					controller:"AuthorDraftsCtrl as authorDrafts",
-					templateUrl: "scripts/auth/views/author-draftsCtrl.html"
-				})
-				
-				.state("app.money", {
-					url: "/money", 
-					controller:"MoneyCtrl as money",
-					templateUrl: "scripts/money/views/moneyCtrl.html"
-				})
-				.state("app.culture", {
-					url: "/culture", 
-					controller:"CultureCtrl as culture",
-					templateUrl: "scripts/culture/views/cultureCtrl.html"
-				})
-				.state("app.society", {
-					url: "/society", 
-					controller:"SocietyCtrl as society",
-					templateUrl: "scripts/society/views/societyCtrl.html"
-				})
-				.state("app.world", {
-					url: "/world", 
-					controller:"WorldCtrl as world",
-					templateUrl: "scripts/world/views/worldCtrl.html"
-				})
+                .state("app.svet-profile.author-drafts", {
+                    url: "/author-drafts",
+                    controller: "AuthorDraftsCtrl as authorDrafts",
+                    templateUrl: "scripts/auth/views/author-draftsCtrl.html"
+                })
+
 //#state'
         });
 
