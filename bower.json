@@ -11,7 +11,7 @@
     "angular-touch": "^1.4.0-beta.6",
     "angular-aria": "^1.4.0-beta.6",
     "angular-material": "latest",
-    "mdi": "latest",
+    "mdi": "1.0.8-beta",
     "angular-ui-router": "~0.2.13",
     "firebase": "~2.2.3",
     "angularfire": "~1.0.0",

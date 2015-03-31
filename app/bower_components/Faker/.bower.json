@@ -30,6 +30,5 @@
   },
   "_source": "git://github.com/Marak/Faker.js.git",
   "_target": "~2.1.2",
-  "_originalSource": "Faker",
-  "_direct": true
+  "_originalSource": "Faker"
 }

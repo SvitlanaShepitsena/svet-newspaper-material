@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('home')
-        .directive('svHomeMainNews', function (ImageSizeServ, $window, $rootScope) {
+        .directive('svHomeMainNews', function ($rootScope) {
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-home-main-news.html',
@@ -10,8 +10,7 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-
-                    $scope.$watch('news', function (newValue) {
+                    $rootScope.$watch('news', function (newValue) {
                         if (!newValue) {
                             return;
                         }
@@ -20,7 +19,7 @@
                         });
 
                         ctrl.mainNews = _.last(allNews);
-                        ctrl.hotNews = _.take(allNews,allNews.length-1);
+                        ctrl.hotNews = _.take(allNews, allNews.length - 1);
 
                     });
 
