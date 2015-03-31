@@ -42,37 +42,38 @@
                     controller: "ClassifiedCtrl as classified",
                     templateUrl: "scripts/classified/views/classifiedCtrl.html"
                 })
-                .state("app.svet-login", {
-                    url: "/svet-login",
-                    controller: "SvetLoginCtrl as login",
-                    templateUrl: "scripts/auth/views/svet-loginCtrl.html"
-                })
                 .state("app.sign-up", {
                     url: "/sign-up",
                     controller: "SignUpCtrl as signUp",
                     templateUrl: "scripts/auth/views/sign-upCtrl.html"
                 })
-                .state("app.create-article", {
+                /*=profile*/
+                .state("app.svet-profile", {
+                    abstract: true,
+                    controller: "SvetProfileCtrl as svetProfile",
+                    templateUrl: "scripts/auth/views/svet-profileCtrl.html"
+                })
+                .state("app.svet-profile.svet-login", {
+                    url: "/svet-login",
+                    controller: "SvetLoginCtrl as login",
+                    templateUrl: "scripts/auth/views/svet-loginCtrl.html"
+                })
+                .state("app.svet-profile.create-article", {
                     url: "/create-article",
                     controller: "CreateArticleCtrl as createArticle",
                     templateUrl: "scripts/article/views/create-articleCtrl.html"
                 })
-                .state("app.author-dashboard", {
+                .state("app.svet-profile.author-dashboard", {
                     url: "/author-dashboard",
                     controller: "AuthorDashboardCtrl as authorDashboard",
                     templateUrl: "scripts/auth/views/author-dashboardCtrl.html"
                 })
 
-                .state("app.author-articles", {
+                .state("app.svet-profile.author-articles", {
                     url: "/author-articles",
                     controller: "AuthorArticlesCtrl as authorArticles",
                     templateUrl: "scripts/auth/views/author-articlesCtrl.html"
                 })
-				.state("app.svet-profile", {
-					url: "/svet-profile", 
-					controller:"SvetProfileCtrl as svetProfile",
-					templateUrl: "scripts/auth/views/svet-profileCtrl.html"
-				})
 //#state'
         });
 

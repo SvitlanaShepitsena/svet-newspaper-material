@@ -4,7 +4,7 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 			i.mdi.mdi-account
 			i.mdi.mdi-login
 		.fab__actions(ng-class="{'fab__actions--left':ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
-			button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple ui-sref='app.svet-login' ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
+			button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple ui-sref='app.svet-profile.svet-login' ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
 				span.fs-caption Svet
 			button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("facebook")')
 				i.mdi.mdi-facebook
@@ -17,7 +17,7 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 		lx-dropdown-menu
 			ul
 				li
-					a.dropdown-link(ui-sref="app.author-dashboard")
+					a.dropdown-link(ui-sref="app.svet-profile.author-dashboard")
 						i.mdi.mdi-view-dashboard &nbsp
 						| My Dashboard
 				li
@@ -29,7 +29,7 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 						i.mdi.mdi-format-list-numbers &nbsp
 						|  My Drafts
 				li
-					a.dropdown-link(ui-sref='app.create-article')
+					a.dropdown-link(ui-sref='app.svet-profile.create-article')
 						i.mdi.mdi-playlist-plus &nbsp
 						| New Article
 				li.dropdown-divider
