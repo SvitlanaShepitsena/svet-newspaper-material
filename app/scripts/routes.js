@@ -95,6 +95,11 @@
 					controller:"SocietyCtrl as society",
 					templateUrl: "scripts/society/views/societyCtrl.html"
 				})
+				.state("app.world", {
+					url: "/world", 
+					controller:"WorldCtrl as world",
+					templateUrl: "scripts/world/views/worldCtrl.html"
+				})
 //#state'
         });
 
