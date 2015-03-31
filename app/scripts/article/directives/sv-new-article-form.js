@@ -62,26 +62,11 @@
 
                     $scope.setSection = function (section) {
                         $scope.article.section = section;
-                        //lxDropdownController.toggle();
+                        $scope.$broadcast('close:select',{});
                     }
                 },
 
-                link: function ($scope, el, attrs, lxDropdownController) {
-                    el.on('touchstart', function (event) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        $scope.$apply(function () {
-                            $scope.setSection();
-                            ctrl.toggle();
-                        });
-                    });
-                    el.on('click', function (event) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        $scope.$apply(function () {
-                            $scope.setSection();
-                        });
-                    });
+                link: function ($scope, el, attrs) {
 
                 }
             };

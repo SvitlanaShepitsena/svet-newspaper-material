@@ -516,6 +516,11 @@ angular.module('lumx.dropdown', [])
         var dropdown,
             dropdownMenu;
         var dropdownMenuHeight;
+        var that = this;
+
+        $scope.$on('close:select', function () {
+            that.toggle();
+        })
 
         $scope.isOpened = false;
         $scope.isDropped = false;

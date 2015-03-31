@@ -9,7 +9,7 @@ div.card(flex-container='column' class='p+')
 				//span.fs-subhead
 				button.tc-blue-grey-400( class="btn btn--l btn--black btn--flat" lx-ripple lx-dropdown-toggle)
 					i.mdi.mdi-dots-vertical
-					span.fs-subhead {{ctrl.article.section || "Темa / Section"}}
+					span.fs-subhead {{article.section || "Темa / Section"}}
 				lx-dropdown-menu
 					ul
 						li(ng-repeat='s in siteSections')
