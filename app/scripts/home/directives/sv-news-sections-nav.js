@@ -7,9 +7,6 @@
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-news-sections-nav.html',
                 bindToController: {
-                    someObject: '=',
-                    someString: '@',
-                    someExpr: '&'
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {

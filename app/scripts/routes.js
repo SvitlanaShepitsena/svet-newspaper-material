@@ -62,6 +62,11 @@
                     controller: "AuthorDashboardCtrl as authorDashboard",
                     templateUrl: "scripts/auth/views/author-dashboardCtrl.html"
                 })
+				.state("app.top-news", {
+					url: "/top-news", 
+					controller:"Top-newsCtrl as top-news",
+					templateUrl: "scripts/article/views/top-newsCtrl.html"
+				})
 //#state'
         });
 
