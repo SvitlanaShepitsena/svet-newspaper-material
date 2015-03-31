@@ -517,11 +517,12 @@ angular.module('lumx.dropdown', [])
         var dropdown,
             dropdownMenu;
         var dropdownMenuHeight;
-        var that = this;
+        /*closing dropdown list*/
 
+        var that = this;
         $scope.$on('close:select', function () {
             that.toggle();
-        })
+        });
 
         $scope.isOpened = false;
         $scope.isDropped = false;
@@ -767,7 +768,7 @@ angular.module('lumx.dropdown', [])
     .directive('lxDropdownToggle', function () {
         return {
             restrict: 'A',
-            require: '^lxDropdown',
+            require: '^?lxDropdown',
             templateUrl: 'dropdown-toggle.html',
             replace: true,
             transclude: true,
