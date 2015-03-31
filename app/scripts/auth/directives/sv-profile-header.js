@@ -6,10 +6,10 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-profile-header.html',
-                scope: {},
-                bindToController: {
-
+                scope: {
+                    title: '@'
                 },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
