@@ -1,1 +1,5 @@
-.well sv-fresh-news-list Template
+.card.p.m
+	span.display-block.fs-subhead
+		i.mdi.mdi-alarm &nbsp
+		| Свежие Новости
+	span.display-block.fs-body-2.mb.fw-700(ng-repeat='hn in ctrl.freshNews') {{hn.title}}

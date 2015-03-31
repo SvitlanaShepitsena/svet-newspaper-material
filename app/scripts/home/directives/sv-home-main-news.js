@@ -19,7 +19,7 @@
                         });
 
                         ctrl.mainNews = _.last(allNews);
-                        ctrl.hotNews = _.take(allNews, allNews.length - 1);
+                        ctrl.freshNews = _.take(allNews, allNews.length - 1);
 
                     });
 

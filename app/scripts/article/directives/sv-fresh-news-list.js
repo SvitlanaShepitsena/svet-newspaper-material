@@ -8,7 +8,7 @@
                 templateUrl: 'scripts/article/directives/sv-fresh-news-list.html',
                 scope: {},
                 bindToController: {
-
+                    freshNews: '='
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
