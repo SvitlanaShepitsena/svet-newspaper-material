@@ -1,1 +1,1 @@
-<div class="card p m"><img ng-src="{{ctrl.image}}"/><div class="fs-caption">{{ctrl.mainNews.author}}</div><span class="display-block fs-subhead">{{ctrl.mainNews.title }};</span><span class="display-block fs-body-2">{{ctrl.mainNews.body | length:100}}</span></div>
+<div class="card p m"><img ng-src="{{ctrl.image}}"/><div class="fs-caption">{{ctrl.isFirst? 'Alex Etman':ctrl.mainNews.author}}</div><span class="display-block fs-subhead">{{ctrl.mainNews.title }};</span><span class="display-block fs-body-2">{{ctrl.mainNews.body | length:100}}</span></div>
