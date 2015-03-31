@@ -80,6 +80,11 @@
 					templateUrl: "scripts/auth/views/author-draftsCtrl.html"
 				})
 				
+				.state("app.money", {
+					url: "/money", 
+					controller:"MoneyCtrl as money",
+					templateUrl: "scripts/money/views/moneyCtrl.html"
+				})
 //#state'
         });
 
