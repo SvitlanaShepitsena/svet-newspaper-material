@@ -1,4 +1,5 @@
 .card.p.m
 	img(ng-src="{{ctrl.image}}" )
-	span.display-block.fs-subhead {{ctrl.mainNews.title }}
-	span.display-block.fs-body-2 {{ctrl.mainNews.body}}
+	.fs-caption {{ctrl.mainNews.author}}
+	span.display-block.fs-subhead {{ctrl.mainNews.title }};
+	span.display-block.fs-body-2 {{ctrl.mainNews.body | length:100}}
