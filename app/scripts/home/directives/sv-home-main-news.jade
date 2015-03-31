@@ -1,7 +1,7 @@
 div(layout='row' layout-sm='column')
-	div(flex-gt-sm='66' style='background-color:red')
-		sv-top-news(main-news = 'ctrl.mainNews')
+	div(flex-gt-sm='66')
+		sv-top-news(main-news = 'ctrl.mainNews' is-first='isFirst')
 	div(flex-gt-sm='33')
-		sv-fresh-news-list(fresh-news = 'ctrl.freshNews' style='background-color:green')
+		sv-fresh-news-list(fresh-news = 'ctrl.freshNews')
 
 

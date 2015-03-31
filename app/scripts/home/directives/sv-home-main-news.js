@@ -6,10 +6,12 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-home-main-news.html',
+                scope: {},
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
+
                     $rootScope.$watch('news', function (newValue) {
                         if (!newValue) {
                             return;
@@ -27,6 +29,11 @@
                 },
 
                 link: function ($scope, el, attrs) {
+                    $scope.isFirst = attrs.first == 'true';
+                    if ($scope.isFirst) {
+                        $scope.second = true;
+
+                    }
 
 
                 }
