@@ -79,11 +79,7 @@
 					controller:"AuthorDraftsCtrl as authorDrafts",
 					templateUrl: "scripts/auth/views/author-draftsCtrl.html"
 				})
-				.state("app.", {
-					url: "/", 
-					controller:"Ctrl as ",
-					templateUrl: "scripts/money/views/Ctrl.html"
-				})
+				
 //#state'
         });
 
