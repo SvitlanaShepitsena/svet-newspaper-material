@@ -6,22 +6,13 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-svet-social.html',
-                bindToController: {
-                    someObject: '=',
-                    someString: '@',
-                    someExpr: '&'
-                },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
 
                 },
                 link: function ($scope, element, attr) {
-                    $scope.openBottomSheet = function () {
-                        $mdBottomSheet.show({
-                            templateUrl: 'scripts/home/templates/social-bottom-list.html'
-                        });
-                    };
                 }
             };
         });

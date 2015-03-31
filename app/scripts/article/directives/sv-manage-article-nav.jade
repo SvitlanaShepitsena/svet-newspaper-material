@@ -1,10 +1,9 @@
-.toolbar.author-article-nav(flex-container='row')
-	div.bc-red-500(flex-item='' class='text-center')
-		button.btn.btn--l.btn--blue-grey.btn--icon(lx-ripple='' lx-tooltip="Save Article" ng-click='ctrl.saveArticle()')
-			i.mdi.mdi-content-save
-		button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Post Article" lx-ripple='')
-			i.mdi.mdi-send
-		button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Save to Templates" lx-ripple='')
-			i.mdi.mdi-file-document
-		button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Move to Trash"  lx-ripple='')
-			i.mdi.mdi-delete-variant
+.author-article-nav(layout='row' layout-align="center center")
+	button.btn.btn--l.btn--blue-grey.btn--icon(lx-ripple='' lx-tooltip="Save Article" ng-click='ctrl.saveArticle()')
+		i.mdi.mdi-content-save
+	button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Post Article" lx-ripple='')
+		i.mdi.mdi-send
+	button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Save to Templates" lx-ripple='')
+		i.mdi.mdi-file-document
+	button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Move to Trash"  lx-ripple='')
+		i.mdi.mdi-delete-variant
