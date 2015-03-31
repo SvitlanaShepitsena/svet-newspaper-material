@@ -425,6 +425,7 @@ angular.module('lumx.dialog', [])
             }
         }
 
+
         angular.element($window).bind('resize', function () {
             if (angular.isDefined(activeDialogId)) {
                 checkDialogHeight(activeDialogId);
