@@ -4,20 +4,25 @@
     angular.module('home')
         .directive('svSectionSelectHandler', function () {
             return {
-                replace: true,
-                templateUrl: 'scripts/home/directives/sv-section-select-handler.html',
-                scope: {},
-                bindToController: {
-
-                },
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
-
-                },
-
-                link: function ($scope, el, attrs) {
-
+                require: '^lxDropdown',
+                link: function ($scope, el, attrs,lxCtrl) {
+                    console.log('dddddd');
+                    console.log(ctrl);
+                    el.on('touchstart', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $scope.$apply(function () {
+                            $scope.setSection();
+                            ctrl.toggle();
+                        });
+                    });
+                    el.on('click', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $scope.$apply(function () {
+                            $scope.setSection();
+                        });
+                    });
                 }
             };
         });

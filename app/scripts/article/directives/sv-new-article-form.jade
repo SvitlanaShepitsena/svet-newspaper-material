@@ -12,8 +12,8 @@ div.card(flex-container='column' class='p+')
 					span.fs-subhead {{ctrl.article.section || "Темa / Section"}}
 				lx-dropdown-menu
 					ul
-						li(ng-repeat='s in ctrl.siteSections')
-							a.dropdown-link(ng-click='ctrl.setSection(s)') {{s}}
+						li(ng-repeat='s in siteSections')
+							a.dropdown-link(sv-section-select-handler="") {{s}}
 		div(flex-container='row')
 			div(flex-item='8')
 				lx-text-field(label='Автор Статьи')

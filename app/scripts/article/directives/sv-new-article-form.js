@@ -30,14 +30,14 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-                    ctrl.siteSections = [
+                    $scope.siteSections = [
                         'Политика',
                         'Мы и Деньги',
                         'Культура',
                         'Общество',
                         'Мир'
                     ];
-                    ctrl.dateMod = '';
+                    $scope.dateMod = '';
 
                     //var author = $rootScope.user.fname ? $rootScope.user.fname + ' ' + $rootScope.user.lname : '';
                     var author = faker.name.findName();
@@ -50,22 +50,38 @@
                     //    tags: ''
                     //
                     //}
-                    ctrl.article = {
+                    $scope.article = {
                         isDraft: true,
                         author: author,
                         date: getFormatedDate(),
-                        section: getRandomSection(ctrl.siteSections),
+                        section: getRandomSection($scope.siteSections),
                         title: _.startCase(faker.lorem.sentence()),
                         body: faker.lorem.paragraphs(9),
                         tags: getRandomTags()
                     }
-                    ctrl.setSection = function (section) {
-                        ctrl.article.section = section;
-                    }
 
+                    $scope.setSection = function (section) {
+                        $scope.article.section = section;
+                        //lxDropdownController.toggle();
+                    }
                 },
 
-                link: function ($scope, el, attrs) {
+                link: function ($scope, el, attrs, lxDropdownController) {
+                    el.on('touchstart', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $scope.$apply(function () {
+                            $scope.setSection();
+                            ctrl.toggle();
+                        });
+                    });
+                    el.on('click', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $scope.$apply(function () {
+                            $scope.setSection();
+                        });
+                    });
 
                 }
             };
