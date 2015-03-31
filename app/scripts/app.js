@@ -4,6 +4,10 @@
     angular.module('app', [
 
         // modules
+		'world',
+		'society',
+		'culture',
+		'money',
         'classified',
         'contact',
         'article',
