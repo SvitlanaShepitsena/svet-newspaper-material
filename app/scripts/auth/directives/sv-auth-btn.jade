@@ -10,7 +10,7 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 				i.mdi.mdi-facebook
 			button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("google")')
 				i.mdi.mdi-google-plus
-	span.fs-subhead(ng-if='!!user') Hello, {{user.name}}! &nbsp
+	span.fs-subhead(ng-if='!!user') {{user.name}} &nbsp
 	lx-dropdown(position='right' ng-if='!!user')
 		button.btn.btn--s.btn--icon.btn--white.tc-black(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}")
 			img(ng-src="{{user.avatar}}")
@@ -19,27 +19,27 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 				li
 					a.dropdown-link(ui-sref="app.svet-profile.author-dashboard")
 						i.mdi.mdi-view-dashboard &nbsp
-						| My Dashboard
+						| Панель Управления
 				li
 					a.dropdown-link(ui-sref="app.svet-profile.author-articles")
 						i.mdi.mdi-view-list &nbsp
-						|  My Articles
+						|  Мои Статьи
 				li
 					a.dropdown-link(ui-sref="app.svet-profile.author-drafts")
 						i.mdi.mdi-format-list-numbers &nbsp
-						|  My Drafts
+						|  Мои Черновики
 				li
 					a.dropdown-link(ui-sref='app.svet-profile.create-article')
 						i.mdi.mdi-playlist-plus &nbsp
-						| New Article
+						| Создать Статью
 				li.dropdown-divider
 				li
 					a.dropdown-link(ng-click='dropdownAlert()')
 						i.mdi.mdi-settings &nbsp
-						| Settings
+						| Настройки
 				li
 					a.dropdown-link(ng-click='ctrl.logout()')
 						i.mdi.mdi-logout &nbsp
-						| Log Out
+						| Выйти
 
 
