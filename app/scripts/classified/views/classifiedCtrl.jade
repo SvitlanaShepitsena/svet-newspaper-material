@@ -1,26 +1,7 @@
 sv-profile-header(title='Частные Объявления')
 //sv-post-classified-form
-.sample(ng-controller='AppCtrl', layout='column')
-	md-tabs(md-selected='selectedIndex', md-border-bottom='')
-		md-tab(ng-repeat='tab in tabs', ng-disabled='tab.disabled', label='{{tab.title}}')
+.sample(flex-container='column')
+	md-tabs(md-selected='selectedIndex', md-border-bottom='' style='overflow:hidden')
+		md-tab.tc-blue-grey-700(ng-repeat='tab in tabs', ng-disabled='tab.disabled', label='{{tab.title}}')
 			.demo-tab(class='tab{{$index%4}}', style='padding: 25px; text-align: center;')
 				div(ng-bind='tab.content')
-				br
-				md-button.md-primary.md-raised(ng-click='removeTab( tab )', ng-disabled='tabs.length <= 1') Remove Tab
-	form(ng-submit='addTab(tTitle,tContent)', layout='column', style='padding-top:20px;padding-left:20px;')
-		div(layout='row', layout-sm='column', layout-margin='', style='min-height: 75px;')
-			md-input-container
-				label(for='activeIndex') Active Index
-				input#activeIndex(type='text', ng-model='selectedIndex', disabled='')
-			md-input-container
-				label(for='activeTitle') Active Title
-				input#activeTitle(type='text', ng-model='tabs[selectedIndex].title')
-		div(layout='row', layout-sm='column', layout-margin='', style='min-height: 75px;')
-			span.title Add a new Tab:
-			md-input-container
-				label(for='label') Label
-				input#label(type='text', ng-model='tTitle')
-			md-input-container
-				label(for='content') Content
-				input#content(type='text', ng-model='tContent')
-			md-button.add-tab.md-primary(type='submit', style='max-height: 40px') Add Tab
