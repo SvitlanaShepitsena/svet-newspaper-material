@@ -9,10 +9,14 @@
 
 
             var newsRef = ArticleServ.allObjRef();
-            newsRef.$bindTo($rootScope, "news").then(function (news) {
-                console.log($rootScope.news);
+            newsRef.$bindTo($rootScope, "newsObj").then(function () {
+                $rootScope.news = NewsProcessServ.get($rootScope.newsObj);
+
                 $rootScope.loaded = true;
             });
+
+
+
 
 
             $rootScope.$on('error', function () {

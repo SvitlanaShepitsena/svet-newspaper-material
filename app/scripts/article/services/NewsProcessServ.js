@@ -2,15 +2,11 @@
     'use strict';
 
     angular.module('article')
-        .factory('NewsProcessServ', function ($q, url) {
+        .factory('NewsProcessServ', function () {
             return {
-                getSync: function () {
+                get: function (newsObj) {
+                    return newsObj;
 
-                },
-                get: function () {
-                    return $q(function (resolve, reject) {
-
-                    });
                 }
             };
         });
