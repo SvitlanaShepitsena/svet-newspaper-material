@@ -1,1 +1,1 @@
-<div flex-container="row"><div flex-item="9" flex-item-order="1"><sv-home-main-news first="true"></sv-home-main-news></div><div flex-item="3" flex-item-order="2"></div></div>
+<div ng-if="!loaded" flex-align="center center" flex-container="row"><md-progress-circular md-mode="indeterminate" class="md-accent"></md-progress-circular></div><div flex-container="row" ng-if="!!loaded"><div flex-item="9" flex-item-order="1"><sv-home-main-news first="true"></sv-home-main-news></div><div flex-item="3" flex-item-order="2"><sv-radio-osa></sv-radio-osa></div></div>
