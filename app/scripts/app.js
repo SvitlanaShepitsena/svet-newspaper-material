@@ -19,6 +19,7 @@
         'ngAnimate',
         'flow',
         'ngTouch',
+        'ngSanitize',
         'ng-fastclick',
         'lumx',
         'ngMaterial',

@@ -52,7 +52,7 @@
 
                     ctrl.article = {
                         isDraft: true,
-                        img: '',
+                        img:'',
                         isTopNews: false,
                         author: author,
                         date: getFormatedDate(),

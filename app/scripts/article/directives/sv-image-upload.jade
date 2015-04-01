@@ -1,6 +1,8 @@
 div
-	input(type='file', flow-btn='')
 	img(flow-img='$flow.files[0]' ng-if='$flow.files.length')
-	button(ng-click='deleteImage()') Delete
-
-
+	div(flex-container='row', flex-gutter='24')
+		div(flex-item='')
+			lx-file-input(label='Browse...' flow-btn='' style='cursor:pointer')
+	div(flex-container='row', flex-gutter='24')
+		div(flex-item='')
+			button.btn.btn--m.btn--white.btn--raised(lx-ripple ng-click='deleteImage()') Delete
