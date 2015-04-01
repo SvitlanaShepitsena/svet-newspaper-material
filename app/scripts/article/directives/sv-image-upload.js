@@ -6,6 +6,9 @@
             return {
                 templateUrl: 'scripts/article/directives/sv-image-upload.html',
                 link: function ($scope, el, attrs) {
+                    $scope.deleteImage = function () {
+                        $scope.$flow.files = [];
+                    }
                     $scope.$watchCollection('$flow.files', function (images) {
                         if (!images.length) {
                             return
