@@ -1,9 +1,10 @@
-.toolbar
-	.toolbar__left(class='mr++')
+div.bgc-grey-100(flex-container='row' flex-align="space-between center" class='p')
+	div(class='mr++')
 		button.btn.btn--l.btn--grey.tc-grey-700.btn--icon( ui-sref='app.svet-profile.author-dashboard' lx-ripple='' class='mr')
 			i.mdi.mdi-home
 		button.btn.btn--l.btn--grey.tc-grey-700.btn--icon( ui-sref='app.svet-profile.author-articles' lx-ripple='' class='mr')
-			i.mdi.mdi-file-document-box
-	span.toolbar__label
-	.toolbar__right
-		lx-search-filter(closed='', theme='light')
+			i.mdi.mdi-view-list &nbsp
+		button.btn.btn--l.btn--grey.tc-grey-700.btn--icon( ui-sref='app.svet-profile.author-drafts' lx-ripple='' class='mr')
+			i.mdi.mdi-format-list-numbers &nbsp
+	div
+		lx-search-filter(closed='', theme='light', position='left')
