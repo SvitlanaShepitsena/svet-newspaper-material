@@ -3,14 +3,14 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 		button.tc-black(lx-ripple='' ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}", class='fab__primary btn btn--white tc-black' )
 			i.mdi.mdi-account
 			i.mdi.mdi-login
-		.fab__actions(class="fab__actions--down" )
-			button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple ui-sref='app.svet-profile.svet-login' ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
+		.fab__actions(ng-class="{'fab__actions--left':ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
+			button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple ui-sref='app.svet-login' ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
 				span.fs-caption Svet
 			button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("facebook")')
 				i.mdi.mdi-facebook
 			button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("google")')
 				i.mdi.mdi-google-plus
-	span.fs-subhead(ng-if='!!user') {{user.name}} &nbsp
+	a.user-auth-name.fs-subhead( ui-sref="app.svet-profile.author-dashboard" ng-if='!!user') {{user.name}} &nbsp
 	lx-dropdown(position='right' ng-if='!!user')
 		button.btn.btn--s.btn--icon.btn--white.tc-black(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}")
 			img(ng-src="{{user.avatar}}")
@@ -30,11 +30,11 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 						|  Мои Черновики
 				li
 					a.dropdown-link(ui-sref='app.svet-profile.create-article')
-						i.mdi.mdi-playlist-plus &nbspp
+						i.mdi.mdi-playlist-plus &nbsp
 						| Создать Статью
 				li.dropdown-divider
 				li
-					a.dropdown-link(ui-sref='app.svet-profile.create-article')
+					a.dropdown-link(ui-sref='app.svet-profile.profile-settings')
 						i.mdi.mdi-settings &nbsp
 						| Настройки
 				li

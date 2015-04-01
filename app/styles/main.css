@@ -24,6 +24,12 @@
   overflow: hidden;
   min-height: 200px;
 }
+.user-auth-name {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: #393939;
+}
 @import '../scripts/article/styles/article.css';
 @import '../scripts/home/styles/home.css';
 @import '../scripts/politics/styles/politics.css';
@@ -128,6 +134,9 @@ body {
 }
 .md-default-theme {
   color: #393939 !important;
+}
+.top-profile-nav {
+  padding: 4px 8px;
 }
 /***************/
 /*=lumx custom typography*/
