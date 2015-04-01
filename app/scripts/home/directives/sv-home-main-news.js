@@ -18,11 +18,6 @@
                 },
 
                 link: function ($scope, el, attrs) {
-                    $scope.isFirst = attrs.first == 'true';
-                    if ($scope.isFirst) {
-                        $scope.second = true;
-
-                    }
 
 
                 }
