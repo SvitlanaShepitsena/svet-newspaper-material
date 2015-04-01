@@ -11,8 +11,20 @@
 
                 },
                 controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
+                controller: function ($scope, AuthServ, $rootScope) {
+                    var signUp = this;
+
+                    signUp.user = {
+                        email: '',
+                        pass: ''
+
+                    }
+                    signUp.createAccount = function () {
+                        AuthServ.createUser(signUp.user.email, signUp.user.pass).then(function (user) {
+                                $rootScope.user = user;
+                            }
+                        )
+                    }
 
                 },
 

@@ -1,24 +1,3 @@
-div(layout flex layout-align='center')
-	md-card(flex='' flex-gt-sm='60' flex-gt-md='80' flex-gt-lg='50')
-		md-card-content
-			span.display-block.fs-title.mb Регистрация
-			md-divider
-			form.mt(layout='column' name="registerForm" layout-fill flex)
-				div(flex='')
-					lx-text-field(label='Name / Контактное Имя', icon='account')
-						input(type='text', ng-model='textFields.firstName')
-				div(flex='')
-					lx-text-field(label='Email / Электронный Адрес', icon='email' ng-model='signUp.user.email')
-						input(type='email', ng-model='login.user.email')
-				div(flex='')
-					lx-text-field(label='Password / Пароль', icon='lock', ng-model='signUp.user.pass')
-						input(type='password', ng-model='login.user.pass')
-				div(flex='')
-					button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='signUp.createAccount()' class="mt++")
-						i.mdi.mdi-arrow-right-bold &nbsp
-						| Зарегистрироваться
-			md-divider(class='mt+++')
-			div(class='mt' layout='row' layout-align='space-between')
-				div.display-block.fs-body-1 Already have an account? &nbsp
-				div.mdc-text-right
-					button.btn.btn--s.btn--flat.fs-caption.btn--indigo(lx-ripple ui-sref='app.svet-login') Войти
+div(layout='row' layout-align='center')
+	div(flex-sm='' flex-gt-sm='60' flex-gt-md='80' flex-gt-lg='50')
+		sv-sign-up-form
