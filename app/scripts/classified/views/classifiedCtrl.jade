@@ -1,7 +1,3 @@
 sv-profile-header(title='Частные Объявления')
 //sv-post-classified-form
-.sample(flex-container='column')
-	md-tabs(md-selected='selectedIndex', md-border-bottom='' style='overflow:hidden')
-		md-tab.tc-blue-grey-700(ng-repeat='tab in tabs', ng-disabled='tab.disabled', label='{{tab.title}}')
-			.demo-tab(class='tab{{$index%4}}', style='padding: 25px; text-align: center;')
-				div(ng-bind='tab.content')
+sv-classified-tabs

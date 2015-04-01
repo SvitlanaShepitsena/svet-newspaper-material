@@ -20,6 +20,10 @@
   background: transparent !important;
   height: auto;
 }
+.tabs-classified {
+  overflow: hidden;
+  min-height: 200px;
+}
 @import '../scripts/article/styles/article.css';
 @import '../scripts/home/styles/home.css';
 @import '../scripts/politics/styles/politics.css';
@@ -118,6 +122,12 @@ body {
 }
 .mdc-text-right {
   text-align: right !important;
+}
+.mdc-overflow-hidden {
+  overflow: hidden;
+}
+.md-default-theme {
+  color: #393939 !important;
 }
 /***************/
 /*=lumx custom typography*/
