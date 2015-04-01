@@ -30,10 +30,7 @@
                     });
 
 
-                    $rootScope.$watch('user', function (newVal, oldVal) {
-                        if (!newVal) {
-                            return;
-                        }
+                    $rootScope.$watch('user', function (newVal) {
                         $scope.user = newVal;
                     })
 
