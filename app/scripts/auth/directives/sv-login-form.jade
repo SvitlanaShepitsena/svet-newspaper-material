@@ -1,0 +1,24 @@
+div(flex-container='column')
+	.card(class='p+')
+		span.display-block.fs-title.mb Log In to Your Account
+		form.mt(flex-container='column' name="loginForm")
+			div(flex-container='row')
+				div(flex-item='')
+					lx-text-field(label='Email / Электронный Адрес', icon='email')
+						input(type='email', ng-model='login.user.email')
+			div(flex-container='row')
+				div(flex-item='')
+					lx-text-field(label='Password / Пароль', icon='lock')
+						input(type='password', ng-model='login.user.password')
+			div(flex-container='row'  class="mb+")
+				div(flex-item='')
+					button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='login.singIn()' class="mt++")
+						i.mdi.mdi-arrow-right-bold &nbsp
+						| Войти
+			div(flex-container='row' flex-align='space-between center')
+				div
+					div.display-block.fs-body-1 Вы не зарегистрированы? &nbsp
+				div
+					a.btn.btn--s.btn--flat.fs-caption.btn--indigo(lx-ripple="" ui-sref='app.sign-up') Создать Профайл
+
+
