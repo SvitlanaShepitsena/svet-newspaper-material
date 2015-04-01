@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('home')
-        .controller('AppCtrl', function ($scope, user, $rootScope, toastr, ArticleServ) {
+        .controller('AppCtrl', function (NewsProcessServ, $scope, user, $rootScope, toastr, ArticleServ) {
 
             var app = this;
             $rootScope.user = user;
