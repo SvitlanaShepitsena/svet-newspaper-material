@@ -2,15 +2,14 @@
     'use strict';
 
     angular.module('home')
-        .factory('AgentServ', function ($q, url) {
+        .factory('AgentServ', function ($window) {
             return {
-                getSync: function () {
-
-                },
-                get: function () {
-                    return $q(function (resolve, reject) {
-
-                    });
+                isIe: function () {
+                    var agent = $window.navigator.userAgent;
+                    if (agent.indexOf('Trident')>-1 || agent.indexOf('MSIE')>-1) {
+                        return true;
+                    }
+                    return false;
                 }
             };
         });

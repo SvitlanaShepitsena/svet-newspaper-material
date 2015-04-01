@@ -12,6 +12,9 @@
                 controller: function ($scope) {
                     var ctrl = this;
 
+                    ctrl.isIe = AgentServ.isIe();
+
+
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');
                     }, function (size) {

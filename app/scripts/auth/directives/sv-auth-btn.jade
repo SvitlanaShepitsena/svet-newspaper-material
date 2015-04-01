@@ -3,7 +3,7 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 		button.tc-black(lx-ripple='' ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}", class='fab__primary btn btn--white tc-black' )
 			i.mdi.mdi-account
 			i.mdi.mdi-login
-		.fab__actions(ng-class="{'fab__actions--left':ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
+		.fab__actions(class="fab__actions--down" )
 			button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple ui-sref='app.svet-profile.svet-login' ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
 				span.fs-caption Svet
 			button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("facebook")')
