@@ -13,13 +13,12 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-                    var classified = this;
                     var tabs = [
-                            {title: 'Политика', content: "Here are classified for community"},
-                            {title: 'Мы и Деньги', content: "Here are classified for jobs"},
-                            {title: 'Культура', content: "Here are classified for sale."},
-                            {title: 'Общество', content: "Here are classified for services"},
-                            {title: 'Мир', content: "Here are classified for cars"}
+                            {title: 'Политика', content: "Here will be my politics articles "},
+                            {title: 'Мы и Деньги', content: "Money"},
+                            {title: 'Культура', content: "About Culture."},
+                            {title: 'Общество', content: "Articles about society"},
+                            {title: 'Мир', content: "World"}
                         ],
                         selected = null,
                         previous = null;

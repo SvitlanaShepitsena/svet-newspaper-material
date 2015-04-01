@@ -1,10 +1,9 @@
-.card
-	.toolbar
-		.toolbar__left(class='mr++')
-			button.btn.btn--l.btn--grey.tc-grey-700.btn--icon( ui-sref='app.svet-profile.author-dashboard' lx-ripple='')
-				i.mdi.mdi-home
-			button.btn.btn--l.btn--grey.tc-grey-700.btn--icon( ui-sref='app.svet-profile.author-articles' lx-ripple='')
-				i.mdi.mdi-file-document-box
-		span.toolbar__label
-		.toolbar__right
-			lx-search-filter(closed='', theme='light')
+.toolbar
+	.toolbar__left(class='mr++')
+		button.btn.btn--l.btn--grey.tc-grey-700.btn--icon( ui-sref='app.svet-profile.author-dashboard' lx-ripple='' class='mr')
+			i.mdi.mdi-home
+		button.btn.btn--l.btn--grey.tc-grey-700.btn--icon( ui-sref='app.svet-profile.author-articles' lx-ripple='' class='mr')
+			i.mdi.mdi-file-document-box
+	span.toolbar__label
+	.toolbar__right
+		lx-search-filter(closed='', theme='light')
