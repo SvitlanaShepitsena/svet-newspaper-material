@@ -15,8 +15,11 @@
                 $rootScope.loaded = true;
             });
 
+            $scope.$watch('newsObj', function (newsObj) {
+                $rootScope.news = NewsProcessServ.get(newsObj);
 
 
+            });
 
 
             $rootScope.$on('error', function () {
