@@ -2,28 +2,21 @@
     'use strict';
 
     angular.module('home')
-        .directive('svHomeMainNews', function ($rootScope) {
+        .directive('svSecondNews', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/home/directives/sv-home-main-news.html',
+                templateUrl: 'scripts/home/directives/sv-second-news.html',
                 scope: {},
                 bindToController: {
-                    nt: '='
+
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
 
-
                 },
 
                 link: function ($scope, el, attrs) {
-                    $scope.isFirst = attrs.first == 'true';
-                    if ($scope.isFirst) {
-                        $scope.second = true;
-
-                    }
-
 
                 }
             };

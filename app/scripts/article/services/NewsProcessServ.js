@@ -19,14 +19,17 @@
                             }
                         }
                     });
-                    console.log(topNews.length);
-                    console.log(secondNews.length);
                     for (var i = 0; i < topNews.length; i++) {
                         var top = topNews[i];
-                        var topTrioEl
+                        var topTrioEl = {
+                            top:top,
+                            n2:secondNews.splice(0,1)[0],
+                            n3:secondNews.splice(0,1)[0]
+                        }
+                        topNewsTrio.push(topTrioEl);
                     }
 
-                    return newsObj;
+                    return topNewsTrio;
 
                 }
             };
