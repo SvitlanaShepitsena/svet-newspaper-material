@@ -25,7 +25,6 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
-                scope: {},
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
@@ -50,7 +49,7 @@
                     //    tags: ''
                     //
                     //}
-                    $scope.article = {
+                    ctrl.article = {
                         isDraft: true,
                         author: author,
                         date: getFormatedDate(),
@@ -61,12 +60,16 @@
                     }
 
                     $scope.setSection = function (section) {
-                        $scope.article.section = section;
-                        $scope.$broadcast('close:select',{});
+                        ctrl.article.section = section;
+                        $scope.$broadcast('close:select', {});
                     }
                 },
 
                 link: function ($scope, el, attrs) {
+                    $scope.$watch('$flow', function (flow) {
+                        console.log(flow.files);
+
+                    });
 
                 }
             };

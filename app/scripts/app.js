@@ -17,6 +17,7 @@
         'home',
         // 3rd party modules
         'ngAnimate',
+        'flow',
         'ngTouch',
         'ng-fastclick',
         'lumx',

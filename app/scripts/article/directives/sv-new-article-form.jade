@@ -1,4 +1,4 @@
-div.card(flex-container='column' class='p+')
+div.card(flex-container='column' class='p+' flow-init)
 	form(name='article' flex-container='column')
 		div(flex-item='')
 			span.display-block.fs-display-1.txt-fontGrey(class='mt+') Новая Статья
@@ -9,7 +9,7 @@ div.card(flex-container='column' class='p+')
 				//span.fs-subhead
 				button.tc-blue-grey-400( class="btn btn--l btn--black btn--flat" lx-ripple lx-dropdown-toggle)
 					i.mdi.mdi-dots-vertical
-					span.fs-subhead {{article.section || "Темa / Section"}}
+					span.fs-subhead {{ctrl.article.section || "Темa / Section"}}
 				lx-dropdown-menu
 					ul
 						li(ng-repeat='s in siteSections')
@@ -17,22 +17,25 @@ div.card(flex-container='column' class='p+')
 		div(flex-container='row')
 			div(flex-item='8')
 				lx-text-field(label='Автор Статьи')
-					input.fs-subhead.tc-black-2(type='text', ng-model='article.author')
+					input.fs-subhead.tc-black-2(type='text', ng-model='ctrl.article.author')
 		div(flex-container='row')
 			div(flex-item='')
 				lx-text-field(label='Date')
-					input(ng-model='article.date')
+					input(ng-model='ctrl.article.date')
 		div(flex-container='row')
 			div(flex-item='')
 				lx-text-field(label='Заголовок Статьи / Title')
-					input.fs-subhead.tc-blue-grey-500(ng-model='article.title')
+					input.fs-subhead.tc-blue-grey-500(ng-model='ctrl.article.title')
+		div(flex-container='row')
+			div(flex-item='' )
+
 		div(flex-container='row')
 			div(flex-item='')
 				lx-text-field(label='Текст Статьи / Content')
-					textarea(ng-model='article.body') {{article.body}}
+					textarea(ng-model='ctrl.article.body') {{ctrl.article.body}}
 		div(flex-container='row')
 			div(flex-item='')
 				lx-text-field(label='Tags / Теги')
-					input.fs-capture.tc-blue-grey-400(ng-model='article.tags')
+					input.fs-capture.tc-blue-grey-400(ng-model='ctrl.article.tags')
 	sv-manage-article-nav(article='ctrl.article')
 
