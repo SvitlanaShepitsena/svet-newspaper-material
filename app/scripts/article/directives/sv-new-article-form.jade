@@ -1,15 +1,5 @@
 form(name='article' flex-container='column')
-	div(flex-container='column')
-		span.mdc-display-inline-block.fs-subhead(class='mb+') Выберите Тему: &nbsp
-		lx-dropdown(position='left')
-			//span.fs-subhead
-			button.tc-blue-grey-400( class="btn btn--l btn--black btn--flat" lx-ripple lx-dropdown-toggle)
-				i.mdi.mdi-dots-vertical
-				span.fs-subhead {{ctrl.article.section || "Темa / Section"}}
-			lx-dropdown-menu
-				ul
-					li(ng-repeat='s in siteSections')
-						a.dropdown-link(sv-section-select-handler="") {{s}}
+	sv-news-sections-dropdown
 	div(flex-container='row')
 		div(flex-item='8')
 			lx-text-field(label='Автор Статьи')
