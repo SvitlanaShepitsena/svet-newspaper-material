@@ -101,16 +101,11 @@
                     templateUrl: "scripts/auth/views/author-draftsCtrl.html"
                 })
 
-                .state("app.profile-settigns", {
-                    url: "/profile-settigns",
-                    controller: "ProfileSettignsCtrl as profileSettigns",
-                    templateUrl: "scripts/auth/views/profile-settignsCtrl.html"
+                .state("app.svet-profile.profile-settings", {
+                    url: "/profile-settings",
+                    controller: "ProfileSettingsCtrl as profileSettings",
+                    templateUrl: "scripts/auth/views/profile-settingsCtrl.html"
                 })
-				.state("app.profile-settings", {
-					url: "/profile-settings", 
-					controller:"ProfileSettingsCtrl as profileSettings",
-					templateUrl: "scripts/auth/views/profile-settingsCtrl.html"
-				})
 //#state'
         });
 
