@@ -18,6 +18,7 @@
     "lodash": "~3.6.0",
     "lumx": "~0.3.24",
     "angular-toastr": "~1.1.0",
-    "Faker": "~2.1.2"
+    "Faker": "~2.1.2",
+    "ng-flow": "~2"
   }
 }

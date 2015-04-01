@@ -25,7 +25,6 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
-                scope: {},
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
@@ -50,8 +49,11 @@
                     //    tags: ''
                     //
                     //}
-                    $scope.article = {
+
+                    ctrl.article = {
                         isDraft: true,
+                        img:'',
+                        isTopNews: false,
                         author: author,
                         date: getFormatedDate(),
                         section: getRandomSection($scope.siteSections),
@@ -61,8 +63,8 @@
                     }
 
                     $scope.setSection = function (section) {
-                        $scope.article.section = section;
-                        $scope.$broadcast('close:select',{});
+                        ctrl.article.section = section;
+                        $scope.$broadcast('close:select', {});
                     }
                 },
 

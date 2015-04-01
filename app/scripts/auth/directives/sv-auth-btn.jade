@@ -10,7 +10,7 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 				i.mdi.mdi-facebook
 			button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("google")')
 				i.mdi.mdi-google-plus
-	a.user-auth-name.fs-subhead( ui-sref="app.svet-profile.author-dashboard" ng-if='!!user') {{user.name}} &nbsp
+	span.fs-subhead(ng-if='!!user') {{user.name}} &nbsp
 	lx-dropdown(position='right' ng-if='!!user')
 		button.btn.btn--s.btn--icon.btn--white.tc-black(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}")
 			img(ng-src="{{user.avatar}}")
@@ -30,11 +30,11 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
 						|  Мои Черновики
 				li
 					a.dropdown-link(ui-sref='app.svet-profile.create-article')
-						i.mdi.mdi-playlist-plus &nbsp
+						i.mdi.mdi-playlist-plus &nbspp
 						| Создать Статью
 				li.dropdown-divider
 				li
-					a.dropdown-link(ui-sref='app.svet-profile.profile-settings')
+					a.dropdown-link(ui-sref='app.svet-profile.create-article')
 						i.mdi.mdi-settings &nbsp
 						| Настройки
 				li

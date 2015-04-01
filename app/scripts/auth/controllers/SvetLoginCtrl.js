@@ -13,7 +13,7 @@
             login.singIn = function () {
                 AuthServ.loginPassword(login.user.email,login.user.password).then(function (user) {
                    $rootScope.user = user ;
-                    $state.go('app.home');
+                    $state.go('app.svet-profile.author-dashboard');
 
                 })
             }

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column" ng-controller="MainCtrl as main">
+<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop>
 <!-- =Header-->
 <md-toolbar layout="row" class="md-primary md-hue-3">
     <md-button class="menu" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
@@ -88,6 +88,8 @@
 <script src="./bower_components/angularfire/dist/angularfire.js"></script>
 <script src="./bower_components/lodash/lodash.js"></script>
 <script src="./bower_components/Faker/build/build/faker.js"></script>
+<script src="./bower_components/flow.js/dist/flow.js"></script>
+<script src="./bower_components/ng-flow/dist/ng-flow.js"></script>
 
 <!-- start defaults -->
 
@@ -148,6 +150,7 @@
 
 <!-- article -->
 <script src="scripts/article/articleIndex.js"></script>
+<script src="scripts/article/directives/sv-image-upload.js"></script>
 <script src="scripts/article/filters/Length.js"></script>
 <script src="scripts/article/directives/sv-fresh-news-list.js"></script>
 <script src="scripts/article/directives/sv-top-news.js"></script>
