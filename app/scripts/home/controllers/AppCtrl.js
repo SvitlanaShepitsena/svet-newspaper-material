@@ -16,6 +16,9 @@
             });
 
             $scope.$watch('newsObj', function (newsObj) {
+                if (!newsObj) {
+                    return;
+                }
                 $rootScope.news = NewsProcessServ.get(newsObj);
 
 
