@@ -106,6 +106,11 @@
                     controller: "ProfileSettignsCtrl as profileSettigns",
                     templateUrl: "scripts/auth/views/profile-settignsCtrl.html"
                 })
+				.state("app.profile-settings", {
+					url: "/profile-settings", 
+					controller:"ProfileSettingsCtrl as profileSettings",
+					templateUrl: "scripts/auth/views/profile-settingsCtrl.html"
+				})
 //#state'
         });
 
