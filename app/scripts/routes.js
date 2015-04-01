@@ -74,7 +74,7 @@
                     controller: "SvetProfileCtrl as svetProfile",
                     templateUrl: "scripts/auth/views/svet-profileCtrl.html"
                 })
-                .state("app.svet-profile.svet-login", {
+                .state("app.svet-login", {
                     url: "/svet-login",
                     controller: "SvetLoginCtrl as login",
                     templateUrl: "scripts/auth/views/svet-loginCtrl.html"
