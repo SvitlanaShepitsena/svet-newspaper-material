@@ -101,11 +101,11 @@
                     templateUrl: "scripts/auth/views/author-draftsCtrl.html"
                 })
 
-				.state("app.profile-settigns", {
-					url: "/profile-settigns", 
-					controller:"ProfileSettignsCtrl as profileSettigns",
-					templateUrl: "scripts/auth/views/profile-settignsCtrl.html"
-				})
+                .state("app.profile-settigns", {
+                    url: "/profile-settigns",
+                    controller: "ProfileSettignsCtrl as profileSettigns",
+                    templateUrl: "scripts/auth/views/profile-settignsCtrl.html"
+                })
 //#state'
         });
 
