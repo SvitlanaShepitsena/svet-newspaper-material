@@ -49,8 +49,11 @@
                     //    tags: ''
                     //
                     //}
+
                     ctrl.article = {
                         isDraft: true,
+                        img:'',
+                        isTopNews: false,
                         author: author,
                         date: getFormatedDate(),
                         section: getRandomSection($scope.siteSections),
@@ -66,10 +69,6 @@
                 },
 
                 link: function ($scope, el, attrs) {
-                    $scope.$watch('$flow', function (flow) {
-                        console.log(flow.files);
-
-                    });
 
                 }
             };

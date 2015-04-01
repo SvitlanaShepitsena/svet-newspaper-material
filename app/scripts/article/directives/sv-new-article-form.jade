@@ -28,7 +28,7 @@ div.card(flex-container='column' class='p+' flow-init)
 					input.fs-subhead.tc-blue-grey-500(ng-model='ctrl.article.title')
 		div(flex-container='row')
 			div(flex-item='' )
-
+				sv-image-upload
 		div(flex-container='row')
 			div(flex-item='')
 				lx-text-field(label='Текст Статьи / Content')
@@ -37,5 +37,9 @@ div.card(flex-container='column' class='p+' flow-init)
 			div(flex-item='')
 				lx-text-field(label='Tags / Теги')
 					input.fs-capture.tc-blue-grey-400(ng-model='ctrl.article.tags')
+		div(flex-container='row')
+			div(flex-item='')
+				input(type='checkbox' ng-model='ctrl.article.isTopNews')
+				label Основная Новость?
 	sv-manage-article-nav(article='ctrl.article')
 

@@ -1,1 +1,5 @@
-.well sv-image-upload Template
+div
+	input(type='file', flow-btn='')
+	img(flow-img='$flow.files[0]' ng-if='$flow.files.length')
+
+
