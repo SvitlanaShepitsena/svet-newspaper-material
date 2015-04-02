@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('home')
-        .controller('AppCtrl', function (NewsProcessServ, $scope, user, $rootScope, toastr, ArticleServ) {
+        .controller('AppCtrl', function (NewsProcessServ, $scope, user, $rootScope, toastr, newsRef) {
 
             var app = this;
             $rootScope.user = user;
 
 
-            var newsRef = ArticleServ.allObjRef();
+            //var newsRef = ArticleServ.allObjRef();
             newsRef.$bindTo($rootScope, "newsObj").then(function () {
                 $rootScope.loaded = true;
             });

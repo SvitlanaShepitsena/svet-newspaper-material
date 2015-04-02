@@ -12,6 +12,10 @@
                     resolve: {
                         user: function (AuthServ) {
                             return AuthServ.getUser();
+                        },
+                        newsRef: function (ArticleServ, $rootScope, $q) {
+                            var nRef = ArticleServ.allObjRef().$loaded();
+                            return nRef;
                         }
 
                     },
