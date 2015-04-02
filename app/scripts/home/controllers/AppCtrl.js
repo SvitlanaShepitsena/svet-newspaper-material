@@ -19,7 +19,9 @@
                 }
                 var newsTrioGrid = NewsProcessServ.get(newsObj);
                 $rootScope.news = newsTrioGrid.trios;
-                $rootScope.grid = newsTrioGrid.grid;
+                $rootScope.newsGrid = newsTrioGrid.newsGrid;
+
+                var breakPoint = 1;
 
 
             });

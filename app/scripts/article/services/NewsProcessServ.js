@@ -32,7 +32,7 @@
                         newsTrios.push(topTrioEl);
                     }
 
-                    return {trios: newsTrios, grid: newsGrid};
+                    return {trios: newsTrios, newsGrid: secondNews};
 
                 }
             };
