@@ -49,7 +49,7 @@
                     templateUrl: "scripts/world/views/worldCtrl.html"
                 })
                 .state("app.article", {
-                    url: "/article",
+                    url: "/article/:id",
                     controller: "ArticleCtrl as article",
                     templateUrl: "scripts/article/views/articleCtrl.html"
                 })
