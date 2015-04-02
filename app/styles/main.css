@@ -160,6 +160,9 @@ body {
 .mdc-text-right {
   text-align: right !important;
 }
+.mdc-text-right {
+  text-align: right !important;
+}
 .mdc-overflow-hidden {
   overflow: hidden;
 }
