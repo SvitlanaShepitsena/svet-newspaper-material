@@ -1,8 +1,16 @@
 div
-	img(flow-img='$flow.files[0]' ng-if='$flow.files.length')
-	div(flex-container='row', flex-gutter='24')
+	div(flex-container='row')
+		div(flex-item='' class='mb+' )
+			img(flow-img='$flow.files[0]' ng-if='$flow.files.length')
+	div(flex-container='row')
+		div(flex-item='' hide)
+			input.btn.btn-white(id='primaryButton' type='file', flow-btn='')
+	div(flex-container='row')
 		div(flex-item='')
-			input(type='file', flow-btn='')
-	div(flex-container='row', flex-gutter='24')
-		div(flex-item='')
-			button.btn.btn--m.btn--white.btn--raised(lx-ripple ng-click='deleteImage()') Delete
+			button.btn.btn--m.btn--white.btn--raised.tc-black-1(class='mr+' lx-ripple='' ng-if='!$flow.files.length' id='secondaryButton' onclick="document.getElementById('primaryButton').click()")
+				i.mdi.mdi-check &nbsp
+				| Choose Image
+			button.btn.btn--m.btn--white.btn--raised.tc-red-300(lx-ripple ng-click='deleteImage()' ng-if='$flow.files.length')
+				i.mdi.mdi-close &nbsp
+				| Remove Image
+
