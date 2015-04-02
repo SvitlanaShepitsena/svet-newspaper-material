@@ -10,8 +10,6 @@
 
             var newsRef = ArticleServ.allObjRef();
             newsRef.$bindTo($rootScope, "newsObj").then(function () {
-                $rootScope.news = NewsProcessServ.get($rootScope.newsObj);
-
                 $rootScope.loaded = true;
             });
 
@@ -19,7 +17,11 @@
                 if (!newsObj) {
                     return;
                 }
-                $rootScope.news = NewsProcessServ.get(newsObj);
+                var newsTrioGrid = NewsProcessServ.get(newsObj);
+                $rootScope.news = newsTrioGrid.trios;
+                $rootScope.newsGrid = newsTrioGrid.newsGrid;
+
+                var breakPoint = 1;
 
 
             });

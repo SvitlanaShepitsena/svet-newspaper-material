@@ -5,7 +5,9 @@
         .factory('NewsProcessServ', function () {
             return {
                 get: function (newsObj) {
-                    var topNewsTrio = [];
+                    var newsTrios = [];
+                    var newsGrid = [];
+
                     var topNews = [];
                     var secondNews = [];
 
@@ -19,17 +21,18 @@
                             }
                         }
                     });
+
                     for (var i = 0; i < topNews.length; i++) {
                         var top = topNews[i];
                         var topTrioEl = {
-                            top:top,
-                            n2:secondNews.splice(0,1)[0],
-                            n3:secondNews.splice(0,1)[0]
+                            top: top,
+                            n2: secondNews.splice(0, 1)[0],
+                            n3: secondNews.splice(0, 1)[0]
                         }
-                        topNewsTrio.push(topTrioEl);
+                        newsTrios.push(topTrioEl);
                     }
 
-                    return topNewsTrio;
+                    return {trios: newsTrios, newsGrid: secondNews};
 
                 }
             };
