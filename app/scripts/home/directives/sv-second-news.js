@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('home')
-        .directive('svSecondNews', function () {
+        .directive('svSecondNews', function (ColorStateServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-second-news.html',
@@ -17,7 +17,9 @@
                 },
 
                 link: function ($scope, el, attrs) {
-                    el.css('background-color',tinycolor.random(1));
+                    var color = tinycolor('green');
+
+                    el.css('background-color',ColorStateServ.getColor());
 
                 }
             };
