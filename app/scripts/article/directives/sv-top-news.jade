@@ -1,6 +1,6 @@
 a.article-thumb-link(ui-sref='app.article({id:1})')
 	.card.p.m
-		img(ng-src="{{ctrl.mainNews.img}}" )
+		img.mdc-img-bw(ng-src="{{ctrl.mainNews.img}}" )
 		span.display-block.fs-subhead.tc-black-1 {{ctrl.mainNews.title }}
 		.fs-caption.tc-grey-600 By {{ctrl.isFirst? 'Alex Etman':ctrl.mainNews.author}}
 		span.mdc-display-inline-block.fs-body-2.tc-grey-800 {{ctrl.mainNews.body | length:100}}...

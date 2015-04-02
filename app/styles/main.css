@@ -137,6 +137,14 @@ body {
   text-decoration: none !important;
   display: inline-block;
 }
+.mdc-img-sepia {
+  -webkit-filter: sepia(1);
+  filter: sepia(1);
+}
+.mdc-img-bw {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
 .fw-700 {
   font-weight: 700px !important;
 }
