@@ -20,6 +20,10 @@
   background: transparent !important;
   height: auto;
 }
+.article-thumb-link {
+  text-decoration: none;
+  cursor: pointer;
+}
 .tabs-classified {
   overflow: hidden;
   min-height: 200px;
