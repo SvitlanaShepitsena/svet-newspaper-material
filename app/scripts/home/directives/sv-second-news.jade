@@ -1,4 +1,6 @@
 .card.m.p
-	.fs-caption {{ctrl.secondNews.author}}
-	span.display-block.fs-subhead {{ctrl.secondNews.title | length:25}}
-	span.display-block.fs-body-2 {{ctrl.secondNews.body | length:30}}
+	a.cursor-pointer
+		.fs-caption {{ctrl.secondNews.author}}
+		span.display-block.fs-subhead {{ctrl.secondNews.title | length:25}}
+		span.display-block.fs-body-2 {{ctrl.secondNews.body | length:30}}
+		span.fs-caption.tc-blue-grey Read More >>
