@@ -1,7 +1,19 @@
-div(flex-container='column')
-	.card__img.card__img--left(style='height: 120px' flex-item)
-		div(flex-item='', flex-container='column')
-	.card__actions(flex-item)
-		button.btn.btn--m.btn--white.btn-raised(lx-ripple='') Слушать
-
+div(flex-item='')
+	.card
+		div(flex-container='row')
+			.card__img.card__img--left(style='height: 160px')
+				img(src='/images/placeholder/3-vertical.jpg')
+			div(flex-item='', flex-container='column')
+				div(flex-item='')
+					div(class='p+')
+						strong.fs-headline.display-block Lorem Ipsum
+						span.fs-subhead.tc-black-2.display-block Lorem Ipsum
+				.card__actions
+					button.btn.btn--m.btn--black.btn--flat(lx-ripple='') Free sample
+					button.btn.btn--m.btn--orange.btn--flat(lx-ripple='') Review
+//div(flex-container='column')
+//	.card__img.card__img--left(style='height: 120px' flex-item)
+//		div(flex-item='', flex-container='column')
+//	.card__actions(flex-item)
+//		button.btn.btn--m.btn--white.btn-raised(lx-ripple='') Слушать
 
