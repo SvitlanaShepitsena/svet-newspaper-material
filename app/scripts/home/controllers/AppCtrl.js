@@ -17,6 +17,13 @@
                 if (!newsObj) {
                     return;
                 }
+                var idCounter = 1;
+                newsObj = _.map(_.filter(newsObj, function (newsOne) {
+                    return _.isObject(newsOne);
+                }), function (news) {
+                   return _.extend(news,{id:idCounter++}) ;
+                });
+                $rootScope.newsList = newsObj;
                 var newsTrioGrid = NewsProcessServ.get(newsObj);
                 $rootScope.news = newsTrioGrid.trios;
                 $rootScope.newsGrid = newsTrioGrid.newsGrid;

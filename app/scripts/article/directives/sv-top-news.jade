@@ -1,5 +1,6 @@
-.card.p.m
-	img(ng-src="{{ctrl.mainNews.img}}" )
-	.fs-caption {{ctrl.isFirst? 'Alex Etman':ctrl.mainNews.author}}
-	span.display-block.fs-subhead {{ctrl.mainNews.title }};
-	span.display-block.fs-body-2 {{ctrl.mainNews.body | length:100}}
+a(ui-sref='app.article({id:1})')
+	.card.p.m
+		img(ng-src="{{ctrl.mainNews.img}}" )
+		.fs-caption {{ctrl.isFirst? 'Alex Etman':ctrl.mainNews.author}}
+		span.display-block.fs-subhead {{ctrl.mainNews.title }};
+		span.display-block.fs-body-2 {{ctrl.mainNews.body | length:100}}
