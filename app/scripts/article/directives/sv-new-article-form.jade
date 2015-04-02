@@ -36,6 +36,10 @@ form(name='article' flex-container='column')
 				input.fs-capture.tc-blue-grey-400(ng-model='ctrl.article.tags')
 	div(flex-container='row')
 		div(flex-item='')
-			input(type='checkbox' ng-model='ctrl.article.isTopNews')
-			label Основная Новость?
+			//.checkbox
+			//	input.checkbox__input(type='checkbox' ng-model='ctrl.article.isTopNews')
+			//	label Основная Новость?
+			.checkbox
+				input.checkbox__input(#checkbox1 type='checkbox')
+				label.checkbox__label(for='checkbox1') Checkbox
 
