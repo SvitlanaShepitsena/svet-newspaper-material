@@ -6,8 +6,13 @@ div(layout='column' flex='')
 	.light-margin-5(flex='')
 		md-card
 			md-content.md-padding
-				span.fs-display-1.display-block {{title}}
+				span.fs-display-1.display-block {{ctrl.news.title}}
 				span.fs-caption.display-block.margin-bottom-5 Svet Media Group
+
+				div.light-padding-5.margin-bottom-15
+					span.display-block.fs-caption Автор: {{ctrl.news.author}}
+					span.display-block.fs-caption Дата публикации: {{ctrl.news.date}}
+
 				div(layout='row' layout-align='space-between')
 					.margin-bottom-5(flex="80")
 						sv-social-share
@@ -15,10 +20,7 @@ div(layout='column' flex='')
 						span.display-block.text-right.color-subheader(lx-ripple lx-tooltip="Просмотры")
 							i.icon.icon--s.icon--flat.mdi.mdi-eye
 				div.atricle-img.margin-bottom-15
-				img(src="../img/news/gorlovka.jpg")
+				img(ng-src="{{ctrl.news.img}}" ng-if='ctrl.news.title')
 			md-card-content
 				div.light-padding-5.margin-bottom-15
-					p.fs-body-2 {{body}}
-				div.light-padding-5.margin-bottom-15
-					span.display-block.fs-caption Автор:
-					span.display-block.fs-caption Дата публикации: 18.03.2015
+					p.fs-body-2 {{ctrl.news.body}}

@@ -2,18 +2,17 @@
     'use strict';
 
     angular.module('article')
-        .directive('svOneArticle', function () {
+        .directive('svSocialShare', function () {
             return {
                 replace: true,
+                templateUrl: 'scripts/article/directives/sv-social-share.html',
                 scope: {},
-                templateUrl: 'scripts/article/directives/sv-one-article.html',
                 bindToController: {
-                    news: '='
+
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-                    console.log(ctrl.news);
 
                 },
 
