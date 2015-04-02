@@ -23,6 +23,16 @@
 .article-thumb-link {
   text-decoration: none;
   cursor: pointer;
+  line-height: 14px;
+}
+.article-thumb-body {
+  line-height: 16px;
+}
+.article-thumb-title {
+  line-height: 20px;
+}
+.article-thumb-author {
+  line-height: 16px;
 }
 .tabs-classified {
   overflow: hidden;
@@ -139,12 +149,16 @@ body {
 .md-default-theme {
   color: #393939 !important;
 }
+.mdc-label-default {
+  padding: 4px 5px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
 .top-profile-nav {
   padding: 4px 8px;
 }
 .cursor-pointer {
   cursor: pointer;
-kk
 }
 /***************/
 /*=lumx custom typography*/
