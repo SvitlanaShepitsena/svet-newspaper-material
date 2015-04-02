@@ -14,8 +14,12 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-                    ctrl.news = _.filter($rootScope.newsList, function (n) {
+                    ctrl.news = _.map(_.filter($rootScope.newsList, function (n) {
                         return n.section == ctrl.sectionName;
+
+                    }), function (n) {
+                        n.img = n.img || faker.image.city();
+                        return n;
 
                     });
 

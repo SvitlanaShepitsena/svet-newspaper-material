@@ -8,7 +8,7 @@
                 templateUrl: 'scripts/home/directives/sv-section-article-thumb.html',
                 scope: {},
                 bindToController: {
-
+                    sectionArticleThumb: '='
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {

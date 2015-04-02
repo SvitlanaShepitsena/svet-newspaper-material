@@ -1,33 +1,8 @@
 ul.list(class='mt++')
-    li.list-row.list-row--multi-line.list-row--has-separator(ng-repeat='gn in ctrl.news)
-        sv-second-news(second-news = 'gn')
+    li.list-row.list-row--multi-line.list-row--has-separator(ng-repeat='gn in ctrl.news')
         .list-row__primary
-            img.img-round(src='/images/placeholder/1-square.jpg', width='40', height='40')
+            img.img-round(ng-src='{{gn.img}}', width='40', height='40')
         .list-row__content
-            span.display-block Two-line item
-            span.display-block.fs-body-1.tc-black-2
-                | Secondary text Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam massa quam. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-        .list-row__secondary
-            i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-information
-    li.list-row.list-row--multi-line.list-row--has-separator
-        .list-row__primary
-            img.img-round(src='/images/placeholder/2-square.jpg', width='40', height='40')
-        .list-row__content
-            span.display-block Two-line item
-            span.display-block.fs-body-1.tc-black-2
-                | Secondary text Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam massa quam. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-        .list-row__secondary
-            i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-information
-    li.list-row.list-row--multi-line.list-row--has-separator
-        .list-row__primary
-            img.img-round(src='/images/placeholder/3-square.jpg', width='40', height='40')
-        .list-row__content
-            span.display-block Two-line item
-            span.display-block.fs-body-1.tc-black-2
-                | Secondary text Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam massa quam. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-        .list-row__secondary
-            i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-information
+            span.display-block {{gn.title | length:25}}
+            span.display-block.fs-body-1.tc-black-2 {{gn.body | length:50}}
 
-//div(layout='row' layout-wrap)
-//    div(flex-sm='100' flex-gt-sm='50' flex-gt-md='33' | limitTo:12' )
-//        sv-second-news(second-news = 'gn')
