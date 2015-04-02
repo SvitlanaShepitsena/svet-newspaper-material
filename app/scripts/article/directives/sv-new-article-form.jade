@@ -4,7 +4,7 @@ form(name='article' flex-container='column')
 			span.mdc-display-inline-block.fs-subhead(class='mb+') Выберите Тему: &nbsp
 		lx-dropdown(position='left')
 			//span.fs-subhead
-			button.btn.btn--white.btn--raised( class="btn btn--l btn--black btn--flat" lx-ripple lx-dropdown-toggle)
+			button.btn.btn--m.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
 				i.mdi.mdi-dots-vertical
 				span.fs-subhead {{ctrl.article.section || "Темa / Section"}}
 			lx-dropdown-menu
