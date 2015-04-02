@@ -1,11 +1,6 @@
 .card.m.p
-	a.article-thumb-link(href="#")
+	a.article-thumb-link(ui-sref='app.article({id:ctrl.secondNews.id})')
 		span.display-block.fs-subhead.tc-black-1.article-thumb-title {{ctrl.secondNews.title | length:25}}
 		.fs-caption.tc-grey-600.article-thumb-author By {{ctrl.secondNews.author}}
 		span.mdc-display-inline-block.fs-body-2.tc-grey-800.article-thumb-body {{ctrl.secondNews.body | length:50}}
 		span.display-block.fs-caption.tc-blue-grey-500 Read More >>
-	a.cursor-pointer(ui-sref='app.article({id:ctrl.secondNews.id})')
-		.fs-caption {{ctrl.secondNews.author}}
-		span.display-block.fs-subhead {{ctrl.secondNews.title | length:20}}
-		span.display-block.fs-body-2 {{ctrl.secondNews.body | length:25}}
-		span.fs-caption.tc-blue-grey Read More >>
