@@ -8,7 +8,8 @@
                 templateUrl: 'scripts/article/directives/sv-comments.html',
                 scope: {},
                 bindToController: {
-                    comments: '='
+                    comments: '=',
+                    key:'='
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {

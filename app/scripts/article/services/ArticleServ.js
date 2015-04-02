@@ -23,6 +23,17 @@
                         );
 
                     });
+                },
+                addComment: function (fbKey, comment) {
+                    return $q(function (resolve, reject) {
+                        var refCommArr = $firebaseArray(new Firebase(url + 'articles/' + fbKey + '/comments'));
+                        refCommArr.$add(comment).then(
+                            function (uid) {
+                                resolve(uid);
+                            }
+                        )
+
+                    });
                 }
             };
         });

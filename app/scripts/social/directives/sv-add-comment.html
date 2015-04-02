@@ -1,1 +1,1 @@
-<div class="well">sv-add-comment Template</div>
+<div><div ng-if="!ctrl.user">Войдите, чтобы оставить комментарий.</div><div ng-if="!!ctrl.user"><form name="addComment" ng-submit="ctrl.submitComment()"><div><textarea ng-model="ctrl.comment.body">{{ctrl.comment.body}}</textarea></div><div><br/><input type="submit"/></div></form></div></div>
