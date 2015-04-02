@@ -1,6 +1,7 @@
-a(ui-sref='app.article({id:1})')
+a.article-thumb-link(ui-sref='app.article({id:1})')
 	.card.p.m
-		img(ng-src="{{ctrl.mainNews.img}}" )
-		.fs-caption {{ctrl.isFirst? 'Alex Etman':ctrl.mainNews.author}}
-		span.display-block.fs-subhead {{ctrl.mainNews.title }};
-		span.display-block.fs-body-2 {{ctrl.mainNews.body | length:100}}
+		img.mdc-img-bw(ng-src="{{ctrl.mainNews.img}}" )
+		span.display-block.fs-subhead.tc-black-1 {{ctrl.mainNews.title }}
+		.fs-caption.tc-grey-600 By {{ctrl.isFirst? 'Alex Etman':ctrl.mainNews.author}}
+		span.mdc-display-inline-block.fs-body-2.tc-grey-800 {{ctrl.mainNews.body | length:100}}...
+		span.fs-caption.bgc-grey-200.mdc-label-default 12 Comments

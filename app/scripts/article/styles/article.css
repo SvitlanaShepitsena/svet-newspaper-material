@@ -3,3 +3,17 @@
   background: transparent !important;
   height: auto;
 }
+.article-thumb-link {
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 14px;
+}
+.article-thumb-body {
+  line-height: 16px;
+}
+.article-thumb-title {
+  line-height: 20px;
+}
+.article-thumb-author {
+  line-height: 16px;
+}
