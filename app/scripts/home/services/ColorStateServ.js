@@ -3,14 +3,12 @@
 
     angular.module('home')
         .factory('ColorStateServ', function ($q, url) {
+            var baseColor = tinycolor('#009688');
+            var counter = 1;
             return {
-                getSync: function () {
-
-                },
-                get: function () {
-                    return $q(function (resolve, reject) {
-
-                    });
+                getColor: function () {
+                    //counter =+3;
+                    return baseColor.lighten(counter);
                 }
             };
         });

@@ -19,7 +19,7 @@
                 link: function ($scope, el, attrs) {
                     var color = tinycolor('green');
 
-                    el.css('background-color',color.lighten());
+                    el.css('background-color',ColorStateServ.getColor());
 
                 }
             };
