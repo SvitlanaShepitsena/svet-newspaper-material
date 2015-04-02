@@ -17,6 +17,7 @@
                 },
 
                 link: function ($scope, el, attrs) {
+                    el.css('background-color',tinycolor.random(1));
 
                 }
             };
