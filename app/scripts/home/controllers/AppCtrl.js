@@ -23,12 +23,11 @@
                 }), function (news) {
                    return _.extend(news,{id:idCounter++}) ;
                 });
-                $rootScope.newsList = newsObj;
+                $rootScope.newsList = _.toArray(newsObj);
                 var newsTrioGrid = NewsProcessServ.get(newsObj);
                 $rootScope.news = newsTrioGrid.trios;
                 $rootScope.newsGrid = newsTrioGrid.newsGrid;
 
-                var breakPoint = 1;
 
 
             });
