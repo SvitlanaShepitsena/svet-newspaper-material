@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('article')
-        .directive('svComments', function ($rootScope) {
+    angular.module('social')
+        .directive('svAddComment', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/article/directives/sv-comments.html',
+                templateUrl: 'scripts/social/directives/sv-add-comment.html',
                 scope: {},
                 bindToController: {
-                    comments: '='
+
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
