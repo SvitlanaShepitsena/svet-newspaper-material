@@ -1,19 +1,12 @@
-div(flex-item='')
-	.card
-		div(flex-container='row')
-			.card__img.card__img--left(style='height: 160px')
-				img(src='/images/placeholder/3-vertical.jpg')
-			div(flex-item='', flex-container='column')
-				div(flex-item='')
-					div(class='p+')
-						strong.fs-headline.display-block Lorem Ipsum
-						span.fs-subhead.tc-black-2.display-block Lorem Ipsum
-				.card__actions
-					button.btn.btn--m.btn--black.btn--flat(lx-ripple='') Free sample
-					button.btn.btn--m.btn--orange.btn--flat(lx-ripple='') Review
-//div(flex-container='column')
-//	.card__img.card__img--left(style='height: 120px' flex-item)
-//		div(flex-item='', flex-container='column')
-//	.card__actions(flex-item)
-//		button.btn.btn--m.btn--white.btn-raised(lx-ripple='') Слушать
-
+.card
+	div(flex-container='row')
+		div(flex-item='', flex-container='column')
+			div(flex-item='' class='p+')
+				strong.fs-headline.display-block
+					i.mdi.mdi-microphone &nbsp
+					| Radio “OSA”
+				span.fs-subhead.tc-black-2.display-block.radio-subhead Sunday morning talk show with Alex Etman.
+				span.fs-body-2.tc-black-2.display-block.radio-body Every Sunday on 1240AM from 11:00 a.m. to 1:00 p.m.
+			.card__actions
+				button.btn.btn--m.btn--orange.btn--flat(lx-ripple='') Слушать
+				button.btn.btn--m.btn--black.btn--flat(lx-ripple='') Архив
