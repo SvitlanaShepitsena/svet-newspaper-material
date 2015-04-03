@@ -43,19 +43,6 @@
   font-weight: 600;
   margin-bottom: 4px;
 }
-.fb-page {
-  width: 280px;
-  height: 130px;
-}
-.fb-filter {
-  overflow: hidden;
-  width: 280px;
-  height: 200px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(255,255,255,0.2);
-}
 .tabs-classified {
   overflow: hidden;
   min-height: 200px;
@@ -173,6 +160,9 @@ body {
 .mdc-text-right {
   text-align: right !important;
 }
+.mdc-text-right {
+  text-align: right !important;
+}
 .mdc-overflow-hidden {
   overflow: hidden;
 }
@@ -202,13 +192,13 @@ body {
   text-align: center !important;
 }
 md-sidenav {
-  min-width: 290px !important;
-  max-width: 290px !important;
+  min-width: 240px !important;
+  max-width: 240px !important;
 }
 md-sidenav.md-locked-open {
-  width: 290px !important;
-  min-width: 290px !important;
-  max-width: 290px !important;
+  width: 240px !important;
+  min-width: 240px !important;
+  max-width: 240px !important;
 }
 .svet-logo {
   position: relative;
