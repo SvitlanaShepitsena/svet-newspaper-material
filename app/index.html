@@ -19,16 +19,6 @@
 </head>
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop>
-<div id="fb-root"></div>
-<script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=1405000443143632&version=v2.3";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
 <!-- =Header-->
 <md-toolbar layout="row" class="md-primary md-hue-3">
     <md-button class="menu" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
@@ -50,8 +40,8 @@
                        ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
-        <md-content class="p">
-            <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
+        <md-content class="md-padding">
+            <sv-news-sections-nav></sv-news-sections-nav>
         </md-content>
     </md-sidenav>
 
@@ -64,7 +54,7 @@
     </md-content>
 
     <!-- =Right Sidebar-->
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2 svet-right" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'
                     ng-controller="RightCtrl">
             <md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i
@@ -73,9 +63,7 @@
         </md-toolbar>
         <sv-svet-social></sv-svet-social>
         <sv-clients-nav></sv-clients-nav>
-        <md-content ng-controller="RightCtrl" style='margin-left:4px'>
-            <div class="fb-page" data-href="https://www.facebook.com/facebook" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
-            <div class=""></div>
+        <md-content class="md-padding" ng-controller="RightCtrl">
         </md-content>
     </md-sidenav>
 </div>
@@ -104,6 +92,7 @@
 <script src="./bower_components/flow.js/dist/flow.js"></script>
 <script src="./bower_components/ng-flow/dist/ng-flow.js"></script>
 <script src="./bower_components/tinycolor/tinycolor.js"></script>
+
 <!-- start defaults -->
 
 
@@ -116,6 +105,10 @@
 <script src="./scripts/settings/constants.js"></script>
 
 <!-- MODULES-->
+
+<!-- social -->
+<script src="scripts/social/socialIndex.js"></script>
+<script src="scripts/social/directives/sv-add-comment.js"></script>
 
 <!-- world -->
 <script src="scripts/world/worldIndex.js"></script>
@@ -164,8 +157,7 @@
 
 <!-- article -->
 <script src="scripts/article/articleIndex.js"></script>
-<script src="scripts/article/directives/sv-article-breadcrumb.js"></script>
-<script src="scripts/article/directives/sv-article-tags.js"></script>
+<script src="scripts/article/directives/sv-comments.js"></script>
 <script src="scripts/article/directives/sv-social-share.js"></script>
 <script src="scripts/article/services/NewsProcessServ.js"></script>
 <script src="scripts/article/directives/sv-image-upload.js"></script>
@@ -205,6 +197,7 @@
 <script src="scripts/home/directives/sv-nav-link.js"></script>
 <script src="scripts/home/directives/sv-news-sections-nav.js"></script>
 <script src="scripts/home/controllers/HomeCtrl.js"></script>
+
 
 </body>
 </html>
