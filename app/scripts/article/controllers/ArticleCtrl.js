@@ -12,7 +12,10 @@
                     return;
                 }
                 article.displayedNews = list[id-1];
+
+
             });
+
 
         });
 })();

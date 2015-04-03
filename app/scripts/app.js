@@ -4,9 +4,9 @@
     angular.module('app', [
 
         // modules
+		'social',
 		'world',
 		'society',
-		'social',
 		'culture',
 		'money',
         'classified',
@@ -28,6 +28,7 @@
         'firebase',
         'ui.router'
     ])
+
         .config(function ($mdThemingProvider, $mdIconProvider) {
 
             $mdIconProvider

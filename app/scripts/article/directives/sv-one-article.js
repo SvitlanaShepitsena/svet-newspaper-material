@@ -13,6 +13,7 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
+                    console.log(ctrl.news);
 
                 },
 
