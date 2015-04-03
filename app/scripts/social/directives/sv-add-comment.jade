@@ -1,0 +1,11 @@
+div
+	div(ng-if='!ctrl.user')
+		| Войдите, чтобы оставить комментарий.
+	div(ng-if='!!ctrl.user')
+		form(name='addComment' ng-submit='ctrl.submitComment()')
+			div
+				textarea(ng-model='ctrl.comment.body') {{ctrl.comment.body}}
+			div
+				br
+				input(type='submit')
+
