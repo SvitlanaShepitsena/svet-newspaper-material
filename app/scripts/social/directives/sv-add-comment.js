@@ -1,7 +1,8 @@
 (function () {
     'use strict';
+
     angular.module('social')
-        .directive('svAddComment', function ($rootScope, ArticleServ) {
+        .directive('svAddComment', function ($rootScope,ArticleServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/social/directives/sv-add-comment.html',
@@ -18,13 +19,17 @@
                         user: ctrl.user.fname || ctrl.user.login,
                         avatar: ctrl.user.avatar || ''
                     }
+
+
                     $rootScope.$watch('user', function (newsObj) {
                         ctrl.user = newsObj;
                     });
                     ctrl.submitComment = function () {
-                        ArticleServ.addComment(ctrl.key, ctrl.comment);
+                        ArticleServ.addComment(ctrl.key,ctrl.comment);
+
                     };
                 },
+
                 link: function ($scope, el, attrs) {
 
                 }

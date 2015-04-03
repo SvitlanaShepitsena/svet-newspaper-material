@@ -1,13 +1,10 @@
 div
 	div(ng-if='!ctrl.user')
-		span.display-block.fs-body-1 Войдите, чтобы оставить комментарий.
+		| Войдите, чтобы оставить комментарий.
 	div(ng-if='!!ctrl.user')
-		form.mt(name='addComment' ng-submit='ctrl.submitComment()')
-			div(flex-container='row')
-				div(flex-item='')
-					lx-text-field(label='Комментарий / Comment')
-						textarea(ng-model='ctrl.comment.body') {{ctrl.comment.body}}
+		form(name='addComment' ng-submit='ctrl.submitComment()')
+			div
+				textarea(ng-model='ctrl.comment.body') {{ctrl.comment.body}}
 			div
 				br
-				input.btn.btn--m.btn--white.btn--raised(type='submit')
-
+				input(type='submit')

@@ -1,13 +1,11 @@
-.card(class='p+ m')
-    .toolbar
-        .toolbar__left
-            h2 Комментарии
-    span.display-block
-    ul.list(class='mt++')
-        li.list-row.list-row--multi-line.list-row--has-separator(ng-repeat='c in ctrl.comments')
-            .list-row__primary
-                img.img-round.mdc-img-bw(ng-src='{{c.avatar}}', width='40', height='40')
-            .list-row__content
-                span.display-block {{c.user}}
-                span.display-block.fs-body-1.tc-black-2 {{c.body}}
-    sv-add-comment(key='ctrl.key')
+div
+	h2 Комментарии
+	div(ng-repeat='c in ctrl.comments')
+		div
+			|{{c.user}}
+		div
+			img(ng-src='{{c.avatar}}')
+		div
+			|{{c.body}}
+
+	sv-add-comment(key='ctrl.key')
