@@ -6,6 +6,7 @@
         // modules
 		'world',
 		'society',
+		'social',
 		'culture',
 		'money',
         'classified',
