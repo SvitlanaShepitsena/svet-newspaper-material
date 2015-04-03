@@ -16,9 +16,7 @@
                     var ctrl = this;
 
                 },
-
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });
