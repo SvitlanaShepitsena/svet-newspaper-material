@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('social')
         .directive('svAddComment', function ($rootScope,ArticleServ) {
             return {
