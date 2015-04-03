@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('home')
-        .directive('svSectionArticleThumb', function () {
+    angular.module('article')
+        .directive('svArticleTags', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/home/directives/sv-section-article-thumb.html',
+                templateUrl: 'scripts/article/directives/sv-article-tags.html',
                 scope: {},
                 bindToController: {
-                    sectionArticleThumb: '='
+
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
