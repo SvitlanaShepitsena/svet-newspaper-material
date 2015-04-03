@@ -18,16 +18,10 @@
                     return;
                 }
                 var idCounter = 1;
-                var fbKeys = _.slice(_.keys(newsObj),2);
-
-                newsObj = _.map(_.filter(newsObj, function (newsOne, index) {
-                    if (_.isObject(newsOne)) {
-                        return true;
-                    }
-                }), function (news,count) {
-                   return _.extend(news,{id:idCounter++,
-                   fbkey:fbKeys[count]
-                   }) ;
+                newsObj = _.map(_.filter(newsObj, function (newsOne) {
+                    return _.isObject(newsOne);
+                }), function (news) {
+                   return _.extend(news,{id:idCounter++}) ;
                 });
                 $rootScope.newsList = _.toArray(newsObj);
                 var newsTrioGrid = NewsProcessServ.get(newsObj);
