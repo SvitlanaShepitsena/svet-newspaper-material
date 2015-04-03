@@ -28,7 +28,6 @@
         'firebase',
         'ui.router'
     ])
-
         .config(function ($mdThemingProvider, $mdIconProvider) {
 
             $mdIconProvider
