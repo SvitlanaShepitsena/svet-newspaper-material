@@ -2,18 +2,18 @@
     'use strict';
 
     angular.module('article')
-        .directive('svOneArticle', function () {
+        .directive('svComments', function ($rootScope) {
             return {
                 replace: true,
+                templateUrl: 'scripts/article/directives/sv-comments.html',
                 scope: {},
-                templateUrl: 'scripts/article/directives/sv-one-article.html',
                 bindToController: {
-                    news: '='
+                    comments: '=',
+                    key:'='
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-                    console.log(ctrl.news);
 
                 },
 
