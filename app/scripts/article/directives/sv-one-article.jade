@@ -1,4 +1,4 @@
-div
+div(flex-container='column')
     .card(class='m p+')
         div(flex-container='column')
             div(class='mb++')
@@ -11,10 +11,10 @@ div
                     sv-social-share
                     span.display-block.text-right.color-subheader(lx-ripple lx-tooltip="Просмотры")
                             i.icon.icon--s.icon--flat.mdi.mdi-eye
-                div.atricle-img(class='mb+')
+                div.atricle-img.mdc-img-bw(class='mb+')
                     img(ng-src="{{ctrl.news.img}}" ng-if='ctrl.news.title')
                 div(class='mb+')
                     p.fs-body-2 {{ctrl.news.body}}
-    div(flex-container='column')
-        sv-comments(comments = 'ctrl.news.comments' key='ctrl.news.fbkey')
+    sv-comments(comments = 'ctrl.news.comments' key='ctrl.news.fbkey')
+    sv-add-comment(key='ctrl.key')
 

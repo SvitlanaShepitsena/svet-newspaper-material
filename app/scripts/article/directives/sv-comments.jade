@@ -1,7 +1,7 @@
 .card(class='m')
     .toolbar.bgc-grey-200
         .toolbar__left
-            span.toolbar__label.fs-title Комментарии
+            span.toolbar__label.fs-title.tc-grey-700 Комментарии
     .divider.divider--dark
     div(class='p+ m')
         ul.list(class='mt++')
@@ -11,4 +11,3 @@
                 .list-row__content
                     span.display-block {{c.user}}
                     span.display-block.fs-body-1.tc-black-2 {{c.body}}
-        sv-add-comment(key='ctrl.key')
