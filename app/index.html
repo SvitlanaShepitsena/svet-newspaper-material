@@ -31,10 +31,8 @@
 <!--</a>-->
 <!--</div>-->
 
-<div class="toolbar-custom p tc-white-1" layout="row">
-    <button class="btn btn--m btn-icon btn--red" lx-ripple="">
-        <i class="fa fa-envelope fa-l"></i>
-    </button>
+<div class="toolbar-custom p tc-white-1" layout="row" layout-align="start center">
+    <sv-lang-switch></sv-lang-switch>
 </div>
 <div flex layout="row">
     <!-- =Left Sidebar-->
@@ -56,7 +54,6 @@
     <!-- =Content-->
     <div layout-column flex>
         <md-toolbar layout="row" class="toolbar-svet" style="height: auto">
-            <sv-lang-switch></sv-lang-switch>
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>
