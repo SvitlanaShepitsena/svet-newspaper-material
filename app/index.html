@@ -31,10 +31,9 @@
 <!--</a>-->
 <!--</div>-->
 
-<div class="toolbar-custom p tc-white-1" layout="row" layout-align="space-between center">
+<div class="toolbar-custom tc-white-1 pl" layout="row" layout-align="space-between center">
     <sv-lang-switch></sv-lang-switch>
-    <div>
-    </div>
+    <sv-social-top-nav></sv-social-top-nav>
 </div>
 <div flex layout="row">
     <!-- =Left Sidebar-->
@@ -82,12 +81,12 @@
             <md-sidenav class="md-sidenav-right md-whiteframe-z2"
             " md-component-id="right"
             md-is-locked-open="$mdMedia('gt-md')">
-            <!--<md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' layout-align='space-around center'-->
-            <!--ng-controller="RightCtrl">-->
-            <!--&lt;!&ndash;<md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i&ndash;&gt;-->
-            <!--&lt;!&ndash;class="mdi mdi-close"></i></md-button>&ndash;&gt;-->
-            <!--&lt;!&ndash;<span class="mdc-subhead">Читателям и Партнерам</span>&ndash;&gt;-->
-            <!--</md-toolbar>-->
+            <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-md layout-align='space-around center'
+                        ng-controller="RightCtrl">
+                <md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i
+                class="mdi mdi-close"></i></md-button>
+                <span class="mdc-subhead">Читателям и Партнерам</span>
+            </md-toolbar>
             <sv-svet-social></sv-svet-social>
             <sv-clients-nav></sv-clients-nav>
             </md-sidenav>

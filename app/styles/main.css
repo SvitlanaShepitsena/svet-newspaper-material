@@ -229,6 +229,27 @@ md-sidenav.md-locked-open {
 /**********************
  =social
 ***********************/
+.header-social-link {
+  border-left-color: #616161;
+  border-left-style: solid;
+  border-left-width: 1px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #337ab7;
+  cursor: auto;
+  font-family: Arial, Tahoma, sans-serif;
+  font-size: 12px;
+  list-style-type: disc;
+  margin-bottom: 0px;
+  text-align: center;
+  text-decoration: none;
+}
+.header-social-link-right {
+  border-right-color: #616161;
+  border-right-style: solid;
+  border-right-width: 1px;
+}
 .fb-page {
   width: 280px;
   height: 130px;
