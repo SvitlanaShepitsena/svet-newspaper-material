@@ -29,11 +29,9 @@ function browserSyncInit(baseDir, files, browser) {
     browserSync.instance = browserSync.init(files, {
         startPath: '/index.html',
         server: {
-            baseDir: baseDir,
-            middleware: proxyMiddleware
+            baseDir: baseDir
         },
         browser: browser,
-        //remove popover from browser on  start
         notify: false,
         logLevel: "silent"
     });
@@ -43,13 +41,11 @@ function browserSyncInit(baseDir, files, browser) {
 gulp.task('serve', ['watch', 'stylus'], function () {
     browserSyncInit([
         'app',
-        '.tmp'
     ], [
         'app/*.html',
         'app/styles/**/*.css',
         'app/scripts/**/*.css',
         'app/scripts/**/*.js',
-        'app/scripts/**/*.html',
         'app/images/**/*'
     ]);
 });

@@ -5,6 +5,8 @@
         .controller('HomeCtrl', function ($scope, $rootScope) {
             var home = this;
 
+
+
         });
 })();
 

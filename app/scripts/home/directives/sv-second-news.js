@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('home')
-        .directive('svSecondNews', function (ColorStateServ) {
+        .directive('svSecondNews', function () {
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-second-news.html',
