@@ -192,16 +192,16 @@ body {
   text-align: center !important;
 }
 md-sidenav {
-  min-width: 300px !important;
-  max-width: 300px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
 }
 md-sidenav.md-locked-open {
-  width: 300px !important;
-  min-width: 300px !important;
-  max-width: 300px !important;
+  width: 260px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
 }
 .svet-logo {
-  width: 310px;
+  width: 260px;
 }
 .logo-link {
   display: block;
@@ -215,8 +215,16 @@ md-sidenav.md-locked-open {
   }
 }
 .logo-img {
-  width: 150px;
+  width: 120px;
   height: auto;
+}
+.toolbar-svet {
+  height: 72px !important;
+}
+@media screen and (max-width: 992px) {
+  .toolbar-svet {
+    height: 64px;
+  }
 }
 /**********************
  =social
