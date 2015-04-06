@@ -17,9 +17,7 @@
                 },
 
                 link: function ($scope, el, attrs) {
-                    var color = tinycolor('green');
 
-                    //el.css('background-color', ColorStateServ.getColor());
 
                 }
             };

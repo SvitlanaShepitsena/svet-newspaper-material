@@ -1,4 +1,4 @@
-a.article-thumb-link(ui-sref='app.article({id:1})')
+a.article-thumb-link(ui-sref='app.article({id:ctrl.mainNews.id})')
 	.card.p.m
 		img.mdc-img-bw(ng-src="{{ctrl.mainNews.img}}" )
 		span.display-block.fs-subhead.tc-black-1 {{ctrl.mainNews.title }}

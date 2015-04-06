@@ -12,7 +12,7 @@
                     var login = this;
 
                     login.user = {
-                        email: 'user@gmail.com',
+                        email: 'alex@svet.com',
                         password: '12345'
                     }
 
