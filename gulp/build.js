@@ -3,6 +3,8 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var plumber = require('gulp-plumber');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 
 
 var $ = require('gulp-load-plugins')({
@@ -13,11 +15,10 @@ var $ = require('gulp-load-plugins')({
 var jade = require('gulp-jade');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
-var axis = require('axis-css');
 
 gulp.task('nib', function () {
     gulp.src('app/styles/nib.styl')
-        .pipe(stylus({use: [nib(), axis()]}))
+        .pipe(stylus({use: [nib()]}))
         .pipe(gulp.dest('app/styles/nib'));
 });
 
@@ -43,9 +44,10 @@ gulp.task('jade', function () {
         //compiler does not stop on error
         .pipe(plumber())
         .pipe(jade({
-            compileDebug: true
+            compileDebug: false
         }))
-        .pipe(gulp.dest('app/'));
+        .pipe(gulp.dest('app/'))
+        .pipe(reload({stream: true}));
 });
 
 
@@ -75,29 +77,29 @@ gulp.task('partials', function () {
         .pipe(gulp.dest('.tmp/partials'))
 });
 
-gulp.task('html', ['stylus', 'partials'], function () {
-    var jsFilter = $.filter('**/*.js');
-    var cssFilter = $.filter('**/*.css');
-
-    return gulp.src('app/*.html')
-        .pipe($.inject(gulp.src('.tmp/partials/**/*.js'), {
-            read: false,
-            starttag: '<!-- inject:partials -->',
-            addRootSlash: false,
-            addPrefix: '../'
-        }))
-        .pipe($.useref.assets())
-        .pipe($.rev())
-        .pipe(jsFilter)
-        .pipe($.ngAnnotate())
-        .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
-        .pipe(jsFilter.restore())
-        .pipe(cssFilter)
-        .pipe(cssFilter.restore())
-        .pipe($.useref())
-        .pipe($.revReplace())
-        .pipe(gulp.dest('dist'))
-});
+//gulp.task('html', ['stylus', 'partials'], function () {
+//    var jsFilter = $.filter('**/*.js');
+//    var cssFilter = $.filter('**/*.css');
+//
+//    return gulp.src('app/*.html')
+//        .pipe($.inject(gulp.src('.tmp/partials/**/*.js'), {
+//            read: false,
+//            starttag: '<!-- inject:partials -->',
+//            addRootSlash: false,
+//            addPrefix: '../'
+//        }))
+//        .pipe($.useref.assets())
+//        .pipe($.rev())
+//        .pipe(jsFilter)
+//        .pipe($.ngAnnotate())
+//        .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
+//        .pipe(jsFilter.restore())
+//        .pipe(cssFilter)
+//        .pipe(cssFilter.restore())
+//        .pipe($.useref())
+//        .pipe($.revReplace())
+//        .pipe(gulp.dest('dist'))
+//});
 
 gulp.task('images', function () {
     return gulp.src('app/images/**/*')
