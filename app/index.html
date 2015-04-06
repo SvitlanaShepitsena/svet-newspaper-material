@@ -49,7 +49,7 @@
 
     <!-- =Content-->
     <div layout-column flex>
-        <md-toolbar layout="row" class="toolbar-svet bgc-grey-50 md-hue-1" style="height: auto">
+        <md-toolbar layout="row" class="toolbar-svet" style="height: auto">
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>
@@ -64,26 +64,29 @@
                 <md-icon md-svg-icon="img/svg/dots-vertical.svg"></md-icon>
             </md-button>
         </md-toolbar>
-        <md-content md-padding>
-            <div layout="column" layout-fill layout-align="top center">
-                <div class="m" ui-view=""></div>
-            </div>
-            <div flex></div>
-        </md-content>
-    </div>
+        <div layout="row" layout-fill>
+            <md-content md-padding flex>
+                <div layout="column" layout-fill layout-align="top center">
+                    <div class="m" ui-view=""></div>
+                </div>
+                <div flex></div>
+            </md-content>
 
-    <!-- =Right Sidebar-->
-    <md-sidenav class="sidenav-l md-sidenav-right md-whiteframe-z2" md-component-id="right"
-                md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="text-center bgc-grey-50 toolbar-svet" layout='row' layout-align='space-around center'
-                    ng-controller="RightCtrl">
-            <md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i
-                    class="mdi mdi-close"></i></md-button>
-            <span class="mdc-subhead">Читателям и Партнерам</span>
-        </md-toolbar>
-        <sv-svet-social></sv-svet-social>
-        <sv-clients-nav></sv-clients-nav>
-    </md-sidenav>
+            <!-- =Right Sidebar-->
+            <md-sidenav class="md-sidenav-right md-whiteframe-z2"
+            " md-component-id="right"
+            md-is-locked-open="$mdMedia('gt-md')">
+            <!--<md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' layout-align='space-around center'-->
+                        <!--ng-controller="RightCtrl">-->
+                <!--&lt;!&ndash;<md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i&ndash;&gt;-->
+                        <!--&lt;!&ndash;class="mdi mdi-close"></i></md-button>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span class="mdc-subhead">Читателям и Партнерам</span>&ndash;&gt;-->
+            <!--</md-toolbar>-->
+            <sv-svet-social></sv-svet-social>
+            <sv-clients-nav></sv-clients-nav>
+            </md-sidenav>
+        </div>
+    </div>
 </div>
 <!-- =Footer-->
 

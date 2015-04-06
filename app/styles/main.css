@@ -218,12 +218,9 @@ md-sidenav.md-locked-open {
   width: 120px;
   height: auto;
 }
-.toolbar-svet {
-  height: 72px !important;
-}
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 992px) {
   .toolbar-svet {
-    height: 64px;
+    height: 72px !important;
   }
 }
 /**********************
