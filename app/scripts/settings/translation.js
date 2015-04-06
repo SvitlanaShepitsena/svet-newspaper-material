@@ -4,16 +4,14 @@
     angular.module('app')
         .config(['$translateProvider', function ($translateProvider) {
             $translateProvider.translations('en', {
-                'Home': 'Home Page',
-                'FOO': 'This is a paragraph'
+                'Home': 'Home Page'
             });
 
             $translateProvider.translations('ru', {
-                'Home': 'Домашняя страница',
-                'FOO': 'Это параграф!'
+                'Home': 'Домашняя страница'
             });
 
-            $translateProvider.preferredLanguage('ru');
+            $translateProvider.preferredLanguage('en');
         }]);
 
 })();
