@@ -19,9 +19,8 @@
         // 3rd party modules
         'ngAnimate',
         'flow',
-        'ngTouch',
         'ngSanitize',
-        'ng-fastclick',
+        'pascalprecht.translate',
         'lumx',
         'ngMaterial',
         'toastr',
