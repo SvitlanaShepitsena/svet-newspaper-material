@@ -29,28 +29,13 @@
 <!--EN-->
 <!--</a>-->
 <!--</div>-->
-<md-toolbar layout="row" class="md-primary md-hue-3" style="height: auto">
-    <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
-        <md-icon md-svg-icon="menu"></md-icon>
-    </md-button>
-    <div class="svet-logo" hide-sm show-gt-md>
-        <a class="logo-link" ui-sref="app.home">
-            <img src="img/logo/svet-logo-red.png" class="logo-img">
-        </a>
-    </div>
-    <span flex></span>
-    <sv-auth-btn></sv-auth-btn>
-    <md-button sv-right-click-handler="" hide-gt-md aria-label="Show Panel">
-        <md-icon md-svg-icon="img/svg/dots-vertical.svg"></md-icon>
-    </md-button>
-</md-toolbar>
 
 <div flex layout="row">
     <!-- =Left Sidebar-->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'>
-            <span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>
-            <a class="logo-link" ui-sref="app.home" hide-gt-md>
+        <md-toolbar class="bgc-grey-200 text-center" layout='row' layout-align='space-around center'>
+            <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
+            <a class="logo-link" ui-sref="app.home">
                 <img src="img/logo/svet-logo-red.png" class="logo-img">
             </a>
             <md-button sv-left-click-handler="" hide-gt-md="" aria-label="close left" class="txt-white"
@@ -63,16 +48,34 @@
     </md-sidenav>
 
     <!-- =Content-->
-    <md-content flex class="md-padding">
-        <div layout="column" layout-fill layout-align="top center">
-            <div ui-view=""></div>
-        </div>
-        <div flex></div>
-    </md-content>
+    <div layout-column flex>
+        <md-toolbar layout="row" class="toolbar-svet bgc-grey-50 md-hue-1" style="height: auto">
+            <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <!--<div class="svet-logo" hide-sm show-gt-md>-->
+            <!--<a class="logo-link" ui-sref="app.home">-->
+            <!--<img src="img/logo/svet-logo-red.png" class="logo-img">-->
+            <!--</a>-->
+            <!--</div>-->
+            <span flex></span>
+            <sv-auth-btn></sv-auth-btn>
+            <md-button sv-right-click-handler="" hide-gt-md aria-label="Show Panel">
+                <md-icon md-svg-icon="img/svg/dots-vertical.svg"></md-icon>
+            </md-button>
+        </md-toolbar>
+        <md-content md-padding>
+            <div layout="column" layout-fill layout-align="top center">
+                <div class="m" ui-view=""></div>
+            </div>
+            <div flex></div>
+        </md-content>
+    </div>
 
     <!-- =Right Sidebar-->
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'
+    <md-sidenav class="sidenav-l md-sidenav-right md-whiteframe-z2" md-component-id="right"
+                md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="text-center bgc-grey-50 toolbar-svet" layout='row' layout-align='space-around center'
                     ng-controller="RightCtrl">
             <md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i
                     class="mdi mdi-close"></i></md-button>
