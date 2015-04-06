@@ -223,6 +223,9 @@ md-sidenav.md-locked-open {
     height: 72px !important;
   }
 }
+.toolbar-custom {
+  background-color: #555 !important;
+}
 /**********************
  =social
 ***********************/

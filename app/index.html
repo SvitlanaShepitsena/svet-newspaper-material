@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
     <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.css"/>
     <link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!--<link rel="stylesheet" href="styles/lumx.css"/>-->
     <link rel="stylesheet" href="assets/app.css"/>
     <link rel="stylesheet" href="styles/main.css"/>
@@ -30,10 +31,15 @@
 <!--</a>-->
 <!--</div>-->
 
+<div class="toolbar-custom p tc-white-1" layout="row">
+    <button class="btn btn--m btn-icon btn--red" lx-ripple="">
+        <i class="fa fa-envelope fa-l"></i>
+    </button>
+</div>
 <div flex layout="row">
     <!-- =Left Sidebar-->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="bgc-grey-200 text-center" layout='row' layout-align='space-around center'>
+        <md-toolbar class="md-primary text-center" layout='row' layout-align='space-around center'>
             <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
             <a class="logo-link" ui-sref="app.home">
                 <img src="img/logo/svet-logo-red.png" class="logo-img">
@@ -77,10 +83,10 @@
             " md-component-id="right"
             md-is-locked-open="$mdMedia('gt-md')">
             <!--<md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' layout-align='space-around center'-->
-                        <!--ng-controller="RightCtrl">-->
-                <!--&lt;!&ndash;<md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i&ndash;&gt;-->
-                        <!--&lt;!&ndash;class="mdi mdi-close"></i></md-button>&ndash;&gt;-->
-                <!--&lt;!&ndash;<span class="mdc-subhead">Читателям и Партнерам</span>&ndash;&gt;-->
+            <!--ng-controller="RightCtrl">-->
+            <!--&lt;!&ndash;<md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i&ndash;&gt;-->
+            <!--&lt;!&ndash;class="mdi mdi-close"></i></md-button>&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="mdc-subhead">Читателям и Партнерам</span>&ndash;&gt;-->
             <!--</md-toolbar>-->
             <sv-svet-social></sv-svet-social>
             <sv-clients-nav></sv-clients-nav>
