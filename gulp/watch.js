@@ -6,7 +6,7 @@ gulp.task('add', shell.task([
     'git add .',
 ]))
 
-gulp.task('watch', ['wiredep'], function () {
+gulp.task('watch', function () {
     gulp.watch('app/styles/**/*.styl', ['stylus']);
     gulp.watch('app/scripts/**/*.styl', ['stylus']);
     gulp.watch('app/**/*.jade', ['jade']);
