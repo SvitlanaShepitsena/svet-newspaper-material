@@ -30,11 +30,24 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- =Header-->
-<md-toolbar layout="row" class="md-primary md-hue-3">
-    <md-button class="menu" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
+<!--<div layout="row" class="pl">-->
+    <!--<a href="" class="m tc-black-1" style="text-decoration: none">-->
+        <!--RU-->
+    <!--</a>-->
+    <!--<a href="" class="m tc-black-1" style="text-decoration: none">-->
+        <!--EN-->
+    <!--</a>-->
+<!--</div>-->
+<md-toolbar layout="row" class="md-primary md-hue-3" style="height: auto">
+    <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
-    <h1 class="svet-logo">SVET</h1>
+    <div class="svet-logo" hide-sm show-gt-md>
+        <a class="logo-link" ui-sref="app.home">
+            <img src="img/logo/svet-logo-red.png" class="logo-img">
+        </a>
+    </div>
+    <span flex></span>
     <sv-auth-btn></sv-auth-btn>
     <md-button sv-right-click-handler="" hide-gt-md aria-label="Show Panel">
         <md-icon md-svg-icon="img/svg/dots-vertical.svg"></md-icon>
@@ -45,7 +58,10 @@
     <!-- =Left Sidebar-->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-primary md-hue-1 text-center" layout='row' layout-align='space-around center'>
-            <span class="mdc-subhead">Наши новости</span>
+            <span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>
+            <a class="logo-link" ui-sref="app.home" hide-gt-md>
+                <img src="img/logo/svet-logo-red.png" class="logo-img">
+            </a>
             <md-button sv-left-click-handler="" hide-gt-md="" aria-label="close left" class="txt-white"
                        ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
@@ -71,10 +87,10 @@
                     class="mdi mdi-close"></i></md-button>
             <span class="mdc-subhead">Читателям и Партнерам</span>
         </md-toolbar>
-        <sv-svet-social></sv-svet-social>
         <sv-clients-nav></sv-clients-nav>
         <md-content ng-controller="RightCtrl" style='margin-left:4px'>
-            <div class="fb-page" data-href="https://www.facebook.com/facebook" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
+            <div class="fb-page" data-href="https://www.facebook.com/facebook" data-hide-cover="false"
+                 data-show-facepile="true" data-show-posts="false"></div>
             <div class="fb-filter"></div>
         </md-content>
     </md-sidenav>

@@ -57,6 +57,7 @@ html, body
 
 .mdc-text-right
   text-align right !important
+
 .mdc-text-right
   text-align right !important
 
@@ -98,12 +99,21 @@ md-sidenav
     max-width 300px !important
 
 .svet-logo
-  position relative
-  line-height 70px
-  font-size 30px
-  color color-svet-red
-  font-weight 800
-  font-family "Roboto", sans-serif
+  width 310px
+
+.logo-link
+  display block
+  margin 8px auto
+  height auto
+  width 120px
+
+  @media screen and (max-width: 992px)
+    width 100px
+
+
+.logo-img
+  width 150px
+  height auto
 
 /**********************
  =social
@@ -119,4 +129,4 @@ md-sidenav
   position absolute
   top 0
   left 0
-  background rgba(255,255,255,0.2)
+  background rgba(255, 255, 255, 0.2)
