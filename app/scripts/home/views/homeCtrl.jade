@@ -1,5 +1,6 @@
 div(ng-if='!loaded' flex-align="center center" flex-container='row')
     md-progress-circular(md-mode='indeterminate' class='md-accent')
+    div LOADING NEWS
 div(flex-container='row' ng-if='!!loaded')
     div(flex-item='9' flex-container='column')
         div(flex-container='column' ng-repeat='nt in news ')
