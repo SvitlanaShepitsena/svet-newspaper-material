@@ -12,8 +12,6 @@
                 controller: function ($scope) {
                     var ctrl = this;
 
-                    ctrl.isIe = AgentServ.isIe();
-
 
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');
@@ -40,6 +38,7 @@
                     ctrl.loginSvetUser = function (provider) {
 
                         AuthServ.authProvider(provider).then(function (user) {
+                            user.group = ['reader'];
                             $rootScope.user = user;
 
                         }).catch(function (error) {
