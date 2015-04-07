@@ -3,6 +3,9 @@
 
     angular.module('app')
         .config(['$translateProvider', function ($translateProvider) {
+
+            $translateProvider.useCookieStorage();
+
             $translateProvider.translations('en', {
                 'Home': 'Home Page',
                 'Politics': 'Politics',
