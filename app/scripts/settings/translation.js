@@ -16,8 +16,33 @@
 
 
                 'youtube': 'Youtube Сhannel',
-                'svetApp': 'Svet Local App'
 
+                'loading': 'Loading News',
+                'login:title': 'Log In to Your Account',
+                'not:registered': 'Not Registered',
+                'already:registered': 'Already registered?',
+                'registration': 'Registration',
+                'login': 'Login',
+
+                'dashboard': 'Dashboard',
+                'my:articles': 'My Articles',
+                'my:drafts': 'My Drafts',
+                'create:article': 'Create Article',
+                'settings': 'Settings',
+                'logout': 'Logout',
+                'statistics': 'Statistics',
+                'comments': 'Comments',
+                'bookmarks': 'Bookmarks',
+
+
+
+
+
+
+
+
+
+                'svetApp': 'Svet Local App'
             });
 
             $translateProvider.translations('ru', {
@@ -30,6 +55,24 @@
 
                 'classified': 'Частные Объявления',
                 'contacts': 'Обратная связь',
+
+
+                'loading': 'Загрузка Новостей',
+                'login:title': 'Авторизация Svet Media Group',
+                'not:registered': 'Не зарегистрированы?',
+                'already:registered': 'Уже зарегистрированы?',
+                'registration': 'Регистрация',
+                'login': 'Войти',
+
+                'dashboard': 'Панель Управления',
+                'my:articles': 'Мои Статьи',
+                'my:drafts': 'Мои Черновики',
+                'create:article': 'Создать статью',
+                'settings': 'Настройки',
+                'logout': 'Выйти',
+                'statistics': 'Статистика',
+                'comments': 'Комментарии',
+                'bookmarks': 'Закладки',
 
 
                 'youtube': 'Youtube Канал',
