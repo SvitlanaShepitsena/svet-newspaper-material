@@ -17,6 +17,8 @@
 
         'home',
         // 3rd party modules
+        'ngCookies',
+
         'ngAnimate',
         'flow',
         'ngSanitize',

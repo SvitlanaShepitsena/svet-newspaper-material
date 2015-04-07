@@ -128,8 +128,13 @@ app.config(function(toastrConfig) {
     onShown: null,
     positionClass: 'toast-top-right',
     preventDuplicates: false,
+    progressBar: false,
     tapToDismiss: true,
     target: 'body',
+    templates: {
+	  toast: 'directives/toast/toast.html',
+	  progressbar: 'directives/progressbar/progressbar.html'
+	},
     timeOut: 5000,
     titleClass: 'toast-title',
     toastClass: 'toast'
@@ -152,8 +157,10 @@ Those are the default values, you can pick what you need from it and override wi
 * **onShown**: A callback function called when a toast is shown.
 * **positionClass**: The position where the toasts are added.
 * **preventDuplicates**: Prevent duplicates of the last toast.
+* **progressBar**: A progress bar to see the timeout in real time.
 * **tapToDismiss**: Whether the toast should be dismissed when it is clicked.
 * **target**: The element to put the toastr container.
+* **templates**: To override the default path of the templates.
 * **timeOut**: The timeout before the toasts disappear.
 * **titleClass**: The class for the toast's title.
 * **toastClass**: Base class for toasts.
@@ -226,6 +233,7 @@ There you can override:
 * **messageClass**: If you want to modify the message look.
 * **onHidden**: Function to call when the toast gets hidden.
 * **onShown**: Function to call when the toast is shown.
+* **progressBar** Show a progress bar for the toast.
 * **tapToDismiss**: If you want a concrete toast to toggle the close on click.
 * **timeOut**: For that concrete toast timeout.
 * **titleClass**: To override the title class of the toast.
@@ -282,6 +290,10 @@ Then you can see if you have your new tests pass.
 Try to avoid generating the `/dist` files on a patch because sometimes they don't want to merge nicely and it is a pain to merge by hand.
 
 ----------
+
+## Libraries using `angular-toastr``
+
+* [CodeScaleInc/angular-toastr-flash](https://github.com/CodeScaleInc/angular-toastr-flash) - A library to show flash messages using toasts.
 
 ## Credits
 
