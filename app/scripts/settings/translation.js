@@ -6,7 +6,7 @@
             $translateProvider.translations('en', {
                 'Home': 'Home Page',
                 'Politics': 'Politics',
-                'Money': 'We and Money',
+                'Money': 'Money',
                 'Culture': 'Culture',
                 'Society': 'Society',
                 'World': 'World',
