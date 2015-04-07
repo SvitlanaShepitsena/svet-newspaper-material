@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svAuthBtn', function (AgentServ, AuthServ, $rootScope, $mdMedia) {
+        .directive('svAuthBtn', function (AgentServ, AuthServ, UserServ, $rootScope, $mdMedia) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -39,6 +39,9 @@
 
                         AuthServ.authProvider(provider).then(function (user) {
                             user.group = ['reader'];
+                            UserServ.saveNewUser(user).then(function (userId) {
+                                console.log(userId);
+                            });
                             $rootScope.user = user;
 
                         }).catch(function (error) {
