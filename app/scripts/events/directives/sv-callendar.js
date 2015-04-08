@@ -42,7 +42,7 @@
                     $scope.eventClicked = function (event) {
                         if (event.title === '2015 Field Museum Event') {
 
-                            $state.go('app.events.field-event', {year: 2015});
+                            $state.go('app.field-event', {year: 2015});
 
                         }
                     };
