@@ -38,10 +38,7 @@
                     ctrl.loginSvetUser = function (provider) {
 
                         AuthServ.authProvider(provider).then(function (user) {
-                            user.group = ['reader'];
-                            UserServ.saveNewUser(user).then(function (userId) {
-                                console.log(userId);
-                            });
+                            UserServ.saveNewUser(user);
                             $rootScope.user = user;
 
                         }).catch(function (error) {
