@@ -106,11 +106,7 @@
                     controller: "ProfileSettingsCtrl as profileSettings",
                     templateUrl: "scripts/auth/views/profile-settingsCtrl.html"
                 })
-				.state("app.svet-events", {
-					url: "/svet-events", 
-					controller:"Svet-eventsCtrl as svet-events",
-					templateUrl: "scripts/events/views/svet-eventsCtrl.html"
-				})
+				
 //#state'
         });
 
