@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('home')
-        .directive('svRadioOsa', function () {
+        .directive('svFromTheEditor', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/home/directives/sv-radio-osa.html',
+                templateUrl: 'scripts/home/directives/sv-from-the-editor.html',
                 scope: {},
                 bindToController: {},
                 controllerAs: 'ctrl',

@@ -53,7 +53,7 @@
     </md-sidenav>
 
     <!-- =Content-->
-    <div layout-column flex>
+    <div flex layout="column">
         <md-toolbar layout="row" class="toolbar-svet" style="height: auto">
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
@@ -65,7 +65,7 @@
             <!--</div>-->
             <span flex></span>
             <sv-auth-btn></sv-auth-btn>
-            <md-button sv-right-click-handler="" hide-gt-md aria-label="Show Panel">
+            <md-button sv-right-click-handler="" hide-gt-lg aria-label="Show Panel">
                 <md-icon md-svg-icon="img/svg/dots-vertical.svg"></md-icon>
             </md-button>
         </md-toolbar>
@@ -73,29 +73,31 @@
             <md-content md-padding flex>
                 <div layout="column" layout-fill layout-align="top center">
                     <div class="m" ui-view=""></div>
+                    <sv-footer style="position: fixed; bottom:0px"></sv-footer>
                 </div>
-                <div flex></div>
+
             </md-content>
 
             <!-- =Right Sidebar-->
-            <md-sidenav class="md-sidenav-right md-whiteframe-z2"
-            " md-component-id="right"
-            md-is-locked-open="$mdMedia('gt-md')">
-            <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-md layout-align='space-around center'
-                        ng-controller="RightCtrl">
-                <md-button sv-right-click-handler="" hide-gt-md="" aria-label="close right" class="txt-white"><i
-                class="mdi mdi-close"></i></md-button>
-                <span class="mdc-subhead">Читателям и Партнерам</span>
-            </md-toolbar>
-            <sv-svet-social></sv-svet-social>
-            <sv-clients-nav></sv-clients-nav>
+            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
+                        md-is-locked-open="$mdMedia('gt-lg')"
+                    >
+                <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-md
+                            layout-align='space-around center'
+                            ng-controller="RightCtrl">
+                    <md-button sv-right-click-handler="" hide-gt-lg="" aria-label="close right" class="txt-white">
+                        <i class="mdi mdi-close"></i>
+                    </md-button>
+                    <span class="mdc-subhead">Читателям и Партнерам</span>
+                </md-toolbar>
+                <sv-svet-social></sv-svet-social>
+                <sv-clients-nav></sv-clients-nav>
             </md-sidenav>
         </div>
     </div>
 </div>
 <!-- =Footer-->
 
-<sv-footer></sv-footer>
 
 <script src="./bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/velocity/velocity.js"></script>
@@ -207,6 +209,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-from-the-editor.js"></script>
 <script src="scripts/home/directives/sv-social-top-nav.js"></script>
 <script src="scripts/home/directives/sv-lang-switch.js"></script>
 <script src="scripts/home/directives/sv-section-news.js"></script>

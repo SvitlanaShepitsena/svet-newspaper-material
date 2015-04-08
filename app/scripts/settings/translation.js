@@ -37,6 +37,7 @@
                 'bookmarks': 'Bookmarks',
                 'listen': 'Listen',
                 'archive': 'Archive',
+                'from-the-editor': 'From-the-editor',
 
                 /*Classified*/
                 'community': 'Community',
@@ -66,8 +67,8 @@
 
                 'loading': 'Загрузка Новостей',
                 'login:title': 'Авторизация Svet Media Group',
-                'not:registered': 'Не зарегистрированы?',
-                'already-registered': 'Уже зарегистрированы?',
+                'not:registered': 'Не зарегистрированы',
+                'already-registered': 'Уже зарегистрированы',
                 'registration': 'Регистрация',
                 'login': 'Войти',
 
@@ -86,6 +87,7 @@
                 'svetApp': 'Приложение Svet',
                 'listen': 'Cлушать',
                 'archive': 'Архив',
+                'from-the-editor': 'От редактора',
 
                 /*Classified*/
                 'community': 'Община',
