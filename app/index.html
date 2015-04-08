@@ -9,11 +9,13 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
 
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
     <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.css"/>
     <link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css">
     <!--<link rel="stylesheet" href="styles/lumx.css"/>-->
     <link rel="stylesheet" href="assets/app.css"/>
     <link rel="stylesheet" href="styles/main.css"/>
@@ -59,13 +61,8 @@
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>
-            <!--<div class="svet-logo" hide-sm show-gt-md>-->
-            <!--<a class="logo-link" ui-sref="app.home">-->
-            <!--<img src="img/logo/svet-logo-red.png" class="logo-img">-->
-            <!--</a>-->
-            <!--</div>-->
 
-            <a ui-sref="app.events">Svet Events</a>
+            <sv-events-link></sv-events-link>
 
             <span flex></span>
             <sv-auth-btn></sv-auth-btn>
@@ -124,6 +121,9 @@
 <script src="./bower_components/Faker/build/build/faker.min.js"></script>
 <script src="./bower_components/flow.js/dist/flow.min.js"></script>
 <script src="./bower_components/ng-flow/dist/ng-flow.min.js"></script>
+<script src="./bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+<script src="//cdn.jsdelivr.net/angular.bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
 
 <!-- start defaults -->
 

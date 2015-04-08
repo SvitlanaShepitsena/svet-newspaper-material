@@ -1,1 +1,10 @@
-.well sv-callendar Template
+.well
+    mwl-calendar(calendar-events='events', calendar-view='calendarView', calendar-current-day='calendarDay',
+    calendar-control='calendarControl', calendar-event-click='eventClicked(calendarEvent)',
+    calendar-edit-event-html="'<span>edit</span>'",
+    calendar-delete-event-html="'<span>x</span>'",
+    calendar-edit-event-click='eventEdited(calendarEvent)',
+    calendar-delete-event-click='eventDeleted(calendarEvent)',
+    calendar-auto-open='true')
+
+

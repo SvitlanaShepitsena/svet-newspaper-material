@@ -6,8 +6,8 @@
         // modules
 		'events',
 		'admin',
-		'social',
 		'world',
+		'social',
 		'society',
 		'culture',
 		'money',
@@ -29,6 +29,8 @@
         'ngMaterial',
         'toastr',
         'firebase',
+        'mwl.calendar',
+        'ui.bootstrap',
         'ui.router'
     ])
 
