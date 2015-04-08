@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svSignUpForm', function () {
+        .directive('svSignUpForm', function (UserServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-sign-up-form.html',
@@ -21,6 +21,8 @@
                     }
                     signUp.createAccount = function () {
                         AuthServ.createUser(signUp.user.email, signUp.user.pass).then(function (user) {
+                                UserServ.saveNewUser(user);
+
                                 $rootScope.user = user;
                             }
                         )
