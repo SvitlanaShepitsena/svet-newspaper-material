@@ -14,7 +14,7 @@
 
                     var classified = this;
                     var tabs = [
-                            {title: 'Община', content: "Here are classified for community"},
+                            {title: 'community', content: "Here are classified for community"},
                             {title: 'Работа', content: "Here are classified for jobs"},
                             {title: 'Уроки', content: "Here are classified for private lessons"},
                             {title: 'Продажа', content: "Here are classified for sale."},

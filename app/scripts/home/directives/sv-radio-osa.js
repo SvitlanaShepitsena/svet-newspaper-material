@@ -7,9 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-radio-osa.html',
                 scope: {},
-                bindToController: {
-
-                },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;

@@ -5,6 +5,15 @@
   margin-bottom: -4px !important;
   display: block !important;
 }
+.img-editor {
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+}
+.img-editor-container {
+  width: 56px;
+  height: 56px;
+}
 .text-footer {
   display: block;
   font-size: 13px;
@@ -160,8 +169,8 @@ body {
 .mdc-text-right {
   text-align: right !important;
 }
-.mdc-text-right {
-  text-align: right !important;
+.mdc-text-left {
+  text-align: left !important;
 }
 .mdc-overflow-hidden {
   overflow: hidden;
