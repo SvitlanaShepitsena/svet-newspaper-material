@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .controller('SvetLoginCtrl', function ($scope, AuthServ, $rootScope, $state) {
+        .controller('SvetLoginCtrl', function ($scope, AuthServ, $rootScope, $state, UserServ) {
             var login = this;
 
             login.user = {
@@ -12,7 +12,8 @@
 
             login.singIn = function () {
                 AuthServ.loginPassword(login.user.email, login.user.password).then(function (user) {
-                    $rootScope.user = user;
+                    UserServ.saveNewUser(user);
+
                     $state.go('app.svet-profile.author-dashboard');
 
                 })
