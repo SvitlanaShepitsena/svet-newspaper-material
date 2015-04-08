@@ -2,8 +2,8 @@
 
 .cal-day-tick {
     position: absolute;
-    right:10%;
-    bottom: -21px;
+    right: 94%;
+    bottom: -8px;
     padding: 0 5px;
     cursor: pointer;
     z-index: 5;
