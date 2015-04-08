@@ -23,15 +23,8 @@
                             ends_at: new Date(2015, 4, 15, 12, 0),
                             editable: false,
                             deletable: false
-                        },
-                        {
-                            title: 'Svet Media Group Corporate Meeting',
-                            type: 'important',
-                            starts_at: new Date(2015, 3, 15, 9, 0),
-                            ends_at: new Date(2015, 3, 15, 11, 0),
-                            editable: false,
-                            deletable: false
-                        },
+                        }
+
                     ];
 
 
