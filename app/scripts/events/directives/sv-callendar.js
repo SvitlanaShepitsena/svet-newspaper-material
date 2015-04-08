@@ -19,7 +19,7 @@
                     $scope.calendarDay = new Date();
                     $scope.events = [
                         {
-                            title: 'Field Museum Event',
+                            title: '2015 Field Museum Event',
                             type: 'special',
                             starts_at: new Date(2015, 4, 15, 9, 0),
                             ends_at: new Date(2015, 4, 15, 12, 0),
@@ -41,8 +41,11 @@
                     }
 
                     $scope.eventClicked = function (event) {
-                        console.log(event);
-                        //$state.go()
+                        if (event.title === '2015 Field Museum Event') {
+
+                            $state.go('app.field2015');
+
+                        }
                     };
 
                     $scope.eventEdited = function (event) {

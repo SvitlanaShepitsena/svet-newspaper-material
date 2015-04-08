@@ -111,11 +111,7 @@
                     controller: "EventsCtrl as events",
                     templateUrl: "scripts/events/views/eventsCtrl.html"
                 })
-				.state("app.field2015", {
-					url: "/field2015", 
-					controller:"Field2015Ctrl as field2015",
-					templateUrl: "scripts/events/views/field2015Ctrl.html"
-				})
+				
 //#state'
         });
 
