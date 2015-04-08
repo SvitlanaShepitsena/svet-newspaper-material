@@ -21,10 +21,10 @@
                             if (!usersObj || !usersObj[userId]) {
                                 usersObj[userId] = user;
                                 usersObj.$save().then(function (uid) {
-                                    resolve(uid);
+                                    resolve({uid:uid, firstLogin:true});
                                 });
                             } else {
-                                resolve(userId);
+                                    resolve({uid:userId, firstLogin:false});
                             }
                         });
 

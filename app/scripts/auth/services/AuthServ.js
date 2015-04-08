@@ -139,7 +139,6 @@
                             authData = _.extend(authData, {
                                 email: email,
                                 login: userLogin,
-                                name:'Alex',
                                 avatar: 'img/auth/user.png'
                             });
                             deferred.resolve(authData);
