@@ -15,13 +15,13 @@
                     var classified = this;
                     var tabs = [
                             {title: 'community', content: "Here are classified for community"},
-                            {title: 'Работа', content: "Here are classified for jobs"},
-                            {title: 'Уроки', content: "Here are classified for private lessons"},
-                            {title: 'Продажа', content: "Here are classified for sale."},
-                            {title: 'Услуги', content: "Here are classified for services"},
-                            {title: 'Авто', content: "Here are classified for cars"},
-                            {title: 'Недвижимость', content: "Here are classified for housing"},
-                            {title: 'Знакомства', content: "Here are classified for personal"}
+                            {title: 'job', content: "Here are classified for jobs"},
+                            {title: 'lessons', content: "Here are classified for private lessons"},
+                            {title: 'sell', content: "Here are classified for sale."},
+                            {title: 'services', content: "Here are classified for services"},
+                            {title: 'cars', content: "Here are classified for cars"},
+                            {title: 'housing', content: "Here are classified for housing"},
+                            {title: 'personal', content: "Here are classified for personal"}
                         ],
                         selected = null,
                         previous = null;

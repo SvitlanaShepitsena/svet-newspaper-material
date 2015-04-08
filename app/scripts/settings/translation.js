@@ -37,11 +37,14 @@
                 'bookmarks': 'Bookmarks',
                 'listen': 'Listen',
                 'archive': 'Archive',
-                'from-the-editor': 'From-the-editor',
+                'from-the-editor': 'FROM THE EDITOR',
+                'from-the': 'From the',
+                'editor': 'Editor',
+                'interesting-stories': 'Interesting Stories',
 
                 /*Classified*/
                 'community': 'Community',
-                'work': 'Work',
+                'job': 'Job',
                 'sell': 'Sell',
                 'services': 'Services',
                 'cars': 'Cars',
@@ -87,17 +90,20 @@
                 'svetApp': 'Приложение Svet',
                 'listen': 'Cлушать',
                 'archive': 'Архив',
-                'from-the-editor': 'От редактора',
+                'from-the-editor': 'От Редактора',
+                'from-the': 'От',
+                'editor': 'Редактора',
+                'interesting-stories': 'Интерестные Истории',
 
                 /*Classified*/
                 'community': 'Община',
-                'work': 'Работа',
+                'job': 'Работа',
+                'lessons': 'Уроки',
                 'sell': 'Продажа',
                 'services': 'Услуги',
                 'cars': 'Авто',
                 'housing': 'Недвижимость',
                 'personal': 'Знакомства',
-                'lessons': 'Уроки',
                 /*Footer*/
                 'all-rights-reserved': 'Все права защищены'
             });
