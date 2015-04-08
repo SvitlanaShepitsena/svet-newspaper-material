@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svAuthBtn', function (AgentServ, AuthServ, $rootScope, $mdMedia) {
+        .directive('svAuthBtn', function (AgentServ, AuthServ, UserServ, $rootScope, $mdMedia) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -11,8 +11,6 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-
-                    ctrl.isIe = AgentServ.isIe();
 
 
                     $scope.$watch(function () {
@@ -40,6 +38,10 @@
                     ctrl.loginSvetUser = function (provider) {
 
                         AuthServ.authProvider(provider).then(function (user) {
+                            user.group = ['reader'];
+                            UserServ.saveNewUser(user).then(function (userId) {
+                                console.log(userId);
+                            });
                             $rootScope.user = user;
 
                         }).catch(function (error) {
