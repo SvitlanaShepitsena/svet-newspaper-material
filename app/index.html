@@ -33,6 +33,7 @@
 
 <div class="toolbar-custom tc-white-1 pl" layout="row" layout-align="space-between center">
     <sv-lang-switch></sv-lang-switch>
+
     <sv-social-top-nav></sv-social-top-nav>
 </div>
 <div flex layout="row">
@@ -63,6 +64,9 @@
             <!--<img src="img/logo/svet-logo-red.png" class="logo-img">-->
             <!--</a>-->
             <!--</div>-->
+
+            <a ui-sref="app.events">Svet Events</a>
+
             <span flex></span>
             <sv-auth-btn></sv-auth-btn>
             <md-button sv-right-click-handler="" hide-gt-lg aria-label="Show Panel">
@@ -136,6 +140,7 @@
 
 <!-- events -->
 <script src="scripts/events/eventsIndex.js"></script>
+<script src="scripts/events/directives/sv-callendar.js"></script>
 <script src="scripts/events/directives/sv-events-calendar.js"></script>
 <script src="scripts/events/controllers/EventsCtrl.js"></script>
 

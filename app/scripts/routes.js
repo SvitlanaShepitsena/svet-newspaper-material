@@ -106,12 +106,11 @@
                     controller: "ProfileSettingsCtrl as profileSettings",
                     templateUrl: "scripts/auth/views/profile-settingsCtrl.html"
                 })
-				
-				.state("app.events", {
-					url: "/events", 
-					controller:"EventsCtrl as events",
-					templateUrl: "scripts/events/views/eventsCtrl.html"
-				})
+                .state("app.events", {
+                    url: "/events",
+                    controller: "EventsCtrl as events",
+                    templateUrl: "scripts/events/views/eventsCtrl.html"
+                })
 //#state'
         });
 
