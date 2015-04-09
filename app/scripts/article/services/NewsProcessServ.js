@@ -10,13 +10,15 @@
 
                     var topNews = [];
                     var secondNews = [];
+                    //ONLY ONE TOP NEWS
+                    var isTopNewsChosen = false;
 
-                    _.forIn(newsObj, function (value, key) {
+                    _.forInRight(newsObj, function (value, key) {
                         if (_.isObject(value)) {
-                            if (value.isTopNews) {
+                            if (value.isTopNews && !isTopNewsChosen) {
                                 topNews.push(value);
-                            }
-                            if (!value.isTopNews) {
+                                isTopNewsChosen = true;
+                            } else{
                                 secondNews.push(value);
                             }
                         }
