@@ -15,15 +15,22 @@
                     $scope.calendarDay = new Date();
                     $scope.events = [
                         {
-                            title: "2015 Kohl Children's Museum Event",
+                            title: "2015 Kohl Children's Museum Event (Public Event)",
                             type: 'success',
                             starts_at: new Date(2015, 4, 15, 9, 0),
                             ends_at: new Date(2015, 4, 15, 12, 0),
                             editable: false,
                             deletable: false
+                        },
+                        {
+                            title: "2015 Ravinia SVET CONNECTIONS (Networking Event)",
+                            type: 'success',
+                            starts_at: new Date(2015, 4, 17, 9, 0),
+                            ends_at: new Date(2015, 4, 17, 12, 0),
+                            editable: false,
+                            deletable: false
                         }
                     ];
-
                     function showModal(action, event) {
                         $modal.open({
                             templateUrl: 'scripts/events/views/event-modal.html',
@@ -36,8 +43,11 @@
                     }
 
                     $scope.eventClicked = function (event) {
-                        if (event.title === "2015 Kohl Children's Museum Event") {
+                        if (event.title === "2015 Kohl Children's Museum Event (Public Event)") {
                             $state.go('app.field-event', {year: 2015});
+                        }
+                        if (event.title === "2015 Ravinia SVET CONNECTIONS (Networking Event)") {
+                            $state.go('app.ravinia-event', {year: 2015});
                         }
                     };
 
