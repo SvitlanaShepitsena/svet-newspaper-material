@@ -27,7 +27,6 @@
 
                     ];
 
-
                     function showModal(action, event) {
                         $modal.open({
                             templateUrl: 'scripts/events/views/event-modal.html',
