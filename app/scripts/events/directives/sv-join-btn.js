@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('events')
-        .directive('svJoinBtn', function ($rootScope) {
+        .directive('svJoinBtn', function (EventServ, $rootScope) {
             return {
                 templateUrl: 'scripts/events/directives/sv-join-btn.html',
                 scope: {},
