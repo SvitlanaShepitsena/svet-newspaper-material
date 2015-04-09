@@ -14,6 +14,19 @@
                 controller: function ($scope) {
                     var ctrl = this;
 
+                    ctrl.setRegisteredUsers = function (number) {
+                        ctrl.userNumbers = number;
+                    }
+
+                    ctrl.addOneUser = function () {
+                        ctrl.userNumbers++;
+
+                    }
+                    ctrl.substractUser = function () {
+                        ctrl.userNumbers--;
+
+                    }
+
                 },
 
                 link: function ($scope, el, attrs) {
