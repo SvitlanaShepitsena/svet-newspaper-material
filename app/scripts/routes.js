@@ -122,6 +122,11 @@
                     controller: "RaviniaEventCtrl as raviniaEvent",
                     templateUrl: "scripts/events/views/ravinia-eventCtrl.html"
                 })
+				.state("app.events-photo-gallery", {
+					url: "/events-photo-gallery", 
+					controller:"Events-photo-galleryCtrl as events-photo-gallery",
+					templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
+				})
 //#state'
         });
 
