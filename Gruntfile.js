@@ -308,8 +308,8 @@ module.exports = function (grunt) {
             //grunt.file.delete(tpath);
         } else {
             grunt.file.write(d + name + t, ctrlr);
-            grunt.file.write(tpath, '.well content');
-            grunt.file.write(tpathHtml, '<div class="well">content</div>');
+            grunt.file.write(tpath, 'div ');
+            grunt.file.write(tpathHtml, '<div>content</div>');
         }
         grunt.file.write(routesPath, routes);
 
@@ -551,8 +551,8 @@ module.exports = function (grunt) {
         var ipath = 'app/index.html';
         var src = '\r\n<script src="scripts/' + moduleDirectirized + '/directives/' + jnameDashed + '.js"></script>';
         //////////////////
-        var directiveTemplate = '.well ' + oname + ' Template';
-        var directiveTemplateHtml = '<div class="well">' + oname + ' Template</div>';
+        var directiveTemplate = 'div ' + oname + ' Template';
+        var directiveTemplateHtml = '<div>' + oname + ' Template</div>';
         /////////////////
 
 /////
