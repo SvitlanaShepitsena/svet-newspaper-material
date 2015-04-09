@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('events')
-        .factory('EventServ', function ($q, url, $firebaseArray) {
+        .factory('EventServ', function ($q, url, $firebaseArray, $firebaseObject) {
             var allEventsUrl = url + 'events/'
             return {
                 joinUser: function (user, eventKey) {
@@ -14,7 +14,12 @@
                         });
 
                     });
+                },
+                getUsersRef: function (eventKey) {
+                    var eventUsersUrl = allEventsUrl + eventKey + '/users/'
+                    var eventUsersRef = $firebaseArray(new Firebase(eventUsersUrl));
 
+                    return eventUsersRef;
 
                 }
             };
