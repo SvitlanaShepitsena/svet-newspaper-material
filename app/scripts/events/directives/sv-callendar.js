@@ -17,16 +17,16 @@
                         {
                             title: "2015 Kohl Children's Museum Event (Public Event)",
                             type: 'success',
-                            starts_at: new Date(2015, 4, 15, 9, 0),
-                            ends_at: new Date(2015, 4, 15, 12, 0),
+                            starts_at: new Date(2015, 4, 15, 11, 0),
+                            ends_at: new Date(2015, 4, 15, 13, 0),
                             editable: false,
                             deletable: false
                         },
                         {
                             title: "2015 Ravinia SVET CONNECTIONS (Networking Event)",
                             type: 'success',
-                            starts_at: new Date(2015, 4, 17, 9, 0),
-                            ends_at: new Date(2015, 4, 17, 12, 0),
+                            starts_at: new Date(2015, 4, 17, 19, 0),
+                            ends_at: new Date(2015, 4, 17, 23, 0),
                             editable: false,
                             deletable: false
                         }
