@@ -112,10 +112,15 @@
                     templateUrl: "scripts/events/views/eventsCtrl.html"
                 })
 
-				.state("app.field-event", {
-					url: "/events/field-event/:year",
-					controller:"FieldEventCtrl as fieldEvent",
-					templateUrl: "scripts/events/views/field-eventCtrl.html"
+                .state("app.field-event", {
+                    url: "/events/field-event/:year",
+                    controller: "FieldEventCtrl as fieldEvent",
+                    templateUrl: "scripts/events/views/field-eventCtrl.html"
+                })
+				.state("app.events-dashboard", {
+					url: "/events-dashboard", 
+					controller:"Events-dashboardCtrl as events-dashboard",
+					templateUrl: "scripts/events/views/events-dashboardCtrl.html"
 				})
 //#state'
         });
