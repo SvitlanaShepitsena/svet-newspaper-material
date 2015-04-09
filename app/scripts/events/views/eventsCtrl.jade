@@ -1,2 +1,9 @@
-div
+div(layout='row' class='mb+ mt+')
+    button.btn.btn--l.btn--white.tc-grey-700.btn--raised( ui-sref='app.events' lx-ripple='' class='mr') Events Calendar 2015
+    button.btn.btn--l.btn--white.tc-grey-700.btn--raised( ui-sref='app.events' lx-ripple='' class='mr') Photo Gallery
+div(layout='column')
+    span.display-block.fs-headline(class='mb+') Events Calendar
     sv-callendar
+    span.display-block.fs-headline(class='mb+') Upcoming Events
+    md-divider
+
