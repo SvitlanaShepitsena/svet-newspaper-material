@@ -10,23 +10,19 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-
-
                     //These variables MUST be set as a minimum for the calendar to work
                     $scope.calendarView = 'year';
                     $scope.calendarDay = new Date();
                     $scope.events = [
                         {
-                            title: '2015 Field Museum Event',
+                            title: "2015 Kohl Children's Museum Event",
                             type: 'success',
                             starts_at: new Date(2015, 4, 15, 9, 0),
                             ends_at: new Date(2015, 4, 15, 12, 0),
                             editable: false,
                             deletable: false
                         }
-
                     ];
-
 
                     function showModal(action, event) {
                         $modal.open({
@@ -40,10 +36,8 @@
                     }
 
                     $scope.eventClicked = function (event) {
-                        if (event.title === '2015 Field Museum Event') {
-
+                        if (event.title === "2015 Kohl Children's Museum Event") {
                             $state.go('app.field-event', {year: 2015});
-
                         }
                     };
 
@@ -65,12 +59,8 @@
 
                         event[field] = !event[field];
                     };
-
-
                 },
-
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });
