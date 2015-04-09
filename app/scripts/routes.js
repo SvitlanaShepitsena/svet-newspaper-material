@@ -108,6 +108,7 @@
                 })
                 .state("app.events", {
                     url: "/events",
+                    abstract:true,
                     controller: "EventsCtrl as events",
                     templateUrl: "scripts/events/views/eventsCtrl.html"
                 })
@@ -122,11 +123,16 @@
                     controller: "RaviniaEventCtrl as raviniaEvent",
                     templateUrl: "scripts/events/views/ravinia-eventCtrl.html"
                 })
-				
+
 				.state("app.events-photo-gallery", {
-					url: "/events-photo-gallery", 
+					url: "/events-photo-gallery",
 					controller:"EventsPhotoGalleryCtrl as eventsPhotoGallery",
 					templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
+				})
+				.state("app.event-calendar", {
+					url: "/event-calendar", 
+					controller:"EventCalendarCtrl as eventCalendar",
+					templateUrl: "scripts/events/views/event-calendarCtrl.html"
 				})
 //#state'
         });
