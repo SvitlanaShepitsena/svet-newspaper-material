@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.css"/>
     <link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css">
     <!--<link rel="stylesheet" href="styles/lumx.css"/>-->
     <link rel="stylesheet" href="assets/app.css"/>
     <link rel="stylesheet" href="styles/main.css"/>
@@ -53,6 +53,7 @@
         </md-toolbar>
         <md-content class="p">
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
+            <sv-events-link></sv-events-link>
             <sv-event-sidenav-ad></sv-event-sidenav-ad>
         </md-content>
     </md-sidenav>
@@ -144,6 +145,7 @@
 <script src="scripts/events/eventsIndex.js"></script>
 <script src="scripts/events/services/EventServ.js"></script>
 <script src="scripts/events/directives/sv-join-btn.js"></script>
+<script src="scripts/events/controllers/RaviniaEventCtrl.js"></script>
 <script src="scripts/events/controllers/FieldEventCtrl.js"></script>
 <script src="scripts/events/directives/sv-event-sidenav-ad.js"></script>
 <script src="scripts/events/directives/sv-events-link.js"></script>
@@ -157,6 +159,7 @@
 
 <!-- social -->
 <script src="scripts/social/socialIndex.js"></script>
+<script src="scripts/social/directives/sv-join-event.js"></script>
 <script src="scripts/social/directives/sv-add-comment.js"></script>
 
 <!-- world -->

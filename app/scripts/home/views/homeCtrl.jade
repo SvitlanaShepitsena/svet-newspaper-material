@@ -1,7 +1,7 @@
 div(ng-if='!loaded' flex-align="center center" flex-container='row')
     md-progress-circular(md-mode='indeterminate' class='md-accent')
     div LOADING NEWS
-div(flex-container='row' ng-if='!!loaded' flex-item='')
+div(flex-container='column' ng-if='!!loaded' flex-item='')
     div(flex-item='9' flex-container='column' ng-repeat='nt in news ')
         sv-home-main-news(nt='nt')
     //sv-news-grid

@@ -1,16 +1,5 @@
 /* Toolbar area */
 
-.cal-day-tick {
-    position: absolute;
-    right: 94%;
-    bottom: -8px;
-    padding: 0 5px;
-    cursor: pointer;
-    z-index: 5;
-    width: 26px;
-    margin-right: -17px;
-}
-
 .menu {
     background-color: transparent;
     border: none;

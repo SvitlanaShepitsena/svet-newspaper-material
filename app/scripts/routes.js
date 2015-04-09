@@ -117,6 +117,11 @@
                     controller: "FieldEventCtrl as fieldEvent",
                     templateUrl: "scripts/events/views/field-eventCtrl.html"
                 })
+                .state("app.ravinia-event", {
+                    url: "/ravinia-event",
+                    controller: "RaviniaEventCtrl as raviniaEvent",
+                    templateUrl: "scripts/events/views/ravinia-eventCtrl.html"
+                })
 //#state'
         });
 
