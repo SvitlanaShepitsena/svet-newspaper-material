@@ -40,7 +40,7 @@ gulp.task('modules:stylus', function () {
 //register task jade
 gulp.task('jade', function () {
 
-    gulp.src('app/scripts/home/**/*.jade')
+    gulp.src('app/scripts/**/*.jade')
         .pipe(plumber({
             handleError: function (err) {
                 console.log(err);
@@ -48,7 +48,7 @@ gulp.task('jade', function () {
             }
         }))
         .pipe(jade({}))
-        .pipe(gulp.dest('app/scripts/home'))
+        .pipe(gulp.dest('app/scripts/'))
         .pipe(reload({stream: true}));
 });
 
