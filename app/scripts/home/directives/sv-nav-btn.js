@@ -11,6 +11,8 @@
                     title: '@',
                     color: '@',
                     btnStyle: '@',
+                    btnSize: '@',
+                    bgc: '@',
                     icon: '@'
                 },
                 bindToController: {},
