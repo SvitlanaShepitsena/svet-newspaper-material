@@ -12,11 +12,9 @@
                 controller: function ($scope) {
                     var ctrl = this;
                     ctrl.langEng = true;
-
                     ctrl.changeLanguage = function (key) {
                         $translate.use(key);
                         ctrl.langEng = key == 'en';
-                        console.log(ctrl.langEng);
                     };
                 },
 

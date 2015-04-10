@@ -7,9 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-events-link.html',
                 scope: {},
-                bindToController: {
-
-                },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
