@@ -13,6 +13,7 @@
                 'Culture': 'Culture',
                 'Society': 'Society',
                 'World': 'World',
+                'SvetRecommends': 'Svet Recommends',
                 'read-more': 'Read more',
 
                 'classified': 'Classified',
@@ -63,6 +64,8 @@
                 'Culture': 'Культура',
                 'Society': 'Общество',
                 'World': 'Мир',
+                'SvetRecommends': 'Свет Рекомендует',
+
 
                 'classified': 'Частные Объявления',
                 'contacts': 'Обратная связь',
