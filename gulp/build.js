@@ -4,12 +4,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var plumber = require('gulp-plumber');
 var browserSync = require('browser-sync');
-var reload      = browserSync.reload;
-
-
-var $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
-});
+var reload = browserSync.reload;
 
 
 var jade = require('gulp-jade');
@@ -32,7 +27,12 @@ gulp.task('stylus', ['modules:stylus'], function () {
 
 gulp.task('modules:stylus', function () {
     gulp.src('app/scripts/**/*.styl')
-        .pipe(plumber())
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
         .pipe(stylus({use: [nib()]}))
         .pipe(gulp.dest('app/scripts/'));
 });
@@ -40,13 +40,15 @@ gulp.task('modules:stylus', function () {
 //register task jade
 gulp.task('jade', function () {
 
-    gulp.src('app/**/*.jade')
-        //compiler does not stop on error
-        .pipe(plumber())
-        .pipe(jade({
-            compileDebug: false
+    gulp.src('app/scripts/home/**/*.jade')
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
         }))
-        .pipe(gulp.dest('app/'))
+        .pipe(jade({}))
+        .pipe(gulp.dest('app/scripts/home'))
         .pipe(reload({stream: true}));
 });
 

@@ -31,8 +31,10 @@
         'toastr',
         'firebase',
         'mwl.calendar',
-        'ui.bootstrap',
+        'simple-slideshow',
         'ui.router'
+
+        //'ui.bootstrap',
     ])
 
         .config(function ($mdThemingProvider, $mdIconProvider) {

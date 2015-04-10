@@ -38,7 +38,7 @@ function browserSyncInit(baseDir, files, browser) {
 
 }
 
-gulp.task('serve', ['watch', 'stylus'], function () {
+gulp.task('serve', ['jade','watch', 'stylus'], function () {
     browserSyncInit([
         'app',
     ], [

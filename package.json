@@ -50,6 +50,7 @@
     "gulp-useref": "^1.0.1",
     "gulp-util": "^3.0.1",
     "http-proxy": "^1.1",
+    "jade": "^1.9.2",
     "main-bower-files": "^1.0",
     "merge-stream": "^0.1.5",
     "multistream-merge": "^0.2.0",

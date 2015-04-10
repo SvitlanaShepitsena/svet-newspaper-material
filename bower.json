@@ -24,6 +24,7 @@
     "angular-toastr": "1.2.0",
     "angular-translate-storage-cookie": "~2.6.1",
     "angular-bootstrap-calendar": "~0.8.1",
-    "ui-bootstrap": "~0.12.1"
+    "ui-bootstrap": "~0.12.1",
+    "angular-simple-slideshow": "~0.0.3"
   }
 }
