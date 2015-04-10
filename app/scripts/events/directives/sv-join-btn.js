@@ -33,7 +33,6 @@
 
                         var foundUser = _.find(eventUsers, {'id': $rootScope.user.id});
                         ctrl.isUserJoined = foundUser ? true : false;
-                        var breakPoint = 1;
                     });
                     ctrl.joinEvent = function () {
                         EventServ.joinUser($scope.user, ctrl.eventKey).then(function () {
