@@ -9,6 +9,7 @@
                 scope: {
                     url: '@',
                     title: '@',
+                    customClass: '@',
                     color: '@',
                     btnStyle: '@',
                     btnSize: '@',
