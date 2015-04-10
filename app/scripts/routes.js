@@ -140,6 +140,11 @@
 					controller:"NewLightNewspaperCtrl as newLightNewspaper",
 					templateUrl: "scripts/archive/views/new-light-newspaperCtrl.html"
 				})
+				.state("app.saturday-plus-newspaper", {
+					url: "/saturday-plus-newspaper", 
+					controller:"SaturdayPlusNewspaperCtrl as saturdayPlusNewspaper",
+					templateUrl: "scripts/archive/views/saturday-plus-newspaperCtrl.html"
+				})
 //#state'
         });
 
