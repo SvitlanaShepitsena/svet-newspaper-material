@@ -135,6 +135,11 @@
 					controller:"EventsPhotoGalleryCtrl as eventsPhotoGallery",
 					templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
 				})
+				.state("app.new-light-newspaper", {
+					url: "/new-light-newspaper", 
+					controller:"NewLightNewspaperCtrl as newLightNewspaper",
+					templateUrl: "scripts/archive/views/new-light-newspaperCtrl.html"
+				})
 //#state'
         });
 
