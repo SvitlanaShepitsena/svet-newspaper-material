@@ -16,7 +16,7 @@
                 'read-more': 'Read more',
 
                 'classified': 'Classified',
-                'contacts': 'Svet Contacts',
+                'contacts': 'Contact Us',
                 'youtube': 'Youtube Сhannel',
 
                 'loading': 'Loading News',
