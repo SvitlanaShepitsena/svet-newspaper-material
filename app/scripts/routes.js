@@ -108,14 +108,14 @@
                 })
                 .state("app.events", {
                     url: "/events",
-                    abstract:true,
+                    abstract: true,
                     controller: "EventsCtrl as events",
                     templateUrl: "scripts/events/views/eventsCtrl.html"
                 })
 
                 .state("app.events.calendar", {
                     url: "/event-calendar",
-                    controller:"EventCalendarCtrl as eventCalendar",
+                    controller: "EventCalendarCtrl as eventCalendar",
                     templateUrl: "scripts/events/views/event-calendarCtrl.html"
                 })
 
@@ -130,21 +130,21 @@
                     templateUrl: "scripts/events/views/ravinia-eventCtrl.html"
                 })
 
-				.state("app.events.photo-gallery", {
-					url: "/events-photo-gallery",
-					controller:"EventsPhotoGalleryCtrl as eventsPhotoGallery",
-					templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
-				})
-				.state("app.new-light-newspaper", {
-					url: "/new-light-newspaper", 
-					controller:"NewLightNewspaperCtrl as newLightNewspaper",
-					templateUrl: "scripts/archive/views/new-light-newspaperCtrl.html"
-				})
-				.state("app.saturday-plus-newspaper", {
-					url: "/saturday-plus-newspaper", 
-					controller:"SaturdayPlusNewspaperCtrl as saturdayPlusNewspaper",
-					templateUrl: "scripts/archive/views/saturday-plus-newspaperCtrl.html"
-				})
+                .state("app.events.photo-gallery", {
+                    url: "/events-photo-gallery",
+                    controller: "EventsPhotoGalleryCtrl as eventsPhotoGallery",
+                    templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
+                })
+                .state("app.new-light-newspaper", {
+                    url: "/new-light-newspaper",
+                    controller: "NewLightNewspaperCtrl as newLightNewspaper",
+                    templateUrl: "scripts/archive/views/new-light-newspaperCtrl.html"
+                })
+                .state("app.saturday-plus-newspaper", {
+                    url: "/saturday-plus-newspaper",
+                    controller: "SaturdayPlusNewspaperCtrl as saturdayPlusNewspaper",
+                    templateUrl: "scripts/archive/views/saturday-plus-newspaperCtrl.html"
+                })
 //#state'
         });
 
