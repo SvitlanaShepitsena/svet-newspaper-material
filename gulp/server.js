@@ -45,7 +45,6 @@ gulp.task('serve', ['jade','watch', 'stylus'], function () {
         'app/*.html',
         'app/styles/**/*.css',
         'app/scripts/**/*.css',
-        'app/scripts/**/*.jade',
         'app/scripts/**/*.js',
     ]);
 });
