@@ -38,13 +38,14 @@ function browserSyncInit(baseDir, files, browser) {
 
 }
 
-gulp.task('serve', ['watch', 'stylus'], function () {
+gulp.task('serve', ['jade','watch', 'stylus'], function () {
     browserSyncInit([
         'app',
     ], [
         'app/*.html',
         'app/styles/**/*.css',
         'app/scripts/**/*.css',
+        'app/scripts/**/*.jade',
         'app/scripts/**/*.js',
     ]);
 });
