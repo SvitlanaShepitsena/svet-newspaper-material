@@ -20,7 +20,7 @@
                     for (var i = ctrl.startIssue; i <= ctrl.startIssue+ctrl.issuesToShow; i++) {
                         var issue = {
                             number: i,
-                            img: faker.image.animals(100, 200),
+                            img: faker.image.image(100, 200),
                             url: urlStart + 'index.html'
                         };
                         ctrl.issues.push(issue);

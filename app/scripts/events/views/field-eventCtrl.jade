@@ -2,4 +2,5 @@ ol.breadcrumb
     li
         a(ui-sref='app.events.calendar') Events
     li Svet Family Event at Kohl Children's Museum
-sv-kohl-event-2015
+sv-kohl-event-2015(ng-if='fieldEvent.year === "2015"')
+sv-kohl-event-2014(ng-if='fieldEvent.year === "2014"')

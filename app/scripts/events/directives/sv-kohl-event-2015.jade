@@ -1,4 +1,4 @@
-.card(class='p++')
+.card(class='p++' )
     div(layout='row')
         div
             span.display-block.fs-display-1.mb SVET Family Event at Kohl Children's Museum
@@ -8,14 +8,13 @@
             span.display-block.fs-body-2.tc-grey-700 Address: 2100 Patriot Blvd, Glenview, Illinois 60026
             span.display-block.fs-caption.tc-blue-grey-500 Fee: Free
             span.display-block.fs-caption.tc-blue-grey-500 Age Range: Any
-        div
-            a(href="https://www.facebook.com/svetmedia/posts/656532251104357")
+        div(ui-sref='app.events.field({year:2014})').cursor-pointer
+            div
                 img.mb(src="../img/ad/kohl-museum/kohl-logo.jpg" style='width:300px')
             div(style='border-bottom: 2px #E57373 solid;text-align:center')
-                a(href="https://www.facebook.com/svetmedia/posts/656532251104357")
+                div
                     span.display-block.fs-subhead.tc-grey-800
                         | Kohl Children's Museum Event 2014
-            a.display-block.mdc-text-right.tc-blue-grey-400.fs-caption(href="https://www.facebook.com/svetmedia/posts/656532251104357") Photo gallery of this event
     div(layout='column')
         div(class='mb+')
             span.display-block.fs-title Event Program:
