@@ -13,8 +13,6 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-
-
                 },
 
                 link: function ($scope, el, attrs, ctrls) {

@@ -286,6 +286,12 @@ md-sidenav.md-locked-open {
   background-color: #555 !important;
 }
 /**********************
+ =header
+***********************/
+.language {
+  color: #f00 !important;
+}
+/**********************
  =social
 ***********************/
 .header-social-link {
