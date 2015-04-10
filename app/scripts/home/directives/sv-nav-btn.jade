@@ -1,4 +1,5 @@
 div(layout='row')
-    button.btn.btn--raised( lx-ripple='' ui-sref="{{url}}"  class='btn--{{color}} btn--{{btn-size}}  btn--{{btnStyle}}' flex)
-        i(class='mdi mdi-{{icon}}') &nbsp
+    button.btn.btn--raised( lx-ripple='' ui-sref="{{url}}" class='btn--{{color}} btn--{{btn-size}}' +
+    ' bgc-{{bgc}} btn--{{btnStyle}}' flex)
+        i(class='mdi mdi-{{icon}} mr')
         strong {{title}}
