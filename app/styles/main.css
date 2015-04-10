@@ -62,10 +62,60 @@
   text-decoration: none;
   color: #393939;
 }
-@import '../scripts/article/styles/article.css';
-@import '../scripts/home/styles/home.css';
-@import '../scripts/politics/styles/politics.css';
-@import '../scripts/article/styles/article.css';
+.author-article-nav {
+  backround-color: none !important;
+  background: transparent !important;
+  height: auto;
+}
+.article-thumb-link {
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 14px;
+}
+.article-thumb-body {
+  line-height: 16px;
+}
+.article-thumb-title {
+  line-height: 20px;
+}
+.article-thumb-author {
+  line-height: 16px;
+}
+.radio-body {
+  line-height: 16px;
+  font-weight: 600;
+}
+.radio-subhead {
+  line-height: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.btn-block {
+  width: 100%;
+}
+.auth-sm {
+  margin-bottom: -4px !important;
+  display: block !important;
+}
+.img-editor {
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+}
+.img-editor-container {
+  width: 56px;
+  height: 56px;
+}
+.text-footer {
+  display: block;
+  font-size: 13px;
+  line-height: 16px;
+}
+@media screen and (max-width: 992px) {
+  .text-footer {
+    font-size: 11px;
+  }
+}
 .bg-black {
   background-color: #000;
 }
@@ -180,8 +230,8 @@ body {
 }
 .mdc-label-default {
   padding: 4px 5px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 .top-profile-nav {
   padding: 4px 8px;
