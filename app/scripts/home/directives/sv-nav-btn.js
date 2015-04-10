@@ -13,6 +13,7 @@
                     btnStyle: '@',
                     btnSize: '@',
                     bgc: '@',
+                    txtColor: '@',
                     icon: '@'
                 },
                 bindToController: {},
