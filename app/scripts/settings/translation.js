@@ -14,6 +14,8 @@
                 'Society': 'Society',
                 'World': 'World',
                 'SvetRecommends': 'Svet Recommends',
+                'NewSvetNewspaper': 'New Svet Newspaper',
+                'SaturdayPlus': 'Saturday+',
                 'read-more': 'Read more',
 
                 'classified': 'Classified',
@@ -65,6 +67,8 @@
                 'Society': 'Общество',
                 'World': 'Мир',
                 'SvetRecommends': 'Свет Рекомендует',
+                'NewSvetNewspaper': 'Газета Новый Свет',
+                'SaturdayPlus': 'Суббота+',
 
 
                 'classified': 'Частные Объявления',

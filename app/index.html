@@ -55,8 +55,8 @@
         <md-content class="p">
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
             <!--<sv-events-link class="mb+"></sv-events-link>-->
-            <sv-nav-btn url="app.events.calendar"
-                        title="Svet Recommends"
+            <sv-nav-btn url="app.events.recommends"
+                        title="SvetRecommends"
                         icon="compass"
                         txt-color="white-1"
                         bgc="grey-700"
@@ -106,7 +106,14 @@
                     <span class="mdc-subhead">Читателям и Партнерам</span>
                 </md-toolbar>
                 <sv-svet-social></sv-svet-social>
-                <sv-clients-nav></sv-clients-nav>
+                <md-content class="p">
+                    <span class="display-block fs-title mb mdc-underline-red mdc-text-center mt mb+"> PDF NEWSPAPER ARCHIVE </span>
+                    <sv-nav-btn url="app.events.calendar"
+                                title="New Svet"
+                                txt-color="blue-grey-600"
+                                icon="calendar" color="white" btn-size="l" class="mb++"></sv-nav-btn>
+                    <sv-clients-nav></sv-clients-nav>
+                </md-content>
             </md-sidenav>
         </div>
     </div>
@@ -153,6 +160,10 @@
 <script src="./scripts/settings/translation.js"></script>
 
 <!-- MODULES-->
+
+<!-- srticle -->
+<script src="scripts/srticle/srticleIndex.js"></script>
+<script src="scripts/srticle/controllers/SvetRecommendsCtrl.js"></script>
 
 <!-- archive -->
 <script src="scripts/archive/archiveIndex.js"></script>

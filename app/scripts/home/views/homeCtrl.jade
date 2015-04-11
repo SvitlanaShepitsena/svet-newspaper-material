@@ -1,14 +1,13 @@
 div(ng-if='!loaded' flex-align="center center" flex-container='row')
     md-progress-circular(md-mode='indeterminate' class='md-accent')
     div LOADING NEWS
-div(layout-sm='column' layout-gt-sm='row' ng-if='!!loaded')
-    div(flex='60' )
-        div(layout='column' ng-repeat='nt in news ')
+div(flex-container='row' ng-if='!!loaded' flex-item='')
+    div(flex-item='9' flex-container='column' ng-repeat='nt in news ')
         sv-home-main-news(nt='nt')
     //sv-news-grid
-    div(flex='30')
-        div(layout-sm='column' layout-gt-sm='column' layout-md='row' layout-gt-md='column' layout-gt-lg='column' )
-            sv-from-the-editor(class='mb+')
+    div(flex-item='3' )
+        div(layout-sm='column' layout-gt-sm='column' layout-md='row' layout-gt-md='column' layout-gt-lg='column')
             sv-radio-osa(class='mb+')
+            sv-from-the-editor(class='mb+')
 div(ng-if='!!loaded')
     sv-news-grid
