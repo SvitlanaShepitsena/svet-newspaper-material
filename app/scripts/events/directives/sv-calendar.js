@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('events')
-        .directive('svCallendar', function (moment, $modal, $state) {
+        .directive('svCalendar', function (moment, $modal, $state) {
             return {
-                templateUrl: 'scripts/events/directives/sv-callendar.html',
+                templateUrl: 'scripts/events/directives/sv-calendar.html',
                 scope: {},
                 bindToController: {},
                 controllerAs: 'ctrl',
