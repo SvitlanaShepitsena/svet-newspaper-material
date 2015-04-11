@@ -146,6 +146,11 @@
                     templateUrl: "scripts/archive/views/saturday-plus-newspaperCtrl.html"
                 })
 				
+				.state("app.svet-recommends", {
+					url: "/svet-recommends", 
+					controller:"SvetRecommendsCtrl as svetRecommends",
+					templateUrl: "scripts/article/views/svet-recommendsCtrl.html"
+				})
 //#state'
         });
 
