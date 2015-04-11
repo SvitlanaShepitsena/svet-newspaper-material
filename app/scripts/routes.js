@@ -39,7 +39,7 @@
                     templateUrl: "scripts/culture/views/cultureCtrl.html"
                 })
                 .state("app.society", {
-                    url: "/society",
+                    url: "/travel",
                     controller: "SocietyCtrl as society",
                     templateUrl: "scripts/society/views/societyCtrl.html"
                 })
@@ -145,9 +145,9 @@
                     controller: "SaturdayPlusNewspaperCtrl as saturdayPlusNewspaper",
                     templateUrl: "scripts/archive/views/saturday-plus-newspaperCtrl.html"
                 })
-				
+
 				.state("app.svet-recommends", {
-					url: "/svet-recommends", 
+					url: "/svet-recommends",
 					controller:"SvetRecommendsCtrl as svetRecommends",
 					templateUrl: "scripts/article/views/svet-recommendsCtrl.html"
 				})

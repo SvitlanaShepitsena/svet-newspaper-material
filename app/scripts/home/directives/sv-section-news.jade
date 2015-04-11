@@ -4,6 +4,6 @@ ul.list(class='mt++')
             .list-row__primary
                 img.img-round.mdc-img-bw(ng-src='{{gn.img}}', width='40', height='40')
             .list-row__content
-                span.display-block {{gn.title | length:25}}
+                span.display-block {{gn.title| | length:25}}
                 span.display-block.fs-body-1.tc-black-2 {{gn.body | length:50}}
 

@@ -4,7 +4,6 @@
     angular.module('app', [
 
         // modules
-		'srticle',
 		'archive',
 		'events',
 		'admin',

@@ -55,16 +55,16 @@
         <md-content class="p">
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
             <!--<sv-events-link class="mb+"></sv-events-link>-->
-            <sv-nav-btn url="app.events.svet-recommends"
+            <sv-nav-btn url="app.svet-recommends"
                         title="SvetRecommends"
                         icon="compass"
                         txt-color="white-1"
                         bgc="grey-700"
                         color="grey" btn-size="l" class="mb++ "></sv-nav-btn>
             <sv-nav-btn url="app.events.calendar"
-                        title="Svet Events Calendar 2015"
+                        title="SvetEventsCalendar"
                         txt-color="blue-grey-600"
-                        icon="calendar" color="white" btn-size="l" bgc="grey-200" class="mb++"></sv-nav-btn>
+                        icon="calendar" color="white" btn-size="m" bgc="grey-200" class="mb++"></sv-nav-btn>
             <span class="display-block fs-title mb mdc-underline-red mdc-text-center mt mb+"> UPCOMING SVET EVENT </span>
             <sv-event-sidenav-ad></sv-event-sidenav-ad>
         </md-content>
@@ -105,14 +105,26 @@
                     </md-button>
                     <span class="mdc-subhead">Читателям и Партнерам</span>
                 </md-toolbar>
-                <sv-svet-social></sv-svet-social>
+                <md-content class="pr pl pt">
+                    <span class="display-block fs-title mdc-underline-red mdc-text-center mt"> SVET ON SOCIAL MEDIA </span>
+                    <sv-svet-social></sv-svet-social>
+                </md-content>
                 <md-content class="p">
                     <span class="display-block fs-title mb mdc-underline-red mdc-text-center mt mb+"> PDF NEWSPAPER ARCHIVE </span>
-                    <sv-nav-btn url="app.events.calendar"
-                                title="New Svet"
+                    <sv-nav-btn url="app.new-light-newspaper"
+                                title="NewSvetNewspaper"
                                 txt-color="blue-grey-600"
-                                icon="calendar" color="white" btn-size="l" class="mb++"></sv-nav-btn>
-                    <sv-clients-nav></sv-clients-nav>
+                                icon="newspaper" color="white" btn-size="l" class="mb++"></sv-nav-btn>
+                    <sv-nav-btn url="app.saturday-plus-newspaper"
+                                title="SaturdayPlus"
+                                txt-color="blue-grey-600"
+                                icon="newspaper" color="white" btn-size="l" class="mb++"></sv-nav-btn>
+                    <sv-nav-btn url="app.classified"
+                                icon="tag-faces"
+                                title="classified"
+                                txt-color="blue-grey-600"
+                                color="white" btn-size="m" bgc="grey-200" class="mb++"></sv-nav-btn>
+                    <sv-nav-link side='center' url='app.contact' title='contacts' icon='map-marker'></sv-nav-link>
                 </md-content>
             </md-sidenav>
         </div>
