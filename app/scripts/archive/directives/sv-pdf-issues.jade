@@ -12,10 +12,10 @@ div(layout='column' flex='')
                         img(ng-src="{{i.img}}")
                     .card__actions
                         div.mb.mt(layout='row' layout-align='space-around')
-                            button.btn.btn--s.btn--white.btn--raised(lx-ripple='')
+                            a.btn.btn--s.btn--white.btn--raised(lx-ripple='' href='{{i.url}}')
                                 i.mdi.mdi-read.mr
                                 | Read Online
-                            button.btn.btn--s.bgc-grey-700.btn--grey.btn--raised(lx-ripple='')
+                            a.btn.btn--s.bgc-grey-700.btn--grey.btn--raised(lx-ripple='' href='assets/archive/svet.pdf')
                                 i.mdi.mdi-download.mr
                                 | Download PDF
 
