@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('events')
-        .directive('svKohlEvent2015', function () {
+        .directive('svEventsCalendar', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/events/directives/sv-kohl-event-2015.html',
+                templateUrl: 'scripts/events/directives/sv-events-calendar.html',
                 scope: {},
                 bindToController: {
 
