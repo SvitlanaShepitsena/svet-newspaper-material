@@ -40,9 +40,10 @@
 
     <sv-social-top-nav></sv-social-top-nav>
 </div>
-<div layout="row" flex >
+<div layout="row" flex style="height:100% !important">
     <!-- =Left Sidebar-->
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="height: auto">
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')" style="position: relative">
         <md-toolbar class="md-primary text-center" layout='row' layout-align='space-around center'>
             <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
             <a class="logo-link" ui-sref="app.home">
@@ -71,7 +72,7 @@
     </md-sidenav>
 
     <!-- =Content-->
-    <div layout="column" layout-fill>
+    <div layout="column" flex>
         <md-toolbar layout="row" class="toolbar-svet" style="height: auto">
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
@@ -88,7 +89,8 @@
             <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
             <div class="m" ui-view="" flex></div>
             <!-- =Right Sidebar-->
-            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-lg')">
+            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
+                        md-is-locked-open="$mdMedia('gt-lg')">
                 <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-md
                             layout-align='space-around center'
                             ng-controller="RightCtrl">
