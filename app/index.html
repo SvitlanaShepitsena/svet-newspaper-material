@@ -39,9 +39,9 @@
 
     <sv-social-top-nav></sv-social-top-nav>
 </div>
-<div flex layout="row">
+<div layout="row" flex >
     <!-- =Left Sidebar-->
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="height: auto">
         <md-toolbar class="md-primary text-center" layout='row' layout-align='space-around center'>
             <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
             <a class="logo-link" ui-sref="app.home">
@@ -51,7 +51,7 @@
                        ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
-        <md-content class="p">
+        <md-content layout-padding>
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
             <!--<sv-events-link class="mb+"></sv-events-link>-->
             <sv-nav-btn url="app.svet-recommends"
@@ -70,7 +70,7 @@
     </md-sidenav>
 
     <!-- =Content-->
-    <div flex layout="column">
+    <div layout="column" layout-fill>
         <md-toolbar layout="row" class="toolbar-svet" style="height: auto">
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
@@ -83,19 +83,11 @@
             </md-button>
         </md-toolbar>
 
-        <div layout="row" layout-fill>
-            <md-content md-padding flex>
-                <div layout="column" layout-fill layout-align="top center">
-                    <div class="m" ui-view=""></div>
-                    <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
-                </div>
-
-            </md-content>
-
+        <div layout="row" layout-fill flex>
+            <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
+            <div class="m" ui-view="" flex></div>
             <!-- =Right Sidebar-->
-            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
-                        md-is-locked-open="$mdMedia('gt-lg')"
-                    >
+            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-lg')">
                 <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-md
                             layout-align='space-around center'
                             ng-controller="RightCtrl">

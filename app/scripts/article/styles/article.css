@@ -5,6 +5,7 @@
 }
 .article-thumb-link {
   text-decoration: none;
+  display: block;
   cursor: pointer;
   line-height: 14px;
 }

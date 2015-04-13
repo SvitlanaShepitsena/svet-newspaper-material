@@ -28,7 +28,6 @@
                     eventUsers.$loaded().then(function () {
                         familiesContainerCtrl.setRegisteredUsers(eventUsers.length);
 
-
                         if ($rootScope.user) {
                             var foundUser = _.find(eventUsers, {'id': $rootScope.user.id});
                             ctrl.isUserJoined = foundUser ? true : false;
