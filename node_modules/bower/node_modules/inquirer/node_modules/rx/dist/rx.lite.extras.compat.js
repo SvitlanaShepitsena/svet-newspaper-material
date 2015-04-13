@@ -26,7 +26,7 @@
             return factory(root, exports, Rx);
         });
     } else if (typeof module === 'object' && module && module.exports === freeExports) {
-        module.exports = factory(root, module.exports, require('./rx-lite-compat'));
+        module.exports = factory(root, module.exports, require('rx-lite-compat'));
     } else {
         root.Rx = factory(root, {}, root.Rx);
     }
@@ -60,7 +60,7 @@
     inherits = internals.inherits,
     bindCallback = internals.bindCallback,
     noop = helpers.noop,
-    isScheduler = helpers.isScheduler,
+    isScheduler = Rx.Scheduler.isScheduler,
     observableFromPromise = Observable.fromPromise,
     ArgumentOutOfRangeError = Rx.ArgumentOutOfRangeError;
 
@@ -275,8 +275,7 @@
           hasResult = condition(state);
           hasResult && (result = resultSelector(state));
         } catch (e) {
-          o.onError(e);
-          return;
+          return o.onError(e);
         }
         if (hasResult) {
           o.onNext(result);
