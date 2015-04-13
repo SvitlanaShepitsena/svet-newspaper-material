@@ -33,14 +33,22 @@
                         'Политика',
                         'Мы и Деньги',
                         'Культура',
-                        'Мир',
-                        'Спорт',
-                        'Здоровье',
-                        'Путешествия'
+                        'Общество',
+                        'Мир'
                     ];
                     $scope.dateMod = '';
 
+                    //var author = $rootScope.user.fname ? $rootScope.user.fname + ' ' + $rootScope.user.lname : '';
                     var author = faker.name.findName();
+                    //ctrl.article = {
+                    //    author: author,
+                    //    date: '',
+                    //    section: '',
+                    //    title: '',
+                    //    body: '',
+                    //    tags: ''
+                    //
+                    //}
 
                     ctrl.article = {
                         isDraft: true,

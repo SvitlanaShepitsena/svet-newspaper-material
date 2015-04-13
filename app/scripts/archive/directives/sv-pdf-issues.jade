@@ -6,17 +6,7 @@ div(layout='column' flex='')
 
         md-row-height="2:3"
         md-gutter='15px')
-            md-grid-tile(ng-repeat='i in ctrl.issues')
-                .card
-                    a(href='{{i.url}}')
-                        img(ng-src="{{i.img}}")
-                    .card__actions
-                        div.mb.mt(layout='row' layout-align='space-around')
-                            a.btn.btn--s.btn--white.btn--raised(lx-ripple='' href='{{i.url}}')
-                                i.mdi.mdi-read.mr
-                                | Read Online
-                            a.btn.btn--s.bgc-grey-700.btn--grey.btn--raised(lx-ripple='' href='assets/archive/svet.pdf')
-                                i.mdi.mdi-download.mr
-                                | Download PDF
-
+            md-grid-tile.card(ng-repeat='i in ctrl.issues')
+                a(href='{{i.url}}')
+                    img(ng-src="{{i.img}}")
 

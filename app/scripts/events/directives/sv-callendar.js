@@ -2,9 +2,10 @@
     'use strict';
 
     angular.module('events')
-        .directive('svCalendar', function (moment,  $state) {
+        .directive('svCallendar', function (moment, $modal, $state) {
             return {
-                templateUrl: 'scripts/events/directives/sv-calendar.html',
+                templateUrl: 'scripts/events/directives/sv-callendar.html',
+                scope: {},
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
@@ -43,10 +44,10 @@
 
                     $scope.eventClicked = function (event) {
                         if (event.title === "2015 Kohl Children's Museum Event (Public Event)") {
-                            $state.go('app.events.field', {year: 2015});
+                            $state.go('app.field-event', {year: 2015});
                         }
                         if (event.title === "2015 Ravinia SVET CONNECTIONS (Networking Event)") {
-                            $state.go('app.events.ravinia', {year: 2015});
+                            $state.go('app.ravinia-event', {year: 2015});
                         }
                     };
 
