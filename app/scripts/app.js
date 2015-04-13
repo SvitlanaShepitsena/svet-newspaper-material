@@ -55,12 +55,12 @@
         }).factory('$exceptionHandler', function ($injector) {
             return function (exception, cause) {
                 var $rootScope = $injector.get('$rootScope');
-                var toastr = $injector.get('toastr');
-                exception.message += ' (caused by "' + cause + '")';
-                toastr.error('ERROR!'+exception.message);
-                $rootScope.$broadcast('error');
+                //var toastr = $injector.get('toastr');
+                //exception.message += ' (caused by "' + cause + '")';
+                //toastr.error('ERROR!'+exception.message);
+                //$rootScope.$broadcast('error');
 
-                throw exception;
+                //throw exception;
             };
         })
 

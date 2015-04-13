@@ -44,18 +44,24 @@ gulp.task("stylus:main", ['stylus:scripts'], function () {
     return gulp.src(["./app/styles/**/*.styl",])
         .pipe(p.plumber({errorHandler: onError}))
         .pipe(p.stylus({use: nib()}))
+        .pipe(p.filter('*.css'))
+        .pipe(p.pleeease({
+            "browsers": ["ie 10"]
+        }))
         .pipe(gulp.dest("./app/styles/"))
         .pipe(reload({stream: true}));
 });
 
-gulp.task("assets:css", function () {
+gulp.task("assets", function () {
     return gulp.src(["./app/index.html"])
         .pipe(p.assets({
             js: false,
-            css: true
+            css: 'cssAssets'
         }))
-        .pipe(p.autoprefixer())
-        .pipe(p.concat('vendors.css'))
+        .pipe(p.pleeease({
+            "browsers": ["ie 10"]
+        }))
+        .pipe(p.concat('vendors.min.css'))
         .pipe(p.minifyCss())
        .pipe(gulp.dest("./app/assets/"))
 });
