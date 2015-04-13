@@ -1,7 +1,11 @@
-div(layout='row' layout-sm='column')
-	div(flex-gt-sm='66')
-		sv-top-news(main-news = 'ctrl.nt.top')
-	div(flex-gt-sm='33' layout='column')
-		sv-second-news(second-news = 'ctrl.nt.n2')
-		sv-second-news(second-news = 'ctrl.nt.n3')
-
+div(layout='row', layout-sm='column')
+    div(flex-gt-sm='66')
+        sv-top-news(main-news='ctrl.nt.top')
+    div(flex-gt-sm='33')
+        sv-second-news(second-news='ctrl.nt.n2')
+        sv-second-news(second-news='ctrl.nt.n3')
+        .main-news-ad
+        sv-second-news(second-news='ctrl.nt.n3')
+        // <div class="m mdc-text-center"><img src="../img/ad/mb-logo.jpg" class="mdc-display-block"/></div>
+        // <div class="m mdc-text-center"><img src="../img/ad/auditorium.jpg" class="mdc-display-block"/></div>
+        // <sv-second-news second-news="ctrl.nt.n2"></sv-second-news>
