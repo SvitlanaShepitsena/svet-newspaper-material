@@ -1,1 +1,30 @@
-.well sv-weather-svet Template
+div(layout='row' layout-align='center center')
+    lx-dropdown(position='left')
+        button.btn.tc-grey-400(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}" )
+            span.fs-caption Chicago
+            i.mdi.mdi-menu-down(style='margin:0px 4px')
+        lx-dropdown-menu.bgc-grey-700
+            ul
+                li
+                    a.weather-dropdown-link.dropdown-link.tc-grey-300
+                        | O'Hare
+                        img.mr.ml(src="../img/weather/weather-icons/weather-clear.png" style="max-width:22px;display:inline-block;margin:4px")
+                        span.tc-grey-300(style="font-size:12px") 65 °F
+                li
+                    a.weather-dropdown-link.dropdown-link.tc-grey-300
+                        | Midway
+                        img.mr.ml(src="../img/weather/weather-icons/weather-clear.png" style="max-width:22px;display:inline-block;margin:4px")
+                        span.tc-grey-300(style="font-size:12px") 67 °F
+                li
+                    a.weather-dropdown-link.dropdown-link.tc-grey-300
+                        | Rockford
+                        img.mr.ml(src="../img/weather/weather-icons/weather-clear.png" style="max-width:22px;display:inline-block;margin:4px")
+                        span.tc-grey-300(style="font-size:12px") 64 °F
+                li
+                    .dropdown-divider
+                li
+                    a.weather-dropdown-link.dropdown-link.tc-grey-300
+                        | 7 DAYS FORECAST
+    a.btn.tc-grey-400.mr(href="#")
+        img(src="../img/weather/weather-icons/weather-clear.png" style="max-width:32px;display:block;margin:4px")
+    span.tc-grey-400.mdc-display-inline-block(style="font-size:14px") 65 °F
