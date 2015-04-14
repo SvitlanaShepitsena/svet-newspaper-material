@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop>
+<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
 
 <!-- =Header-->
 <!--<div layout="row" class="pl">-->
@@ -44,7 +44,7 @@
 
     <sv-social-top-nav></sv-social-top-nav>
 </div>
-<div layout="row" flex >
+<div layout="row" flex>
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
@@ -87,6 +87,7 @@
             <md-button sv-right-click-handler="" hide-gt-lg aria-label="Show Panel">
                 <md-icon md-svg-icon="img/svg/dots-vertical.svg"></md-icon>
             </md-button>
+            <md-button></md-button>
         </md-toolbar>
 
         <div layout="row" layout-fill flex> <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
@@ -94,7 +95,7 @@
             <!-- =Right Sidebar-->
             <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
                         md-is-locked-open="$mdMedia('gt-lg')">
-                <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-md
+                <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-lg
                             layout-align='space-around center'
                             ng-controller="RightCtrl">
                     <md-button sv-right-click-handler="" hide-gt-lg="" aria-label="close right" class="txt-white">
