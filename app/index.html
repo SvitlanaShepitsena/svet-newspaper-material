@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <!-- build:cssAssets -->
 
-    <!--<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>-->
-    <!--<link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>-->
-    <!--<link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">-->
-    <!--<link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.css"/>-->
-    <!--<link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css">-->
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
+    <link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.css"/>
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css">
 
     <!-- endbuild -->
 
-    <link rel="stylesheet" href="assets/vendors.min.css"/>
+    <!--<link rel="stylesheet" href="assets/vendors.min.css"/>-->
 
 
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop >
+<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop>
 
 <!-- =Header-->
 <!--<div layout="row" class="pl">-->
@@ -44,7 +44,7 @@
 
     <sv-social-top-nav></sv-social-top-nav>
 </div>
-<div layout="row" flex>
+<div layout="row" flex style="overflow:hidden ">
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
@@ -57,7 +57,7 @@
                        ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
-        <md-content layout-padding style="height:100%; min-height: 800px";>
+        <md-content layout-padding style="height:100%; min-height: 800px" ;>
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
             <!--<sv-events-link class="mb+"></sv-events-link>-->
             <sv-nav-btn url="app.svet-recommends"
