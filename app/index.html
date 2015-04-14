@@ -40,11 +40,9 @@
 
 <div class="toolbar-custom tc-white-1 pl" layout="row" layout-align="space-between center">
     <sv-lang-switch></sv-lang-switch>
-    <sv-event-join></sv-event-join>
-
     <sv-social-top-nav></sv-social-top-nav>
 </div>
-<div layout="row" flex>
+<div layout="row" flex style="overflow:hidden">
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
@@ -271,6 +269,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-img-framed.js"></script>
 <script src="scripts/home/directives/sv-from-the-editor.js"></script>
 <script src="scripts/home/directives/sv-social-top-nav.js"></script>
 <script src="scripts/home/directives/sv-lang-switch.js"></script>
