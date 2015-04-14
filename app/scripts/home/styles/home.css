@@ -1,3 +1,7 @@
+.ie {
+  position: relative;
+  top: 50px;
+}
 .btn-block {
   width: 100%;
 }
@@ -31,7 +35,4 @@
   line-height: 16px;
 }
 @media screen and (max-width: 992px) {
-  .text-footer {
-    font-size: 11px;
-  }
 }
