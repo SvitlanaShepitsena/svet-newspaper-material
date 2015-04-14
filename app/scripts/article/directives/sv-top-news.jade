@@ -1,6 +1,6 @@
-a.article-thumb-link(ui-sref='app.article({id:ctrl.mainNews.id})' )
+a.article-thumb-link(ui-sref='app.article({id:ctrl.mainNews.id})')
     .card.p.ml.mr
-        sv-img-framed(img = 'ctrl.mainNews.img' max-width='540' max-height='320')
+        img.mdc-img-bw(style="width:540px;height:360px" ng-src="{{ctrl.mainNews.img}}" )
         span.display-block.fs-subhead.tc-black-1 {{ctrl.mainNews.title }}
         .fs-caption.tc-grey-600 By {{ctrl.isFirst? 'Alex Etman':ctrl.mainNews.author}}
         span.mdc-display-inline-block.fs-body-2.tc-grey-800 {{ctrl.mainNews.body | length:100}}...
