@@ -8,13 +8,12 @@
                 templateUrl: 'scripts/article/directives/sv-top-news.html',
                 scope: {},
                 bindToController: {
-                    mainNews:'='
+                    mainNews: '='
                 },
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
 
                     var ctrl = this;
-
 
 
                 },
