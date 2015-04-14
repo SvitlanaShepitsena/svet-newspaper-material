@@ -24,7 +24,6 @@
 
 
             });
-            main.shiftAuth = AgentServ.isIe() && !$mdMedia('gt-lg');
 
 
         })

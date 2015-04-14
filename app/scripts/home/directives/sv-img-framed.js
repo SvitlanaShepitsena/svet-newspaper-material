@@ -16,7 +16,6 @@
                     $scope.maxW = $scope.maxWidth || 600;
                     $scope.maxH = $scope.maxHeight || 400;
 
-                    console.log($scope.img);
                     el.css('position', 'relative');
                     el.css('overflow', 'hidden');
 
