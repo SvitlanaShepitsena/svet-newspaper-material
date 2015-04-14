@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop>
+<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop >
 
 <!-- =Header-->
 <!--<div layout="row" class="pl">-->
@@ -44,10 +44,10 @@
 
     <sv-social-top-nav></sv-social-top-nav>
 </div>
-<div layout="row" flex style="height:100% !important">
+<div layout="row" flex style="height:100% !important; overflow:hidden ">
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-md')" style="position: relative">
+                md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-primary text-center" layout='row' layout-align='space-around center'>
             <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
             <a class="logo-link" ui-sref="app.home">
@@ -57,7 +57,7 @@
                        ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
-        <md-content layout-padding>
+        <md-content layout-padding style="height:100%; min-height: 800px";>
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
             <!--<sv-events-link class="mb+"></sv-events-link>-->
             <sv-nav-btn url="app.svet-recommends"
