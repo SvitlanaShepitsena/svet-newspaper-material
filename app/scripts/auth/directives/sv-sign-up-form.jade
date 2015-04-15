@@ -20,13 +20,13 @@ div(flex-container='column')
                     button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='signUp.createAccount()')
                         i.mdi.mdi-check &nbsp
                         | Зарегистрироваться
-                div(flex-container='row' flex-align='space-between center')
-                    div.display-block.fs-body-1 Вы уже зарегистрированы?  &nbsp
-                    div.mdc-text-right
-                        button.btn.btn--s.btn--flat.fs-caption.btn--indigo(lx-ripple ui-sref='app.svet-login') Войти
-        div.bgc-grey-200(flex-container='row' flex-align='start' class='p+')
-            sv-form-social-buttons
-        div.bgc-grey-200(flex-container='column' flex-align='start' class='p+')
+        div.bgc-grey-50(flex-container='column' flex-align='center center' class='p+')
             span.dispaly-block.fs-body-2 Регистрируясь, вы принимаете
-            span.dispaly-block.fs-body-2 условия лицензионного договора
+            a.dispaly-block.fs-body-2(style='border-bottom: #393939 1px dotted; line-height:14px; cursor:pointer') условия лицензионного договора
+        div(flex-container='row' flex-align='space-between center' class='p+')
+            div.display-block.fs-body-1 Вы уже зарегистрированы?  &nbsp
+            div.mdc-text-right
+                button.btn.btn--s.btn--flat.fs-caption.btn--indigo(lx-ripple ui-sref='app.svet-login') Войти
+        div.bgc-grey-200(flex-container='row' flex-align='center' class='p+')
+            sv-form-social-buttons
 
