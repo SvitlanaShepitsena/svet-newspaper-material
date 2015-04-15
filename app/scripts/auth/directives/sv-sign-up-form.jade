@@ -12,16 +12,7 @@ div(flex-container='column')
                             ng-model='user.name'
                             ng-minlength="5"
                             ng-maxlength="20"
-                            required
-                            )
-                    div(ng-messages='signUpForm.userName.$error', style='color:maroon', role='alert')
-                        div(ng-message='required') You did not enter a field
-                        div(ng-message='minlength') Your field is too short
-                        div(ng-message='maxlength') Your field is too long
-
-
-
-
+                            required )
                 div(flex-container='row')
                     div(flex-item='')
                         lx-text-field(label='{{email|translate}}', icon='email' )
