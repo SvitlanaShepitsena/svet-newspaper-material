@@ -6,10 +6,18 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-sign-up-form.html',
-                scope: {},
-                bindToController: {
-
+                scope: {
+                    title: '@',
+                    name: '@',
+                    email: '@',
+                    password: '@',
+                    register: '@',
+                    registering: '@',
+                    conditions: '@',
+                    registered: '@',
+                    login: '@'
                 },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope, AuthServ, $rootScope) {
                     var signUp = this;
@@ -17,7 +25,6 @@
                     signUp.user = {
                         email: '',
                         pass: ''
-
                     }
                     signUp.createAccount = function () {
                         AuthServ.createUser(signUp.user.email, signUp.user.pass).then(function (user) {
@@ -27,11 +34,8 @@
                             }
                         )
                     }
-
                 },
-
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });
