@@ -18,7 +18,6 @@
 
                 link: function ($scope, el, attrs, ctrls) {
                     var ctrl = ctrls[0];
-                    var familiesContainerCtrl = ctrls[1] || ctrls[2];
 
                     $rootScope.$watch('user', function (user) {
                         $scope.user = user;
@@ -27,11 +26,20 @@
 
                     var eventUsers = EventServ.getUsersArrayRef(ctrl.eventKey);
                     eventUsers.$loaded().then(function () {
-                        familiesContainerCtrl.setRegisteredUsers(eventUsers.length);
-
                         if ($rootScope.user) {
+
                             var foundUser = _.find(eventUsers, {'id': $rootScope.user.id});
                             ctrl.isUserJoined = foundUser ? true : false;
+                            eventUsers.$watch(function (event) {
+                                if (event.event === 'child_removed'&&event.key == $rootScope.user.id) {
+                                    ctrl.isUserJoined = false;
+
+                                }
+                                if (event.event === 'child_added'&&event.key == $rootScope.user.id) {
+                                    ctrl.isUserJoined = true;
+
+                                }
+                            })
                         }
                     });
                     ctrl.joinEvent = function () {
