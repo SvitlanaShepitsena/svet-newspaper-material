@@ -32,7 +32,7 @@
         'firebase',
         'mwl.calendar',
         'ui.router',
-        'ui.bootstrap',
+        'ui.bootstrap'
     ])
 
         .config(function ($mdThemingProvider, $mdIconProvider) {
