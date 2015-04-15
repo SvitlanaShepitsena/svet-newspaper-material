@@ -16,14 +16,15 @@ div(flex-container='column')
                     div(flex-item='')
                         lx-text-field(label='Password / Пароль', icon='lock', ng-model='signUp.user.pass')
                             input(type='password', ng-model='login.user.pass')
+            div(flex-container='column' flex-align='center start')
+                span.dispaly-block.fs-body-2 Регистрируясь, вы принимаете
+                a.dispaly-block.fs-body-2(style='border-bottom: #393939 1px dotted; line-height:14px; cursor:pointer') условия лицензионного договора
+        div.bgc-white-1(flex-container='column' flex-align='center start' class='p+')
                 div(flex-container='row' class="mb+")
                     button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='signUp.createAccount()')
                         i.mdi.mdi-check &nbsp
                         | Зарегистрироваться
-        div.bgc-grey-50(flex-container='column' flex-align='center center' class='p+')
-            span.dispaly-block.fs-body-2 Регистрируясь, вы принимаете
-            a.dispaly-block.fs-body-2(style='border-bottom: #393939 1px dotted; line-height:14px; cursor:pointer') условия лицензионного договора
-        div(flex-container='row' flex-align='space-between center' class='p+')
+        div.bgc-grey-50(flex-container='row' flex-align='space-between center' class='p+')
             div.display-block.fs-body-1 Вы уже зарегистрированы?  &nbsp
             div.mdc-text-right
                 button.btn.btn--s.btn--flat.fs-caption.btn--indigo(lx-ripple ui-sref='app.svet-login') Войти
