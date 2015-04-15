@@ -3,7 +3,6 @@
 angular
   .module('mwl.calendar')
   .directive('mwlCalendar', function() {
-
     return {
       templateUrl: 'templates/main.html',
       restrict: 'EA',
@@ -27,23 +26,23 @@ angular
         timespanClick: '&calendarTimespanClick',
         dayViewSplit: '@calendarDayViewSplit'
       },
-      controller: function($scope, $timeout, moment, calendarConfig) {
+      controller: function($scope, $timeout, $locale, $filter, moment) {
 
         var self = this;
 
-        var weekTitleLabel = $scope.weekTitleLabel || calendarConfig.titleFormats.week;
+        var weekTitleLabel = $scope.weekTitleLabel || 'Week {week} of {year}';
         this.titleFunctions = {
           day: function(currentDay) {
-            return moment(currentDay).format(calendarConfig.titleFormats.day);
+            return $filter('date')(currentDay, 'EEEE d MMMM, yyyy');
           },
           week: function(currentDay) {
             return weekTitleLabel.replace('{week}', moment(currentDay).week()).replace('{year}', moment(currentDay).format('YYYY'));
           },
           month: function(currentDay) {
-            return moment(currentDay).format(calendarConfig.titleFormats.month);
+            return $filter('date')(currentDay, 'MMMM yyyy');
           },
           year: function(currentDay) {
-            return moment(currentDay).format(calendarConfig.titleFormats.year);
+            return moment(currentDay).format('YYYY');
           }
         };
 
@@ -72,7 +71,7 @@ angular
         //Auto update the calendar when the locale changes
         var firstRunWatcher = true;
         var unbindWatcher = $scope.$watch(function() {
-          return moment.locale();
+          return moment.locale() + $locale.id;
         }, function() {
           if (firstRunWatcher) { //dont run the first time the calendar is initialised
             firstRunWatcher = false;
@@ -93,5 +92,4 @@ angular
 
       }
     };
-
   });

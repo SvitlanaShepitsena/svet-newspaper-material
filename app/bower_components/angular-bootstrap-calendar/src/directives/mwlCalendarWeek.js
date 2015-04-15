@@ -3,7 +3,6 @@
 angular
   .module('mwl.calendar')
   .directive('mwlCalendarWeek', function() {
-
     return {
       templateUrl: 'templates/week.html',
       restrict: 'EA',
@@ -12,8 +11,7 @@ angular
         events: '=calendarEvents',
         currentDay: '=calendarCurrentDay',
         eventClick: '=calendarEventClick',
-        useIsoWeek: '=calendarUseIsoWeek',
-        timespanClick: '=calendarTimespanClick'
+        useIsoWeek: '=calendarUseIsoWeek'
       },
       controller: function($scope, moment, calendarHelper) {
         function updateView() {
@@ -21,10 +19,7 @@ angular
         }
 
         $scope.drillDown = function(day) {
-          var date = moment($scope.currentDay).clone().date(day).toDate();
-          if ($scope.timespanClick({calendarDate: date}) !== false) {
-            $scope.calendarCtrl.changeView('day', date);
-          }
+          $scope.calendarCtrl.changeView('day', moment($scope.currentDay).clone().date(day).toDate());
         };
 
         $scope.$watch('currentDay', updateView);
@@ -34,5 +29,4 @@ angular
         scope.calendarCtrl = calendarCtrl;
       }
     };
-
   });

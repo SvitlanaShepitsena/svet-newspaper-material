@@ -1,9 +1,5 @@
 # Angular Bootstrap Calendar
 
-[![Build Status](https://travis-ci.org/mattlewis92/angular-bootstrap-calendar.svg?branch=master)](https://travis-ci.org/mattlewis92/angular-bootstrap-calendar)
-[![Bower version](https://badge.fury.io/bo/angular-bootstrap-calendar.svg)](http://badge.fury.io/bo/angular-bootstrap-calendar)
-[![devDependency Status](https://david-dm.org/mattlewis92/angular-bootstrap-calendar/dev-status.svg)](https://david-dm.org/mattlewis92/angular-bootstrap-calendar#info=devDependencies)
-
 ## Table of contents
 
 - [About](#about)
@@ -46,10 +42,10 @@ You will then need to include the JS and CSS files for the plugin:
 <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js">
 ```
 
-And finally add the module dependency in your AngularJS app (you can remove ui.bootstrap if you don't want the extra dependency - it is only required for collapse animations and tooltips):
+And finally add the module dependency in your AngularJS app:
 
 ```javascript
-angular.module('myModule', ['mwl.calendar', 'ui.bootstrap']);
+angular.module('myModule', ['mwl.calendar']);
 ```
 
 ## Documentation
@@ -61,11 +57,11 @@ There is a single directive exposed to create the calendar, use it like so:
     calendar-view="calendarView"
     calendar-current-day="calendarDay"
     calendar-control="calendarControl"
-    calendar-event-click="eventClicked(calendarEvent)"
+    calendar-event-click="eventClicked($event)"
     calendar-edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
     calendar-delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-    calendar-edit-event-click="eventEdited(calendarEvent)"
-    calendar-delete-event-click="eventDeleted(calendarEvent)"
+    calendar-edit-event-click="eventEdited($event)"
+    calendar-delete-event-click="eventDeleted($event)"
     calendar-auto-open="true"
     ></mwl-calendar>
 ```
@@ -83,8 +79,7 @@ $scope.events = [
     starts_at: new Date(2013,5,1,1), // A javascript date object for when the event starts
     ends_at: new Date(2014,8,26,15), // A javascript date object for when the event ends
     editable: false, // If calendar-edit-event-html is set and this field is explicitly set to false then dont make it editable
-    deletable: false, // If calendar-delete-event-html is set and this field is explicitly set to false then dont make it deleteable
-    incrementsBadgeTotal: true //If set to false then will not count towards the badge total amount on the month and year view
+    deletable: false // If calendar-delete-event-html is set and this field is explicitly set to false then dont make it deleteable
   }
 ];
 ```
@@ -113,7 +108,7 @@ The directive will instantiate this variable for you and add the following metho
 
 ### calendar-event-click 
 
-This expression is called when an event is clicked on the calendar. calendarEvent contains the calendar event that was clicked on.
+This expression is called when an event is clicked on the calendar. $event contains the calendar event that was clicked on.
 
 ### calendar-edit-event-html 
 
@@ -125,15 +120,15 @@ If provided this piece of html will be displayed next to an event on the year an
 
 ### calendar-edit-event-click 
 
-This expression is called when an event edit link is clicked on the calendar. calendarEvent contains the calendar event that was clicked on.
+This expression is called when an event edit link is clicked on the calendar. $event contains the calendar event that was clicked on.
 
 ### calendar-delete-event-click 
 
-This expression is called when an event delete link is clicked on the calendar. calendarEvent contains the calendar event that was clicked on.
+This expression is called when an event delete link is clicked on the calendar. $event contains the calendar event that was clicked on.
 
 ### calendar-timespan-click
 
-This expression is called when a month or day on the calendar is clicked. calendarDate contains the start of the month or day that was clicked on.
+This expression is called when a month or day on the calendar is clicked. $date contains the start of the month or day that was clicked on.
 
 ### calendar-auto-open
 
@@ -176,28 +171,8 @@ The number of chunks to split the day view hours up into. Can be either 10, 15 o
 
 ## Internationalization and localization
 
-The calendar directive uses moment.js to produce all months and days of the week etc. Therefore to change the language of the calendar just [follow this guide](http://momentjs.com/docs/#/i18n/).
-
-## Configuring date formats
-
-You can easily customise the date formats used throughout the calendar by using the calendarConfigProvider. There are current 2 methods available. Please note that all formats are those used by moment.js. Example usage:
-
-```javascript
-angular.module('myModule')
-  .config(function(calendarConfigProvider) {
-  
-    calendarConfigProvider.configureDateFormats({
-      hour: 'HH:mm' //this will configure the hour view to display in 24 hour format rather than the default of 12 hour
-    });
-    
-    calendarConfigProvider.configureTitleFormats({
-      day: 'ddd D MMM' //this will configure the day view title to be shorter
-    });
-    
-  });
-```
-
-For a full list of all available formats and their defaults see [calendarConfig.js](https://github.com/mattlewis92/angular-bootstrap-calendar/blob/master/src/services/calendarConfig.js)
+The calendar directive uses angulars date filter to produce all months and days of the week etc. Therefore to changes the language of the calendar you simply need to include the appropriate angular i18n file as described here:
+https://docs.angularjs.org/guide/i18n
 
 ## Demo
 
@@ -217,7 +192,7 @@ http://mattlewis92.github.io/angular-bootstrap-calendar/
 * Install local dev dependencies: `npm install` while current directory is this repo
 
 ### Build
-Run `gulp build` to build the project files in the dist folder
+Run `gulp` to build the project files in the dist folder
 
 ### Development server
 Run `gulp watch` to start a development server with livereload on port 8000. 

@@ -3,7 +3,6 @@
 angular
   .module('mwl.calendar')
   .directive('mwlCalendarYear', function(moment) {
-
     return {
       templateUrl: 'templates/year.html',
       restrict: 'EA',
@@ -19,11 +18,10 @@ angular
         autoOpen: '=calendarAutoOpen',
         timespanClick: '=calendarTimespanClick'
       },
-      controller: function($scope, $sce, $timeout, calendarHelper, eventCountBadgeTotalFilter) {
+      controller: function($scope, $sce, $timeout, calendarHelper) {
         var firstRun = false;
 
         $scope.$sce = $sce;
-        $scope.eventCountBadgeTotalFilter = eventCountBadgeTotalFilter;
 
         function updateView() {
           $scope.view = calendarHelper.getYearView($scope.events, $scope.currentDay);
@@ -32,7 +30,7 @@ angular
           if ($scope.autoOpen && !firstRun) {
             $scope.view.forEach(function(row, rowIndex) {
               row.forEach(function(year, cellIndex) {
-                if (moment($scope.currentDay).startOf('month').isSame(year.date)) {
+                if (year.label === moment($scope.currentDay).format('MMMM')) {
                   $scope.monthClicked(rowIndex, cellIndex, true);
                   $timeout(function() {
                     firstRun = false;
@@ -49,7 +47,7 @@ angular
         $scope.monthClicked = function(yearIndex, monthIndex, monthClickedFirstRun) {
 
           if (!monthClickedFirstRun) {
-            $scope.timespanClick({calendarDate: $scope.view[yearIndex][monthIndex].date.startOf('month').toDate()});
+            $scope.timespanClick({$date: $scope.view[yearIndex][monthIndex].date.startOf('month').toDate()});
           }
 
           var handler = calendarHelper.toggleEventBreakdown($scope.view, yearIndex, monthIndex);
@@ -59,15 +57,11 @@ angular
         };
 
         $scope.drillDown = function(month) {
-          var date = moment($scope.currentDay).clone().month(month).toDate();
-          if ($scope.timespanClick({calendarDate: date}) !== false) {
-            $scope.calendarCtrl.changeView('month', date);
-          }
+          $scope.calendarCtrl.changeView('month', moment($scope.currentDay).clone().month(month).toDate());
         };
       },
       link: function(scope, element, attrs, calendarCtrl) {
         scope.calendarCtrl = calendarCtrl;
       }
     };
-
   });
