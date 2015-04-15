@@ -1,5 +1,5 @@
 div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
-    div(ng-if="main.isIe")
+    div(ng-if="ctrl.isIe")
         button.tc-black(lx-ripple=''
         ng-if='!user'
         ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
@@ -7,7 +7,7 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
         class='fab__primary btn btn--white tc-black' )
             i.mdi.mdi-account
             i.mdi.mdi-login
-    div(ng-if="!main.isIe")
+    div(ng-if="!ctrl.isIe")
         .fab.l(ng-if='!user' ng-class='{ie:ctrl.isIe && !ctrl.sm}')
             button.tc-black(lx-ripple=''
             ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
