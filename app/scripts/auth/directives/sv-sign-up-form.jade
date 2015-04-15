@@ -3,11 +3,25 @@ div(flex-container='column')
         div(class='p+')
             span.display-block.fs-title.mb {{title|translate}}
             .divider.divider--dark
-            form.mt(flex-container='column' name="loginForm")
+            form.mt(flex-container='column' name='signUpForm')
                 div(flex-container='row')
                     div(flex-item='')
                         lx-text-field(label='{{name|translate}}', icon='account')
-                            input(type='text', ng-model='user.name')
+                            input(type='text'
+                            name='userName'
+                            ng-model='user.name'
+                            ng-minlength="5"
+                            ng-maxlength="20"
+                            required
+                            )
+                    div(ng-messages='signUpForm.userName.$error', style='color:maroon', role='alert')
+                        div(ng-message='required') You did not enter a field
+                        div(ng-message='minlength') Your field is too short
+                        div(ng-message='maxlength') Your field is too long
+
+
+
+
                 div(flex-container='row')
                     div(flex-item='')
                         lx-text-field(label='{{email|translate}}', icon='email' )
