@@ -11,7 +11,11 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-                    ctrl.langEng = true;
+
+                    var savedLang = $translate.use();
+                    ctrl.langEng = savedLang == 'en';
+
+
                     ctrl.changeLanguage = function (key) {
                         $translate.use(key);
                         ctrl.langEng = key == 'en';
