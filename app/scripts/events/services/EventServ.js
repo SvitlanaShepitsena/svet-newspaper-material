@@ -7,10 +7,10 @@
             return {
                 joinUser: function (user, eventKey) {
                     return $q(function (resolve, reject) {
-                        var eventUsersUrl = allEventsUrl + eventKey + '/users/'
-                        var eventUsersObj = $firebaseObject(new Firebase(eventUsersUrl));
-                        eventUsersObj[user.id] = user;
-                        eventUsersObj.$save().then(function (ref) {
+                        var eventUsersUrl = allEventsUrl + eventKey + '/users/';
+
+                        var eventUsersObj = $firebaseArray(new Firebase(eventUsersUrl));
+                        eventUsersObj.$add(user).then(function (ref) {
                             resolve(ref.key);
                         })
 
