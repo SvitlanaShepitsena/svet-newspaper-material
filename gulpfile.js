@@ -26,7 +26,7 @@ gulp.task("jade", function () {
 });
 
 gulp.task('jade:watch', ['jade'], reload);
-
+gulp.task('js-watch', browserSync.reload);
 
 ///////////////////////////// Stylus/Css ////////////////////////////////////////////////
 
@@ -82,6 +82,9 @@ gulp.task('serve', ['stylus:main', 'jade'], function () {
     gulp.watch(['./app/scripts/**/*.jade'], ['jade:watch']);
 
     gulp.watch("app/*.html").on('change', reload);
+
+    gulp.watch("app/**/*.js", ['js-watch']);
+
 });
 
 

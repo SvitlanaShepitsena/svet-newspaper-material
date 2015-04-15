@@ -22,10 +22,9 @@
 
         span.display-block.fs-caption.tc-grey-700.mdc-text-right.mb
             i.fa.fa-users.mr
-            | 15 Families are going
+            | {{ctrl.userNumbers}} Families are going
     .card__actions.mdc-text-right
-        button.btn.btn--m.btn--flat.tc-red-400(lx-ripple='' lx-dropdown-toggle)
-            | Join
+        sv-join-btn(event-key='kohl2015')
         button.btn.btn--m.btn--blue.tc-blue-grey-700.rbtn--flat.mb(lx-ripple='')
             | Comment
         button.btn.btn--m.btn--blue.tc-blue-grey-700.rbtn--flat.mb(lx-ripple='')
