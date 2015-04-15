@@ -1,59 +1,59 @@
 div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
-    div(ng-if="ctrl.isIe")
-        button.tc-black(lx-ripple=''
-        ng-if='!user'
-        ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
-        ui-sref='app.svet-login'
-        class='fab__primary btn btn--white tc-black' )
-            i.mdi.mdi-account
-            i.mdi.mdi-login
-    div(ng-if="!ctrl.isIe")
-        .fab.l(ng-if='!user' ng-class='{ie:ctrl.isIe && !ctrl.sm}')
+    div(ng-if='!user')
+        div(ng-if="ctrl.isIe")
             button.tc-black(lx-ripple=''
             ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
             ui-sref='app.svet-login'
             class='fab__primary btn btn--white tc-black' )
                 i.mdi.mdi-account
                 i.mdi.mdi-login
-            .fab__actions(ng-class="{'fab__actions--left':!ctrl.isIe&&ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
-                button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple
+        div(ng-if="!ctrl.isIe")
+            .fab.l(ng-class='{ie:ctrl.isIe && !ctrl.sm}')
+                button.tc-black(lx-ripple=''
+                ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
                 ui-sref='app.svet-login'
-                ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
-                    span.fs-caption Svet
-                button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("facebook")')
-                    i.mdi.mdi-facebook
-                button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginSvetUser("google")')
-                    i.mdi.mdi-google-plus
-    span.fs-subhead(ng-if='!!user') {{user.name}} &nbsp
-    lx-dropdown(position='right' ng-if='!!user')
-        button.btn.btn--s.btn--icon.btn--white.tc-black(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}")
-            img(ng-src="{{user.avatar}}")
-        lx-dropdown-menu
-            ul
-                li
-                    a.dropdown-link(ui-sref="app.svet-profile.author-dashboard")
-                        i.mdi.mdi-view-dashboard &nbsp
-                        | Панель Управления
-                li
-                    a.dropdown-link(ui-sref="app.svet-profile.author-articles")
-                        i.mdi.mdi-view-list &nbsp
-                        |  Мои Статьи
-                li
-                    a.dropdown-link(ui-sref="app.svet-profile.author-drafts")
-                        i.mdi.mdi-file &nbsp
-                        |  Мои Черновики
-                li
-                    a.dropdown-link(ui-sref='app.svet-profile.create-article')
-                        i.mdi.mdi-pencil &nbsp
-                        | Создать Статью
-                li.dropdown-divider
-                li
-                    a.dropdown-link(ui-sref='app.svet-profile.create-article')
-                        i.mdi.mdi-settings &nbsp
-                        | Настройки
-                li
-                    a.dropdown-link(ng-click='ctrl.logout()')
-                        i.mdi.mdi-logout &nbsp
-                        | Выйти
-
+                class='fab__primary btn btn--white tc-black' )
+                    i.mdi.mdi-account
+                    i.mdi.mdi-login
+                .fab__actions(ng-class="{'fab__actions--left':!ctrl.isIe&&ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
+                    button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple
+                    ui-sref='app.svet-login'
+                    ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
+                        span.fs-caption Svet
+                    button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginProvider("facebook")')
+                        i.mdi.mdi-facebook
+                    button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginProvider("google")')
+                        i.mdi.mdi-google-plus
+    div(ng-if='!!user')
+        span.fs-subhead {{user.name}} &nbsp
+        lx-dropdown(position='right')
+            button.btn.btn--s.btn--icon.btn--white.tc-black(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}")
+                img(ng-src="{{user.avatar}}")
+            lx-dropdown-menu
+                ul
+                    li
+                        a.dropdown-link(ui-sref="app.svet-profile.author-dashboard")
+                            i.mdi.mdi-view-dashboard &nbsp
+                            | Панель Управления
+                    li
+                        a.dropdown-link(ui-sref="app.svet-profile.author-articles")
+                            i.mdi.mdi-view-list &nbsp
+                            |  Мои Статьи
+                    li
+                        a.dropdown-link(ui-sref="app.svet-profile.author-drafts")
+                            i.mdi.mdi-file &nbsp
+                            |  Мои Черновики
+                    li
+                        a.dropdown-link(ui-sref='app.svet-profile.create-article')
+                            i.mdi.mdi-pencil &nbsp
+                            | Создать Статью
+                    li.dropdown-divider
+                    li
+                        a.dropdown-link(ui-sref='app.svet-profile.create-article')
+                            i.mdi.mdi-settings &nbsp
+                            | Настройки
+                    li
+                        a.dropdown-link(ng-click='ctrl.logout()')
+                            i.mdi.mdi-logout &nbsp
+                            | Выйти
 

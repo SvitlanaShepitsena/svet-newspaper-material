@@ -48,7 +48,6 @@
                     var deferred = $q.defer();
 
                     this.getObj().$authWithOAuthPopup(provider).then(function (data) {
-
                         if (provider === 'facebook') {
                             var user = processUserFb(data);
                         }

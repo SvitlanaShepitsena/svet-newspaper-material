@@ -35,10 +35,11 @@
 
 
                     $rootScope.$watch('user', function (newVal) {
+                        console.log(newVal);
                         $scope.user = newVal;
                     })
 
-                    ctrl.loginSvetUser = function (provider) {
+                    ctrl.loginProvider = function (provider) {
 
                         AuthServ.authProvider(provider).then(function (user) {
                             UserServ.saveNewUser(user);
