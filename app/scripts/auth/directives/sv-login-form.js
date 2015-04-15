@@ -6,6 +6,18 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-login-form.html',
+                scope: {
+                    title: '@',
+                    login: '@',
+                    email: '@',
+                    password: '@',
+                    registerAccount: '@',
+                    newUser: '@',
+
+                    registering: '@',
+                    conditions: '@',
+                    registered: '@'
+                },
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope, AuthServ, $rootScope, $state) {

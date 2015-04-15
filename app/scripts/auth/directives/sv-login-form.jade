@@ -1,24 +1,24 @@
 div(flex-container='column')
     .card
         div(class='p+')
-            span.display-block.fs-title.mb Log In to Your Account
+            span.display-block.fs-title.mb {{title|translate}}
             .divider.divider--dark
             form.mt(flex-container='column' name="loginForm")
                 div(flex-container='row')
                     div(flex-item='')
-                        lx-text-field(label='Email / Электронный Адрес', icon='email')
+                        lx-text-field(label='{{email|translate}}', icon='email')
                             input(type='email', ng-model='login.user.email')
                 div(flex-container='row' class="mb+")
                     div(flex-item='')
-                        lx-text-field(label='Password / Пароль', icon='lock')
+                        lx-text-field(label='{{password|translate}}', icon='lock')
                             input(type='password', ng-model='login.user.password')
                 div(flex-container='row' class="mb+")
                     button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='login.singIn()')
                         i.mdi.mdi-login &nbsp
-                        | Войти
+                        | {{login|translate}}
                 div.mb(flex-container='row' flex-align='start')
-                    a.register-link.fs-body-2(ui-sref='app.sign-up') Зарегистрируйтесь
-                    span.fs-body-2 , если Вы новый пользователь
+                    a.register-link.fs-body-2(ui-sref='app.sign-up') {{registerAccount|translate}}
+                    span.fs-body-2 , {{newUser|translate}}
         div.bgc-grey-200(flex-container='row' flex-align='start' class='p+')
             sv-form-social-buttons
 
