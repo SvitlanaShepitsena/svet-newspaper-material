@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svLoginForm', function () {
+        .directive('svLoginForm', function (toastr) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-login-form.html',
@@ -12,27 +12,25 @@
                     email: '@',
                     password: '@',
                     registerAccount: '@',
-                    newUser: '@',
+                    newUser: '@'
 
-                    registering: '@',
-                    conditions: '@',
-                    registered: '@'
+
                 },
-                bindToController: {},
-                controllerAs: 'ctrl',
                 controller: function ($scope, AuthServ, $rootScope, $state) {
-                    var login = this;
 
-                    login.user = {
-                        email: 'alex@svet.com',
+                    $scope.user = {
+                        email: 'alex@gmail.com',
                         password: '12345'
                     }
 
-                    login.singIn = function () {
-                        AuthServ.loginPassword(login.user.email, login.user.password).then(function (user) {
+                    $scope.singIn = function () {
+                        AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {
+
                             $rootScope.user = user;
                             $state.go('app.home');
 
+                        }).catch(function (error) {
+                           toastr.error(error.message);
                         })
                     }
 

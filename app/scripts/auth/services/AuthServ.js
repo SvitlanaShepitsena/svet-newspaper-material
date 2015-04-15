@@ -79,7 +79,6 @@
                         deferred.resolve(user);
                     }).catch(function (error) {
                         deferred.reject(error);
-                        console.error("Error: ", error);
                     });
                     return deferred.promise;
                 },

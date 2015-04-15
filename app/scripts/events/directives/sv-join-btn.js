@@ -51,7 +51,6 @@
 
                     },
                         ctrl.unlinkEvent = function () {
-                            console.log('unlink');
                             EventServ.unlinkUser($scope.user, ctrl.eventKey).then(function () {
 
                                 toastr.warning('You were unlinked from our Event');

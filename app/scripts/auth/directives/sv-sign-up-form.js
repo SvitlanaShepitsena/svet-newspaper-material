@@ -17,17 +17,17 @@
                     registered: '@',
                     login: '@'
                 },
-                bindToController: {},
-                controllerAs: 'ctrl',
-                controller: function ($scope, AuthServ, $rootScope) {
-                    var signUp = this;
 
-                    signUp.user = {
+                controller: function ($scope, AuthServ, $rootScope) {
+
+                    $scope.user = {
+                        name:'',
                         email: '',
-                        pass: ''
+                        password: ''
                     }
-                    signUp.createAccount = function () {
-                        AuthServ.createUser(signUp.user.email, signUp.user.pass).then(function (user) {
+                    $scope.createAccount = function () {
+                        AuthServ.createUser($scope.user.email, $scope.user.password).then(function (user) {
+                                user.name = $scope.user.name;
                                 UserServ.saveNewUser(user);
 
                                 $rootScope.user = user;
