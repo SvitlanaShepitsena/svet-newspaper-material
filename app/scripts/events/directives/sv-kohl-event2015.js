@@ -17,12 +17,6 @@
                         ctrl.userNumbers = number;
                     }
 
-                    $scope.$on('add-event-user', function () {
-                        ctrl.userNumbers++;
-                    });
-                    $scope.$on('remove-event-user', function () {
-                        ctrl.userNumbers--;
-                    });
                 },
 
                 link: function ($scope, el, attrs) {

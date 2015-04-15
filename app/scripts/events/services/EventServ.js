@@ -30,7 +30,7 @@
 
                     });
                 },
-                getUsersRef: function (eventKey) {
+                getUsersArrayRef: function (eventKey) {
                     var eventUsersUrl = allEventsUrl + eventKey + '/users/'
                     var eventUsersRef = $firebaseArray(new Firebase(eventUsersUrl));
 
