@@ -5,6 +5,8 @@
 
         .controller('MainCtrl', function (AgentServ, $scope, $timeout, $mdSidenav, $mdMedia) {
             var main = this;
+            main.isIe = AgentServ.isIe();
+            console.log(main.isIe);
 
             $scope.toggleLeft = function () {
                 $mdSidenav('left').toggle();
