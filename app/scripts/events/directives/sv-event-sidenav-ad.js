@@ -18,14 +18,12 @@
                         ctrl.userNumbers = number;
                     }
 
-                    ctrl.addOneUser = function () {
+                    $scope.$on('add-event-user', function () {
                         ctrl.userNumbers++;
-
-                    }
-                    ctrl.substractUser = function () {
+                    });
+                    $scope.$on('remove-event-user', function () {
                         ctrl.userNumbers--;
-
-                    }
+                    });
 
                 },
 

@@ -13,6 +13,13 @@
                 controllerAs: 'ctrl',
                 controller: function svJoinBtnCtrl($scope) {
                     var ctrl = this;
+                    $scope.$on('add-event-user', function () {
+                        ctrl.isUserJoined = true;
+                    });
+
+                    $scope.$on('remove-event-user', function () {
+                        ctrl.isUserJoined = false;
+                    });
                 },
 
                 link: function ($scope, el, attrs, ctrls) {
@@ -37,7 +44,8 @@
                         EventServ.joinUser($scope.user, ctrl.eventKey).then(function () {
                             toastr.success('Thank you for joining event. See you then.');
                             ctrl.isUserJoined = true;
-                            familiesContainerCtrl.addOneUser();
+                            $rootScope.$broadcast('add-event-user');
+
                             $state.go('app.events.field', {year: 2015});
                         })
 
@@ -46,16 +54,12 @@
                             console.log('unlink');
                             EventServ.unlinkUser($scope.user, ctrl.eventKey).then(function () {
                                 ctrl.isUserJoined = false;
-                                familiesContainerCtrl.substractUser();
+                                $rootScope.$broadcast('remove-event-user');
                                 toastr.warning('You were unlinked from our Event');
                                 //$state.go('app.field-event', {year: 2015});
                             })
 
                         }
-                    //eventUsers.$watch(function (event) {
-                    //    var foundUser = _.find(eventUsers, {id: $rootScope.user.id});
-                    //    ctrl.isUserJoined = foundUser ? true : false;
-                    //})
                 }
             };
         });
