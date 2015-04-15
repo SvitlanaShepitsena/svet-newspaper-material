@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop>
+<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
 
 <!-- =Header-->
 <!--<div layout="row" class="pl">-->
@@ -58,7 +58,7 @@
                        ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
-        <md-content layout-padding>
+        <md-content layout-padding style="height:100%; min-height: 800px" ;>
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
             <!--<sv-events-link class="mb+"></sv-events-link>-->
             <sv-nav-btn url="app.svet-recommends"
@@ -92,7 +92,7 @@
         </md-toolbar>
 
         <div layout="row" layout-fill flex> <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
-            <md-content>
+            <md-content layout-fill>
                 <div class="m" ui-view="" flex></div>
             </md-content>
             <!-- =Right Sidebar-->
