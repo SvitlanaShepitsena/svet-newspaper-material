@@ -59,7 +59,7 @@
                 toastr.error('ERROR!'+exception.message);
                 $rootScope.$broadcast('error');
 
-                throw exception;
+                //throw exception;
             };
         })
 
