@@ -1,4 +1,11 @@
 div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
+    button.tc-black(lx-ripple=''
+    ng-if='!user && !main.showShifter'
+    ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
+    ui-sref='app.svet-login'
+    class='fab__primary btn btn--white tc-black' )
+        i.mdi.mdi-account
+        i.mdi.mdi-login
     .fab.l(ng-if='!user' ng-class='{ie:ctrl.isIe && !ctrl.sm}')
         button.tc-black(lx-ripple=''
         ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",

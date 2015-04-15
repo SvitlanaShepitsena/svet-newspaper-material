@@ -21,11 +21,7 @@
                 } else {
                     main.showShifter = true;
                 }
-
-
             });
-
-
         })
         .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
             $scope.close = function () {
