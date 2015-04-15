@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
+<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop>
 
 <!-- =Header-->
 <!--<div layout="row" class="pl">-->
@@ -41,7 +41,7 @@
 <div class="toolbar-custom tc-white-1 pl" layout="row" layout-align="space-between center">
     <div layout="row">
         <sv-lang-switch></sv-lang-switch>
-        <sv-weather-svet  class="ml++" hide-sm></sv-weather-svet>
+        <sv-weather-svet class="ml++" hide-sm></sv-weather-svet>
     </div>
     <sv-social-top-nav></sv-social-top-nav>
 </div>
@@ -58,7 +58,7 @@
                        ng-controller="LeftCtrl"><i
                     class="mdi mdi-close"></i></md-button>
         </md-toolbar>
-        <md-content layout-padding style="height:100%; min-height: 800px" ;>
+        <md-content layout-padding>
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
             <!--<sv-events-link class="mb+"></sv-events-link>-->
             <sv-nav-btn url="app.svet-recommends"
@@ -92,7 +92,9 @@
         </md-toolbar>
 
         <div layout="row" layout-fill flex> <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
-            <div class="m" ui-view="" flex></div>
+            <md-content>
+                <div class="m" ui-view="" flex></div>
+            </md-content>
             <!-- =Right Sidebar-->
             <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
                         md-is-locked-open="$mdMedia('gt-lg')">
