@@ -31,7 +31,6 @@
         'toastr',
         'firebase',
         'mwl.calendar',
-        'simple-slideshow',
         'ui.router'
 
         //'ui.bootstrap',
@@ -50,7 +49,7 @@
 
             $mdThemingProvider.theme('default')
                 .primaryPalette('grey')
-                .accentPalette('red');
+                .accentPalette('red');8
 
         }).factory('$exceptionHandler', function ($injector) {
             return function (exception, cause) {

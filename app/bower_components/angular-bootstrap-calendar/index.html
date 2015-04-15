@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/calendar.css">
     <link rel="stylesheet" href="docs/styles/main.css">
   </head>
@@ -65,11 +66,11 @@
             calendar-view="calendarView"
             calendar-current-day="calendarDay"
             calendar-control="calendarControl"
-            calendar-event-click="eventClicked(calendarEvent)"
+            calendar-event-click="eventClicked($event)"
             calendar-edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
             calendar-delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-            calendar-edit-event-click="eventEdited(calendarEvent)"
-            calendar-delete-event-click="eventDeleted(calendarEvent)"
+            calendar-edit-event-click="eventEdited($event)"
+            calendar-delete-event-click="eventDeleted($event)"
             calendar-auto-open="true"
             calendar-day-view-start="06:00"
             calendar-day-view-end="22:00"
@@ -151,14 +152,12 @@
 
     </div>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="//cdn.jsdelivr.net/angular.bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
     <script src="src/app.js"></script>
     <script src="src/directives/mwlCalendar.js"></script>
     <script src="src/filters/truncateEventTitle.js"></script>
-    <script src="src/filters/eventCountBadgeTotal.js"></script>
-    <script src="src/services/calendarConfig.js"></script>
     <script src="src/services/calendarHelper.js"></script>
     <script src="src/services/moment.js"></script>
     <script src="src/directives/mwlCollapseFallback.js"></script>
@@ -166,7 +165,6 @@
     <script src="src/directives/mwlCalendarMonth.js"></script>
     <script src="src/directives/mwlCalendarWeek.js"></script>
     <script src="src/directives/mwlCalendarDay.js"></script>
-    <script src="src/directives/mwlCalendarSlideBox.js"></script>
     <script src="docs/scripts/demo.js"></script>
 </body>
 </html>

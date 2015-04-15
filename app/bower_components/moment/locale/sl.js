@@ -1,14 +1,16 @@
-//! moment.js locale configuration
-//! locale : slovenian (sl)
-//! author : Robert Sedovšek : https://github.com/sedovsek
+// moment.js locale configuration
+// locale : slovenian (sl)
+// author : Robert Sedovšek : https://github.com/sedovsek
 
-(function (global, factory) {
-   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('../moment')) :
-   typeof define === 'function' && define.amd ? define(['moment'], factory) :
-   factory(global.moment)
-}(this, function (moment) { 'use strict';
-
-
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['moment'], factory); // AMD
+    } else if (typeof exports === 'object') {
+        module.exports = factory(require('../moment')); // Node
+    } else {
+        factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
+    }
+}(function (moment) {
     function translate(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
@@ -70,7 +72,7 @@
         }
     }
 
-    var sl = moment.defineLocale('sl', {
+    return moment.defineLocale('sl', {
         months : 'januar_februar_marec_april_maj_junij_julij_avgust_september_oktober_november_december'.split('_'),
         monthsShort : 'jan._feb._mar._apr._maj._jun._jul._avg._sep._okt._nov._dec.'.split('_'),
         weekdays : 'nedelja_ponedeljek_torek_sreda_četrtek_petek_sobota'.split('_'),
@@ -87,6 +89,7 @@
         calendar : {
             sameDay  : '[danes ob] LT',
             nextDay  : '[jutri ob] LT',
+
             nextWeek : function () {
                 switch (this.day()) {
                 case 0:
@@ -140,7 +143,4 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
-    return sl;
-
 }));
