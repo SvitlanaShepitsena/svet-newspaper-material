@@ -181,6 +181,11 @@
 					controller:"TravelCtrl as travel",
 					templateUrl: "scripts/travel/views/travelCtrl.html"
 				})
+				.state("app.business", {
+					url: "/business", 
+					controller:"BusinessCtrl as business",
+					templateUrl: "scripts/business/views/businessCtrl.html"
+				})
 //#state'
         });
 
