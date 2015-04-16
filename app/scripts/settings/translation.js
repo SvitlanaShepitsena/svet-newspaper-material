@@ -63,6 +63,7 @@
                 'statistics': 'Statistics',
                 'comments': 'Comments',
                 'bookmarks': 'Bookmarks',
+                'read-more': 'Read More',
                 'listen': 'Listen',
                 'archive': 'Archive',
                 'from-the-editor': 'FROM THE EDITOR',
