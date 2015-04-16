@@ -3,7 +3,7 @@
 
     angular.module('archive')
         .controller('SaturdayPlusNewspaperCtrl', function ($scope) {
-            var saturdayPlusNewspaper = this;
+            console.log('heres');
 
         });
 })();

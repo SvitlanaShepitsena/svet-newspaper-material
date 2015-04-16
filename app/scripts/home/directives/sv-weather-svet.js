@@ -10,8 +10,6 @@
                 link: function ($scope, el, attrs) {
                     WeatherServ.forecast().then(function (forecast) {
                         $scope.forecast = forecast;
-                        console.log(forecast);
-                        var breakPoint = 1;
                     });
                 }
             };

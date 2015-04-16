@@ -43,7 +43,8 @@
         <sv-lang-switch></sv-lang-switch>
         <sv-weather-svet class="ml++" hide-sm></sv-weather-svet>
     </div>
-    <sv-social-top-nav></sv-social-top-nav>
+    <sv-social-top-nav hide-sm></sv-social-top-nav>
+    <sv-social-top-nav-cell hide-gt-sm class="mr"></sv-social-top-nav-cell>
 </div>
 <div layout="row" flex style="overflow:hidden">
     <!-- =Left Sidebar-->
@@ -173,6 +174,7 @@
 
 <!-- MODULES-->
 
+
 <!-- business -->
 <script src="scripts/business/businessIndex.js"></script>
 <script src="scripts/business/controllers/BusinessCtrl.js"></script>
@@ -235,7 +237,9 @@
 
 <!-- social -->
 <script src="scripts/social/socialIndex.js"></script>
+<script src="scripts/social/directives/sv-social-bottom-list-cell.js"></script>
 <script src="scripts/social/directives/sv-add-comment.js"></script>
+<script src="scripts/social/directives/sv-social-top-nav-cell.js"></script>
 
 <!-- world -->
 <script src="scripts/world/worldIndex.js"></script>
