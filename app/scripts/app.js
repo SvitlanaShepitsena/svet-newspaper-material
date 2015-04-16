@@ -4,7 +4,6 @@
     angular.module('app', [
 
         // modules
-		'homel',
 		'business',
 		'travel',
 		'food',
