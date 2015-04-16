@@ -36,7 +36,17 @@
 
                     $rootScope.$watch('user', function (newVal) {
                         $scope.user = newVal;
-                    })
+                    });
+
+                    $scope.isInGroup = function (group) {
+
+                        var breakPoint = 1;
+                        if (!$scope.user || !$scope.user.groups) {
+                            return false;
+                        }
+
+
+                    };
 
                     ctrl.loginProvider = function (provider) {
 
