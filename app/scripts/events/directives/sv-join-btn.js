@@ -6,7 +6,11 @@
             return {
                 templateUrl: 'scripts/events/directives/sv-join-btn.html',
                 require: ['svJoinBtn', '^?svEventSidenavAd', '^?svKohlEvent2015'],
-                scope: {},
+                scope: {
+                    titleJoin: '@',
+                    titleUnlink: '@',
+                    btnSize: '@'
+                },
                 bindToController: {
                     eventKey: '@'
                 },

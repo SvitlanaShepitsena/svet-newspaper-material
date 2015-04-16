@@ -6,10 +6,11 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-event-sidenav-ad.html',
-                scope: {},
-                bindToController: {
-
+                scope: {
+                    title: '@',
+                    body: '@'
                 },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
