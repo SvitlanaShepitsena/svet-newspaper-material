@@ -150,42 +150,42 @@
                     controller: "SvetRecommendsCtrl as svetRecommends",
                     templateUrl: "scripts/article/views/svet-recommendsCtrl.html"
                 })
-				.state("app.technology", {
-					url: "/technology", 
-					controller:"TechnologyCtrl as technology",
-					templateUrl: "scripts/technology/views/technologyCtrl.html"
-				})
-				.state("app.art", {
-					url: "/art", 
-					controller:"ArtCtrl as art",
-					templateUrl: "scripts/art/views/artCtrl.html"
-				})
-				
-				.state("app.sport", {
-					url: "/sport", 
-					controller:"SportCtrl as sport",
-					templateUrl: "scripts/sport/views/sportCtrl.html"
-				})
-				.state("app.health", {
-					url: "/health", 
-					controller:"HealthCtrl as health",
-					templateUrl: "scripts/health/views/healthCtrl.html"
-				})
-				.state("app.food", {
-					url: "/food", 
-					controller:"FoodCtrl as food",
-					templateUrl: "scripts/food/views/foodCtrl.html"
-				})
-				.state("app.travel", {
-					url: "/travel", 
-					controller:"TravelCtrl as travel",
-					templateUrl: "scripts/travel/views/travelCtrl.html"
-				})
-				.state("app.business", {
-					url: "/business", 
-					controller:"BusinessCtrl as business",
-					templateUrl: "scripts/business/views/businessCtrl.html"
-				})
+                .state("app.technology", {
+                    url: "/technology",
+                    controller: "TechnologyCtrl as technology",
+                    templateUrl: "scripts/technology/views/technologyCtrl.html"
+                })
+                .state("app.art", {
+                    url: "/art",
+                    controller: "ArtCtrl as art",
+                    templateUrl: "scripts/art/views/artCtrl.html"
+                })
+
+                .state("app.sport", {
+                    url: "/sport",
+                    controller: "SportCtrl as sport",
+                    templateUrl: "scripts/sport/views/sportCtrl.html"
+                })
+                .state("app.health", {
+                    url: "/health",
+                    controller: "HealthCtrl as health",
+                    templateUrl: "scripts/health/views/healthCtrl.html"
+                })
+                .state("app.food", {
+                    url: "/food",
+                    controller: "FoodCtrl as food",
+                    templateUrl: "scripts/food/views/foodCtrl.html"
+                })
+                .state("app.travel", {
+                    url: "/travel",
+                    controller: "TravelCtrl as travel",
+                    templateUrl: "scripts/travel/views/travelCtrl.html"
+                })
+                .state("app.business", {
+                    url: "/business",
+                    controller: "BusinessCtrl as business",
+                    templateUrl: "scripts/business/views/businessCtrl.html"
+                })
 //#state'
         });
 
