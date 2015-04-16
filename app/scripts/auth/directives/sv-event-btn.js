@@ -7,7 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-event-btn.html',
                 scope: {
-
+                    title: '@'
                 },
                 link: function ($scope, el, attrs) {
 

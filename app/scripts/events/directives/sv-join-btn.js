@@ -8,7 +8,8 @@
                 require: ['svJoinBtn', '^?svEventSidenavAd', '^?svKohlEvent2015'],
                 scope: {
                     titleJoin: '@',
-                    titleUnlink: '@'
+                    titleUnlink: '@',
+                    btnSize: '@'
                 },
                 bindToController: {
                     eventKey: '@'
