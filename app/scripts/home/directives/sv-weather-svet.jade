@@ -8,8 +8,8 @@ div(layout='row' layout-align='center center')
                 li(ng-repeat='d in forecast.daily')
                     a.weather-dropdown-link.dropdown-link.tc-grey-300
                         | {{d.date}}
-                        img.mr.ml(src="../img/weather/weather-icons/weather-clouds.png" style="max-width:22px;display:inline-block;margin:4px")
+                        img.mr.ml(ng-src="../img/weather/weather-icons/{{d.icon}}.png" style="max-width:22px;display:inline-block;margin:4px")
                         span.tc-grey-300(style="font-size:12px") {{d.temp}}
     a.btn.tc-grey-400.mr(href="#")
-        img(src="../img/weather/weather-icons/weather-storm-day.png" style="max-width:32px;display:block;margin:4px")
+        img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png" style="max-width:32px;display:block;margin:4px")
     span.tc-grey-400.mdc-display-inline-block(style="font-size:14px") {{forecast.curr.temp}} °F
