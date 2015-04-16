@@ -12,7 +12,7 @@ div(layout='row' layout-align='center center')
                 li(ng-repeat='d in forecast.daily')
                     a.weather-dropdown-link.dropdown-link.tc-grey-300
                         div(layout='row' layout-align='space-between')
-                            span {{d.date}}
+                            span {{d.date|translate}}
                             div
                                 img.mr.ml(ng-src="../img/weather/weather-icons/{{d.icon}}.png" style="max-width:22px;display:inline-block;margin:4px")
-                                span.tc-grey-300(style="font-size:12px") {{d.temp}}
+                                span.tc-grey-300(style="font-size:12px") {{d.temp}} °F

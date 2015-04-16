@@ -31,6 +31,15 @@
                 'weather': 'Chicago weather',
                 'forecast': 'Weekly Forecast',
 
+                'Tomorrow':'Tomorrow',
+                'Monday':'Monday',
+                'Tuesday':'Tuesday',
+                'Wednesday':'Wednesday',
+                'Thursday':'Thursday',
+                'Friday':'Friday',
+                'Saturday':'Saturday',
+                'Sunday':'Sunday',
+
 
 
                 'join': 'Join',
@@ -123,8 +132,16 @@
                 //widgets
                 //    weather
                 'weather': 'Погода в Чикаго',
-                'forecast': 'Прогноз на неделю',
+                'forecast': 'Прогноз на Неделю',
 
+                'Tomorrow':'Завтра',
+                'Monday':'Понедельник',
+                'Tuesday':'Вторник',
+                'Wednesday':'Среда',
+                'Thursday':'Четверг',
+                'Friday':'Пятница',
+                'Saturday':'Суббота',
+                'Sunday':'Воскресенье',
 
                 'classified': 'Частные Объявления',
                 'contacts': 'Обратная связь',
