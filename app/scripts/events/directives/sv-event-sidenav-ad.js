@@ -7,10 +7,10 @@
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-event-sidenav-ad.html',
                 scope: {
+                    title: '@',
+                    body: '@'
                 },
-                bindToController: {
-
-                },
+                bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;

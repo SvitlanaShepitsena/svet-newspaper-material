@@ -1,13 +1,13 @@
 .card(ui-sref='app.events.field({year:2015})').cursor-pointer
-    .card__img.card__img--top
+    .card__img.card__img--top(style='padding:0px !important')
         img(src="img/ad/kohl-museum/m-1.jpg")
-        span.display-block.fs-title.tc-white Kohl Children's Museum
+        span.mdc-display-inline-block.fs-title.tc-white.bgc-red-400(style='padding:0px 8px;margin: 0px -15px;opacity:0.8') Kohl Children's Museum
     div(class='p+')
-        .fs-subhead Family Public Event
+        .fs-subhead {{title|translate}}
         .paragraph.fs-body-1.mb
-            | A very special and fun SVET Family Event at Kohl Children's Museum on May 5.
-        sv-event-families(event-key='kohl2015')
+            | {{body|translate}}
+        sv-event-families(event-key='kohl2015' families='families-event')
     .card__actions
         div(layout='row' layout-align='space-around')
-            sv-join-btn(event-key='kohl2015' title-join="join" title-unlink="unlink" class='btn--s')
-            sv-event-btn(title='share' class='btn--s')
+            sv-join-btn(event-key='kohl2015' title-join="join" title-unlink="unlink" class='btn--m')
+            sv-event-btn(title='share' class='btn--m')

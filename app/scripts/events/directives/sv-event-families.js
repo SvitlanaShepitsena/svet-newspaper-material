@@ -14,7 +14,9 @@
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-event-families.html',
                 scope: {
+                    families: '@',
                     eventKey: '@'
+
                 },
                 link: function ($scope, el, attrs) {
                     var eventUsers = EventServ.getUsersObjectRef($scope.eventKey);
