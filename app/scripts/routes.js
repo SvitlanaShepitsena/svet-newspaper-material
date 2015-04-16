@@ -160,11 +160,7 @@
 					controller:"ArtCtrl as art",
 					templateUrl: "scripts/art/views/artCtrl.html"
 				})
-				.state("app.", {
-					url: "/", 
-					controller:"Ctrl as ",
-					templateUrl: "scripts/sport/views/Ctrl.html"
-				})
+				
 //#state'
         });
 
