@@ -27,7 +27,7 @@ gulp.task("jade", function () {
         .pipe(gulp.dest("./app/scripts/"))
 });
 
-gulp.task('jade:watch', ['jade'], reload);
+gulp.task('jade:watch', ['jade'], browserSync.reload);
 
 
 ///////////////////////////// Stylus/Css ////////////////////////////////////////////////
