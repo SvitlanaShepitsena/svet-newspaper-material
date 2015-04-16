@@ -7,6 +7,8 @@
             $translateProvider.useCookieStorage();
 
             $translateProvider.translations('en', {
+
+                'Chicago': 'Chicago',
                 'Home': 'Home Page',
                 'Politics': 'Politics',
                 'Money': 'Money',
@@ -76,6 +78,7 @@
 
             $translateProvider.translations('ru', {
                 'Home': 'Домашняя страница',
+                'Chicago': 'Чикаго',
                 'Politics': 'Политика',
                 'Money': 'Мы и Деньги',
                 'Business': 'Бизнес',
