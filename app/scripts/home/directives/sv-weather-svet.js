@@ -6,12 +6,14 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-weather-svet.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
-
+                    WeatherServ.forecast().then(function (forecast) {
+                        $scope.forecast = forecast;
+                        console.log(forecast);
+                        var breakPoint = 1;
+                    });
                 }
-            }; -file Я
+            };
         });
 })();
