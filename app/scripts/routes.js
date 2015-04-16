@@ -161,6 +161,11 @@
 					templateUrl: "scripts/art/views/artCtrl.html"
 				})
 				
+				.state("app.sport", {
+					url: "/sport", 
+					controller:"SportCtrl as sport",
+					templateUrl: "scripts/sport/views/sportCtrl.html"
+				})
 //#state'
         });
 
