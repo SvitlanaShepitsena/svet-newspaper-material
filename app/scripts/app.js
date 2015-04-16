@@ -4,6 +4,7 @@
     angular.module('app', [
 
         // modules
+		'art',
 		'technology',
 		'widgets',
 		'archive',

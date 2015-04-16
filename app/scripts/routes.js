@@ -155,6 +155,11 @@
 					controller:"TechnologyCtrl as technology",
 					templateUrl: "scripts/technology/views/technologyCtrl.html"
 				})
+				.state("app.art", {
+					url: "/art", 
+					controller:"ArtCtrl as art",
+					templateUrl: "scripts/art/views/artCtrl.html"
+				})
 //#state'
         });
 
