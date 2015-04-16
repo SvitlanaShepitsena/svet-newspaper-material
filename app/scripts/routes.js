@@ -176,6 +176,11 @@
 					controller:"FoodCtrl as food",
 					templateUrl: "scripts/food/views/foodCtrl.html"
 				})
+				.state("app.travel", {
+					url: "/travel", 
+					controller:"TravelCtrl as travel",
+					templateUrl: "scripts/travel/views/travelCtrl.html"
+				})
 //#state'
         });
 
