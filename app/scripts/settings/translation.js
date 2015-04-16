@@ -46,7 +46,7 @@
                 'unlink': 'Unlink',
                 'share': 'Share',
                 'NewSvetNewspaper': 'New Svet Newspaper',
-                'SaturdayPlus': 'Saturday+',
+                'SaturdayPlus': 'Saturday+ Newspaper',
                 'PdfNewspaperArchive': 'PDF NEWSPAPER ARCHIVE',
                 'svet-on-social-media': 'svet on social media',
                 'radio': 'Radio',

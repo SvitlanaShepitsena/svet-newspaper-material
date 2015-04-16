@@ -15,6 +15,7 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
+                    console.log('ssss');
                     var urlStart = 'assets/archive/' + (ctrl.isSaturday ? 'saturday-plus/' : 'new-light/');
                     ctrl.issues = [];
                     for (var i = ctrl.startIssue; i <= ctrl.startIssue+ctrl.issuesToShow; i++) {
@@ -24,6 +25,7 @@
                             url: urlStart + 'index.html'
                         };
                         ctrl.issues.push(issue);
+                        console.log('push');
 
                     }
 
