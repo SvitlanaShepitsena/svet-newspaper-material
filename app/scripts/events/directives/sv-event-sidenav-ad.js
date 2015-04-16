@@ -7,7 +7,6 @@
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-event-sidenav-ad.html',
                 scope: {
-                    share: '@'
                 },
                 bindToController: {
 
