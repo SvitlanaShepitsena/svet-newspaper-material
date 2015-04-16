@@ -150,6 +150,11 @@
                     controller: "SvetRecommendsCtrl as svetRecommends",
                     templateUrl: "scripts/article/views/svet-recommendsCtrl.html"
                 })
+				.state("app.technology", {
+					url: "/technology", 
+					controller:"TechnologyCtrl as technology",
+					templateUrl: "scripts/technology/views/technologyCtrl.html"
+				})
 //#state'
         });
 
