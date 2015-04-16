@@ -21,8 +21,10 @@
                         var eventUsersUrl = allEventsUrl + eventKey + '/users/'
                         var eventUsersArray = $firebaseArray(new Firebase(eventUsersUrl));
                         eventUsersArray.$loaded().then(function () {
-                            var fbUser = eventUsersArray.$getRecord(user.id);
-                            eventUsersArray.$remove(fbUser).then(function (ref) {
+
+                            var foundUser = _.find(eventUsersArray, {'id': user.id});
+
+                            eventUsersArray.$remove(foundUser).then(function (ref) {
                                 resolve(ref);
                             })
 
