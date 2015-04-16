@@ -1,15 +1,18 @@
 div(layout='row' layout-align='center center')
+    div.margin-right.language-container(layout='row' layout-align='center center')
+        span {{'weather'|translate}}
+        img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png" style="max-width:32px;display:block;margin:4px")
+        span.tc-grey-400.mdc-display-inline-block(style="font-size:14px") {{forecast.curr.temp}} °F
     lx-dropdown(position='left')
         button.btn.tc-grey-400(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}" )
-            span.fs-caption weekly forecast
+            span {{'forecast'|translate}}
             i.mdi.mdi-menu-down(style='margin:0px 4px')
         lx-dropdown-menu.bgc-grey-700
             ul
                 li(ng-repeat='d in forecast.daily')
                     a.weather-dropdown-link.dropdown-link.tc-grey-300
-                        | {{d.date}}
-                        img.mr.ml(ng-src="../img/weather/weather-icons/{{d.icon}}.png" style="max-width:22px;display:inline-block;margin:4px")
-                        span.tc-grey-300(style="font-size:12px") {{d.temp}}
-    a.btn.tc-grey-400.mr(href="#")
-        img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png" style="max-width:32px;display:block;margin:4px")
-    span.tc-grey-400.mdc-display-inline-block(style="font-size:14px") {{forecast.curr.temp}} °F
+                        div(layout='row' layout-align='space-between')
+                            span {{d.date|translate}}
+                            div
+                                img.mr.ml(ng-src="../img/weather/weather-icons/{{d.icon}}.png" style="max-width:22px;display:inline-block;margin:4px")
+                                span.tc-grey-300(style="font-size:12px") {{d.temp}} °F

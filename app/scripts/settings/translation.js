@@ -26,6 +26,22 @@
                 'event-ad-body': 'A very special and fun SVET Family Event at Kohl Children\'s Museum on May 5.',
                 'families-event': 'Families are goings',
 
+                //widgets
+                //    weather
+                'weather': 'Chicago weather',
+                'forecast': 'Weekly Forecast',
+
+                'Tomorrow':'Tomorrow',
+                'Monday':'Monday',
+                'Tuesday':'Tuesday',
+                'Wednesday':'Wednesday',
+                'Thursday':'Thursday',
+                'Friday':'Friday',
+                'Saturday':'Saturday',
+                'Sunday':'Sunday',
+
+
+
                 'join': 'Join',
                 'unlink': 'Unlink',
                 'share': 'Share',
@@ -115,6 +131,21 @@
                 'radio': 'Радио',
                 'radio-subhead': 'В воскресенье утром ток-шоу с Александром Етманом.',
                 'radio-body': 'Каждое воскресенье на 1240AM с 11:00 до 1:00 вечера.',
+
+
+                //widgets
+                //    weather
+                'weather': 'Погода в Чикаго',
+                'forecast': 'Прогноз на Неделю',
+
+                'Tomorrow':'Завтра',
+                'Monday':'Понедельник',
+                'Tuesday':'Вторник',
+                'Wednesday':'Среда',
+                'Thursday':'Четверг',
+                'Friday':'Пятница',
+                'Saturday':'Суббота',
+                'Sunday':'Воскресенье',
 
                 'classified': 'Частные Объявления',
                 'contacts': 'Обратная связь',
