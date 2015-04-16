@@ -1,8 +1,10 @@
 'use strict';
 var gulp = require('gulp');
 var p = require('gulp-load-plugins')();
+
 var browserSync = require("browser-sync");
 var reload = browserSync.reload;
+
 var nib = require('nib');
 
 ///////////////////////////// Error Handling ////////////////////////////////////////////////
@@ -26,7 +28,7 @@ gulp.task("jade", function () {
 });
 
 gulp.task('jade:watch', ['jade'], reload);
-gulp.task('js-watch', browserSync.reload);
+
 
 ///////////////////////////// Stylus/Css ////////////////////////////////////////////////
 
@@ -52,6 +54,7 @@ gulp.task("stylus:main", ['stylus:scripts'], function () {
         .pipe(reload({stream: true}));
 });
 
+
 gulp.task("assets", function () {
     return gulp.src(["./app/index.html"])
         .pipe(p.assets({
@@ -65,6 +68,11 @@ gulp.task("assets", function () {
         .pipe(p.minifyCss())
        .pipe(gulp.dest("./app/assets/"))
 });
+
+
+///////////////////////////// JS  ////////////////////////////////////////////////
+gulp.task('js-watch', browserSync.reload);
+
 
 
 ///////////////////////////// SERVER  ////////////////////////////////////////////////
@@ -81,9 +89,10 @@ gulp.task('serve', ['stylus:main', 'jade'], function () {
 
     gulp.watch(['./app/scripts/**/*.jade'], ['jade:watch']);
 
+    gulp.watch("app/**/*.js", ['js-watch']);
+
     gulp.watch("app/*.html").on('change', reload);
 
-    gulp.watch("app/**/*.js", ['js-watch']);
 
 });
 
