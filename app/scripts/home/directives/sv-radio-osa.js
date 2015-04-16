@@ -6,7 +6,11 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/home/directives/sv-radio-osa.html',
-                scope: {},
+                scope: {
+                    title: '@',
+                    subhead: '@',
+                    body: '@'
+                },
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {

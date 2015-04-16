@@ -34,6 +34,8 @@
                 'PdfNewspaperArchive': 'PDF NEWSPAPER ARCHIVE',
                 'svet-on-social-media': 'svet on social media',
                 'radio': 'Radio',
+                'radio-subhead': ' Sunday morning talk show with Alex Etman.',
+                'radio-body': 'Every Sunday on 1240AM from 11:00 a.m. to 1:00 p.m.',
 
                 'classified': 'Classified',
                 'contacts': 'Contact Us',
@@ -111,6 +113,8 @@
                 'PdfNewspaperArchive': 'PDF Архив Газеты',
                 'svet-on-social-media': 'Свет в медиа',
                 'radio': 'Радио',
+                'radio-subhead': 'В воскресенье утром ток-шоу с Александром Етманом.',
+                'radio-body': 'Каждое воскресенье на 1240AM с 11:00 до 1:00 вечера.',
 
                 'classified': 'Частные Объявления',
                 'contacts': 'Обратная связь',

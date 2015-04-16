@@ -4,12 +4,12 @@
             .list-row__content
                 strong.fs-headline.display-block
                     i.mdi.mdi-microphone &nbsp
-                    | Radio “OSA”
+                    | {{title|translate}} “OSA”
             .list-row__primary.mdc-text-right.img-editor-contner
                 img.img-round.mdc-text-right.img-editor.mdc-img-bw(src='/img/auth/AlexEtman.jpg')
     div(class='pl pr mb')
-        span.fs-subhead.tc-black-2.display-block.radio-subhead Sunday morning talk show with Alex Etman.
-        span.fs-body-2.tc-black-2.display-block.radio-body Every Sunday on 1240AM from 11:00 a.m. to 1:00 p.m.
+        span.fs-subhead.tc-black-2.display-block.radio-subhead {{subhead|translate}}
+        span.fs-body-2.tc-black-2.display-block.radio-body {{body|translate}}
     .card__actions
         button.btn.btn--xs.btn--red.btn--flat(lx-ripple='') {{'listen'|translate}}
         button.btn.btn--xs.btn--black.btn--flat(lx-ripple='') {{'archive'|translate}}
