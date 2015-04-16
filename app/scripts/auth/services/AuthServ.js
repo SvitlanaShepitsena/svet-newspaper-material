@@ -2,10 +2,9 @@
     'use strict';
 
     angular.module('auth')
-        .factory('AuthServ', function (UserGroupsServ, $firebaseAuth,$firebaseObject, url, $q, $rootScope) {
+        .factory('AuthServ', function (UserGroupsServ, $firebaseAuth, $firebaseObject, url, $q, $rootScope) {
 
             var mainRef = new Firebase(url);
-            var usersUrl = url+'/user-management/users/';
 
             function processUserFb(data) {
                 var user = {};
@@ -116,9 +115,10 @@
                         user = null;
                     }
 
-                    var userDb = $firebase
-
-                    deferred.resolve(user);
+                    UserGroupsServ.getGroups(user.id).then(function (groups) {
+                        user.groups = groups
+                        deferred.resolve(user);
+                    });
 
                     return deferred.promise;
                 },

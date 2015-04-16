@@ -45,6 +45,10 @@
                             return false;
                         }
 
+                        var userGroup = $scope.user.groups.indexOf(group);
+
+                        return userGroup > -1;
+
 
                     };
 
