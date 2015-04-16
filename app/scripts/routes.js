@@ -171,6 +171,11 @@
 					controller:"HealthCtrl as health",
 					templateUrl: "scripts/health/views/healthCtrl.html"
 				})
+				.state("app.food", {
+					url: "/food", 
+					controller:"FoodCtrl as food",
+					templateUrl: "scripts/food/views/foodCtrl.html"
+				})
 //#state'
         });
 
