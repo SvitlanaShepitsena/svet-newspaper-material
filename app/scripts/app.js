@@ -4,6 +4,7 @@
     angular.module('app', [
 
         // modules
+		'widgets',
 		'archive',
 		'events',
 		'admin',
@@ -34,9 +35,7 @@
         'ui.router',
         'ui.bootstrap'
     ])
-
         .config(function ($mdThemingProvider, $mdIconProvider) {
-
             $mdIconProvider
                 .defaultIconSet("./assets/svg/avatars.svg", 128)
                 .icon("menu", "./assets/svg/menu.svg", 24)
