@@ -26,6 +26,13 @@
                 'event-ad-body': 'A very special and fun SVET Family Event at Kohl Children\'s Museum on May 5.',
                 'families-event': 'Families are goings',
 
+                //widgets
+                //    weather
+                'weather': 'Chicago weather',
+                'forecast': 'Weekly Forecast',
+
+
+
                 'join': 'Join',
                 'unlink': 'Unlink',
                 'share': 'Share',
@@ -110,6 +117,13 @@
                 'PdfNewspaperArchive': 'PDF Архив Газеты',
                 'svet-on-social-media': 'Свет в медиа',
                 'radio': 'Радио',
+
+
+                //widgets
+                //    weather
+                'weather': 'Погода в Чикаго',
+                'forecast': 'Прогноз на неделю',
+
 
                 'classified': 'Частные Объявления',
                 'contacts': 'Обратная связь',
