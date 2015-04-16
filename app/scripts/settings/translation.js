@@ -20,6 +20,7 @@
                 'Travel': 'Travel',
                 'SvetRecommends': 'Svet Recommends',
                 'SvetEventsCalendar': 'Svet Events Calendar 2015',
+                'UpcomingSvetEvent': 'Upcoming Svet Event',
                 'NewSvetNewspaper': 'New Svet Newspaper',
                 'SaturdayPlus': 'Saturday+',
                 'read-more': 'Read more',
@@ -87,6 +88,7 @@
                 'Travel': 'Вокруг Света',
                 'SvetRecommends': 'Свет Рекомендует',
                 'SvetEventsCalendar': 'Календарь Мероприятий \'15',
+                'UpcomingSvetEvent': 'Свет Приглашает',
                 'NewSvetNewspaper': 'Газета Новый Свет',
                 'SaturdayPlus': 'Суббота+',
 
