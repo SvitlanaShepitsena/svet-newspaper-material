@@ -1,6 +1,6 @@
 div(layout='row' layout-align='center center')
     .weather-container(layout='row' layout-align='center center')
-        span.main-weather-text {{'Chicago'|translate}}
+        span.main-weather-text {{'Chicago'|translate |uppercase}}
         img.main-weather-img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png")
         span.tc-grey-400.mdc-display-inline-block.main-weather-text(style="margin-right:2px") {{forecast.curr.temp}} °F
     lx-dropdown(position='left'  hide-sm)

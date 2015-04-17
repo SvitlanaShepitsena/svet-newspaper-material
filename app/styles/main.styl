@@ -142,24 +142,52 @@ md-sidenav
 .toolbar-custom
   background-color #555555 !important
 
+  @media screen and (max-width: 350px)
+    padding-left 4px !important
+
 /**********************
  =header
 ***********************/
 
+.languages-container
+  border-right-color rgb(97, 97, 97)
+  border-right-style solid
+  border-right-width 1px
+  padding-right 8px
+
+  @media screen and (max-width: 350px)
+    padding-right 4px !important
+
+.language-btn
+  @media screen and (max-width: 350px)
+    font-size 11px !important
+    margin 6px !important
+
 .language
   color #E57373 !important
+
 .weather-widget
   margin-left 16px
 
-  @media screen and (max-width: 400px)
-    margin-left 4px
+  @media screen and (max-width: 350px)
+    margin-left 2px !important
+
+  @media screen and (max-width: 450px)
+    margin-left 8px
 
 .weather-container
   margin-right 0px
   border-right-color: #616161;
   border-right-style: solid;
   border-right-width: 1px;
-  padding-right: 4px;
+  padding-right: 16px;
+  padding-left: 4px;
+
+  @media screen and (max-width: 350px)
+    padding-right: 0px;
+
+  @media screen and (max-width: 450px)
+    padding-right: 8px;
 
 .main-weather-img
   max-width 28px
@@ -172,7 +200,7 @@ md-sidenav
 .main-weather-text
   font-size 14px
 
-  @media screen and (max-width: 400px)
+  @media screen and (max-width: 350px)
     font-size 11px
 
 .weather-dropdown-link
@@ -217,11 +245,6 @@ md-sidenav
   border-right-style solid
   border-right-width 1px
 
-.languages-container
-  border-right-color rgb(97, 97, 97)
-  border-right-style solid
-  border-right-width 1px
-  padding-right 8px
 
 
 .fb-page
