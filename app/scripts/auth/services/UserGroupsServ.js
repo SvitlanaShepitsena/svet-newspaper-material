@@ -13,7 +13,10 @@
 
                         userObj.$loaded().then(function () {
                             resolve(userObj.groups);
-                        })
+                        }).catch(function (error) {
+                            console.log(userid + 'does not exists');
+                            reject(error);
+                        });
 
 
 

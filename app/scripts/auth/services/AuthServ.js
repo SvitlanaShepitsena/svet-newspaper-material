@@ -115,10 +115,17 @@
                         user = null;
                     }
 
-                    UserGroupsServ.getGroups(user.id).then(function (groups) {
-                        user.groups = groups
-                        deferred.resolve(user);
-                    });
+
+                    if (_.isNull(user)) {
+                        deferred.resolve(null);
+                    } else {
+                        UserGroupsServ.getGroups(user.id).then(function (groups) {
+                            user.groups = groups
+                            deferred.resolve(user);
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    }
 
                     return deferred.promise;
                 },
