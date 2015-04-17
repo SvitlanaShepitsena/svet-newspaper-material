@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,23 +29,14 @@
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
 
-<!-- =Header-->
-<!--<div layout="row" class="pl">-->
-<!--<a href="" class="m tc-black-1" style="text-decoration: none">-->
-<!--RU-->
-<!--</a>-->
-<!--<a href="" class="m tc-black-1" style="text-decoration: none">-->
-<!--EN-->
-<!--</a>-->
-<!--</div>-->
 <div class="toolbar-custom tc-white-1 pl" layout="row" layout-align="space-between center">
     <div layout="row">
         <sv-lang-switch></sv-lang-switch>
-        <sv-weather-svet class="ml++" hide-sm></sv-weather-svet>
+        <sv-weather-svet class="weather-widget"></sv-weather-svet>
     </div>
     <sv-social-top-nav hide-sm></sv-social-top-nav>
-    <sv-social-top-nav-cell hide-gt-sm class="mr"></sv-social-top-nav-cell>
-</md-toolbar>
+    <sv-social-top-nav-cell hide-gt-sm></sv-social-top-nav-cell>
+</div>
 
 <div layout="row" flex style="overflow:hidden">
     <!-- =Left Sidebar-->
@@ -65,15 +57,16 @@
             <sv-nav-btn url="app.svet-recommends"
                         title="SvetRecommends"
                         icon="compass"
-                        custom-class="bgc-sepia-800"
                         txt-color="white-1"
-                        bgc="grey-700"
+                        bgc="red-300"
                         color="grey" btn-size="l" class="mb++ "></sv-nav-btn>
             <sv-nav-btn url="app.events.calendar"
                         title="SvetEventsCalendar"
-                        txt-color="blue-grey-600"
-                        custom-class="bgc-sepia"
-                        icon="calendar" color="white" btn-size="m" bgc="grey-200" class="mb++"></sv-nav-btn>
+                        txt-color="grey-200"
+                        bgc="grey-700"
+                        icon="calendar"
+                        btn-size="m"
+                        class="mb++"></sv-nav-btn>
             <sv-sidenav-title title="upcoming-svet-event" class="mb++"></sv-sidenav-title>
             <sv-event-sidenav-ad title="event-ad-title" body="event-ad-body"></sv-event-sidenav-ad>
         </md-content>
@@ -126,8 +119,10 @@
                     <sv-nav-btn url="app.classified"
                                 icon="tag-faces"
                                 title="classified"
-                                txt-color="blue-grey-600"
-                                color="white" btn-size="m" bgc="grey-200" class="mb++"></sv-nav-btn>
+                                txt-color="grey-800"
+                                bgc="grey-400"
+                                color="white" btn-size="m"
+                                class="mb++"></sv-nav-btn>
                     <sv-nav-link side='center' url='app.contact' title='contacts' icon='map-marker'></sv-nav-link>
                 </md-content>
             </md-sidenav>
