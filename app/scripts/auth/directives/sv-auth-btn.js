@@ -40,7 +40,6 @@
 
                     $scope.isInGroup = function (group) {
 
-                        var breakPoint=1;
                         if (!$scope.user || !$scope.user.groups) {
                             return false;
                         }
