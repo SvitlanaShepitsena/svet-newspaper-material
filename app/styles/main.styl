@@ -148,11 +148,39 @@ md-sidenav
 
 .language
   color #E57373 !important
+.weather-widget
+  margin-left 16px
+
+  @media screen and (max-width: 400px)
+    margin-left 4px
+
+.weather-container
+  margin-right 0px
+  border-right-color: #616161;
+  border-right-style: solid;
+  border-right-width: 1px;
+  padding-right: 4px;
+
+.main-weather-img
+  max-width 28px
+  display inline-block
+  margin 0px 4px
+
+  @media screen and (max-width: 992px)
+    max-width 22px
+
+.main-weather-text
+  font-size 14px
+
+  @media screen and (max-width: 400px)
+    font-size 11px
+
 .weather-dropdown-link
   &:hover
   &:active
   &:focus
     background-color #555555 !important
+
 
 /**********************
  =social

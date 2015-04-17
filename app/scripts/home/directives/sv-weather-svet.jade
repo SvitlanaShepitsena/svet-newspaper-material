@@ -1,9 +1,9 @@
 div(layout='row' layout-align='center center')
-    div.margin-right.language-container(layout='row' layout-align='center center')
-        span {{'Chicago'|translate}}
-        img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png" style="max-width:32px;display:block;margin:4px")
-        span.tc-grey-400.mdc-display-inline-block(style="font-size:14px") {{forecast.curr.temp}} °F
-    lx-dropdown(position='left')
+    .weather-container(layout='row' layout-align='center center')
+        span.main-weather-text {{'Chicago'|translate}}
+        img.main-weather-img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png")
+        span.tc-grey-400.mdc-display-inline-block.main-weather-text(style="margin-right:2px") {{forecast.curr.temp}} °F
+    lx-dropdown(position='left'  hide-sm)
         button.btn.tc-grey-400.btn--m(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}" )
             span {{'forecast'|translate}}
             i.mdi.mdi-menu-down(style='margin:0px 4px')
