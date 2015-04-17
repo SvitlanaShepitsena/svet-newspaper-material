@@ -27,7 +27,7 @@ gulp.task("jade", function () {
         .pipe(gulp.dest("./app/scripts/"))
 });
 
-gulp.task('jade:watch', ['jade'], reload);
+gulp.task('jade:watch', ['jade'], browserSync.reload);
 
 
 ///////////////////////////// Stylus/Css ////////////////////////////////////////////////
@@ -55,19 +55,6 @@ gulp.task("stylus:main", ['stylus:scripts'], function () {
 });
 
 
-gulp.task("assets", function () {
-    return gulp.src(["./app/index.html"])
-        .pipe(p.assets({
-            js: false,
-            css: 'cssAssets'
-        }))
-        .pipe(p.pleeease({
-            "browsers": ["ie 10"]
-        }))
-        .pipe(p.concat('vendors.min.css'))
-        .pipe(p.minifyCss())
-       .pipe(gulp.dest("./app/assets/"))
-});
 
 
 ///////////////////////////// JS  ////////////////////////////////////////////////
