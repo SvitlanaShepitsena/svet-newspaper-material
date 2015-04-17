@@ -2,7 +2,7 @@
     angular.module('app').config(function ($mdThemingProvider) {
         $mdThemingProvider.definePalette('newspaper', {
             '50': 'FAF7F2',
-            '100': 'F0EBE1',
+            '100': 'F0EBDF',
             '200': 'C4BEB5',
             '300': 'F0E9E1',
             '400': 'C4BAAB',
@@ -17,25 +17,12 @@
             'A700': 'F5E9DA',
             'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
                                                 // on this palette should be dark or light
+            'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+                '200', '300', '400', 'A100'],
             'contrastLightColors': undefined    // could also specify this if default was 'dark'
         });
         $mdThemingProvider.theme('default')
-            .primaryPalette('newspaper', {
-                'default': '400',
-                'hue-1': '100',
-                'hue-2': '600'
-            })
-            .accentPalette('red', {
-                'default': '600',
-                'hue-1': '500'
-            })
-            .warnPalette('red', {
-                'default': '600',
-                'hue-1': '500'
-            })
-            .backgroundPalette('newspaper', {
-                'default': '50'
-            })
+            .primaryPalette('newspaper')
     });
 })();
 

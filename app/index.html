@@ -37,7 +37,6 @@
 <!--EN-->
 <!--</a>-->
 <!--</div>-->
-
 <div class="toolbar-custom tc-white-1 pl" layout="row" layout-align="space-between center">
     <div layout="row">
         <sv-lang-switch></sv-lang-switch>
@@ -48,11 +47,10 @@
 </div>
 <div layout="row" flex style="overflow:hidden">
     <!-- =Left Sidebar-->
-    <md-sidenav md-hue-1 layout="column" class="md-primary t
-    add .md-hue-1 md-sidenav-left md-whiteframe-z2"
+    <md-sidenav layout="column" class="md-sidenav-left  md-whiteframe-z2"
                 md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-primary text-center" layout='row' layout-align='space-around center'>
+        <md-toolbar class="md-primary text-center md-hue-1" layout='row' layout-align='space-around center'>
             <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
             <a class="logo-link" ui-sref="app.home">
                 <img src="img/logo/logo.png" class="logo-img">
@@ -68,7 +66,7 @@
                         title="SvetRecommends"
                         icon="compass"
                         txt-color="white-1"
-                        bgc="grey-700"
+                        bgc="newspaper-900"
                         color="grey" btn-size="l" class="mb++ "></sv-nav-btn>
             <sv-nav-btn url="app.events.calendar"
                         title="SvetEventsCalendar"
@@ -81,7 +79,7 @@
 
     <!-- =Content-->
     <div layout="column" flex>
-        <md-toolbar layout="row" class="toolbar-svet" style="height: auto">
+        <md-toolbar layout="row" class="toolbar-svet md-primary md-hue-1" style="height: auto">
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>
@@ -101,7 +99,7 @@
             <!-- =Right Sidebar-->
             <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
                         md-is-locked-open="$mdMedia('gt-lg')">
-                <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-lg
+                <md-toolbar class="text-center toolbar-svet md-primary md-hue-1" layout='row' hide-gt-lg
                             layout-align='space-around center'
                             ng-controller="RightCtrl">
                     <md-button sv-right-click-handler="" hide-gt-lg="" aria-label="close right" class="txt-white">
