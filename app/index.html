@@ -47,10 +47,9 @@
 </div>
 <div layout="row" flex style="overflow:hidden">
     <!-- =Left Sidebar-->
-    <md-sidenav layout="column" class="md-sidenav-left  md-whiteframe-z2"
-                md-component-id="left"
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-primary text-center md-hue-1" layout='row' layout-align='space-around center'>
+        <md-toolbar class="md-primary text-center" layout='row' layout-align='space-around center'>
             <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
             <a class="logo-link" ui-sref="app.home">
                 <img src="img/logo/logo.png" class="logo-img">
@@ -65,12 +64,14 @@
             <sv-nav-btn url="app.svet-recommends"
                         title="SvetRecommends"
                         icon="compass"
+                        custom-class="bgc-sepia-800"
                         txt-color="white-1"
-                        bgc="newspaper-900"
+                        bgc="grey-700"
                         color="grey" btn-size="l" class="mb++ "></sv-nav-btn>
             <sv-nav-btn url="app.events.calendar"
                         title="SvetEventsCalendar"
                         txt-color="blue-grey-600"
+                        custom-class="bgc-sepia"
                         icon="calendar" color="white" btn-size="m" bgc="grey-200" class="mb++"></sv-nav-btn>
             <sv-sidenav-title title="upcoming-svet-event" class="mb++"></sv-sidenav-title>
             <sv-event-sidenav-ad title="event-ad-title" body="event-ad-body"></sv-event-sidenav-ad>
@@ -79,7 +80,7 @@
 
     <!-- =Content-->
     <div layout="column" flex>
-        <md-toolbar layout="row" class="toolbar-svet md-primary md-hue-1" style="height: auto">
+        <md-toolbar layout="row" class="toolbar-svet" style="height: auto">
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>
@@ -99,7 +100,7 @@
             <!-- =Right Sidebar-->
             <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
                         md-is-locked-open="$mdMedia('gt-lg')">
-                <md-toolbar class="text-center toolbar-svet md-primary md-hue-1" layout='row' hide-gt-lg
+                <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-lg
                             layout-align='space-around center'
                             ng-controller="RightCtrl">
                     <md-button sv-right-click-handler="" hide-gt-lg="" aria-label="close right" class="txt-white">
