@@ -30,6 +30,7 @@
                 //    weather
                 'weather': 'Chicago weather',
                 'forecast': 'Weekly Forecast',
+                'degrees':'F',
 
                 'Tomorrow':'Tomorrow',
                 'Monday':'Monday',
@@ -137,6 +138,7 @@
                 //    weather
                 'weather': 'Погода в Чикаго',
                 'forecast': 'Прогноз на Неделю',
+                'degrees':'C',
 
                 'Tomorrow':'Завтра',
                 'Monday':'Понедельник',
