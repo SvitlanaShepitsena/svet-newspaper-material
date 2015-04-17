@@ -1,7 +1,7 @@
 (function () {
     angular.module('app').config(function ($mdThemingProvider) {
         var mainNavMap = $mdThemingProvider.extendPalette('grey', {
-            'A100': '#555555'
+            'A100': '#474341'
         });
         $mdThemingProvider.definePalette('svet', mainNavMap);
         // Use that theme for the primary intentions
