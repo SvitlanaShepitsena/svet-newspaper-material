@@ -4,6 +4,7 @@ var p = require('gulp-load-plugins')();
 
 var browserSync = require("browser-sync");
 var reload = browserSync.reload;
+var cmq = require('gulp-combine-media-queries');
 
 var nib = require('nib');
 
@@ -51,11 +52,20 @@ gulp.task("stylus:main", ['stylus:scripts'], function () {
             minifier: false,
             "browsers": ["ie 10"]
         }))
+        .pipe(cmq({
+            log: true
+        }))
         .pipe(gulp.dest("./app/styles/"))
         .pipe(reload({stream: true}));
 });
 
-
+gulp.task('media', function () {
+    gulp.src('./app/styles/main.css')
+        .pipe(cmq({
+            log: true
+        }))
+        .pipe(gulp.dest('dist'));
+});
 ///////////////////////////// JS  ////////////////////////////////////////////////
 gulp.task('js-watch', browserSync.reload);
 
