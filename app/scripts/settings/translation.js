@@ -100,6 +100,17 @@
                 'personal': 'Personal',
                 'lessons': 'Lessons',
                 'svetApp': 'Svet Local App',
+
+
+
+
+
+
+
+
+
+
+
                 /*Footer*/
                 'all-rights-reserved': 'All rights reserved'
             });
