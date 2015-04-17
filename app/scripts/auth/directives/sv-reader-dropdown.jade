@@ -1,1 +1,19 @@
-.well sv-reader-dropdown Template
+lx-dropdown(position='right')
+    button.btn.btn--m.btn--icon.btn--white.tc-black(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}")
+        img(ng-src="{{user.avatar}}" style='min-height:30px')
+    lx-dropdown-menu
+        ul
+
+            li
+                a.dropdown-link(ui-sref='app.svet-profile.create-article')
+                    i.mdi.mdi-settings &nbsp
+                    | {{'reader-profile'|translate}}
+            li.dropdown-divider
+            li
+                a.dropdown-link(ui-sref='app.svet-profile.create-article')
+                    i.mdi.mdi-settings &nbsp
+                    | Настройки
+            li
+                a.dropdown-link(ng-click='ctrl.logout()')
+                    i.mdi.mdi-logout &nbsp
+                    | Выйти

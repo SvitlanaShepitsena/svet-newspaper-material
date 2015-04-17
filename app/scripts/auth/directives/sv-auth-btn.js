@@ -21,6 +21,7 @@
                     }, function (size) {
                         ctrl.gtMd = size;
                     });
+
                     $scope.$watch(function () {
                         return $mdMedia('gt-sm');
                     }, function (size) {
@@ -39,7 +40,6 @@
                     });
 
                     $scope.isInGroup = function (group) {
-
                         if (!$scope.user || !$scope.user.groups) {
                             return false;
                         }

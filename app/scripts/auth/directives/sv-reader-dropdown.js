@@ -4,9 +4,9 @@
     angular.module('auth')
         .directive('svReaderDropdown', function () {
             return {
-                replace: true,
                 templateUrl: 'scripts/auth/directives/sv-reader-dropdown.html',
                 scope: {
+                    user: '='
 
                 },
                 link: function ($scope, el, attrs) {
