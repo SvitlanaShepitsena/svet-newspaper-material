@@ -26,18 +26,22 @@
                 return user;
             }
 
-            function processUserPassword(data) {
-                var email = data.password.email;
+            function processUserPassword(user) {
+                var email = user.password.email;
 
                 var at = email.indexOf('@');
                 var userLogin = email.substring(0, at);
-                data = _.extend(data, {
+                user = _.extend(user, {
                     login: userLogin,
                     name: 'Alex',
                     avatar: 'img/auth/author.png'
                 });
+                if (user.uid) {
+                    user.id = user.uid
 
-                return data;
+                }
+
+                return user;
             }
 
             return {
