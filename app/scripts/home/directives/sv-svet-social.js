@@ -10,7 +10,6 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-
                 },
                 link: function ($scope, element, attr) {
                 }
