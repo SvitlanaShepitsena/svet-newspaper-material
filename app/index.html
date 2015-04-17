@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +28,15 @@
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
 
+<!-- =Header-->
+<!--<div layout="row" class="pl">-->
+<!--<a href="" class="m tc-black-1" style="text-decoration: none">-->
+<!--RU-->
+<!--</a>-->
+<!--<a href="" class="m tc-black-1" style="text-decoration: none">-->
+<!--EN-->
+<!--</a>-->
+<!--</div>-->
 <div class="toolbar-custom tc-white-1 pl" layout="row" layout-align="space-between center">
     <div layout="row">
         <sv-lang-switch></sv-lang-switch>
@@ -37,7 +45,6 @@
     <sv-social-top-nav hide-sm></sv-social-top-nav>
     <sv-social-top-nav-cell hide-gt-sm></sv-social-top-nav-cell>
 </div>
-
 <div layout="row" flex style="overflow:hidden">
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
@@ -62,6 +69,7 @@
                         color="grey" btn-size="l" class="mb++ "></sv-nav-btn>
             <sv-nav-btn url="app.events.calendar"
                         title="SvetEventsCalendar"
+                        color="white"
                         txt-color="grey-200"
                         bgc="grey-700"
                         icon="calendar"
@@ -119,8 +127,8 @@
                     <sv-nav-btn url="app.classified"
                                 icon="tag-faces"
                                 title="classified"
-                                txt-color="grey-800"
-                                bgc="grey-400"
+                                txt-color="white-1"
+                                bgc="red-300"
                                 color="white" btn-size="m"
                                 class="mb++"></sv-nav-btn>
                     <sv-nav-link side='center' url='app.contact' title='contacts' icon='map-marker'></sv-nav-link>
