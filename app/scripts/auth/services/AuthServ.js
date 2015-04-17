@@ -79,6 +79,19 @@
                         password: password
                     }).then(function (authData) {
                         var user = processUserPassword(authData);
+
+                        if (_.isNull(user)) {
+                            deferred.resolve(null);
+                        } else {
+                            UserGroupsServ.getGroups(user.id).then(function (groups) {
+                                user.groups = groups
+                                deferred.resolve(user);
+                            }).catch(function (error) {
+                                console.log(error);
+                            });
+                        }
+
+
                         deferred.resolve(user);
                     }).catch(function (error) {
                         deferred.reject(error);
