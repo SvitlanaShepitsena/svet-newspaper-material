@@ -10,7 +10,7 @@
                         event.stopPropagation();
                         $scope.$apply(function () {
                             $mdBottomSheet.show({
-                                templateUrl: 'scripts/home/templates/social-bottom-list.html'
+                                templateUrl: 'scripts/templates/social-top-nav-cell.html'
                             });
                         });
                     });
@@ -19,7 +19,7 @@
                         event.stopPropagation();
                         $scope.$apply(function () {
                             $mdBottomSheet.show({
-                                templateUrl: 'scripts/home/templates/social-bottom-list.html'
+                                templateUrl: 'scripts/templates/social-top-nav-cell.html'
                             });
                         });
                     });
