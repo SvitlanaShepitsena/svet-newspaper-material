@@ -28,28 +28,20 @@
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
 
-<!-- =Header-->
-<!--<div layout="row" class="pl">-->
-<!--<a href="" class="m tc-black-1" style="text-decoration: none">-->
-<!--RU-->
-<!--</a>-->
-<!--<a href="" class="m tc-black-1" style="text-decoration: none">-->
-<!--EN-->
-<!--</a>-->
-<!--</div>-->
-<div class="toolbar-custom tc-white-1 pl" layout="row" layout-align="space-between center">
+<md-toolbar md-theme="svetDark" class="md-primary" layout="row" layout-align="space-between center">
     <div layout="row">
         <sv-lang-switch></sv-lang-switch>
         <sv-weather-svet class="ml++" hide-sm></sv-weather-svet>
     </div>
     <sv-social-top-nav hide-sm></sv-social-top-nav>
     <sv-social-top-nav-cell hide-gt-sm class="mr"></sv-social-top-nav-cell>
-</div>
+</md-toolbar>
+
 <div layout="row" flex style="overflow:hidden">
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-primary text-center" layout='row' layout-align='space-around center'>
+        <md-toolbar class="md-hue-1 text-center" layout='row' layout-align='space-around center'>
             <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
             <a class="logo-link" ui-sref="app.home">
                 <img src="img/logo/logo.png" class="logo-img">
@@ -80,7 +72,7 @@
 
     <!-- =Content-->
     <div layout="column" flex>
-        <md-toolbar layout="row" class="toolbar-svet" style="height: auto">
+        <md-toolbar layout="row" class="md-hue-1" style="height: auto">
             <md-button class="ml" hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>

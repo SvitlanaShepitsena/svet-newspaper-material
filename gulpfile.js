@@ -48,6 +48,7 @@ gulp.task("stylus:main", ['stylus:scripts'], function () {
         .pipe(p.stylus({use: nib()}))
         .pipe(p.filter('*.css'))
         .pipe(p.pleeease({
+            minifier: false,
             "browsers": ["ie 10"]
         }))
         .pipe(gulp.dest("./app/styles/"))
@@ -55,11 +56,8 @@ gulp.task("stylus:main", ['stylus:scripts'], function () {
 });
 
 
-
-
 ///////////////////////////// JS  ////////////////////////////////////////////////
 gulp.task('js-watch', browserSync.reload);
-
 
 
 ///////////////////////////// SERVER  ////////////////////////////////////////////////
