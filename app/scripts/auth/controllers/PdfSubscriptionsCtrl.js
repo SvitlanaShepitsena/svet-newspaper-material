@@ -2,7 +2,10 @@
     'use strict';
 
     angular.module('auth')
-        .controller('PdfSubscriptionsCtrl', function ($scope) {
+        .controller('PdfSubscriptionsCtrl', function ($scope, user) {
+
+
+
 
         });
 })();

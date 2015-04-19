@@ -1,11 +1,7 @@
 div
     ul.list-inline
-        li.active
-            a.dropdown-link(ui-sref='app.reader.profile' )
-                i.mdi.mdi-account &nbsp
-                | {{'reader-profile'|translate}}
-        li
-            a.dropdown-link(ui-sref='app.reader.subscriptions')
-                i.mdi.mdi-email &nbsp
-                | {{'subscriptions'|translate}}
+        li(ng-repeat="m in profileMenus" ui-sref-active='sv-active-menu')
+            a.dropdown-link(ui-sref='{{"app.reader."+m.state}}')
+                i.mdi(class='{{"mdi-"+m.icon}}') &nbsp
+                | {{m.menu|translate}}
     div(ui-view='')

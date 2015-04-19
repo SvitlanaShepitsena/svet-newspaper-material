@@ -4,3 +4,6 @@
   text-decoration: none;
   color: #393939;
 }
+.sv-active-menu {
+  border-bottom: thin #f00 solid !important;
+}
