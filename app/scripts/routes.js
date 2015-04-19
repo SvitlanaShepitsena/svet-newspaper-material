@@ -195,14 +195,14 @@
                     templateUrl: "scripts/auth/views/readerCtrl.html"
                 })
 
-
 				.state("app.reader.profile", {
 					url: "/reader-profile",
 					controller:"ReaderProfileCtrl as readerProfile",
 					templateUrl: "scripts/auth/views/reader-profileCtrl.html"
 				})
-				.state("app.pdf-subscriptions", {
-					url: "/pdf-subscriptions", 
+
+				.state("app.reader.subscriptions", {
+					url: "/pdf-subscriptions",
 					controller:"PdfSubscriptionsCtrl as pdfSubscriptions",
 					templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
 				})

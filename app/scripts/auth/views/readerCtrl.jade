@@ -1,5 +1,11 @@
 div
-    ul
+    ul.list-inline
+        li.active
+            a.dropdown-link(ui-sref='app.reader.profile' )
+                i.mdi.mdi-account &nbsp
+                | {{'reader-profile'|translate}}
         li
-            a(ui-sref='app.reader.profile')
+            a.dropdown-link(ui-sref='app.reader.subscriptions')
+                i.mdi.mdi-email &nbsp
+                | {{'subscriptions'|translate}}
     div(ui-view='')

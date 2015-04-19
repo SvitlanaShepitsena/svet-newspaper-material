@@ -6,7 +6,8 @@
             return {
                 templateUrl: 'scripts/auth/directives/sv-reader-dropdown.html',
                 scope: {
-                    user: '='
+                    user: '=',
+                    logout:'&'
 
                 },
                 link: function ($scope, el, attrs) {

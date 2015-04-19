@@ -16,12 +16,7 @@
                     ctrl.isIe = AgentServ.isIe();
 
 
-                    watches();
                     $scope.isInGroup = function (group) {
-
-                        if ($scope.user && group === 'reader') {
-                            return true;
-                        }
 
                         if (!$scope.user || !$scope.user.groups) {
                             return false;
@@ -49,7 +44,6 @@
                     };
 
 
-                    function watches() {
                         $scope.$watch(function () {
                             return $mdMedia('gt-md');
                         }, function (size) {
@@ -68,7 +62,7 @@
                         $rootScope.$watch('user', function (newVal) {
                             $scope.user = newVal;
                         });
-                    }
+
 
                 }
 
