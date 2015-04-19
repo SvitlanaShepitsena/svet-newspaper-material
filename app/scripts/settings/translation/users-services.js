@@ -7,11 +7,15 @@
             $translateProvider.useCookieStorage();
 
             $translateProvider.translations('en', {
-                'reader-profile':'Reader Profile'
+                'reader-profile':'Reader Profile',
+                'settings':'Settings',
+                'logout':'Logout'
             });
 
             $translateProvider.translations('ru', {
-                'reader-profile':'Профайл Читателя'
+                'reader-profile':'Профайл Читателя',
+                'settings':'Настройки',
+                'logout':'Выйти'
 
             });
 

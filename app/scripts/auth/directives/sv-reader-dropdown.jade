@@ -12,8 +12,9 @@ lx-dropdown(position='right')
             li
                 a.dropdown-link(ui-sref='app.svet-profile.create-article')
                     i.mdi.mdi-settings &nbsp
-                    | Настройки
+                    | {{'settings'|translate}}
             li
                 a.dropdown-link(ng-click='ctrl.logout()')
                     i.mdi.mdi-logout &nbsp
-                    | Выйти
+                    | {{'logout'|translate}}
+
