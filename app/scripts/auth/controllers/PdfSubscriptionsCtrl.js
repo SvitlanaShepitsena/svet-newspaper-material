@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .controller('PdfSubscriptionsCtrl', function ($scope, user) {
+        .controller('PdfSubscriptionsCtrl', function (PdfSubscriptionsServ, $scope, user) {
 
 
 
