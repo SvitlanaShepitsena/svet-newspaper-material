@@ -91,7 +91,6 @@
                             });
                         }
 
-
                         deferred.resolve(user);
                     }).catch(function (error) {
                         deferred.reject(error);
@@ -121,7 +120,6 @@
                         if (data.facebook) {
                             user = processUserFb(data);
                         }
-
 
                         if (data.password) {
                             user = processUserPassword(data);

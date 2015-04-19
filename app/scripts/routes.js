@@ -13,7 +13,6 @@
                         user: function (AuthServ) {
                             return AuthServ.getUser();
                         }
-
                     },
                     template: "<div ui-view=''></div>"
                 })
@@ -187,9 +186,14 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 				.state("app.reader-profile", {
-					url: "/reader-profile", 
+					url: "/reader-profile",
 					controller:"ReaderProfileCtrl as readerProfile",
 					templateUrl: "scripts/auth/views/reader-profileCtrl.html"
+				})
+				.state("app.reader", {
+					url: "/reader", 
+					controller:"ReaderCtrl as reader",
+					templateUrl: "scripts/auth/views/readerCtrl.html"
 				})
 //#state'
         });
