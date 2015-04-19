@@ -186,6 +186,11 @@
                     controller: "BusinessCtrl as business",
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
+				.state("app.reader-profile", {
+					url: "/reader-profile", 
+					controller:"ReaderProfileCtrl as readerProfile",
+					templateUrl: "scripts/auth/views/reader-profileCtrl.html"
+				})
 //#state'
         });
 
