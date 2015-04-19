@@ -2,15 +2,15 @@
     'use strict';
 
     angular.module('auth')
-        .factory('PdfSubscriptionsServ', function ($q, url) {
+        .factory('PdfSubscriptionsServ', function ($q, urlUsers, $firebaseObject) {
             return {
-                getSync: function () {
 
-                },
-                get: function () {
-                    return $q(function (resolve, reject) {
+                getObjectRef: function (userId) {
 
-                    });
+
+                    var userUrl = urlUsers.url + userId + '/pdfSub';
+                    var userObj = $firebaseObject(new Firebase(userUrl));
+                    return userObj;
                 }
             };
         });

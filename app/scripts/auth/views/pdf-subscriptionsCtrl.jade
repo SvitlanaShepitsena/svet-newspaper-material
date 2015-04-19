@@ -1,1 +1,13 @@
-.well content
+div {{'subscriptions'|translate}}
+    div(ng-if='pdfLoaded')
+        form(name='pdfSubForm')
+            div
+                span {{'NewSvetNewspaper'|translate}}
+                md-checkbox(ng-model="pdfSub.newLight" aria-label="Checkbox")
+            div
+                span {{'SaturdayPlus'|translate}}
+                md-checkbox(ng-model="pdfSub.saturday" aria-label="Checkbox")
+    div(ng-if='!pdfLoaded')
+        md-progress-circular.md-accent(md-mode='indeterminate')
+
+
