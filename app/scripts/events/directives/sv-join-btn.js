@@ -9,6 +9,8 @@
                 scope: {
                     titleJoin: '@',
                     titleUnlink: '@',
+                    joinTip: '@',
+                    unlinkTip: '@',
                     btnSize: '@'
                 },
                 bindToController: {
@@ -17,7 +19,6 @@
                 controllerAs: 'ctrl',
                 controller: function svJoinBtnCtrl($scope) {
                     var ctrl = this;
-
                 },
 
                 link: function ($scope, el, attrs, ctrls) {
