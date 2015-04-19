@@ -61,7 +61,12 @@
                         if (provider === 'password') {
                             var user = processUserPassword(data);
                         }
-                        deferred.resolve(user);
+                        if (!_.isNull(user)) {
+                            UserGroupsServ.getGroups(user.id).then(function (groups) {
+                                user.groups = groups
+                                deferred.resolve(user);
+                            });
+                        }
                     }).catch(function (error) {
                         deferred.reject();
                         console.log(error);
