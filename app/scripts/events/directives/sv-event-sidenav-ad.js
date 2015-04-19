@@ -7,7 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-event-sidenav-ad.html',
                 scope: {
-                    title: '@',
+                    eventTitle: '@',
                     body: '@'
                 },
                 bindToController: {},
