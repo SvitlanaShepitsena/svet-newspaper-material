@@ -10,7 +10,6 @@
                     btnTitle: '@'
                 },
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });

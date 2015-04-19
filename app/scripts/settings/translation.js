@@ -25,6 +25,8 @@
                 'event-ad-title': 'Family Public Event',
                 'event-ad-body': 'A very special and fun SVET Family Event at Kohl Children\'s Museum on May 5.',
                 'families-event': 'Families are goings',
+                'join-tip': 'Click to register for visiting this event',
+                'unlink-tip': 'Click to un-register from visiting this event',
 
                 //widgets
                 //    weather
@@ -43,8 +45,8 @@
 
 
 
-                'join': 'Join',
-                'unlink': 'Unlink',
+                'join': 'Register',
+                'unlink': 'Un-register',
                 'share': 'Share',
                 'NewSvetNewspaper': 'New Svet Newspaper',
                 'SaturdayPlus': 'Saturday+ Newspaper',
@@ -133,6 +135,9 @@
                 'event-ad-title': 'Семейное Мероприятие.',
                 'event-ad-body': '5 Мая Свет пгиглашает на увлекательное мероприятие для всей семьи в Детском Музее Kohl.',
                 'families-event': 'Семей Придут',
+                'join-tip': 'Кликните чтобы зарегистрироваться',
+                'unlink-tip': 'Отменить регистрацию на посещение',
+
                 'join': 'Посетить',
                 'unlink': 'Отменить',
                 'share': 'Поделиться',
