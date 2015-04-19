@@ -16,30 +16,13 @@
                     ctrl.isIe = AgentServ.isIe();
 
 
-                    $scope.$watch(function () {
-                        return $mdMedia('gt-md');
-                    }, function (size) {
-                        ctrl.gtMd = size;
-                    });
-
-                    $scope.$watch(function () {
-                        return $mdMedia('gt-sm');
-                    }, function (size) {
-                        ctrl.gtSm = size;
-                    });
-                    $scope.$watch(function () {
-                        return $mdMedia('sm');
-                    }, function (size) {
-
-                        ctrl.sm = size;
-                    });
-
-
-                    $rootScope.$watch('user', function (newVal) {
-                        $scope.user = newVal;
-                    });
-
+                    watches();
                     $scope.isInGroup = function (group) {
+
+                        if ($scope.user && group === 'reader') {
+                            return true;
+                        }
+
                         if (!$scope.user || !$scope.user.groups) {
                             return false;
                         }
@@ -64,6 +47,29 @@
                         AuthServ.logout();
 
                     };
+
+
+                    function watches() {
+                        $scope.$watch(function () {
+                            return $mdMedia('gt-md');
+                        }, function (size) {
+                            ctrl.gtMd = size;
+                        });
+                        $scope.$watch(function () {
+                            return $mdMedia('gt-sm');
+                        }, function (size) {
+                            ctrl.gtSm = size;
+                        });
+                        $scope.$watch(function () {
+                            return $mdMedia('sm');
+                        }, function (size) {
+                            ctrl.sm = size;
+                        });
+                        $rootScope.$watch('user', function (newVal) {
+                            $scope.user = newVal;
+                        });
+                    }
+
                 }
 
             };
