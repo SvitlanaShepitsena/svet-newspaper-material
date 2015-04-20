@@ -13,6 +13,11 @@
                 'subscriptions':'Subscriptions',
                 'my-classified':'My Classified',
                 'profile-settings':'Profile Settings',
+                'no-classified-yet':'You do not have any classified yet',
+                'free-classified':'You can Post 3 Classified for Free',
+                'start-posting-classified':'Start Posting Classified Now',
+                'add-classified':'Add Classified',
+                'bonuses':'Bonuses',
                 'logout':'Logout'
             });
 
@@ -23,6 +28,11 @@
                 'subscriptions':'Подписки ',
                 'my-classified':'Мои Объявления',
                 'profile-settings':'Настройки Профайла',
+                'no-classified-yet':'У Вас пока нет объявлений',
+                'add-classified':'Добавить Объявление',
+                'free-classified':'Вы можете разместить 3 бесплатных объявления',
+                'start-posting-classified':'Создать Объявление',
+                'bonuses':'Бонусы',
                 'logout':'Выйти'
 
             });

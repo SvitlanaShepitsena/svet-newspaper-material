@@ -9,12 +9,16 @@ lx-dropdown(position='right')
                     | {{'subscriptions'|translate}}
             li
                 a.dropdown-link(ui-sref='app.reader.reader-activity-events')
-                    i.mdi.mdi-email &nbsp
+                    i.mdi.mdi-bell &nbsp
                     | {{'activity-events'|translate}}
             li
                 a.dropdown-link(ui-sref='app.reader.reader-bookmarks')
                     i.mdi.mdi-bookmark &nbsp
                     | {{'bookmarks'|translate}}
+            li
+                a.dropdown-link(ui-sref='app.reader.reader-classified')
+                    i.mdi.mdi-tag &nbsp
+                    | {{'my-classified'|translate}}
             li.dropdown-divider
             li
                 a.dropdown-link(ui-sref='app.reader.profile')

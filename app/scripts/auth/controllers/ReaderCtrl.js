@@ -21,7 +21,7 @@
                 menu: 'bookmarks'
             });
             $scope.profileMenus.push({
-                icon: 'tag-faces',
+                icon: 'tag',
                 state: 'reader-classified',
                 menu: 'my-classified'
             });
