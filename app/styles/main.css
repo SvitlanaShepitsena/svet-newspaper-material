@@ -95,6 +95,12 @@
 	border-bottom: thin #f00 solid !important;
 }
 
+.md-tabs,
+.md-default-theme,
+.md-paginator {
+	color: #292929 !important;
+}
+
 .author-article-nav {
 	backround-color: none !important;
 	background: transparent !important;
