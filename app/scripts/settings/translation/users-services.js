@@ -24,7 +24,8 @@
                 'required-field':'* Required Field',
                 'min-length':'* Minimum length 3 symbols',
                 'max-length':'* Maximum length 20 symbols',
-                'invalid-email':'* Please enter a valid email!',
+                'invalid-email':'* Please enter a valid email',
+                'invalid-password':'* Your password must be between 6 and 12 characters long',
                 'logout':'Logout'
 
             });
@@ -47,7 +48,8 @@
                 'required-field':'* Обязательное Поле',
                 'min-length':'* Минимум 3 символа',
                 'max-length':'* Максимум  20 символов',
-                'invalid-email':'* Пожалуйста, введите корректный адрес!',
+                'invalid-email':'* Пожалуйста, введите корректный адрес',
+                'invalid-password':'* Ваш пароль должен содержать от 6 до 20 символов',
                 'logout':'Выйти'
 
             });
