@@ -95,6 +95,10 @@
 	border-bottom: thin #f00 solid !important;
 }
 
+.md-paginator {
+	z-index: 99;
+}
+
 .author-article-nav {
 	backround-color: none !important;
 	background: transparent !important;
