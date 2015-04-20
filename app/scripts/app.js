@@ -35,6 +35,7 @@
         'lumx',
         'ngMaterial',
         'ngMessages',
+        'ngTouch',
         'toastr',
         'firebase',
         'mwl.calendar',

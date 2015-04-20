@@ -10,6 +10,7 @@
     "angular-animate": "^1.4.0-rc.0",
     "angular-messages": "^1.4.0-rc.0",
     "angular-sanitize": "^1.4.0-rc.0",
+    "angular-touch": "^1.4.0-rc.0",
     "angular-aria": "^1.4.0-rc.0",
     "angular-material": "latest",
     "mdi": "1.0.8-beta",
