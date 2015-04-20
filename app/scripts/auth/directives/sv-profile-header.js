@@ -7,7 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-profile-header.html',
                 scope: {
-                    title: '@'
+                    headerTitle: '@'
                 },
                 bindToController: {},
                 controllerAs: 'ctrl',

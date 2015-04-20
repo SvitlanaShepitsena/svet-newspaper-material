@@ -36,7 +36,7 @@
                 'no-classified-yet':'У Вас пока нет объявлений',
                 'add-classified':'Добавить Объявление',
                 'free-classified':'Вы можете разместить 3 бесплатных объявления',
-                'start-posting-classified':'Создать Объявление',
+                'start-posting-classified':'Создать Объявлениеlassified Now',
                 'bonuses':'Бонусы',
 
                 // Forms

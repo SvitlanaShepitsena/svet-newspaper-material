@@ -26,7 +26,6 @@
 
                     $rootScope.$watch('user', function (user) {
                         $scope.user = user;
-
                     });
 
                     var eventUsers = EventServ.getUsersArrayRef(ctrl.eventKey);
@@ -45,7 +44,6 @@
                     ctrl.joinEvent = function () {
                         EventServ.joinUser($scope.user, ctrl.eventKey).then(function () {
                             toastr.success('Thank you for joining event. See you then.');
-
                             $state.go('app.events.field', {year: 2015});
                         })
 

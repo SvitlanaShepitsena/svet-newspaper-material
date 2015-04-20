@@ -95,6 +95,15 @@
 	border-bottom: thin #f00 solid !important;
 }
 
+.md-paginator {
+	z-index: 99;
+	width: 36px !important;
+}
+
+md-icon {
+	fill: #393939;
+}
+
 .author-article-nav {
 	backround-color: none !important;
 	background: transparent !important;
@@ -369,18 +378,18 @@ body {
 }
 
 md-sidenav {
-	min-width: 260px !important;
-	max-width: 260px !important;
+	min-width: 270px !important;
+	max-width: 270px !important;
 }
 
 md-sidenav.md-locked-open {
-	width: 260px !important;
-	min-width: 260px !important;
-	max-width: 260px !important;
+	width: 270px !important;
+	min-width: 270px !important;
+	max-width: 270px !important;
 }
 
 .svet-logo {
-	width: 260px;
+	width: 270px;
 }
 
 .logo-link {
