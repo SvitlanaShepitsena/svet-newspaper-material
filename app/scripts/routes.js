@@ -190,28 +190,33 @@
 
                 .state("app.reader", {
                     url: "/reader",
-                    abstract:true,
-                    controller:"ReaderCtrl as reader",
+                    abstract: true,
+                    controller: "ReaderCtrl as reader",
                     templateUrl: "scripts/auth/views/readerCtrl.html"
                 })
 
-				.state("app.reader.profile", {
-					url: "/reader-profile",
-					controller:"ReaderProfileCtrl as readerProfile",
-					templateUrl: "scripts/auth/views/reader-profileCtrl.html"
-				})
+                .state("app.reader.profile", {
+                    url: "/reader-profile",
+                    controller: "ReaderProfileCtrl as readerProfile",
+                    templateUrl: "scripts/auth/views/reader-profileCtrl.html"
+                })
 
-				.state("app.reader.subscriptions", {
-					url: "/pdf-subscriptions",
-					controller:"PdfSubscriptionsCtrl as pdfSubscriptions",
-					templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
-				})
-				
-				
-				.state("app.reader-activity-events", {
-					url: "/reader-activity-events", 
-					controller:"ReaderActivityEventsCtrl as readerActivityEvents",
-					templateUrl: "scripts/auth/views/reader-activity-eventsCtrl.html"
+                .state("app.reader.subscriptions", {
+                    url: "/pdf-subscriptions",
+                    controller: "PdfSubscriptionsCtrl as pdfSubscriptions",
+                    templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
+                })
+
+
+                .state("app.reader.reader-activity-events", {
+                    url: "/reader-activity-events",
+                    controller: "ReaderActivityEventsCtrl as readerActivityEvents",
+                    templateUrl: "scripts/auth/views/reader-activity-eventsCtrl.html"
+                })
+				.state("app.reader-bookmarks", {
+					url: "/reader-bookmarks", 
+					controller:"ReaderBookmarksCtrl as readerBookmarks",
+					templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
 				})
 //#state'
         });

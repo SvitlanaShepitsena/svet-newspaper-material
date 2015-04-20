@@ -8,16 +8,18 @@
 
             $translateProvider.translations('en', {
                 'reader-profile':'Reader Profile',
+                'reader-profile-settings':'Reader Profile Settings',
                 'activity-events':'Activity and Events',
-                'subscriptions':'My Subscriptions',
+                'subscriptions':'Subscriptions',
                 'settings':'Settings',
                 'logout':'Logout'
             });
 
             $translateProvider.translations('ru', {
                 'reader-profile':'Профайл Читателя',
+                'reader-profile-settings':'Настройки Профайла Читателя',
                 'activity-events':'События и Мероприятия',
-                'subscriptions':'Мои Подписки ',
+                'subscriptions':'Подписки ',
                 'settings':'Настройки',
                 'logout':'Выйти'
 
