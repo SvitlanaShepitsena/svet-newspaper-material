@@ -10,7 +10,7 @@
     <meta name="referrer" content="origin"/>
     <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"/>
     <meta property="og:title" content="Angular"/>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <!-- build:cssAssets -->
 
@@ -97,7 +97,7 @@
             </md-content>
             <!-- =Right Sidebar-->
             <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
-                        md-is-locked-open="$mdMedia('gt-lg')">
+                        md-is-locked-open="$mdMedia('gt-lg')" >
                 <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-lg
                             layout-align='space-around center'
                             ng-controller="RightCtrl">
@@ -106,7 +106,7 @@
                     </md-button>
                     <span class="mdc-subhead">Читателям и Партнерам</span>
                 </md-toolbar>
-                <md-content class="pr pl pt">
+                <md-content class="pr pl pt" style='overflow:scroll'>
                     <sv-sidenav-title title="svet-on-social-media" class='mb'></sv-sidenav-title>
                     <sv-svet-social></sv-svet-social>
                     <sv-sidenav-title title="PdfNewspaperArchive" class='mb++'></sv-sidenav-title>
