@@ -11,7 +11,7 @@
                 'reader-profile-settings':'Reader Profile Settings',
                 'activity-events':'Activity and Events',
                 'subscriptions':'Subscriptions',
-                'settings':'Settings',
+                'profile-settings':'Profile Settings',
                 'logout':'Logout'
             });
 
@@ -20,7 +20,7 @@
                 'reader-profile-settings':'Настройки Профайла Читателя',
                 'activity-events':'События и Мероприятия',
                 'subscriptions':'Подписки ',
-                'settings':'Настройки',
+                'profile-settings':'Настройки Профайла',
                 'logout':'Выйти'
 
             });

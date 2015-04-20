@@ -213,10 +213,15 @@
                     controller: "ReaderActivityEventsCtrl as readerActivityEvents",
                     templateUrl: "scripts/auth/views/reader-activity-eventsCtrl.html"
                 })
-				.state("app.reader-bookmarks", {
-					url: "/reader-bookmarks", 
+				.state("app.reader.reader-bookmarks", {
+					url: "/reader-bookmarks",
 					controller:"ReaderBookmarksCtrl as readerBookmarks",
 					templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
+				})
+				.state("app.reader-classified", {
+					url: "/reader-classified", 
+					controller:"ReaderClassifiedCtrl as readerClassified",
+					templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
 				})
 //#state'
         });

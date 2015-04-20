@@ -4,18 +4,22 @@ lx-dropdown(position='right')
     lx-dropdown-menu
         ul
             li
+                a.dropdown-link(ui-sref='app.reader.subscriptions')
+                    i.mdi.mdi-newspaper &nbsp
+                    | {{'subscriptions'|translate}}
+            li
                 a.dropdown-link(ui-sref='app.reader.reader-activity-events')
                     i.mdi.mdi-email &nbsp
                     | {{'activity-events'|translate}}
             li
-                a.dropdown-link(ui-sref='app.reader.subscriptions')
-                    i.mdi.mdi-email &nbsp
-                    | {{'subscriptions'|translate}}
+                a.dropdown-link(ui-sref='app.reader.reader-bookmarks')
+                    i.mdi.mdi-bookmark &nbsp
+                    | {{'bookmarks'|translate}}
             li.dropdown-divider
             li
                 a.dropdown-link(ui-sref='app.reader.profile')
                     i.mdi.mdi-settings &nbsp
-                    | {{'settings'|translate}}
+                    | {{'profile-settings'|translate}}
             li
                 a.dropdown-link(ng-click='logout()')
                     i.mdi.mdi-logout &nbsp

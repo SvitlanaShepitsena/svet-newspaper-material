@@ -10,7 +10,6 @@
                 state: 'subscriptions',
                 menu: 'subscriptions'
             });
-
             $scope.profileMenus.push({
                 icon: 'bell',
                 state: 'reader-activity-events',
@@ -22,9 +21,14 @@
                 menu: 'bookmarks'
             });
             $scope.profileMenus.push({
+                icon: 'tag-faces',
+                state: 'reader-classified',
+                menu: 'classified'
+            });
+            $scope.profileMenus.push({
                 icon: 'settings',
                 state: 'profile',
-                menu: 'settings'
+                menu: 'profile-settings'
             });
         });
 })();
