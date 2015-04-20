@@ -20,7 +20,6 @@
                                 return false;
                             }
                         }
-
                         if (!$scope.user || !$scope.user.groups) {
                             return false;
                         }
@@ -33,8 +32,7 @@
                         AuthServ.authProvider(provider).then(function (user) {
                             UserServ.saveNewUser(user);
                             $rootScope.user = user;
-                            $state.go('app.reader.profile', {uid:user.id})
-
+                            $state.go('app.reader.profile', {uid: user.id})
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
                         });
@@ -44,7 +42,6 @@
                         $rootScope.user = null;
                         AuthServ.logout();
                         $state.go('app.home')
-
                     };
 
                     $scope.$watch(function () {

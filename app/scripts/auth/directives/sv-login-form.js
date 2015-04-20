@@ -27,13 +27,12 @@
                         AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {
 
                             $rootScope.user = user;
-                            $state.go('app.home');
+                            $state.go('app.svet-profile.author-dashboard');
 
                         }).catch(function (error) {
-                           toastr.error(error.message);
+                            toastr.error(error.message);
                         })
                     }
-
                 },
 
                 link: function ($scope, el, attrs) {
