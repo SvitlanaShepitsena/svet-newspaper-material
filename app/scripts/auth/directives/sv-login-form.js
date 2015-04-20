@@ -19,7 +19,7 @@
                 controller: function ($scope, AuthServ, $rootScope, $state) {
 
                     $scope.user = {
-                        email: 'alex@gmail.com',
+                        email: 'alex2@gmail.com',
                         password: '12345'
                     }
 
@@ -33,6 +33,7 @@
                             toastr.error(error.message);
                         })
                     }
+
                 },
 
                 link: function ($scope, el, attrs) {
