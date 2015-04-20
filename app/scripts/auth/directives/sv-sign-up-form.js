@@ -26,11 +26,11 @@
                         password: ''
                     };
 
-                    $scope.user = {
-                        name: faker.internet.userName(),
-                        email: faker.internet.email(),
-                        password: '12345'
-                    };
+                    //$scope.user = {
+                    //    name: faker.internet.userName(),
+                    //    email: faker.internet.email(),
+                    //    password: '12345'
+                    //};
                     $scope.createAccount = function () {
                         if ($scope.signUpForm.$invalid) {
                             $scope.signUpForm.userName.$touched = true;

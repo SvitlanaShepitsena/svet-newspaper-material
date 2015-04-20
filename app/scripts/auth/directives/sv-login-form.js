@@ -30,7 +30,7 @@
                             $state.go('app.svet-profile.author-dashboard');
 
                         }).catch(function (error) {
-                           toastr.error(error.message);
+                            toastr.error(error.message);
                         })
                     }
 
