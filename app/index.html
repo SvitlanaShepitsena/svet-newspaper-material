@@ -5,8 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="referrer" content="origin"/>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:title" content="Angular"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <!-- build:cssAssets -->
 
@@ -28,7 +32,8 @@
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
 
-<md-toolbar class="sv-toolbar md-hue-3 tc-white-1 pl" layout="row" layout-align="space-between center">
+<md-toolbar class="sv-toolbar md-hue-3 md-primary" layout="row" layout-align="space-between center"
+            style="background-color:">
     <div layout="row">
         <sv-lang-switch></sv-lang-switch>
         <sv-weather-svet class="weather-widget"></sv-weather-svet>
@@ -155,8 +160,8 @@
 <script src="bower_components/lumx/dist/lumx.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="./bower_components/angular-aria/angular-aria.min.js"></script>
-<script src="./bower_components/angular-material/angular-material.min.js"></script>
+<script src="./bower_components/angular-aria/angular-aria.js"></script>
+<script src="./bower_components/angular-material/angular-material.js"></script>
 <script src="./bower_components/angular-translate/angular-translate.min.js"></script>
 
 <script src="./bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>

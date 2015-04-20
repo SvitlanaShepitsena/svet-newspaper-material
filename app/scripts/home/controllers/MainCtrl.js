@@ -4,6 +4,7 @@
     angular.module('app')
 
         .controller('MainCtrl', function (AgentServ, $scope, $timeout, $mdSidenav, $mdMedia) {
+
             var main = this;
             main.isIe = AgentServ.isIe();
 
