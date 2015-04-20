@@ -189,7 +189,7 @@
                 // READER
 
                 .state("app.reader", {
-                    url: "/reader",
+                    url: "/reader/:uid",
                     abstract: true,
                     controller: "ReaderCtrl as reader",
                     templateUrl: "scripts/auth/views/readerCtrl.html"

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svAuthBtn', function (AgentServ, AuthServ, UserServ, $rootScope, $mdMedia) {
+        .directive('svAuthBtn', function (AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -11,11 +11,7 @@
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
                     var ctrl = this;
-
-
                     ctrl.isIe = AgentServ.isIe();
-
-
                     $scope.isInGroup = function (group) {
                         if ($scope.user && !$scope.user.groups) {
                             if (group === 'reader') {
@@ -34,10 +30,10 @@
                     };
 
                     ctrl.loginProvider = function (provider) {
-
                         AuthServ.authProvider(provider).then(function (user) {
                             UserServ.saveNewUser(user);
                             $rootScope.user = user;
+                            $state.go('app.reader.profile', {uid:user.id})
 
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
@@ -47,9 +43,9 @@
                     ctrl.logout = function () {
                         $rootScope.user = null;
                         AuthServ.logout();
+                        $state.go('app.home')
 
                     };
-
 
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');
