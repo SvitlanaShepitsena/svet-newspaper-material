@@ -4,7 +4,7 @@ div(flex-container='column')
             span.display-block.fs-title.mb {{title|translate}}
             .divider.divider--dark
             form.mt(name='signUpForm')
-                div(layout='column' layout-align="center center" flex)
+                div(layout='column' flex)
                     div(ng-messages='signUpForm.userName.$error' ng-if='signUpForm.userName.$touched||signUpForm.$submitted')
                         div(ng-message='required') {{'required-field'|translate}}
                         div(ng-message='minlength') {{'min-length'|translate}}
