@@ -218,8 +218,8 @@
 					controller:"ReaderBookmarksCtrl as readerBookmarks",
 					templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
 				})
-				.state("app.reader-classified", {
-					url: "/reader-classified", 
+				.state("app.reader.reader-classified", {
+					url: "/reader-classified",
 					controller:"ReaderClassifiedCtrl as readerClassified",
 					templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
 				})

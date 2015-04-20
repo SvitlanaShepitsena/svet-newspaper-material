@@ -23,7 +23,7 @@
             $scope.profileMenus.push({
                 icon: 'tag-faces',
                 state: 'reader-classified',
-                menu: 'classified'
+                menu: 'my-classified'
             });
             $scope.profileMenus.push({
                 icon: 'settings',
