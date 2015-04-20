@@ -16,3 +16,9 @@ md-icon {
   width: 24px;
   height: 24px;
 }
+@media screen and (max-width: 992px) {
+  md-icon {
+    width: 44px;
+    height: 44px;
+  }
+}
