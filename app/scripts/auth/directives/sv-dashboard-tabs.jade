@@ -1,5 +1,5 @@
 md-content.md-padding
-    md-tabs.tabs-classified.tc-black-2(md-selected='selectedIndex', md-border-bottom='')
-        md-tab.tc-black-2(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
+    md-tabs(md-selected='selectedIndex', md-border-bottom='')
+        md-tab(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
             md-content( flex class='tab{{$index%4}}', style='text-align: center;')
                 div(ng-bind='tab.content')

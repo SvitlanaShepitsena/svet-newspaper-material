@@ -19,7 +19,7 @@
                 controller: function ($scope, AuthServ, $rootScope, $state) {
 
                     $scope.user = {
-                        email: 'alex@gmail.com',
+                        email: 'alex2@gmail.com',
                         password: '12345'
                     }
 
@@ -27,7 +27,7 @@
                         AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {
 
                             $rootScope.user = user;
-                            $state.go('app.home');
+                            $state.go('app.svet-profile.author-dashboard');
 
                         }).catch(function (error) {
                            toastr.error(error.message);

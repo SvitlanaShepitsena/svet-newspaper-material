@@ -11658,7 +11658,7 @@ angular.module('ngMaterial', ["ng", "ngAnimate", "ngAria", "material.core", "mat
             template: '<section class="md-header" ' +
             'ng-class="{\'md-paginating\': pagination.active}">' +
 
-            '<button class="md-paginator md-prev" ' +
+            '<button class="md-paginator md-prev sveta" ' +
             'ng-if="pagination.active && pagination.hasPrev" ' +
             'ng-click="pagination.clickPrevious()" ' +
             'aria-hidden="true">' +
@@ -11673,7 +11673,7 @@ angular.module('ngMaterial', ["ng", "ngAnimate", "ngAria", "material.core", "mat
             '</div>' +
             '</div>' +
 
-            '<button class="md-paginator md-next" ' +
+            '<button class="md-paginator md-next sveta" ' +
             'ng-if="pagination.active && pagination.hasNext" ' +
             'ng-click="pagination.clickNext()" ' +
             'aria-hidden="true">' +

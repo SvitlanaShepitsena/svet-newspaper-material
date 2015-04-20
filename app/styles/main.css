@@ -102,8 +102,11 @@
 
 md-icon {
 	fill: #393939;
-	width: 24px;
-	height: 24px;
+}
+
+svg Attributes Style {
+	height: 100%;
+	width: 100%;
 }
 
 .author-article-nav {
