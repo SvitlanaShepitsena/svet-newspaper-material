@@ -369,18 +369,18 @@ body {
 }
 
 md-sidenav {
-	min-width: 260px !important;
-	max-width: 260px !important;
+	min-width: 270px !important;
+	max-width: 270px !important;
 }
 
 md-sidenav.md-locked-open {
-	width: 260px !important;
-	min-width: 260px !important;
-	max-width: 260px !important;
+	width: 270px !important;
+	min-width: 270px !important;
+	max-width: 270px !important;
 }
 
 .svet-logo {
-	width: 260px;
+	width: 270px;
 }
 
 .logo-link {
