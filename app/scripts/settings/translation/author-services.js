@@ -7,12 +7,21 @@
             $translateProvider.useCookieStorage();
 
             $translateProvider.translations('en', {
-                'reader-profile':'Reader Profile'
+                'author-dashboard':'Author Dashboard',
+                'author-articles':'My Articles',
+                'author-drafts':'My Drafts',
+                'create-article': 'Create an Article',
+                'statistics': 'Statistics',
+                'comments': 'Comments'
             });
 
             $translateProvider.translations('ru', {
-                'reader-profile':'Профайл Читателя'
-
+                'author-dashboard':'Панель Управления',
+                'author-articles':'Мои Статьи',
+                'author-drafts':'Мои Черновики',
+                'create-article': 'Создать статью',
+                'statistics': 'Статистика',
+                'comments': 'Комментарии'
             });
 
             $translateProvider.preferredLanguage('en');

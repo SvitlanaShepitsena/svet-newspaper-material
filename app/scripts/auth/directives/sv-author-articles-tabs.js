@@ -7,18 +7,18 @@
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-author-articles-tabs.html',
                 scope: {},
-                bindToController: {
 
-                },
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
+                link: function ($scope, el, attrs) {
                     var tabs = [
-                            {title: 'Политика', content: "Here will be my politics articles "},
-                            {title: 'Мы и Деньги', content: "Money"},
-                            {title: 'Культура', content: "About Culture."},
-                            {title: 'Общество', content: "Articles about society"},
-                            {title: 'Мир', content: "World"}
+                            {title: 'world', content: "Here will be my politics articles "},
+                            {title: 'politics', content: "Here will be my politics articles "},
+                            {title: 'business', content: "Money"},
+                            {title: 'technology', content: "About Culture."},
+                            {title: 'culture', content: "About Culture."},
+                            {title: 'sport', content: "About Culture."},
+                            {title: 'health', content: "About Culture."},
+                            {title: 'food', content: "Articles about society"},
+                            {title: 'travel', content: "World"}
                         ],
                         selected = null,
                         previous = null;
@@ -28,10 +28,6 @@
                         previous = selected;
                         selected = tabs[current];
                     });
-
-                },
-
-                link: function ($scope, el, attrs) {
 
                 }
             };

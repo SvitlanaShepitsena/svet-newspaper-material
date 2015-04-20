@@ -7,14 +7,12 @@
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-dashboard-tabs.html',
                 scope: {},
-                bindToController: {},
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
+
+                link: function ($scope, el, attrs) {
                     var tabs = [
-                            {title: 'Статистика', content: "Here is going to be my profile statistics"},
-                            {title: 'Комментарии', content: "Here are my discussions"},
-                            {title: 'Закладки', content: "Here are some interesting articles saved."}
+                            {title: 'statistics', content: "Here is going to be my profile statistics"},
+                            {title: 'comments', content: "Here are my discussions"},
+                            {title: 'bookmarks', content: "Here are some interesting articles saved."}
                         ],
                         selected = null,
                         previous = null;
@@ -24,10 +22,6 @@
                         previous = selected;
                         selected = tabs[current];
                     });
-
-                },
-
-                link: function ($scope, el, attrs) {
 
                 }
             };

@@ -9,16 +9,6 @@
             $translateProvider.translations('en', {
 
                 'Chicago': 'Chicago',
-                'Home': 'Home Page',
-                'Politics': 'Politics',
-                'Business': 'Business',
-                'WorldNews': 'World News',
-                'Technology': 'Technology',
-                'Art': 'Art',
-                'Sport': 'Sport',
-                'Health': 'Health',
-                'Food': 'Food',
-                'Travel': 'Travel',
                 'SvetRecommends': 'Svet Recommends',
                 'SvetEventsCalendar': 'Svet Events Calendar 2015',
                 'upcoming-svet-event': 'Upcoming Svet Event',
@@ -118,17 +108,7 @@
             });
 
             $translateProvider.translations('ru', {
-                'Home': 'Домашняя страница',
-                'Chicago': 'Чикаго',
-                'Politics': 'Политика',
-                'Business': 'Бизнес',
-                'WorldNews': 'Новости Мира',
-                'Technology': 'Технологии',
-                'Art': 'Культура',
-                'Sport': 'Спорт',
-                'Health': 'Здоровье ',
-                'Food': 'Кушать подано',
-                'Travel': 'Вокруг Света',
+                'chicago': 'Чикаго',
                 'SvetRecommends': 'Свет Рекомендует',
                 'SvetEventsCalendar': 'Календарь Мероприятий \'15',
                 'upcoming-svet-event': 'Свет Приглашает',
@@ -191,9 +171,6 @@
                 'create-article': 'Создать статью',
                 'settings': 'Настройки',
                 'logout': 'Выйти',
-                'statistics': 'Статистика',
-                'comments': 'Комментарии',
-                'bookmarks': 'Закладки',
                 'read-more': 'Подробнее',
 
                 'youtube': 'Youtube Канал',
