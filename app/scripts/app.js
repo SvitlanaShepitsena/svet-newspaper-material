@@ -36,6 +36,7 @@
         'pascalprecht.translate',
         'lumx',
         'ngMaterial',
+        'ngMessages',
         'toastr',
         'firebase',
         'mwl.calendar',

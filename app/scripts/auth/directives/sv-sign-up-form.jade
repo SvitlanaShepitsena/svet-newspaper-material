@@ -3,10 +3,12 @@ div(flex-container='column')
         div(class='p+')
             span.display-block.fs-title.mb {{title|translate}}
             .divider.divider--dark
-            form.mt(flex-container='column' name='signUpForm')
-                div(flex-container='row')
+            form.mt(name='signUpForm')
+                div(layout='column' layout-align="center center" flex)
+                    div(ng-messages='signUpForm.userName.$error' ng-if='signUpForm.userName.$touched')
+                        div(ng-message='required') {{'required-field'|translate}}
                     div(flex-item='')
-                        lx-text-field(label='{{name|translate}}', icon='account')
+                        lx-text-field(label='{{name|translate}}', icon='account' error='signUpForm.userName.$touched && signUpForm.userName.$error')
                             input(type='text'
                             name='userName'
                             ng-model='user.name'

@@ -18,7 +18,12 @@
                 'start-posting-classified':'Start Posting Classified Now',
                 'add-classified':'Add Classified',
                 'bonuses':'Bonuses',
+                // Forms
+                // Register
+
+                'required-field':'Required Field',
                 'logout':'Logout'
+
             });
 
             $translateProvider.translations('ru', {
@@ -33,6 +38,11 @@
                 'free-classified':'Вы можете разместить 3 бесплатных объявления',
                 'start-posting-classified':'Создать Объявление',
                 'bonuses':'Бонусы',
+
+                // Forms
+                // Register
+                'required-field':'Обязательное Поле',
+
                 'logout':'Выйти'
 
             });
