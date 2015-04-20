@@ -207,11 +207,7 @@
 					templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
 				})
 				
-				.state("app.reader-activity-events-rm", {
-					url: "/reader-activity-events-rm", 
-					controller:"Reader-activity-events--rmCtrl as reader-activity-events--rm",
-					templateUrl: "scripts/auth/views/reader-activity-events-rmCtrl.html"
-				})
+				
 				.state("app.reader-activity-events", {
 					url: "/reader-activity-events", 
 					controller:"ReaderActivityEventsCtrl as readerActivityEvents",
