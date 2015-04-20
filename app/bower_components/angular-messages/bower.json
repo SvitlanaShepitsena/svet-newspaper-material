@@ -1,7 +1,7 @@
 {
-  "name": "angular-aria",
+  "name": "angular-messages",
   "version": "1.4.0-rc.0",
-  "main": "./angular-aria.js",
+  "main": "./angular-messages.js",
   "ignore": [],
   "dependencies": {
     "angular": "1.4.0-rc.0"

@@ -1,7 +1,7 @@
 {
-  "name": "angular-sanitize",
+  "name": "angular-messages",
   "version": "1.4.0-rc.0",
-  "description": "AngularJS module for sanitizing HTML",
+  "description": "AngularJS module that provides enhanced support for displaying messages within templates",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,6 @@
     "angular",
     "framework",
     "browser",
-    "html",
     "client-side"
   ],
   "author": "Angular Core Team <angular-core+npm@google.com>",
