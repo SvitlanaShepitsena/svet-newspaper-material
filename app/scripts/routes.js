@@ -37,11 +37,6 @@
                     controller: "CultureCtrl as culture",
                     templateUrl: "scripts/culture/views/cultureCtrl.html"
                 })
-                .state("app.society", {
-                    url: "/society",
-                    controller: "SocietyCtrl as society",
-                    templateUrl: "scripts/society/views/societyCtrl.html"
-                })
                 .state("app.world", {
                     url: "/world",
                     controller: "WorldCtrl as world",
