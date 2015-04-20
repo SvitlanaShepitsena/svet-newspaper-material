@@ -157,7 +157,8 @@
 
                     var newUser = this.getObj().$createUser({email: email, password: password});
 
-                    newUser.then(function () {
+                    newUser.then(function (newUser) {
+
 
                         that.getObj().$authWithPassword({
                             email: email,

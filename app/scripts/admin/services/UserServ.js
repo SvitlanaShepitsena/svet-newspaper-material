@@ -16,6 +16,7 @@
                     user = addToUsersGroup(user);
                     return $q(function (resolve, reject) {
                         var userId = user.id || user.uid;
+                        user.id = userId;
                         var usersObj = $firebaseObject(new Firebase(usersUrl));
                         usersObj.$loaded().then(function () {
                             if (!usersObj || !usersObj[userId]) {
