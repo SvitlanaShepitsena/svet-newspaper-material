@@ -1,7 +1,7 @@
 div
     ul.list-inline(class='mb+')
         li.p.m(ng-repeat="m in profileMenus" ui-sref-active='sv-active-menu')
-            a.btn.btn-flat.btn-m(ui-sref='{{"app.reader."+m.state}}')
+            a.btn.btn-flat.btn-m.tc-grey-700(ui-sref='{{"app.reader."+m.state}}')
                 i.mdi(class='{{"mdi-"+m.icon}}') &nbsp
                 | {{m.menu|translate}}
     div(ui-view='')

@@ -6,7 +6,7 @@
             $scope.profileMenus = [];
 
             $scope.profileMenus.push({
-                icon: 'bell-ring',
+                icon: 'account',
                 state: 'profile',
                 menu: 'reader-profile'
             });

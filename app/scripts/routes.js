@@ -206,6 +206,11 @@
 					controller:"PdfSubscriptionsCtrl as pdfSubscriptions",
 					templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
 				})
+				.state("app.reader-activity-events", {
+					url: "/reader-activity-events", 
+					controller:"Reader-activity-eventsCtrl as reader-activity-events",
+					templateUrl: "scripts/auth/views/reader-activity-eventsCtrl.html"
+				})
 //#state'
         });
 
