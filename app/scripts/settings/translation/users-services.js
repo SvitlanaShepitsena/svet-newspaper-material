@@ -21,7 +21,10 @@
                 // Forms
                 // Register
 
-                'required-field':'Required Field',
+                'required-field':'* Required Field',
+                'min-length':'* Minimum length 3 symbols',
+                'max-length':'* Maximum length 20 symbols',
+                'invalid-email':'* Please enter a valid email!',
                 'logout':'Logout'
 
             });
@@ -36,13 +39,15 @@
                 'no-classified-yet':'У Вас пока нет объявлений',
                 'add-classified':'Добавить Объявление',
                 'free-classified':'Вы можете разместить 3 бесплатных объявления',
-                'start-posting-classified':'Создать Объявлениеlassified Now',
+                'start-posting-classified':'Создать Объявление',
                 'bonuses':'Бонусы',
 
                 // Forms
                 // Register
-                'required-field':'Обязательное Поле',
-
+                'required-field':'* Обязательное Поле',
+                'min-length':'* Минимум 3 символа',
+                'max-length':'* Максимум  20 символов',
+                'invalid-email':'* Пожалуйста, введите корректный адрес!',
                 'logout':'Выйти'
 
             });
