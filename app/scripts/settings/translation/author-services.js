@@ -7,7 +7,7 @@
             $translateProvider.useCookieStorage();
 
             $translateProvider.translations('en', {
-                'author-dashboard':'Author Dashboard',
+                'author-dashboard':'Dashboard',
                 'author-articles':'My Articles',
                 'author-drafts':'My Drafts',
                 'create-article': 'Create an Article',
