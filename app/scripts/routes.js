@@ -27,11 +27,6 @@
                     controller: "PoliticsCtrl as politics",
                     templateUrl: "scripts/politics/views/politicsCtrl.html"
                 })
-                .state("app.money", {
-                    url: "/money",
-                    controller: "MoneyCtrl as money",
-                    templateUrl: "scripts/money/views/moneyCtrl.html"
-                })
                 .state("app.culture", {
                     url: "/culture",
                     controller: "CultureCtrl as culture",
