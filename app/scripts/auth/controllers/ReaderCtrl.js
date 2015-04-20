@@ -6,20 +6,16 @@
             $scope.profileMenus = [];
 
             $scope.profileMenus.push({
-                icon:'account',
-                state:'profile',
-                menu:'reader-profile'
+                icon: 'bell-ring',
+                state: 'profile',
+                menu: 'reader-profile'
             });
 
             $scope.profileMenus.push({
-                icon:'email',
-                state:'subscriptions',
-                menu:'subscriptions'
+                icon: 'newspaper',
+                state: 'subscriptions',
+                menu: 'subscriptions'
             });
-
-
-
-
         });
 })();
 

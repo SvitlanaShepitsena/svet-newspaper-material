@@ -7,16 +7,16 @@
             $translateProvider.useCookieStorage();
 
             $translateProvider.translations('en', {
-                'reader-profile':'Reader Profile',
-                'subscriptions':'Subscriptions',
+                'reader-profile':'Activity and Events',
+                'subscriptions':'My Subscriptions',
 
                 'settings':'Settings',
                 'logout':'Logout'
             });
 
             $translateProvider.translations('ru', {
-                'reader-profile':'Профайл Читателя',
-                'subscriptions':'Подписка',
+                'reader-profile':'События и Мероприятия',
+                'subscriptions':'Мои Подписки ',
                 'settings':'Настройки',
                 'logout':'Выйти'
 
