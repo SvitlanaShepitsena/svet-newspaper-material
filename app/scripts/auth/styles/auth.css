@@ -14,3 +14,9 @@
 md-icon {
   fill: #393939;
 }
+@media screen and (max-width: 992px) {
+  md-icon {
+    width: 44px;
+    height: 44px;
+  }
+}

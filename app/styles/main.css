@@ -530,6 +530,11 @@ md-sidenav.md-locked-open {
 
 @media screen and (max-width: 992px) {
 
+md-icon {
+	width: 44px;
+	height: 44px;
+}
+
 .logo-link {
 	width: 100px;
 }
