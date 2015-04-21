@@ -17,6 +17,7 @@
                     for (var i = $scope.startIssue; i <= $scope.startIssue + $scope.issuesToShow; i++) {
                         var issue = {
                             number: i,
+                            img: $scope.isSaturday ? 'saturday' : 'new-svet',
                             url: urlStart + 'index.html'
                         };
                         $scope.issues.push(issue);

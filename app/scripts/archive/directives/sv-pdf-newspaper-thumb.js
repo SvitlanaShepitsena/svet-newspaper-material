@@ -7,7 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/archive/directives/sv-pdf-newspaper-thumb.html',
                 scope: {
-
+                    issue: '='
                 },
                 link: function ($scope, el, attrs) {
 
