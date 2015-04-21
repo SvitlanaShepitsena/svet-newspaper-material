@@ -6,7 +6,9 @@ div(layout='column' flex='')
 
         md-row-height="2:3"
         md-gutter='15px')
-            md-grid-tile.card(ng-repeat='i in ctrl.issues')
-                a(href='{{i.url}}')
+            md-grid-tile.card(ng-repeat='i in issues')
+                a(href='{{i.url}}' ng-if="!isSaturday")
                     img(src="img/archive/new-svet-thumb.jpg")
+                a(href='{{i.url}}' ng-if="isSaturday")
+                    img(src="img/archive/saturday-thumb.jpg")
 
