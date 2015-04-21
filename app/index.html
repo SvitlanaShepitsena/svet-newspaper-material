@@ -41,7 +41,8 @@
     <sv-social-top-nav hide-sm></sv-social-top-nav>
     <sv-social-top-nav-cell hide-gt-sm></sv-social-top-nav-cell>
 </md-toolbar>
-<div layout="row" flex style="overflow:hidden">
+
+<div layout="row">
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
@@ -95,9 +96,9 @@
             <md-content layout-fill>
                 <div class="mr+ ml+ mt+" ui-view="" flex></div>
             </md-content>
-            <!-- =Right Sidebar-->
-            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
-                        md-is-locked-open="$mdMedia('gt-lg')" style="height:1500px">
+            <!-- Right SideBar-->
+            <md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
+                        md-is-locked-open="$mdMedia('gt-lg')">
                 <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-lg
                             layout-align='space-around center'
                             ng-controller="RightCtrl">
@@ -147,14 +148,15 @@
 <!-- =Footer-->
 
 
-<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/velocity/velocity.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
 
-<script src="./bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="./bower_components/angular-messages/angular-messages.js"></script>
 <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
 <script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="./bower_components/angular-touch/angular-touch.js"></script>
 <script src="./bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
 <script src="./bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 <script src="./bower_components/lumx/dist/lumx.js"></script>
