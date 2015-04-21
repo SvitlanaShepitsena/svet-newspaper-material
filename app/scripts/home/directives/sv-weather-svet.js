@@ -11,15 +11,16 @@
 
                     $scope.tempConverter = function (temp) {
                         if ($translate.use() === 'ru') {
-                            var cel = ((temp-32)/1.8).toFixed(1);
+                            var cel = ((temp - 32) / 1.8).toFixed(1);
                             return cel;
                         }
                         return temp;
 
                     };
-
+                    $scope.forecastReady = false;
                     WeatherServ.forecast().then(function (forecast) {
                         $scope.forecast = forecast;
+                        $scope.forecastReady = true;
                     });
                 }
             };
