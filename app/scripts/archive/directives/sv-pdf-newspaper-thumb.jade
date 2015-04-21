@@ -1,12 +1,17 @@
 div
     .card.p.m
-        span.display-block.fs-headline # {{startIssue + index}}
+        div(layout='row' layout-align='space-between')
+            div
+                i.mdi.mdi-calendar(style='margin-right:4px')
+                span.fs-body-2 Date
+            div
+                span.fs-body-2 # {{startIssue + index}}
         a.display-block(href='{{issue.url}}')
             img(ng-src="img/archive/{{issue.img}}-thumb.jpg")
     div(layout='row' layout-align='center')
-        button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='')
+        a.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' href='{{issue.url}}')
             i.mdi.mdi-eye(style="margin-right:4px")
             |Read
-        button.btn.btn--xs.btn--white.btn--raised.mr(lx-ripple='')
+        a.btn.btn--xs.btn--white.btn--raised.mr(lx-ripple='')
             i.mdi.mdi-download(style="margin-right:4px")
             |Download

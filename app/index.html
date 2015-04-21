@@ -26,7 +26,7 @@
 
 
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.min.css"/>
+    <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.min.css" type="text/css"/>
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
@@ -93,7 +93,7 @@
         </md-toolbar>
 
         <div layout="row" layout-fill flex> <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
-            <md-content layout-fill flex-order="">
+            <md-content layout-fill>
                 <div class="mr+ ml+ mt+" ui-view="" flex></div>
             </md-content>
             <md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
@@ -142,10 +142,7 @@
                 </md-content>
             </md-sidenav>
         </div>
-
     </div>
-            <!-- =Right Sidebar-->
-
 </div>
 <!-- =Footer-->
 
@@ -162,6 +159,9 @@
 <script src="./bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
 <script src="./bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 <script src="./bower_components/lumx/dist/lumx.js"></script>
+<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="./bower_components/angular-touch/angular-touch.js"></script>
+<script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="./bower_components/angular-aria/angular-aria.js"></script>
 <script src="./bower_components/angular-material/angular-material.js"></script>
 <script src="./bower_components/angular-translate/angular-translate.min.js"></script>
@@ -231,6 +231,7 @@
 
 <!-- archive -->
 <script src="scripts/archive/archiveIndex.js"></script>
+<script src="scripts/archive/directives/sv-pdf-newspaper-thumb.js"></script>
 <script src="scripts/archive/directives/sv-pdf-issues.js"></script>
 <script src="scripts/archive/controllers/SaturdayPlusNewspaperCtrl.js"></script>
 <script src="scripts/archive/controllers/NewLightNewspaperCtrl.js"></script>
