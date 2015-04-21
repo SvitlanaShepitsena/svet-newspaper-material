@@ -10,9 +10,9 @@
 
                 link: function ($scope, el, attrs) {
                     var tabs = [
-                            {title: 'statistics', content: "Here is going to be my profile statistics"},
                             {title: 'comments', content: "Here are my discussions"},
-                            {title: 'bookmarks', content: "Here are some interesting articles saved."}
+                            {title: 'bookmarks', content: "Here are some interesting articles saved."},
+                            {title: 'statistics', content: "Here is going to be my profile statistics"}
                         ],
                         selected = null,
                         previous = null;

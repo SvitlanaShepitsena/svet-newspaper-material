@@ -10,6 +10,8 @@
 
                 'Chicago': 'Chicago',
                 'SvetRecommends': 'Svet Recommends',
+                'events': 'Events',
+                'friends': 'Friends',
                 'SvetEventsCalendar': 'Svet Events Calendar 2015',
                 'upcoming-svet-event': 'Upcoming Svet Event',
                 'event-ad-title': 'Family Public Event',
@@ -90,6 +92,8 @@
             $translateProvider.translations('ru', {
                 'chicago': 'Чикаго',
                 'SvetRecommends': 'Свет Рекомендует',
+                'events': 'Мероприятия',
+                'friends': 'Друзья',
                 'SvetEventsCalendar': 'Календарь Мероприятий \'15',
                 'upcoming-svet-event': 'Свет Приглашает',
                 'event-ad-title': 'Семейное Мероприятие.',

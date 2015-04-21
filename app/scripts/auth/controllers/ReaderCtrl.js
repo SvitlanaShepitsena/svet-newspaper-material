@@ -16,11 +16,6 @@
                 menu: 'activity-events'
             });
             $scope.profileMenus.push({
-                icon: 'bookmark',
-                state: 'reader-bookmarks',
-                menu: 'bookmarks'
-            });
-            $scope.profileMenus.push({
                 icon: 'tag',
                 state: 'reader-classified',
                 menu: 'my-classified'

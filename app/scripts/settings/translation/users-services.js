@@ -9,7 +9,8 @@
             $translateProvider.translations('en', {
                 'dashboard': 'Dashboard',
                 'my-articles': 'My Articles',
-                'my-drafts': 'My Drafts',
+                'my-drafts': 'Drafts',
+                'my-friends': 'Friends',
                 'create:article': 'Create Article',
                 'settings': 'Settings',
                 'statistics': 'Statistics',
@@ -41,9 +42,10 @@
             });
 
             $translateProvider.translations('ru', {
-                'dashboard': 'Панель Управления',
+                'dashboard': 'Мой Профайл',
                 'my-articles': 'Мои Статьи',
-                'my-drafts': 'Мои Черновики',
+                'my-drafts': 'Черновики',
+                'my-friends': 'Друзья',
                 'create-article': 'Создать статью',
                 'settings': 'Настройки',
                 'comments': 'Комментарии',
