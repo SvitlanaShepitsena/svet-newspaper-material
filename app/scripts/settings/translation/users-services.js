@@ -7,6 +7,15 @@
             $translateProvider.useCookieStorage();
 
             $translateProvider.translations('en', {
+                'dashboard': 'Dashboard',
+                'my-articles': 'My Articles',
+                'my-drafts': 'My Drafts',
+                'create:article': 'Create Article',
+                'settings': 'Settings',
+                'statistics': 'Statistics',
+                'comments': 'Comments',
+                'bookmarks': 'Bookmarks',
+
                 'reader-profile':'Reader Profile',
                 'reader-profile-settings':'Reader Profile Settings',
                 'activity-events':'Activity and Events',
@@ -31,6 +40,14 @@
             });
 
             $translateProvider.translations('ru', {
+                'dashboard': 'Панель Управления',
+                'my-articles': 'Мои Статьи',
+                'my-drafts': 'Мои Черновики',
+                'create-article': 'Создать статью',
+                'settings': 'Настройки',
+                'comments': 'Комментарии',
+                'bookmarks': 'Закладки',
+
                 'reader-profile':'Профайл Читателя',
                 'reader-profile-settings':'Настройки Профайла Читателя',
                 'activity-events':'События и Мероприятия',

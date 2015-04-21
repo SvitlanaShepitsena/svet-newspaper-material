@@ -72,8 +72,6 @@
                 'settings': 'Settings',
                 'logout': 'Logout',
                 'statistics': 'Statistics',
-                'comments': 'Comments',
-                'bookmarks': 'Bookmarks',
                 'read-more': 'Read More',
                 'listen': 'Listen',
                 'archive': 'Archive',
@@ -170,6 +168,7 @@
                 'my-drafts': 'Мои Черновики',
                 'create-article': 'Создать статью',
                 'settings': 'Настройки',
+
                 'logout': 'Выйти',
                 'read-more': 'Подробнее',
 
