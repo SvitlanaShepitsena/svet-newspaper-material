@@ -22,17 +22,16 @@
                 //    weather
                 'weather': 'Chicago weather',
                 'forecast': 'Weekly Forecast',
-                'degrees':'F',
+                'degrees': 'F',
 
-                'Tomorrow':'Tomorrow',
-                'Monday':'Monday',
-                'Tuesday':'Tuesday',
-                'Wednesday':'Wednesday',
-                'Thursday':'Thursday',
-                'Friday':'Friday',
-                'Saturday':'Saturday',
-                'Sunday':'Sunday',
-
+                'Tomorrow': 'Tomorrow',
+                'Monday': 'Monday',
+                'Tuesday': 'Tuesday',
+                'Wednesday': 'Wednesday',
+                'Thursday': 'Thursday',
+                'Friday': 'Friday',
+                'Saturday': 'Saturday',
+                'Sunday': 'Sunday',
 
 
                 'join': 'Register',
@@ -63,15 +62,7 @@
                 'registering-conditions': 'you agree to our Data Policy',
                 'already-registered': 'Already registered?',
                 'registration': 'Registration',
-                'login': 'Login',
 
-                'dashboard': 'Dashboard',
-                'my-articles': 'My Articles',
-                'my-drafts': 'My Drafts',
-                'create:article': 'Create Article',
-                'settings': 'Settings',
-                'logout': 'Logout',
-                'statistics': 'Statistics',
                 'read-more': 'Read More',
                 'listen': 'Listen',
                 'archive': 'Archive',
@@ -90,15 +81,6 @@
                 'personal': 'Personal',
                 'lessons': 'Lessons',
                 'svetApp': 'Svet Local App',
-
-
-
-
-
-
-
-
-
 
 
                 /*Footer*/
@@ -132,16 +114,16 @@
                 //    weather
                 'weather': 'Погода в Чикаго',
                 'forecast': 'Прогноз на Неделю',
-                'degrees':'C',
+                'degrees': 'C',
 
-                'Tomorrow':'Завтра',
-                'Monday':'Понедельник',
-                'Tuesday':'Вторник',
-                'Wednesday':'Среда',
-                'Thursday':'Четверг',
-                'Friday':'Пятница',
-                'Saturday':'Суббота',
-                'Sunday':'Воскресенье',
+                'Tomorrow': 'Завтра',
+                'Monday': 'Понедельник',
+                'Tuesday': 'Вторник',
+                'Wednesday': 'Среда',
+                'Thursday': 'Четверг',
+                'Friday': 'Пятница',
+                'Saturday': 'Суббота',
+                'Sunday': 'Воскресенье',
 
                 'classified': 'Частные Объявления',
                 'contacts': 'Обратная связь',
@@ -161,15 +143,7 @@
                 'registering-conditions': 'условия лицензионного договора',
                 'already-registered': 'Уже зарегистрированы',
                 'registration': 'Регистрация',
-                'login': 'Войти',
 
-                'dashboard': 'Панель Управления',
-                'my-articles': 'Мои Статьи',
-                'my-drafts': 'Мои Черновики',
-                'create-article': 'Создать статью',
-                'settings': 'Настройки',
-
-                'logout': 'Выйти',
                 'read-more': 'Подробнее',
 
                 'youtube': 'Youtube Канал',

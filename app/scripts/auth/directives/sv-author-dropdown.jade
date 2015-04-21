@@ -6,25 +6,25 @@ lx-dropdown(position='right')
             li
                 a.dropdown-link(ui-sref="app.svet-profile.author-dashboard")
                     i.mdi.mdi-view-dashboard &nbsp
-                    | Панель Управления
+                    | {{'dashboard'|translate}}
             li
                 a.dropdown-link(ui-sref="app.svet-profile.author-articles")
                     i.mdi.mdi-view-list &nbsp
-                    |  Мои Статьи
+                    | {{'my-articles'|translate}}
             li
                 a.dropdown-link(ui-sref="app.svet-profile.author-drafts")
                     i.mdi.mdi-file &nbsp
-                    |  Мои Черновики
+                    | {{'my-drafts'|translate}}
             li
                 a.dropdown-link(ui-sref='app.svet-profile.create-article')
                     i.mdi.mdi-pencil &nbsp
-                    | Создать Статью
+                    | {{'create-article'|translate}}
             li.dropdown-divider
             li
                 a.dropdown-link(ui-sref='app.svet-profile.create-article')
                     i.mdi.mdi-settings &nbsp
-                    | Настройки
+                    | {{'settings'|translate}}
             li
                 a.dropdown-link(ng-click='logout()')
                     i.mdi.mdi-logout &nbsp
-                    | Выйти
+                    | {{'logout'|translate}}
