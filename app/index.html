@@ -42,7 +42,7 @@
     <sv-social-top-nav-cell hide-gt-sm></sv-social-top-nav-cell>
 </md-toolbar>
 
-<div layout="row" flex style="overflow:hidden">
+<div layout="row">
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
@@ -93,74 +93,75 @@
         </md-toolbar>
 
         <div layout="row" layout-fill flex> <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
-            <md-content layout-fill>
+            <md-content layout-fill flex-order="">
                 <div class="mr+ ml+ mt+" ui-view="" flex></div>
             </md-content>
-            <!-- =Right Sidebar-->
-            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
-                        md-is-locked-open="$mdMedia('gt-lg')" style="height:1500px" >
-                <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-lg
-                            layout-align='space-around center'
-                            ng-controller="RightCtrl">
-                    <md-button sv-right-click-handler="" hide-gt-lg="" aria-label="close right" class="txt-white">
-                        <i class="mdi mdi-close"></i>
-                    </md-button>
-                    <span class="mdc-subhead">Читателям и Партнерам</span>
-                </md-toolbar>
-                <md-content class="pr pl pt" style='overflow:scroll'>
-                    <sv-sidenav-title title="svet-on-social-media" class='mb'></sv-sidenav-title>
-                    <sv-svet-social></sv-svet-social>
-                    <sv-sidenav-title title="PdfNewspaperArchive" class='mb++'></sv-sidenav-title>
-                    <div layout="row" class="mb+++">
-                        <div flex class="p">
-                            <sv-nav-pdf-thumb
-                                    url="app.new-light-newspaper"
-                                    img="new-svet-thumb.jpg">
-                            </sv-nav-pdf-thumb>
-                        </div>
-                        <div flex class="p">
-                            <sv-nav-pdf-thumb
-                                    url="app.saturday-plus-newspaper"
-                                    img="saturday-thumb.jpg">
-                            </sv-nav-pdf-thumb>
-                        </div>
-                    </div>
-                    <sv-nav-btn url="app.classified"
-                                icon="tag-faces"
-                                title="classified"
-                                txt-color="white-1"
-                                bgc="red-300"
-                                color="white" btn-size="m"
-                                class="mb++"></sv-nav-btn>
 
-                    <sv-nav-btn url="app.contact"
-                                icon="map-marker"
-                                title="contact us"
-                                txt-color="grey-700"
-                                color="white" btn-size="m"
-                                class="mb++"></sv-nav-btn>
-
-                </md-content>
-            </md-sidenav>
         </div>
+
     </div>
+            <!-- =Right Sidebar-->
+        <md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
+                    md-is-locked-open="$mdMedia('gt-lg')" sv-touch-handler>
+            <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-lg
+                        layout-align='space-around center'
+                        ng-controller="RightCtrl">
+                <md-button sv-right-click-handler="" hide-gt-lg="" aria-label="close right" class="txt-white">
+                    <i class="mdi mdi-close"></i>
+                </md-button>
+                <span class="mdc-subhead">Читателям и Партнерам</span>
+            </md-toolbar>
+            <md-content class="pr pl pt" style='overflow:scroll'>
+                <sv-sidenav-title title="svet-on-social-media" class='mb'></sv-sidenav-title>
+                <sv-svet-social></sv-svet-social>
+                <sv-sidenav-title title="PdfNewspaperArchive" class='mb++'></sv-sidenav-title>
+                <div layout="row" class="mb+++">
+                    <div flex class="p">
+                        <sv-nav-pdf-thumb
+                                url="app.new-light-newspaper"
+                                img="new-svet-thumb.jpg">
+                        </sv-nav-pdf-thumb>
+                    </div>
+                    <div flex class="p">
+                        <sv-nav-pdf-thumb
+                                url="app.saturday-plus-newspaper"
+                                img="saturday-thumb.jpg">
+                        </sv-nav-pdf-thumb>
+                    </div>
+                </div>
+                <sv-nav-btn url="app.classified"
+                            icon="tag-faces"
+                            title="classified"
+                            txt-color="white-1"
+                            bgc="red-300"
+                            color="white" btn-size="m"
+                            class="mb++"></sv-nav-btn>
+
+                <sv-nav-btn url="app.contact"
+                            icon="map-marker"
+                            title="contact us"
+                            txt-color="grey-700"
+                            color="white" btn-size="m"
+                            class="mb++"></sv-nav-btn>
+
+            </md-content>
+        </md-sidenav>
 </div>
 <!-- =Footer-->
 
 
-<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/velocity/velocity.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
 
-<script src="./bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="./bower_components/angular-messages/angular-messages.js"></script>
 <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
 <script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="./bower_components/angular-touch/angular-touch.js"></script>
 <script src="./bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
 <script src="./bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 <script src="./bower_components/lumx/dist/lumx.js"></script>
-<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
-<script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="./bower_components/angular-aria/angular-aria.js"></script>
 <script src="./bower_components/angular-material/angular-material.js"></script>
 <script src="./bower_components/angular-translate/angular-translate.min.js"></script>
