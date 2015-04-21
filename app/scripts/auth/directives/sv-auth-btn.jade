@@ -1,30 +1,33 @@
 div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
-    div(ng-if='!user')
-        div(ng-if="ctrl.isIe")
-            button.tc-black(lx-ripple=''
-            ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
-            ui-sref='app.svet-login'
-            class='fab__primary btn btn--white tc-black' )
-                i.mdi.mdi-account
-                i.mdi.mdi-login
-        div(ng-if="!ctrl.isIe")
-            .fab.l(ng-class='{ie:ctrl.isIe && !ctrl.sm}')
+    div(ng-if='loadingUser')
+        sv-loader
+    div(ng-if='!loadingUser')
+        div(ng-if='!user')
+            div(ng-if="ctrl.isIe")
                 button.tc-black(lx-ripple=''
                 ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
                 ui-sref='app.svet-login'
                 class='fab__primary btn btn--white tc-black' )
                     i.mdi.mdi-account
                     i.mdi.mdi-login
-                .fab__actions(ng-class="{'fab__actions--left':!ctrl.isIe&&ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
-                    button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple
+            div(ng-if="!ctrl.isIe")
+                .fab.l(ng-class='{ie:ctrl.isIe && !ctrl.sm}')
+                    button.tc-black(lx-ripple=''
+                    ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
                     ui-sref='app.svet-login'
-                    ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
-                        span.fs-caption Svet
-                    button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginProvider("facebook")')
-                        i.mdi.mdi-facebook
-                    button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginProvider("google")')
-                        i.mdi.mdi-google-plus
-    div(ng-if='!!user')
-        span.fs-subhead {{user.name}} &nbsp
-            sv-author-dropdown(user='user' ng-if='isInGroup("author")' logout='ctrl.logout()')
-            sv-reader-dropdown(user='user' ng-if='isInGroup("reader")' logout='ctrl.logout()')
+                    class='fab__primary btn btn--white tc-black' )
+                        i.mdi.mdi-account
+                        i.mdi.mdi-login
+                    .fab__actions(ng-class="{'fab__actions--left':!ctrl.isIe&&ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
+                        button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple
+                        ui-sref='app.svet-login'
+                        ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
+                            span.fs-caption Svet
+                        button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginProvider("facebook")')
+                            i.mdi.mdi-facebook
+                        button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginProvider("google")')
+                            i.mdi.mdi-google-plus
+        div(ng-if='!!user')
+            span.fs-subhead {{user.name}} &nbsp
+                sv-author-dropdown(user='user' ng-if='isInGroup("author")' logout='ctrl.logout()')
+                sv-reader-dropdown(user='user' ng-if='isInGroup("reader")' logout='ctrl.logout()')

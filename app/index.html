@@ -15,10 +15,10 @@
     <!-- build:cssAssets -->
 
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css"/>
     <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
-    <link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.css"/>
-    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css">
+    <link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.min.css"/>
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css">
 
     <!-- endbuild -->
 
@@ -31,7 +31,6 @@
 </head>
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
-
 <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
             style="background-color:#474341">
     <div layout="row">
@@ -42,7 +41,8 @@
     <sv-social-top-nav-cell hide-gt-sm></sv-social-top-nav-cell>
 </md-toolbar>
 
-<div layout="row">
+<div layout="row" flex>
+
     <!-- =Left Sidebar-->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
@@ -148,23 +148,20 @@
 <!-- =Footer-->
 
 
-<script src="./bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/velocity/velocity.js"></script>
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/velocity/velocity.min.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
-<script src="./bower_components/angular-animate/angular-animate.js"></script>
+<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
 
-<script src="./bower_components/angular-messages/angular-messages.js"></script>
+<script src="./bower_components/angular-messages/angular-messages.min.js"></script>
 <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
 <script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="./bower_components/angular-touch/angular-touch.js"></script>
+<script src="./bower_components/angular-touch/angular-touch.min.js"></script>
 <script src="./bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
 <script src="./bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 <script src="./bower_components/lumx/dist/lumx.js"></script>
-<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
-<script src="./bower_components/angular-touch/angular-touch.js"></script>
-<script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="./bower_components/angular-aria/angular-aria.js"></script>
-<script src="./bower_components/angular-material/angular-material.js"></script>
+<script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="./bower_components/angular-material/angular-material.min.js"></script>
 <script src="./bower_components/angular-translate/angular-translate.min.js"></script>
 
 <script src="./bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
@@ -176,7 +173,7 @@
 <script src="./bower_components/flow.js/dist/flow.min.js"></script>
 <script src="./bower_components/ng-flow/dist/ng-flow.min.js"></script>
 <script src="./bower_components/moment/min/moment.min.js"></script>
-<script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
+<script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/angular.bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
 
@@ -345,6 +342,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-loader.js"></script>
 <script src="scripts/home/directives/sv-nav-pdf-thumb.js"></script>
 <script src="scripts/home/directives/sv-read-more.js"></script>
 <script src="scripts/home/directives/sv-sidenav-title.js"></script>
