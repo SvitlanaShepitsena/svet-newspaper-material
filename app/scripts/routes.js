@@ -124,6 +124,7 @@
                     controller: "EventsPhotoGalleryCtrl as eventsPhotoGallery",
                     templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
                 })
+                /*=archive*/
                 .state("app.new-light-newspaper", {
                     url: "/new-light-newspaper",
                     controller: "NewLightNewspaperCtrl as newLightNewspaper",
@@ -203,16 +204,16 @@
                     controller: "ReaderActivityEventsCtrl as readerActivityEvents",
                     templateUrl: "scripts/auth/views/reader-activity-eventsCtrl.html"
                 })
-				.state("app.reader.reader-bookmarks", {
-					url: "/reader-bookmarks",
-					controller:"ReaderBookmarksCtrl as readerBookmarks",
-					templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
-				})
-				.state("app.reader.reader-classified", {
-					url: "/reader-classified",
-					controller:"ReaderClassifiedCtrl as readerClassified",
-					templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
-				})
+                .state("app.reader.reader-bookmarks", {
+                    url: "/reader-bookmarks",
+                    controller: "ReaderBookmarksCtrl as readerBookmarks",
+                    templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
+                })
+                .state("app.reader.reader-classified", {
+                    url: "/reader-classified",
+                    controller: "ReaderClassifiedCtrl as readerClassified",
+                    templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
+                })
 //#state'
         });
 

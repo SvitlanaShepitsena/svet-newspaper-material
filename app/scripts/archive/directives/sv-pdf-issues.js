@@ -6,33 +6,21 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/archive/directives/sv-pdf-issues.html',
-                scope: {},
-                bindToController: {
+                scope: {
                     isSaturday: '=',
                     startIssue: '=',
                     issuesToShow: '='
                 },
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
-                    console.log('ssss');
-                    var urlStart = 'assets/archive/' + (ctrl.isSaturday ? 'saturday-plus/' : 'new-light/');
-                    ctrl.issues = [];
-                    for (var i = ctrl.startIssue; i <= ctrl.startIssue+ctrl.issuesToShow; i++) {
+                link: function ($scope, el, attrs) {
+                    var urlStart = 'assets/archive/' + ($scope.isSaturday ? 'saturday-plus/' : 'new-light/');
+                    $scope.issues = [];
+                    for (var i = $scope.startIssue; i <= $scope.startIssue + $scope.issuesToShow; i++) {
                         var issue = {
                             number: i,
-                            img: faker.image.image(100, 200),
                             url: urlStart + 'index.html'
                         };
-                        ctrl.issues.push(issue);
-                        console.log('push');
-
+                        $scope.issues.push(issue);
                     }
-
-
-                },
-
-                link: function ($scope, el, attrs) {
 
                 }
             };
