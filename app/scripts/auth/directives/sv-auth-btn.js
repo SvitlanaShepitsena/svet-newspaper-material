@@ -10,6 +10,7 @@
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
+
                     var ctrl = this;
                     ctrl.isIe = AgentServ.isIe();
                     $scope.isInGroup = function (group) {
@@ -61,6 +62,9 @@
                     });
                     $rootScope.$watch('user', function (newVal) {
                         $scope.user = newVal;
+                    });
+                    $rootScope.$watch('loadingUser', function (newVal) {
+                        $scope.loadingUser = newVal;
                     });
 
 

@@ -10,7 +10,8 @@
                     abstract: true,
                     controller: "AppCtrl as app",
                     resolve: {
-                        user: function (AuthServ) {
+                        user: function (AuthServ,$rootScope) {
+                            $rootScope.loadingUser = true;
                             return AuthServ.getUser();
                         }
                     },

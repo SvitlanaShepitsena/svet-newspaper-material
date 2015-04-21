@@ -7,6 +7,7 @@
             var app = this;
             $rootScope.user = user;
             $rootScope.loaded = false;
+            $rootScope.loadingUser = false;
 
             var newsRef = ArticleServ.allObjRef();
             newsRef.$bindTo($rootScope, "newsObj").then(function () {
