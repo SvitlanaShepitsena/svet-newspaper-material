@@ -1,7 +1,8 @@
-div(layout='row' layout-align='center center')
-    div(ng-if="forecastReady")
-        sv-weather-loader
-    div(ng-if="!forecastReady")
+div(layout='row')
+    div(ng-show="!forecastReady" layout='row' layout-align="center center" class='fade-in-out')
+        sv-loader
+        span.main-weather-text Looking outside for you. 1 sec
+    div(ng-show="forecastReady" layout-align='center center' layout='row' class='fade-in-out')
         .weather-container(layout='row' layout-align='center center')
             span.main-weather-text {{'Chicago'|translate}}
             img.main-weather-img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png")
