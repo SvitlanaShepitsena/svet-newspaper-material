@@ -32,6 +32,7 @@
                 });
                 $rootScope.newsList = _.toArray(newsObj);
                 var newsTrioGrid = NewsProcessServ.get(newsObj);
+
                 $rootScope.news = newsTrioGrid.trios;
                 $rootScope.newsGrid = newsTrioGrid.newsGrid;
 

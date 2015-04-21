@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('events')
-        .directive('svCalendar', function (moment, $modal, $state) {
+        .directive('svCalendar', function (moment,  $state) {
             return {
                 templateUrl: 'scripts/events/directives/sv-callendar.html',
                 scope: {},
@@ -31,16 +31,16 @@
                             deletable: false
                         }
                     ];
-                    function showModal(action, event) {
-                        $modal.open({
-                            templateUrl: 'scripts/events/views/event-modal.html',
-                            controller: function ($scope, $modalInstance) {
-                                $scope.$modalInstance = $modalInstance;
-                                $scope.action = action;
-                                $scope.event = event;
-                            }
-                        });
-                    }
+                    //function showModal(action, event) {
+                    //    $modal.open({
+                    //        templateUrl: 'scripts/events/views/event-modal.html',
+                    //        controller: function ($scope, $modalInstance) {
+                    //            $scope.$modalInstance = $modalInstance;
+                    //            $scope.action = action;
+                    //            $scope.event = event;
+                    //        }
+                    //    });
+                    //}
 
                     $scope.eventClicked = function (event) {
                         if (event.title === "2015 Kohl Children's Museum Event (Public Event)") {
