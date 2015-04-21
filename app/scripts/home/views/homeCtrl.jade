@@ -1,6 +1,6 @@
 div(layout='column')
     div(ng-if='!loaded', layout-align='center top', layout='row', flex='')
-        md-progress-circular.md-accent(md-mode='indeterminate')
+        sv-loader
         div LOADING NEWS
     div(layout-sm='column', layout-md='column', layout-gt-md='row', layout-lg='column', layout-gt-lg='column', ng-if='!!loaded')
         div(ng-repeat='nt in news ')

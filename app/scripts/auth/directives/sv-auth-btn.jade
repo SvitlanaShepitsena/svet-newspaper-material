@@ -1,6 +1,6 @@
 div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
     div(ng-if='loadingUser')
-        |AUTH!!!
+        sv-loader
     div(ng-if='!loadingUser')
         div(ng-if='!user')
             div(ng-if="ctrl.isIe")
