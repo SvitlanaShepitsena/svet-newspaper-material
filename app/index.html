@@ -100,15 +100,16 @@
             <!-- Right SideBar-->
             <md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
                         md-is-locked-open="$mdMedia('gt-lg')">
-                <md-toolbar class="text-center toolbar-svet bgc-grey-50" layout='row' hide-gt-lg
-                            layout-align='space-around center'
+                <md-toolbar class="text-center toolbar-svet bgc-grey-200" layout-padding="" layout='row' hide-gt-lg
+                            layout-align='start center'
                             ng-controller="RightCtrl">
-                    <md-button sv-right-click-handler="" hide-gt-lg="" aria-label="close right" class="txt-white">
+                    <button class='btn btn--m btn--icon btn--black mr' sv-right-click-handler="" hide-gt-lg=""
+                            aria-label="close right" class="txt-white">
                         <i class="mdi mdi-close"></i>
-                    </md-button>
+                    </button>
                     <span class="mdc-subhead">Читателям и Партнерам</span>
                 </md-toolbar>
-                <md-content class="pr pl pt" style='overflow:scroll'>
+                <md-content class="pr pl pt" >
                     <sv-sidenav-title title="svet-on-social-media" class='mb'></sv-sidenav-title>
                     <sv-svet-social></sv-svet-social>
                     <sv-sidenav-title title="PdfNewspaperArchive" class='mb++'></sv-sidenav-title>
