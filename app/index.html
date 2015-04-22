@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <!-- build:cssAssets -->
 
-    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css"/>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
     <link rel="stylesheet" href="./bower_components/angular-toastr/dist/angular-toastr.min.css"/>
     <link rel="stylesheet"
@@ -32,10 +31,6 @@
 </head>
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
-<button ng-click="show = !show">Toggle</button>
-<div ng-show="show" class="fade-in-out">
-    Huli
-</div>
 <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
             style="background-color:#474341">
     <div layout="row">
