@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svAuthorProfileNav', function () {
+        .directive('svUserProfileNav', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-author-profile-nav.html',
+                templateUrl: 'scripts/auth/directives/sv-user-profile-nav.html',
                 scope: {},
                 bindToController: {
 
