@@ -215,6 +215,11 @@
                     controller: "ReaderClassifiedCtrl as readerClassified",
                     templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
                 })
+				.state("app.social", {
+					url: "/social", 
+					controller:"SocialCtrl as social",
+					templateUrl: "scripts/author/views/socialCtrl.html"
+				})
 //#state'
         });
 
