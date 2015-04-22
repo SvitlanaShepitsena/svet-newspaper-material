@@ -11,7 +11,7 @@
                     controller: "UserCtrl as user",
                     templateUrl: "scripts/auth/views/userCtrl.html"
                 })
-                .state("app.user.user-dashboard", {
+                .state("app.user.dashboard", {
                     url: "/user-dashboard",
                     controller: "UserDashboardCtrl as userDashboard",
                     templateUrl: "scripts/auth/views/user-dashboardCtrl.html"
@@ -46,25 +46,20 @@
                     controller: "SocialCtrl as social",
                     templateUrl: "scripts/author/views/socialCtrl.html"
                 })
-                // READER
+                // =Manager Profile
                 .state("app.manager", {
-                    url: "/reader/:uid",
+                    url: "/manager/:uid",
                     abstract: true,
                     controller: "ManagerCtrl as manager",
                     templateUrl: "scripts/auth/views/managerCtrl.html"
                 })
 
-                .state("app.reader.profile", {
-                    url: "/reader-profile",
-                    controller: "ReaderProfileCtrl as readerProfile",
-                    templateUrl: "scripts/auth/views/reader-profileCtrl.html"
+                .state("app.manager.dashboard", {
+                    url: "/manager-dashboard",
+                    controller: "ManagerDashboardCtrl as managerDashboard",
+                    templateUrl: "scripts/auth/views/manager-dashboardCtrl.html"
                 })
 
-                .state("app.reader.subscriptions", {
-                    url: "/pdf-subscriptions",
-                    controller: "PdfSubscriptionsCtrl as pdfSubscriptions",
-                    templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
-                })
 
 //#state'
         });

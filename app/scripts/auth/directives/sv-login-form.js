@@ -23,7 +23,7 @@
                     $scope.singIn = function () {
                         AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {
                             $rootScope.user = user;
-                            $state.go('app.user.user-dashboard');
+                            $state.go('app.user.dashboard');
 
                         }).catch(function (error) {
                             toastr.error(error.message);

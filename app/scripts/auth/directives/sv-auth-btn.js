@@ -33,7 +33,7 @@
                         AuthServ.authProvider(provider).then(function (user) {
                             UserServ.saveNewUser(user);
                             $rootScope.user = user;
-                            $state.go('app.user.user-dashboard', {uid: user.id})
+                            $state.go('app.user.dashboard', {uid: user.id})
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
                         });
