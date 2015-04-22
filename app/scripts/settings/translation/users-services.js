@@ -8,6 +8,7 @@
 
             $translateProvider.translations('en', {
                 'dashboard': 'Dashboard',
+                'my-ad': 'My Advertisement',
                 'my-articles': 'My Articles',
                 'my-drafts': 'Drafts',
                 'my-friends': 'My Friends',
@@ -47,6 +48,7 @@
 
             $translateProvider.translations('ru', {
                 'dashboard': 'Мой Профайл',
+                'my-ad': 'Моя Реклама',
                 'my-articles': 'Мои Статьи',
                 'my-drafts': 'Черновики',
                 'my-friends': 'Мои Друзья',
