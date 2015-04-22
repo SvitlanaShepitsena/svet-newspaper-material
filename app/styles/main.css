@@ -264,7 +264,7 @@ md-icon {
 }
 
 .fade-in-out {
-	transition: 3s linear all;
+	transition: 1s linear all;
 	opacity: 1;
 	-ms-filter: none;
 	filter: none;

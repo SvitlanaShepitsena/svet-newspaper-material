@@ -1,6 +1,6 @@
 {
   "name": "firebase",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "homepage": "https://firebase.com",
   "authors": [
     "Firebase <operations@firebase.com>"
@@ -22,14 +22,13 @@
     "test",
     "tests"
   ],
-  "_release": "2.2.3",
+  "_release": "2.2.4",
   "_resolution": {
     "type": "version",
-    "tag": "v2.2.3",
-    "commit": "75f63a2350f340772188729d6950844c9f3296fb"
+    "tag": "v2.2.4",
+    "commit": "3bbc43b50d6c70ff1762763fd47b04e3aae3484b"
   },
   "_source": "git://github.com/firebase/firebase-bower.git",
-  "_target": "~2.2.3",
-  "_originalSource": "firebase",
-  "_direct": true
+  "_target": "2.2.x",
+  "_originalSource": "firebase"
 }
