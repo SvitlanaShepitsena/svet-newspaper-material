@@ -10,7 +10,7 @@
                     abstract: true,
                     controller: "AppCtrl as app",
                     resolve: {
-                        user: function (AuthServ,$rootScope) {
+                        user: function (AuthServ, $rootScope) {
                             $rootScope.loadingUser = true;
                             return AuthServ.getUser();
                         }
@@ -95,6 +95,11 @@
                     url: "/profile-settings",
                     controller: "ProfileSettingsCtrl as profileSettings",
                     templateUrl: "scripts/auth/views/profile-settingsCtrl.html"
+                })
+                .state("app.svet-profile.social", {
+                    url: "/social",
+                    controller: "SocialCtrl as social",
+                    templateUrl: "scripts/author/views/socialCtrl.html"
                 })
                 .state("app.events", {
                     url: "/events",
@@ -215,11 +220,6 @@
                     controller: "ReaderClassifiedCtrl as readerClassified",
                     templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
                 })
-				.state("app.social", {
-					url: "/social", 
-					controller:"SocialCtrl as social",
-					templateUrl: "scripts/author/views/socialCtrl.html"
-				})
 //#state'
         });
 
