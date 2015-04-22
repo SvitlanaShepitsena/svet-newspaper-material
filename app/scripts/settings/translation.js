@@ -160,7 +160,7 @@
                 'interesting-stories': 'Интерестные Истории',
 
                 /*Classified*/
-                'community': 'Община',
+                'community': 'Сообщество',
                 'job': 'Работа',
                 'lessons': 'Уроки',
                 'sell': 'Продажа',

@@ -15,3 +15,7 @@ md-icon {
   fill: #393939;
   margin: 0px;
 }
+.sv-tabs {
+  padding: 10px 15px 4px;
+  line-height: 15px;
+}

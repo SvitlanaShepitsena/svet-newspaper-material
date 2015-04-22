@@ -9,8 +9,8 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
                     var tabs = [
-                            {title: 'friends', content: "My Friends "},
-                            {title: 'community', content: "Find People"}
+                            {title: 'my-friends', content: "My Friends "},
+                            {title: 'find-people', content: "Find People"}
                         ],
                         selected = null,
                         previous = null;

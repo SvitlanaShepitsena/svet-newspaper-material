@@ -220,8 +220,8 @@
                     controller: "ReaderClassifiedCtrl as readerClassified",
                     templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
                 })
-				.state("app.user-events", {
-					url: "/user-events", 
+				.state("app.svet-profile.user-events", {
+					url: "/user-events",
 					controller:"UserEventsCtrl as userEvents",
 					templateUrl: "scripts/auth/views/user-eventsCtrl.html"
 				})

@@ -12,7 +12,8 @@
                     var tabs = [
                             {title: 'comments', content: "Here are my discussions"},
                             {title: 'bookmarks', content: "Here are some interesting articles saved."},
-                            {title: 'statistics', content: "Here is going to be my profile statistics"}
+                            {title: 'statistics', content: "Here is going to be my profile statistics"},
+                            {title: 'profile-settings', content: "Here is going to be my profile settings"}
                         ],
                         selected = null,
                         previous = null;
