@@ -59,44 +59,44 @@
                     templateUrl: "scripts/auth/views/sign-upCtrl.html"
                 })
                 /*=profile*/
-                .state("app.svet-profile", {
+                .state("app.user", {
                     abstract: true,
-                    controller: "SvetProfileCtrl as svetProfile",
-                    templateUrl: "scripts/auth/views/svet-profileCtrl.html"
+                    controller: "UserCtrl as user",
+                    templateUrl: "scripts/auth/views/userCtrl.html"
                 })
                 .state("app.svet-login", {
                     url: "/svet-login",
                     controller: "SvetLoginCtrl as login",
                     templateUrl: "scripts/auth/views/svet-loginCtrl.html"
                 })
-                .state("app.svet-profile.create-article", {
+                .state("app.user.create-article", {
                     url: "/create-article",
                     controller: "CreateArticleCtrl as createArticle",
                     templateUrl: "scripts/article/views/create-articleCtrl.html"
                 })
-                .state("app.svet-profile.author-dashboard", {
+                .state("app.user.author-dashboard", {
                     url: "/author-dashboard",
                     controller: "AuthorDashboardCtrl as authorDashboard",
                     templateUrl: "scripts/auth/views/author-dashboardCtrl.html"
                 })
 
-                .state("app.svet-profile.author-articles", {
+                .state("app.user.author-articles", {
                     url: "/author-articles",
                     controller: "AuthorArticlesCtrl as authorArticles",
                     templateUrl: "scripts/auth/views/author-articlesCtrl.html"
                 })
-                .state("app.svet-profile.author-drafts", {
+                .state("app.user.author-drafts", {
                     url: "/author-drafts",
                     controller: "AuthorDraftsCtrl as authorDrafts",
                     templateUrl: "scripts/auth/views/author-draftsCtrl.html"
                 })
 
-                .state("app.svet-profile.profile-settings", {
+                .state("app.user.profile-settings", {
                     url: "/profile-settings",
                     controller: "ProfileSettingsCtrl as profileSettings",
                     templateUrl: "scripts/auth/views/profile-settingsCtrl.html"
                 })
-                .state("app.svet-profile.social", {
+                .state("app.user.social", {
                     url: "/social",
                     controller: "SocialCtrl as social",
                     templateUrl: "scripts/author/views/socialCtrl.html"
@@ -204,7 +204,6 @@
                     templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
                 })
 
-
                 .state("app.reader.reader-activity-events", {
                     url: "/reader-activity-events",
                     controller: "ReaderActivityEventsCtrl as readerActivityEvents",
@@ -220,7 +219,7 @@
                     controller: "ReaderClassifiedCtrl as readerClassified",
                     templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
                 })
-				.state("app.svet-profile.user-events", {
+				.state("app.user.user-events", {
 					url: "/user-events",
 					controller:"UserEventsCtrl as userEvents",
 					templateUrl: "scripts/auth/views/user-eventsCtrl.html"

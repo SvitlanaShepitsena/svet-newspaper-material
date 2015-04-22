@@ -4,19 +4,19 @@ lx-dropdown(position='right')
     lx-dropdown-menu
         ul
             li
-                a.dropdown-link(ui-sref="app.svet-profile.author-dashboard")
+                a.dropdown-link(ui-sref="app.user.author-dashboard")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
-                a.dropdown-link(ui-sref="app.svet-profile.author-articles")
+                a.dropdown-link(ui-sref="app.user.author-articles")
                     i.mdi.mdi-view-list &nbsp
                     | {{'my-articles'|translate}}
             li
-                a.dropdown-link(ui-sref="app.svet-profile.author-drafts")
+                a.dropdown-link(ui-sref="app.user.author-drafts")
                     i.mdi.mdi-file &nbsp
                     | {{'my-drafts'|translate}}
             li
-                a.dropdown-link(ui-sref='app.svet-profile.create-article')
+                a.dropdown-link(ui-sref='app.user.create-article')
                     i.mdi.mdi-pencil &nbsp
                     | {{'create-article'|translate}}
             li.dropdown-divider
