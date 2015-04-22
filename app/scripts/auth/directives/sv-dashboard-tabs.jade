@@ -2,4 +2,4 @@ md-content.md-padding
     md-tabs(md-selected='selectedIndex', md-border-bottom='')
         md-tab.sv-tabs.fs-body-2(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
             md-content( flex class='tab{{$index%4}}', style='text-align: center;')
-                div(ng-bind='tab.content')
+                div(ng-include='tab.content')

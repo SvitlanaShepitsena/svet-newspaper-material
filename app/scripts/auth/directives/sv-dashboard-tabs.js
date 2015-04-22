@@ -10,10 +10,12 @@
 
                 link: function ($scope, el, attrs) {
                     var tabs = [
-                            {title: 'comments', content: "Here are my discussions"},
-                            {title: 'bookmarks', content: "Here are some interesting articles saved."},
-                            {title: 'statistics', content: "Here is going to be my profile statistics"},
-                            {title: 'profile-settings', content: "Here is going to be my profile settings"}
+                            {title: 'subscriptions', content: "scripts/auth/templates/user-dashboard/user-subscriptions-temp.html"},
+                            {title: 'comments', content: "scripts/auth/templates/user-dashboard/user-comments-temp.html"},
+                            {title: 'bookmarks', content: "scripts/auth/templates/user-dashboard/user-bookmarks-temp.html"},
+                            {title: 'classified', content: "scripts/auth/templates/user-dashboard/user-classified-temp.html"},
+                            {title: 'statistics', content: "scripts/auth/templates/user-dashboard/user-statistics-temp.html"},
+                            {title: 'profile-settings', content: "scripts/auth/templates/user-dashboard/user-profile-settings-temp.html"},
                         ],
                         selected = null,
                         previous = null;

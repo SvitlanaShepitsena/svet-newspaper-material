@@ -1,0 +1,11 @@
+div
+    div(ng-if='pdfLoaded')
+        form( name='pdfSubForm')
+            div(layout="row" layout-align='start center')
+                md-checkbox(ng-model="pdfSub.newLight" aria-label="Checkbox")
+                span.mdc-display-inline-block {{'NewSvetNewspaper'|translate}}
+            div(layout="row" layout-align='start center')
+                md-checkbox(ng-model="pdfSub.saturday" aria-label="Checkbox")
+                span.mdc-display-inline-block {{'SaturdayPlus'|translate}}
+    div(ng-if='!pdfLoaded')
+        md-progress-circular.md-accent(md-mode='indeterminate')
