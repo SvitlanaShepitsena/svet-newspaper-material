@@ -258,6 +258,19 @@ md-icon {
 	color: rgba(255,255,255,0.12);
 }
 
+.fade-in-out {
+	transition: 3s linear all;
+	opacity: 1;
+	-ms-filter: none;
+	filter: none;
+}
+
+.fade-in-out.ng-hide {
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+}
+
 /*Bugs with Safari*/
 
 html,
