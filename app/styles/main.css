@@ -105,6 +105,11 @@ md-icon {
 	margin: 0px;
 }
 
+.sv-tabs {
+	padding: 10px 15px 4px;
+	line-height: 15px;
+}
+
 .author-article-nav {
 	backround-color: none !important;
 	background: transparent !important;

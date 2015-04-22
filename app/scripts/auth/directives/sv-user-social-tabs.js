@@ -2,18 +2,15 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svDashboardTabs', function () {
+        .directive('svUserSocialTabs', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-dashboard-tabs.html',
+                templateUrl: 'scripts/auth/directives/sv-user-social-tabs.html',
                 scope: {},
-
                 link: function ($scope, el, attrs) {
                     var tabs = [
-                            {title: 'comments', content: "Here are my discussions"},
-                            {title: 'bookmarks', content: "Here are some interesting articles saved."},
-                            {title: 'statistics', content: "Here is going to be my profile statistics"},
-                            {title: 'profile-settings', content: "Here is going to be my profile settings"}
+                            {title: 'my-friends', content: "My Friends "},
+                            {title: 'find-people', content: "Find People"}
                         ],
                         selected = null,
                         previous = null;

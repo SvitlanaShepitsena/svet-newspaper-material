@@ -27,7 +27,7 @@
                         AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {
 
                             $rootScope.user = user;
-                            $state.go('app.svet-profile.author-dashboard');
+                            $state.go('app.user.author-dashboard');
 
                         }).catch(function (error) {
                             toastr.error(error.message);

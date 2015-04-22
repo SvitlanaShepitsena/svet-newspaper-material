@@ -1,0 +1,5 @@
+.card(class='p+')
+    md-tabs.tabs-classified.tc-black-2(md-selected='selectedIndex', md-border-bottom='')
+        md-tab.tc-black-2.fs-body-2.sv-tabs(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
+            div(class='tab{{$index%4}} p+', style='text-align: center;')
+                div(ng-bind='tab.content')
