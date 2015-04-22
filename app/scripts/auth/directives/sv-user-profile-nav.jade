@@ -1,7 +1,7 @@
 .card.bgc-grey-100.top-profile-nav
     div(hide-sm show-gt-sm layout='row' layout-align="space-between center")
         div
-            button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.author-dashboard' lx-ripple='' style='padding:0px 10px')
+            button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.user-dashboard' lx-ripple='' style='padding:0px 10px')
                 i.mdi.mdi-view-dashboard &nbsp
                 span {{'dashboard'|translate}}
             button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.author-articles' lx-ripple='' style='padding:0px 10px')
@@ -18,7 +18,7 @@
                 span {{'events'|translate}}
     div(show-sm hide-gt-sm layout='row' layout-align="space-between center")
         div
-            a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(lx-tooltip="{{'dashboard'|translate}}" ui-sref='app.user.author-dashboard'  lx-ripple='')
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(lx-tooltip="{{'dashboard'|translate}}" ui-sref='app.user.user-dashboard'  lx-ripple='')
                 i.mdi.mdi-view-dashboard &nbsp
             a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(lx-tooltip="{{'my-articles'|translate}}" ui-sref='app.user.author-articles' lx-ripple='')
                 i.mdi.mdi-view-list &nbsp

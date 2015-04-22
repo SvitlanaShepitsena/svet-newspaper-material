@@ -58,28 +58,27 @@
                     controller: "SignUpCtrl as signUp",
                     templateUrl: "scripts/auth/views/sign-upCtrl.html"
                 })
+                .state("app.svet-login", {
+                    url: "/svet-login",
+                    controller: "SvetLoginCtrl as login",
+                    templateUrl: "scripts/auth/views/svet-loginCtrl.html"
+                })
                 /*=profile*/
                 .state("app.user", {
                     abstract: true,
                     controller: "UserCtrl as user",
                     templateUrl: "scripts/auth/views/userCtrl.html"
                 })
-                .state("app.svet-login", {
-                    url: "/svet-login",
-                    controller: "SvetLoginCtrl as login",
-                    templateUrl: "scripts/auth/views/svet-loginCtrl.html"
+                .state("app.user.user-dashboard", {
+                    url: "/author-dashboard",
+                    controller: "UserDashboardCtrl as userDashboard",
+                    templateUrl: "scripts/auth/views/user-dashboardCtrl.html"
                 })
                 .state("app.user.create-article", {
                     url: "/create-article",
                     controller: "CreateArticleCtrl as createArticle",
                     templateUrl: "scripts/article/views/create-articleCtrl.html"
                 })
-                .state("app.user.author-dashboard", {
-                    url: "/author-dashboard",
-                    controller: "AuthorDashboardCtrl as authorDashboard",
-                    templateUrl: "scripts/auth/views/author-dashboardCtrl.html"
-                })
-
                 .state("app.user.author-articles", {
                     url: "/author-articles",
                     controller: "AuthorArticlesCtrl as authorArticles",
@@ -90,7 +89,6 @@
                     controller: "AuthorDraftsCtrl as authorDrafts",
                     templateUrl: "scripts/auth/views/author-draftsCtrl.html"
                 })
-
                 .state("app.user.profile-settings", {
                     url: "/profile-settings",
                     controller: "ProfileSettingsCtrl as profileSettings",
@@ -101,19 +99,59 @@
                     controller: "SocialCtrl as social",
                     templateUrl: "scripts/author/views/socialCtrl.html"
                 })
+                // READER
+                .state("app.reader", {
+                    url: "/reader/:uid",
+                    abstract: true,
+                    controller: "ReaderCtrl as reader",
+                    templateUrl: "scripts/auth/views/readerCtrl.html"
+                })
+
+                .state("app.reader.profile", {
+                    url: "/reader-profile",
+                    controller: "ReaderProfileCtrl as readerProfile",
+                    templateUrl: "scripts/auth/views/reader-profileCtrl.html"
+                })
+
+                .state("app.reader.subscriptions", {
+                    url: "/pdf-subscriptions",
+                    controller: "PdfSubscriptionsCtrl as pdfSubscriptions",
+                    templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
+                })
+
+                .state("app.reader.reader-activity-events", {
+                    url: "/reader-activity-events",
+                    controller: "ReaderActivityEventsCtrl as readerActivityEvents",
+                    templateUrl: "scripts/auth/views/reader-activity-eventsCtrl.html"
+                })
+                .state("app.reader.reader-bookmarks", {
+                    url: "/reader-bookmarks",
+                    controller: "ReaderBookmarksCtrl as readerBookmarks",
+                    templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
+                })
+                .state("app.reader.reader-classified", {
+                    url: "/reader-classified",
+                    controller: "ReaderClassifiedCtrl as readerClassified",
+                    templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
+                })
+                .state("app.user.user-events", {
+                    url: "/user-events",
+                    controller: "UserEventsCtrl as userEvents",
+                    templateUrl: "scripts/auth/views/user-eventsCtrl.html"
+                })
+
+                /* =Events*/
                 .state("app.events", {
                     url: "/events",
                     abstract: true,
                     controller: "EventsCtrl as events",
                     templateUrl: "scripts/events/views/eventsCtrl.html"
                 })
-
                 .state("app.events.calendar", {
                     url: "/event-calendar",
                     controller: "EventCalendarCtrl as eventCalendar",
                     templateUrl: "scripts/events/views/event-calendarCtrl.html"
                 })
-
                 .state("app.events.field", {
                     url: "/events/field-event/:year",
                     controller: "FieldEventCtrl as fieldEvent",
@@ -124,7 +162,6 @@
                     controller: "RaviniaEventCtrl as raviniaEvent",
                     templateUrl: "scripts/events/views/ravinia-eventCtrl.html"
                 })
-
                 .state("app.events.photo-gallery", {
                     url: "/events-photo-gallery",
                     controller: "EventsPhotoGalleryCtrl as eventsPhotoGallery",
@@ -183,47 +220,6 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
-                // READER
-
-                .state("app.reader", {
-                    url: "/reader/:uid",
-                    abstract: true,
-                    controller: "ReaderCtrl as reader",
-                    templateUrl: "scripts/auth/views/readerCtrl.html"
-                })
-
-                .state("app.reader.profile", {
-                    url: "/reader-profile",
-                    controller: "ReaderProfileCtrl as readerProfile",
-                    templateUrl: "scripts/auth/views/reader-profileCtrl.html"
-                })
-
-                .state("app.reader.subscriptions", {
-                    url: "/pdf-subscriptions",
-                    controller: "PdfSubscriptionsCtrl as pdfSubscriptions",
-                    templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
-                })
-
-                .state("app.reader.reader-activity-events", {
-                    url: "/reader-activity-events",
-                    controller: "ReaderActivityEventsCtrl as readerActivityEvents",
-                    templateUrl: "scripts/auth/views/reader-activity-eventsCtrl.html"
-                })
-                .state("app.reader.reader-bookmarks", {
-                    url: "/reader-bookmarks",
-                    controller: "ReaderBookmarksCtrl as readerBookmarks",
-                    templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
-                })
-                .state("app.reader.reader-classified", {
-                    url: "/reader-classified",
-                    controller: "ReaderClassifiedCtrl as readerClassified",
-                    templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
-                })
-				.state("app.user.user-events", {
-					url: "/user-events",
-					controller:"UserEventsCtrl as userEvents",
-					templateUrl: "scripts/auth/views/user-eventsCtrl.html"
-				})
 //#state'
         });
 
