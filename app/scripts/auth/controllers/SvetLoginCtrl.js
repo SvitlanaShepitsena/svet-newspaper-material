@@ -9,9 +9,7 @@
             login.singIn = function () {
                 AuthServ.loginPassword(login.user.email, login.user.password).then(function (user) {
                     UserServ.saveNewUser(user);
-
                     $state.go('app.user.dashboard');
-
                 })
             }
         });

@@ -44,7 +44,7 @@
 
                                 $rootScope.user = user;
                                 toastr.success('You are succesfully registered')
-                                $state.go('app.manager.dashboard',{uid:user.name});
+                                $state.go('app.manager.dashboard', {uid: user.name});
                             }
                         )
                     }
