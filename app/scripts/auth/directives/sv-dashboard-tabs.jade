@@ -1,5 +1,5 @@
-md-content.md-padding
-    md-tabs(md-selected='selectedIndex', md-border-bottom='')
-        md-tab.sv-tabs.fs-body-2(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
-            md-content( flex class='tab{{$index%4}}', style='text-align: center;')
-                div(ng-include='tab.content')
+div.md-padding
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' style='height:auto;min-height:800px')
+        md-tab.sv-tabs(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
+            md-content(class='tab{{$index%4}}', style='text-align: center;')
+                div.p(ng-include='tab.content' class='mt++')

@@ -21,5 +21,6 @@ md-icon {
   line-height: 15px;
 }
 md-tab-item span {
-  font-size: 14px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
 }

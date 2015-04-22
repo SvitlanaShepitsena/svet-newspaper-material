@@ -1,5 +1,5 @@
 div(flex-container='column')
     sv-user-profile-nav(class='mb+')
     div(class='mb+')
-        sv-create-article-btn
+        sv-create-article-btn(ng-if='isInGroup("author")')
     div(ui-view='')
