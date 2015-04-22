@@ -1,7 +1,7 @@
 (function () {
     'use strict'
 
-    angular.module('auth',['ui.router'] )
+    angular.module('auth', ['ui.router'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                 /*=profile*/
@@ -30,6 +30,11 @@
                     url: "/author-drafts",
                     controller: "AuthorDraftsCtrl as authorDrafts",
                     templateUrl: "scripts/auth/views/author-draftsCtrl.html"
+                })
+                .state("app.user.user-events", {
+                    url: "/user-events",
+                    controller: "UserEventsCtrl as userEvents",
+                    templateUrl: "scripts/auth/views/user-eventsCtrl.html"
                 })
                 .state("app.user.profile-settings", {
                     url: "/profile-settings",
@@ -70,16 +75,6 @@
                     url: "/reader-bookmarks",
                     controller: "ReaderBookmarksCtrl as readerBookmarks",
                     templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
-                })
-                .state("app.reader.reader-classified", {
-                    url: "/reader-classified",
-                    controller: "ReaderClassifiedCtrl as readerClassified",
-                    templateUrl: "scripts/auth/views/reader-classifiedCtrl.html"
-                })
-                .state("app.user.user-events", {
-                    url: "/user-events",
-                    controller: "UserEventsCtrl as userEvents",
-                    templateUrl: "scripts/auth/views/user-eventsCtrl.html"
                 })
 //#state'
         });
