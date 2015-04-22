@@ -66,11 +66,6 @@
                     templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
                 })
 
-                .state("app.reader.reader-bookmarks", {
-                    url: "/reader-bookmarks",
-                    controller: "ReaderBookmarksCtrl as readerBookmarks",
-                    templateUrl: "scripts/auth/views/reader-bookmarksCtrl.html"
-                })
 //#state'
         });
 
