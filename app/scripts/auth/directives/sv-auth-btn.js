@@ -15,7 +15,7 @@
                     ctrl.isIe = AgentServ.isIe();
                     $scope.isInGroup = function (group) {
                         if ($scope.user && !$scope.user.groups) {
-                            if (group === 'reader') {
+                            if (group === 'user') {
                                 return true;
                             } else {
                                 return false;
@@ -33,7 +33,7 @@
                         AuthServ.authProvider(provider).then(function (user) {
                             UserServ.saveNewUser(user);
                             $rootScope.user = user;
-                            $state.go('app.reader.profile', {uid: user.id})
+                            $state.go('app.user.user-dashboard', {uid: user.id})
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
                         });

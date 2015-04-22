@@ -29,5 +29,4 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
                             i.mdi.mdi-google-plus
         div(ng-if='!!user')
             span.fs-subhead {{user.name}} &nbsp
-                sv-author-dropdown(user='user' ng-if='isInGroup("author")' logout='ctrl.logout()')
-                sv-reader-dropdown(user='user' ng-if='isInGroup("reader")' logout='ctrl.logout()')
+                sv-user-dropdown-menu(user='user' logout='ctrl.logout()')

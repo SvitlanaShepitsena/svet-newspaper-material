@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .controller('UserCtrl', function ($scope) {
+        .controller('UserDashboardCtrl', function ($scope) {
 
         });
 })();
