@@ -12,7 +12,7 @@
                     templateUrl: "scripts/auth/views/userCtrl.html"
                 })
                 .state("app.user.user-dashboard", {
-                    url: "/author-dashboard",
+                    url: "/user-dashboard",
                     controller: "UserDashboardCtrl as userDashboard",
                     templateUrl: "scripts/auth/views/user-dashboardCtrl.html"
                 })
