@@ -13,6 +13,7 @@
                             {title: 'subscriptions', content: "scripts/auth/templates/user-dashboard/user-subscriptions-temp.html"},
                             {title: 'comments', content: "scripts/auth/templates/user-dashboard/user-comments-temp.html"},
                             {title: 'bookmarks', content: "scripts/auth/templates/user-dashboard/user-bookmarks-temp.html"},
+                            {title: 'classified', content: "scripts/auth/templates/user-dashboard/user-classified-temp.html"},
                             {title: 'statistics', content: "scripts/auth/templates/user-dashboard/user-statistics-temp.html"},
                             {title: 'profile-settings', content: "scripts/auth/templates/user-dashboard/user-profile-settings-temp.html"},
                         ],

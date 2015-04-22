@@ -42,11 +42,11 @@
                     templateUrl: "scripts/author/views/socialCtrl.html"
                 })
                 // READER
-                .state("app.reader", {
+                .state("app.manager", {
                     url: "/reader/:uid",
                     abstract: true,
-                    controller: "ReaderCtrl as reader",
-                    templateUrl: "scripts/auth/views/readerCtrl.html"
+                    controller: "ManagerCtrl as manager",
+                    templateUrl: "scripts/auth/views/managerCtrl.html"
                 })
 
                 .state("app.reader.profile", {
