@@ -12,7 +12,7 @@
                     templateUrl: "scripts/auth/views/userCtrl.html"
                 })
                 .state("app.user.dashboard", {
-                    url: "/user-dashboard",
+                    url: "/dashboard",
                     controller: "UserDashboardCtrl as userDashboard",
                     templateUrl: "scripts/auth/views/user-dashboardCtrl.html"
                 })
@@ -22,7 +22,7 @@
                     templateUrl: "scripts/article/views/create-articleCtrl.html"
                 })
                 .state("app.user.author-articles", {
-                    url: "/author-articles",
+                    url: "/articles",
                     controller: "AuthorArticlesCtrl as authorArticles",
                     templateUrl: "scripts/auth/views/author-articlesCtrl.html"
                 })
@@ -32,7 +32,7 @@
                     templateUrl: "scripts/auth/views/author-draftsCtrl.html"
                 })
                 .state("app.user.user-events", {
-                    url: "/user-events",
+                    url: "/events",
                     controller: "UserEventsCtrl as userEvents",
                     templateUrl: "scripts/auth/views/user-eventsCtrl.html"
                 })
@@ -55,7 +55,7 @@
                 })
 
                 .state("app.manager.dashboard", {
-                    url: "/manager-dashboard",
+                    url: "/dashboard",
                     controller: "ManagerDashboardCtrl as managerDashboard",
                     templateUrl: "scripts/auth/views/manager-dashboardCtrl.html"
                 })

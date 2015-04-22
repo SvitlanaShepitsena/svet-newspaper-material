@@ -4,21 +4,33 @@ lx-dropdown(position='right')
     lx-dropdown-menu
         ul
             li
-                a.dropdown-link(ui-sref="app.user.user-dashboard")
+                a.dropdown-link(ui-sref="app.user.dashboard({uid:user.name})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.author-articles")
+                a.dropdown-link(ui-sref="app.user.dashboard({uid:user.name})" ng-if='isInGroup("business")')
+                    i.fa.fa-bullhorn &nbsp
+                    | {{'my-ad'|translate}}
+            li
+                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.name})"  ng-if='isInGroup("author")')
                     i.mdi.mdi-view-list &nbsp
                     | {{'my-articles'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.author-drafts")
+                a.dropdown-link(ui-sref="app.user.author-drafts({uid:user.name})"  ng-if='isInGroup("author")')
                     i.mdi.mdi-file &nbsp
                     | {{'my-drafts'|translate}}
             li
-                a.dropdown-link(ui-sref='app.user.create-article')
+                a.dropdown-link(ui-sref='app.user.create-article({uid:user.name})'  ng-if='isInGroup("author")')
                     i.mdi.mdi-pencil &nbsp
                     | {{'create-article'|translate}}
+            li
+                a.dropdown-link(ui-sref="app.user.social({uid:user.name})")
+                    i.mdi.mdi-emoticon &nbsp
+                    | {{'community'|translate}}
+            li
+                a.dropdown-link(ui-sref="app.user.user-events({uid:user.name})")
+                    i.mdi.mdi-view-dashboard &nbsp
+                    | {{'events'|translate}}
             li.dropdown-divider
             li
                 a.dropdown-link(ng-click='logout()')

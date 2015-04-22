@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .factory('UserGroupsServ', function ($q, url, $firebaseObject) {
+        .factory('UserGroupsServ', function ($q, url, $firebaseObject,$rootScope) {
             var usersUrl = url + '/user-management/users/';
             return {
 
@@ -35,7 +35,15 @@
                         });
 
                     });
-                }
+                },
+               isInGroup: function (group) {
+                   if (!$rootScope.user || !$rootScope.user.groups) {
+                       return false;
+                   }
+                   return $rootScope.user.groups.indexOf(group) !== -1;
+
+
+               }
 
             };
         });
