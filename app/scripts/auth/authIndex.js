@@ -66,11 +66,6 @@
                     templateUrl: "scripts/auth/views/pdf-subscriptionsCtrl.html"
                 })
 
-                .state("app.reader.reader-activity-events", {
-                    url: "/reader-activity-events",
-                    controller: "ReaderActivityEventsCtrl as readerActivityEvents",
-                    templateUrl: "scripts/auth/views/reader-activity-eventsCtrl.html"
-                })
                 .state("app.reader.reader-bookmarks", {
                     url: "/reader-bookmarks",
                     controller: "ReaderBookmarksCtrl as readerBookmarks",
