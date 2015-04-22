@@ -2,10 +2,11 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.8.3
+ * v0.9.0-rc2-master-041ffe9
  */
+/* mixin definition ; sets LTR and RTL within the same style call */
 .md-select-menu-container {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 99;
@@ -31,16 +32,28 @@
     transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
     transition-duration: 250ms; }
 
+md-input-container > md-select {
+  margin: 0;
+  margin-top: 1.4em; }
+
 md-select {
   display: inline-block;
-  margin-top: 1.4em; }
+  margin-top: 1.5em;
+  margin-bottom: 1.625em;
+  margin-left: 2px;
+  margin-right: 2px; }
+  md-select:focus {
+    outline: none; }
   md-select[disabled]:hover {
     cursor: default; }
   md-select:not([disabled]):hover {
     cursor: pointer; }
+  md-select:not([disabled]).ng-invalid.ng-dirty .md-select-label {
+    padding-bottom: 7px;
+    border-bottom: 2px solid; }
   md-select:not([disabled]):focus .md-select-label {
     border-bottom: 2px solid;
-    padding-bottom: 7px; }
+    padding-bottom: 9px; }
 
 .md-select-label {
   display: -webkit-flex;
@@ -49,14 +62,18 @@ md-select {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 9px;
-  padding-bottom: 8px;
+  padding-top: 7px;
+  padding-bottom: 10px;
   border-bottom: 1px solid;
-  font-size: 1em;
+  font-size: 1.6rem;
   line-height: 0.8em;
   position: relative;
   box-sizing: border-box;
   min-width: 64px; }
+  .md-select-label *:first-child {
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
   .md-select-label .md-select-icon {
     -webkit-align-items: flex-end;
         -ms-flex-align: end;
@@ -81,12 +98,12 @@ md-select-menu {
       -ms-flex-direction: column;
           flex-direction: column;
   box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
-  -webkit-transform: scale(1);
-          transform: scale(1);
   max-height: 256px;
-  overflow-y: hidden; }
+  overflow-y: hidden;
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+  -webkit-transform: scale(1);
+          transform: scale(1); }
   md-select-menu.md-reverse {
     -webkit-flex-direction: column-reverse;
         -ms-flex-direction: column-reverse;
@@ -94,6 +111,9 @@ md-select-menu {
   md-select-menu:not(.md-overflow) md-content {
     padding-top: 8px;
     padding-bottom: 8px; }
+  html[dir=rtl] md-select-menu {
+    -webkit-transform-origin: right top;
+            transform-origin: right top; }
   md-select-menu md-content {
     min-width: 136px;
     max-height: 256px;
@@ -113,19 +133,25 @@ md-option {
   width: auto;
   padding: 0 16px 0 16px;
   height: 48px; }
+  md-option:focus {
+    outline: none; }
   md-option .md-text {
     width: auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 1em; }
+    font-size: 1.6rem; }
 
 md-optgroup {
   display: block; }
   md-optgroup label {
     display: block;
-    font-size: 1em;
+    font-size: 1.6rem;
     text-transform: uppercase;
     padding: 16px 8px; }
   md-optgroup md-option {
     padding-left: 24px; }
+
+@media screen and (-ms-high-contrast: active) {
+  .md-select-backdrop {
+    background-color: transparent; } }
