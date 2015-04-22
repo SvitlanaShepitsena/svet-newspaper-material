@@ -46,6 +46,11 @@
                     controller: "SocialCtrl as social",
                     templateUrl: "scripts/author/views/socialCtrl.html"
                 })
+                .state("app.user.business-ad", {
+                    url: "/business-ad",
+                    controller:"BusinessAdCtrl as businessAd",
+                    templateUrl: "scripts/auth/views/business-adCtrl.html"
+                })
                 // =Manager Profile
                 .state("app.manager", {
                     url: "/manager/:uid",

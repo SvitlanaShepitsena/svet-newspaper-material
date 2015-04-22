@@ -8,7 +8,7 @@ lx-dropdown(position='right')
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.dashboard({uid:user.name})" ng-if='isInGroup("business")')
+                a.dropdown-link(ui-sref="app.user.business-ad({uid:user.name})" ng-if='isInGroup("business")')
                     i.fa.fa-bullhorn &nbsp
                     | {{'my-ad'|translate}}
             li

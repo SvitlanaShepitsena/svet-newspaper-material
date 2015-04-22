@@ -16,6 +16,10 @@ md-icon {
   margin: 0px;
 }
 .sv-tabs {
+  font-size: 14px !important;
   padding: 10px 15px 4px;
   line-height: 15px;
+}
+md-tab-item span {
+  font-size: 14px !important;
 }
