@@ -66,6 +66,7 @@
                 /*=profile*/
                 .state("app.user", {
                     abstract: true,
+                    url:'/:uid',
                     controller: "UserCtrl as user",
                     templateUrl: "scripts/auth/views/userCtrl.html"
                 })
