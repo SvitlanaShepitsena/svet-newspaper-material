@@ -1,1 +1,6 @@
-button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='sendRequest()') Request Business Account
+div
+	div(ng-if='!loaded')
+		sv-loader
+	div(ng-if='loaded')
+		button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='cancelRequest()' ng-show='requestSubmited') Cancel Business Account Request
+		button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='submitRequest()' ng-show='!requestSubmited') Request Business Account

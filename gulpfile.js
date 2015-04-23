@@ -1,6 +1,8 @@
 'use strict';
 var gulp = require('gulp');
 var p = require('gulp-load-plugins')();
+var requireDir = require('require-dir');
+requireDir('./gulp/ng');
 
 var browserSync = require("browser-sync");
 var reload = browserSync.reload;
@@ -31,8 +33,6 @@ gulp.task("jade", function () {
 gulp.task('jade:watch', ['jade'], browserSync.reload);
 
 ///////////////////////////// Stylus/Css ////////////////////////////////////////////////
-
-
 
 gulp.task("stylus:scripts", function () {
 	return gulp.src(["./app/scripts/**/*.styl",])

@@ -1,0 +1,27 @@
+
+/*******************************
+     test animation
+********************************/
+
+.test.ng-enter,
+.test.ng-hide-add,
+.test.ng-hide-remove,
+.test.ng-leave
+  position relative
+  transition(1s)
+
+.test.ng-enter,
+.test.ng-hide-remove,
+.test.ng-hide-add.ng-hide-add-active,
+.test.ng-leave.ng-leave-active
+  opacity 0
+  left 200px
+
+.test.ng-enter.ng-enter-active,
+.test.ng-hide-add,
+.test.ng-hide-remove.ng-hide-remove-active,
+.test.ng-leave
+  opacity 1
+  left 0px
+
+//*******************************

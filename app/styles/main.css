@@ -273,6 +273,34 @@ md-tabs-wrapper {
 	color: rgba(255,255,255,0.12);
 }
 
+.test.ng-enter,
+.test.ng-hide-add,
+.test.ng-hide-remove,
+.test.ng-leave {
+	position: relative;
+	transition: 1s;
+}
+
+.test.ng-enter,
+.test.ng-hide-remove,
+.test.ng-hide-add.ng-hide-add-active,
+.test.ng-leave.ng-leave-active {
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	left: 200px;
+}
+
+.test.ng-enter.ng-enter-active,
+.test.ng-hide-add,
+.test.ng-hide-remove.ng-hide-remove-active,
+.test.ng-leave {
+	opacity: 1;
+	-ms-filter: none;
+	filter: none;
+	left: 0px;
+}
+
 .sv-md-button-nav-menu {
 	text-align: left !important;
 	line-height: 32px !important;

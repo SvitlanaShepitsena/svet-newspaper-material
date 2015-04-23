@@ -1,5 +1,4 @@
 'use strict';
-
 //<editor-fold desc="REQUIRES">
 require('./util.js');
 var gulp = require('gulp');
