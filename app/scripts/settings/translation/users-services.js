@@ -66,6 +66,7 @@
                 'planned-events': 'Запланированные  Мероприятия',
                 'invitations': 'Приглашения',
                 'find-people': 'Поиск Людей',
+                'subscriptions': 'Подписки',
                 'my-classified': 'Мои Объявления',
                 'profile-settings': 'Настройки Профайла',
                 'no-classified-yet': 'У Вас пока нет объявлений',
