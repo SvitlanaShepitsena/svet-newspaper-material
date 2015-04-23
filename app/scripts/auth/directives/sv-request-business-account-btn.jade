@@ -2,5 +2,7 @@ div
 	div(ng-if='!loaded')
 		sv-loader
 	div(ng-if='loaded')
-		button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='cancelRequest()' ng-show='requestSubmited') Cancel Business Account Request
-		button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='submitRequest()' ng-show='!requestSubmited') Request Business Account
+		div(ng-if='requestSubmited')
+			button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='cancelRequest()') Cancel Business Account Request
+		div(ng-if='!requestSubmited')
+			button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='submitRequest()' ) Request Business Account

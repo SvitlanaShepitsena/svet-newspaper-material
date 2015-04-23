@@ -1,27 +1,40 @@
 
 /*******************************
-     test animation
+     svet-corporate animation
 ********************************/
 
-.test.ng-enter,
-.test.ng-hide-add,
-.test.ng-hide-remove,
-.test.ng-leave
-  position relative
-  transition(1s)
+.svet-corporate.ng-enter,
+.svet-corporate.ng-hide-add,
+.svet-corporate.ng-hide-remove,
+.svet-corporate.ng-leave
+  transition(2s)
 
-.test.ng-enter,
-.test.ng-hide-remove,
-.test.ng-hide-add.ng-hide-add-active,
-.test.ng-leave.ng-leave-active
+.svet-corporate.ng-enter,
+.svet-corporate.ng-hide-remove,
+.svet-corporate.ng-hide-add.ng-hide-add-active,
+.svet-corporate.ng-leave.ng-leave-active
   opacity 0
-  left 200px
 
-.test.ng-enter.ng-enter-active,
-.test.ng-hide-add,
-.test.ng-hide-remove.ng-hide-remove-active,
-.test.ng-leave
+.svet-corporate.ng-enter-stagger
+   transition-delay: 1s;
+   transition-duration: 0s;
+
+
+.svet-corporate.ng-enter.ng-enter-active,
+.svet-corporate.ng-hide-add,
+.svet-corporate.ng-hide-remove.ng-hide-remove-active,
+.svet-corporate.ng-leave
   opacity 1
-  left 0px
 
 //*******************************
+
+.my-animation.ng-enter {
+   /* standard transition code */
+   transition: 1s linear all;
+   opacity:0;
+}
+
+.my-animation.ng-enter.ng-enter-active {
+   /* standard transition styles */
+   opacity:1;
+}
