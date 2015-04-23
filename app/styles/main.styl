@@ -25,266 +25,293 @@
 @import 'colors'
 @import 'md'
 
-
-
 /*Bugs with Safari*/
-
 html, body
-  font-family 'Roboto', sans-serif
-  color #474341
-  font-size 62.5%
-  height 100%
-  margin 0px
-  padding 0px
-
+	font-family 'Roboto', sans-serif
+	color #474341
+	font-size 62.5%
+	height 100%
+	margin 0px
+	padding 0px
 
 /*custom classes*/
 .bgc-svet-A100
-  background-color #474341
+	background-color #474341
 
 .bgc-svet-700
-  background-color #5C5654 !important
+	background-color #5C5654 !important
 
 .sv-toolbar
-  min-height 40px !important
-  height 40px !important
+	min-height 40px !important
+	height 40px !important
+
+.sv-toolbar-second {
+	@media (max-width: 960px) {
+	min-height 46px !important;
+	height 46px !important;
+}
+
+}
 
 .mdc-no-margin
-  margin 0px
+	margin 0px
 
 .mdc-no-margin-top
-  margin-top 0px !important
+	margin-top 0px !important
 
 .mdc-img-responsive
-  width 100%
+	width 100%
 
 .mdc-subhead
-  font-size 16px !important
+	font-size 16px !important
 
 .mdc-display-inline-block
-  display inline-block
+	display inline-block
 
 .mdc-link
-  text-decoration none !important
-  display inline-block
+	text-decoration none !important
+	display inline-block
 
 .mdc-img-sepia
-  -webkit-filter sepia(1)
-  filter sepia(1)
+	-webkit-filter sepia(1)
+	filter sepia(1)
 
 .mdc-img-bw
-  -ms-filter grayscale(1) !important
-  -webkit-filter grayscale(1) !important
-  filter grayscale(1) !important
+	-ms-filter grayscale(1) !important
+	-webkit-filter grayscale(1) !important
+	filter grayscale(1) !important
 
 .fw-700
-  font-weight 700px !important
+	font-weight 700px !important
 
 .mdc-text-right
-  text-align right !important
+	text-align right !important
 
 .mdc-text-left
-  text-align left !important
+	text-align left !important
 
 .mdc-text-center
-  text-align center !important
+	text-align center !important
 
 .mdc-overflow-hidden
-  overflow hidden
+	overflow hidden
 
 .mdc-underline-red
-  border-bottom 2px #E57373 solid !important
+	border-bottom 2px #E57373 solid !important
 
 .mdc-label-default
-  padding 4px 5px
-  border-radius 3px
+	padding 4px 5px
+	border-radius 3px
 
 .top-profile-nav
-  padding 4px 8px
+	padding 4px 8px
 
-  @media screen and (max-width: 992px)
-    padding 0px 4px !important
+.sv-padding {
+	@media screen and (max-width: 992px) {
+	padding 0px 4px !important
+}
+
+}
 
 .cursor-pointer
-  cursor pointer
+	cursor pointer
 
 .bgc-dark-grey
-  background-color #555555 !important
+	background-color #555555 !important
 
 /***************/
 /*=lumx custom typography*/
 .fs-subhead
-  font-weight 700
+	font-weight 700
 
 .fs-10
-  font-size 10px
+	font-size 10px
 
 .text-center
-  text-align center !important
+	text-align center !important
 
 md-sidenav
-  min-width 270px !important
-  max-width 270px !important
+	min-width 270px !important
+	max-width 270px !important
 
 md-sidenav
-  &.md-locked-open
-    width 270px !important
-    min-width 270px !important
-    max-width 270px !important
+	&.md-locked-open
+		width 270px !important
+		min-width 270px !important
+		max-width 270px !important
 
 .svet-logo
-  width 270px
+	width 270px
 
 .logo-link
-  display block
-  margin 8px auto
-  height auto
-  width 120px
+	display block
+	margin 8px auto
+	height auto
+	width 120px
 
-  @media screen and (max-width 992px)
-    width 100px
+.sv-width {
+	@media screen and (max-width 992px) {
+	width 100px;
+}
+
+}
 
 .logo-img
-  width 120px
-  height auto
+	width 120px
+	height auto
 
-.toolbar-svet
-  @media screen and (min-width 992px)
-    height 72px
+.toolbar-svet {
+	@media screen and (min-width 992px) {
+	height 72px
+}
 
-.toolbar-custom
-  background-color #555555 !important
+}
+.toolbar-custom {
+	background-color #555555 !important
 
-  @media screen and (max-width: 350px)
-    padding-left 4px !important
+	@media screen and (max-width: 350px) {
+	padding-left 4px !important
+}
 
+}
 /**********************
  =header
 ***********************/
 
-.languages-container
-  border-right-color rgb(97, 97, 97)
-  border-right-style solid
-  border-right-width 1px
-  padding-right 8px
+.languages-container {
+	border-right-color rgb(97, 97, 97)
+	border-right-style solid
+	border-right-width 1px
+	padding-right 8px
 
-  @media screen and (max-width: 350px)
-    padding-right 4px !important
+	@media screen and (max-width: 350px) {
+	padding-right 4px !important
+}
 
-.language-btn
-  @media screen and (max-width: 350px)
-    font-size 11px !important
-    margin 6px !important
+}
+.language-btn {
+	@media screen and (max-width: 350px) {
+	font-size 11px !important
+	margin 6px !important
+}
 
+}
 .language
-  color #E57373 !important
+	color #E57373 !important
 
-.weather-widget
-  margin-left 16px
+.weather-widget {
+	margin-left 16px
 
-  @media screen and (max-width: 350px)
-    margin-left 2px !important
+	@media screen and (max-width: 350px) {
+		margin-left 2px !important
+	}
 
-  @media screen and (max-width: 450px)
-    margin-left 8px
+	@media screen and (max-width: 450px) {
+		margin-left : 8px;
+	}
+}
 
-.weather-container
-  margin-right 0px
-  border-right-color: #616161;
-  border-right-style: solid;
-  border-right-width: 1px;
-  padding-right: 16px;
-  padding-left: 4px;
+.weather-container {
+	margin-right 0px
+	border-right-color: #616161;
+	border-right-style: solid;
+	border-right-width: 1px;
+	padding-right: 16px;
+	padding-left: 4px;
 
-  @media screen and (max-width: 350px)
-    padding-right: 0px;
+	@media screen and (max-width: 350px) {
+		padding-right: 0px;
+}
+	@media screen and (max-width: 450px) {
+		padding-right : 8px
+}
+}
+.main-weather-img {
+	max-width 28px
+	display inline-block
+	margin 0px 4px
 
-  @media screen and (max-width: 450px)
-    padding-right: 8px;
+	@media screen and (max-width: 992px) {
+	max-width 22px
+}
 
-.main-weather-img
-  max-width 28px
-  display inline-block
-  margin 0px 4px
+}
+.main-weather-text {
+	font-size 14px
 
-  @media screen and (max-width: 992px)
-    max-width 22px
+	@media screen and (max-width: 350px) {
+	font-size 11px
+}
 
-.main-weather-text
-  font-size 14px
-
-  @media screen and (max-width: 350px)
-    font-size 11px
-
+}
 .weather-dropdown-link
-  &:hover
-  &:active
-  &:focus
-    background-color #555555 !important
-
+	&:hover
+	&:active
+	&:focus
+		background-color #555555 !important
 
 /**********************
  =social
 ***********************/
 
 .btn-social-login
-  padding 0px
-  /*background-color #555555 !important*/
+	padding 0px
+
+/*background-color #555555 !important*/
 
 .btn-social-login-icon
-  padding 0px 8px
-  display inline-block
-  border-right-color #717171
-  border-right-style solid
-  border-right-width 1px
-  box-sizing border-box
+	padding 0px 8px
+	display inline-block
+	border-right-color #717171
+	border-right-style solid
+	border-right-width 1px
+	box-sizing border-box
 
 .header-social-link
-  border-left-color rgb(97, 97, 97)
-  border-left-style solid
-  border-left-width 1px
-  box-sizing border-box
-  color rgb(51, 122, 183)
-  cursor auto
-  font-family Arial, Tahoma, sans-serif
-  font-size 12px
-  list-style-type disc
-  margin-bottom 0px
-  text-align center
-  text-decoration none
+	border-left-color rgb(97, 97, 97)
+	border-left-style solid
+	border-left-width 1px
+	box-sizing border-box
+	color rgb(51, 122, 183)
+	cursor auto
+	font-family Arial, Tahoma, sans-serif
+	font-size 12px
+	list-style-type disc
+	margin-bottom 0px
+	text-align center
+	text-decoration none
 
 .header-social-link-right
-  border-right-color rgb(97, 97, 97)
-  border-right-style solid
-  border-right-width 1px
-
-
+	border-right-color rgb(97, 97, 97)
+	border-right-style solid
+	border-right-width 1px
 
 .fb-page
-  width 280px
-  height 130px
+	width 280px
+	height 130px
 
 .fb-filter
-  overflow hidden
-  width 280px
-  height 200px
-  position absolute
-  top 0
-  left 0
-  background rgba(255, 255, 255, 0.2)
+	overflow hidden
+	width 280px
+	height 200px
+	position absolute
+	top 0
+	left 0
+	background rgba(255, 255, 255, 0.2)
 
 /**********************
   =magazine
  ***********************/
 #magazine
-  /*width 1152px !important*/
-  height 752px !important
+	/*width 1152px !important*/
+	height 752px !important
+
 /*position static !important*/
 
 #magazine .turn-page
-  background-color #ccc
-  background-size 100% 100%
+	background-color #ccc
+	background-size 100% 100%
 
 .search-filter--is-focused
 .search-filter__container
-  width 140px !important
+	width 140px !important;

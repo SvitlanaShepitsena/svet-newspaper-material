@@ -477,8 +477,10 @@ md-sidenav.md-locked-open {
 ***********************/
 
 .btn-social-login {
-	padding: 0px; /*background-color #555555 !important*/
+	padding: 0px;
 }
+
+/*background-color #555555 !important*/
 
 .btn-social-login-icon {
 	padding: 0px 8px;
@@ -555,16 +557,25 @@ md-sidenav.md-locked-open {
 
 @media screen and (max-width: 992px) {
 
-.top-profile-nav {
+.sv-padding {
 	padding: 0px 4px !important;
 }
 
-.logo-link {
+.sv-width {
 	width: 100px;
 }
 
 .main-weather-img {
 	max-width: 22px;
+}
+
+}
+
+@media (max-width: 960px) {
+
+.sv-toolbar-second {
+	min-height: 46px !important;
+	height: 46px !important;
 }
 
 }
