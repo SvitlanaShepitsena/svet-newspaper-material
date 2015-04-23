@@ -280,6 +280,10 @@ md-tab-item span {
 	height: 40px !important;
 }
 
+.sv-tab-dashboard {
+	padding: 12px 24px;
+}
+
 /*Bugs with Safari*/
 
 html,
@@ -565,15 +569,6 @@ md-sidenav.md-locked-open {
 
 .main-weather-img {
 	max-width: 22px;
-}
-
-}
-
-@media (max-width: 960px) {
-
-.sv-toolbar-second {
-	min-height: 46px !important;
-	height: 46px !important;
 }
 
 }

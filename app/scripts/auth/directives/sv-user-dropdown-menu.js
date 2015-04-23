@@ -11,6 +11,7 @@
 
                 },
                 link: function ($scope, el, attrs) {
+	                console.log($scope.user);
                     $scope.isInGroup = function (group) {
                         return UserGroupsServ.isInGroup(group);
 
