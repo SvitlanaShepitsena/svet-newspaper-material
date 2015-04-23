@@ -6,7 +6,8 @@ var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 var cmq = require('gulp-combine-media-queries');
 
-var nib = require('nib');
+var nib = require('nib'),
+	rupture = require('rupture');
 
 ///////////////////////////// Error Handling ////////////////////////////////////////////////
 var onError = function (err) {
@@ -33,10 +34,11 @@ gulp.task('jade:watch', ['jade'], browserSync.reload);
 ///////////////////////////// Stylus/Css ////////////////////////////////////////////////
 
 
+
 gulp.task("stylus:scripts", function () {
 	return gulp.src(["./app/scripts/**/*.styl",])
 		.pipe(p.plumber({errorHandler: onError}))
-		.pipe(p.stylus({use: nib()}))
+		.pipe(p.stylus({use: [nib(),rupture()]}))
 		.pipe(gulp.dest("./app/scripts/"))
 		.pipe(reload({stream: true}));
 
