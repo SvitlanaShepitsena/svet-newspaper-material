@@ -8,6 +8,9 @@
 
             function addToUsersGroup(user) {
                 user.groups = ['reader'];
+	            if (user.fname) {
+		            user.name = user.fname;
+	            }
                 return user;
             }
 
@@ -22,10 +25,10 @@
                             if (!usersObj || !usersObj[userId]) {
                                 usersObj[userId] = user;
                                 usersObj.$save().then(function (uid) {
-                                    resolve({uid:uid, firstLogin:true});
+                                    resolve({uid:user.name, firstLogin:true});
                                 });
                             } else {
-                                    resolve({uid:userId, firstLogin:false});
+                                    resolve({uid:user.name, firstLogin:false});
                             }
                         });
 
