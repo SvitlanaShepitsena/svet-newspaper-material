@@ -11,12 +11,7 @@
 	height: 40px !important;
 }
 
-@media (max-width: 960px) {
-
-.sv-toolbar-second {
-	min-height: 46px !important;
-	height: 46px !important;
-}
-
+.sv-tab-dashboard {
+	padding: 12px 24px;
 }
 

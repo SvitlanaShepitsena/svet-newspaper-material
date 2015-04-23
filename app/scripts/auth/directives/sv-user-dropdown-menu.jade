@@ -4,7 +4,7 @@ lx-dropdown(position='right')
     lx-dropdown-menu
         ul
             li
-                a.dropdown-link(ui-sref="app.user.dashboard({uid:user.name})")
+                a.dropdown-link(ui-sref="app.user.dashboard({uid:user.name || user.fname})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
