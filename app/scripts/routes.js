@@ -11,8 +11,10 @@
                     controller: "AppCtrl as app",
                     resolve: {
                         user: function (AuthServ, $rootScope) {
-                            $rootScope.loadingUser = true;
                             return AuthServ.getUser();
+                        },
+                        news: function (ArticleServ, $rootScope) {
+                            return ArticleServ.allObjRef();
                         }
                     },
                     template: "<div ui-view=''></div>"
