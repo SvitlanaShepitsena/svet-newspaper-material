@@ -55,9 +55,10 @@
             <a class="logo-link" ui-sref="app.home">
                 <img src="img/logo/logo.png" class="logo-img">
             </a>
-            <md-button sv-left-click-handler="" hide-gt-md="" aria-label="close left" class="txt-white sv-md-button"
-                       ng-controller="LeftCtrl"><i
-                    class="mdi mdi-close"></i></md-button>
+            <button class='btn btn--m btn--icon btn--black mr' sv-left-click-handler="" hide-gt-md=""
+                    aria-label="close left" class="txt-white sv-md-button">
+                <i class="mdi mdi-close"></i>
+            </button>
         </md-toolbar>
         <md-content layout-padding>
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
@@ -112,7 +113,7 @@
                     </button>
                     <span class="mdc-subhead">Читателям и Партнерам</span>
                 </md-toolbar>
-                <md-content class="pr pl pt" >
+                <md-content class="pr pl pt">
                     <sv-sidenav-title title="svet-on-social-media" class='mb'></sv-sidenav-title>
                     <sv-svet-social></sv-svet-social>
                     <sv-sidenav-title title="PdfNewspaperArchive" class='mb++'></sv-sidenav-title>
