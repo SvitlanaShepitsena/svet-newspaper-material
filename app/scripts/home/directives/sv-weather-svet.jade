@@ -1,4 +1,4 @@
-div(layout='row')
+div(layout='row' layout-align="center center")
     div(ng-show="!forecastReady" layout='row' layout-align="center center" class='fade-in-out')
         sv-loader
         span.main-weather-text Looking outside for you. 1 sec
@@ -7,7 +7,7 @@ div(layout='row')
             span.main-weather-text {{'Chicago'|translate}}
             img.main-weather-img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png")
             span.tc-grey-400.mdc-display-inline-block.main-weather-text(style="margin-right:2px") {{tempConverter(forecast.curr.temp)}} °{{'degrees'|translate}}
-        lx-dropdown(position='left'  hide-sm)
+        lx-dropdown(position='left'  hide-sm style='margin-top:4px')
             button.btn.tc-grey-400.btn--m(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}" )
                 span {{'forecast'|translate}}
                 i.mdi.mdi-menu-down(style='margin:0px 4px')

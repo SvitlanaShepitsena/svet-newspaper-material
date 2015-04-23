@@ -37,7 +37,7 @@
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
 <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
             style="background-color:#474341">
-    <div layout="row">
+    <div layout="row" layout-align="center center">
         <sv-lang-switch></sv-lang-switch>
         <sv-weather-svet class="weather-widget"></sv-weather-svet>
     </div>
@@ -84,7 +84,7 @@
 
     <!-- =Content-->
     <div layout="column" flex>
-        <md-toolbar layout="row" class="md-hue-1 sv-toolbar-second" >
+        <md-toolbar layout="row" class="md-hue-1" style="height: auto">
             <md-button hide-gt-md sv-left-click-handler="" aria-label="Show User List">
                 <md-icon md-svg-icon="sv-menu"></md-icon>
             </md-button>
