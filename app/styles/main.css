@@ -116,6 +116,10 @@ md-tab-item span {
 	font-weight: 500 !important;
 }
 
+md-tabs-wrapper {
+	padding-bottom: 8px !important;
+}
+
 .author-article-nav {
 	backround-color: none !important;
 	background: transparent !important;

@@ -24,3 +24,6 @@ md-tab-item span {
   font-size: 11px !important;
   font-weight: 500 !important;
 }
+md-tabs-wrapper {
+  padding-bottom: 8px !important;
+}
