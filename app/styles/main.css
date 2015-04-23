@@ -271,8 +271,15 @@ md-tab-item span {
 
 .sv-md-button-nav-menu {
 	text-align: left !important;
+	line-height: 32px !important;
 	line-height: 2rem !important;
+	height: 32px !important;
 	height: 2rem !important;
+}
+
+.sv-toolbar {
+	min-height: 40px !important;
+	height: 40px !important;
 }
 
 /*Bugs with Safari*/
@@ -281,7 +288,7 @@ html,
 body {
 	font-family: 'Roboto', sans-serif;
 	color: #474341;
-	font-size: 90%;
+	font-size: 62.5%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
@@ -295,11 +302,6 @@ body {
 
 .bgc-svet-700 {
 	background-color: #5c5654 !important;
-}
-
-.sv-toolbar {
-	min-height: 40px !important;
-	height: 40px !important;
 }
 
 .mdc-no-margin {
