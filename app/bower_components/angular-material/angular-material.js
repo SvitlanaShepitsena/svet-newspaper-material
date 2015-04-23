@@ -13045,9 +13045,11 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 
   function shouldPaginate () {
     if ($scope.noPagination) return false;
-    var canvasWidth = $element.prop('clientWidth');
+    var canvasWidth = $element.prop('clientWidth'),
+	      updateWidth;
     angular.forEach(elements.tabs, function (tab) { canvasWidth -= tab.offsetWidth; });
-    return canvasWidth < 600;
+	  var limitWidth = canvasWidth === $element.prop('clientWidth')?600:0;
+    return true;
   }
 
   function select (index) {
