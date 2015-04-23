@@ -1,6 +1,6 @@
 lx-dropdown(position='right')
-    button.btn.btn--m.btn--icon.btn--white.tc-black(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}")
-        img(ng-src="{{user.avatar}}" style='min-height:30px')
+    button.btn.btn--icon(lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}" style='height:26px')
+        img.mdc-display-inline-block(ng-src="{{user.avatar}}" style='min-height:26px')
     lx-dropdown-menu
         ul
             li
