@@ -34,7 +34,7 @@
                 user = _.extend(user, {
                     login: userLogin,
                     name: 'Alex',
-                    avatar: 'img/auth/author.png'
+                    avatar: 'img/auth/AlexEtman-sepia.jpg'
                 });
                 if (user.uid) {
                     user.id = user.uid
