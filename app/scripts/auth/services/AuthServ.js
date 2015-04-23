@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .factory('AuthServ', function (UserGroupsServ, $firebaseAuth, $firebaseObject, url, $q, $rootScope) {
+        .factory('AuthServ', function (UserGroupsServ, $firebaseAuth, $firebaseObject, url, users, $q, $rootScope) {
 
             var mainRef = new Firebase(url);
 
@@ -44,6 +44,33 @@
                 return user;
             }
 
+            function updateWithLocalData(user) {
+                return $q(function (resolve, reject) {
+                    var userUrl = users + user.id;
+                    var userObj = $firebaseObject(new Firebase(userUrl));
+
+                    userObj.$loaded().then(function () {
+                        if (userObj.fname) {
+                            user.fname = userObj.fname;
+                        }
+                        if (userObj.lname) {
+                            user.lname = userObj.lname;
+                        }
+                        if (userObj.uname) {
+                            user.uname = userObj.uname;
+                        }
+                        resolve(user);
+                    }).catch(function (error) {
+                        console.log(userid + 'does not exists');
+                        reject(error);
+                    });
+
+
+                });
+
+
+            }
+
             return {
                 getObj: function () {
                     return $firebaseAuth(mainRef);
@@ -62,10 +89,13 @@
                             var user = processUserPassword(data);
                         }
                         if (!_.isNull(user)) {
-                            UserGroupsServ.getGroups(user.id).then(function (groups) {
-                                user.groups = groups
-                                deferred.resolve(user);
-                            });
+                            updateWithLocalData(user).then(function (user) {
+
+                                UserGroupsServ.getGroups(user.id).then(function (groups) {
+                                    user.groups = groups
+                                    deferred.resolve(user);
+                                });
+                            })
                         }
                     }).catch(function (error) {
                         deferred.reject();
@@ -139,12 +169,15 @@
                     if (_.isNull(user)) {
                         deferred.resolve(null);
                     } else {
-                        UserGroupsServ.getGroups(user.id).then(function (groups) {
-                            user.groups = groups
-                            deferred.resolve(user);
-                        }).catch(function (error) {
-                            console.log(error);
-                        });
+                        updateWithLocalData(user).then(function (user) {
+
+                            UserGroupsServ.getGroups(user.id).then(function (groups) {
+                                user.groups = groups
+                                deferred.resolve(user);
+                            }).catch(function (error) {
+                                console.log(error);
+                            });
+                        })
                     }
 
                     return deferred.promise;

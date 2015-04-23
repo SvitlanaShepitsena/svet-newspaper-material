@@ -1,38 +1,11 @@
 .data-table-container
     table.data-table.data-table--has-primary.data-table--has-secondary
         tbody
-            tr.data-table__clickable-row
+            tr.data-table__clickable-row(ng-repeat='prop in props')
                 td
-                    span.fs-caption First Name:
+                    span.fs-caption {{prop.label|translate}}:
                 td
-                    span Alex
+                    input(type="text" ng-model='prop.value')
                 td
-                    i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-pencil
-            tr.data-table__clickable-row
-                td
-                    span.fs-caption Last Name:
-                td
-                    span Etman
-                td
-                    i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-pencil
-            tr.data-table__clickable-row
-                td
-                    span.fs-caption User Name:
-                td
-                    span Alex
-                td
-                    i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-pencil
-            tr.data-table__clickable-row
-                td
-                    span.fs-caption Email:
-                td
-                    span alex2@gmail.com
-                td
-                    i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-pencil
-            tr.data-table__clickable-row
-                td
-                    span.fs-caption Password:
-                td
-                    span hidden
-                td
-                    i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-pencil
+                    i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-content-save(ng-click='saveUserProperty(prop)')
+

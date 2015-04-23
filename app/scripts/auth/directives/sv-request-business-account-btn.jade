@@ -2,7 +2,7 @@ div
 	div(ng-if='!loaded')
 		sv-loader
 	div(ng-if='loaded')
-		div(ng-if='requestSubmited')
+		div(ng-if='requestSubmited').svet-corporate
 			button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='cancelRequest()') Cancel Business Account Request
-		div(ng-if='!requestSubmited')
+		div(ng-if='!requestSubmited').svet-corporate
 			button.btn.btn--xs.btn--raised.btn--white(lx-ripple ng-click='submitRequest()' ) Request Business Account

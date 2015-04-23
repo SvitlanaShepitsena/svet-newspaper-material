@@ -43,7 +43,12 @@
                 'invalid-email': '* Please enter a valid email',
                 'invalid-password': '* Your password must be between 6 and 12 characters long',
                 'login': 'Login',
-                'logout': 'Logout'
+                'logout': 'Logout',
+
+                //    Change Fields
+                'fname': 'First Name',
+                'lname': 'Last Name',
+                'uname': 'User Name'
 
             });
 
@@ -83,7 +88,12 @@
                 'invalid-email': '* Пожалуйста, введите корректный адрес',
                 'invalid-password': '* Ваш пароль должен содержать от 6 до 20 символов',
                 'logout': 'Выйти',
-                'login': 'Войти'
+                'login': 'Войти',
+
+            //    Change Fields
+                'fname': 'Имя',
+                'lname': 'Фамилия',
+                'uname': 'Ник'
 
             });
 
