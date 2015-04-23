@@ -1,7 +1,7 @@
 div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
     div(ng-if='loadingUser')
         sv-loader
-    div(ng-if='!loadingUser')
+    div(ng-if='!loadingUser' layout='row' layout-align="center center" )
         div(ng-if='!user')
             div(ng-if="ctrl.isIe")
                 button.tc-black(lx-ripple=''
@@ -27,6 +27,6 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
                             i.mdi.mdi-facebook
                         button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginProvider("google")')
                             i.mdi.mdi-google-plus
-        div(ng-if='!!user')
-            span.fs-subhead {{user.name}} &nbsp
-                sv-user-dropdown-menu(user='user' logout='ctrl.logout()')
+        div(layout='row' ng-if='!!user' layout-align="center center")
+            span.mdc-display-inline-block.fs-subhead {{user.name}} &nbsp
+            sv-user-dropdown-menu(user='user' logout='ctrl.logout()')
