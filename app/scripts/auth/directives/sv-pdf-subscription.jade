@@ -1,11 +1,14 @@
-div
+div.card.p.ml
+    span.display-block.fs-subhead Newspaper Subscription
+    md-divider.mb
+    span.display-block.fs-body-2 Do you have a subscription to New Svet or Saturday+ PDF newspaper?
     div(ng-if='pdfLoaded')
         form( name='pdfSubForm')
             div(layout="row" layout-align='start center')
                 md-checkbox(ng-model="pdfSub.newLight" aria-label="Checkbox")
-                span.mdc-display-inline-block {{'NewSvetNewspaper'|translate}}
+                span.mdc-display-inline-block.fs-body-2 {{'NewSvetNewspaper'|translate}}
             div(layout="row" layout-align='start center')
                 md-checkbox(ng-model="pdfSub.saturday" aria-label="Checkbox")
-                span.mdc-display-inline-block {{'SaturdayPlus'|translate}}
+                span.mdc-display-inline-block.fs-body-w {{'SaturdayPlus'|translate}}
     div(ng-if='!pdfLoaded')
         md-progress-circular.md-accent(md-mode='indeterminate')

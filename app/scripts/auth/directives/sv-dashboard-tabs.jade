@@ -1,5 +1,5 @@
 div
-    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-center-tabs='true' no-pagination='false' stretch-tabs='always')
-        md-tab.sv-tabs.sv-tab-dashboard(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
-            md-content(class='tab{{$index%4}}', style='text-align: center;')
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' style='height:auto;min-height:800px')
+        md-tab.sv-tabs(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
+            md-content.mt(class='tab{{$index%4}}')
                 div.p(ng-include='tab.content' class='mt++')
