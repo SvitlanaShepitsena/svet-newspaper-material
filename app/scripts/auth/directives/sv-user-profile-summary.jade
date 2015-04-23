@@ -1,5 +1,11 @@
 div(layout='row')
-    div(flex='')
+    div(flex-gt-sm='60')
         .card.p.mr
+            div
+                span.mdc-display-inline-block.mr.mb Account Status:
+                span.fs-body-2 Reader Account
+            div
+
             sv-request-business-account-btn
-    sv-pdf-subscription(flex)
+    div(flex-gt-sm='40')
+        sv-pdf-subscription(flex)
