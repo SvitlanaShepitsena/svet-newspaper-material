@@ -4,9 +4,21 @@ lx-dropdown(position='right')
     lx-dropdown-menu
         ul
             li
-                a.dropdown-link(ui-sref="app.manager.dashboard({uid:user.name || user.fname})")
+                a.dropdown-link(ui-sref='app.manager.dashboard({uid:user.id})')
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
+            li
+                a.dropdown-link(ui-sref='app.manager.social({uid:user.id})')
+                    i.mdi.mdi-emoticon &nbsp
+                    span {{'friends'|translate}}
+            li
+                a.dropdown-link(ui-sref='app.manager.events({uid:user.id})')
+                    i.mdi.mdi-tag &nbsp
+                    span {{'events'|translate}}
+            li
+                a.dropdown-link(ui-sref='app.manager.ad({uid:user.id})')
+                    i.fa.fa-bullhorn &nbsp
+                    span {{'ad'|translate}}
             li.dropdown-divider
             li
                 a.dropdown-link(ng-click='logout()')
