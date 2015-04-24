@@ -2,16 +2,13 @@
     'use strict';
 
     angular.module('home')
-        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, $rootScope, toastr) {
+        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, news, $rootScope, toastr, $timeout) {
 
             var app = this;
             $rootScope.user = user;
-            $rootScope.loaded = false;
-            $rootScope.loadingUser = false;
 
 
-            var newsRef = ArticleServ.allObjRef();
-            newsRef.$bindTo($rootScope, "newsObj").then(function () {
+            news.$bindTo($rootScope, "newsObj").then(function () {
 
             });
 
@@ -38,8 +35,11 @@
                 $rootScope.news = newsTrioGrid.trios;
                 $rootScope.newsGrid = newsTrioGrid.newsGrid;
 
+                $timeout(function () {
+                    $rootScope.appLoaded = true;
+                    console.log('loaded');
+                }, 3000);
 
-                $rootScope.loaded = true;
 
             });
 
