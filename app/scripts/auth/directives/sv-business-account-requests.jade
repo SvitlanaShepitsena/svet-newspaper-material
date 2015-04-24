@@ -1,28 +1,23 @@
 .data-table-container
     table.data-table.data-table--has-primary.data-table--has-secondary
         tbody
-            tr.data-table__clickable-row.bgc-grey-100.pt(layout='row' style="border-bottom: 1px #E0E0E0 solid")
+            tr.data-table__clickable-row.bgc-grey-100.pt(layout='row' style="border-bottom: 1px #E0E0E0 solid" ng-repeat='u in users')
                 td(flex='20')
                     span.fs-caption
-                        strong User Name
-                td(flex)
-                    span.fs-caption
-                        strong Request
-                td
-                    i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-check
-                td
-                    i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-minus-circle
-            tr.data-table__clickable-row(layout='row')
+                        strong {{u.fname}}
                 td(flex='20')
-                    span.fs-caption User Name
+                    span.fs-caption
+                        strong {{u.lname}}
+                td(flex='20')
+                    span.fs-caption
+                        strong {{u.email}}
                 td(flex)
-                    span.fs-caption Business Account Request
-                td
-                    button.btn.btn--s.btn--icon.btn--green.tc-green-300(lx-ripple)
-                        i.mdi.mdi-check
-                td
-                    button.btn.btn--s.btn--icon.btn--red.tc-red-300(lx-ripple)
-                        i.mdi.mdi-minus-circle
-
+                    md-button(ng-click='accept(u)')
+                        i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-check
+                        span Accept
+                td(flex)
+                    md-button(ng-click='reject(u)')
+                        i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-minus-circle
+                        span Reject
 
 
