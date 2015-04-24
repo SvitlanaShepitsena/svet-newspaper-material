@@ -125,13 +125,14 @@ md-tabs-wrapper {
 	padding: 8px 16px !important;
 }
 
-.data-table > tbody > tr > td,
-.data-table > thead > tr > th {
+.data-table > tbody > tr > td:second-child,
+.data-table > thead > tr > th:second-child {
 	padding: 8px 16px 8px 8px !important;
 }
 
-.data-table>tbody>tr>td,
-.data-table>thead>tr>th {
+.data-table > tbody > tr > td,
+.data-table > thead > tr > th {
+	padding: 8px 4px !important;
 	height: auto;
 }
 
