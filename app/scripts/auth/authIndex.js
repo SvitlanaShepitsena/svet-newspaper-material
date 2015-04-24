@@ -64,10 +64,10 @@
                     controller: "ManagerDashboardCtrl as managerDashboard",
                     templateUrl: "scripts/auth/views/manager-dashboardCtrl.html"
                 })
-                .state("app.manager.social", {
-                    url: "/manager-social",
-                    controller: "ManagerSocialCtrl as managerSocial",
-                    templateUrl: "scripts/auth/views/manager-socialCtrl.html"
+                .state("app.manager.users", {
+                    url: "/manager-users",
+                    controller: "ManagerUsersCtrl as managerUsers",
+                    templateUrl: "scripts/auth/views/manager-usersCtrl.html"
                 })
                 .state("app.manager.events", {
                     url: "/manager-events",
