@@ -14,6 +14,7 @@
                 controller: function ($scope) {
                     var ctrl = this;
                     ctrl.newsGrid = ctrl.sectionNews || $rootScope.newsGrid;
+	                console.log(ctrl.newsGrid);
                 },
 
                 link: function ($scope, el, attrs) {

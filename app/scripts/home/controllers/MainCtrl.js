@@ -17,7 +17,6 @@
 
 			$rootScope.$watch('appLoaded', function (newValue) {
 				$scope.appLoaded = newValue;
-				console.log(newValue);
 			});
 
 			$scope.$watch(function () {

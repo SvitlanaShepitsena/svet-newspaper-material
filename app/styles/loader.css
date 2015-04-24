@@ -1,6 +1,17 @@
+.dim{
+    background-color: #595959;
+    opacity: 0.5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 999;
+}
 #floatingCirclesG{
     position:relative;
     width:128px;
+    margin: 0 auto;
+    opacity: 1;
     height:128px;
     -moz-transform:scale(0.6);
     -webkit-transform:scale(0.6);
