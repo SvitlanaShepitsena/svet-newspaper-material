@@ -74,6 +74,11 @@
                     controller: "ManagerEventsCtrl as managerEvents",
                     templateUrl: "scripts/auth/views/manager-eventsCtrl.html"
                 })
+                .state("app.manager.ad", {
+                    url: "/manager-ad",
+                    controller:"ManagerAdCtrl as managerAd",
+                    templateUrl: "scripts/auth/views/manager-adCtrl.html"
+                })
 
 
 //#state'

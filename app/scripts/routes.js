@@ -146,11 +146,6 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
-				.state("app.manager-ad", {
-					url: "/manager-ad", 
-					controller:"ManagerAdCtrl as managerAd",
-					templateUrl: "scripts/auth/views/manager-adCtrl.html"
-				})
 //#state'
         });
 
