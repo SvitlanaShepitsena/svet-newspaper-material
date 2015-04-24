@@ -13,10 +13,8 @@
 				controllerAs: 'ctrl',
 				controller: function ($scope) {
 					var ctrl = this;
-					$rootScope.$watch('newsGrid', function (newVal,oldVal) {
-						if (newVal === oldVal) {
-							return;
-						}
+					$rootScope.$watch('newsGrid', function (newVal) {
+
 						ctrl.newsGrid = newVal;
 
 					})
