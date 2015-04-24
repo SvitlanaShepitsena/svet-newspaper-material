@@ -146,6 +146,11 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
+				.state("app.manager-social", {
+					url: "/manager-social", 
+					controller:"ManagerSocialCtrl as managerSocial",
+					templateUrl: "scripts/auth/views/manager-socialCtrl.html"
+				})
 //#state'
         });
 
