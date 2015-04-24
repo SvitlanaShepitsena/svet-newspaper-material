@@ -4,7 +4,6 @@
     angular.module('app', [
 
         // modules
-		'request-business-account-btn',
 		'author',
 		'business',
 		'travel',
