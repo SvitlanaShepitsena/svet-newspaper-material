@@ -290,7 +290,7 @@ md-tabs-wrapper {
 
 .svet-corporate.ng-enter,
 .svet-corporate.ng-hide-add,
-.svet-corporate.ng-hide-remove,
+.svet-corporate.ng7hide-remove,
 .svet-corporate.ng-leave {
 	transition: 1s;
 }
@@ -333,7 +333,9 @@ md-tabs-wrapper {
 
 .sv-md-button-nav-menu {
 	text-align: left !important;
+	line-height: 32px !important;
 	line-height: 2rem !important;
+	height: 32px !important;
 	height: 2rem !important;
 }
 
