@@ -146,11 +146,6 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
-				.state("app.manager-clients", {
-					url: "/manager-clients", 
-					controller:"ManagerClientsCtrl as managerClients",
-					templateUrl: "scripts/auth/views/manager-clientsCtrl.html"
-				})
 //#state'
         });
 

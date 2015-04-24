@@ -65,17 +65,22 @@
                     templateUrl: "scripts/auth/views/manager-dashboardCtrl.html"
                 })
                 .state("app.manager.users", {
-                    url: "/manager-users",
+                    url: "/users",
                     controller: "ManagerUsersCtrl as managerUsers",
                     templateUrl: "scripts/auth/views/manager-usersCtrl.html"
                 })
+                .state("app.manager.clients", {
+                    url: "/clients",
+                    controller:"ManagerClientsCtrl as managerClients",
+                    templateUrl: "scripts/auth/views/manager-clientsCtrl.html"
+                })
                 .state("app.manager.events", {
-                    url: "/manager-events",
+                    url: "/events",
                     controller: "ManagerEventsCtrl as managerEvents",
                     templateUrl: "scripts/auth/views/manager-eventsCtrl.html"
                 })
                 .state("app.manager.ad", {
-                    url: "/manager-ad",
+                    url: "/advertisement",
                     controller:"ManagerAdCtrl as managerAd",
                     templateUrl: "scripts/auth/views/manager-adCtrl.html"
                 })
