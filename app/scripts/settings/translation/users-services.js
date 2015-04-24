@@ -19,6 +19,7 @@
                 'comments': 'Comments',
                 'bookmarks': 'Bookmarks',
 
+                'manager-account': 'Manager Account',
                 'reader-profile': 'Reader Profile',
                 'reader-profile-settings': 'Reader Profile Settings',
                 'activity-events': 'Activity and Events',
@@ -64,6 +65,7 @@
                 'comments': 'Комментарии',
                 'bookmarks': 'Закладки',
 
+                'manager-account': 'Профайл Менеджера',
                 'reader-profile': 'Профайл Читателя',
                 'reader-profile-settings': 'Настройки Профайла Читателя',
                 'activity-events': 'События и Мероприятия',
@@ -90,7 +92,7 @@
                 'logout': 'Выйти',
                 'login': 'Войти',
 
-            //    Change Fields
+                //    Change Fields
                 'fname': 'Имя',
                 'lname': 'Фамилия',
                 'uname': 'Ник'

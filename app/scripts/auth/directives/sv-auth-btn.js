@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svAuthBtn', function (AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia) {
+        .directive('svAuthBtn', function (AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -13,27 +13,23 @@
 
                     var ctrl = this;
                     ctrl.isIe = AgentServ.isIe();
-                    $scope.isInGroup = function (group) {
-                        if ($scope.user && !$scope.user.groups) {
-                            if (group === 'user') {
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        }
-                        if (!$scope.user || !$scope.user.groups) {
-                            return false;
-                        }
-                        var userGroup = $scope.user.groups.indexOf(group);
-
-                        return userGroup > -1;
+                    $scope.isManager = function () {
+                        return UserGroupsServ.isInGroup('manager');
                     };
 
                     ctrl.loginProvider = function (provider) {
+
                         AuthServ.authProvider(provider).then(function (user) {
-                            UserServ.saveNewUser(user);
+                            if (!user.groups) {
+                                UserServ.saveNewUser(user);
+                            }
+
                             $rootScope.user = user;
-                            $state.go('app.user.dashboard', {uid: user.id})
+                            if (UserGroupsServ.isInGroup('manager') || UserGroupsServ.isInGroup('admin')) {
+                                $state.go('app.manager.dashboard', {uid: user.id})
+                            } else {
+                                $state.go('app.user.dashboard', {uid: user.name})
+                            }
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
                         });
