@@ -10,15 +10,18 @@
                 'dashboard': 'Dashboard',
                 'my-profile': 'My Profile',
                 'my-ad': 'My Advertisement',
+                'ad': 'Advertisement',
                 'my-articles': 'My Articles',
                 'my-drafts': 'Drafts',
                 'my-friends': 'My Friends',
+                'svet-friends': 'Svet Friends',
                 'create:article': 'Create Article',
                 'settings': 'Settings',
                 'statistics': 'Statistics',
                 'comments': 'Comments',
                 'bookmarks': 'Bookmarks',
 
+                'manager-dashboard': 'Manager Dashboard',
                 'reader-profile': 'Reader Profile',
                 'reader-profile-settings': 'Reader Profile Settings',
                 'activity-events': 'Activity and Events',
@@ -56,14 +59,17 @@
                 'dashboard': 'Панель Управления',
                 'my-profile': 'Мой Профайл',
                 'my-ad': 'Моя Реклама',
+                'ad': ' Реклама',
                 'my-articles': 'Мои Статьи',
                 'my-drafts': 'Черновики',
                 'my-friends': 'Мои Друзья',
+                'svet-friends': 'Друзья Svet ',
                 'create-article': 'Создать статью',
                 'settings': 'Настройки',
                 'comments': 'Комментарии',
                 'bookmarks': 'Закладки',
 
+                'manager-dashboard': 'Панель Управления Менеджера',
                 'reader-profile': 'Профайл Читателя',
                 'reader-profile-settings': 'Настройки Профайла Читателя',
                 'activity-events': 'События и Мероприятия',
@@ -90,7 +96,7 @@
                 'logout': 'Выйти',
                 'login': 'Войти',
 
-            //    Change Fields
+                //    Change Fields
                 'fname': 'Имя',
                 'lname': 'Фамилия',
                 'uname': 'Ник'

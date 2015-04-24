@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svManagerDropdown', function () {
+        .directive('svManagerProfileNav', function () {
             return {
-                templateUrl: 'scripts/auth/directives/sv-manager-dropdown.html',
+                replace: true,
+                templateUrl: 'scripts/auth/directives/sv-manager-profile-nav.html',
                 scope: {
-                    user: '=',
-                    logout: '&'
+
                 },
                 link: function ($scope, el, attrs) {
 

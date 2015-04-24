@@ -30,6 +30,9 @@
     <link rel="stylesheet"
           href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css">
 
+    <!-- endbuild -->
+
+    <!--<link rel="stylesheet" href="assets/vendors.min.css"/>-->
 
 
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -115,8 +118,7 @@
                     <md-toolbar class="text-center toolbar-svet bgc-grey-200" layout-padding="" layout='row' hide-gt-lg
                                 layout-align='start center'
                                 ng-controller="RightCtrl">
-                        <button lx-ripple class='btn btn--m btn--icon btn--black mr' sv-right-click-handler=""
-                                hide-gt-lg=""
+                        <button lx-ripple class='btn btn--m btn--icon btn--black mr' sv-right-click-handler="" hide-gt-lg=""
                                 aria-label="close right" class="txt-white">
                             <i class="mdi mdi-close"></i>
                         </button>
@@ -304,6 +306,10 @@
 
     <!-- auth -->
     <script src="scripts/auth/authIndex.js"></script>
+<script src="scripts/auth/controllers/ManagerAdCtrl.js"></script>
+<script src="scripts/auth/controllers/ManagerEventsCtrl.js"></script>
+<script src="scripts/auth/controllers/ManagerSocialCtrl.js"></script>
+<script src="scripts/auth/directives/sv-manager-profile-nav.js"></script>
     <script src="scripts/auth/services/RequestServ.js"></script>
     <script src="scripts/auth/directives/sv-user-personal-info.js"></script>
     <script src="scripts/auth/directives/sv-request-business-account-btn.js"></script>
@@ -317,6 +323,7 @@
     <script src="scripts/auth/services/PdfSubscriptionsServ.js"></script>
     <script src="scripts/auth/controllers/UserCtrl.js"></script>
     <script src="scripts/auth/controllers/ManagerCtrl.js"></script>
+    <script src="scripts/auth/controllers/ManagerDashboardCtrl.js"></script>
     <script src="scripts/auth/services/UserGroupsServ.js"></script>
     <script src="scripts/auth/directives/sv-editor-dropdown.js"></script>
     <script src="scripts/auth/directives/sv-manager-dropdown.js"></script>
@@ -369,7 +376,6 @@
     <script src="scripts/home/homeIndex.js"></script>
     <script src="scripts/home/services/NewsServ.js"></script>
     <script src="scripts/home/directives/sv-nav-bar-media.js"></script>
-    <script src="scripts/home/directives/sv-main-loader.js"></script>
     <script src="scripts/home/directives/sv-loader.js"></script>
     <script src="scripts/home/directives/sv-nav-pdf-thumb.js"></script>
     <script src="scripts/home/directives/sv-read-more.js"></script>

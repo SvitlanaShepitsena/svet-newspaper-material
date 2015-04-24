@@ -5,23 +5,36 @@
 
 .svet-corporate.ng-enter,
 .svet-corporate.ng-hide-add,
-.svet-corporate.ng7hide-remove,
+.svet-corporate.ng-hide-remove,
 .svet-corporate.ng-leave
-  transition(1s) !important;
+  transition(2s)
 
 .svet-corporate.ng-enter,
 .svet-corporate.ng-hide-remove,
 .svet-corporate.ng-hide-add.ng-hide-add-active,
 .svet-corporate.ng-leave.ng-leave-active
-  opacity 0 !important
+  opacity 0
 
 .svet-corporate.ng-enter-stagger
-   transition-delay: 1s; !important
-   transition-duration: 0s; !important
+   transition-delay: 1s;
+   transition-duration: 0s;
 
 
 .svet-corporate.ng-enter.ng-enter-active,
 .svet-corporate.ng-hide-add,
 .svet-corporate.ng-hide-remove.ng-hide-remove-active,
 .svet-corporate.ng-leave
-  opacity 1 !important
+  opacity 1
+
+//*******************************
+
+.my-animation.ng-enter {
+   /* standard transition code */
+   transition: 1s linear all;
+   opacity:0;
+}
+
+.my-animation.ng-enter.ng-enter-active {
+   /* standard transition styles */
+   opacity:1;
+}

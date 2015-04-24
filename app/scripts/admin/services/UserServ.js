@@ -6,7 +6,7 @@
             var usersUrl = url + 'user-management/users/';
 
 
-            function addToUsersGroup(user) {
+            function addToReadersGroup(user) {
                 user.groups = ['reader'];
                 if (user.fname) {
                     user.name = user.fname;
@@ -16,7 +16,7 @@
 
             return {
                 saveNewUser: function (user) {
-                    user = addToUsersGroup(user);
+                    user = addToReadersGroup(user);
                     return $q(function (resolve, reject) {
                         var userId = user.id || user.uid;
                         user.id = userId;
