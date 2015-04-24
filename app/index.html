@@ -37,11 +37,11 @@
 </head>
 
 <body ng-app="app" layout="column" flow-prevent-drop ng-controller="MainCtrl as main" ng-cloak="">
-<div ng-hide='appLoaded' class="svet-corporate" flex layout="column" layout-align="center center"
-     style='overflow:hidden; '>
+<div ng-hide='appLoaded' class="svet-corporate" flex layout="row" layout-fill layout-align="center center"
+     style='overflow:hidden; position: absolute'>
     <sv-main-loader></sv-main-loader>
 </div>
-<div ng-hide='!appLoaded' class="svet-corporate" layout="column" style='position: absolute'>
+<div ng-hide='!appLoaded' class="svet-corporate" layout="column">
     <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
                 style="background-color:#474341">
         <div layout="row" layout-align="center center">
