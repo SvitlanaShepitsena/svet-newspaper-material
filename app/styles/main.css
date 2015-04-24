@@ -292,7 +292,7 @@ md-tabs-wrapper {
 .svet-corporate.ng-hide-add,
 .svet-corporate.ng-hide-remove,
 .svet-corporate.ng-leave {
-	transition: 5s;
+	transition: 2s;
 }
 
 .svet-corporate.ng-enter,

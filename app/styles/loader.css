@@ -10,6 +10,7 @@
 #floatingCirclesG{
     position:relative;
     width:128px;
+    margin: 0 auto;
     opacity: 1;
     height:128px;
     -moz-transform:scale(0.6);
