@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('home')
-        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, news, $rootScope, toastr, $timeout) {
+        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, news, $rootScope, toastr) {
 
             var app = this;
             $rootScope.user = user;
@@ -35,11 +35,8 @@
                 $rootScope.news = newsTrioGrid.trios;
                 $rootScope.newsGrid = newsTrioGrid.newsGrid;
 
-                $timeout(function () {
-                    $rootScope.appLoaded = true;
-                    console.log('loaded');
-                }, 3000);
 
+                $rootScope.appLoaded = true;
 
             });
 

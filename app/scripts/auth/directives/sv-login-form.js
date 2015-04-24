@@ -7,7 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-login-form.html',
                 scope: {
-                    title: '@',
+                    headerTitle: '@',
                     login: '@',
                     email: '@',
                     password: '@',

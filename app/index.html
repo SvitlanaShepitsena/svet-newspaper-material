@@ -34,14 +34,8 @@
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden '>
-<div ng-show='!appLoaded' class="svet-corporate" style="position:absolute;">
-    <img class="mdc-display-inline-block"
-         style='width:300px; position:relative; left:200px; top: 100px'
-         src="img/logo/logo.png">
-
-</div>
-<div ng-show='appLoaded' class="svet-corporate">
+<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
+<div>
 
 
     <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
@@ -117,8 +111,7 @@
                     <md-toolbar class="text-center toolbar-svet bgc-grey-200" layout-padding="" layout='row' hide-gt-lg
                                 layout-align='start center'
                                 ng-controller="RightCtrl">
-                        <button lx-ripple class='btn btn--m btn--icon btn--black mr' sv-right-click-handler=""
-                                hide-gt-lg=""
+                        <button lx-ripple class='btn btn--m btn--icon btn--black mr' sv-right-click-handler="" hide-gt-lg=""
                                 aria-label="close right" class="txt-white">
                             <i class="mdi mdi-close"></i>
                         </button>
@@ -399,6 +392,7 @@
     <script src="scripts/home/directives/sv-nav-link.js"></script>
     <script src="scripts/home/directives/sv-news-sections-nav.js"></script>
     <script src="scripts/home/controllers/HomeCtrl.js"></script>
+
 
 
 </div>
