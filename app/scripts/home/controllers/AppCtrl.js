@@ -31,7 +31,7 @@
 				$rootScope.news = newsTrioGrid.trios;
 				$rootScope.newsGrid = newsTrioGrid.newsGrid;
 
-				//$rootScope.appLoaded = true;
+				$rootScope.appLoaded = true;
 
 			});
 
