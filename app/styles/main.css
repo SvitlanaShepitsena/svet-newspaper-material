@@ -292,7 +292,7 @@ md-tabs-wrapper {
 .svet-corporate.ng-hide-add,
 .svet-corporate.ng-hide-remove,
 .svet-corporate.ng-leave {
-	transition: 2s;
+	transition: 5s;
 }
 
 .svet-corporate.ng-enter,
@@ -304,11 +304,6 @@ md-tabs-wrapper {
 	filter: alpha(opacity=0);
 }
 
-.svet-corporate.ng-enter-stagger {
-	transition-delay: 1s;
-	transition-duration: 0s;
-}
-
 .svet-corporate.ng-enter.ng-enter-active,
 .svet-corporate.ng-hide-add,
 .svet-corporate.ng-hide-remove.ng-hide-remove-active,
@@ -318,24 +313,9 @@ md-tabs-wrapper {
 	filter: none;
 }
 
-.my-animation.ng-enter { /* standard transition code */
-	transition: 1s linear all;
-	opacity: 0;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	filter: alpha(opacity=0);
-}
-
-.my-animation.ng-enter.ng-enter-active { /* standard transition styles */
-	opacity: 1;
-	-ms-filter: none;
-	filter: none;
-}
-
 .sv-md-button-nav-menu {
 	text-align: left !important;
-	line-height: 32px !important;
 	line-height: 2rem !important;
-	height: 32px !important;
 	height: 2rem !important;
 }
 
