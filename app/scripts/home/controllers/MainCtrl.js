@@ -3,7 +3,7 @@
 
     angular.module('app')
 
-        .controller('MainCtrl', function (AgentServ, $scope, $timeout, $mdSidenav, $mdMedia,$rootScope) {
+        .controller('MainCtrl', function (AgentServ, $scope, $timeout, $mdSidenav, $mdMedia) {
 
             var main = this;
             main.isIe = AgentServ.isIe();
@@ -14,11 +14,6 @@
             $scope.toggleRight = function () {
                 $mdSidenav('right').toggle();
             };
-
-
-            $rootScope.$watch('appLoaded', function (newValue) {
-                $scope.appLoaded = newValue;
-            });
 
             $scope.$watch(function () {
                 return $mdMedia('gt-lg');
