@@ -23,7 +23,7 @@
 
                 'manager-dashboard': 'Manager Dashboard',
                 'users': 'Users',
-                'clients': 'Клиенты',
+                'clients': 'Clients',
                 'reader-profile': 'Reader Profile',
                 'reader-profile-settings': 'Reader Profile Settings',
                 'activity-events': 'Activity and Events',

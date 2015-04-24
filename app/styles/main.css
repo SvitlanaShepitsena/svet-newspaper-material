@@ -125,13 +125,14 @@ md-tabs-wrapper {
 	padding: 8px 16px !important;
 }
 
-.data-table > tbody > tr > td,
-.data-table > thead > tr > th {
+.data-table > tbody > tr > td:second-child,
+.data-table > thead > tr > th:second-child {
 	padding: 8px 16px 8px 8px !important;
 }
 
-.data-table>tbody>tr>td,
-.data-table>thead>tr>th {
+.data-table > tbody > tr > td,
+.data-table > thead > tr > th {
+	padding: 8px 4px !important;
 	height: auto;
 }
 
@@ -315,9 +316,7 @@ md-tabs-wrapper {
 
 .sv-md-button-nav-menu {
 	text-align: left !important;
-	line-height: 32px !important;
 	line-height: 2rem !important;
-	height: 32px !important;
 	height: 2rem !important;
 }
 
