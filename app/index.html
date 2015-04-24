@@ -13,9 +13,15 @@
     <meta property="og:title" content="Angular"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+	<style>
+		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+			display: none !important;
+		}
+	</style>
     <!-- build:cssAssets -->
 
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="styles/loader.css"/>
 
 
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
@@ -24,9 +30,6 @@
     <link rel="stylesheet"
           href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css">
 
-    <!-- endbuild -->
-
-    <!--<link rel="stylesheet" href="assets/vendors.min.css"/>-->
 
 
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -34,10 +37,11 @@
     <link rel="stylesheet" href="styles/main.css"/>
 </head>
 
-<body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden'>
-<div>
-
-
+<body ng-app="app" layout="column" flow-prevent-drop ng-controller="MainCtrl as main" ng-cloak="" >
+<div ng-hide='appLoaded' class="svet-corporate" flex layout="column" layout-align="center center" style='overflow:hidden' >
+<sv-main-loader></sv-main-loader>
+</div>
+<div ng-hide='!appLoaded' class="svet-corporate" >
     <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
                 style="background-color:#474341">
         <div layout="row" layout-align="center center">
@@ -111,7 +115,8 @@
                     <md-toolbar class="text-center toolbar-svet bgc-grey-200" layout-padding="" layout='row' hide-gt-lg
                                 layout-align='start center'
                                 ng-controller="RightCtrl">
-                        <button lx-ripple class='btn btn--m btn--icon btn--black mr' sv-right-click-handler="" hide-gt-lg=""
+                        <button lx-ripple class='btn btn--m btn--icon btn--black mr' sv-right-click-handler=""
+                                hide-gt-lg=""
                                 aria-label="close right" class="txt-white">
                             <i class="mdi mdi-close"></i>
                         </button>
@@ -372,6 +377,7 @@
     <script src="scripts/home/homeIndex.js"></script>
     <script src="scripts/home/services/NewsServ.js"></script>
     <script src="scripts/home/directives/sv-nav-bar-media.js"></script>
+    <script src="scripts/home/directives/sv-main-loader.js"></script>
     <script src="scripts/home/directives/sv-loader.js"></script>
     <script src="scripts/home/directives/sv-nav-pdf-thumb.js"></script>
     <script src="scripts/home/directives/sv-read-more.js"></script>
@@ -400,7 +406,6 @@
     <script src="scripts/home/directives/sv-nav-link.js"></script>
     <script src="scripts/home/directives/sv-news-sections-nav.js"></script>
     <script src="scripts/home/controllers/HomeCtrl.js"></script>
-
 
 
 </div>

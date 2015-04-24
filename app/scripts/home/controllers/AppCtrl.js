@@ -1,50 +1,44 @@
 (function () {
-    'use strict';
+	'use strict';
 
-    angular.module('home')
-        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, news, $rootScope, toastr) {
+	angular.module('home')
+		.controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, news, $rootScope, toastr, $timeout) {
 
-            var app = this;
-            $rootScope.user = user;
+			$rootScope.user = user;
+			news.$bindTo($rootScope, "newsObj").then(function () {
 
+			});
+			$scope.$watch('newsObj', function (newsObj) {
+				if (!newsObj) {
+					return;
+				}
+				var idCounter = 1;
+				var fbKeys = _.slice(_.keys(newsObj), 2);
 
-            news.$bindTo($rootScope, "newsObj").then(function () {
+				newsObj = _.map(_.filter(newsObj, function (newsOne, index) {
+					if (_.isObject(newsOne)) {
+						return true;
+					}
+				}), function (news, count) {
+					return _.extend(news, {
+						id: idCounter++,
+						fbkey: fbKeys[count]
+					});
+				});
+				$rootScope.newsList = _.toArray(newsObj);
+				var newsTrioGrid = NewsProcessServ.get(newsObj);
 
-            });
+				$rootScope.news = newsTrioGrid.trios;
+				$rootScope.newsGrid = newsTrioGrid.newsGrid;
 
-            $scope.$watch('newsObj', function (newsObj) {
-                if (!newsObj) {
-                    return;
-                }
-                var idCounter = 1;
-                var fbKeys = _.slice(_.keys(newsObj), 2);
+				$rootScope.appLoaded = true;
 
-                newsObj = _.map(_.filter(newsObj, function (newsOne, index) {
-                    if (_.isObject(newsOne)) {
-                        return true;
-                    }
-                }), function (news, count) {
-                    return _.extend(news, {
-                        id: idCounter++,
-                        fbkey: fbKeys[count]
-                    });
-                });
-                $rootScope.newsList = _.toArray(newsObj);
-                var newsTrioGrid = NewsProcessServ.get(newsObj);
+			});
 
-                $rootScope.news = newsTrioGrid.trios;
-                $rootScope.newsGrid = newsTrioGrid.newsGrid;
+			$rootScope.$on('error', function () {
+				toastr.error('error');
+			})
 
-
-                $rootScope.appLoaded = true;
-
-            });
-
-
-            $rootScope.$on('error', function () {
-                toastr.error('error');
-            })
-
-        });
+		});
 })();
 
