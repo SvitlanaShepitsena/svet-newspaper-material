@@ -38,7 +38,7 @@
                 $timeout(function () {
                     $rootScope.appLoaded = true;
                     console.log('loaded');
-                }, 3000);
+                }, 1);
 
 
             });

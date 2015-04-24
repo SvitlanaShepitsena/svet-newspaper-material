@@ -35,7 +35,7 @@
 </head>
 
 <body ng-app="app" layout="column" ng-controller="MainCtrl as main" flow-prevent-drop style='overflow:hidden '>
-<div ng-show='!appLoaded' class="svet-corporate" style="position:absolute;">
+<div ng-show='!appLoaded' class="svet-corporate" style="position:absolute;width:;">
     <img class="mdc-display-inline-block"
          style='width:300px; position:relative; left:200px; top: 100px'
          src="img/logo/logo.png">
@@ -369,6 +369,7 @@
 
     <!-- home -->
     <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-home-loader.js"></script>
     <script src="scripts/home/services/NewsServ.js"></script>
     <script src="scripts/home/directives/sv-nav-bar-media.js"></script>
     <script src="scripts/home/directives/sv-loader.js"></script>
