@@ -146,10 +146,10 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
-				.state("app.manager-social", {
-					url: "/manager-social", 
-					controller:"ManagerSocialCtrl as managerSocial",
-					templateUrl: "scripts/auth/views/manager-socialCtrl.html"
+				.state("app.manager-events", {
+					url: "/manager-events", 
+					controller:"ManagerEventsCtrl as managerEvents",
+					templateUrl: "scripts/auth/views/manager-eventsCtrl.html"
 				})
 //#state'
         });

@@ -20,7 +20,7 @@
                 'comments': 'Comments',
                 'bookmarks': 'Bookmarks',
 
-                'manager-account': 'Manager Account',
+                'manager-dashboard': 'Manager Dashboard',
                 'reader-profile': 'Reader Profile',
                 'reader-profile-settings': 'Reader Profile Settings',
                 'activity-events': 'Activity and Events',
@@ -67,7 +67,7 @@
                 'comments': 'Комментарии',
                 'bookmarks': 'Закладки',
 
-                'manager-account': 'Профайл Менеджера',
+                'manager-dashboard': 'Панель Управления Менеджера',
                 'reader-profile': 'Профайл Читателя',
                 'reader-profile-settings': 'Настройки Профайла Читателя',
                 'activity-events': 'События и Мероприятия',

@@ -48,7 +48,7 @@
                 })
                 .state("app.user.business-ad", {
                     url: "/business-ad",
-                    controller:"BusinessAdCtrl as businessAd",
+                    controller: "BusinessAdCtrl as businessAd",
                     templateUrl: "scripts/auth/views/business-adCtrl.html"
                 })
                 // =Manager Profile
@@ -63,6 +63,11 @@
                     url: "/dashboard",
                     controller: "ManagerDashboardCtrl as managerDashboard",
                     templateUrl: "scripts/auth/views/manager-dashboardCtrl.html"
+                })
+                .state("app.manager.social", {
+                    url: "/manager-social",
+                    controller: "ManagerSocialCtrl as managerSocial",
+                    templateUrl: "scripts/auth/views/manager-socialCtrl.html"
                 })
 
 
