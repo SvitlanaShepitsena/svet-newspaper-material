@@ -7,6 +7,9 @@
 			$scope.event = {
 				type: 'public'
 			};
+            $scope.createEvent = function (event) {
+                console.log(event);
+            };
 
 
 
