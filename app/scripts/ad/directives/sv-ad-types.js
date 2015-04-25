@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('ad')
-        .directive('svAdTypes', function () {
+        .directive('svAdTypes', function (AdServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/directives/sv-ad-types.html',
