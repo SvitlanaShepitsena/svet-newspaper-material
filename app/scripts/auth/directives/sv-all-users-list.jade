@@ -1,4 +1,4 @@
-div(layout='column' ng-repeat='user in users')
+div(layout='column' ng-repeat='user in users|Groups:groupFilter')
     .card.p.mt.mb(layout='row' layout-align="space-between center")
         div
             a.fs-body-1(href='#' style='color:#616161') {{user.fname}} &nbsp {{user.lname}}

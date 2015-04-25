@@ -6,7 +6,9 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-all-users-list.html',
-                scope: {},
+                scope: {
+                    groupFilter: '@'
+                },
                 controller: function ($scope, UserServ, UserGroupsServ, toastr) {
                     var users = UserServ.all();
                     $scope.users = users;
