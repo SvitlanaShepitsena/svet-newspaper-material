@@ -2,24 +2,28 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svManagerDashboardTabs', function () {
+        .directive('svManagerUsersTabs', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-manager-dashboard-tabs.html',
+                templateUrl: 'scripts/auth/directives/sv-manager-users-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
                     var tabs = [
                             {
-                                title: 'my-profile',
-                                content: "scripts/auth/templates/manager-dashboard/manager-profile-temp.html"
+                                title: 'all users',
+                                content: "scripts/auth/templates/manager-users/manager-all-users-temp.html"
                             },
                             {
-                                title: 'bookmarks',
-                                content: "scripts/auth/templates/manager-dashboard/manager-bookmarks-temp.html"
+                                title: 'customers',
+                                content: "scripts/auth/templates/manager-users/manager-customers-temp.html"
                             },
                             {
-                                title: 'profile-settings',
-                                content: "scripts/auth/templates/manager-dashboard/manager-profile-settings-temp.html"
+                                title: 'authors',
+                                content: "scripts/auth/templates/manager-users/manager-authors-temp.html"
+                            },
+                            {
+                                title: 'readers',
+                                content: "scripts/auth/templates/manager-users/manager-readers-temp.html"
                             },
                         ],
                         selected = null,
