@@ -18,7 +18,7 @@
                     $scope.changeGroup = function (user, group) {
                         UserGroupsServ.toggleUserInGroup(user, group).then(function () {
                             toastr.success('Group Membership has been successfully changed!')
-                        })
+                        });
                     };
                 },
                 link: function ($scope, el, attrs) {
