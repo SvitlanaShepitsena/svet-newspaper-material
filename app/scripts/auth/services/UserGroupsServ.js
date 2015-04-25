@@ -59,20 +59,14 @@
                             for (var i = 0; i < usersArray.length; i++) {
                                 var user = usersArray[i];
                                 var groups = user.groups;
-
                                 if (groups.indexOf(group) > -1) {
                                     usersInGroups.push(user);
-
                                 }
-
                             }
                             resolve(usersInGroups);
-
                         }).catch(function (error) {
                             reject(error);
                         });
-
-
                     });
                 },
                 isInGroup: function (group) {
@@ -80,8 +74,6 @@
                         return false;
                     }
                     return $rootScope.user.groups.indexOf(group) !== -1;
-
-
                 }
                 //setToReaderGroup: function (user) {
                 //    if (user.uid) {

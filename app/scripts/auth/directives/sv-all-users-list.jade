@@ -1,16 +1,15 @@
-div(layout='column' layout-fill)
-    div(layout='column' ng-repeat='user in users')
-        .card.p.mt.mb(layout='row' layout-align="space-between center")
-            div
-                a.fs-body-1(href='#' style='color:#616161') {{user.fname}} &nbsp {{user.lname}}
-            div.pr
-                form(name="rform" layout="row" layout-align="center center")
-                    .checkbox(style='margin:0px 4px !important')
-                        input.checkbox__input(type='checkbox' id="checkbox1")
-                        label.checkbox__label.fs-caption(for='checkbox1' style="padding-left:24px") Customer
-                    .checkbox(style='margin:0px !important')
-                        input.checkbox__input(type='checkbox' id="checkbox2")
-                        label.checkbox__label.fs-caption(for='checkbox2' style="padding-left:24px") Author
-                    //button(ng-click='changeGroup(user,"customer")') {{user.groups.indexOf('customer')>-1? 'Customer':'Reader'}}
-                //button(ng-click='changeGroup(user,"author")') {{user.groups.indexOf('author')>-1? 'Author':'Reader'}}
+div(layout='column' ng-repeat='user in users')
+    .card.p.mt.mb(layout='row' layout-align="space-between center")
+        div
+            a.fs-body-1(href='#' style='color:#616161') {{user.fname}} &nbsp {{user.lname}}
+        div.pr
+            form(name="rform" layout="row" layout-align="center center")
+                .checkbox(style='margin:0px 4px !important')
+                    input.checkbox__input(type='checkbox' id="checkbox1")
+                    label.checkbox__label.fs-caption(for='checkbox1' style="padding-left:24px") Customer
+                .checkbox(style='margin:0px !important')
+                    input.checkbox__input(type='checkbox' id="checkbox2")
+                    label.checkbox__label.fs-caption(for='checkbox2' style="padding-left:24px") Author
+            //button(ng-click='changeGroup(user,"customer")') {{user.groups.indexOf('customer')>-1? 'Customer':'Reader'}}
+            //button(ng-click='changeGroup(user,"author")') {{user.groups.indexOf('author')>-1? 'Author':'Reader'}}
 
