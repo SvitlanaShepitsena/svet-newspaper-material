@@ -1,3 +1,38 @@
 div
-    form(name='event')
+	h2 Svet Media Group Event
+	form(name='eventForm')
+		md-radio-group( ng-model='event.type') Event Type
+			md-radio-button(value='public') Public Event
+			md-radio-button(value='corporate') Svet Media Group Connection Event
+		md-input-container
+			label Title
+			input(required='', name='title', ng-model='event.title')
+			div(ng-messages='eventForm.title.$error && eventForm.title.$touched')
+				div(ng-message='required') This is required.
+		md-input-container
+			label Description
+			textarea(required='', name='description', ng-model='event.description') {{event.description}}
+			div(ng-messages='eventForm.description.$error && eventForm.description.$touched')
+				div(ng-message='required') This is required.
+		md-input-container
+			label Date
+			input(type='date' name='admission' ng-model='event.admission')
+		md-input-container
+			label Start Time
+			input(type='time' name='admission' ng-model='event.admission')
+		md-input-container
+			label End Time (Optional)
+			input(type='time' name='admission' ng-model='event.admission')
+		md-input-container
+			label Address
+			input(type='text' name='admission' ng-model='event.admission')
+		md-input-container
+			label Admission
+			input(type='text' name='admission' ng-model='event.admission')
+		md-input-container
+			label Age Range:
+			input(type='text' name='age' ng-model='event.age')
+
+
+
 
