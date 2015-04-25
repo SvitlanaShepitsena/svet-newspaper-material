@@ -10,7 +10,9 @@
 
                 },
                 link: function ($scope, el, attrs) {
-
+	                AdServ.get().then(function (data) {
+		                $scope.adTypes = data;
+	                });
                 }
             };
         });

@@ -1,17 +1,16 @@
 (function () {
-    'use strict';
+	'use strict';
 
-    angular.module('#module#')
-        .factory('#name#Serv', function ($q, url) {
-            return {
-                getSync: function () {
+	angular.module('#module#')
+		.factory('#name#Serv', function ($q, url, urlUsers, $firebaseObject, $firebaseArray) {
 
-                },
-                get: function () {
-                    return $q(function (resolve, reject) {
+			return {
 
-                    });
-                }
-            };
-        });
+				get: function () {
+					return $q(function (resolve, reject) {
+
+					});
+				}
+			};
+		});
 })();

@@ -1,1 +1,4 @@
-.well sv-ad-types Template
+.well
+	ul.list-unstyled
+		li(ng-repeat='t in adTypes')
+			div {{t.$id}}
