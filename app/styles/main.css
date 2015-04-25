@@ -136,6 +136,10 @@ md-tabs-wrapper {
 	height: auto;
 }
 
+.checkbox {
+	martin-top: 10px !important;
+}
+
 .author-article-nav {
 	backround-color: none !important;
 	background: transparent !important;
@@ -316,9 +320,7 @@ md-tabs-wrapper {
 
 .sv-md-button-nav-menu {
 	text-align: left !important;
-	line-height: 32px !important;
 	line-height: 2rem !important;
-	height: 32px !important;
 	height: 2rem !important;
 }
 

@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('classified')
-        .directive('svUserClassified', function () {
+    angular.module('events')
+        .directive('svCreateEventBtn', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/classified/directives/sv-user-classified.html',
+                templateUrl: 'scripts/events/directives/sv-create-event-btn.html',
                 scope: {
 
                 },
