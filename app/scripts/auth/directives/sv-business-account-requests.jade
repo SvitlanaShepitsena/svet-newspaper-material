@@ -1,23 +1,20 @@
 .data-table-container
     table.data-table.data-table--has-primary.data-table--has-secondary
         tbody
-            tr.data-table__clickable-row.bgc-grey-100.pt(layout='row' style="border-bottom: 1px #E0E0E0 solid" ng-repeat='u in users')
-                td(flex='20')
-                    span.fs-caption
+            tr.data-table__clickable-row.bgc-grey-100.pt(layout='row' style="border-bottom: 1px #E0E0E0 solid" ng-repeat='u in users' layout-align="space-between center")
+                td(flex='10')
+                    span.fs-caption Date
+                td(flex='')
+                    span.fs-caption.mr
                         strong {{u.fname}}
-                td(flex='20')
                     span.fs-caption
                         strong {{u.lname}}
-                td(flex='20')
-                    span.fs-caption
-                        strong {{u.password.email}}
-                td(flex)
-                    md-button(ng-click='accept(u)')
-                        i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-check
-                        span Accept
-                td(flex)
-                    md-button(ng-click='reject(u)')
-                        i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-minus-circle
-                        span Reject
+                td(flex='40')
+                    button.btn.btn--l.btn--green.tc-green-800.btn--flat.mr(lx-ripple='' ng-click='accept(u)')
+                        i.mdi.mdi-check.mr
+                        span.fs-caption Accept
+                    button.btn.btn--l.btn--red.tc-red-400.btn--flat(lx-ripple='' ng-click='reject(u)')
+                        i.mdi.mdi-minus-circle.mr
+                        span.fs-caption Reject
 
 
