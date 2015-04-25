@@ -146,11 +146,6 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
-				.state("app.create-svet-event", {
-					url: "/create-svet-event", 
-					controller:"CreateSvetEventCtrl as createSvetEvent",
-					templateUrl: "scripts/auth/views/create-svet-eventCtrl.html"
-				})
 //#state'
         });
 

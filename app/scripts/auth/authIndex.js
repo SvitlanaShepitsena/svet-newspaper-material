@@ -85,6 +85,12 @@
                     templateUrl: "scripts/auth/views/manager-adCtrl.html"
                 })
 
+                .state("app.manager.create-event", {
+                    url: "/create-event",
+                    controller:"CreateSvetEventCtrl as createSvetEvent",
+                    templateUrl: "scripts/auth/views/create-svet-eventCtrl.html"
+                })
+
 
 //#state'
         });
