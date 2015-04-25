@@ -9,6 +9,9 @@
 			};
             $scope.createEvent = function (event) {
                 console.log(event);
+
+
+
             };
 
 
