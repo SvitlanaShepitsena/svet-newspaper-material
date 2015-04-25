@@ -43,3 +43,9 @@ md-tabs-wrapper {
   padding: 8px 4px !important;
   height: auto;
 }
+/**********************
+ = bootstrap checkbox
+***********************/
+.checkbox {
+  martin-top: 10px !important;
+}

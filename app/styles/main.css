@@ -136,6 +136,10 @@ md-tabs-wrapper {
 	height: auto;
 }
 
+.checkbox {
+	martin-top: 10px !important;
+}
+
 .author-article-nav {
 	backround-color: none !important;
 	background: transparent !important;
