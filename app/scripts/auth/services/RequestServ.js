@@ -68,7 +68,7 @@
 
                         userObj.$loaded().then(function () {
                             userObj.requestCorporateSubmited = false;
-                            userObj.groups=[''];
+                            userObj.groups=['customer'];
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })
