@@ -15,6 +15,13 @@
             }
 
             return {
+                all: function () {
+                    var usersArrayRef = $firebaseArray(new Firebase(usersUrl));
+                    return usersArrayRef;
+
+                },
+
+
                 saveNewUser: function (user) {
                     user = addToReadersGroup(user);
                     return $q(function (resolve, reject) {
