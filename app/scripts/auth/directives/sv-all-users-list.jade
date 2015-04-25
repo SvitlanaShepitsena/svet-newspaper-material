@@ -1,1 +1,13 @@
-.well sv-all-users-list Template
+div(layout='column' layout-fill)
+    div(layout='column')
+        div(ng-repeat='user in users')
+            div.pt.pb(layout='row')
+                div(flex='20') {{user.fname}}
+                div(flex='20') {{user.lname}}
+                div(flex='20' layout='column')
+                    ul.list-unstyled
+                        li(layout='row')
+                            button(ng-click='changeGroup(user,"customer")') {{user.groups.indexOf('customer')>-1? 'Remove from customer group':'Add to customer group'}}
+                            button(ng-click='changeGroup(user,"author")') {{user.groups.indexOf('author')>-1? 'Remove from author group':'Add to author group'}}
+            md-divider
+
