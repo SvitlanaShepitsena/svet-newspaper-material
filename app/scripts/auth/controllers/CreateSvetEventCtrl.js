@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('auth')
-		.controller('CreateSvetEventCtrl', function ($scope) {
+		.controller('CreateSvetEventCtrl', function (ConnectionEventServ, $scope) {
 
 			$scope.event = {
 				type: 'public'
