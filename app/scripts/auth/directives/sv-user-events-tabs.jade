@@ -8,10 +8,8 @@ div
                 div Planned
         md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"invitations"|translate}}' )
             md-content
-                h2 Invitation
-                p
-                    ul.list-unstyled
-                        li(ng-repeat='e in events')
-                            div {{e.title}}
-                            div
-                                md-button(ng-click='acceptInvitation(e)') Accept
+                h4 Invitation
+                ul.list-unstyled
+                    li(ng-repeat='e in events')
+                        div {{e.title}}
+                            button(ng-click='acceptInvitation(e)') Accept

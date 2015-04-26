@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .factory('ConnectionEventServ', function ($q, url, $firebaseArray) {
+        .factory('ConnectionEventServ', function ($q, url, $firebaseArray,$firebaseObject, $rootScope) {
             var eventsCorporateUrl = url + '/events/corporate/';
             var eventsPublicUrl = url + '/events/public/';
 
@@ -23,7 +23,23 @@
                             resolve(uid);
                         });
                     });
+                },
+                addCustomerToEvent: function (event) {
+                    return $q(function (resolve, reject) {
+                        var eventObject = $firebaseObject(new Firebase(eventsCorporateUrl + event.$id));
+                        eventObject.$loaded().then(function () {
+                            if (!eventObject.customers) {
+                                eventObject.customers = [];
+                            }
+                            eventObject.customers.push($rootScope.user);
+                            eventObject.$save().then(function (uid) {
+                                resolve(uid);
+
+                            })
+                        })
+                    });
                 }
+
             };
         });
 })();
