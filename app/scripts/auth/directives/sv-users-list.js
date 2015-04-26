@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svAllUsersList', function (UserServ, UserGroupsServ, toastr) {
+        .directive('svUsersList', function (UserServ, UserGroupsServ, toastr) {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-all-users-list.html',
+                templateUrl: 'scripts/auth/directives/sv-users-list.html',
                 scope: {
                     groupFilter: '@'
                 },
