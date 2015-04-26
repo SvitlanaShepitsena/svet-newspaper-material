@@ -12,7 +12,7 @@
                         var eventsArray = $firebaseArray(new Firebase(eventsUrl));
                         eventsArray.$add(eventsArray);
                         eventsArray.$save().then(function () {
-                            
+
                         })
                     });
                 }
