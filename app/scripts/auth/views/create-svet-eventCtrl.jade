@@ -1,61 +1,45 @@
 div
-    .card.p
-        span.display-block.fs-title.mb.mt Svet Media Group Event
-        .divider.divider--dark.mt.mb
-        form(name='eventForm' ng-submit='createEvent(event)')
-            div(flex-container='row')
-                .radio-group(ng-model='event.type')
-                    .radio-button
-                        input.radio-button__input(type='radio', name='radio1', value='public' id='radio1')
-                        label.radio-button__label(for='radio1') Public Event
-                    .radio-button
-                        input.radio-button__input(type='radio', name='radio1', value='corporate' id="radio2")
-                        label.radio-button__label(for='radio2') Network Event
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field(label='Event Title')
-                        input.fs-subhead.tc-black-2(required='', name='title', ng-model='event.title')
-                        div(ng-messages='eventForm.title.$error && eventForm.title.$touched')
-                            div(ng-message='required') This is required.
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field(label='Event Description')
-                        textarea(required='', name='description', ng-model='event.description') {{event.description}}
-                        div(ng-messages='eventForm.description.$error && eventForm.description.$touched')
-                            div(ng-message='required') This is required.
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field
-                        label Date
-                        input(type='date' required='' name='eventDate' ng-model='event.date')
-                        div(ng-messages='eventForm.eventDate.$error && eventForm.eventDate.$touched')
-                            div(ng-message='required') This is required.
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field(label='Start Time')
-                        input(type='time' required='' name='startTime' ng-model='event.startTime')
-                        div(ng-messages='eventForm.startTime.$error && eventForm.startTime.$touched')
-                            div(ng-message='required') This is required.
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field(label='End Time (Optional)')
-                        input(type='time' name='endTime' ng-model='event.endTime')
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field(label='Address')
-                        input(type='text' required='' name='address' ng-model='event.address')
-                        div(ng-messages='eventForm.address.$error && eventForm.address.$touched')
-                            div(ng-message='required') This is required.
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field(label='Admission (Optional)')
-                        input(type='text'  name='admission' ng-model='event.admission')
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field(label='Age Range (Optional)')
-                        input(type='text' name='age' ng-model='event.age')
-            div(flex-container='row' class='mt+')
-                div(flex-item='')
-                    button.btn.btn--m.btn--white.btn--raised(lx-ripple='') Save Event
+	h2 Svet Media Group Event
+	form(name='eventForm' ng-submit='createEvent(event)' novalidate)
+		md-radio-group( ng-model='event.type') Event Type
+			md-radio-button(value='public') Public Event
+			md-radio-button(value='corporate') Svet Media Group Connection Event
+		md-input-container
+			label Title
+			input(required='', name='title', ng-model='event.title')
+			div(ng-messages='eventForm.title.$error && eventForm.title.$touched')
+				div(ng-message='required') This is required.
+		md-input-container
+			label Description
+			textarea(required='', name='description', ng-model='event.description') {{event.description}}
+			div(ng-messages='eventForm.description.$error && eventForm.description.$touched')
+				div(ng-message='required') This is required.
+		md-input-container
+			label Date
+			input(type='date' required='' name='eventDate' ng-model='event.date')
+			div(ng-messages='eventForm.eventDate.$error && eventForm.eventDate.$touched')
+				div(ng-message='required') This is required.
+		md-input-container
+			label Start Time
+			input(type='time' required='' name='startTime' ng-model='event.startTime')
+			div(ng-messages='eventForm.startTime.$error && eventForm.startTime.$touched')
+				div(ng-message='required') This is required.
+		md-input-container
+			label End Time (Optional)
+			input(type='time' name='endTime' ng-model='event.endTime')
+		md-input-container
+			label Address
+			input(type='text' required='' name='address' ng-model='event.address')
+			div(ng-messages='eventForm.address.$error && eventForm.address.$touched')
+				div(ng-message='required') This is required.
+		md-input-container
+			label Admission (Optional)
+			input(type='text'  name='admission' ng-model='event.admission')
+		md-input-container
+			label Age Range (Optional)
+			input(type='text' name='age' ng-model='event.age')
+		input.btn--xs.btn--blue.btn--raised(type='submit' value='Save Event')
+
+
 
 
