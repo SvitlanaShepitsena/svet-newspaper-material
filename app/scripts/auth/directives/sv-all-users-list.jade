@@ -5,7 +5,7 @@ div(layout='column' ng-repeat='user in users|Groups:groupFilter')
         div.pr
             form(name="rform" layout="row" layout-align="center center")
                 .checkbox(style='margin:0px 4px !important')
-                    input.checkbox__input(type='checkbox' ng-model='user.groups' id="{{$index}}" ng-true-value= 'user.groups.indexOf("customer")>-1' ng-change='changeGroup(user,"customer")' )
+                    input.checkbox__input(type='checkbox' ng-model='user.groups' id="{{$index}}" ng-true-valuechecked = 'user.groups.indexOf("customer")>-1' ng-change='changeGroup(user,"customer")' )
                     label.checkbox__label.fs-caption(for='checkbox1' style="padding-left:24px") Customer
                 .checkbox(style='margin:0px !important')
                     input.checkbox__input(type='checkbox' id="checkbox2" ng-checked = 'user.groups.indexOf("author")>-1' )
