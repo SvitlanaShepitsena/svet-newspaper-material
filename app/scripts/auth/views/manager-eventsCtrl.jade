@@ -1,12 +1,14 @@
 sv-profile-header(header-title='activity-events')
 
-h2 Svet Connection Events
-ul.list-unstyled
+h4 Svet Connection Events
+div(ng-if='!corporates.length') No events registered
+ul.list-unstyled(ng-if='corporates.length')
     li(ng-repeat='e in corporates')
         div {{e.title}}
 
-h2 Svet Public Events
-ul.list-unstyled
+h4 Svet Public Events
+div(ng-if='!publicEvts.length') No events registered
+ul.list-unstyled(ng-if='publicEvts.length')
     li(ng-repeat='p in publicEvts')
         div {{p.event}}
 
