@@ -2,14 +2,20 @@ div
     md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='')
         md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"planned-events"|translate}}' )
             md-content
-                div Planned
+                h2 Planned
+                br
+                ul.list-unstyled
+                    li(ng-repeat='e in events|eventsInvitation:data.selectedIndex')
+                        div {{e.title}}
+                            button(ng-click='cancelAcceptedInvitation(e)') Unlink from Event
         md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"visited-events"|translate}}' )
             md-content
                 div Planned
         md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"invitations"|translate}}' )
             md-content
                 h4 Invitation
+                br
                 ul.list-unstyled
-                    li(ng-repeat='e in events')
+                    li(ng-repeat='e in events|eventsInvitation:data.selectedIndex')
                         div {{e.title}}
                             button(ng-click='acceptInvitation(e)') Accept

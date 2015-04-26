@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .factory('ConnectionEventServ', function ($q, url, $firebaseArray,$firebaseObject, $rootScope) {
+        .factory('ConnectionEventServ', function ($q, url, $firebaseArray, $firebaseObject) {
             var eventsCorporateUrl = url + '/events/corporate/';
             var eventsPublicUrl = url + '/events/public/';
 
@@ -24,14 +24,34 @@
                         });
                     });
                 },
-                addCustomerToEvent: function (event) {
+                addCustomerToEvent: function (event, user) {
                     return $q(function (resolve, reject) {
                         var eventObject = $firebaseObject(new Firebase(eventsCorporateUrl + event.$id));
                         eventObject.$loaded().then(function () {
                             if (!eventObject.customers) {
                                 eventObject.customers = [];
                             }
-                            eventObject.customers.push($rootScope.user);
+                            eventObject.customers.push(user);
+                            eventObject.$save().then(function (uid) {
+                                resolve(uid);
+
+                            })
+                        })
+                    });
+                },
+                removeCustomerFromEvent: function (event,user) {
+                    return $q(function (resolve, reject) {
+                        var eventObject = $firebaseObject(new Firebase(eventsCorporateUrl + event.$id));
+                        eventObject.$loaded().then(function () {
+                            for (var i = 0; i < eventObject.customers.length; i++) {
+                                var customer = eventObject.customers[i];
+                                if (customer.id === user.id) {
+                                    eventObject.customers.splice(i,1);
+                                    break;
+                                }
+
+                            }
+
                             eventObject.$save().then(function (uid) {
                                 resolve(uid);
 
