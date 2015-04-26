@@ -17,7 +17,7 @@
             $scope.createEvent = function (event) {
                 if ($scope.eventForm.$valid) {
                     event = formatEvent(event);
-                    ConnectionEventServ.saveEvent(event).then(function (data) {
+                    ConnectionEventServ.saveCorporateEvent(event).then(function (data) {
                         toastr.info('Event has been created.');
                         $state.go('app.manager.events');
 

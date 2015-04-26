@@ -11,8 +11,12 @@
                     var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
                     return eventsArray;
                 },
+                allPublic: function () {
+                    var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
+                    return eventsArray;
+                },
 
-                saveEvent: function (event) {
+                saveCorporateEvent: function (event) {
                     return $q(function (resolve, reject) {
                         var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
                         eventsArray.$add(event).then(function (uid) {

@@ -1,7 +1,14 @@
 sv-profile-header(header-title='activity-events')
 
+h2 Svet Connection Events
 ul.list-unstyled
     li(ng-repeat='e in corporates')
         div {{e.title}}
+
+h2 Svet Public Events
+ul.list-unstyled
+    li(ng-repeat='p in publicEvts')
+        div {{p.event}}
+
 div(layout='row')
     sv-create-event-btn
