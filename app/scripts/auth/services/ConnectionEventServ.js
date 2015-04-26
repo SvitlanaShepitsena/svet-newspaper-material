@@ -6,6 +6,10 @@
             var eventsUrl = url + '/events/corporate/';
 
             return {
+                all: function () {
+                    var eventsArray = $firebaseArray(new Firebase(eventsUrl));
+                    return eventsArray;
+                },
 
                 saveEvent: function (event) {
                     return $q(function (resolve, reject) {

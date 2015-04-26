@@ -1,3 +1,6 @@
 sv-profile-header(header-title='activity-events')
+    ul.list-unstyled
+        li(ng-repeat='e in corporateEvents')
+            div {{e.title}}
 div(layout='row')
     sv-create-event-btn
