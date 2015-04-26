@@ -444,7 +444,7 @@ module.exports = function (grunt) {
         var name = fname.charAt(0).toUpperCase() + fname.substring(1);
         var lname = name.charAt(0).toLowerCase() + name.substring(1);
 
-        var filtr = filt.replace(/#lame#/g, lname).replace(/#module#/g, module);
+        var filtr = filt.replace(/#lname#/g, lname).replace(/#module#/g, module);
 
         var apath = 'app/scripts/app.js';
         var app = grunt.file.read(apath);
@@ -474,12 +474,12 @@ module.exports = function (grunt) {
         }
 
         if (rm) {
-            var file = d + name + t;
+            var file = d + lname + t;
 
             delFileDep(file);
 
         } else {
-            grunt.file.write(d + name + t, filtr);
+            grunt.file.write(d + lname + t, filtr);
         }
         grunt.file.write(ipath, indf);
         grunt.task.run('addcommit');
