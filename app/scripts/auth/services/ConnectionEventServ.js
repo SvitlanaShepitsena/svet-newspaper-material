@@ -3,17 +3,22 @@
 
     angular.module('auth')
         .factory('ConnectionEventServ', function ($q, url, $firebaseArray) {
-            var eventsUrl = url + '/events/corporate/';
+            var eventsCorporateUrl = url + '/events/corporate/';
+            var eventsPublicUrl = url + '/events/public/';
 
             return {
-                all: function () {
-                    var eventsArray = $firebaseArray(new Firebase(eventsUrl));
+                allCorporate: function () {
+                    var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
+                    return eventsArray;
+                },
+                allPublic: function () {
+                    var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
                     return eventsArray;
                 },
 
-                saveEvent: function (event) {
+                saveCorporateEvent: function (event) {
                     return $q(function (resolve, reject) {
-                        var eventsArray = $firebaseArray(new Firebase(eventsUrl));
+                        var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
                         eventsArray.$add(event).then(function (uid) {
                             resolve(uid);
                         });

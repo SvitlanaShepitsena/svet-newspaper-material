@@ -1,8 +1,37 @@
 sv-profile-header(header-title='activity-events')
-    ul.list-unstyled
-        li(ng-repeat='e in corporateEvents')
-            div {{e.title}}
-div(layout='column')
-    div(layout='row' class="mb+")
-        sv-create-event-btn
-    sv-manager-events-tabs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h4 Svet Connection Events
+div(ng-if='!corporates.length') No events registered
+ul.list-unstyled(ng-if='corporates.length')
+    li(ng-repeat='e in corporates')
+        div {{e.title}}
+
+h4 Svet Public Events
+div(ng-if='!publicEvts.length') No events registered
+ul.list-unstyled(ng-if='publicEvts.length')
+    li(ng-repeat='p in publicEvts')
+        div {{p.event}}
+
+div(layout='row')
+    sv-create-event-btn
