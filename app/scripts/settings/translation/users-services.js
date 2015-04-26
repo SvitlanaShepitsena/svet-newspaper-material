@@ -23,6 +23,7 @@
 
                 'manager-dashboard': 'Manager Dashboard',
                 'users': 'Users',
+                'all-users': 'All Users',
                 'clients': 'Clients',
                 'reader-profile': 'Reader Profile',
                 'reader-profile-settings': 'Reader Profile Settings',
@@ -73,6 +74,7 @@
 
                 'manager-dashboard': 'Панель Управления Менеджера',
                 'users': 'Юзеры',
+                'all-users': 'Все Юзеры',
                 'clients': 'Клиенты',
                 'reader-profile': 'Профайл Читателя',
                 'reader-profile-settings': 'Настройки Профайла Читателя',
