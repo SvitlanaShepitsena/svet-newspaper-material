@@ -2,11 +2,14 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svManagerProfileSummary', function () {
+        .directive('svProfileSubheader', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-manager-profile-summary.html',
-                scope: {},
+                templateUrl: 'scripts/auth/directives/sv-profile-subheader.html',
+                scope: {
+                    subheaderTitle: '@'
+
+                },
                 link: function ($scope, el, attrs) {
 
                 }

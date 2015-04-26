@@ -23,7 +23,11 @@
 
                 'manager-dashboard': 'Manager Dashboard',
                 'users': 'Users',
+                'all-users': 'All Users',
                 'clients': 'Clients',
+                'readers': 'Readers',
+                'customers': 'Customers',
+                'authors': 'Authors',
                 'reader-profile': 'Reader Profile',
                 'reader-profile-settings': 'Reader Profile Settings',
                 'activity-events': 'Activity and Events',
@@ -73,7 +77,11 @@
 
                 'manager-dashboard': 'Панель Управления Менеджера',
                 'users': 'Юзеры',
+                'all-users': 'Все Юзеры',
                 'clients': 'Клиенты',
+                'readers': 'Читатели',
+                'customers': 'Клиенты',
+                'authors': 'Авторы',
                 'reader-profile': 'Профайл Читателя',
                 'reader-profile-settings': 'Настройки Профайла Читателя',
                 'activity-events': 'События и Мероприятия',
