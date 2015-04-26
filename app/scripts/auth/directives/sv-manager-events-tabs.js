@@ -10,11 +10,11 @@
                 link: function ($scope, el, attrs) {
                     var tabs = [
                             {
-                                title: 'public-events',
-                                content: "scripts/auth/templates/manager-events/manager-public-events-temp.html"
+                                title: 'network-events',
+                                content: "scripts/auth/templates/manager-events/manager-network-events-temp.html"
                             },
                             {
-                                title: 'network-events',
+                                title: 'public-events',
                                 content: "scripts/auth/templates/manager-events/manager-public-events-temp.html"
                             }
                         ],

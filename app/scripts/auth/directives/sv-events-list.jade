@@ -1,1 +1,6 @@
-.well sv-events-list Template
+div
+    ul.list-unstyled()
+        li(ng-repeat='e in svetEvents')
+            div {{e.title}}
+            div {{e.startDate}}
+
