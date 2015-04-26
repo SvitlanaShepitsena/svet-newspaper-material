@@ -2,7 +2,7 @@ sv-profile-header(header-title='activity-events')
     ul.list-unstyled
         li(ng-repeat='e in corporateEvents')
             div {{e.title}}
-div(layout='row')
-    sv-create-event-btn
 div(layout='column')
+    div(layout='row' class="mb+")
+        sv-create-event-btn
     sv-manager-events-tabs

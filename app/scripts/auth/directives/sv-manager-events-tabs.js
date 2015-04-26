@@ -11,11 +11,11 @@
                     var tabs = [
                             {
                                 title: 'public-events',
-                                content: "scripts/auth/templates/manager-dashboard/manager-profile-temp.html"
+                                content: "scripts/auth/templates/manager-events/manager-public-events-temp.html"
                             },
                             {
                                 title: 'network-events',
-                                content: "scripts/auth/templates/manager-dashboard/manager-profile-temp.html"
+                                content: "scripts/auth/templates/manager-events/manager-public-events-temp.html"
                             }
                         ],
                         selected = null,
