@@ -442,9 +442,9 @@ module.exports = function (grunt) {
         var filt = grunt.file.read('templates/filt.js');
 
         var name = fname.charAt(0).toUpperCase() + fname.substring(1);
-        var jname = name.charAt(0).toLowerCase() + name.substring(1);
+        var lname = name.charAt(0).toLowerCase() + name.substring(1);
 
-        var filtr = filt.replace(/#name#/g, name).replace(/#module#/g, module);
+        var filtr = filt.replace(/#lame#/g, lname).replace(/#module#/g, module);
 
         var apath = 'app/scripts/app.js';
         var app = grunt.file.read(apath);
@@ -453,7 +453,7 @@ module.exports = function (grunt) {
         var before = placeToInsert || '<!-- links -->';
         /////////////////// index
         var ipath = 'app/index.html';
-        var src = '\r\n<script src="scripts/' + moduleDirectirized + '/filters/' + name + '.js"></script>';
+        var src = '\r\n<script src="scripts/' + moduleDirectirized + '/filters/' + lname + '.js"></script>';
 
         var indf;
         var newIndex = generateModule(module, rm);

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('#module#')
-        .filter('#name#', function () {
+        .filter('#lname#', function () {
             return function (input) {
                 return 'test filter: ' + input;
             };
