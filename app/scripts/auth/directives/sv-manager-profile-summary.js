@@ -6,9 +6,7 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-manager-profile-summary.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
 
                 }

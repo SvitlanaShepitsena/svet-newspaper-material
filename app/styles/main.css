@@ -116,6 +116,11 @@ md-tab-item span {
 	font-weight: 500 !important;
 }
 
+md-tab-content {
+	margin-top: 16px;
+	height: 100%;
+}
+
 md-tabs-wrapper {
 	padding-bottom: 8px !important;
 }
@@ -320,9 +325,7 @@ md-tabs-wrapper {
 
 .sv-md-button-nav-menu {
 	text-align: left !important;
-	line-height: 32px !important;
 	line-height: 2rem !important;
-	height: 32px !important;
 	height: 2rem !important;
 }
 

@@ -24,6 +24,10 @@ md-tab-item span {
   font-size: 11px !important;
   font-weight: 500 !important;
 }
+md-tab-content {
+  margin-top: 16px;
+  height: 100%;
+}
 md-tabs-wrapper {
   padding-bottom: 8px !important;
 }
