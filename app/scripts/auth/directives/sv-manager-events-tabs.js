@@ -6,10 +6,26 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-manager-events-tabs.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
+                    var tabs = [
+                            {
+                                title: 'public-events',
+                                content: "scripts/auth/templates/manager-dashboard/manager-profile-temp.html"
+                            },
+                            {
+                                title: 'network-events',
+                                content: "scripts/auth/templates/manager-dashboard/manager-profile-temp.html"
+                            }
+                        ],
+                        selected = null,
+                        previous = null;
+                    $scope.tabs = tabs;
+                    $scope.selectedIndex = 0;
+                    $scope.$watch('selectedIndex', function (current, old) {
+                        previous = selected;
+                        selected = tabs[current];
+                    });
 
                 }
             };
