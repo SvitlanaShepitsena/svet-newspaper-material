@@ -1,6 +1,6 @@
 div
     ul.list-unstyled()
-        li(ng-repeat='e in svetEvents|EventsType')
+        li(ng-repeat='e in svetEvents|eventsType:eventFilter')
             div {{e.title}}
             div {{e.startDate}}
 

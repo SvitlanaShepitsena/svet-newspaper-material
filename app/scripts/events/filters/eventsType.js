@@ -3,8 +3,14 @@
 
     angular.module('events')
         .filter('eventsType', function () {
-            return function (input) {
-                return 'test filter: ' + input;
+            return function (events, type) {
+                if (!type || events.length === 0) {
+                    return events;
+                }
+
+                var filteredEvents = _.filter(events, {type:type});
+
+                return filteredEvents ;
             };
         });
 })();
