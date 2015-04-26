@@ -5,8 +5,8 @@ div(layout='column' layout-fill)
                 a.fs-body-1(href='#' style='color:#616161') {{user.fname}} &nbsp {{user.lname}}
             div.pr
                 form(name="rform" layout="row" layout-align="center center")
-                    label Customer
+                    label.fs-caption Customer
                         md-checkbox(ng-checked= 'user.groups.indexOf("customer")>-1' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"customer")' )
-                    label Author
+                    label.fs-caption Author
                         md-checkbox(ng-checked= 'user.groups.indexOf("author")>-1' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"author")' )
 
