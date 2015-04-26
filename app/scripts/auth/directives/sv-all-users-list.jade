@@ -1,0 +1,12 @@
+div
+    div(layout='column' ng-repeat='user in users|Groups:groupFilter')
+        .card.p.mt.mb(layout='row' layout-align="space-between center")
+            div
+                a.fs-body-1(href='#' style='color:#616161') {{user.fname}} &nbsp {{user.lname}}
+            div.pr
+                form(name="rform" layout="row" layout-align="center center")
+                    label Customer
+                        md-checkbox(ng-checked= 'user.groups.indexOf("customer")>-1' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"customer")' )
+                    label Author
+                        md-checkbox(ng-checked= 'user.groups.indexOf("author")>-1' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"author")' )
+

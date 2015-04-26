@@ -5,7 +5,7 @@
         .controller('CreateSvetEventCtrl', function (ConnectionEventServ, $scope, toastr,$state) {
 
             $scope.event = {
-                type: 'corporate',
+                type: 'corporates',
                 title: 'Svet Connection',
                 description: 'Description',
                 date: new Date('01/01/2015'),
