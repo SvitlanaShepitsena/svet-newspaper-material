@@ -1,6 +1,6 @@
 div
     .card.p
-        span.display-block.fs-headline Svet Media Group Event
+        span.display-block.fs-title.mb.mt Svet Media Group Event
         .divider.divider--dark.mt.mb
         form(name='eventForm' ng-submit='createEvent(event)')
             div(flex-container='row')
@@ -54,6 +54,8 @@ div
                 div(flex-item='')
                     lx-text-field(label='Age Range (Optional)')
                         input(type='text' name='age' ng-model='event.age')
-            button.btn.btn--m.btn--white.btn--raised(lx-ripple='') Save Event
+            div(flex-container='row' class='mt+')
+                div(flex-item='')
+                    button.btn.btn--m.btn--white.btn--raised(lx-ripple='') Save Event
 
 
