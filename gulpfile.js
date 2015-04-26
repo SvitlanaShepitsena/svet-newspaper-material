@@ -24,10 +24,12 @@ var onError = function (err) {
 
 ///////////////////////////// JADE ////////////////////////////////////////////////
 gulp.task("jade", function () {
-	return gulp.src(["./app/scripts/**/*.jade"])
+    var scripts = "./app/scripts/";
+    return gulp.src(["./app/scripts/**/*.jade"])
+        .pipe(p.newer({dest:scripts,ext:'.html'}))
 		.pipe(p.plumber({errorHandler: onError}))
 		.pipe(p.jade())
-		.pipe(gulp.dest("./app/scripts/"))
+		.pipe(gulp.dest(scripts))
 });
 
 gulp.task('jade:watch', ['jade'], browserSync.reload);
