@@ -12,22 +12,22 @@ div
                 md-input-container
                     label Title
                     input(required='', name='title', ng-model='event.title')
-                    div(ng-messages='eventForm.title.$error && eventForm.title.$touched')
+                    div(ng-messages='eventForm.title.$error && (eventForm.title.$touched || eventForm.$submitted)')
                         div(ng-message='required') This is required.
                 md-input-container
                     label Description
                     textarea(required='', name='description', ng-model='event.description') {{event.description}}
-                    div(ng-messages='eventForm.description.$error && eventForm.description.$touched')
+                    div(ng-messages='eventForm.description.$error && (eventForm.description.$touched || eventForm.$submitted)')
                         div(ng-message='required') This is required.
                 md-input-container
                     label Date
                     input(type='date' required='' name='eventDate' ng-model='event.date')
-                    div(ng-messages='eventForm.eventDate.$error && eventForm.eventDate.$touched')
+                    div(ng-messages='eventForm.eventDate.$error && (eventForm.eventDate.$touched || eventForm.$submitted)')
                         div(ng-message='required') This is required.
                 md-input-container
                     label Start Time
                     input(type='time' required='' name='startTime' ng-model='event.startTime')
-                    div(ng-messages='eventForm.startTime.$error && eventForm.startTime.$touched')
+                    div(ng-messages='eventForm.startTime.$error && (eventForm.startTime.$touched || eventForm.$submitted)')
                         div(ng-message='required') This is required.
                 md-input-container
                     label End Time (Optional)
@@ -35,7 +35,7 @@ div
                 md-input-container
                     label Address
                     input(type='text' required='' name='address' ng-model='event.address')
-                    div(ng-messages='eventForm.address.$error && eventForm.address.$touched')
+                    div(ng-messages='eventForm.address.$error && (eventForm.address.$touched || eventForm.$submitted)')
                         div(ng-message='required') This is required.
                 md-input-container
                     label Admission (Optional)
