@@ -95,6 +95,12 @@
 	border-bottom: thin #f00 solid !important;
 }
 
+.btn--grey:hover,
+.btn--grey:active,
+.btn--grey:focus {
+	background-color: #e0e0e0 !important;
+}
+
 .md-paginator {
 	z-index: 99;
 	width: 56px !important;

@@ -11,8 +11,8 @@ div(flex-container='column')
                             name='userName'
                             ng-model='user.name'
                             ng-minlength="3"
-                            ng-maxlength="20"
-                            required  )
+                            ng-maxlength="200"
+                            required )
                         div(ng-messages='signUpForm.userName.$error' ng-if='signUpForm.userName.$touched||signUpForm.$submitted')
                             .tc-red-300.fs-caption(ng-message='required') {{'required-field'|translate}}
                             .tc-red-300.fs-caption(ng-message='minlength') {{'min-length'|translate}}
@@ -31,7 +31,7 @@ div(flex-container='column')
                         lx-text-field(label='{{password|translate}}', icon='lock' error="signUpForm.password.$touched && signUpForm.password.$invalid")
                             input(type='password'
                             ng-minlength="6"
-                            ng-maxlength="20"
+                            ng-maxlength="200"
                             ng-model='user.password'
                             name='password' required)
                         div(ng-messages='signUpForm.password.$error' ng-if='signUpForm.password.$touched||signUpForm.$submitted')

@@ -41,9 +41,8 @@
                         AuthServ.createUser($scope.user.email, $scope.user.password).then(function (user) {
                                 user.name = $scope.user.name;
                                 UserServ.saveNewUser(user);
-
                                 $rootScope.user = user;
-                                toastr.success('You are succesfully registered')
+                                toastr.success('You are successfully registered')
                                 $state.go('app.manager.dashboard', {uid: user.name});
                             }
                         )
