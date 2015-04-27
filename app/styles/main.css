@@ -95,6 +95,10 @@
 	border-bottom: thin #f00 solid !important;
 }
 
+.sv-active-user-menu {
+	border-bottom: 3px #f00 solid !important;
+}
+
 .btn--grey:hover,
 .btn--grey:active,
 .btn--grey:focus {
