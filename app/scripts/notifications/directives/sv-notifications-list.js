@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('notifications')
-        .directive('svNotificationsList', function ($rootScope) {
+        .directive('svNotificationsList', function ($rootScope, $mdMedia) {
             return {
                 templateUrl: 'scripts/notifications/directives/sv-notifications-list.html',
                 scope: {},
@@ -12,15 +12,18 @@
                         $scope.unopened = 0;
 
                     };
+                    $scope.showAll = function () {
+                        $scope.unopened = $scope.user.notifications.length;
+                    };
+
+
                     $rootScope.$watch('user', function (newVal) {
                         $scope.user = newVal;
                         if ($scope.user && $scope.user.notifications) {
 
-                        $scope.unopened = _.where($scope.user.notifications, {opened: false}).length;
+                            $scope.unopened = _.where($scope.user.notifications, {opened: false}).length;
                         }
-
-
-                    },true);
+                    }, true);
                     $rootScope.$watch('loadingUser', function (newVal) {
                         $scope.loadingUser = newVal;
                     });

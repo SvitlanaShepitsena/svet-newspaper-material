@@ -1,18 +1,29 @@
-div(layout='row' layout-align="center center" ng-if='user')
-    span {{unopened}}
-    lx-dropdown(position='right')
+div(layout='column' layout-align="center center" ng-if='user')
+    lx-dropdown()
         i.icon.icon--xl.icon--grey.tc-grey-800.bgc-grey-200.icon--circled.mdi.mdi-bell.sv-notificatios-icon( lx-dropdown-toggle)
-        lx-dropdown-menu
-            div(ng-if='unopened')
-                div
-                    button(ng-click='markAllOpened()') Mark All Opened
-                ul
-                    li(ng-repeat='n in user.notifications|noticeStatus:false')
-                        a.dropdown-link
-                            span.display-inline-block.fs-body-2 {{n.note}}
-                        .dropdown-divider
-                ul.bgc-grey-100
-                    li
-                        a.dropdown-link.tc-grey-500
+            a.btn.btn--xs.btn--red.btn--fab.btn-flat.bgc-red-300(style='position:relative;left:-10px;bottom:-6px' ng-show='unopened')
+                span.fs-caption {{unopened}}
+        lx-dropdown-menu(sv-drop-align)
+            ul(style='padding:0px 8px;border-bottom:1px #BDBDBD dotted')
+                li(layout="row" layout-align="space-between center" )
+                    div.mb
+                        span.fs-title {{'notifications'|translate}}
+                    div
+                        a.btn.btn--flat.btn--xs.btn--grey.tc-grey-500(ng-click='markAllOpened()' ng-show='unopened')
+                            i.mdi.mdi-check-all.mr
+                            span.fs-body-1 Mark All as Read
+            div.p(ng-show='!unopened')
+                div No unread notifications
+            ul
+                li.p(ng-repeat='n in user.notifications|noticeStatus:false' ng-show='unopened' style='border-bottom:1px #BDBDBD dotted')
+                    div.bgc-grey-100(layout="row" layout-align='space-between center')
+                        span.display-block.fs-body-2.dropdown-link {{n.note}}
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='')
+                            i.mdi.mdi-check(style='font-weight:bold')
+            ul(style='margin:16px 8px 12px')
+                li(layout="row" layout-align="space-between center")
+                    div
+                        a.btn.btn--flat.btn--xs.btn--grey.tc-grey-500(ng-click='showAll()')
                             i.mdi.mdi-view-list.mr
                             span.fs-body-1 {{'all-notifications'|translate}}
+
