@@ -4,6 +4,7 @@
     angular.module('app', [
 
         // modules
+		'notifications',
 		'author',
 		'business',
 		'travel',

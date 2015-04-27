@@ -23,9 +23,6 @@
                             if (!user.groups) {
                                 UserServ.saveNewUser(user);
                             }
-
-
-
                             $rootScope.user = user;
                             if (UserGroupsServ.isInGroup('manager') || UserGroupsServ.isInGroup('admin')) {
                                 $state.go('app.manager.dashboard', {uid: user.id})
