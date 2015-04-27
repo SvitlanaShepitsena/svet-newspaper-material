@@ -489,10 +489,10 @@ module.exports = function (grunt) {
         dname = dname.charAt(0).toLowerCase() + dname.substr(1);
 //        delete option
         var rm = grunt.option('rm');
-        var attr = grunt.option('a');
+        var a = grunt.option('a');
 
         rm = (rm === undefined) ? false : rm;
-        attr = (attr === undefined) ? false : true;
+        var attr = (a === undefined) ? false : true;
 
 //      Module
         var module = grunt.option('m');
