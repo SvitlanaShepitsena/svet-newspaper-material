@@ -1,12 +1,15 @@
 div(layout='row' layout-align="center center" ng-if='user')
+    span {{unopened}}
     lx-dropdown(position='right')
         i.icon.icon--xl.icon--grey.tc-grey-800.bgc-grey-200.icon--circled.mdi.mdi-bell.sv-notificatios-icon( lx-dropdown-toggle)
         lx-dropdown-menu
-            div(ng-if='user.notifications.length')
+            div(ng-if='unopened')
+                div
+                    button(ng-click='markAllOpened()') Mark All Opened
                 ul
-                    li(ng-repeat='n in user.notifications')
+                    li(ng-repeat='n in user.notifications|noticeStatus:false')
                         a.dropdown-link
-                            span.display-inline-block.fs-body-2 {{n.title || n.note}}
+                            span.display-inline-block.fs-body-2 {{n.note}}
                         .dropdown-divider
                 ul.bgc-grey-100
                     li
