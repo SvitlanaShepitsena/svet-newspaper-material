@@ -14,10 +14,8 @@
                         $scope.svetEvents = ConnectionEventServ.allCorporate();
                     }
                     else {
-                        $scope.svetEvents= ConnectionEventServ.allPublic();
+                        $scope.svetEvents = ConnectionEventServ.allPublic();
                     }
-
-
                 }
             };
         });

@@ -10,7 +10,7 @@
                 link: function ($scope, el, attrs) {
                     var tabs = [
                             {
-                                title: 'all users',
+                                title: 'all-users',
                                 content: "scripts/auth/templates/manager-users/manager-all-users-temp.html"
                             },
                             {
