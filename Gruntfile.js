@@ -80,9 +80,15 @@ module.exports = function (grunt) {
 
     }
     grunt.loadNpmTasks('grunt-git');
+    grunt.loadNpmTasks('grunt-shell');
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        shell: {
+            target: {
+                command: 'gulp jade'
+            }
+        },
         gitadd: {
             task: {
                 options: {
@@ -489,8 +495,10 @@ module.exports = function (grunt) {
         dname = dname.charAt(0).toLowerCase() + dname.substr(1);
 //        delete option
         var rm = grunt.option('rm');
+        var a = grunt.option('a');
 
         rm = (rm === undefined) ? false : rm;
+        var attr = (a === undefined) ? false : true;
 
 //      Module
         var module = grunt.option('m');
@@ -505,7 +513,14 @@ module.exports = function (grunt) {
         var before = placeToInsert || '<!-- links -->';
 
         var d = 'app/scripts/' + moduleDirectirized + '/directives/';
-        var directive = grunt.file.read('templates/dir.js');
+
+        if (!attr) {
+            var directive = grunt.file.read('templates/dir.js');
+
+        } else {
+            var directive = grunt.file.read('templates/dirattr.js');
+
+        }
         dname = 'sv-' + _.str.dasherize(dname);
         var dnames = dname.toLowerCase().split('-');
 
@@ -551,8 +566,8 @@ module.exports = function (grunt) {
         var ipath = 'app/index.html';
         var src = '\r\n<script src="scripts/' + moduleDirectirized + '/directives/' + jnameDashed + '.js"></script>';
         //////////////////
-        var directiveTemplate = '.well ' + oname + ' Template';
-        var directiveTemplateHtml = '<div class="well">' + oname + ' Template</div>';
+        var directiveTemplate = 'div ' + oname + ' Template';
+        var directiveTemplateHtml = '<div>' + oname + ' Template</div>';
         /////////////////
 
 /////
@@ -573,16 +588,19 @@ module.exports = function (grunt) {
 
             indf = enterInside(indf, before, src);
         }
+        if (!attr) {
 
-        if (rm) {
-            delFileDep(tpath);
-            delFileDep(tpathHtml);
-        } else {
-            grunt.file.write(tpath, directiveTemplate);
-            grunt.file.write(tpathHtml, directiveTemplateHtml);
+            if (rm) {
+                delFileDep(tpath);
+                delFileDep(tpathHtml);
+            } else {
+                grunt.file.write(tpath, directiveTemplate);
+                grunt.file.write(tpathHtml, directiveTemplateHtml);
+            }
         }
         grunt.file.write(ipath, indf);
         grunt.task.run('addcommit');
+        //grunt.task.run('shell');
 
     })
     var SCRIPT_PATH = 'app/scripts/';

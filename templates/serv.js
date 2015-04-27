@@ -1,16 +1,20 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	angular.module('#module#')
-		.factory('#name#Serv', function ($q, url, urlUsers, $firebaseObject, $firebaseArray) {
+    angular.module('#module#')
+        .factory('#name#Serv', function ($q, url, urlUsers, $firebaseObject, $firebaseArray) {
 
-			return {
+            return {
 
-				get: function () {
-					return $q(function (resolve, reject) {
+                get: function () {
 
-					});
-				}
-			};
-		});
+                },
+
+                getAssync: function () {
+                    return $q(function (resolve, reject) {
+
+                    });
+                }
+            };
+        });
 })();

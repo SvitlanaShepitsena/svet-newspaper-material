@@ -26,11 +26,11 @@
                         password: ''
                     };
 
-                    //$scope.user = {
-                    //    name: faker.internet.userName(),
-                    //    email: faker.internet.email(),
-                    //    password: '12345'
-                    //};
+                    $scope.user = {
+                        name: faker.internet.userName(),
+                        email: 'chicagobusinessintelligence1@gmail.com',
+                        password: '123456'
+                    };
                     $scope.createAccount = function () {
                         if ($scope.signUpForm.$invalid) {
                             $scope.signUpForm.userName.$touched = true;
@@ -45,7 +45,12 @@
                                 toastr.success('You are successfully registered')
                                 $state.go('app.manager.dashboard', {uid: user.name});
                             }
-                        )
+                        ).catch(function (error) {
+                                toastr.error(error.message);
+
+                                $scope.signUpForm.email.$invalid = true;
+                                $scope.signUpForm.email.$touched = true;
+                            })
                     }
                 },
                 link: function ($scope, el, attrs) {
