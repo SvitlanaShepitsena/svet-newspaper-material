@@ -589,6 +589,7 @@ module.exports = function (grunt) {
 
             indf = enterInside(indf, before, src);
         }
+        if (!attr) {
 
             if (rm) {
                 delFileDep(tpath);
@@ -597,6 +598,7 @@ module.exports = function (grunt) {
                 grunt.file.write(tpath, directiveTemplate);
                 grunt.file.write(tpathHtml, directiveTemplateHtml);
             }
+        }
         grunt.file.write(ipath, indf);
         grunt.task.run('addcommit');
         //grunt.task.run('shell');
