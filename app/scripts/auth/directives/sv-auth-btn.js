@@ -25,6 +25,7 @@
                             }
 
 
+
                             $rootScope.user = user;
                             if (UserGroupsServ.isInGroup('manager') || UserGroupsServ.isInGroup('admin')) {
                                 $state.go('app.manager.dashboard', {uid: user.id})
@@ -59,6 +60,7 @@
                     });
                     $rootScope.$watch('user', function (newVal) {
                         $scope.user = newVal;
+                        console.log($scope.user);
                     });
                     $rootScope.$watch('loadingUser', function (newVal) {
                         $scope.loadingUser = newVal;

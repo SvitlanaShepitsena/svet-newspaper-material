@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .factory('AuthServ', function (UserGroupsServ, $firebaseAuth, $firebaseObject, url, users, $q, $rootScope) {
+        .factory('AuthServ', function (UserGroupsServ, $firebaseAuth, $firebaseObject, url, users, $q, $rootScope, NoteServ) {
 
             var mainRef = new Firebase(url);
 
@@ -93,7 +93,9 @@
 
                                 UserGroupsServ.getGroups(user.id).then(function (groups) {
                                     user.groups = groups
-                                    deferred.resolve(user);
+                                    NoteServ.getNotifications(user).then(function (user) {
+                                        deferred.resolve(user);
+                                    });
                                 });
                             })
                         }
@@ -172,8 +174,10 @@
                         updateWithLocalData(user).then(function (user) {
 
                             UserGroupsServ.getGroups(user.id).then(function (groups) {
-                                user.groups = groups
-                                deferred.resolve(user);
+                                user.groups = groups;
+                                NoteServ.getNotifications(user).then(function (user) {
+                                    deferred.resolve(user);
+                                });
                             }).catch(function (error) {
                                 console.log(error);
                             });

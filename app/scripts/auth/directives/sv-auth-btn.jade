@@ -29,5 +29,9 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
                             i.mdi.mdi-google-plus
         div(layout='row' ng-if='!!user' layout-align="center center")
             span.mdc-display-inline-block.fs-subhead {{user.name}} &nbsp
+                div(ng-if='user.notifications.length')
+                    ul
+                        li(ng-repeat='n in user.notifications')
+                            span {{n.title}}
             sv-user-dropdown-menu(ng-if='!isManager()' user='user' logout='ctrl.logout()')
             sv-manager-dropdown(ng-if="isManager()" user='user' logout='ctrl.logout()')
