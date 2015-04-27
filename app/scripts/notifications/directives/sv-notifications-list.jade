@@ -6,7 +6,7 @@ div(layout='row' layout-align="center center" ng-if='user')
                 ul
                     li(ng-repeat='n in user.notifications')
                         a.dropdown-link
-                            span.display-inline-block.fs-body-2 {{n.title || n.note}}
+                            span.display-inline-block.fs-body-2 {{n.note}}
                         .dropdown-divider
                 ul.bgc-grey-100
                     li

@@ -96,7 +96,7 @@
 }
 
 .sv-active-user-menu {
-	border-bottom: 3px #f00 solid !important;
+	background-color: #e0e0e0 !important;
 }
 
 .btn--grey:hover,
@@ -105,9 +105,9 @@
 	background-color: #e0e0e0 !important;
 }
 
-.sv-notificatios-icon:hover,
-.sv-notificatios-icon:active,
-.sv-notificatios-icon:focus {
+.sv-notifications-icon:hover,
+.sv-notifications-icon:active,
+.sv-notifications-icon:focus {
 	background-color: #e0e0e0 !important;
 }
 
