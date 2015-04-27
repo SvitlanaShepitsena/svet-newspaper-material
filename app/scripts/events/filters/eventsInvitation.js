@@ -4,7 +4,7 @@
     angular.module('events')
         .filter('eventsInvitation', function ($rootScope) {
             return function (events, index) {
-                if (!events ||  events.length === 0) {
+                if (!events || events.length === 0) {
                     return;
                 }
                 var finalList = [];
@@ -13,11 +13,9 @@
                 if (index == 0) {
                     for (var i = 0; i < events.length; i++) {
                         var event = events[i];
-                        var customers = _.pluck(event.customers,'id');
-
-                        if (customers.indexOf(u.id)> -1) {
+                        var customers = _.pluck(event.customers, 'id');
+                        if (customers.indexOf(u.id) > -1) {
                             finalList.push(event);
-
                         }
                     }
                 }
@@ -26,15 +24,14 @@
 
                     for (var i = 0; i < events.length; i++) {
                         var event = events[i];
-                        var customers = _.pluck(event.customers,'id');
+                        var customers = _.pluck(event.customers, 'id');
 
-                        if (customers.indexOf(u.id)  === -1) {
+                        if (customers.indexOf(u.id) === -1) {
                             finalList.push(event);
-
                         }
                     }
                 }
-                return finalList ;
+                return finalList;
             };
         });
 })();

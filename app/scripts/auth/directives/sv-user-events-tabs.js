@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svUserEventsTabs', function (ConnectionEventServ,toastr,$rootScope) {
+        .directive('svUserEventsTabs', function (ConnectionEventServ, toastr, $rootScope) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-user-events-tabs.html',
@@ -14,17 +14,17 @@
                     })
 
                     $scope.events = ConnectionEventServ.allCorporate();
-                    $scope.data={selectedIndex:2};
+                    $scope.data = {selectedIndex: 2};
 
                     $scope.acceptInvitation = function (svetEvent) {
                         ConnectionEventServ.addCustomerToEvent(svetEvent, $scope.user).then(function () {
-                           toastr.info('You registered to event') ;
+                            toastr.info('You registered to event');
 
                         })
                     };
                     $scope.cancelAcceptedInvitation = function (svetEvent) {
-                        ConnectionEventServ.removeCustomerFromEvent(svetEvent,$scope.user).then(function () {
-                           toastr.warning('You were unlinked  from event') ;
+                        ConnectionEventServ.removeCustomerFromEvent(svetEvent, $scope.user).then(function () {
+                            toastr.warning('You were unlinked  from event');
 
                         })
                     };

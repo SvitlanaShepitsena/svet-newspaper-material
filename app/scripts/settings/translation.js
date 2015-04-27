@@ -41,6 +41,7 @@
 
                 'join': 'Register',
                 'unlink': 'Un-register',
+                'accept': 'Accept',
                 'share': 'Share',
                 'NewSvetNewspaper': 'New Svet Newspaper',
                 'SaturdayPlus': 'Saturday+ Newspaper',
@@ -112,6 +113,7 @@
 
                 'join': 'Пойду',
                 'unlink': 'Отменить',
+                'accept': 'Принять',
                 'share': 'Поделиться',
                 'NewSvetNewspaper': 'Газета Новый Свет',
                 'SaturdayPlus': 'Суббота+',

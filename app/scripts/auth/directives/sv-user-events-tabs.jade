@@ -1,21 +1,29 @@
 div
-    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='')
+    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='' style='height:auto;min-height:800px')
         md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"planned-events"|translate}}' )
             md-content
-                h2 Planned
-                br
-                ul.list-unstyled
-                    li(ng-repeat='e in events|eventsInvitation:data.selectedIndex')
-                        div {{e.title}}
-                            button(ng-click='cancelAcceptedInvitation(e)') Unlink from Event
+                sv-profile-subheader(subhead-title="planned-events")
+                .card.mb.p(ng-repeat='e in events|eventsInvitation:data.selectedIndex' layout-gt-sm="row" layout-align-gt-sm='space-between center')
+                    div.mb
+                        a.tc-grey-700(style='cursor:pointer;')
+                            span.display-block.fs-body-2 {{e.title}}
+                            span.display-block.fs-caption {{e.startDate}}
+                    button.btn.btn--s.btn--white.btn--raised(lx-ripple='' ng-click='cancelAcceptedInvitation(e)')
+                        i.mdi.mdi-account-remove.mr
+                        | {{'unlink'|translate}}
         md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"visited-events"|translate}}' )
             md-content
-                div Planned
+                sv-profile-subheader(subhead-title="visited-events")
+                .card.p.mb
+                    span.fs-subhead.display-block.text-center You do not have any visited event yet
         md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"invitations"|translate}}' )
             md-content
-                h4 Invitation
-                br
-                ul.list-unstyled
-                    li(ng-repeat='e in events|eventsInvitation:data.selectedIndex')
-                        div {{e.title}}
-                            button(ng-click='acceptInvitation(e)') Accept
+                sv-profile-subheader(subhead-title="invitations")
+                .card.mb.p(ng-repeat='e in events|eventsInvitation:data.selectedIndex' layout-gt-sm="row" layout-align-gt-sm='space-between center')
+                    div.mb
+                        a.tc-grey-700(style='cursor:pointer;')
+                            span.display-block.fs-body-2 {{e.title}}
+                            span.display-block.fs-caption {{e.startDate}}
+                    button.btn.btn--s.btn--white.btn--raised(lx-ripple='' ng-click='acceptInvitation(e)')
+                        i.mdi.mdi-account-check.mr
+                        | {{'accept'|translate}}
