@@ -99,6 +99,10 @@
 	background-color: #e0e0e0 !important;
 }
 
+.sv-active-notifications {
+	background-color: #f00 !important;
+}
+
 .btn--grey:hover,
 .btn--grey:active,
 .btn--grey:focus {
