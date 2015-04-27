@@ -2,15 +2,14 @@
     'use strict';
 
     angular.module('notifications')
-        .directive('svNotificationsList', function () {
+        .directive('svNotificationsList', function ($rootScope) {
             return {
-                replace: true,
                 templateUrl: 'scripts/notifications/directives/sv-notifications-list.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
-
+                    $rootScope.$watch('user', function (newVal) {
+                        $scope.user = newVal;
+                    });
                 }
             };
         });

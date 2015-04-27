@@ -12,6 +12,11 @@
 .btn--grey:focus {
   background-color: #e0e0e0 !important;
 }
+.sv-notificatios-icon:hover,
+.sv-notificatios-icon:active,
+.sv-notificatios-icon:focus {
+  background-color: #e0e0e0 !important;
+}
 .md-paginator {
   z-index: 99;
   width: 56px !important;

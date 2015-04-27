@@ -28,10 +28,10 @@ div(layout='row' layout-align="end center" ng-class="{'mr+':ctrl.gtMd}")
                         button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginProvider("google")')
                             i.mdi.mdi-google-plus
         div(layout='row' ng-if='!!user' layout-align="center center")
-            span.mdc-display-inline-block.fs-subhead {{user.name}} &nbsp
-                div(ng-if='user.notifications.length')
-                    ul
-                        li(ng-repeat='n in user.notifications')
-                            span {{n.title}}
+            //span.mdc-display-inline-block.fs-subhead {{user.name}} &nbsp
+            //    div(ng-if='user.notifications.length')
+            //        ul
+            //            li(ng-repeat='n in user.notifications')
+            //                span {{n.title}}
             sv-user-dropdown-menu(ng-if='!isManager()' user='user' logout='ctrl.logout()')
             sv-manager-dropdown(ng-if="isManager()" user='user' logout='ctrl.logout()')
