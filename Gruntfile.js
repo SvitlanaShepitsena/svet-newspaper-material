@@ -508,7 +508,7 @@ module.exports = function (grunt) {
 
         var d = 'app/scripts/' + moduleDirectirized + '/directives/';
 
-        if (attr) {
+        if (!attr) {
             var directive = grunt.file.read('templates/dir.js');
 
         } else {
