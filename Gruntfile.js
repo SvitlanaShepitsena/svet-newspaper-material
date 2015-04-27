@@ -80,9 +80,15 @@ module.exports = function (grunt) {
 
     }
     grunt.loadNpmTasks('grunt-git');
+    grunt.loadNpmTasks('grunt-shell');
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        shell: {
+            target: {
+                command: 'gulp jade'
+            }
+        },
         gitadd: {
             task: {
                 options: {
@@ -561,7 +567,7 @@ module.exports = function (grunt) {
         var src = '\r\n<script src="scripts/' + moduleDirectirized + '/directives/' + jnameDashed + '.js"></script>';
         //////////////////
         var directiveTemplate = 'div ' + oname + ' Template';
-        var directiveTemplateHtml = '<div class="well">' + oname + ' Template</div>';
+        var directiveTemplateHtml = '<div>' + oname + ' Template</div>';
         /////////////////
 
 /////
@@ -594,6 +600,7 @@ module.exports = function (grunt) {
         }
         grunt.file.write(ipath, indf);
         grunt.task.run('addcommit');
+        grunt.task.run('shell');
 
     })
     var SCRIPT_PATH = 'app/scripts/';
