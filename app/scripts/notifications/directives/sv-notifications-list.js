@@ -10,6 +10,9 @@
                     $rootScope.$watch('user', function (newVal) {
                         $scope.user = newVal;
                     });
+                    $rootScope.$watch('loadingUser', function (newVal) {
+                        $scope.loadingUser = newVal;
+                    });
                 }
             };
         });
