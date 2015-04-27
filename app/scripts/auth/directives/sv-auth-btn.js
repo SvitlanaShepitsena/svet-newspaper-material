@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .directive('svAuthBtn', function (AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ) {
+        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -28,7 +28,7 @@
                             if (UserGroupsServ.isInGroup('manager') || UserGroupsServ.isInGroup('admin')) {
                                 $state.go('app.manager.dashboard', {uid: user.id})
                             } else {
-                                $state.go('app.user.dashboard', {uid: user.name})
+                                $state.go('app.user.dashboard', {uid: user.name||user.fname})
                             }
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
