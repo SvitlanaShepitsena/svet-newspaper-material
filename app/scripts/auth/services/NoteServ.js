@@ -23,6 +23,37 @@
                 });
             }
 
+
+            function getManagerNotifications() {
+
+                return $q(function (resolve, reject) {
+                    var eventsArr = $firebaseArray(new Firebase(corporate));
+                    eventsArr.$loaded().then(function () {
+                        var managerNotes = [];
+                        eventsArr.forEach(function (event) {
+
+                            if (event.customers && event.customers.length) {
+                                event.customers.forEach(function (cust) {
+                                    var note = cust.fname + ' accepted invitation to ' + event.title;
+                                            managerNotes.push({
+                                                note: note,
+                                                opened:false
+                                            });
+                                })
+
+
+                            }
+
+
+                        });
+                        resolve(managerNotes);
+                    });
+
+
+                });
+            }
+
+
             return {
 
                 getNotifications: function (user) {
@@ -40,7 +71,21 @@
                                                 notices.forEach(function (notice) {
                                                     user.notifications.push(notice);
                                                 });
-                                            } else{
+                                            } else {
+                                                user.notifications = notices;
+                                            }
+
+                                        }
+                                    });
+                                    break;
+                                case 'manager':
+                                    getManagerNotifications().then(function (notices) {
+                                        if (notices.length) {
+                                            if (user.notifications) {
+                                                notices.forEach(function (notice) {
+                                                    user.notifications.push(notice);
+                                                });
+                                            } else {
                                                 user.notifications = notices;
                                             }
 

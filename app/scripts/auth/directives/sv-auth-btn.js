@@ -57,6 +57,7 @@
                     });
                     $rootScope.$watch('user', function (newVal) {
                         $scope.user = newVal;
+                        console.log($scope.user);
                     });
                     $rootScope.$watch('loadingUser', function (newVal) {
                         $scope.loadingUser = newVal;
