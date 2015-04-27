@@ -492,7 +492,7 @@ module.exports = function (grunt) {
         var attr = grunt.option('a');
 
         rm = (rm === undefined) ? false : rm;
-        attr = (a === undefined) ? false : true;
+        attr = (attr === undefined) ? false : true;
 
 //      Module
         var module = grunt.option('m');
