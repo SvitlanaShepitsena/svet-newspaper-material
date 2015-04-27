@@ -600,7 +600,7 @@ module.exports = function (grunt) {
         }
         grunt.file.write(ipath, indf);
         grunt.task.run('addcommit');
-        grunt.task.run('shell');
+        //grunt.task.run('shell');
 
     })
     var SCRIPT_PATH = 'app/scripts/';
