@@ -3,8 +3,11 @@
 
     angular.module('events')
         .filter('noticeStatus', function () {
-            return function (input) {
-                return 'test filter: ' + input;
+            return function (notices,opened) {
+                if (!notices) {
+                    return;
+                }
+                return _.where(notices,{opened:opened});
             };
         });
 })();

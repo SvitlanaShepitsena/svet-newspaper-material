@@ -7,9 +7,20 @@
                 templateUrl: 'scripts/notifications/directives/sv-notifications-list.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
+
+                    $scope.markAllOpened = function () {
+                        $scope.unopened = 0;
+
+                    };
                     $rootScope.$watch('user', function (newVal) {
                         $scope.user = newVal;
-                    });
+                        if ($scope.user && $scope.user.notifications) {
+
+                        $scope.unopened = _.where($scope.user.notifications, {opened: false}).length;
+                        }
+
+
+                    },true);
                     $rootScope.$watch('loadingUser', function (newVal) {
                         $scope.loadingUser = newVal;
                     });
