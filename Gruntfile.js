@@ -555,6 +555,7 @@ module.exports = function (grunt) {
             grunt.file.write(dirFileName, directivef);
         else {
             delFileDep(dirFileName);
+            console.log(dirFileName);
         }
 
         var apath = 'app/scripts/app.js';
