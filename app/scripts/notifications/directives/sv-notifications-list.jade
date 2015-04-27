@@ -4,7 +4,7 @@ div(layout='row' layout-align="center center" ng-if='user')
         lx-dropdown-menu
             div(ng-if='user.notifications.length')
                 ul
-                    li(ng-repeat='n in user.notifications')
+                    li(ng-repeat='n in user.notifications|eventStatus:"unwatched"')
                         a.dropdown-link
                             span.display-inline-block.fs-body-2 {{n.note}}
                         .dropdown-divider
