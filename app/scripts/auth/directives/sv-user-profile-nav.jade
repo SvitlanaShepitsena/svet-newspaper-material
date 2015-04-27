@@ -1,23 +1,29 @@
 .card.bgc-grey-100.top-profile-nav
-    div(hide-sm show-gt-sm layout='row' layout-align="space-between center")
-        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.dashboard' lx-ripple='' style='padding:0px 10px')
-            i.mdi.mdi-view-dashboard &nbsp
-            span {{'dashboard'|translate}}
-        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ng-if='isInGroup("author")'  ui-sref='app.user.author-articles' lx-ripple='' style='padding:0px 10px')
-            i.mdi.mdi-view-list &nbsp
-            span {{'my-articles'|translate}}
-        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ng-if='isInGroup("customer")'  ui-sref='app.user.author-articles' lx-ripple='' style='padding:0px 10px')
-            i.fa.fa-bullhorn &nbsp
-            span {{'my-ad'|translate}}
-        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat( ng-if='isInGroup("author")' ui-sref='app.user.author-drafts' lx-ripple='' style='padding:0px 10px')
-            i.mdi.mdi-file &nbsp
-            span {{'my-drafts'|translate}}
-        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.social' lx-ripple='' style='padding:0px 10px')
-            i.mdi.mdi-emoticon &nbsp
-            span {{'community'|translate}}
-        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.user-events' lx-ripple='' style='padding:0px 10px')
-            i.mdi.mdi-tag &nbsp
-            span {{'events'|translate}}
+    ul.list-unstyled(hide-sm show-gt-sm layout='row' layout-align="space-between center")
+        li(ui-sref-active='sv-active-user-menu')
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.dashboard' lx-ripple='' style='padding:0px 10px')
+                i.mdi.mdi-view-dashboard &nbsp
+                span {{'dashboard'|translate}}
+         li(ui-sref-active='sv-active-user-menu')
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ng-if='isInGroup("author")'  ui-sref='app.user.author-articles' lx-ripple='' style='padding:0px 10px')
+                i.mdi.mdi-view-list &nbsp
+                span {{'my-articles'|translate}}
+         li(ui-sref-active='sv-active-user-menu')
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ng-if='isInGroup("customer")'  ui-sref='app.user.author-articles' lx-ripple='' style='padding:0px 10px')
+                i.fa.fa-bullhorn &nbsp
+                span {{'my-ad'|translate}}
+         li(ui-sref-active='sv-active-user-menu')
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat( ng-if='isInGroup("author")' ui-sref='app.user.author-drafts' lx-ripple='' style='padding:0px 10px')
+                i.mdi.mdi-file &nbsp
+                span {{'my-drafts'|translate}}
+         li(ui-sref-active='sv-active-user-menu')
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.social' lx-ripple='' style='padding:0px 10px')
+                i.mdi.mdi-emoticon &nbsp
+                span {{'community'|translate}}
+         li(ui-sref-active='sv-active-user-menu')
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.user-events' lx-ripple='' style='padding:0px 10px')
+                i.mdi.mdi-tag &nbsp
+                span {{'events'|translate}}
     div(show-sm hide-gt-sm layout='row' layout-align="space-between center")
         a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(lx-tooltip="{{'dashboard'|translate}}" ui-sref='app.user.dashboard({uid:user.name})'  lx-ripple='')
             i.mdi.mdi-view-dashboard &nbsp
