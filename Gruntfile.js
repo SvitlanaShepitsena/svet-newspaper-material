@@ -489,8 +489,10 @@ module.exports = function (grunt) {
         dname = dname.charAt(0).toLowerCase() + dname.substr(1);
 //        delete option
         var rm = grunt.option('rm');
+        var attr = grunt.option('a');
 
         rm = (rm === undefined) ? false : rm;
+        attr = (a === undefined) ? false : true;
 
 //      Module
         var module = grunt.option('m');
@@ -505,7 +507,14 @@ module.exports = function (grunt) {
         var before = placeToInsert || '<!-- links -->';
 
         var d = 'app/scripts/' + moduleDirectirized + '/directives/';
-        var directive = grunt.file.read('templates/dir.js');
+
+        if (attr) {
+            var directive = grunt.file.read('templates/dir.js');
+
+        } else {
+            var directive = grunt.file.read('templates/dirattr.js');
+
+        }
         dname = 'sv-' + _.str.dasherize(dname);
         var dnames = dname.toLowerCase().split('-');
 
@@ -551,7 +560,7 @@ module.exports = function (grunt) {
         var ipath = 'app/index.html';
         var src = '\r\n<script src="scripts/' + moduleDirectirized + '/directives/' + jnameDashed + '.js"></script>';
         //////////////////
-        var directiveTemplate = '.well ' + oname + ' Template';
+        var directiveTemplate = 'div ' + oname + ' Template';
         var directiveTemplateHtml = '<div class="well">' + oname + ' Template</div>';
         /////////////////
 
@@ -573,13 +582,15 @@ module.exports = function (grunt) {
 
             indf = enterInside(indf, before, src);
         }
+        if (!attr) {
 
-        if (rm) {
-            delFileDep(tpath);
-            delFileDep(tpathHtml);
-        } else {
-            grunt.file.write(tpath, directiveTemplate);
-            grunt.file.write(tpathHtml, directiveTemplateHtml);
+            if (rm) {
+                delFileDep(tpath);
+                delFileDep(tpathHtml);
+            } else {
+                grunt.file.write(tpath, directiveTemplate);
+                grunt.file.write(tpathHtml, directiveTemplateHtml);
+            }
         }
         grunt.file.write(ipath, indf);
         grunt.task.run('addcommit');
