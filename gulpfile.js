@@ -24,8 +24,8 @@ var onError = function (err) {
 
 ///////////////////////////// JADE ////////////////////////////////////////////////
 gulp.task("jade", function () {
-    var scripts = "./app/scripts/";
-    return gulp.src(["./app/scripts/**/*.jade"])
+    var scripts = "app/scripts/";
+    return gulp.src(["app/scripts/**/*.jade"])
         .pipe(p.newer({dest:scripts,ext:'.html'}))
 		.pipe(p.plumber({errorHandler: onError}))
 		.pipe(p.jade())
@@ -37,7 +37,7 @@ gulp.task('jade:watch', ['jade'], browserSync.reload);
 ///////////////////////////// Stylus/Css ////////////////////////////////////////////////
 
 gulp.task("stylus:scripts", function () {
-	return gulp.src(["./app/scripts/**/*.styl",])
+	return gulp.src(["app/scripts/**/*.styl",])
 		.pipe(p.plumber({errorHandler: onError}))
 		.pipe(p.stylus({use: [nib()]}))
 		.pipe(gulp.dest("./app/scripts/"))
@@ -47,7 +47,7 @@ gulp.task("stylus:scripts", function () {
 });
 
 gulp.task("stylus:main", ['stylus:scripts'], function () {
-	return gulp.src(["./app/styles/**/*.styl",])
+	return gulp.src(["app/styles/**/*.styl",])
 		.pipe(p.plumber({errorHandler: onError}))
 		.pipe(p.stylus({use: nib()}))
 		.pipe(p.filter('*.css'))
@@ -82,9 +82,9 @@ gulp.task('serve', ['stylus:main', 'jade'], function () {
 		notify: false
 	});
 
-	gulp.watch(["./app/scripts/**/*.styl", "./app/styles/**/*.styl"], ['stylus:main']);
+	gulp.watch(["app/scripts/**/*.styl", "app/styles/**/*.styl"], ['stylus:main']);
 
-	gulp.watch(['./app/scripts/**/*.jade'], ['jade:watch']);
+	gulp.watch(['app/scripts/**/*.jade'], ['jade:watch']);
 
 	gulp.watch("app/**/*.js", ['js-watch']);
 

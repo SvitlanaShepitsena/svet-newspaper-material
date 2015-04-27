@@ -39,6 +39,7 @@
     "gulp-strip-line": "0.0.1",
     "gulp-stylus": "^2.0.1",
     "gulp-util": "^3.0.4",
+    "gulp-watch": "^4.2.4",
     "merge-stream": "^0.1.7",
     "nib": "^1.1.0",
     "require-dir": "^0.3.0",
