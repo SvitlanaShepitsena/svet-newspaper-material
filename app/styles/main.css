@@ -84,6 +84,10 @@
 	min-height: 200px;
 }
 
+.dropdown {
+	max-height: 30px;
+}
+
 .user-auth-name {
 	display: inline-block;
 	cursor: pointer;

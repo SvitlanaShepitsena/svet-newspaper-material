@@ -1,9 +1,8 @@
 (function () {
     'use strict';
     angular.module('notifications')
-        .directive('svNotificationsList', function ($rootScope, $mdMedia,NoteServ) {
+        .directive('svNotificationsList', function ($rootScope, $mdMedia, NoteServ) {
             return {
-                replace: true,
                 templateUrl: 'scripts/notifications/directives/sv-notifications-list.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
