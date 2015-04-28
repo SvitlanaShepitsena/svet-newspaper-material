@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .factory('ConnectionEventServ', function ($q, url, $firebaseArray, $firebaseObject) {
+        .factory('ConnectionEventServ', function ($q, url, $firebaseArray, $firebaseObject, NoteServ) {
             var eventsCorporateUrl = url + '/events/corporate/';
             var eventsPublicUrl = url + '/events/public/';
 
@@ -21,6 +21,11 @@
                         var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
                         eventsArray.$add(event).then(function (uid) {
                             resolve(uid);
+                            var notification = {
+                                note:event.title,
+                                opened:false
+                            }
+
                         });
                     });
                 },
