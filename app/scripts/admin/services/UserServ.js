@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('admin')
-        .factory('UserServ', function ($q, url, $firebaseArray, $firebaseObject) {
+        .factory('UserServ', function ($q, url, $firebaseArray, $firebaseObject, users) {
             var usersUrl = url + 'user-management/users/';
 
 
@@ -39,6 +39,21 @@
                             }
                         });
 
+
+                    });
+                },
+                isUserNameUnique: function (userName) {
+                    return $q(function (resolve, reject) {
+                        var userNamesArray = $firebaseArray(new Firebase(users));
+                        userNamesArray.$loaded().then(function () {
+                            for (var i = 0; i < userNamesArray.length; i++) {
+                                var user = userNamesArray[i];
+                                if (user.name === userName) {
+                                    reject();
+                                }
+                            }
+                            resolve();
+                        })
 
                     });
                 },

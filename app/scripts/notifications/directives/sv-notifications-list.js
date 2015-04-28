@@ -8,6 +8,11 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
 
+                    $scope.$watch(function() { return $mdMedia('sm'); }, function(sm) {
+                        $scope.sm = sm;
+                    });
+
+
                     $scope.markAllOpened = function () {
                         $scope.unopened = 0;
 
