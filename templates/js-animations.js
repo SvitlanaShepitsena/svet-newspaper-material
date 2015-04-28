@@ -8,19 +8,16 @@ app.animation('.svv', function () {
         },
         leave: function (element, done) {
             TweenMax.to(element, 1, {opacity: 0, onComplete: done});
-
         },
         move: function (element, done) {
             element.css('opacity', 0);
             TweenMax.to(element, 1, {opacity: 1, onComplete: done});
         },
-
         addClass: function (element, className, done) {
             height = element.height();
             width = element.width();
             element.css('height', height);
             element.css('width', width);
-
             if (className == 'ng-hide') {
                 TweenMax.to(element, 1, {
                     height: 0,
@@ -39,8 +36,6 @@ app.animation('.svv', function () {
                     onComplete: done
                 });
             }
-
-
         }
     }
 });
