@@ -146,11 +146,6 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
-				.state("app.customer-ad", {
-					url: "/customer-ad", 
-					controller:"CustomerAdCtrl as customerAd",
-					templateUrl: "scripts/auth/views/customer-adCtrl.html"
-				})
 //#state'
         });
 
