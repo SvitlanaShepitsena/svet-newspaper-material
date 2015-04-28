@@ -7,9 +7,17 @@
 
             return {
 
+
                 getUserClassifiesArr: function (id) {
                     var classifiedUrl = users + id + '/classified/';
                     var classifiedArray = $firebaseArray(new Firebase(classifiedUrl));
+
+                    return classifiedArray;
+
+                },
+                getSections: function () {
+                    var classifiedSectionsUrl = url + '/cls/sections/';
+                    var classifiedArray = $firebaseArray(new Firebase(classifiedSectionsUrl));
 
                     return classifiedArray;
 

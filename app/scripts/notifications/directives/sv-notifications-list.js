@@ -22,7 +22,6 @@
                         if ($scope.user && $scope.user.notifications) {
                             $scope.unopened = _.where($scope.user.notifications, {opened: false}).length;
                             $scope.hasNotices = _.where($scope.user.notifications, {opened: false}).length>0;
-                            console.log($scope.hasNotices);
                         }
                     }, true);
                     $rootScope.$watch('loadingUser', function (newVal) {

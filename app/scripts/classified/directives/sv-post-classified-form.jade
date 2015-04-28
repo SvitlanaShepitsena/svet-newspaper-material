@@ -1,61 +1,41 @@
 div(flex-container='column')
-	form(name='classified' flex-container='column')
-		div(class='mt++', flex-container='row', flex-gutter='24')
-			div(flex-item='')
-				lx-text-field(label='Контактное Имя', fixed-label='true', icon='account')
-					input(type='text', ng-model='ctrl.user.fname')
-				lx-text-field(label='Контактный Телефон', fixed-label='true', icon='phone')
-					input(type='text', ng-model='textFields.fixedLastName')
-				lx-text-field(label='Электронный Адрес', fixed-label='true', icon='email')
-					input(type='email', ng-model='textFields.fixedEmail')
-		div(flex-container='row' class='m++')
-			div(flex-item='')
-				lx-dropdown
-					div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-						| Select a Category / Выберите категорию
-					lx-dropdown-menu
-						ul
-							li
-								a.dropdown-link(ng-click='dropdownAlert()') Бизнес на продажу
-							li
-								a.dropdown-link Знакомства
-							li
-								a.dropdown-link Ищу работу
-		div(flex-container='row', flex-gutter='24')
-			div(flex-item='')
-				lx-text-field(label='Страна')
-					input(type='text', ng-model='textFields.country')
-			div(flex-item='')
-				lx-text-field(label='Город')
-					input(type='text', ng-model='textFields.city')
-			div(flex-item='')
-				lx-text-field(label='Штат')
-					input(type='text', ng-model='textFields.state')
-		div(flex-container='row')
-			div(flex-item='')
-				span.display-block {{ textFields.description }}
-				lx-text-field(label='Заголовок Объявления')
-					textarea(ng-model='textFields.description')
-		div(flex-container='row')
-			div(flex-item='')
-				span.display-block {{ textFields.description }}
-				lx-text-field(label='Цена Товара / Услуги')
-					textarea(ng-model='textFields.description')
-		div(flex-container='row')
-			div(flex-item='')
-				span.display-block {{ textFields.description }}
-				lx-text-field(label='Описание')
-					textarea(ng-model='textFields.description')
-		div(flex-container='row')
-			div(flex-item='')
-				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
-					i.mdi.mdi-content-save-all
-					| &nbsp Сохранить Темплейт
-			div(flex-item='')
-				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
-					i.mdi.mdi-content-save
-					| &nbsp Сохранить Изменения
-			div(flex-item='')
-				button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
-					i.mdi.mdi-send
-					| &nbsp Разместить
+    form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified()')
+        div(class='mt++', flex-container='row', flex-gutter='24')
+            div(flex-item='')
+                lx-text-field(label='Контактное Имя', fixed-label='true', icon='account' error='isInvalid("name")')
+                    input(type='text', ng-model='cl.name' required name='name')
+                lx-text-field(label='Контактный Телефон', fixed-label='true', icon='phone')
+                    input(type='text', ng-model='cl.phone')
+                lx-text-field(label='Электронный Адрес', fixed-label='true', icon='email')
+                    input(type='email', ng-model='cl.email')
+        div(flex-container='row' class='m++')
+            div(flex-item='')
+                lx-dropdown
+                    div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
+                       | {{cl.section.$value || "Select a Category"}}
+                    lx-dropdown-menu
+                        ul
+                            li(ng-repeat='s in sections')
+                                a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value}}
+
+        div(flex-container='row', flex-gutter='24')
+            div(flex-item='')
+                lx-text-field(label='City')
+                    input(type='text', ng-model='cl.city' )
+        div(flex-container='row')
+            div(flex-item='')
+                span.display-block
+                lx-text-field(label='Заголовок Объявления' required)
+                    textarea(ng-model='cl.title')
+        div(flex-container='row')
+            div(flex-item='')
+                span.display-block {{cl.description}}
+                lx-text-field(label='Цена Товара / Услуги')
+                    input(ng-model='cl.price' required)
+        div(flex-container='row')
+            div(flex-item='')
+                input.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Post")
+            div(flex-item='' ng-click='cancelAddition()')
+                button.btn.btn--s.btn--raised.btn--white.m(lx-ripple)
+                    i.mdi.mdi-send
+                    | &nbsp Cancel
