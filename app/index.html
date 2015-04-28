@@ -84,9 +84,11 @@
 
     <!-- =Content-->
     <div layout="column" flex>
-        <md-toolbar layout="row" class="md-hue-1" sv-nav-bar-media layout-align="center center"
-                    style="padding-right: 4px">
-            <button class='btn btn--xl btn--icon' hide-gt-md sv-left-click-handler="" aria-label="Show User List">
+        <md-toolbar layout="row" class="md-hue-1" sv-nav-bar-media style='padding:0px 4px' layout-align="center center">
+            <button class='btn btn--xl btn--icon'
+                    style="width:36px"
+                    hide-gt-md sv-left-click-handler=""
+                    aria-label="Show User List">
                 <md-icon md-svg-icon="sv-menu"></md-icon>
             </button>
             <!--<span flex ng-if="main.showShifter"></span>-->
@@ -94,7 +96,12 @@
             <sv-profile-type class='mr'></sv-profile-type>
             <sv-auth-btn class="mr"></sv-auth-btn>
             <sv-notifications-list style='max-height:30px'></sv-notifications-list>
-            <button class='btn btn--xl btn--icon' lx-ripple="" sv-right-click-handler="" hide-gt-lg
+            <div show-gt-lg class="ml"></div>
+            <button class='btn btn--xl btn--icon'
+                    style="width:36px"
+                    lx-ripple=""
+                    sv-right-click-handler=""
+                    hide-gt-lg
                     aria-label="Show Panel">
                 <md-icon md-svg-icon="img/svg/dots-vertical.svg"></md-icon>
             </button>
