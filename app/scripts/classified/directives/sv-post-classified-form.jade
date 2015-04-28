@@ -1,27 +1,38 @@
-div(flex-container='column')
+.card.p
+    sv-profile-subheader(subhead-title="{{classified}}")
     form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified()')
         div(class='mt++', flex-container='row', flex-gutter='24')
             div(flex-item='')
-                lx-text-field(label='Контактное Имя', fixed-label='true', icon='account' error='isInvalid("name")')
+                lx-text-field(label='Контактное Имя'
+                fixed-label='true', icon='account'
+                error='isInvalid("name")')
                     input(type='text', ng-model='cl.name' required name='name')
                 lx-text-field(label='Контактный Телефон', fixed-label='true', icon='phone')
                     input(type='text', ng-model='cl.phone')
                 lx-text-field(label='Электронный Адрес', fixed-label='true', icon='email')
                     input(type='email', ng-model='cl.email')
-        div(flex-container='row' class='m++')
+        div(flex-container='row', flex-gutter='24')
             div(flex-item='')
-                lx-dropdown
+                lx-text-field(label='State')
+                    input(type='text', ng-model='cl.state' )
+            div(flex-item='')
+                lx-text-field(label='City')
+                    input(type='text', ng-model='cl.city' )
+            div(flex-item='')
+                lx-dropdown(hide-gt-md show-sm show-gt-sm)
+                    div.btn.btn--s.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
+                        | {{cl.section.$value || "Select a Category"}}
+                    lx-dropdown-menu
+                        ul
+                            li(repeat='s in sections')
+                                a.dropdown-link(click='selectDropDown(s)') {{s.$value}}
+                lx-dropdown(class='mt++' show-gt-md hide-sm hide-gt-sm)
                     div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-                       | {{cl.section.$value || "Select a Category"}}
+                        | {{cl.section.$value || "Select a Category"}}
                     lx-dropdown-menu
                         ul
                             li(ng-repeat='s in sections')
                                 a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value}}
-
-        div(flex-container='row', flex-gutter='24')
-            div(flex-item='')
-                lx-text-field(label='City')
-                    input(type='text', ng-model='cl.city' )
         div(flex-container='row')
             div(flex-item='')
                 span.display-block

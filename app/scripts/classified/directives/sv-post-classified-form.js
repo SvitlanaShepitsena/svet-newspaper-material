@@ -28,6 +28,7 @@
                         name: '',
                         tel: '',
                         email: '',
+                        state: '',
                         city: '',
                         title: '',
                         price: '',
@@ -38,7 +39,7 @@
                         if ($scope.classifiedForm[field].$invalid) {
                             return $scope.classifiedForm.$submitted || $scope.classifiedForm[field].$touched
 
-                        } else{
+                        } else {
                             return false;
                         }
                     };

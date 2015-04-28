@@ -22,7 +22,7 @@
                     return classifiedArray;
 
                 },
-                isClAvaliable: function (exists) {
+                isClAvailable: function (exists) {
                     if (!exists) {
                         return o;
                     }
