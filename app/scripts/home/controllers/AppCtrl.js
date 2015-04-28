@@ -2,9 +2,10 @@
 	'use strict';
 
 	angular.module('home')
-		.controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, news, $rootScope, toastr, $timeout) {
+		.controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, news, $rootScope, toastr,CurrentUserServ) {
 
 			$rootScope.user = user;
+            CurrentUserServ.setUser(user);
 			news.$bindTo($rootScope, "newsObj").then(function () {
 
 			});

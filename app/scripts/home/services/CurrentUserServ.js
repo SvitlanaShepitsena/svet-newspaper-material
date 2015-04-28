@@ -2,19 +2,18 @@
     'use strict';
 
     angular.module('home')
-        .factory('CurrentUserServ', function ($q, url, urlUsers, $firebaseObject, $firebaseArray) {
-
+        .factory('CurrentUserServ', function () {
+            var currentUser;
             return {
 
-                get: function () {
+                setUser: function (user) {
+                    currentUser = user;
 
                 },
-
-                getAssync: function () {
-                    return $q(function (resolve, reject) {
-
-                    });
+                get: function () {
+                    return currentUser || null;
                 }
+
             };
         });
 })();
