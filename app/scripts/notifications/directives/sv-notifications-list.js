@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('notifications')
-        .directive('svNotificationsList', function ($rootScope, $mdMedia) {
+        .directive('svNotificationsList', function ($rootScope, $mdMedia,NoteServ) {
             return {
                 templateUrl: 'scripts/notifications/directives/sv-notifications-list.html',
                 scope: {},
