@@ -6,11 +6,14 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/classified/directives/sv-classified-bonus.html',
-                scope: {
-                    cls: '='
-                },
                 link: function ($scope, el, attrs) {
-                    $scope.leftToPost = ClassifiedServ.howManyAllowed($scope.cls.length)
+                    $scope.$watch('cls', function (newValue, oldValue) {
+                        if (newValue === oldValue) return;
+
+                        $scope.cls = newValue;
+
+                        $scope.leftToPost = ClassifiedServ.howManyAllowed($scope.cls)
+                    });
 
                 }
             };

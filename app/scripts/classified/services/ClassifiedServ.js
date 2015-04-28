@@ -3,7 +3,7 @@
 
     angular.module('classified')
         .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray) {
-            var freeClNumber = 0;
+            var freeClNumber = 5;
 
             return {
 
@@ -15,10 +15,19 @@
 
                 },
                 isClAvaliable: function (exists) {
-                    return (exists - freeClNumber) > 0;
+                    if (!exists) {
+                        return o;
+                    }
+                    var len = exists.length;
+                    return (freeClNumber - len) > 0;
                 },
                 howManyAllowed: function (exists) {
-                    var left = exists - freeClNumber;
+                    if (!exists) {
+                        return 0;
+                    }
+
+                    var len = exists.length;
+                    var left = freeClNumber - len;
                     return left < 0 ? 0 : left;
                 }
             };
