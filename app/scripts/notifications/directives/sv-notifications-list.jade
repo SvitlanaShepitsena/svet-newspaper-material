@@ -1,7 +1,7 @@
 div(ng-if='user' )
-    lx-dropdown(position='right' width='250px' ng-if="hasNotices" )
+    lx-dropdown(position='right' width='250px' ng-if="unopened" )
         button.btn.btn--fab.btn--s.btn--red.bgc-red-300(lx-dropdown-toggle)
-            span.fs-caption.tc-white-1.sv-notifications-txt(ng-if="hasNotices") {{unopened}}
+            span.fs-caption.tc-white-1.sv-notifications-txt {{unopened}}
         lx-dropdown-menu
             div(layout="row" layout-align="space-between center" style='padding:0px 8px;border-bottom:1px #BDBDBD dotted')
                 div
@@ -25,8 +25,8 @@ div(ng-if='user' )
                             i.mdi.mdi-view-list.mr
                             span.fs-body-1 {{'all-notifications'|translate}}
 
-    lx-dropdown(position='right' width='250px' ng-if="!hasNotices" )
-        button.btn.btn--fab.btn--s.btn--grey.bgc-grey-700(lx-dropdown-toggle)
+    lx-dropdown(position='right' width='250px' ng-if="!unopened" )
+        button.btn.btn--fab.btn--s.btn--black.bgc-grey-700(lx-dropdown-toggle)
             i.fa.fa-bell.fa-fw.tc-grey-100
         lx-dropdown-menu
             div(layout="row" layout-align="space-between center" style='padding:0px 8px;border-bottom:1px #BDBDBD dotted')
