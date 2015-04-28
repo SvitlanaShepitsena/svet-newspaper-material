@@ -5,6 +5,12 @@ div
         .mb(layout='row', layout-align='space-between')
             sv-add-classified-btn
             sv-classified-bonus
-        .card.p
+        .card.p(ng-show='!cls.length')
             span.display-block.fs-subhead.tc-grey-700 {{'no-classified-yet'|translate}}
+        .card.p(ng-show='cls.length')
+            ul
+                li(ng-repeat='c in cls' layout='row' layout-align='space-between')
+                    div {{c.title}}
+                    div
+                        button.btn.btn-danger(ng-click='removeCls(c)') Delete
 

@@ -2,17 +2,66 @@
     'use strict';
 
     angular.module('classified')
-        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray) {
-            var freeClNumber = 1;
+        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray, UserServ,CurrentUserServ) {
+            var freeClNumber = 10;
+            var clsUrl = url+'cls/all/'
+
+
+            function processClassified(user, cl) {
+                cl.user = user.id;
+                return cl;
+
+            }
 
             return {
 
-
-                getUserClassifiesArr: function (id) {
-                    var classifiedUrl = users + id + '/classified/';
-                    var classifiedArray = $firebaseArray(new Firebase(classifiedUrl));
+                getAllCls: function () {
+                    var classifiedArray = $firebaseArray(new Firebase(clsUrl));
 
                     return classifiedArray;
+
+                },
+
+                getUserClassifiesArr: function (id) {
+                    var classifiedUserUrl = users + id + '/cls/';
+                    var classifiedArray = $firebaseArray(new Firebase(classifiedUserUrl));
+
+                    return classifiedArray;
+
+                },
+                addCl: function (cl) {
+
+                    var user = CurrentUserServ.get();
+                    return $q(function (resolve, reject) {
+                        cl = processClassified(user, cl);
+                        var classifiedArray = $firebaseArray(new Firebase(clsUrl));
+                        classifiedArray.$add(cl).then(function (uid) {
+                            var key = uid.key();
+                            UserServ.addUserCl(user.id,cl,key).then(function (uidfinal) {
+                                resolve(uidfinal.key());
+                            });
+                        })
+
+                    });
+
+                },
+                removeCl: function (cl) {
+
+                    var user = CurrentUserServ.get();
+                    return $q(function (resolve, reject) {
+                        var classifiedArray = $firebaseObject(new Firebase(clsUrl));
+                        classifiedArray.$loaded().then(function () {
+                            console.log('run here ClassifiedServ.js');
+                        classifiedArray.$remove(cl.$id).then(function (uid) {
+                            console.log(uid);
+                            var key = uid.key();
+                            UserServ.removeUserCl(user.id,cl).then(function (uidfinal) {
+                                resolve(uidfinal.key());
+                            });
+                        })
+                        })
+
+                    });
 
                 },
                 getSections: function () {

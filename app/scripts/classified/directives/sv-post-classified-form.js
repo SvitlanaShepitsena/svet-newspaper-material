@@ -2,21 +2,22 @@
     'use strict';
 
     angular.module('classified')
-        .directive('svPostClassifiedForm', function (ClassifiedServ) {
+        .directive('svPostClassifiedForm', function (ClassifiedServ, toastr) {
             return {
                 replace: true,
                 templateUrl: 'scripts/classified/directives/sv-post-classified-form.html',
                 link: function ($scope, el, attrs) {
-                    //$scope.cl = {
-                    //    name: faker.internet.userName(),
-                    //    phone: faker.phone.phoneNumber(),
-                    //    email: faker.internet.email(),
-                    //    section:'',
-                    //    city: faker.address.city(),
-                    //    title: faker.hacker.noun(4),
-                    //    price: faker.finance.amount(),
-                    //    description: faker.lorem.paragraph(2)
-                    //};
+                    $scope.cl = {
+                        name: faker.internet.userName(),
+                        phone: faker.phone.phoneNumber(),
+                        email: faker.internet.email(),
+                        section: '',
+                        city: faker.address.city(),
+                        state: faker.address.state(),
+                        title: faker.lorem.sentence(),
+                        price: faker.finance.amount(),
+                        description: faker.lorem.paragraph(2)
+                    };
 
                     $scope.sections = ClassifiedServ.getSections();
 
@@ -24,16 +25,7 @@
                         $scope.cl.section = section;
                     };
 
-                    $scope.cl = {
-                        name: '',
-                        tel: '',
-                        email: '',
-                        state: '',
-                        city: '',
-                        title: '',
-                        price: '',
-                        description: ''
-                    };
+
 
                     $scope.isInvalid = function (field) {
                         if ($scope.classifiedForm[field].$invalid) {
@@ -47,6 +39,34 @@
                     $scope.cancelAddition = function () {
                         $scope.addState = false;
 
+                    };
+
+
+                    $scope.postClassified = function () {
+                        if ($scope.classifiedForm.$invalid) {
+                            toastr.warning('Please fill required fields');
+                            return;
+                        }
+                        ClassifiedServ.addCl($scope.cl).then(function (uid) {
+
+                            toastr.info('Your classified ad has been placed.Thank you')
+                            $scope.resetForm();
+                            $scope.addState = false;
+                        });
+
+                    };
+
+                    $scope.resetForm = function () {
+                        $scope.cl = {
+                            name: '',
+                            tel: '',
+                            email: '',
+                            city: '',
+                            state: '',
+                            title: '',
+                            price: '',
+                            description: ''
+                        };
                     };
                 }
             };

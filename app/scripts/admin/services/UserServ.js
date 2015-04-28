@@ -81,6 +81,31 @@
                             });
                         });
                     });
+                },
+                addUserCl: function (userId,cl,id) {
+                    return $q(function (resolve, reject) {
+                        var userUrl = usersUrl + userId+'/cls/';
+                        var userObj = $firebaseObject(new Firebase(userUrl));
+
+                        userObj.$loaded().then(function () {
+                            userObj[id] = cl;
+                            userObj.$save().then(function (success) {
+                                resolve(success);
+                            });
+                        });
+                    });
+                },
+                removeUserCl: function (userId,cl) {
+                    return $q(function (resolve, reject) {
+                        var userClsUrl = usersUrl + userId+'/cls/'+cl.$id;
+                        var userObj = $firebaseObject(new Firebase(userClsUrl));
+
+                        userObj.$loaded().then(function () {
+                            userObj.$remove().then(function (success) {
+                                resolve(success);
+                            });
+                        });
+                    });
                 }
             };
         });
