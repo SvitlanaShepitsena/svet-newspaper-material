@@ -1,8 +1,8 @@
 div(ng-if='user' style='height:30px')
     lx-dropdown(position='right' width='250px' )
-        i.icon.icon--s.icon--grey.icon--circled.fa.fa-bell.bgc-grey-700( ng-if='!unopened' lx-dropdown-toggle)
-        a.btn.btn--xs.btn--red.btn--fab.btn-flat.bgc-red-300(ng-if='unopened' lx-dropdown-toggle)
-            span.fs-caption {{unopened}}
+        div(lx-dropdown-toggle )
+            i.icon.icon--s.icon--red.icon--circled.bgc-red-300(id='svi')
+                span.fs-caption {{unopened}}
         lx-dropdown-menu
             div(layout="row" layout-align="space-between center" style='padding:0px 8px;border-bottom:1px #BDBDBD dotted')
                 div
