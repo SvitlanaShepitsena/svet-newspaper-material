@@ -1,5 +1,6 @@
-.dropdown {
-  max-height: 30px;
+.sv-notifications-txt {
+  font-weight: bold;
+  font-size: 14px;
 }
 .user-auth-name {
   display: inline-block;
