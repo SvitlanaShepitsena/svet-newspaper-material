@@ -424,6 +424,8 @@ cursor pointer {
 	filter: grayscale(1) !important;
 }
 
+.sv-mr,
+margin-right 4px,
 .fw-700 {
 	font-weight: 700px !important;
 }

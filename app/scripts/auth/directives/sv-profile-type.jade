@@ -1,1 +1,16 @@
-div sv-profile-type Template
+div
+    div(ng-if='isInGroup("customer")')
+        span.fs-subhead.tc-red-300(style='margin-right:4px')
+            | SVET
+        span.fs-subhead.tc-grey-700
+            | BUSINESS
+    div(ng-if='isInGroup("author")')
+        span.fs-subhead.tc-red-300(style='margin-right:4px')
+            | SVET
+        span.fs-subhead.tc-grey-700
+            | AUTHOR
+    div(ng-if='isInGroup("manager")')
+        span.fs-subhead.tc-red-300(style='margin-right:4px')
+            | SVET
+        span.fs-subhead.tc-grey-700
+            | MANAGER
