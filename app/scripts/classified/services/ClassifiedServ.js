@@ -3,7 +3,7 @@
 
     angular.module('classified')
         .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray) {
-            var freeClNumber = 5;
+            var freeClNumber = 1;
 
             return {
 

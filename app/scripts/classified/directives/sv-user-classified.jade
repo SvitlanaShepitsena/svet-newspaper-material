@@ -1,7 +1,10 @@
 div
-    .mb(layout='row', layout-align='space-between')
-        sv-add-classified-btn(cls = 'cls')
-        sv-classified-bonus(cls = 'cls')
-    .card.p
-        span.display-block.fs-subhead.tc-grey-700 {{'no-classified-yet'|translate}}
+    div(ng-show='addState')
+        sv-post-classified-form
+    div(ng-show='!addState')
+        .mb(layout='row', layout-align='space-between')
+            sv-add-classified-btn
+            sv-classified-bonus
+        .card.p
+            span.display-block.fs-subhead.tc-grey-700 {{'no-classified-yet'|translate}}
 
