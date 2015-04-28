@@ -1,66 +1,51 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .factory('NoteServ', function ($q, url, urlUsers, $firebaseObject, $firebaseArray, corporate) {
             function getCustomerNotifications(userId) {
-
                 return $q(function (resolve, reject) {
                     var eventsArr = $firebaseArray(new Firebase(corporate));
                     eventsArr.$loaded().then(function () {
                         var customerNotices = [];
                         eventsArr.forEach(function (event) {
                             var customerIds = _.pluck(event.customers, 'id');
-
                             if (customerIds.indexOf(userId) === -1) {
-                                customerNotices.push(event);
+                                customerNotices.push({
+                                    note: event.title,
+                                    opened: false
+                                });
                             }
                         });
                         resolve(customerNotices);
                     });
-
-
                 });
             }
 
-
             function getManagerNotifications() {
-
                 return $q(function (resolve, reject) {
                     var eventsArr = $firebaseArray(new Firebase(corporate));
                     eventsArr.$loaded().then(function () {
                         var managerNotes = [];
                         eventsArr.forEach(function (event) {
-
                             if (event.customers && event.customers.length) {
                                 event.customers.forEach(function (cust) {
-                                    var note = cust.fname + ' accepted invitation to ' + event.title;
-                                            managerNotes.push({
-                                                note: note,
-                                                opened:false
-                                            });
+                                    var note = cust.fname + ' accepted ' + event.title;
+                                    managerNotes.push({
+                                        note: note,
+                                        opened: false
+                                    });
                                 })
-
-
                             }
-
-
                         });
                         resolve(managerNotes);
                     });
-
-
                 });
             }
 
-
             return {
-
                 getNotifications: function (user) {
-
                     return $q(function (resolve, reject) {
                         var final = [];
-
                         var groups = user.groups;
                         groups.forEach(function (group) {
                             switch (group) {
@@ -74,7 +59,6 @@
                                             } else {
                                                 user.notifications = notices;
                                             }
-
                                         }
                                     });
                                     break;
@@ -88,19 +72,14 @@
                                             } else {
                                                 user.notifications = notices;
                                             }
-
                                         }
                                     });
                                     break;
-
                             }
                         });
-
                         resolve(user);
                     });
                 }
-
-
             };
         });
 })();
