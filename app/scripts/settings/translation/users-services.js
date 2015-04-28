@@ -47,7 +47,6 @@
                 'profile-settings': 'Profile Settings',
                 'no-classified-yet': 'You do not have any classified yet',
                 'free-classified': 'You can Post for Free ',
-                'classified':'classified(s)',
                 'start-posting-classified': 'Start Posting Classified Now',
                 'add-classified': 'Add Classified',
                 'bonuses': 'Bonuses',
@@ -109,7 +108,6 @@
                 'no-classified-yet': 'У Вас пока нет объявлений',
                 'add-classified': 'Добавить Объявление',
                 'free-classified': 'Вы можете разместить бесплатно',
-                'classified':' объявления',
                 'start-posting-classified': 'Создать Объявление',
                 'bonuses': 'Бонусы',
 

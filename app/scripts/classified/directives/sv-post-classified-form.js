@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('classified')
         .directive('svPostClassifiedForm', function () {
             return {
@@ -11,13 +10,10 @@
                 controller: function ($scope) {
                     var ctrl = this;
                     ctrl.user = {
-                        fname:''
+                        fname: ''
                     };
-
                 },
-
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });
