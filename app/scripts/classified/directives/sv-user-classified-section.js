@@ -15,8 +15,7 @@
                             $scope.cls = cls;
                         })
                     })
-                    $scope.removeCls = function (cl) {
-                        console.log(cl);
+                    $scope.removeCl = function (cl) {
                         ClassifiedServ.removeCl(cl).then(function (sucess) {
                             toastr.warning('Your classified removed');
                         })
