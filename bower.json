@@ -28,6 +28,7 @@
     "ui-bootstrap": "~0.12.1",
     "angular-simple-slideshow": "~0.0.3",
     "moment": "~2.10.2",
-    "lodash": "3.7.0"
+    "lodash": "3.7.0",
+    "angular-capitalize-filter": "~2.0.0"
   }
 }
