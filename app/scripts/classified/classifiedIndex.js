@@ -29,8 +29,8 @@
                     url: "/housing",
                     templateUrl: "scripts/classified/views/classified-housing-list.html"
                 })
-                .state("app.one-classified", {
-                    url: "/one-classified/:uid",
+                .state("app.classified.one-classified", {
+                    url: "/:clid",
                     controller: "OneClassifiedCtrl as oneClassified",
                     templateUrl: "scripts/classified/views/one-classifiedCtrl.html"
                 })

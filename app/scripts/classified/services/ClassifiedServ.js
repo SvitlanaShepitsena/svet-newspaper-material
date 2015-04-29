@@ -11,6 +11,11 @@
             }
 
             return {
+                getClByKey: function (key) {
+                    var classifiedObj = $firebaseObject(new Firebase(clsUrl+key));
+                    return classifiedObj;
+
+                },
                 getAllCls: function () {
                     var classifiedArray = $firebaseArray(new Firebase(clsUrl));
                     return classifiedArray;
