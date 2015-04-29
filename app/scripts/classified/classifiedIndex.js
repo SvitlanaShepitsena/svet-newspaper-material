@@ -10,7 +10,7 @@
                     templateUrl: "scripts/classified/views/classifiedCtrl.html"
                 })
                 .state("app.one-classified", {
-                    url: "/one-classified",
+                    url: "/one-classified/:uid",
                     controller: "OneClassifiedCtrl as oneClassified",
                     templateUrl: "scripts/classified/views/one-classifiedCtrl.html"
                 })

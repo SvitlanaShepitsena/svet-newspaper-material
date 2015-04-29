@@ -1,10 +1,8 @@
 (function () {
     'use strict'
-
     angular.module('app')
         .config(function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/home');
-
             $stateProvider
                 .state("app", {
                     abstract: true,
@@ -55,7 +53,6 @@
                     controller: "SvetLoginCtrl as login",
                     templateUrl: "scripts/auth/views/svet-loginCtrl.html"
                 })
-
                 .state("app.technology", {
                     url: "/technology",
                     controller: "TechnologyCtrl as technology",
@@ -91,8 +88,6 @@
                     controller: "BusinessCtrl as business",
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
-
 //#state'
         });
-
 })();
