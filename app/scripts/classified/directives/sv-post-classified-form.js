@@ -55,7 +55,7 @@
                             name: faker.internet.userName(),
                             phone: faker.phone.phoneNumber(),
                             email: faker.internet.email(),
-                            section: '',
+                            section: 'job',
                             city: faker.address.city(),
                             state: faker.address.state(),
                             title: faker.lorem.sentence(),
