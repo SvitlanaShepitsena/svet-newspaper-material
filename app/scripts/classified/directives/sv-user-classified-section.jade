@@ -9,4 +9,4 @@ div
             span.display-block.fs-subhead.tc-grey-700 {{'no-classified-yet'|translate}}
         .div(ng-show='!!cls' layout="column")
             div(ng-repeat='cl in cls')
-                sv-one-classified(cl="cl" remove-cl="removeCl(cl)")
+                sv-one-classified-thumb(cl="cl" remove-cl="removeCl(cl)")
