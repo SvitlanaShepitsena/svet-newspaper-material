@@ -4,23 +4,19 @@
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.dashboard' lx-ripple='' style='padding:0px 10px')
                 i.mdi.mdi-view-dashboard &nbsp
                 span {{'dashboard'|translate}}
-         li(ui-sref-active='sv-active-user-menu')
+        li(ui-sref-active='sv-active-user-menu')
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ng-if='isInGroup("author")'  ui-sref='app.user.author-articles' lx-ripple='' style='padding:0px 10px')
                 i.mdi.mdi-view-list &nbsp
                 span {{'my-articles'|translate}}
-         li(ui-sref-active='sv-active-user-menu')
+        li(ui-sref-active='sv-active-user-menu')
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ng-if='isInGroup("customer")'  ui-sref='app.user.business-ad' lx-ripple='' style='padding:0px 10px')
                 i.fa.fa-bullhorn &nbsp
                 span {{'my-ad'|translate}}
-         li(ui-sref-active='sv-active-user-menu')
-            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat( ng-if='isInGroup("author")' ui-sref='app.user.author-drafts' lx-ripple='' style='padding:0px 10px')
-                i.mdi.mdi-file &nbsp
-                span {{'my-drafts'|translate}}
-         li(ui-sref-active='sv-active-user-menu')
+        li(ui-sref-active='sv-active-user-menu')
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.social' lx-ripple='' style='padding:0px 10px')
                 i.mdi.mdi-emoticon &nbsp
                 span {{'community'|translate}}
-         li(ui-sref-active='sv-active-user-menu')
+        li(ui-sref-active='sv-active-user-menu')
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.user-events' lx-ripple='' style='padding:0px 10px')
                 i.mdi.mdi-tag &nbsp
                 span {{'events'|translate}}
@@ -31,8 +27,6 @@
             i.mdi.mdi-view-list &nbsp
         a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(ng-if='isInGroup("business")' lx-tooltip="{{'my-ad'|translate}}" ui-sref='app.user.business-ad' lx-ripple='')
             i.fa.fa-bullhorn &nbsp
-        a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(ng-if='isInGroup("author")' lx-tooltip="{{'my-drafts'|translate}}" ui-sref='app.user.author-drafts' lx-ripple='')
-            i.mdi.mdi-file &nbsp
         a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(lx-tooltip="{{'community'|translate}}" ui-sref='app.user.social' lx-ripple='')
             i.mdi.mdi-emoticon &nbsp
         a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(lx-tooltip="{{'events'|translate}}" ui-sref='app.user.user-events' lx-ripple='')
