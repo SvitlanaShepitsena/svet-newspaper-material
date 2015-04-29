@@ -1,5 +1,5 @@
 /*
- LumX v0.3.31
+ LumX v0.3.28
  (c) 2014-2015 LumApps http://ui.lumapps.com
  License: MIT
 */
@@ -691,12 +691,11 @@ angular.module('lumx.dropdown', [])
 
         function setDropdownMenuCss()
         {
-            var windowScrollTop = angular.element($window).scrollTop();
             var dropdownMenuWidth = dropdownMenu.outerWidth();
             dropdownMenuHeight = dropdownMenu.outerHeight();
             var origin = {
                 x: dropdown.offset().left,
-                y: (dropdown.offset().top - windowScrollTop) + dropdown.outerHeight() // dropdown is the button at the moment
+                y: dropdown.offset().top + dropdown.outerHeight()
             };
             var width = dropdownMenuWidth;
             var height, bottomOffset, topOffset;
@@ -735,7 +734,7 @@ angular.module('lumx.dropdown', [])
                 {
                     left: $scope.position !== 'right' ? origin.x : undefined,
                     right: $scope.position === 'right' ? origin.x : undefined,
-                    bottom: $window.innerHeight - origin.y + bottomOffset - windowScrollTop,
+                    bottom: $window.innerHeight - origin.y + bottomOffset,
                     width: width,
                     height: height
                 });
@@ -748,7 +747,7 @@ angular.module('lumx.dropdown', [])
                 {
                     left: $scope.position !== 'right' ? origin.x : undefined,
                     right: $scope.position === 'right' ? origin.x : undefined,
-                    top: origin.y + topOffset + windowScrollTop,
+                    top: origin.y + topOffset,
                     width: width
                 });
             }
@@ -763,7 +762,7 @@ angular.module('lumx.dropdown', [])
                     {
                         left: $scope.position !== 'right' ? origin.x : undefined,
                         right: $scope.position === 'right' ? origin.x : undefined,
-                        bottom: $window.innerHeight - origin.y + bottomOffset - windowScrollTop,
+                        bottom: $window.innerHeight - origin.y + bottomOffset,
                         width: width,
                         height: height - bottomOffset
                     });
@@ -777,7 +776,7 @@ angular.module('lumx.dropdown', [])
                     {
                         left: $scope.position !== 'right' ? origin.x : undefined,
                         right: $scope.position === 'right' ? origin.x : undefined,
-                        top: origin.y + topOffset + windowScrollTop,
+                        top: origin.y + topOffset,
                         width: width,
                         height: height - topOffset
                     });
@@ -1019,23 +1018,12 @@ angular.module('lumx.file-input', [])
 
                 function setFileName(val)
                 {
-                    $input.val('');
                     if (val)
                     {
                         $fileName.text(val.replace(/C:\\fakepath\\/i, ''));
 
                         element.addClass('input-file--is-active');
                     }
-                    else
-                    {
-                        $fileName.text('');
-                        if (element.hasClass('input-file--is-active'))
-                        {
-                            element.removeClass('input-file--is-active');
-                        }
-                    }
-
-                    scope.value = $fileName.text();
                 }
 
                 scope.$watch('value', function(value)
