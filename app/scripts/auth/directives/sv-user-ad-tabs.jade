@@ -1,1 +1,12 @@
-div sv-user-ad-tabs Template
+div
+    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='' style='height:auto;min-height:800px')
+        md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"classified"|translate}}' )
+            md-content
+                sv-profile-subheader(subhead-title="my-classified")
+                .card.p.mb
+                    span.fs-subhead.display-block.text-center You do not have any classified yet
+        md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"business-ad"|translate}}' )
+            md-content
+                sv-profile-subheader(subhead-title="my-ad")
+                .card.p.mb
+                    span.fs-subhead.display-block.text-center You do not have any visited event yet
