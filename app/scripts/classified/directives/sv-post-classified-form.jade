@@ -39,14 +39,14 @@
             div(flex-item='')
                 lx-dropdown(hide-gt-md)
                     div.btn.btn--s.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-                        | {{cl.section.$value || "Select a Category"}}
+                        | {{cl.section || "Select a Category"}}
                     lx-dropdown-menu
                         ul
                             li(repeat='s in sections')
                                 a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value}}
                 lx-dropdown(class='mt++' hide-sm hide-gt-sm hide-md show-gt-md)
                     div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-                        | {{cl.section.$value || "Select a Category"}}
+                        | {{cl.section || "Select a Category"}}
                     lx-dropdown-menu
                         ul
                             li(ng-repeat='s in sections')
