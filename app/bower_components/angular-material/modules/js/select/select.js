@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-041ffe9
+ * v0.9.0-rc3-master-c284438
  */
 (function () {
 "use strict";
@@ -207,7 +207,6 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $interpolate, $compile,
 
       scope.$$postDigest(syncLabelText);
 
-      var selectMenuCtrl;
       function syncLabelText() {
         if (selectContainer) {
           selectMenuCtrl = selectMenuCtrl || selectContainer.find('md-select-menu').controller('mdSelectMenu');
@@ -874,7 +873,7 @@ function SelectProvider($$interimElementProvider) {
       opts.target.attr('aria-expanded', 'false');
 
 
-      angular.element($window).off('resize', opts.resizefn);
+      angular.element($window).off('resize', opts.resizeFn);
       angular.element($window).off('orientationchange', opts.resizefn);
       opts.resizeFn = undefined;
 
@@ -886,7 +885,9 @@ function SelectProvider($$interimElementProvider) {
       return $mdUtil.transitionEndPromise(element, { timeout: 350 }).then(function() {
         element.removeClass('md-active');
         opts.backdrop && opts.backdrop.remove();
-        opts.parent[0].removeChild(element[0]); // use browser to avoid $destroy event
+        if (element[0].parentNode === opts.parent[0]) {
+          opts.parent[0].removeChild(element[0]); // use browser to avoid $destroy event
+        }
         if (opts.disableParentScroll) {
           opts.restoreScroll();
         }

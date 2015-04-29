@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-041ffe9
+ * v0.9.0-rc3-master-c284438
  */
 goog.provide('ng.material.core');
 
@@ -536,14 +536,24 @@ angular.module('material.core')
       return Util.clientRect(element, offsetParent, true);
     },
     disableScrollAround: function(element) {
-      var parentContent = element[0] || element;
+      var parentContent = element instanceof angular.element ? element[0] : element;
+      var lastParent;
       var disableTarget, scrollEl, useDocElement;
-      while (parentContent = this.getClosest(parentContent.parentNode, 'MD-CONTENT', true)) {
+      while (parentContent = this.getClosest(parentContent, 'MD-CONTENT', true)) {
         if (isScrolling(parentContent)) {
           disableTarget = angular.element(parentContent);
+        } else {
+          lastParent = parentContent;
         }
       }
-      if (!disableTarget) disableTarget = angular.element($document[0].body);
+      if (!disableTarget) {
+        if (!lastParent ||
+          $document[0].body.scrollTop || $document[0].documentElement.scrollTop ) {
+          disableTarget = angular.element($document[0].body);
+        } else {
+          disableTarget = angular.element(lastParent);
+        }
+      }
 
       if (disableTarget[0].nodeName == 'BODY' && $document[0].documentElement.scrollTop) {
         scrollEl = $document[0].documentElement;
@@ -553,27 +563,20 @@ angular.module('material.core')
       }
 
       var heightOffset = scrollEl.scrollTop;
-      var restoreOffset = heightOffset;
-
-      if (!useDocElement) {
-        heightOffset = heightOffset - disableTarget[0].offsetTop;
-      }
+      var originalWidth = scrollEl.clientWidth;
 
       var restoreStyle = disableTarget.attr('style');
       var disableStyle = $window.getComputedStyle(disableTarget[0]);
-
-      var wrapperEl = angular.element('<div>');
-      disableTarget.addClass('md-overflow-wrapper-shown');
-      wrapperEl.append(disableTarget.children());
+      var wrapperEl = angular.element('<div class="md-virtual-scroll-container"><div class="md-virtual-scroller"></div></div>');
+      var virtualScroller = wrapperEl.children().eq(0);
+      virtualScroller.append(disableTarget[0].childNodes);
       disableTarget.append(wrapperEl);
+      var originalScrollBarShow = originalWidth < scrollEl.clientWidth;
 
       computeScrollbars(disableStyle);
 
-      wrapperEl.attr('layout-margin', disableTarget.attr('layout-margin'));
-
-      wrapperEl.css({
-        overflow: 'hidden',
-        position: 'fixed',
+      virtualScroller.attr('layout-margin', disableTarget.attr('layout-margin'));
+      virtualScroller.css({
         display: disableStyle.display,
         '-webkit-flex-direction': disableStyle.webkitFlexDirection,
         '-ms-flex-direction': disableStyle.msFlexDirection,
@@ -586,14 +589,11 @@ angular.module('material.core')
         'justify-content': disableStyle.justifyContent,
         '-webkit-flex': disableStyle.webkitFlex,
         '-ms-flex': disableStyle.msFlex,
-        flex: disableStyle.flex,
-        'padding-top': disableStyle.paddingTop,
-        'margin-top': '0px',
-        'margin-left': disableStyle.marginLeft,
-        top: (-1 * heightOffset) + 'px',
-        width: '100%'
+        flex: disableStyle.flex
       });
-
+      if (/flex$/.test(disableStyle.display)) {
+        virtualScroller.css('height', '100%');
+      }
 
       computeSize();
 
@@ -605,10 +605,10 @@ angular.module('material.core')
         } else {
           disableTarget[0].removeAttribute('style');
         }
-        wrapperEl.css('position', 'static');
+        virtualScroller.css('position', 'static');
         var computedStyle = $window.getComputedStyle(disableTarget[0]);
         computeScrollbars(computedStyle);
-        var innerWidth = parseFloat(computedStyle.width, 10);
+        var innerWidth = disableTarget[0].clientWidth;
         if (computedStyle.boxSizing == 'border-box') {
           innerWidth -= parseFloat(computedStyle.paddingLeft, 10);
           innerWidth -= parseFloat(computedStyle.paddingRight, 10);
@@ -617,16 +617,24 @@ angular.module('material.core')
           'max-width': innerWidth + 'px'
         });
         disableTarget.css('position', 'relative');
-        wrapperEl.css('position', 'fixed');
+        virtualScroller.css('position', 'absolute');
       }
 
       function computeScrollbars(computedStyle) {
-        var scrollBarsShowing = !Util.floatingScrollbars() &&
-            isScrolling(scrollEl) && computedStyle.overflowY != 'hidden';
+        var scrollBarsShowing = !Util.floatingScrollbars()
+            && computedStyle.overflowY != 'hidden'
+            && (
+              virtualScroller[0].clientHeight > scrollEl.clientHeight
+              || originalScrollBarShow
+            );
+
+        var scrollerOffset = -1 * (heightOffset - parseFloat(disableStyle.paddingTop, 10));
+        disableTarget.css('padding-top', '0px');
 
         if (scrollBarsShowing) {
           disableTarget.css('overflow-y', 'scroll');
         }
+        virtualScroller.css('top', scrollerOffset + 'px');
 
         var innerHeight = parseFloat(computedStyle.height, 10);
         if (computedStyle.boxSizing == 'border-box') {
@@ -634,13 +642,8 @@ angular.module('material.core')
           innerHeight -= parseFloat(computedStyle.paddingBottom, 10);
         }
 
-        if (isScrolling(scrollEl)) {
-          wrapperEl.css('min-height', '100%');
-        } else {
-          wrapperEl.css('max-height', innerHeight + 'px');
-          wrapperEl.css('height', '100%');
-        }
-        disableTarget.css('height', innerHeight + 'px');
+        wrapperEl.css('height', innerHeight + 'px');
+        return scrollBarsShowing;
       }
 
       function isScrolling(el) {
@@ -649,14 +652,14 @@ angular.module('material.core')
       }
 
       return function restoreScroll() {
-        disableTarget.append(wrapperEl.children());
+        disableTarget.append(virtualScroller[0].childNodes);
         wrapperEl.remove();
         angular.element($window).off('resize', computeSize);
         disableTarget.attr('style', restoreStyle || false);
         if (useDocElement) {
-          $document[0].documentElement.scrollTop = restoreOffset;
+          $document[0].documentElement.scrollTop = heightOffset;
         } else {
-          disableTarget[0].scrollTop = restoreOffset;
+          disableTarget[0].scrollTop = heightOffset;
         }
       };
     },
@@ -849,12 +852,13 @@ angular.module('material.core')
         parent.$$childHead = parent.$$childTail = child;
       }
     },
-  /*
-   * getClosest replicates jQuery.closest() to walk up the DOM tree until it finds a matching nodeName
-   *
-   * @param el Element to start walking the DOM from
-   * @param tagName Tag name to find closest to el, such as 'form'
-   */
+
+    /*
+     * getClosest replicates jQuery.closest() to walk up the DOM tree until it finds a matching nodeName
+     *
+     * @param el Element to start walking the DOM from
+     * @param tagName Tag name to find closest to el, such as 'form'
+     */
     getClosest: function getClosest(el, tagName, onlyParent) {
       if (el instanceof angular.element) el = el[0];
       tagName = tagName.toUpperCase();
@@ -879,6 +883,20 @@ angular.module('material.core')
         }
       }
       return element;
+    },
+
+    /**
+     * Give optional properties with no value a boolean true by default
+     */
+    initOptionalProperties : function (scope, attr, defaults ) {
+       defaults = defaults || { };
+       angular.forEach(scope.$$isolateBindings, function (binding, key) {
+         if (binding.optional && angular.isUndefined(scope[key])) {
+           var hasKey = attr.hasOwnProperty(attr.$normalize(binding.attrName));
+
+           scope[key] =  angular.isDefined(defaults[key]) ? defaults[key] : hasKey;
+         }
+       });
     }
 
   };
@@ -914,6 +932,9 @@ angular.element.prototype.blur = angular.element.prototype.blur || function() {
 angular.module('material.core')
   .service('$mdAria', AriaService);
 
+/*
+ * @ngInject
+ */
 function AriaService($$rAF, $log, $window) {
 
   return {
@@ -2108,11 +2129,15 @@ function InterimElementProvider() {
               // If parent querySelector/getter function fails, or it's just null,
               // find a default.
               if (!(options.parent || {}).length) {
-                options.parent = $rootElement.find('body');
-                if (!options.parent.length) options.parent = $rootElement;
-                if (options.parent[0].nodeName == '#comment') {
-                  options.parent = $document.find('body');
+                var el;
+                if ($rootElement[0] && $rootElement[0].querySelector) {
+                  el = $rootElement[0].querySelector(':not(svg) > body');
                 }
+                if (!el) el = $rootElement[0];
+                if (el.nodeName == '#comment') {
+                  el = $document[0].body;
+                }
+                options.parent = angular.element(el);
               }
 
               if (options.themable) $mdTheming(element);
@@ -3322,7 +3347,7 @@ function ThemingProvider($mdColorPalette) {
 
       self.foregroundPalette = self.isDark ? LIGHT_FOREGROUND : DARK_FOREGROUND;
       self.foregroundShadow = self.isDark ? DARK_SHADOW : LIGHT_SHADOW;
-      
+
       // Light and dark themes have different default hues.
       // Go through each existing color type for this theme, and for every
       // hue value that is still the default hue value from the previous light/dark setting,
@@ -3539,7 +3564,9 @@ function generateThemes($injector) {
 
   // Insert our newly minted styles into the DOM
   var head = document.getElementsByTagName('head')[0];
+  if (!head) return;
   var firstChild = head.firstElementChild;
+  if (!firstChild) return;
   var themeCss = $injector.has('$MD_THEME_CSS') ? $injector.get('$MD_THEME_CSS') : '';
 
     // Expose contrast colors for palettes to ensure that text is always readable

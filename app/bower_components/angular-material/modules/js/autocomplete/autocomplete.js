@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-041ffe9
+ * v0.9.0-rc3-master-c284438
  */
 (function () {
 "use strict";
@@ -26,7 +26,7 @@ var ITEM_HEIGHT = 41,
     MAX_HEIGHT = 5.5 * ITEM_HEIGHT,
     MENU_PADDING = 8;
 
-function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $mdTheming, $window, $rootElement) {
+function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $mdTheming, $window, $animate, $rootElement) {
 
   //-- private variables
 
@@ -124,6 +124,7 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     $mdTheming(elements.$.ul);
     elements.$.ul.detach();
     elements.$.root.append(elements.$.ul);
+    if ($animate.pin) $animate.pin(elements.$.ul, $rootElement);
   }
 
   function focusElement () {
@@ -258,8 +259,9 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
         updateScroll();
         updateSelectionMessage();
         break;
+      case $mdConstant.KEY_CODE.TAB:
       case $mdConstant.KEY_CODE.ENTER:
-        if (self.hidden || self.loading || self.index < 0) return;
+        if (self.hidden || self.loading || self.index < 0 || self.matches.length < 1) return;
         event.preventDefault();
         select(self.index);
         break;
@@ -267,8 +269,6 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
         self.matches = [];
         self.hidden = true;
         self.index = getDefaultIndex();
-        break;
-      case $mdConstant.KEY_CODE.TAB:
         break;
       default:
     }
@@ -320,6 +320,12 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
   function clearValue () {
     $scope.searchText = '';
     select(-1);
+
+    // Per http://www.w3schools.com/jsref/event_oninput.asp
+    var eventObj = document.createEvent('CustomEvent');
+    eventObj.initCustomEvent('input', true, true, {value: $scope.searchText});
+    elements.input.dispatchEvent(eventObj);
+
     elements.input.focus();
   }
 
@@ -391,7 +397,7 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
   }
 
 }
-MdAutocompleteCtrl.$inject = ["$scope", "$element", "$mdUtil", "$mdConstant", "$timeout", "$mdTheming", "$window", "$rootElement"];
+MdAutocompleteCtrl.$inject = ["$scope", "$element", "$mdUtil", "$mdConstant", "$timeout", "$mdTheming", "$window", "$animate", "$rootElement"];
 
 angular
     .module('material.components.autocomplete')
@@ -433,7 +439,7 @@ angular
  * </hljs>
  */
 
-function MdAutocomplete ($mdTheming) {
+function MdAutocomplete ($mdTheming, $mdUtil) {
   return {
     controller:   'MdAutocompleteCtrl',
     controllerAs: '$mdAutocompleteCtrl',
@@ -448,7 +454,6 @@ function MdAutocomplete ($mdTheming) {
       noCache:       '=?mdNoCache',
       itemChange:    '&?mdSelectedItemChange',
       textChange:    '&?mdSearchTextChange',
-      isDisabled:    '=?ngDisabled',
       minLength:     '=?mdMinLength',
       delay:         '=?mdDelay',
       autofocus:     '=?mdAutofocus',
@@ -535,17 +540,18 @@ function MdAutocomplete ($mdTheming) {
   };
 
   function link (scope, element, attr) {
+    if (attr.ngDisabled) {
+      scope.$parent.$watch(attr.ngDisabled, function (val) { scope.isDisabled = val; });
+    }
     scope.contents = attr.$mdAutocompleteTemplate;
     delete attr.$mdAutocompleteTemplate;
-    angular.forEach(scope.$$isolateBindings, function (binding, key) {
-      if (binding.optional && angular.isUndefined(scope[key])) {
-        scope[key] = attr.hasOwnProperty(attr.$normalize(binding.attrName));
-      }
-    });
+
+    $mdUtil.initOptionalProperties(scope, attr, {searchText:null, selectedItem:null} );
+
     $mdTheming(element);
   }
 }
-MdAutocomplete.$inject = ["$mdTheming"];
+MdAutocomplete.$inject = ["$mdTheming", "$mdUtil"];
 
 angular
     .module('material.components.autocomplete')
@@ -564,7 +570,7 @@ function MdHighlightCtrl ($scope, $element, $interpolate) {
 
   function sanitize (term) {
     if (!term) return term;
-    return term.replace(/[\*\[\]\(\)\{\}\\\^\$]/g, '\\$&');
+    return term.replace(/[\\\^\$\*\+\?\.\(\)\|\{\}\[\]]/g, '\\$&');
   }
 
   function getRegExp (text, flags) {

@@ -6,20 +6,11 @@
                 replace: true,
                 templateUrl: 'scripts/classified/directives/sv-post-classified-form.html',
                 link: function ($scope, el, attrs) {
-                    $scope.cl = {
-                        name: faker.internet.userName(),
-                        phone: faker.phone.phoneNumber(),
-                        email: faker.internet.email(),
-                        section: '',
-                        city: faker.address.city(),
-                        state: faker.address.state(),
-                        title: faker.lorem.sentence(),
-                        price: faker.finance.amount(),
-                        description: faker.lorem.paragraph(2)
-                    };
+
                     $scope.sections = ClassifiedServ.getSections();
+
                     $scope.selectDropDown = function (section) {
-                        $scope.cl.section = section;
+                        $scope.cl.section = section.$value;
                     };
                     $scope.isInvalid = function (field) {
                         if ($scope.classifiedForm[field].$invalid) {
@@ -36,9 +27,13 @@
                             toastr.warning('Please fill required fields');
                             return;
                         }
+                        $scope.cl.timestamp =
+
+
                         ClassifiedServ.addCl($scope.cl).then(function (uid) {
                             toastr.info('Your classified ad has been placed.Thank you')
                             $scope.resetForm();
+                            $scope.populateForm();
                             $scope.addState = false;
                         });
                     };
@@ -52,8 +47,23 @@
                             title: '',
                             price: '',
                             description: ''
+
                         };
                     };
+                    $scope.populateForm = function () {
+                        $scope.cl = {
+                            name: faker.internet.userName(),
+                            phone: faker.phone.phoneNumber(),
+                            email: faker.internet.email(),
+                            section: '',
+                            city: faker.address.city(),
+                            state: faker.address.state(),
+                            title: faker.lorem.sentence(),
+                            price: faker.finance.amount(),
+                            description: faker.lorem.paragraph(2)
+                        };
+                    };
+                    $scope.populateForm();
                 }
             };
         });

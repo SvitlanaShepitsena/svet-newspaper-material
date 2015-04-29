@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-041ffe9
+ * v0.9.0-rc3-master-c284438
  */
 (function () {
 "use strict";
@@ -63,12 +63,13 @@ function MdChip($mdTheming) {
   function compile(element, attr) {
     element.append(DELETE_HINT_TEMPLATE);
     return function postLink(scope, element, attr, ctrl) {
-      if (ctrl) angular.element(element[0].querySelector('.md-chip-content'))
-          .on('blur', function () {
-            ctrl.$scope.$apply(function () { ctrl.selectedChip = -1; });
-          });
       element.addClass('md-chip');
       $mdTheming(element);
+
+      if (ctrl) angular.element(element[0].querySelector('.md-chip-content'))
+          .on('blur', function () {
+            ctrl.selectedChip = -1;
+          });
     };
   }
 }
@@ -488,20 +489,22 @@ MdChipsCtrl.prototype.configureUserInput = function(inputElement) {
   inputElement
       .attr({ tabindex: 0 })
       .on('keydown', function(event) { scope.$apply(function() { ctrl.inputKeydown(event); }); })
-      .on('focus', function () { this.$scope.$apply(this.onInputFocus.bind(this)); }.bind(this))
-      .on('blur', function () { this.$scope.$apply(this.onInputBlur.bind(this)); }.bind(this));
+      .on('focus', ctrl.onInputFocus.bind(ctrl) )
+      .on('blur', ctrl.onInputBlur.bind(ctrl) );
 };
 
 MdChipsCtrl.prototype.configureAutocomplete = function(ctrl) {
+
   ctrl.registerSelectedItemWatcher(function (item) {
     if (item) {
       this.appendChip(item);
       this.resetChipBuffer();
     }
   }.bind(this));
+
   this.$element.find('input')
-      .on('focus', function () { this.$scope.$apply(this.onInputFocus.bind(this)); }.bind(this))
-      .on('blur', function () { this.$scope.$apply(this.onInputBlur.bind(this)); }.bind(this));
+      .on('focus',this.onInputFocus.bind(this) )
+      .on('blur', this.onInputBlur.bind(this) );
 };
 
 MdChipsCtrl.prototype.hasFocus = function () {
@@ -650,7 +653,7 @@ var CHIP_REMOVE_TEMPLATE = '\
 /**
  * MDChips Directive Definition
  */
-function MdChips ($mdTheming, $compile, $timeout) {
+function MdChips ($mdTheming, $mdUtil, $compile, $timeout) {
   return {
     template: function(element, attrs) {
       // Clone the element into an attribute. By prepending the attribute
@@ -730,12 +733,7 @@ function MdChips ($mdTheming, $compile, $timeout) {
      */
     return function postLink(scope, element, attrs, controllers) {
 
-      //-- give optional properties with no value a boolean true by default
-      angular.forEach(scope.$$isolateBindings, function (binding, key) {
-        if (binding.optional && angular.isUndefined(scope[key])) {
-          scope[key] = attr.hasOwnProperty(attr.$normalize(binding.attrName));
-        }
-      });
+      $mdUtil.initOptionalProperties(scope, attr);
 
       $mdTheming(element);
       var mdChipsCtrl = controllers[0];
@@ -776,7 +774,7 @@ function MdChips ($mdTheming, $compile, $timeout) {
     };
   }
 }
-MdChips.$inject = ["$mdTheming", "$compile", "$timeout"];
+MdChips.$inject = ["$mdTheming", "$mdUtil", "$compile", "$timeout"];
 
 angular
     .module('material.components.chips')
@@ -901,7 +899,7 @@ var MD_CONTACT_CHIPS_TEMPLATE = '\
  * @returns {*}
  * @ngInject
  */
-function MdContactChips ($mdTheming) {
+function MdContactChips ($mdTheming, $mdUtil) {
   return {
     template: function(element, attrs) {
       return MD_CONTACT_CHIPS_TEMPLATE;
@@ -927,18 +925,13 @@ function MdContactChips ($mdTheming) {
   function compile(element, attr) {
     return function postLink(scope, element, attrs, controllers) {
 
-      //-- give optional properties with no value a boolean true by default
-      angular.forEach(scope.$$isolateBindings, function (binding, key) {
-        if (binding.optional && angular.isUndefined(scope[key])) {
-          scope[key] = attr.hasOwnProperty(attr.$normalize(binding.attrName));
-        }
-      });
-
+      $mdUtil.initOptionalProperties(scope, attr);
       $mdTheming(element);
+
       element.attr('tabindex', '-1');
     };
   }
 }
-MdContactChips.$inject = ["$mdTheming"];
+MdContactChips.$inject = ["$mdTheming", "$mdUtil"];
 
 })();

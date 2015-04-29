@@ -2,15 +2,9 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-041ffe9
+ * v0.9.0-rc3-master-c284438
  */
 angular.module('ngMaterial', ["ng","ngAnimate","ngAria","material.core","material.core.gestures","material.core.theming.palette","material.core.theming","material.components.autocomplete","material.components.backdrop","material.components.bottomSheet","material.components.button","material.components.card","material.components.checkbox","material.components.chips","material.components.content","material.components.dialog","material.components.divider","material.components.gridList","material.components.icon","material.components.input","material.components.list","material.components.progressCircular","material.components.progressLinear","material.components.radioButton","material.components.select","material.components.sidenav","material.components.slider","material.components.sticky","material.components.subheader","material.components.swipe","material.components.switch","material.components.tabs","material.components.toast","material.components.toolbar","material.components.tooltip","material.components.whiteframe"]);
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
@@ -68,12 +62,6 @@ function rAFDecorator( $delegate ) {
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
@@ -137,12 +125,6 @@ MdConstantFactory.$inject = ["$$rAF", "$sniffer"];
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function(){
 
   angular
@@ -374,12 +356,6 @@ MdConstantFactory.$inject = ["$$rAF", "$sniffer"];
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function(){
 
 angular.module('material.core')
@@ -513,12 +489,6 @@ mdMediaFactory.$inject = ["$mdConstant", "$rootScope", "$window"];
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
@@ -564,14 +534,24 @@ angular.module('material.core')
       return Util.clientRect(element, offsetParent, true);
     },
     disableScrollAround: function(element) {
-      var parentContent = element[0] || element;
+      var parentContent = element instanceof angular.element ? element[0] : element;
+      var lastParent;
       var disableTarget, scrollEl, useDocElement;
-      while (parentContent = this.getClosest(parentContent.parentNode, 'MD-CONTENT', true)) {
+      while (parentContent = this.getClosest(parentContent, 'MD-CONTENT', true)) {
         if (isScrolling(parentContent)) {
           disableTarget = angular.element(parentContent);
+        } else {
+          lastParent = parentContent;
         }
       }
-      if (!disableTarget) disableTarget = angular.element($document[0].body);
+      if (!disableTarget) {
+        if (!lastParent ||
+          $document[0].body.scrollTop || $document[0].documentElement.scrollTop ) {
+          disableTarget = angular.element($document[0].body);
+        } else {
+          disableTarget = angular.element(lastParent);
+        }
+      }
 
       if (disableTarget[0].nodeName == 'BODY' && $document[0].documentElement.scrollTop) {
         scrollEl = $document[0].documentElement;
@@ -581,27 +561,20 @@ angular.module('material.core')
       }
 
       var heightOffset = scrollEl.scrollTop;
-      var restoreOffset = heightOffset;
-
-      if (!useDocElement) {
-        heightOffset = heightOffset - disableTarget[0].offsetTop;
-      }
+      var originalWidth = scrollEl.clientWidth;
 
       var restoreStyle = disableTarget.attr('style');
       var disableStyle = $window.getComputedStyle(disableTarget[0]);
-
-      var wrapperEl = angular.element('<div>');
-      disableTarget.addClass('md-overflow-wrapper-shown');
-      wrapperEl.append(disableTarget.children());
+      var wrapperEl = angular.element('<div class="md-virtual-scroll-container"><div class="md-virtual-scroller"></div></div>');
+      var virtualScroller = wrapperEl.children().eq(0);
+      virtualScroller.append(disableTarget[0].childNodes);
       disableTarget.append(wrapperEl);
+      var originalScrollBarShow = originalWidth < scrollEl.clientWidth;
 
       computeScrollbars(disableStyle);
 
-      wrapperEl.attr('layout-margin', disableTarget.attr('layout-margin'));
-
-      wrapperEl.css({
-        overflow: 'hidden',
-        position: 'fixed',
+      virtualScroller.attr('layout-margin', disableTarget.attr('layout-margin'));
+      virtualScroller.css({
         display: disableStyle.display,
         '-webkit-flex-direction': disableStyle.webkitFlexDirection,
         '-ms-flex-direction': disableStyle.msFlexDirection,
@@ -614,14 +587,11 @@ angular.module('material.core')
         'justify-content': disableStyle.justifyContent,
         '-webkit-flex': disableStyle.webkitFlex,
         '-ms-flex': disableStyle.msFlex,
-        flex: disableStyle.flex,
-        'padding-top': disableStyle.paddingTop,
-        'margin-top': '0px',
-        'margin-left': disableStyle.marginLeft,
-        top: (-1 * heightOffset) + 'px',
-        width: '100%'
+        flex: disableStyle.flex
       });
-
+      if (/flex$/.test(disableStyle.display)) {
+        virtualScroller.css('height', '100%');
+      }
 
       computeSize();
 
@@ -633,10 +603,10 @@ angular.module('material.core')
         } else {
           disableTarget[0].removeAttribute('style');
         }
-        wrapperEl.css('position', 'static');
+        virtualScroller.css('position', 'static');
         var computedStyle = $window.getComputedStyle(disableTarget[0]);
         computeScrollbars(computedStyle);
-        var innerWidth = parseFloat(computedStyle.width, 10);
+        var innerWidth = disableTarget[0].clientWidth;
         if (computedStyle.boxSizing == 'border-box') {
           innerWidth -= parseFloat(computedStyle.paddingLeft, 10);
           innerWidth -= parseFloat(computedStyle.paddingRight, 10);
@@ -645,16 +615,24 @@ angular.module('material.core')
           'max-width': innerWidth + 'px'
         });
         disableTarget.css('position', 'relative');
-        wrapperEl.css('position', 'fixed');
+        virtualScroller.css('position', 'absolute');
       }
 
       function computeScrollbars(computedStyle) {
-        var scrollBarsShowing = !Util.floatingScrollbars() &&
-            isScrolling(scrollEl) && computedStyle.overflowY != 'hidden';
+        var scrollBarsShowing = !Util.floatingScrollbars()
+            && computedStyle.overflowY != 'hidden'
+            && (
+              virtualScroller[0].clientHeight > scrollEl.clientHeight
+              || originalScrollBarShow
+            );
+
+        var scrollerOffset = -1 * (heightOffset - parseFloat(disableStyle.paddingTop, 10));
+        disableTarget.css('padding-top', '0px');
 
         if (scrollBarsShowing) {
           disableTarget.css('overflow-y', 'scroll');
         }
+        virtualScroller.css('top', scrollerOffset + 'px');
 
         var innerHeight = parseFloat(computedStyle.height, 10);
         if (computedStyle.boxSizing == 'border-box') {
@@ -662,13 +640,8 @@ angular.module('material.core')
           innerHeight -= parseFloat(computedStyle.paddingBottom, 10);
         }
 
-        if (isScrolling(scrollEl)) {
-          wrapperEl.css('min-height', '100%');
-        } else {
-          wrapperEl.css('max-height', innerHeight + 'px');
-          wrapperEl.css('height', '100%');
-        }
-        disableTarget.css('height', innerHeight + 'px');
+        wrapperEl.css('height', innerHeight + 'px');
+        return scrollBarsShowing;
       }
 
       function isScrolling(el) {
@@ -677,14 +650,14 @@ angular.module('material.core')
       }
 
       return function restoreScroll() {
-        disableTarget.append(wrapperEl.children());
+        disableTarget.append(virtualScroller[0].childNodes);
         wrapperEl.remove();
         angular.element($window).off('resize', computeSize);
         disableTarget.attr('style', restoreStyle || false);
         if (useDocElement) {
-          $document[0].documentElement.scrollTop = restoreOffset;
+          $document[0].documentElement.scrollTop = heightOffset;
         } else {
-          disableTarget[0].scrollTop = restoreOffset;
+          disableTarget[0].scrollTop = heightOffset;
         }
       };
     },
@@ -877,12 +850,13 @@ angular.module('material.core')
         parent.$$childHead = parent.$$childTail = child;
       }
     },
-  /*
-   * getClosest replicates jQuery.closest() to walk up the DOM tree until it finds a matching nodeName
-   *
-   * @param el Element to start walking the DOM from
-   * @param tagName Tag name to find closest to el, such as 'form'
-   */
+
+    /*
+     * getClosest replicates jQuery.closest() to walk up the DOM tree until it finds a matching nodeName
+     *
+     * @param el Element to start walking the DOM from
+     * @param tagName Tag name to find closest to el, such as 'form'
+     */
     getClosest: function getClosest(el, tagName, onlyParent) {
       if (el instanceof angular.element) el = el[0];
       tagName = tagName.toUpperCase();
@@ -907,6 +881,20 @@ angular.module('material.core')
         }
       }
       return element;
+    },
+
+    /**
+     * Give optional properties with no value a boolean true by default
+     */
+    initOptionalProperties : function (scope, attr, defaults ) {
+       defaults = defaults || { };
+       angular.forEach(scope.$$isolateBindings, function (binding, key) {
+         if (binding.optional && angular.isUndefined(scope[key])) {
+           var hasKey = attr.hasOwnProperty(attr.$normalize(binding.attrName));
+
+           scope[key] =  angular.isDefined(defaults[key]) ? defaults[key] : hasKey;
+         }
+       });
     }
 
   };
@@ -936,18 +924,15 @@ angular.element.prototype.blur = angular.element.prototype.blur || function() {
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
 angular.module('material.core')
   .service('$mdAria', AriaService);
 
+/*
+ * @ngInject
+ */
 function AriaService($$rAF, $log, $window) {
 
   return {
@@ -1026,12 +1011,6 @@ function AriaService($$rAF, $log, $window) {
 AriaService.$inject = ["$$rAF", "$log", "$window"];
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
@@ -1087,11 +1066,11 @@ function mdCompilerService($q, $http, $injector, $compile, $controller, $templat
     *      * `key` - `{string}`: a name of a dependency to be injected into the controller.
     *      * `factory` - `{string|function}`: If `string` then it is an alias for a service.
     *        Otherwise if function, then it is injected and the return value is treated as the
-    *        dependency. If the result is a promise, it is resolved before its value is
+    *        dependency. If the result is a promise, it is resolved before its value is 
     *        injected into the controller.
     *
     * @returns {object=} promise A promise, which will be resolved with a `compileData` object.
-    * `compileData` has the following properties:
+    * `compileData` has the following properties: 
     *
     *   - `element` - `{element}`: an uncompiled element matching the provided template.
     *   - `link` - `{function(scope)}`: A link function, which, when called, will compile
@@ -1110,7 +1089,7 @@ function mdCompilerService($q, $http, $injector, $compile, $controller, $templat
     var transformTemplate = options.transformTemplate || angular.identity;
     var bindToController = options.bindToController;
 
-    // Take resolve values and invoke them.
+    // Take resolve values and invoke them.  
     // Resolves can either be a string (value: 'MyRegisteredAngularConst'),
     // or an invokable 'factory' of sorts: (value: function ValueGetter($dependency) {})
     angular.forEach(resolve, function(value, key) {
@@ -1171,12 +1150,6 @@ function mdCompilerService($q, $http, $injector, $compile, $controller, $templat
 mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controller", "$templateCache"];
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function (jQuery) {
   'use strict';
 
@@ -1190,7 +1163,7 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
 
   // Used to attach event listeners once when multiple ng-apps are running.
   var isInitialized = false;
-
+  
   angular
     .module('material.core.gestures', [ ])
     .provider('$mdGesture', MdGestureProvider)
@@ -1227,8 +1200,8 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
     skipClickHijack: function() {
       return forceSkipClickHijack = true;
     },
-
-    // $get is used to build an instance of $mdGesture
+    
+    // $get is used to build an instance of $mdGesture 
     $get : ['$$MdGestureHandler', '$$rAF', '$timeout', function($$MdGestureHandler, $$rAF, $timeout) {
          return new MdGesture($$MdGestureHandler, $$rAF, $timeout);
     }]
@@ -1297,7 +1270,7 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
      * Register handlers. These listen to touch/start/move events, interpret them,
      * and dispatch gesture events depending on options & conditions. These are all
      * instances of GestureHandler.
-     * @see GestureHandler
+     * @see GestureHandler 
      */
     return self
       /*
@@ -1618,9 +1591,9 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
        * click event will be sent ~400ms after a touchend event happens.
        * The only way to know if this click is real is to prevent any normal
        * click events, and add a flag to events sent by material so we know not to prevent those.
-       *
+       * 
        * One exception to click events that should be prevented is click events sent by the
-       * keyboard (eg form submit).
+       * keyboard (eg form submit). 
        */
       document.addEventListener('click', function clickHijacker(ev) {
         var isKeyClick = ev.clientX === 0 && ev.clientY === 0;
@@ -1629,7 +1602,7 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
           ev.stopPropagation();
         }
       }, true);
-
+      
       isInitialized = true;
     }
 
@@ -1783,12 +1756,6 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
 
 })(window.jQuery);
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
@@ -2135,7 +2102,7 @@ function InterimElementProvider() {
           show: function() {
             var compilePromise;
             if (options.skipCompile) {
-              compilePromise = $q(function(resolve) {
+              compilePromise = $q(function(resolve) { 
                 resolve({
                   locals: {},
                   link: function() { return options.element; }
@@ -2160,11 +2127,15 @@ function InterimElementProvider() {
               // If parent querySelector/getter function fails, or it's just null,
               // find a default.
               if (!(options.parent || {}).length) {
-                options.parent = $rootElement.find('body');
-                if (!options.parent.length) options.parent = $rootElement;
-                if (options.parent[0].nodeName == '#comment') {
-                  options.parent = $document.find('body');
+                var el;
+                if ($rootElement[0] && $rootElement[0].querySelector) {
+                  el = $rootElement[0].querySelector(':not(svg) > body');
                 }
+                if (!el) el = $rootElement[0];
+                if (el.nodeName == '#comment') {
+                  el = $document[0].body;
+                }
+                options.parent = angular.element(el);
               }
 
               if (options.themable) $mdTheming(element);
@@ -2221,12 +2192,6 @@ function InterimElementProvider() {
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
   'use strict';
 
@@ -2354,12 +2319,6 @@ function InterimElementProvider() {
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
@@ -2788,12 +2747,6 @@ function attrNoDirective() {
 }
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
@@ -3160,12 +3113,6 @@ angular.module('material.core.theming.palette', [])
 });
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 'use strict';
 
@@ -3615,7 +3562,9 @@ function generateThemes($injector) {
 
   // Insert our newly minted styles into the DOM
   var head = document.getElementsByTagName('head')[0];
+  if (!head) return;
   var firstChild = head.firstElementChild;
+  if (!firstChild) return;
   var themeCss = $injector.has('$MD_THEME_CSS') ? $injector.get('$MD_THEME_CSS') : '';
 
     // Expose contrast colors for palettes to ensure that text is always readable
@@ -3798,12 +3747,6 @@ function rgba(rgbArray, opacity) {
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.autocomplete
@@ -3816,12 +3759,6 @@ angular.module('material.components.autocomplete', [
   'material.components.icon'
 ]);
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /*
  * @ngdoc module
  * @name material.components.backdrop
@@ -3851,12 +3788,6 @@ function BackdropDirective($mdTheming) {
 }
 BackdropDirective.$inject = ["$mdTheming"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.bottomSheet
@@ -4114,12 +4045,6 @@ function MdBottomSheetProvider($$interimElementProvider) {
 }
 MdBottomSheetProvider.$inject = ["$$interimElementProvider"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.button
@@ -4192,7 +4117,7 @@ function MdButtonDirective($mdInkRipple, $mdTheming, $mdAria, $timeout) {
   function isAnchor(attr) {
     return angular.isDefined(attr.href) || angular.isDefined(attr.ngHref) || angular.isDefined(attr.ngLink) || angular.isDefined(attr.uiSref);
   }
-
+  
   function getTemplate(element, attr) {
     return isAnchor(attr) ?
            '<a class="md-button" ng-transclude></a>' :
@@ -4209,13 +4134,21 @@ function MdButtonDirective($mdInkRipple, $mdTheming, $mdAria, $timeout) {
       $mdAria.expect(element, 'aria-label');
     }
 
-    // For anchor elements, we have to set tabindex manually when the
+    // For anchor elements, we have to set tabindex manually when the 
     // element is disabled
     if (isAnchor(attr) && angular.isDefined(attr.ngDisabled) ) {
       scope.$watch(attr.ngDisabled, function(isDisabled) {
         element.attr('tabindex', isDisabled ? -1 : 0);
       });
     }
+
+    // disabling click event when disabled is true
+    element.on('click', function(e){
+      if (attr.disabled === true) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+    });
 
     // restrict focus styles to the keyboard
     scope.mouseActive = false;
@@ -4234,12 +4167,6 @@ function MdButtonDirective($mdInkRipple, $mdTheming, $mdAria, $timeout) {
 }
 MdButtonDirective.$inject = ["$mdInkRipple", "$mdTheming", "$mdAria", "$timeout"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.card
@@ -4268,13 +4195,17 @@ angular.module('material.components.card', [
  * container will wrap text content and provide padding. An `<md-card-footer>` element can be
  * optionally included to put content flush against the bottom edge of the card.
  *
+ * Action buttons can be included in an element with the `.md-actions` class, also used in `md-dialog`.
+ * You can then position buttons using layout attributes.
+ *
  * Cards have constant width and variable heights; where the maximum height is limited to what can
  * fit within a single view on a platform, but it can temporarily expand as needed.
  *
  * @usage
+ * ###Card with optional footer
  * <hljs lang="html">
  * <md-card>
- *  <img src="card-image.png" class="md-card-image">
+ *  <img src="card-image.png" class="md-card-image" alt="image caption">
  *  <md-card-content>
  *    <h2>Card headline</h2>
  *    <p>Card content</p>
@@ -4282,6 +4213,21 @@ angular.module('material.components.card', [
  *  <md-card-footer>
  *    Card footer
  *  </md-card-footer>
+ * </md-card>
+ * </hljs>
+ *
+ * ###Card with actions
+ * <hljs lang="html">
+ * <md-card>
+ *  <img src="card-image.png" class="md-card-image" alt="image caption">
+ *  <md-card-content>
+ *    <h2>Card headline</h2>
+ *    <p>Card content</p>
+ *  </md-card-content>
+ *  <div class="md-actions" layout="row" layout-align="end center">
+ *    <md-button>Action 1</md-button>
+ *    <md-button>Action 2</md-button>
+ *  </div>
  * </md-card>
  * </hljs>
  *
@@ -4296,12 +4242,6 @@ function mdCardDirective($mdTheming) {
 }
 mdCardDirective.$inject = ["$mdTheming"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.checkbox
@@ -4358,7 +4298,8 @@ function MdCheckboxDirective(inputDirective, $mdInkRipple, $mdAria, $mdConstant,
     restrict: 'E',
     transclude: true,
     require: '?ngModel',
-    template:
+    priority:210, // Run before ngAria
+    template: 
       '<div class="md-container" md-ink-ripple md-ink-ripple-checkbox>' +
         '<div class="md-icon"></div>' +
       '</div>' +
@@ -4458,12 +4399,6 @@ function MdCheckboxDirective(inputDirective, $mdInkRipple, $mdAria, $mdConstant,
 }
 MdCheckboxDirective.$inject = ["inputDirective", "$mdInkRipple", "$mdAria", "$mdConstant", "$mdTheming", "$mdUtil", "$timeout"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.chips
@@ -4476,12 +4411,6 @@ angular.module('material.components.chips', [
   'material.components.autocomplete'
 ]);
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.content
@@ -4557,12 +4486,6 @@ function iosScrollFix(node) {
   });
 }
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.dialog
@@ -4580,7 +4503,7 @@ function MdDialogDirective($$rAF, $mdTheming) {
     link: function(scope, element, attr) {
       $mdTheming(element);
       $$rAF(function() {
-        var content = element[0].querySelector('md-content');
+        var content = element[0].querySelector('md-dialog-content');
         if (content && content.scrollHeight > content.clientHeight) {
           element.addClass('md-content-overflow');
         }
@@ -4604,7 +4527,7 @@ MdDialogDirective.$inject = ["$$rAF", "$mdTheming"];
  *
  * - The dialog is always given an isolate scope.
  * - The dialog's template must have an outer `<md-dialog>` element.
- *   Inside, use an `<md-content>` element for the dialog's content, and use
+ *   Inside, use an `<md-dialog-content>` element for the dialog's content, and use
  *   an element with class `md-actions` for the dialog's actions.
  * - Dialogs must cover the entire application to keep interactions inside of them.
  * Use the `parent` option to change where dialogs are appended.
@@ -4616,18 +4539,26 @@ MdDialogDirective.$inject = ["$$rAF", "$mdTheming"];
  * @usage
  * <hljs lang="html">
  * <div  ng-app="demoApp" ng-controller="EmployeeController">
- *   <md-button ng-click="showAlert()" class="md-raised md-warn">
- *     Employee Alert!
- *   </md-button>
- *   <md-button ng-click="showDialog($event)" class="md-raised">
- *     Custom Dialog
- *   </md-button>
- *   <md-button ng-click="closeAlert()" ng-disabled="!hasAlert()" class="md-raised">
- *     Close Alert
- *   </md-button>
- *   <md-button ng-click="showGreeting($event)" class="md-raised md-primary" >
- *     Greet Employee
- *   </md-button>
+ *   <div>
+ *     <md-button ng-click="showAlert()" class="md-raised md-warn">
+ *       Employee Alert!
+ *       </md-button>
+ *   </div>
+ *   <div>
+ *     <md-button ng-click="showDialog($event)" class="md-raised">
+ *       Custom Dialog
+ *       </md-button>
+ *   </div>
+ *   <div>
+ *     <md-button ng-click="closeAlert()" ng-disabled="!hasAlert()" class="md-raised">
+ *       Close Alert
+ *     </md-button>
+ *   </div>
+ *   <div>
+ *     <md-button ng-click="showGreeting($event)" class="md-raised md-primary" >
+ *       Greet Employee
+ *       </md-button>
+ *   </div>
  * </div>
  * </hljs>
  *
@@ -4668,15 +4599,15 @@ MdDialogDirective.$inject = ["$$rAF", "$mdTheming"];
  *          targetEvent: $event,
  *          template:
  *            '<md-dialog aria-label="List dialog">' +
- *            '  <md-content>'+
+ *            '  <md-dialog-content>'+
  *            '    <md-list>'+
- *            '      <md-item ng-repeat="item in items">'+
+ *            '      <md-list-item ng-repeat="item in items">'+
  *            '       <p>Number {{item}}</p>' +
  *            '      </md-item>'+
  *            '    </md-list>'+
- *            '  </md-content>' +
+ *            '  </md-dialog-content>' +
  *            '  <div class="md-actions">' +
- *            '    <md-button ng-click="closeDialog()">' +
+ *            '    <md-button ng-click="closeDialog()" class="md-primary">' +
  *            '      Close Dialog' +
  *            '    </md-button>' +
  *            '  </div>' +
@@ -4752,12 +4683,11 @@ MdDialogDirective.$inject = ["$$rAF", "$mdTheming"];
  *           template:
  *             '<md-dialog>' +
  *
- *             '  <md-content>Hello {{ employee }}!</md-content>' +
+ *             '  <md-dialog-content>Hello {{ employee }}!</md-dialog-content>' +
  *
  *             '  <div class="md-actions">' +
- *             '    <md-button ng-click="closeDialog()">' +
+ *             '    <md-button ng-click="closeDialog()" class="md-primary">' +
  *             '      Close Greeting' +
- *
  *             '    </md-button>' +
  *             '  </div>' +
  *             '</md-dialog>',
@@ -4922,12 +4852,13 @@ function MdDialogProvider($$interimElementProvider) {
     return {
       template: [
         '<md-dialog md-theme="{{ dialog.theme }}" aria-label="{{ dialog.ariaLabel }}">',
-          '<md-content role="document" tabIndex="0">',
+          '<md-dialog-content role="document" tabIndex="0">',
             '<h2 class="md-title">{{ dialog.title }}</h2>',
             '<p>{{ dialog.content }}</p>',
-          '</md-content>',
+          '</md-dialog-content>',
           '<div class="md-actions">',
-            '<md-button ng-if="dialog.$type == \'confirm\'" ng-click="dialog.abort()">',
+            '<md-button ng-if="dialog.$type == \'confirm\'"' +
+                      ' ng-click="dialog.abort()" class="md-primary">',
               '{{ dialog.cancel }}',
             '</md-button>',
             '<md-button ng-click="dialog.hide()" class="md-primary">',
@@ -5003,7 +4934,7 @@ function MdDialogProvider($$interimElementProvider) {
 
       if (options.$type === 'alert') {
         role = 'alertdialog';
-        elementToFocus = element.find('md-content');
+        elementToFocus = element.find('md-dialog-content');
       }
 
       configureAria(element.find('md-dialog'), role, options);
@@ -5105,7 +5036,7 @@ function MdDialogProvider($$interimElementProvider) {
         'tabIndex': '-1'
       });
 
-      var dialogContent = element.find('md-content');
+      var dialogContent = element.find('md-dialog-content');
       if (dialogContent.length === 0){
         dialogContent = element;
       }
@@ -5222,12 +5153,6 @@ function MdDialogProvider($$interimElementProvider) {
 }
 MdDialogProvider.$inject = ["$$interimElementProvider"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.divider
@@ -5264,12 +5189,6 @@ function MdDividerDirective($mdTheming) {
 }
 MdDividerDirective.$inject = ["$mdTheming"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.gridList
@@ -5427,45 +5346,46 @@ function GridListDirective($interpolate, $mdConstant, $mdGridLayout, $mdMedia) {
      * Invokes the layout engine, and uses its results to lay out our
      * tile elements.
      *
-     * @param {boolean} tilesAdded Whether tiles have been added since the last
-     *    layout. This is to avoid situations where tiles are replaced with
-     *    properties identical to their removed counterparts.
+     * @param {boolean} tilesInvalidated Whether tiles have been
+     *    added/removed/moved since the last layout. This is to avoid situations
+     *    where tiles are replaced with properties identical to their removed
+     *    counterparts.
      */
-    function layoutDelegate(tilesAdded) {
+    function layoutDelegate(tilesInvalidated) {
+      var tiles = getTileElements();
       var props = {
-        tileSpans: getTileSpans(),
+        tileSpans: getTileSpans(tiles),
         colCount: getColumnCount(),
         rowMode: getRowMode(),
         rowHeight: getRowHeight(),
         gutter: getGutter()
       };
 
-      if (!tilesAdded && angular.equals(props, lastLayoutProps)) {
+      if (!tilesInvalidated && angular.equals(props, lastLayoutProps)) {
         return;
       }
 
-      var tiles = getTileElements(),
-          performance =
-            $mdGridLayout(props.colCount, props.tileSpans, tiles)
-              .map(function(tilePositions, rowCount) {
+      var performance =
+        $mdGridLayout(props.colCount, props.tileSpans, tiles)
+          .map(function(tilePositions, rowCount) {
+            return {
+              grid: {
+                element: element,
+                style: getGridStyle(props.colCount, rowCount,
+                    props.gutter, props.rowMode, props.rowHeight)
+              },
+              tiles: tilePositions.map(function(ps, i) {
                 return {
-                  grid: {
-                    element: element,
-                    style: getGridStyle(props.colCount, rowCount,
-                        props.gutter, props.rowMode, props.rowHeight)
-                  },
-                  tiles: tilePositions.map(function(ps, i) {
-                    return {
-                      element: angular.element(tiles[i]),
-                      style: getTileStyle(ps.position, ps.spans,
-                          props.colCount, props.rowCount,
-                          props.gutter, props.rowMode, props.rowHeight)
-                    }
-                  })
+                  element: angular.element(tiles[i]),
+                  style: getTileStyle(ps.position, ps.spans,
+                      props.colCount, props.rowCount,
+                      props.gutter, props.rowMode, props.rowHeight)
                 }
               })
-              .reflow()
-              .performance();
+            }
+          })
+          .reflow()
+          .performance();
 
       // Report layout
       scope.mdOnLayout({
@@ -5617,20 +5537,23 @@ function GridListDirective($interpolate, $mdConstant, $mdGridLayout, $mdMedia) {
     }
 
     function getTileElements() {
-      return ctrl.tiles.map(function(tile) { return tile.element });
+      return [].filter.call(element.children(), function(ele) {
+        return ele.tagName == 'MD-GRID-TILE';
+      });
     }
 
     /**
      * Gets an array of objects containing the rowspan and colspan for each tile.
      * @returns {Array<{row: number, col: number}>}
      */
-    function getTileSpans() {
-      return ctrl.tiles.map(function(tile) {
+    function getTileSpans(tileElements) {
+      return [].map.call(tileElements, function(ele) {
+        var ctrl = angular.element(ele).controller('mdGridTile');
         return {
           row: parseInt(
-              $mdMedia.getResponsiveAttribute(tile.attrs, 'md-rowspan'), 10) || 1,
+              $mdMedia.getResponsiveAttribute(ctrl.$attrs, 'md-rowspan'), 10) || 1,
           col: parseInt(
-              $mdMedia.getResponsiveAttribute(tile.attrs, 'md-colspan'), 10) || 1
+              $mdMedia.getResponsiveAttribute(ctrl.$attrs, 'md-colspan'), 10) || 1
         };
       });
     }
@@ -5680,59 +5603,34 @@ GridListDirective.$inject = ["$interpolate", "$mdConstant", "$mdGridLayout", "$m
 
 /* @ngInject */
 function GridListController($timeout) {
-  this.invalidated = false;
-  this.tilesAdded = false;
+  this.layoutInvalidated = false;
+  this.tilesInvalidated = false;
   this.$timeout_ = $timeout;
-  this.tiles = [];
   this.layoutDelegate = angular.noop;
 }
 GridListController.$inject = ["$timeout"];
 
 GridListController.prototype = {
-  addTile: function(tileElement, tileAttrs, idx) {
-    var tile = { element: tileElement, attrs: tileAttrs };
-    if (angular.isUndefined(idx)) {
-      this.tiles.push(tile);
-    } else {
-      this.tiles.splice(idx, 0, tile);
-    }
-    this.tilesAdded = true;
-    this.invalidateLayout();
-  },
-
-  removeTile: function(tileElement, tileAttrs) {
-    var idx = this._findTileIndex(tileAttrs);
-    if (idx === -1) {
-      return;
-    }
-    this.tiles.splice(idx, 1);
+  invalidateTiles: function() {
+    this.tilesInvalidated = true;
     this.invalidateLayout();
   },
 
   invalidateLayout: function() {
-    if (this.invalidated) {
+    if (this.layoutInvalidated) {
       return;
     }
-    this.invalidated = true;
+    this.layoutInvalidated = true;
     this.$timeout_(angular.bind(this, this.layout));
   },
 
   layout: function() {
     try {
-      this.layoutDelegate(this.tilesAdded);
+      this.layoutDelegate(this.tilesInvalidated);
     } finally {
-      this.invalidated = false;
-      this.tilesAdded = false;
+      this.layoutInvalidated = false;
+      this.tilesInvalidated = false;
     }
-  },
-
-  _findTileIndex: function(tileAttrs) {
-    for (var i = 0; i < this.tiles.length; i++) {
-      if (this.tiles[i].attrs == tileAttrs) {
-        return i;
-      }
-    }
-    return -1;
   }
 };
 
@@ -5999,6 +5897,10 @@ function GridTileDirective($mdMedia) {
     template: '<figure ng-transclude></figure>',
     transclude: true,
     scope: {},
+    // Simple controller that exposes attributes to the grid directive
+    controller: ["$attrs", function($attrs) {
+      this.$attrs = $attrs;
+    }],
     link: postLink
   };
 
@@ -6011,24 +5913,25 @@ function GridTileDirective($mdMedia) {
         attrs, angular.bind(gridCtrl, gridCtrl.invalidateLayout));
 
     // Tile registration/deregistration
-    // TODO(shyndman): Kind of gross to access parent scope like this.
-    //    Consider other options.
-    gridCtrl.addTile(element, attrs, scope.$parent.$index);
+    gridCtrl.invalidateTiles();
     scope.$on('$destroy', function() {
       unwatchAttrs();
-      gridCtrl.removeTile(element, attrs);
+      gridCtrl.invalidateLayout();
     });
 
     if (angular.isDefined(scope.$parent.$index)) {
       scope.$watch(function() { return scope.$parent.$index; },
         function indexChanged(newIdx, oldIdx) {
-          gridCtrl.removeTile(element, attrs);
-          gridCtrl.addTile(element, attrs, newIdx);
+          if (newIdx === oldIdx) {
+            return;
+          }
+          gridCtrl.invalidateTiles();
         });
     }
   }
 }
 GridTileDirective.$inject = ["$mdMedia"];
+
 
 function GridTileCaptionDirective() {
   return {
@@ -6037,12 +5940,6 @@ function GridTileCaptionDirective() {
   };
 }
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.icon
@@ -6145,12 +6042,6 @@ function mdIconDirective($mdIcon, $mdTheming, $mdAria ) {
 }
 mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
   angular
     .module('material.components.icon' )
     .provider('$mdIcon', MdIconProvider);
@@ -6614,12 +6505,6 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria"];
 
  }
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 (function() {
 
 /**
@@ -6952,10 +6837,11 @@ function mdMaxlengthDirective($animate) {
 }
 mdMaxlengthDirective.$inject = ["$animate"];
 
-function placeholderDirective() {
+function placeholderDirective($log) {
   return {
     restrict: 'A',
     require: '^^?mdInputContainer',
+    priority:200,
     link: postLink
   };
 
@@ -6966,20 +6852,21 @@ function placeholderDirective() {
     var placeholderText = attr.placeholder;
     element.removeAttr('placeholder');
 
-    var placeholder = '<div class="md-placeholder" ng-click="delegateClick()">' +
-                       placeholderText + '</div>';
-    inputContainer.element.append(placeholder);
+    if ( inputContainer.element.find('label').length == 0 ) {
+      var placeholder = '<label ng-click="delegateClick()">' + placeholderText + '</label>';
+
+      inputContainer.element.addClass('md-icon-float');
+      inputContainer.element.prepend(placeholder);
+    } else {
+      $log.warn("The placeholder='" + placeholderText + "' will be ignored since this md-input-container has a child label element.");
+    }
+
   }
 }
+placeholderDirective.$inject = ["$log"];
 
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.list
@@ -7140,7 +7027,9 @@ function mdListItemDirective($mdAria, $mdConstant, $timeout) {
 
       function postLink($scope, $element, $attr, ctrl) {
 
-        var proxies = [];
+        var proxies    = [],
+            firstChild = $element[0].firstElementChild,
+            hasClick   = firstChild && firstChild.hasAttribute('ng-click');
 
         computeProxies();
         computeClickable();
@@ -7170,25 +7059,25 @@ function mdListItemDirective($mdAria, $mdConstant, $timeout) {
           var children = $element.children();
           if (children.length && !children[0].hasAttribute('ng-click')) {
             angular.forEach(proxiedTypes, function(type) {
-              angular.forEach($element[0].firstElementChild.querySelectorAll(type), function(child) {
+              angular.forEach(firstChild.querySelectorAll(type), function(child) {
                 proxies.push(child);
               });
             });
           }
         }
         function computeClickable() {
-          if (proxies.length || $element[0].firstElementChild.hasAttribute('ng-click')) {
+          if (proxies.length || hasClick) {
             $element.addClass('md-clickable');
 
             ctrl.attachRipple($scope, angular.element($element[0].querySelector('.md-no-style')));
           }
         }
 
-        if (!$element[0].firstElementChild.hasAttribute('ng-click') && !proxies.length) {
-          $element[0].firstElementChild.addEventListener('keypress', function(e) {
+        if (!hasClick && !proxies.length) {
+          firstChild.addEventListener('keypress', function(e) {
             if (e.target.nodeName != 'INPUT') {
               if (e.keyCode == $mdConstant.KEY_CODE.SPACE) {
-                $element[0].firstElementChild.click();
+                firstChild.click();
                 e.preventDefault();
                 e.stopPropagation();
               }
@@ -7199,9 +7088,9 @@ function mdListItemDirective($mdAria, $mdConstant, $timeout) {
         $element.off('click');
         $element.off('keypress');
 
-        if (proxies.length) {
+        if (proxies.length && firstChild) {
           $element.children().eq(0).on('click', function(e) {
-            if ($element[0].firstElementChild.contains(e.target)) {
+            if (firstChild.contains(e.target)) {
               angular.forEach(proxies, function(proxy) {
                 if (e.target !== proxy && !proxy.contains(e.target)) {
                   angular.element(proxy).triggerHandler('click');
@@ -7234,12 +7123,6 @@ function MdListController($scope, $element, $mdInkRipple) {
 }
 MdListController.$inject = ["$scope", "$element", "$mdInkRipple"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.progressCircular
@@ -7340,12 +7223,6 @@ function MdProgressCircularDirective($mdConstant, $mdTheming) {
 }
 MdProgressCircularDirective.$inject = ["$mdConstant", "$mdTheming"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.progressLinear
@@ -7397,7 +7274,7 @@ function MdProgressLinearDirective($$rAF, $mdConstant, $mdTheming) {
       '</div>',
     compile: compile
   };
-
+  
   function compile(tElement, tAttrs, transclude) {
     tElement.attr('aria-valuemin', 0);
     tElement.attr('aria-valuemax', 100);
@@ -7463,12 +7340,6 @@ var transforms = (function() {
   }
 })();
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.radioButton
@@ -7772,12 +7643,6 @@ function mdRadioButtonDirective($mdAria, $mdUtil, $mdTheming) {
 }
 mdRadioButtonDirective.$inject = ["$mdAria", "$mdUtil", "$mdTheming"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.select
@@ -7979,7 +7844,6 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $interpolate, $compile,
 
       scope.$$postDigest(syncLabelText);
 
-      var selectMenuCtrl;
       function syncLabelText() {
         if (selectContainer) {
           selectMenuCtrl = selectMenuCtrl || selectContainer.find('md-select-menu').controller('mdSelectMenu');
@@ -8646,7 +8510,7 @@ function SelectProvider($$interimElementProvider) {
       opts.target.attr('aria-expanded', 'false');
 
 
-      angular.element($window).off('resize', opts.resizefn);
+      angular.element($window).off('resize', opts.resizeFn);
       angular.element($window).off('orientationchange', opts.resizefn);
       opts.resizeFn = undefined;
 
@@ -8658,7 +8522,9 @@ function SelectProvider($$interimElementProvider) {
       return $mdUtil.transitionEndPromise(element, { timeout: 350 }).then(function() {
         element.removeClass('md-active');
         opts.backdrop && opts.backdrop.remove();
-        opts.parent[0].removeChild(element[0]); // use browser to avoid $destroy event
+        if (element[0].parentNode === opts.parent[0]) {
+          opts.parent[0].removeChild(element[0]); // use browser to avoid $destroy event
+        }
         if (opts.disableParentScroll) {
           opts.restoreScroll();
         }
@@ -8822,12 +8688,6 @@ function nodesToArray(nodes) {
   return results;
 }
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.sidenav
@@ -8870,13 +8730,13 @@ angular.module('material.components.sidenav', [
  *    });
  * // Async open the given sidenav
  * $mdSidenav(componentId)
- *    .open();
+ *    .open()
  *    .then(function(){
  *      $log.debug('opened');
  *    });
  * // Async close the given sidenav
  * $mdSidenav(componentId)
- *    .close();
+ *    .close()
  *    .then(function(){
  *      $log.debug('closed');
  *    });
@@ -9242,12 +9102,6 @@ function SidenavController($scope, $element, $attrs, $mdComponentRegistry, $q) {
 }
 SidenavController.$inject = ["$scope", "$element", "$attrs", "$mdComponentRegistry", "$q"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
   /**
    * @ngdoc module
    * @name material.components.slider
@@ -9640,12 +9494,6 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
 }
 SliderDirective.$inject = ["$$rAF", "$window", "$mdAria", "$mdUtil", "$mdConstant", "$mdTheming", "$mdGesture", "$parse"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /*
  * @ngdoc module
  * @name material.components.sticky
@@ -9767,7 +9615,7 @@ function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
         return a.top < b.top ? -1 : 1;
       });
 
-      // Find which item in the list should be active,
+      // Find which item in the list should be active, 
       // based upon the content's current scroll position
       var item;
       var currentScrollTop = contentEl.prop('scrollTop');
@@ -9788,7 +9636,7 @@ function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
     // Find the `top` of an item relative to the content element,
     // and also the height.
     function refreshPosition(item) {
-      // Find the top of an item by adding to the offsetHeight until we reach the
+      // Find the top of an item by adding to the offsetHeight until we reach the 
       // content element.
       var current = item.element[0];
       item.top = 0;
@@ -9826,7 +9674,7 @@ function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
             translate(self.current, null);
           }
         }
-
+        
       // Scrolling up with a current sticky item?
       } else if (!isScrollingDown && self.current) {
         if (scrollTop < self.current.top) {
@@ -9846,7 +9694,7 @@ function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
         }
       }
     }
-
+     
    function setCurrentItem(item) {
      if (self.current === item) return;
      // Deactivate currently active item
@@ -9890,7 +9738,7 @@ function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
      } else {
        item.translateY = amount;
        item.clone.css(
-         $mdConstant.CSS.TRANSFORM,
+         $mdConstant.CSS.TRANSFORM, 
          'translate3d(' + item.left + 'px,' + amount + 'px,0)'
        );
      }
@@ -9917,7 +9765,7 @@ function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
 
   // Android 4.4 don't accurately give scroll events.
   // To fix this problem, we setup a fake scroll event. We say:
-  // > If a scroll or touchmove event has happened in the last DELAY milliseconds,
+  // > If a scroll or touchmove event has happened in the last DELAY milliseconds, 
   //   then send a `$scroll` event every animationFrame.
   // Additionally, we add $scrollstart and $scrollend events.
   function setupAugmentedScrollEvents(element) {
@@ -9948,12 +9796,6 @@ function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
 }
 MdSticky.$inject = ["$document", "$mdConstant", "$compile", "$$rAF", "$mdUtil"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.subheader
@@ -10001,7 +9843,7 @@ function MdSubheaderDirective($mdSticky, $compile, $mdTheming) {
     restrict: 'E',
     replace: true,
     transclude: true,
-    template:
+    template: 
       '<h2 class="md-subheader">' +
         '<div class="md-subheader-inner">' +
           '<span class="md-subheader-content"></span>' +
@@ -10037,12 +9879,6 @@ function MdSubheaderDirective($mdSticky, $compile, $mdTheming) {
 }
 MdSubheaderDirective.$inject = ["$mdSticky", "$compile", "$mdTheming"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.swipe
@@ -10081,30 +9917,31 @@ MdSubheaderDirective.$inject = ["$mdSticky", "$compile", "$mdTheming"];
  * </hljs>
  */
 
-angular.module('material.components.swipe', [])
+angular.module('material.components.swipe', ['material.core'])
     .directive('mdSwipeLeft', getDirective('SwipeLeft'))
     .directive('mdSwipeRight', getDirective('SwipeRight'));
 
 function getDirective(name) {
   var directiveName = 'md' + name;
   var eventName = '$md.' + name.toLowerCase();
-  return function($parse) {
-    return { restrict: 'A', link: postLink };
-    function postLink(scope, element, attr) {
-      var fn = $parse(attr[directiveName]);
-      element.on(eventName, function(ev) {
-        scope.$apply(function() { fn(scope, { $event: ev }); });
-      });
+
+    DirectiveFactory.$inject = ["$parse"];
+  return DirectiveFactory;
+
+  /* @ngInject */
+  function DirectiveFactory($parse) {
+      return { restrict: 'A', link: postLink };
+      function postLink(scope, element, attr) {
+        var fn = $parse(attr[directiveName]);
+        element.on(eventName, function(ev) {
+          scope.$apply(function() { fn(scope, { $event: ev }); });
+        });
+      }
     }
-  };
 }
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
+
+
 /**
  * @private
  * @ngdoc module
@@ -10159,6 +9996,7 @@ function MdSwitch(mdCheckboxDirective, $mdTheming, $mdUtil, $document, $mdConsta
 
   return {
     restrict: 'E',
+    priority:210, // Run before ngAria
     transclude: true,
     template:
       '<div class="md-container">' +
@@ -10263,12 +10101,6 @@ function MdSwitch(mdCheckboxDirective, $mdTheming, $mdUtil, $document, $mdConsta
 }
 MdSwitch.$inject = ["mdCheckboxDirective", "$mdTheming", "$mdUtil", "$document", "$mdConstant", "$parse", "$$rAF", "$mdGesture"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.tabs
@@ -10297,12 +10129,6 @@ angular.module('material.components.tabs', [
   'material.components.icon'
 ]);
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.toast
@@ -10360,7 +10186,7 @@ function MdToastDirective() {
 /**
  * @ngdoc method
  * @name $mdToast#showSimple
- *
+ * 
  * @description
  * Convenience method which builds and shows a simple toast.
  *
@@ -10388,7 +10214,7 @@ function MdToastDirective() {
 /**
  * @ngdoc method
  * @name $mdToast#updateContent
- *
+ * 
  * @description
  * Updates the content of an existing toast. Useful for updating things like counts, etc.
  *
@@ -10558,12 +10384,6 @@ function MdToastProvider($$interimElementProvider) {
 }
 MdToastProvider.$inject = ["$$interimElementProvider"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.toolbar
@@ -10713,12 +10533,6 @@ function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming) {
 }
 mdToolbarDirective.$inject = ["$$rAF", "$mdConstant", "$mdUtil", "$mdTheming"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.tooltip
@@ -10762,6 +10576,7 @@ function MdTooltipDirective($timeout, $window, $$rAF, $document, $mdUtil, $mdThe
   return {
     restrict: 'E',
     transclude: true,
+    priority:210, // Before ngAria
     template: '\
         <div class="md-background"></div>\
         <div class="md-content" ng-transclude></div>',
@@ -10950,24 +10765,12 @@ function MdTooltipDirective($timeout, $window, $$rAF, $document, $mdUtil, $mdThe
 }
 MdTooltipDirective.$inject = ["$timeout", "$window", "$$rAF", "$document", "$mdUtil", "$mdTheming", "$rootElement", "$animate", "$q"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc module
  * @name material.components.whiteframe
  */
 angular.module('material.components.whiteframe', []);
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.autocomplete')
     .controller('MdAutocompleteCtrl', MdAutocompleteCtrl);
@@ -10976,7 +10779,7 @@ var ITEM_HEIGHT = 41,
     MAX_HEIGHT = 5.5 * ITEM_HEIGHT,
     MENU_PADDING = 8;
 
-function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $mdTheming, $window, $rootElement) {
+function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $mdTheming, $window, $animate, $rootElement) {
 
   //-- private variables
 
@@ -11074,6 +10877,7 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     $mdTheming(elements.$.ul);
     elements.$.ul.detach();
     elements.$.root.append(elements.$.ul);
+    if ($animate.pin) $animate.pin(elements.$.ul, $rootElement);
   }
 
   function focusElement () {
@@ -11208,8 +11012,9 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
         updateScroll();
         updateSelectionMessage();
         break;
+      case $mdConstant.KEY_CODE.TAB:
       case $mdConstant.KEY_CODE.ENTER:
-        if (self.hidden || self.loading || self.index < 0) return;
+        if (self.hidden || self.loading || self.index < 0 || self.matches.length < 1) return;
         event.preventDefault();
         select(self.index);
         break;
@@ -11217,8 +11022,6 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
         self.matches = [];
         self.hidden = true;
         self.index = getDefaultIndex();
-        break;
-      case $mdConstant.KEY_CODE.TAB:
         break;
       default:
     }
@@ -11270,6 +11073,12 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
   function clearValue () {
     $scope.searchText = '';
     select(-1);
+
+    // Per http://www.w3schools.com/jsref/event_oninput.asp
+    var eventObj = document.createEvent('CustomEvent');
+    eventObj.initCustomEvent('input', true, true, {value: $scope.searchText});
+    elements.input.dispatchEvent(eventObj);
+
     elements.input.focus();
   }
 
@@ -11341,14 +11150,8 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
   }
 
 }
-MdAutocompleteCtrl.$inject = ["$scope", "$element", "$mdUtil", "$mdConstant", "$timeout", "$mdTheming", "$window", "$rootElement"];
+MdAutocompleteCtrl.$inject = ["$scope", "$element", "$mdUtil", "$mdConstant", "$timeout", "$mdTheming", "$window", "$animate", "$rootElement"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.autocomplete')
     .directive('mdAutocomplete', MdAutocomplete);
@@ -11389,7 +11192,7 @@ angular
  * </hljs>
  */
 
-function MdAutocomplete ($mdTheming) {
+function MdAutocomplete ($mdTheming, $mdUtil) {
   return {
     controller:   'MdAutocompleteCtrl',
     controllerAs: '$mdAutocompleteCtrl',
@@ -11404,7 +11207,6 @@ function MdAutocomplete ($mdTheming) {
       noCache:       '=?mdNoCache',
       itemChange:    '&?mdSelectedItemChange',
       textChange:    '&?mdSearchTextChange',
-      isDisabled:    '=?ngDisabled',
       minLength:     '=?mdMinLength',
       delay:         '=?mdDelay',
       autofocus:     '=?mdAutofocus',
@@ -11491,24 +11293,19 @@ function MdAutocomplete ($mdTheming) {
   };
 
   function link (scope, element, attr) {
+    if (attr.ngDisabled) {
+      scope.$parent.$watch(attr.ngDisabled, function (val) { scope.isDisabled = val; });
+    }
     scope.contents = attr.$mdAutocompleteTemplate;
     delete attr.$mdAutocompleteTemplate;
-    angular.forEach(scope.$$isolateBindings, function (binding, key) {
-      if (binding.optional && angular.isUndefined(scope[key])) {
-        scope[key] = attr.hasOwnProperty(attr.$normalize(binding.attrName));
-      }
-    });
+
+    $mdUtil.initOptionalProperties(scope, attr, {searchText:null, selectedItem:null} );
+
     $mdTheming(element);
   }
 }
-MdAutocomplete.$inject = ["$mdTheming"];
+MdAutocomplete.$inject = ["$mdTheming", "$mdUtil"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.autocomplete')
     .controller('MdHighlightCtrl', MdHighlightCtrl);
@@ -11526,7 +11323,7 @@ function MdHighlightCtrl ($scope, $element, $interpolate) {
 
   function sanitize (term) {
     if (!term) return term;
-    return term.replace(/[\*\[\]\(\)\{\}\\\^\$]/g, '\\$&');
+    return term.replace(/[\\\^\$\*\+\?\.\(\)\|\{\}\[\]]/g, '\\$&');
   }
 
   function getRegExp (text, flags) {
@@ -11539,12 +11336,6 @@ function MdHighlightCtrl ($scope, $element, $interpolate) {
 }
 MdHighlightCtrl.$inject = ["$scope", "$element", "$interpolate"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.autocomplete')
     .directive('mdHighlightText', MdHighlight);
@@ -11586,12 +11377,6 @@ function MdHighlight () {
   };
 }
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.autocomplete')
     .directive('mdAutocompleteListItem', MdAutocompleteListItem);
@@ -11617,12 +11402,6 @@ function MdAutocompleteListItem ($compile, $mdUtil) {
 }
 MdAutocompleteListItem.$inject = ["$compile", "$mdUtil"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.chips')
     .directive('mdChip', MdChip);
@@ -11668,23 +11447,18 @@ function MdChip($mdTheming) {
   function compile(element, attr) {
     element.append(DELETE_HINT_TEMPLATE);
     return function postLink(scope, element, attr, ctrl) {
-      if (ctrl) angular.element(element[0].querySelector('.md-chip-content'))
-          .on('blur', function () {
-            ctrl.$scope.$apply(function () { ctrl.selectedChip = -1; });
-          });
       element.addClass('md-chip');
       $mdTheming(element);
+
+      if (ctrl) angular.element(element[0].querySelector('.md-chip-content'))
+          .on('blur', function () {
+            ctrl.selectedChip = -1;
+          });
     };
   }
 }
 MdChip.$inject = ["$mdTheming"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.chips')
     .directive('mdChipRemove', MdChipRemove);
@@ -11737,12 +11511,6 @@ function MdChipRemove ($timeout) {
 }
 MdChipRemove.$inject = ["$timeout"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.chips')
     .directive('mdChipTransclude', MdChipTransclude);
@@ -11766,12 +11534,6 @@ function MdChipTransclude ($compile, $mdUtil) {
 }
 MdChipTransclude.$inject = ["$compile", "$mdUtil"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.chips')
     .controller('MdChipsCtrl', MdChipsCtrl);
@@ -12111,32 +11873,28 @@ MdChipsCtrl.prototype.configureUserInput = function(inputElement) {
   inputElement
       .attr({ tabindex: 0 })
       .on('keydown', function(event) { scope.$apply(function() { ctrl.inputKeydown(event); }); })
-      .on('focus', function () { this.$scope.$apply(this.onInputFocus.bind(this)); }.bind(this))
-      .on('blur', function () { this.$scope.$apply(this.onInputBlur.bind(this)); }.bind(this));
+      .on('focus', ctrl.onInputFocus.bind(ctrl) )
+      .on('blur', ctrl.onInputBlur.bind(ctrl) );
 };
 
 MdChipsCtrl.prototype.configureAutocomplete = function(ctrl) {
+
   ctrl.registerSelectedItemWatcher(function (item) {
     if (item) {
       this.appendChip(item);
       this.resetChipBuffer();
     }
   }.bind(this));
+
   this.$element.find('input')
-      .on('focus', function () { this.$scope.$apply(this.onInputFocus.bind(this)); }.bind(this))
-      .on('blur', function () { this.$scope.$apply(this.onInputBlur.bind(this)); }.bind(this));
+      .on('focus',this.onInputFocus.bind(this) )
+      .on('blur', this.onInputBlur.bind(this) );
 };
 
 MdChipsCtrl.prototype.hasFocus = function () {
   return this.inputHasFocus || this.selectedChip >= 0;
 };
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.chips')
     .directive('mdChips', MdChips);
@@ -12279,7 +12037,7 @@ var CHIP_REMOVE_TEMPLATE = '\
 /**
  * MDChips Directive Definition
  */
-function MdChips ($mdTheming, $compile, $timeout) {
+function MdChips ($mdTheming, $mdUtil, $compile, $timeout) {
   return {
     template: function(element, attrs) {
       // Clone the element into an attribute. By prepending the attribute
@@ -12359,12 +12117,7 @@ function MdChips ($mdTheming, $compile, $timeout) {
      */
     return function postLink(scope, element, attrs, controllers) {
 
-      //-- give optional properties with no value a boolean true by default
-      angular.forEach(scope.$$isolateBindings, function (binding, key) {
-        if (binding.optional && angular.isUndefined(scope[key])) {
-          scope[key] = attr.hasOwnProperty(attr.$normalize(binding.attrName));
-        }
-      });
+      $mdUtil.initOptionalProperties(scope, attr);
 
       $mdTheming(element);
       var mdChipsCtrl = controllers[0];
@@ -12405,14 +12158,8 @@ function MdChips ($mdTheming, $compile, $timeout) {
     };
   }
 }
-MdChips.$inject = ["$mdTheming", "$compile", "$timeout"];
+MdChips.$inject = ["$mdTheming", "$mdUtil", "$compile", "$timeout"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.chips')
     .controller('MdContactChipsCtrl', MdContactChipsCtrl);
@@ -12443,12 +12190,6 @@ MdContactChipsCtrl.prototype.filterSelectedContacts = function(contact) {
   return this.contacts.indexOf(contact) == -1;
 };
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.chips')
     .directive('mdContactChips', MdContactChips);
@@ -12542,7 +12283,7 @@ var MD_CONTACT_CHIPS_TEMPLATE = '\
  * @returns {*}
  * @ngInject
  */
-function MdContactChips ($mdTheming) {
+function MdContactChips ($mdTheming, $mdUtil) {
   return {
     template: function(element, attrs) {
       return MD_CONTACT_CHIPS_TEMPLATE;
@@ -12568,26 +12309,15 @@ function MdContactChips ($mdTheming) {
   function compile(element, attr) {
     return function postLink(scope, element, attrs, controllers) {
 
-      //-- give optional properties with no value a boolean true by default
-      angular.forEach(scope.$$isolateBindings, function (binding, key) {
-        if (binding.optional && angular.isUndefined(scope[key])) {
-          scope[key] = attr.hasOwnProperty(attr.$normalize(binding.attrName));
-        }
-      });
-
+      $mdUtil.initOptionalProperties(scope, attr);
       $mdTheming(element);
+
       element.attr('tabindex', '-1');
     };
   }
 }
-MdContactChips.$inject = ["$mdTheming"];
+MdContactChips.$inject = ["$mdTheming", "$mdUtil"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc directive
  * @name mdTab
@@ -12653,8 +12383,8 @@ function MdTab () {
       label:    '@',
       active:   '=?mdActive',
       disabled: '=?ngDisabled',
-      select:   '&?mdOnSelect',
-      deselect: '&?mdOnDeselect'
+      selectExpr:   '@?mdOnSelect',
+      deselectExpr: '@?mdOnDeselect'
     },
     link: postLink
   };
@@ -12671,8 +12401,8 @@ function MdTab () {
           label:    getLabel()
         }, index);
 
-    scope.deselect = scope.deselect || angular.noop;
-    scope.select = scope.select || angular.noop;
+    scope.deselect = function () { ctrl.parent.$eval(scope.deselectExpr || ''); };
+    scope.select = function () { ctrl.parent.$eval(scope.selectExpr || ''); };
 
     scope.$watch('active', function (active) { if (active) ctrl.select(data.getIndex()); });
     scope.$watch('disabled', function () { ctrl.refreshIndex(); });
@@ -12703,12 +12433,6 @@ function MdTab () {
   }
 }
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.tabs')
     .directive('mdTabItem', MdTabItem);
@@ -12721,12 +12445,6 @@ function MdTabItem () {
   }
 }
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular.module('material.components.tabs')
     .directive('mdTabScroll', MdTabScroll);
 
@@ -12745,12 +12463,6 @@ function MdTabScroll ($parse) {
 }
 MdTabScroll.$inject = ["$parse"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.tabs')
     .controller('MdTabsController', MdTabsController);
@@ -12793,10 +12505,7 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
   init();
 
   function init () {
-
-	  $timeout(handleWindowResize, 0, true);
-
-	  $scope.$watch('selectedIndex', handleSelectedIndexChange);
+    $scope.$watch('selectedIndex', handleSelectedIndexChange);
     $scope.$watch('$mdTabsCtrl.focusIndex', handleFocusIndexChange);
     $scope.$watch('$mdTabsCtrl.offsetLeft', handleOffsetChange);
     $scope.$watch('$mdTabsCtrl.hasContent', handleHasContent);
@@ -13045,11 +12754,9 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 
   function shouldPaginate () {
     if ($scope.noPagination) return false;
-    var canvasWidth = $element.prop('clientWidth'),
-	      updateWidth;
+    var canvasWidth = $element.prop('clientWidth');
     angular.forEach(elements.tabs, function (tab) { canvasWidth -= tab.offsetWidth; });
-	  var limitWidth = canvasWidth === $element.prop('clientWidth')?600:0;
-    return true;
+    return canvasWidth < 0;
   }
 
   function select (index) {
@@ -13108,12 +12815,6 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 }
 MdTabsController.$inject = ["$scope", "$element", "$window", "$timeout", "$mdConstant", "$mdInkRipple", "$mdUtil", "$animate"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 /**
  * @ngdoc directive
  * @name mdTabs
@@ -13201,7 +12902,7 @@ angular
     .module('material.components.tabs')
     .directive('mdTabs', MdTabs);
 
-function MdTabs ($mdTheming) {
+function MdTabs ($mdTheming, $mdUtil) {
   return {
     scope: {
       noPagination:  '=?mdNoPagination',
@@ -13305,11 +13006,9 @@ function MdTabs ($mdTheming) {
     controller: 'MdTabsController',
     controllerAs: '$mdTabsCtrl',
     link: function (scope, element, attr) {
-      angular.forEach(scope.$$isolateBindings, function (binding, key) {
-        if (binding.optional && angular.isUndefined(scope[key])) {
-          scope[key] = attr.hasOwnProperty(attr.$normalize(binding.attrName));
-        }
-      });
+
+      $mdUtil.initOptionalProperties(scope, attr);
+
       //-- watch attributes
       attr.$observe('mdNoBar', function (value) { scope.noInkBar = angular.isDefined(value); });
       //-- set default value for selectedIndex
@@ -13319,14 +13018,8 @@ function MdTabs ($mdTheming) {
     }
   };
 }
-MdTabs.$inject = ["$mdTheming"];
+MdTabs.$inject = ["$mdTheming", "$mdUtil"];
 
-/*!
- * Angular Material Design
- * https://github.com/angular/material
- * @license MIT
- * v0.9.0-rc2-master-041ffe9
- */
 angular
     .module('material.components.tabs')
     .directive('mdTemplate', MdTemplate);
@@ -13349,6 +13042,6 @@ function MdTemplate ($compile) {
 }
 MdTemplate.$inject = ["$compile"];
 
-(function(){
- angular.module("material.core").constant("$MD_THEME_CSS", "/* mixin definition ; sets LTR and RTL within the same style call */md-autocomplete.md-THEME_NAME-theme {  background: '{{background-50}}'; }  md-autocomplete.md-THEME_NAME-theme button md-icon path {    fill: '{{background-600}}'; }  md-autocomplete.md-THEME_NAME-theme button:after {    background: '{{background-600-0.3}}'; }.md-autocomplete-suggestions.md-THEME_NAME-theme {  background: '{{background-50}}'; }  .md-autocomplete-suggestions.md-THEME_NAME-theme li {    border-top: 1px solid '{{background-300}}';    color: '{{background-900}}'; }    .md-autocomplete-suggestions.md-THEME_NAME-theme li .highlight {      color: '{{background-600}}'; }    .md-autocomplete-suggestions.md-THEME_NAME-theme li:hover, .md-autocomplete-suggestions.md-THEME_NAME-theme li.selected {      background: '{{background-200}}'; }md-backdrop.md-opaque.md-THEME_NAME-theme {  background-color: '{{foreground-4-0.5}}'; }md-bottom-sheet.md-THEME_NAME-theme {  background-color: '{{background-50}}';  border-top-color: '{{background-300}}'; }  md-bottom-sheet.md-THEME_NAME-theme.md-list md-item {    color: '{{foreground-1}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    background-color: '{{background-50}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    color: '{{foreground-1}}'; }a.md-button.md-THEME_NAME-theme, .md-button.md-THEME_NAME-theme {  border-radius: 3px; }  a.md-button.md-THEME_NAME-theme:not([disabled]):hover, .md-button.md-THEME_NAME-theme:not([disabled]):hover {    background-color: '{{background-500-0.2}}'; }  a.md-button.md-THEME_NAME-theme:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme:not([disabled]).md-focused {    background-color: '{{background-500-0.2}}'; }  a.md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover, .md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover {    background-color: transparent; }  a.md-button.md-THEME_NAME-theme.md-fab, .md-button.md-THEME_NAME-theme.md-fab {    border-radius: 50%;    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab md-icon, .md-button.md-THEME_NAME-theme.md-fab md-icon {      color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {      background-color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  a.md-button.md-THEME_NAME-theme.md-primary, .md-button.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }    a.md-button.md-THEME_NAME-theme.md-primary.md-raised, a.md-button.md-THEME_NAME-theme.md-primary.md-fab, .md-button.md-THEME_NAME-theme.md-primary.md-raised, .md-button.md-THEME_NAME-theme.md-primary.md-fab {      color: '{{primary-contrast}}';      background-color: '{{primary-color}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised md-icon, a.md-button.md-THEME_NAME-theme.md-primary.md-fab md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-raised md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-fab md-icon {        color: '{{primary-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover {        background-color: '{{primary-color}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused {        background-color: '{{primary-600}}'; }  a.md-button.md-THEME_NAME-theme.md-fab, .md-button.md-THEME_NAME-theme.md-fab {    border-radius: 50%;    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {      background-color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  a.md-button.md-THEME_NAME-theme.md-raised, .md-button.md-THEME_NAME-theme.md-raised {    color: '{{background-contrast}}';    background-color: '{{background-50}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover {      background-color: '{{background-50}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused {      background-color: '{{background-200}}'; }  a.md-button.md-THEME_NAME-theme.md-warn, .md-button.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }    a.md-button.md-THEME_NAME-theme.md-warn.md-raised, a.md-button.md-THEME_NAME-theme.md-warn.md-fab, .md-button.md-THEME_NAME-theme.md-warn.md-raised, .md-button.md-THEME_NAME-theme.md-warn.md-fab {      color: '{{warn-contrast}}';      background-color: '{{warn-color}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised md-icon, a.md-button.md-THEME_NAME-theme.md-warn.md-fab md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-raised md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-fab md-icon {        color: '{{warn-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover {        background-color: '{{warn-color}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused {        background-color: '{{warn-700}}'; }  a.md-button.md-THEME_NAME-theme.md-accent, .md-button.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-accent.md-raised, a.md-button.md-THEME_NAME-theme.md-accent.md-fab, .md-button.md-THEME_NAME-theme.md-accent.md-raised, .md-button.md-THEME_NAME-theme.md-accent.md-fab {      color: '{{accent-contrast}}';      background-color: '{{accent-color}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised md-icon, a.md-button.md-THEME_NAME-theme.md-accent.md-fab md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-raised md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-fab md-icon {        color: '{{accent-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover {        background-color: '{{accent-color}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused {        background-color: '{{accent-700}}'; }  a.md-button.md-THEME_NAME-theme[disabled], a.md-button.md-THEME_NAME-theme.md-raised[disabled], a.md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled] {    color: '{{foreground-2}}';    cursor: not-allowed; }    a.md-button.md-THEME_NAME-theme[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, .md-button.md-THEME_NAME-theme[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon {      color: '{{foreground-2}}'; }  a.md-button.md-THEME_NAME-theme.md-raised[disabled], a.md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled] {    background-color: '{{foreground-4}}'; }  a.md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme[disabled] {    background-color: 'transparent'; }md-card.md-THEME_NAME-theme {  background-color: '{{background-color}}';  border-radius: 2px; }  md-card.md-THEME_NAME-theme .md-card-image {    border-radius: 2px 2px 0 0; }md-checkbox.md-THEME_NAME-theme .md-ripple {  color: '{{accent-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked.md-focused .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon {  background-color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ripple {  color: '{{primary-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon {  background-color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked.md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ripple {  color: '{{warn-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon {  background-color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked.md-focused:not([disabled]) .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-icon {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon {  background-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-label {  color: '{{foreground-3}}'; }md-chips.md-THEME_NAME-theme .md-chips {  box-shadow: 0 1px '{{background-300}}'; }  md-chips.md-THEME_NAME-theme .md-chips.md-focused {    box-shadow: 0 2px '{{primary-color}}'; }md-chips.md-THEME_NAME-theme .md-chip {  background: '{{background-300}}';  color: '{{background-800}}'; }  md-chips.md-THEME_NAME-theme .md-chip.md-focused {    background: '{{primary-color}}';    color: '{{primary-contrast}}'; }    md-chips.md-THEME_NAME-theme .md-chip.md-focused md-icon {      color: '{{primary-contrast}}'; }md-chips.md-THEME_NAME-theme md-chip-remove .md-button md-icon path {  fill: '{{background-500}}'; }.md-contact-suggestion span.md-contact-email {  color: '{{background-400}}'; }md-content.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }md-dialog.md-THEME_NAME-theme {  border-radius: 4px;  background-color: '{{background-color}}'; }  md-dialog.md-THEME_NAME-theme.md-content-overflow .md-actions {    border-top-color: '{{foreground-4}}'; }md-divider.md-THEME_NAME-theme {  border-top-color: '{{foreground-4}}'; }md-icon.md-THEME_NAME-theme {  color: '{{foreground-2}}'; }  md-icon.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  md-icon.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  md-icon.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-input-container.md-THEME_NAME-theme .md-input {  color: '{{foreground-1}}';  border-color: '{{foreground-4}}';  text-shadow: '{{foreground-shadow}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder, md-input-container.md-THEME_NAME-theme .md-input::-moz-placeholder, md-input-container.md-THEME_NAME-theme .md-input:-moz-placeholder, md-input-container.md-THEME_NAME-theme .md-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme > md-icon {  color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme label, md-input-container.md-THEME_NAME-theme .md-placeholder {  text-shadow: '{{foreground-shadow}}';  color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme ng-messages, md-input-container.md-THEME_NAME-theme [ng-message], md-input-container.md-THEME_NAME-theme [data-ng-message], md-input-container.md-THEME_NAME-theme [x-ng-message] {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-has-value label {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused .md-input {  border-color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused label {  color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused md-icon {  color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent .md-input {  border-color: '{{accent-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent label {  color: '{{accent-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn .md-input {  border-color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn label {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input {  border-color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid.md-input-focused label {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid data-ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid x-ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid [ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid [data-ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid [x-ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid .md-char-counter {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme .md-input[disabled], [disabled] md-input-container.md-THEME_NAME-theme .md-input {  border-bottom-color: transparent;  color: '{{foreground-3}}';  background-image: linear-gradient(to right, '{{foreground-4}}' 0%, '{{foreground-4}}' 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, '{{foreground-4}}' 100%); }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h4, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h4 {  color: '{{foreground-1}}'; }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text p, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text p {  color: '{{foreground-2}}'; }md-list.md-THEME_NAME-theme .md-proxy-focus.md-focused div.md-no-style {  background-color: '{{background-100}}'; }md-list.md-THEME_NAME-theme md-list-item > md-icon {  color: '{{foreground-2}}'; }  md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight {    color: '{{primary-color}}'; }    md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight.md-accent {      color: '{{accent-color}}'; }md-list.md-THEME_NAME-theme md-list-item button {  background-color: '{{background-color}}'; }  md-list.md-THEME_NAME-theme md-list-item button.md-button:not([disabled]):hover {    background-color: '{{background-color}}'; }md-progress-circular.md-THEME_NAME-theme {  background-color: transparent; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-gap {    border-top-color: '{{primary-color}}';    border-bottom-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme .md-inner .md-right .md-half-circle {    border-top-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-right .md-half-circle {    border-right-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-left .md-half-circle {    border-left-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-gap {    border-top-color: '{{warn-color}}';    border-bottom-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-right .md-half-circle {    border-top-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-right .md-half-circle {    border-right-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-left .md-half-circle {    border-left-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-gap {    border-top-color: '{{accent-color}}';    border-bottom-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-right .md-half-circle {    border-top-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-right .md-half-circle {    border-right-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-left .md-half-circle {    border-left-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme .md-container {  background-color: '{{primary-100}}'; }md-progress-linear.md-THEME_NAME-theme .md-bar {  background-color: '{{primary-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-container {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-bar {  background-color: '{{warn-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-container {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-bar {  background-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-bar1 {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-dashed:before {  background: radial-gradient('{{warn-100}}' 0%, '{{warn-100}}' 16%, transparent 42%); }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-bar1 {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-dashed:before {  background: radial-gradient('{{accent-100}}' 0%, '{{accent-100}}' 16%, transparent 42%); }md-radio-button.md-THEME_NAME-theme .md-off {  border-color: '{{foreground-2}}'; }md-radio-button.md-THEME_NAME-theme .md-on {  background-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-off {  border-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme .md-container .md-ripple {  color: '{{accent-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-on {  background-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off {  border-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple {  color: '{{primary-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-on {  background-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off {  border-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple {  color: '{{warn-600}}'; }md-radio-group.md-THEME_NAME-theme[disabled], md-radio-button.md-THEME_NAME-theme[disabled] {  color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-off, md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-off {    border-color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-on, md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-on {    border-color: '{{foreground-3}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked:not([disabled]).md-primary .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-primary .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-select.md-THEME_NAME-theme.ng-invalid.ng-dirty .md-select-label {  color: '{{warn-500}}' !important;  border-bottom-color: '{{warn-500}}' !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-label {  border-bottom-color: '{{primary-color}}';  color: '{{ foreground-1 }}'; }  md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-label.md-placeholder {    color: '{{ foreground-1 }}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-accent .md-select-label {  border-bottom-color: '{{accent-color}}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-warn .md-select-label {  border-bottom-color: '{{warn-color}}'; }md-select.md-THEME_NAME-theme[disabled] .md-select-label {  color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme[disabled] .md-select-label.md-placeholder {    color: '{{foreground-3}}'; }md-select.md-THEME_NAME-theme .md-select-label {  border-bottom-color: '{{foreground-4}}'; }  md-select.md-THEME_NAME-theme .md-select-label.md-placeholder {    color: '{{foreground-2}}'; }md-select-menu.md-THEME_NAME-theme md-optgroup {  color: '{{foreground-2}}'; }  md-select-menu.md-THEME_NAME-theme md-optgroup md-option {    color: '{{foreground-1}}'; }md-select-menu.md-THEME_NAME-theme md-option[selected] {  color: '{{primary-500}}'; }  md-select-menu.md-THEME_NAME-theme md-option[selected]:focus {    color: '{{primary-600}}'; }  md-select-menu.md-THEME_NAME-theme md-option[selected].md-accent {    color: '{{accent-500}}'; }    md-select-menu.md-THEME_NAME-theme md-option[selected].md-accent:focus {      color: '{{accent-600}}'; }md-select-menu.md-THEME_NAME-theme md-option:focus:not([selected]) {  background: '{{background-200}}'; }md-sidenav.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme .md-track {  background-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme .md-track-ticks {  background-color: '{{foreground-4}}'; }md-slider.md-THEME_NAME-theme .md-focus-thumb {  background-color: '{{foreground-2}}'; }md-slider.md-THEME_NAME-theme .md-focus-ring {  border-color: '{{foreground-4}}'; }md-slider.md-THEME_NAME-theme .md-disabled-thumb {  border-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme.md-min .md-thumb:after {  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme .md-track.md-track-fill {  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb:after {  border-color: '{{accent-color}}';  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-sign {  background-color: '{{accent-color}}'; }  md-slider.md-THEME_NAME-theme .md-sign:after {    border-top-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb-text {  color: '{{accent-contrast}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-track.md-track-fill {  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb:after {  border-color: '{{warn-color}}';  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-sign {  background-color: '{{warn-color}}'; }  md-slider.md-THEME_NAME-theme.md-warn .md-sign:after {    border-top-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb-text {  color: '{{warn-contrast}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-track.md-track-fill {  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb:after {  border-color: '{{primary-color}}';  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-sign {  background-color: '{{primary-color}}'; }  md-slider.md-THEME_NAME-theme.md-primary .md-sign:after {    border-top-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb-text {  color: '{{primary-contrast}}'; }md-slider.md-THEME_NAME-theme[disabled] .md-thumb:after {  border-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme[disabled]:not(.md-min) .md-thumb:after {  background-color: '{{foreground-3}}'; }.md-subheader.md-THEME_NAME-theme {  color: '{{ foreground-2-0.23 }}';  background-color: '{{background-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme .md-thumb {  background-color: '{{background-50}}'; }md-switch.md-THEME_NAME-theme .md-bar {  background-color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-thumb {  background-color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-bar {  background-color: '{{accent-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-focused .md-thumb:before {  background-color: '{{accent-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-thumb {  background-color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-bar {  background-color: '{{primary-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary.md-focused .md-thumb:before {  background-color: '{{primary-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-thumb {  background-color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-bar {  background-color: '{{warn-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn.md-focused .md-thumb:before {  background-color: '{{warn-color-0.26}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-thumb {  background-color: '{{background-400}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-bar {  background-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme .md-paginator md-icon {  color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme .md-tab {  color: '{{foreground-2}}'; }  md-tabs.md-THEME_NAME-theme .md-tab[disabled] {    color: '{{foreground-3}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-active, md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    background: '{{primary-color-0.1}}'; }  md-tabs.md-THEME_NAME-theme .md-tab .md-ripple-container {    color: '{{accent-100}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-tabs-wrapper {  background-color: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]) {  color: '{{accent-100}}'; }  md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-focused {    color: '{{accent-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-focused {    background: '{{accent-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-ink-bar {  color: '{{primary-600-1}}';  background: '{{primary-600-1}}'; }md-tabs.md-THEME_NAME-theme.md-primary md-tabs-wrapper {  background-color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]) {  color: '{{primary-100}}'; }  md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-focused {    color: '{{primary-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-focused {    background: '{{primary-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-warn md-tabs-wrapper {  background-color: '{{warn-color}}'; }md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]) {  color: '{{warn-100}}'; }  md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-focused {    color: '{{warn-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-focused {    background: '{{warn-contrast-0.1}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{primary-color}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{primary-100}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{primary-contrast}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{primary-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{accent-color}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{accent-100}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{accent-contrast}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{accent-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{primary-600-1}}';  background: '{{primary-600-1}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{warn-color}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{warn-100}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{warn-contrast}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{warn-contrast-0.1}}'; }md-toast.md-THEME_NAME-theme {  background-color: #323232;  color: '{{background-50}}'; }  md-toast.md-THEME_NAME-theme .md-button {    color: '{{background-50}}'; }    md-toast.md-THEME_NAME-theme .md-button.md-highlight {      color: '{{primary-A200}}'; }      md-toast.md-THEME_NAME-theme .md-button.md-highlight.md-accent {        color: '{{accent-A200}}'; }      md-toast.md-THEME_NAME-theme .md-button.md-highlight.md-warn {        color: '{{warn-A200}}'; }md-toolbar.md-THEME_NAME-theme {  background-color: '{{primary-color}}';  color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme .md-button {    color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme.md-accent {    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }  md-toolbar.md-THEME_NAME-theme.md-warn {    background-color: '{{warn-color}}';    color: '{{warn-contrast}}'; }md-tooltip.md-THEME_NAME-theme {  color: '{{background-A100}}'; }  md-tooltip.md-THEME_NAME-theme .md-background {    background-color: '{{foreground-2}}'; }");
+(function(){ 
+ angular.module("material.core").constant("$MD_THEME_CSS", "/* mixin definition ; sets LTR and RTL within the same style call */md-autocomplete.md-THEME_NAME-theme {  background: '{{background-50}}'; }  md-autocomplete.md-THEME_NAME-theme button md-icon path {    fill: '{{background-600}}'; }  md-autocomplete.md-THEME_NAME-theme button:after {    background: '{{background-600-0.3}}'; }.md-autocomplete-suggestions.md-THEME_NAME-theme {  background: '{{background-50}}'; }  .md-autocomplete-suggestions.md-THEME_NAME-theme li {    color: '{{background-900}}'; }    .md-autocomplete-suggestions.md-THEME_NAME-theme li .highlight {      color: '{{background-600}}'; }    .md-autocomplete-suggestions.md-THEME_NAME-theme li:hover, .md-autocomplete-suggestions.md-THEME_NAME-theme li.selected {      background: '{{background-200}}'; }md-backdrop.md-opaque.md-THEME_NAME-theme {  background-color: '{{foreground-4-0.5}}'; }md-bottom-sheet.md-THEME_NAME-theme {  background-color: '{{background-50}}';  border-top-color: '{{background-300}}'; }  md-bottom-sheet.md-THEME_NAME-theme.md-list md-list-item {    color: '{{foreground-1}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    background-color: '{{background-50}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    color: '{{foreground-1}}'; }a.md-button.md-THEME_NAME-theme, .md-button.md-THEME_NAME-theme {  border-radius: 3px; }  a.md-button.md-THEME_NAME-theme:not([disabled]):hover, .md-button.md-THEME_NAME-theme:not([disabled]):hover {    background-color: '{{background-500-0.2}}'; }  a.md-button.md-THEME_NAME-theme:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme:not([disabled]).md-focused {    background-color: '{{background-500-0.2}}'; }  a.md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover, .md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover {    background-color: transparent; }  a.md-button.md-THEME_NAME-theme.md-fab, .md-button.md-THEME_NAME-theme.md-fab {    border-radius: 50%;    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab md-icon, .md-button.md-THEME_NAME-theme.md-fab md-icon {      color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {      background-color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  a.md-button.md-THEME_NAME-theme.md-primary, .md-button.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }    a.md-button.md-THEME_NAME-theme.md-primary.md-raised, a.md-button.md-THEME_NAME-theme.md-primary.md-fab, .md-button.md-THEME_NAME-theme.md-primary.md-raised, .md-button.md-THEME_NAME-theme.md-primary.md-fab {      color: '{{primary-contrast}}';      background-color: '{{primary-color}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon {        color: '{{primary-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover {        background-color: '{{primary-color}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused {        background-color: '{{primary-600}}'; }    a.md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon {      color: '{{primary-color}}'; }  a.md-button.md-THEME_NAME-theme.md-fab, .md-button.md-THEME_NAME-theme.md-fab {    border-radius: 50%;    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon {      color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {      background-color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  a.md-button.md-THEME_NAME-theme.md-raised, .md-button.md-THEME_NAME-theme.md-raised {    color: '{{background-contrast}}';    background-color: '{{background-50}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]) .md-icon, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]) .md-icon {      color: '{{background-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover {      background-color: '{{background-50}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused {      background-color: '{{background-200}}'; }  a.md-button.md-THEME_NAME-theme.md-warn, .md-button.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }    a.md-button.md-THEME_NAME-theme.md-warn.md-raised, a.md-button.md-THEME_NAME-theme.md-warn.md-fab, .md-button.md-THEME_NAME-theme.md-warn.md-raised, .md-button.md-THEME_NAME-theme.md-warn.md-fab {      color: '{{warn-contrast}}';      background-color: '{{warn-color}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon {        color: '{{warn-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover {        background-color: '{{warn-color}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused {        background-color: '{{warn-700}}'; }    a.md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon {      color: '{{warn-color}}'; }  a.md-button.md-THEME_NAME-theme.md-accent, .md-button.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-accent.md-raised, a.md-button.md-THEME_NAME-theme.md-accent.md-fab, .md-button.md-THEME_NAME-theme.md-accent.md-raised, .md-button.md-THEME_NAME-theme.md-accent.md-fab {      color: '{{accent-contrast}}';      background-color: '{{accent-color}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon {        color: '{{accent-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover {        background-color: '{{accent-color}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused {        background-color: '{{accent-700}}'; }    a.md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon {      color: '{{accent-color}}'; }  a.md-button.md-THEME_NAME-theme[disabled], a.md-button.md-THEME_NAME-theme.md-raised[disabled], a.md-button.md-THEME_NAME-theme.md-fab[disabled], a.md-button.md-THEME_NAME-theme.md-accent[disabled], a.md-button.md-THEME_NAME-theme.md-warn[disabled], .md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-accent[disabled], .md-button.md-THEME_NAME-theme.md-warn[disabled] {    color: '{{foreground-3}}';    cursor: not-allowed; }    a.md-button.md-THEME_NAME-theme[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon, .md-button.md-THEME_NAME-theme[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon {      color: '{{foreground-3}}'; }  a.md-button.md-THEME_NAME-theme.md-raised[disabled], a.md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled] {    background-color: '{{foreground-4}}'; }  a.md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme[disabled] {    background-color: transparent; }md-card.md-THEME_NAME-theme {  background-color: '{{background-color}}';  border-radius: 2px; }  md-card.md-THEME_NAME-theme .md-card-image {    border-radius: 2px 2px 0 0; }md-checkbox.md-THEME_NAME-theme .md-ripple {  color: '{{accent-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked.md-focused .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon {  background-color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ripple {  color: '{{primary-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon {  background-color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked.md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ripple {  color: '{{warn-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon {  background-color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked.md-focused:not([disabled]) .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-icon {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon {  background-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-label {  color: '{{foreground-3}}'; }md-chips.md-THEME_NAME-theme .md-chips {  box-shadow: 0 1px '{{background-300}}'; }  md-chips.md-THEME_NAME-theme .md-chips.md-focused {    box-shadow: 0 2px '{{primary-color}}'; }md-chips.md-THEME_NAME-theme .md-chip {  background: '{{background-300}}';  color: '{{background-800}}'; }  md-chips.md-THEME_NAME-theme .md-chip.md-focused {    background: '{{primary-color}}';    color: '{{primary-contrast}}'; }    md-chips.md-THEME_NAME-theme .md-chip.md-focused md-icon {      color: '{{primary-contrast}}'; }md-chips.md-THEME_NAME-theme md-chip-remove .md-button md-icon path {  fill: '{{background-500}}'; }.md-contact-suggestion span.md-contact-email {  color: '{{background-400}}'; }md-content.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }md-dialog.md-THEME_NAME-theme {  border-radius: 4px;  background-color: '{{background-color}}'; }  md-dialog.md-THEME_NAME-theme.md-content-overflow .md-actions {    border-top-color: '{{foreground-4}}'; }md-divider.md-THEME_NAME-theme {  border-top-color: '{{foreground-4}}'; }md-icon.md-THEME_NAME-theme {  color: '{{foreground-2}}'; }  md-icon.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  md-icon.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  md-icon.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-input-container.md-THEME_NAME-theme .md-input {  color: '{{foreground-1}}';  border-color: '{{foreground-4}}';  text-shadow: '{{foreground-shadow}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder, md-input-container.md-THEME_NAME-theme .md-input::-moz-placeholder, md-input-container.md-THEME_NAME-theme .md-input:-moz-placeholder, md-input-container.md-THEME_NAME-theme .md-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme > md-icon {  color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme label, md-input-container.md-THEME_NAME-theme .md-placeholder {  text-shadow: '{{foreground-shadow}}';  color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme ng-messages, md-input-container.md-THEME_NAME-theme [ng-message], md-input-container.md-THEME_NAME-theme [data-ng-message], md-input-container.md-THEME_NAME-theme [x-ng-message] {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-has-value label {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused .md-input {  border-color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused label {  color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused md-icon {  color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent .md-input {  border-color: '{{accent-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent label {  color: '{{accent-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn .md-input {  border-color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn label {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input {  border-color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid.md-input-focused label {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid data-ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid x-ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid [ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid [data-ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid [x-ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid .md-char-counter {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme .md-input[disabled], [disabled] md-input-container.md-THEME_NAME-theme .md-input {  border-bottom-color: transparent;  color: '{{foreground-3}}';  background-image: linear-gradient(to right, '{{foreground-4}}' 0%, '{{foreground-4}}' 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, '{{foreground-4}}' 100%); }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h4, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h4 {  color: '{{foreground-1}}'; }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text p, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text p {  color: '{{foreground-2}}'; }md-list.md-THEME_NAME-theme .md-proxy-focus.md-focused div.md-no-style {  background-color: '{{background-100}}'; }md-list.md-THEME_NAME-theme md-list-item > md-icon {  color: '{{foreground-2}}'; }  md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight {    color: '{{primary-color}}'; }    md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight.md-accent {      color: '{{accent-color}}'; }md-list.md-THEME_NAME-theme md-list-item button {  background-color: '{{background-color}}'; }  md-list.md-THEME_NAME-theme md-list-item button.md-button:not([disabled]):hover {    background-color: '{{background-color}}'; }md-progress-circular.md-THEME_NAME-theme {  background-color: transparent; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-gap {    border-top-color: '{{primary-color}}';    border-bottom-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme .md-inner .md-right .md-half-circle {    border-top-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-right .md-half-circle {    border-right-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-left .md-half-circle {    border-left-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-gap {    border-top-color: '{{warn-color}}';    border-bottom-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-right .md-half-circle {    border-top-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-right .md-half-circle {    border-right-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-left .md-half-circle {    border-left-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-gap {    border-top-color: '{{accent-color}}';    border-bottom-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-right .md-half-circle {    border-top-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-right .md-half-circle {    border-right-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-left .md-half-circle {    border-left-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme .md-container {  background-color: '{{primary-100}}'; }md-progress-linear.md-THEME_NAME-theme .md-bar {  background-color: '{{primary-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-container {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-bar {  background-color: '{{warn-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-container {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-bar {  background-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-bar1 {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-dashed:before {  background: radial-gradient('{{warn-100}}' 0%, '{{warn-100}}' 16%, transparent 42%); }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-bar1 {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-dashed:before {  background: radial-gradient('{{accent-100}}' 0%, '{{accent-100}}' 16%, transparent 42%); }md-radio-button.md-THEME_NAME-theme .md-off {  border-color: '{{foreground-2}}'; }md-radio-button.md-THEME_NAME-theme .md-on {  background-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-off {  border-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme .md-container .md-ripple {  color: '{{accent-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-on {  background-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off {  border-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple {  color: '{{primary-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-on {  background-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off {  border-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple {  color: '{{warn-600}}'; }md-radio-group.md-THEME_NAME-theme[disabled], md-radio-button.md-THEME_NAME-theme[disabled] {  color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-off, md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-off {    border-color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-on, md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-on {    border-color: '{{foreground-3}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked:not([disabled]).md-primary .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-primary .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-select.md-THEME_NAME-theme.ng-invalid.ng-dirty .md-select-label {  color: '{{warn-500}}' !important;  border-bottom-color: '{{warn-500}}' !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-label {  border-bottom-color: '{{primary-color}}';  color: '{{ foreground-1 }}'; }  md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-label.md-placeholder {    color: '{{ foreground-1 }}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-accent .md-select-label {  border-bottom-color: '{{accent-color}}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-warn .md-select-label {  border-bottom-color: '{{warn-color}}'; }md-select.md-THEME_NAME-theme[disabled] .md-select-label {  color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme[disabled] .md-select-label.md-placeholder {    color: '{{foreground-3}}'; }md-select.md-THEME_NAME-theme .md-select-label {  border-bottom-color: '{{foreground-4}}'; }  md-select.md-THEME_NAME-theme .md-select-label.md-placeholder {    color: '{{foreground-2}}'; }md-select-menu.md-THEME_NAME-theme md-optgroup {  color: '{{foreground-2}}'; }  md-select-menu.md-THEME_NAME-theme md-optgroup md-option {    color: '{{foreground-1}}'; }md-select-menu.md-THEME_NAME-theme md-option[selected] {  color: '{{primary-500}}'; }  md-select-menu.md-THEME_NAME-theme md-option[selected]:focus {    color: '{{primary-600}}'; }  md-select-menu.md-THEME_NAME-theme md-option[selected].md-accent {    color: '{{accent-500}}'; }    md-select-menu.md-THEME_NAME-theme md-option[selected].md-accent:focus {      color: '{{accent-600}}'; }md-select-menu.md-THEME_NAME-theme md-option:focus:not([selected]) {  background: '{{background-200}}'; }md-sidenav.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme .md-track {  background-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme .md-track-ticks {  background-color: '{{foreground-4}}'; }md-slider.md-THEME_NAME-theme .md-focus-thumb {  background-color: '{{foreground-2}}'; }md-slider.md-THEME_NAME-theme .md-focus-ring {  border-color: '{{foreground-4}}'; }md-slider.md-THEME_NAME-theme .md-disabled-thumb {  border-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme.md-min .md-thumb:after {  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme .md-track.md-track-fill {  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb:after {  border-color: '{{accent-color}}';  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-sign {  background-color: '{{accent-color}}'; }  md-slider.md-THEME_NAME-theme .md-sign:after {    border-top-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb-text {  color: '{{accent-contrast}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-track.md-track-fill {  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb:after {  border-color: '{{warn-color}}';  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-sign {  background-color: '{{warn-color}}'; }  md-slider.md-THEME_NAME-theme.md-warn .md-sign:after {    border-top-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb-text {  color: '{{warn-contrast}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-track.md-track-fill {  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb:after {  border-color: '{{primary-color}}';  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-sign {  background-color: '{{primary-color}}'; }  md-slider.md-THEME_NAME-theme.md-primary .md-sign:after {    border-top-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb-text {  color: '{{primary-contrast}}'; }md-slider.md-THEME_NAME-theme[disabled] .md-thumb:after {  border-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme[disabled]:not(.md-min) .md-thumb:after {  background-color: '{{foreground-3}}'; }.md-subheader.md-THEME_NAME-theme {  color: '{{ foreground-2-0.23 }}';  background-color: '{{background-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme .md-thumb {  background-color: '{{background-50}}'; }md-switch.md-THEME_NAME-theme .md-bar {  background-color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-thumb {  background-color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-bar {  background-color: '{{accent-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-focused .md-thumb:before {  background-color: '{{accent-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-thumb {  background-color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-bar {  background-color: '{{primary-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary.md-focused .md-thumb:before {  background-color: '{{primary-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-thumb {  background-color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-bar {  background-color: '{{warn-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn.md-focused .md-thumb:before {  background-color: '{{warn-color-0.26}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-thumb {  background-color: '{{background-400}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-bar {  background-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme .md-paginator md-icon {  color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme .md-tab {  color: '{{foreground-2}}'; }  md-tabs.md-THEME_NAME-theme .md-tab[disabled] {    color: '{{foreground-3}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-active, md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    background: '{{primary-color-0.1}}'; }  md-tabs.md-THEME_NAME-theme .md-tab .md-ripple-container {    color: '{{accent-100}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-tabs-wrapper {  background-color: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]) {  color: '{{accent-100}}'; }  md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-focused {    color: '{{accent-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-focused {    background: '{{accent-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-ink-bar {  color: '{{primary-600-1}}';  background: '{{primary-600-1}}'; }md-tabs.md-THEME_NAME-theme.md-primary md-tabs-wrapper {  background-color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]) {  color: '{{primary-100}}'; }  md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-focused {    color: '{{primary-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-focused {    background: '{{primary-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-warn md-tabs-wrapper {  background-color: '{{warn-color}}'; }md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]) {  color: '{{warn-100}}'; }  md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-focused {    color: '{{warn-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-focused {    background: '{{warn-contrast-0.1}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{primary-color}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{primary-100}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{primary-contrast}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{primary-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{accent-color}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{accent-100}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{accent-contrast}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{accent-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{primary-600-1}}';  background: '{{primary-600-1}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{warn-color}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{warn-100}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{warn-contrast}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{warn-contrast-0.1}}'; }md-toast.md-THEME_NAME-theme {  background-color: #323232;  color: '{{background-50}}'; }  md-toast.md-THEME_NAME-theme .md-button {    color: '{{background-50}}'; }    md-toast.md-THEME_NAME-theme .md-button.md-highlight {      color: '{{primary-A200}}'; }      md-toast.md-THEME_NAME-theme .md-button.md-highlight.md-accent {        color: '{{accent-A200}}'; }      md-toast.md-THEME_NAME-theme .md-button.md-highlight.md-warn {        color: '{{warn-A200}}'; }md-toolbar.md-THEME_NAME-theme {  background-color: '{{primary-color}}';  color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme .md-button {    color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme.md-accent {    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }  md-toolbar.md-THEME_NAME-theme.md-warn {    background-color: '{{warn-color}}';    color: '{{warn-contrast}}'; }md-tooltip.md-THEME_NAME-theme {  color: '{{background-A100}}'; }  md-tooltip.md-THEME_NAME-theme .md-background {    background-color: '{{foreground-2}}'; }"); 
 })();
