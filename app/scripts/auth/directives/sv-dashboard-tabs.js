@@ -1,13 +1,11 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .directive('svDashboardTabs', function () {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-dashboard-tabs.html',
                 scope: {},
-
                 link: function ($scope, el, attrs) {
                     var tabs = [
                             {
@@ -35,7 +33,6 @@
                         previous = selected;
                         selected = tabs[current];
                     });
-
                 }
             };
         });

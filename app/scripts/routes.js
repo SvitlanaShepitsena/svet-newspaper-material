@@ -146,6 +146,11 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
+				.state("app.one-classified", {
+					url: "/one-classified", 
+					controller:"OneClassifiedCtrl as oneClassified",
+					templateUrl: "scripts/classified/views/one-classifiedCtrl.html"
+				})
 //#state'
         });
 
