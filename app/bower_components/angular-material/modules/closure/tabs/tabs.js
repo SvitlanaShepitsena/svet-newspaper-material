@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-041ffe9
+ * v0.9.0-rc3-master-c284438
  */
 goog.provide('ng.material.components.tabs');
 goog.require('ng.material.components.icon');
@@ -100,8 +100,8 @@ function MdTab () {
       label:    '@',
       active:   '=?mdActive',
       disabled: '=?ngDisabled',
-      select:   '&?mdOnSelect',
-      deselect: '&?mdOnDeselect'
+      selectExpr:   '@?mdOnSelect',
+      deselectExpr: '@?mdOnDeselect'
     },
     link: postLink
   };
@@ -118,8 +118,8 @@ function MdTab () {
           label:    getLabel()
         }, index);
 
-    scope.deselect = scope.deselect || angular.noop;
-    scope.select = scope.select || angular.noop;
+    scope.deselect = function () { ctrl.parent.$eval(scope.deselectExpr || ''); };
+    scope.select = function () { ctrl.parent.$eval(scope.selectExpr || ''); };
 
     scope.$watch('active', function (active) { if (active) ctrl.select(data.getIndex()); });
     scope.$watch('disabled', function () { ctrl.refreshIndex(); });
@@ -619,7 +619,7 @@ angular
     .module('material.components.tabs')
     .directive('mdTabs', MdTabs);
 
-function MdTabs ($mdTheming) {
+function MdTabs ($mdTheming, $mdUtil) {
   return {
     scope: {
       noPagination:  '=?mdNoPagination',
@@ -723,11 +723,9 @@ function MdTabs ($mdTheming) {
     controller: 'MdTabsController',
     controllerAs: '$mdTabsCtrl',
     link: function (scope, element, attr) {
-      angular.forEach(scope.$$isolateBindings, function (binding, key) {
-        if (binding.optional && angular.isUndefined(scope[key])) {
-          scope[key] = attr.hasOwnProperty(attr.$normalize(binding.attrName));
-        }
-      });
+
+      $mdUtil.initOptionalProperties(scope, attr);
+
       //-- watch attributes
       attr.$observe('mdNoBar', function (value) { scope.noInkBar = angular.isDefined(value); });
       //-- set default value for selectedIndex
@@ -737,7 +735,7 @@ function MdTabs ($mdTheming) {
     }
   };
 }
-MdTabs.$inject = ["$mdTheming"];
+MdTabs.$inject = ["$mdTheming", "$mdUtil"];
 
 angular
     .module('material.components.tabs')

@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-041ffe9
+ * v0.9.0-rc3-master-c284438
  */
 (function () {
 "use strict";
@@ -60,6 +60,7 @@ function MdSwitch(mdCheckboxDirective, $mdTheming, $mdUtil, $document, $mdConsta
 
   return {
     restrict: 'E',
+    priority:210, // Run before ngAria
     transclude: true,
     template:
       '<div class="md-container">' +

@@ -43,7 +43,7 @@
                     lx-dropdown-menu
                         ul
                             li(repeat='s in sections')
-                                a.dropdown-link(click='selectDropDown(s)') {{s.$value}}
+                                a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value}}
                 lx-dropdown(class='mt++' hide-sm hide-gt-sm hide-md show-gt-md)
                     div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
                         | {{cl.section.$value || "Select a Category"}}

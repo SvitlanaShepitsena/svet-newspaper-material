@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-041ffe9
+ * v0.9.0-rc3-master-c284438
  */
 (function () {
 "use strict";
@@ -44,22 +44,29 @@
  * </hljs>
  */
 
-angular.module('material.components.swipe', [])
+angular.module('material.components.swipe', ['material.core'])
     .directive('mdSwipeLeft', getDirective('SwipeLeft'))
     .directive('mdSwipeRight', getDirective('SwipeRight'));
 
 function getDirective(name) {
   var directiveName = 'md' + name;
   var eventName = '$md.' + name.toLowerCase();
-  return function($parse) {
-    return { restrict: 'A', link: postLink };
-    function postLink(scope, element, attr) {
-      var fn = $parse(attr[directiveName]);
-      element.on(eventName, function(ev) {
-        scope.$apply(function() { fn(scope, { $event: ev }); });
-      });
+
+    DirectiveFactory.$inject = ["$parse"];
+  return DirectiveFactory;
+
+  /* @ngInject */
+  function DirectiveFactory($parse) {
+      return { restrict: 'A', link: postLink };
+      function postLink(scope, element, attr) {
+        var fn = $parse(attr[directiveName]);
+        element.on(eventName, function(ev) {
+          scope.$apply(function() { fn(scope, { $event: ev }); });
+        });
+      }
     }
-  };
 }
+
+
 
 })();

@@ -7,7 +7,6 @@
                 templateUrl: 'scripts/classified/directives/sv-user-classified-section.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    //$scope.addState = true;
                     $scope.user = CurrentUserServ.get();
                     var cls = ClassifiedServ.getUserClassifiesArr($scope.user.id);
                     cls.$loaded().then(function () {
