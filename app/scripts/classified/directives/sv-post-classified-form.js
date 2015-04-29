@@ -27,7 +27,7 @@
                             toastr.warning('Please fill required fields');
                             return;
                         }
-                        $scope.cl.timestamp =
+                        $scope.cl.timestamp = moment().format('x');
 
 
                         ClassifiedServ.addCl($scope.cl).then(function (uid) {
