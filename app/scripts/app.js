@@ -29,7 +29,7 @@
         'home',
         // 3rd party modules
         'ngCookies',
-
+        'angular-capitalize-filter',
         'ngAnimate',
         'flow',
         'ngSanitize',
