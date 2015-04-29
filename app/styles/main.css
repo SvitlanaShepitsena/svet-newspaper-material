@@ -430,7 +430,7 @@ cursor pointer {
 }
 
 .sv-mr,
-margin-right 4px,
+margin-right 8px !important,
 .fw-700 {
 	font-weight: 700px !important;
 }

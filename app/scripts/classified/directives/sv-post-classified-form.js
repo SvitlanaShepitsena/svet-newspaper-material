@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('classified')
         .directive('svPostClassifiedForm', function (ClassifiedServ, toastr) {
             return {
@@ -18,44 +17,31 @@
                         price: faker.finance.amount(),
                         description: faker.lorem.paragraph(2)
                     };
-
                     $scope.sections = ClassifiedServ.getSections();
-
                     $scope.selectDropDown = function (section) {
                         $scope.cl.section = section;
                     };
-
-
-
                     $scope.isInvalid = function (field) {
                         if ($scope.classifiedForm[field].$invalid) {
                             return $scope.classifiedForm.$submitted || $scope.classifiedForm[field].$touched
-
                         } else {
                             return false;
                         }
                     };
-
                     $scope.cancelAddition = function () {
                         $scope.addState = false;
-
                     };
-
-
                     $scope.postClassified = function () {
                         if ($scope.classifiedForm.$invalid) {
                             toastr.warning('Please fill required fields');
                             return;
                         }
                         ClassifiedServ.addCl($scope.cl).then(function (uid) {
-
                             toastr.info('Your classified ad has been placed.Thank you')
                             $scope.resetForm();
                             $scope.addState = false;
                         });
-
                     };
-
                     $scope.resetForm = function () {
                         $scope.cl = {
                             name: '',
