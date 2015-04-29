@@ -15,10 +15,6 @@
                                 content: "scripts/auth/templates/user-dashboard/user-profile-temp.html"
                             },
                             {
-                                title: 'classified',
-                                content: "scripts/auth/templates/user-dashboard/user-classified-temp.html"
-                            },
-                            {
                                 title: 'comments',
                                 content: "scripts/auth/templates/user-dashboard/user-comments-temp.html"
                             },
