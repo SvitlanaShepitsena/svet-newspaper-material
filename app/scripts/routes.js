@@ -50,11 +50,6 @@
                     controller: "ContactCtrl as contact",
                     templateUrl: "scripts/contact/views/contactCtrl.html"
                 })
-                .state("app.classified", {
-                    url: "/classified",
-                    controller: "ClassifiedCtrl as classified",
-                    templateUrl: "scripts/classified/views/classifiedCtrl.html"
-                })
                 .state("app.sign-up", {
                     url: "/sign-up",
                     controller: "SignUpCtrl as signUp",
@@ -146,11 +141,6 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
-				.state("app.one-classified", {
-					url: "/one-classified", 
-					controller:"OneClassifiedCtrl as oneClassified",
-					templateUrl: "scripts/classified/views/one-classifiedCtrl.html"
-				})
 //#state'
         });
 
