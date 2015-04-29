@@ -5,9 +5,6 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/classified/directives/sv-classified-tabs.html',
-                scope: {},
-                bindToController: {},
-                controllerAs: 'ctrl',
                 controller: function ($scope, $log) {
                     var tabs = [
                             {title: 'all', route: "app.classified.all"},
@@ -27,8 +24,6 @@
                         selected = null,
                         previous = null;
                     $scope.tabs = tabs;
-
-
                     $scope.$watch('selectedIndex', function (current, old) {
                         previous = selected;
                         selected = tabs[current];
@@ -36,9 +31,8 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.currentRoute = $state.$current.toString();
-                    var routes = _.pluck($scope.tabs,'route');
+                    var routes = _.pluck($scope.tabs, 'route');
                     $scope.selectedIndex = routes.indexOf($scope.currentRoute);
-
                     $scope.switchTab = function () {
                         console.log($scope.selectedIndex);
                         var tabSelected = $scope.tabs[$scope.selectedIndex];
