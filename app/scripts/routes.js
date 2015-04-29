@@ -1,8 +1,10 @@
 (function () {
     'use strict'
+
     angular.module('app')
         .config(function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/home');
+
             $stateProvider
                 .state("app", {
                     abstract: true,
@@ -53,11 +55,6 @@
                     controller: "ClassifiedCtrl as classified",
                     templateUrl: "scripts/classified/views/classifiedCtrl.html"
                 })
-                .state("app.one-classified", {
-                    url: "/one-classified",
-                    controller: "OneClassifiedCtrl as oneClassified",
-                    templateUrl: "scripts/classified/views/one-classifiedCtrl.html"
-                })
                 .state("app.sign-up", {
                     url: "/sign-up",
                     controller: "SignUpCtrl as signUp",
@@ -68,6 +65,7 @@
                     controller: "SvetLoginCtrl as login",
                     templateUrl: "scripts/auth/views/svet-loginCtrl.html"
                 })
+
                 /* =Events*/
                 .state("app.events", {
                     url: "/events",
@@ -121,6 +119,7 @@
                     controller: "ArtCtrl as art",
                     templateUrl: "scripts/art/views/artCtrl.html"
                 })
+
                 .state("app.sport", {
                     url: "/sport",
                     controller: "SportCtrl as sport",
@@ -146,6 +145,13 @@
                     controller: "BusinessCtrl as business",
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
+
+				.state("app.one-classified", {
+					url: "/one-classified", 
+					controller:"OneClassifiedCtrl as oneClassified",
+					templateUrl: "scripts/classified/views/one-classifiedCtrl.html"
+				})
 //#state'
         });
+
 })();
