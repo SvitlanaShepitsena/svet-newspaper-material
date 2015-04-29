@@ -40,20 +40,10 @@
                     controller: "WorldCtrl as world",
                     templateUrl: "scripts/world/views/worldCtrl.html"
                 })
-                .state("app.article", {
-                    url: "/article/:id",
-                    controller: "ArticleCtrl as article",
-                    templateUrl: "scripts/article/views/articleCtrl.html"
-                })
                 .state("app.contact", {
                     url: "/contact",
                     controller: "ContactCtrl as contact",
                     templateUrl: "scripts/contact/views/contactCtrl.html"
-                })
-                .state("app.classified", {
-                    url: "/classified",
-                    controller: "ClassifiedCtrl as classified",
-                    templateUrl: "scripts/classified/views/classifiedCtrl.html"
                 })
                 .state("app.sign-up", {
                     url: "/sign-up",
@@ -66,49 +56,6 @@
                     templateUrl: "scripts/auth/views/svet-loginCtrl.html"
                 })
 
-                /* =Events*/
-                .state("app.events", {
-                    url: "/events",
-                    abstract: true,
-                    controller: "EventsCtrl as events",
-                    templateUrl: "scripts/events/views/eventsCtrl.html"
-                })
-                .state("app.events.calendar", {
-                    url: "/event-calendar",
-                    controller: "EventCalendarCtrl as eventCalendar",
-                    templateUrl: "scripts/events/views/event-calendarCtrl.html"
-                })
-                .state("app.events.field", {
-                    url: "/events/field-event/:year",
-                    controller: "FieldEventCtrl as fieldEvent",
-                    templateUrl: "scripts/events/views/field-eventCtrl.html"
-                })
-                .state("app.events.ravinia", {
-                    url: "/ravinia-event",
-                    controller: "RaviniaEventCtrl as raviniaEvent",
-                    templateUrl: "scripts/events/views/ravinia-eventCtrl.html"
-                })
-                .state("app.events.photo-gallery", {
-                    url: "/events-photo-gallery",
-                    controller: "EventsPhotoGalleryCtrl as eventsPhotoGallery",
-                    templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
-                })
-                /*=archive*/
-                .state("app.new-light-newspaper", {
-                    url: "/new-light-newspaper",
-                    controller: "NewLightNewspaperCtrl as newLightNewspaper",
-                    templateUrl: "scripts/archive/views/new-light-newspaperCtrl.html"
-                })
-                .state("app.saturday-plus-newspaper", {
-                    url: "/saturday-plus-newspaper",
-                    controller: "SaturdayPlusNewspaperCtrl as saturdayPlusNewspaper",
-                    templateUrl: "scripts/archive/views/saturday-plus-newspaperCtrl.html"
-                })
-                .state("app.svet-recommends", {
-                    url: "/svet-recommends",
-                    controller: "SvetRecommendsCtrl as svetRecommends",
-                    templateUrl: "scripts/article/views/svet-recommendsCtrl.html"
-                })
                 .state("app.technology", {
                     url: "/technology",
                     controller: "TechnologyCtrl as technology",
@@ -119,7 +66,6 @@
                     controller: "ArtCtrl as art",
                     templateUrl: "scripts/art/views/artCtrl.html"
                 })
-
                 .state("app.sport", {
                     url: "/sport",
                     controller: "SportCtrl as sport",
@@ -146,11 +92,6 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 
-				.state("app.one-classified", {
-					url: "/one-classified", 
-					controller:"OneClassifiedCtrl as oneClassified",
-					templateUrl: "scripts/classified/views/one-classifiedCtrl.html"
-				})
 //#state'
         });
 
