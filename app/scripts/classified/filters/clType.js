@@ -3,8 +3,14 @@
 
     angular.module('classified')
         .filter('clType', function () {
-            return function (input) {
-                return 'test filter: ' + input;
+            return function (list,type) {
+                if (type === 'all') {
+                    return list;
+                }
+
+
+
+                return _.filter(list,{section:type});
             };
         });
 })();
