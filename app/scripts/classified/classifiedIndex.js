@@ -28,9 +28,22 @@
                 .state("app.classified.housing", {
                     url: "/housing",
                     templateUrl: "scripts/classified/views/classified-housing-list.html"
-                }).state("app.classified.sale", {
+                })
+                .state("app.classified.sale", {
                     url: "/sale",
                     templateUrl: "scripts/classified/views/classified-for-sale-list.html"
+                })
+                .state("app.classified.services", {
+                    url: "/services",
+                    templateUrl: "scripts/classified/views/classified-services-list.html"
+                })
+                .state("app.classified.personal", {
+                    url: "/personal",
+                    templateUrl: "scripts/classified/views/classified-personal-list.html"
+                })
+                .state("app.classified.cars", {
+                    url: "/cars",
+                    templateUrl: "scripts/classified/views/classified-cars-list.html"
                 })
                 .state("app.classified.one-classified", {
                     url: "/:clid",

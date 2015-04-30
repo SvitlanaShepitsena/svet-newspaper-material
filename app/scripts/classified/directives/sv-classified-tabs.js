@@ -12,17 +12,16 @@
                             {title: 'job', route: "app.classified.job"},
                             {title: 'lessons', route: "app.classified.lessons"},
                             {title: 'housing', route: "app.classified.housing"},
-                            {title: 'sale', content: "app.classified.sale."},
-                            //{title: 'services', content: "Here are classified for services"},
-                            //{title: 'cars', content: "Here are classified for cars"},
-                            //{title: 'housing', content: "Here are classified for housing"},
-                            //{title: 'personal', content: "Here are classified for personal"}
+                            {title: 'sale', route: "app.classified.sale"},
+                            {title: 'services', route: "app.classified.services"},
+                            {title: 'personal', route: "app.classified.personal"},
+                            {title: 'cars', route: "app.classified.cars"}
                         ],
                         selected = null,
                         previous = null;
                     $scope.tabs = tabs;
                     $scope.$watch('selectedIndex', function (current, old) {
-                        previous = selected;
+                        previous = selected
                         selected = tabs[current];
                     });
                 },

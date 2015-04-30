@@ -82,7 +82,7 @@
                 /*Classified*/
                 'community': 'Community',
                 'job': 'Job',
-                'sell': 'Sell',
+                'sale': 'Sale',
                 'services': 'Services',
                 'cars': 'Cars',
                 'housing': 'Housing',
@@ -174,7 +174,7 @@
                 'community': 'Сообщество',
                 'job': 'Работа',
                 'lessons': 'Уроки',
-                'sell': 'Продажа',
+                'sale': 'Продажа',
                 'services': 'Услуги',
                 'cars': 'Авто',
                 'housing': 'Недвижимость',
