@@ -42,7 +42,6 @@
                     return $q(function (resolve, reject) {
                         var classifiedArray = $firebaseObject(new Firebase(clsUrl));
                         classifiedArray.$loaded().then(function () {
-                            console.log('run here ClassifiedServ.js');
                             classifiedArray.$remove(cl.$id).then(function (uid) {
                                 console.log(uid);
                                 var key = uid.key();
