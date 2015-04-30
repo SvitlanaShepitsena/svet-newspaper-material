@@ -33,7 +33,14 @@
                                 }
                             }
                             usersArr.$add(user).then(function (ref) {
-                                resolve(ref.key());
+                                var key = ref.key();
+                                var userObj = $firebaseObject(new Firebase(usersUrl + key));
+                                userObj.$loaded().then(function () {
+                                    userObj.key = key;
+                                    userObj.$save().then(function () {
+                                        resolve(key);
+                                    })
+                                })
                             });
                         });
                     });

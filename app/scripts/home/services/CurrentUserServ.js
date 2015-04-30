@@ -10,12 +10,13 @@
                         return;
                     }
                     currentUser = user;
-                    if (!currentUser.userName) {
+                    if (!currentUser.userName || !currentUser.key) {
                        var usersArr = $firebaseArray(new Firebase(users)) ;
                         usersArr.$loaded().then(function () {
                             var userLocal = _.find(usersArr,{id:user.id});
                             currentUser.userName = userLocal.userName;
                             currentUser.groups = userLocal.groups;
+                            currentUser.key = userLocal.key;
                         })
                     }
 
