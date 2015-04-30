@@ -6,10 +6,9 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/classified/directives/sv-cl-field.html',
-                scope: {
-
-                },
+                scope:true,
                 link: function ($scope, el, attrs) {
+                    $scope.name = attrs.name;
 
                 }
             };

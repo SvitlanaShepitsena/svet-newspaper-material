@@ -1,1 +1,1 @@
-<div>sv-cl-field Template</div>
+<div><div ng-show="!editState"><span class="mdc-display-inline-block fs-body-2 mr tc-grey-800">{{cl[name]|capitalize:first}}</span></div><div ng-show="!!editState"><input name="{{name}}" ng-model="clClone[name]" required="required"/><div ng-messages="editClForm[name].$error"><div ng-message="editClForm[name].required" style="color:red"></div></div></div></div>

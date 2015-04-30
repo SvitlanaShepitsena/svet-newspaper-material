@@ -2,14 +2,7 @@
     form(name='editClForm' novalidate)
         div
             div
-                div(ng-show='!editState')
-                    span.mdc-display-inline-block.fs-body-2.mr.tc-grey-800 {{cl.title|capitalize:first}}
-                div(ng-show='!!editState')
-                    input(name="title", id="title", ng-model='clClone.title' required)
-                    div(ng-messages='editClForm.title.$error')
-                        div(ng-message='required' style='color:red' role = 'alert') required
-
-
+                sv-cl-field(name='title')
                 div
                     span.mdc-display-inline-block.tc-grey-700(style='border:#E0E0E0 1px solid;padding: 1px 4px') ${{cl.price}}
             div

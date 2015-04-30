@@ -11,12 +11,13 @@
                 },
                 link: function ($scope, el, attrs) {
                     var currentState = $state.$current.toString();
+                    $scope.clClone = angular.copy($scope.cl);
                     $scope.isEditable = currentState.indexOf('app.user') > -1;
-
                     $scope.editState = false;
 
+
                     $scope.setToEditState = function () {
-                        $scope.clClone = angular.copy($scope.cl);
+
                         $scope.editState = true;
                     };
                 }
