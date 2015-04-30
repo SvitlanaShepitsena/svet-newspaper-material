@@ -8,11 +8,12 @@
 
                 getGroups: function (userId) {
                     return $q(function (resolve, reject) {
-                        var userUrl = usersUrl + userId;
-                        var userObj = $firebaseObject(new Firebase(userUrl));
+                        var usersArr = $firebaseArray(new Firebase(usersUrl));
 
-                        userObj.$loaded().then(function () {
-                            resolve(userObj.groups);
+
+                        usersArr.$loaded().then(function () {
+                            var userLocal = _(usersArr).find({id:userId});
+                            resolve(userLocal.groups);
                         }).catch(function (error) {
                             console.log(userid + 'does not exists');
                             reject(error);

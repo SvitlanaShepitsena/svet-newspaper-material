@@ -1,30 +1,30 @@
 .card.p
     sv-profile-subheader(subhead-title="classified")
-    form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified()')
+    form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy)')
         div(class='mt++', flex-container='row', flex-gutter='24')
             div(flex-item='')
                 lx-text-field(label='Контактное Имя'
                 fixed-label='true'
                 error='isInvalid("name")'
                 icon='account')
-                    input(ng-model='cl.name'
+                    input(ng-model='clCopy.name'
                     name='name'
                     required
                     type='text')
                 lx-text-field(label='Контактный Телефон', fixed-label='true', icon='phone')
-                    input(ng-model='cl.phone' type='text')
+                    input(ng-model='clCopy.phone' type='text')
                 lx-text-field(label='Электронный Адрес'
                 fixed-label='true'
                 error='isInvalid("email")'
                 icon='email')
-                    input( ng-model='cl.email'
+                    input( ng-model='clCopy.email'
                     name='email'
                     required
                     type='email')
         div(flex-container='row', flex-gutter='24' class='ml mr')
             div(flex-item='')
                 lx-text-field(label='State' error='isInvalid("state")')
-                    input(ng-model='cl.state'
+                    input(ng-model='clCopy.state'
                     name="state"
                     type='text'
                     required )
@@ -32,21 +32,21 @@
                 lx-text-field(label='City'
                 error='isInvalid("city")'
                 required)
-                    input(ng-model='cl.city'
+                    input(ng-model='clCopy.city'
                     name="city"
                     type='text'
                     required)
             div(flex-item='')
                 lx-dropdown(hide-gt-md)
                     div.btn.btn--s.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-                        | {{cl.section || "Select a Category"}}
+                        | {{clCopy.section || "Select a Category"}}
                     lx-dropdown-menu
                         ul
                             li(repeat='s in sections')
                                 a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value}}
                 lx-dropdown(class='mt++' hide-sm hide-gt-sm hide-md show-gt-md)
                     div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-                        | {{cl.section || "Select a Category"}}
+                        | {{clCopy.section || "Select a Category"}}
                     lx-dropdown-menu
                         ul
                             li(ng-repeat='s in sections')
@@ -57,7 +57,7 @@
                 lx-text-field(label='Заголовок Объявления'
                 error='isInvalid("title")'
                 required)
-                    input(ng-model='cl.title'
+                    input(ng-model='clCopy.title'
                     name="title"
                     type="text"
                     required )
@@ -67,20 +67,20 @@
                 lx-text-field(label='Объявление'
                 error='isInvalid("description")'
                 required)
-                    textarea(ng-model='cl.description'
+                    textarea(ng-model='clCopy.description'
                     name="description"
                     type="text"
                     required )
         div(flex-container='row' class='mb+ ml mr')
             div(flex-item='')
-                span.display-block {{cl.description}}
+                span.display-block {{clCopy.description}}
                 lx-text-field(label='Цена Товара / Услуги')
-                    input(ng-model='cl.price'
+                    input(ng-model='clCopy.price'
                     name="price")
         div(flex-container='row')
             button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Post")
                 i.mdi.mdi-send.mr
-                | Post
-            button.btn.btn--s.btn--raised.btn--white.m(lx-ripple ng-click='cancelAddition()')
+                | {{editState?'Save':'Post'}}
+            button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()')
                 i.mdi.mdi-close
                 | &nbsp Cancel

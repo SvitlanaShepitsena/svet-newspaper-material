@@ -46,37 +46,39 @@
                 getNotifications: function (user) {
                     return $q(function (resolve, reject) {
                         var final = [];
-                        var groups = user.groups;
-                        groups.forEach(function (group) {
-                            switch (group) {
-                                case 'customer':
-                                    getCustomerNotifications(user.id).then(function (notices) {
-                                        if (notices.length) {
-                                            if (user.notifications) {
-                                                notices.forEach(function (notice) {
-                                                    user.notifications.push(notice);
-                                                });
-                                            } else {
-                                                user.notifications = notices;
+                        if (user.groups) {
+                            var groups = user.groups;
+                            groups.forEach(function (group) {
+                                switch (group) {
+                                    case 'customer':
+                                        getCustomerNotifications(user.id).then(function (notices) {
+                                            if (notices.length) {
+                                                if (user.notifications) {
+                                                    notices.forEach(function (notice) {
+                                                        user.notifications.push(notice);
+                                                    });
+                                                } else {
+                                                    user.notifications = notices;
+                                                }
                                             }
-                                        }
-                                    });
-                                    break;
-                                case 'manager':
-                                    getManagerNotifications().then(function (notices) {
-                                        if (notices.length) {
-                                            if (user.notifications) {
-                                                notices.forEach(function (notice) {
-                                                    user.notifications.push(notice);
-                                                });
-                                            } else {
-                                                user.notifications = notices;
+                                        });
+                                        break;
+                                    case 'manager':
+                                        getManagerNotifications().then(function (notices) {
+                                            if (notices.length) {
+                                                if (user.notifications) {
+                                                    notices.forEach(function (notice) {
+                                                        user.notifications.push(notice);
+                                                    });
+                                                } else {
+                                                    user.notifications = notices;
+                                                }
                                             }
-                                        }
-                                    });
-                                    break;
-                            }
-                        });
+                                        });
+                                        break;
+                                }
+                            });
+                        }
                         resolve(user);
                     });
                 }

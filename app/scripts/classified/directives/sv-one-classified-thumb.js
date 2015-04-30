@@ -7,19 +7,15 @@
                 templateUrl: 'scripts/classified/directives/sv-one-classified-thumb.html',
                 scope: {
                     cl: '=',
-                    removeCl: '&'
+                    removeCl: '&',
+                    editCl: '&'
                 },
                 link: function ($scope, el, attrs) {
                     var currentState = $state.$current.toString();
-                    $scope.clClone = angular.copy($scope.cl);
                     $scope.isEditable = currentState.indexOf('app.user') > -1;
                     $scope.editState = false;
 
 
-                    $scope.setToEditState = function () {
-
-                        $scope.editState = true;
-                    };
                 }
             };
         });

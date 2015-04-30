@@ -21,7 +21,7 @@
                 i.mdi.mdi-tag &nbsp
                 span {{'events'|translate}}
     div(show-sm hide-gt-sm layout='row' layout-align="space-between center")
-        a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(lx-tooltip="{{'dashboard'|translate}}" ui-sref='app.user.dashboard({uid:user.name})'  lx-ripple='')
+        a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(lx-tooltip="{{'dashboard'|translate}}" ui-sref='app.user.dashboard({uid:user.userName})'  lx-ripple='')
             i.mdi.mdi-view-dashboard &nbsp
         a.btn.btn--m.btn--grey.tc-grey-700.btn--icon.mr(ng-if='isInGroup("author")' lx-tooltip="{{'my-articles'|translate}}" ui-sref='app.user.author-articles' lx-ripple='')
             i.mdi.mdi-view-list &nbsp

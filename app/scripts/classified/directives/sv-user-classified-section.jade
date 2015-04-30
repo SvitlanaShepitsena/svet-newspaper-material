@@ -1,12 +1,12 @@
 div
-    div(ng-show='addState')
+    div(ng-show='addState || editState')
         sv-post-classified-form
-    div(ng-show='!addState')
+    div(ng-show='!addState && !editState')
         .mb(layout='row', layout-align='space-between')
             sv-add-classified-btn
             sv-classified-bonus
         .card.p(ng-show='!cls')
             span.display-block.fs-subhead.tc-grey-700 {{'no-classified-yet'|translate}}
         .div(ng-show='!!cls' layout="column")
-            div(ng-repeat='cl in cls')
-                sv-one-classified-thumb(cl="cl" remove-cl="removeCl(cl)")
+            div(ng-repeat='cl in cls|orderBy:"-timestamp"')
+                sv-one-classified-thumb(cl="cl" remove-cl="removeCl(cl)" edit-cl="editCl(cl)")

@@ -8,17 +8,19 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
                     $scope.user = CurrentUserServ.get();
-                    var cls = ClassifiedServ.getUserClassifiesArr($scope.user.id);
+
+                    var cls = ClassifiedServ.getAllCls();
                     cls.$loaded().then(function () {
                         $scope.cls = cls;
-                        cls.$watch(function () {
-                            $scope.cls = cls;
-                        })
                     })
                     $scope.removeCl = function (cl) {
-                        ClassifiedServ.removeCl(cl).then(function (sucess) {
+                        ClassifiedServ.removeCl(cl).then(function (success) {
                             toastr.warning('Your classified removed');
                         })
+                    };
+                    $scope.editCl = function (cl) {
+                        $scope.editState = true;
+                        $scope.populateForm(cl);
                     };
                 }
             };

@@ -6,7 +6,7 @@
             var clsUrl = url + 'cls/all/'
 
             function processClassified(user, cl) {
-                cl.user = user.id;
+                cl.user = user;
                 return cl;
             }
 
@@ -29,6 +29,16 @@
                     return $q(function (resolve, reject) {
                         cl = processClassified(user, cl);
                         var classifiedArray = $firebaseArray(new Firebase(clsUrl));
+                        classifiedArray.$add(cl).then(function (uid) {
+                          resolve(uid.key());
+                        })
+                    });
+                },
+                editCl: function (cl) {
+                    var user = CurrentUserServ.get();
+                    return $q(function (resolve, reject) {
+                        cl = processClassified(user, cl);
+                        var classifiedObject = $firebaseObject(new Firebase(clsUrl));
                         classifiedArray.$add(cl).then(function (uid) {
                             var key = uid.key();
                             UserServ.addUserCl(user.id, cl, key).then(function (uidfinal) {

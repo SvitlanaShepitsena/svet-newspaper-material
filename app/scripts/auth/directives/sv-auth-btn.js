@@ -23,7 +23,7 @@
                             if (UserGroupsServ.isInGroup('manager') || UserGroupsServ.isInGroup('admin')) {
                                 $state.go('app.manager.dashboard', {uid: user.id})
                             } else {
-                                $state.go('app.user.dashboard', {uid: user.name || user.fname})
+                                $state.go('app.user.dashboard', {uid: user.userName || user.fname})
                             }
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);

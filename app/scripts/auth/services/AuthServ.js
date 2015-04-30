@@ -33,13 +33,8 @@
                 var userLogin = email.substring(0, at);
                 user = _.extend(user, {
                     login: userLogin,
-                    name: 'Alex',
                     avatar: 'img/auth/AlexEtman-sepia.jpg'
                 });
-                if (user.uid) {
-                    user.id = user.uid
-
-                }
 
                 return user;
             }
@@ -205,7 +200,6 @@
                             var userLogin = email.substring(0, at);
                             authData = _.extend(authData, {
                                 email: email,
-                                login: userLogin,
                                 avatar: 'img/auth/user.png'
                             });
                             deferred.resolve(authData);
