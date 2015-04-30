@@ -5,7 +5,7 @@ div(layout='row' layout-align="center center")
     div(ng-show="forecastReady" layout-align='center center' layout='row' class='fade-in-out')
         .weather-container(layout='row' layout-align='center center')
             span.main-weather-text {{'Chicago'|translate}}
-            img.main-weather-img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png")
+            img.main-weather-img(ng-src="../img/weather/weather-icons/{{forecast.curr.icon}}.png" style='width:22px;height:22px')
             span.tc-grey-400.mdc-display-inline-block.main-weather-text(style="margin-right:2px") {{tempConverter(forecast.curr.temp)}} °{{'degrees'|translate}}
         lx-dropdown(position='left'  hide-sm style='margin-top:4px')
             button.btn.tc-grey-400.btn--m(lx-ripple  lx-dropdown-toggle='' ng-class="{'mr+':ctrl.gtSm}" )

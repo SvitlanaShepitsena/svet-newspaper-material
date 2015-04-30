@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ) {
             return {
@@ -10,15 +9,12 @@
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {
-
                     var ctrl = this;
                     ctrl.isIe = AgentServ.isIe();
                     $scope.isManager = function () {
                         return UserGroupsServ.isInGroup('manager');
                     };
-
                     ctrl.loginProvider = function (provider) {
-
                         AuthServ.authProvider(provider).then(function (user) {
                             if (!user.groups) {
                                 UserServ.saveNewUser(user);
@@ -33,13 +29,11 @@
                             console.error("Authentication failed:", error);
                         });
                     };
-
                     ctrl.logout = function () {
                         $rootScope.user = null;
                         AuthServ.logout();
                         $state.go('app.home')
                     };
-
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');
                     }, function (size) {
@@ -61,10 +55,7 @@
                     $rootScope.$watch('loadingUser', function (newVal) {
                         $scope.loadingUser = newVal;
                     });
-
-
                 }
-
             };
         });
 })();

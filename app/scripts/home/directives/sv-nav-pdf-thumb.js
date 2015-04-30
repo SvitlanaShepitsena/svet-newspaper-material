@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('home')
         .directive('svNavPdfThumb', function ($rootScope, $mdSidenav) {
             return {
@@ -12,7 +11,6 @@
                 },
                 bindToController: {},
                 controllerAs: 'ctrl',
-
                 controller: function ($scope) {
                     var ctrl = this;
                     ctrl.closeSideBar = function () {
@@ -20,9 +18,7 @@
                         $mdSidenav('right').close();
                     };
                 },
-
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });

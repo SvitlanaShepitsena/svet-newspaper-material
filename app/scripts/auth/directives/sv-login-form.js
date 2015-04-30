@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .directive('svLoginForm', function (toastr) {
             return {
@@ -19,18 +18,15 @@
                         email: 'alex2@gmail.com',
                         password: '12345'
                     }
-
                     $scope.singIn = function () {
                         AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {
                             $rootScope.user = user;
                             $state.go('app.user.dashboard', {uid: user.name || user.fname})
-
                         }).catch(function (error) {
                             toastr.error(error.message);
                         })
                     }
                 },
-
                 link: function ($scope, el, attrs) {
                 }
             };
