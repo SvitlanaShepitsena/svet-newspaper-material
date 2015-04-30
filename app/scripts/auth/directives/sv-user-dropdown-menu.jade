@@ -16,10 +16,6 @@ lx-dropdown(position='right')
                     i.mdi.mdi-view-list &nbsp
                     | {{'my-articles'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.author-drafts({uid:user.name})"  ng-if='isInGroup("author")')
-                    i.mdi.mdi-file &nbsp
-                    | {{'my-drafts'|translate}}
-            li
                 a.dropdown-link(ui-sref='app.user.create-article({uid:user.name})'  ng-if='isInGroup("author")')
                     i.mdi.mdi-pencil &nbsp
                     | {{'create-article'|translate}}
@@ -27,6 +23,10 @@ lx-dropdown(position='right')
                 a.dropdown-link(ui-sref="app.user.social({uid:user.name})")
                     i.mdi.mdi-emoticon &nbsp
                     | {{'community'|translate}}
+            li
+                a.dropdown-link(ui-sref="app.user.business-ad({uid:user.name})")
+                    i.mdi.mdi-bullhorn &nbsp
+                    | {{'my-ad'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.user-events({uid:user.name})")
                     i.mdi.mdi-view-dashboard &nbsp

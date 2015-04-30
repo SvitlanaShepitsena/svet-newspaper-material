@@ -82,7 +82,7 @@
                 /*Classified*/
                 'community': 'Community',
                 'job': 'Job',
-                'sale': 'Sale',
+                'sale': 'For Sale',
                 'services': 'Services',
                 'cars': 'Cars',
                 'housing': 'Housing',
