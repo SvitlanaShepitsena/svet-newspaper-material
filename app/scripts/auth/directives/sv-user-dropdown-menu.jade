@@ -8,23 +8,23 @@ lx-dropdown(position='right')
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.business-ad({uid:user.name})")
+                a.dropdown-link(ui-sref="app.user.business-ad({uid:user.name || user.fname})")
                     i.fa.fa-bullhorn &nbsp
                     | {{'my-ad'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.social({uid:user.name})")
+                a.dropdown-link(ui-sref="app.user.social({uid:user.name|| user.fname})")
                     i.mdi.mdi-emoticon &nbsp
                     | {{'community'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.name})"  ng-if='isInGroup("author")')
+                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.name|| user.fname})"  ng-if='isInGroup("author")')
                     i.mdi.mdi-view-list &nbsp
                     | {{'my-articles'|translate}}
             li
-                a.dropdown-link(ui-sref='app.user.create-article({uid:user.name})'  ng-if='isInGroup("author")')
+                a.dropdown-link(ui-sref='app.user.create-article({uid:user.name|| user.fname})'  ng-if='isInGroup("author")')
                     i.mdi.mdi-pencil &nbsp
                     | {{'create-article'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.user-events({uid:user.name})")
+                a.dropdown-link(ui-sref="app.user.user-events({uid:user.name|| user.fname})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'events'|translate}}
             li.dropdown-divider
