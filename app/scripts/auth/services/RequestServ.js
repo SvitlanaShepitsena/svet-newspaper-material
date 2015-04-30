@@ -12,7 +12,7 @@
 
                         userObj.$loaded().then(function () {
                             if (userObj.requestCorporateSubmited) {
-                                resolve(true);
+                                resolve(userObj.requestCorporateSubmited);
                             } else {
                                 resolve(false)
                             }
@@ -30,8 +30,9 @@
                         var userObj = $firebaseObject(new Firebase(userUrl));
 
                         userObj.$loaded().then(function () {
-                            userObj.requestCorporateSubmited = true;
-
+                            userObj.requestCorporateSubmited = {submitted:true,
+                                                                accepted:false,
+                                                                rejected:false };
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })
@@ -49,7 +50,9 @@
                         var userObj = $firebaseObject(new Firebase(userUrl));
 
                         userObj.$loaded().then(function () {
-                            userObj.requestCorporateSubmited = false;
+                            userObj.requestCorporateSubmited = {submitted:true,
+                                accepted:false,
+                                rejected:true};
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })
@@ -67,8 +70,10 @@
                         var userObj = $firebaseObject(new Firebase(userUrl));
 
                         userObj.$loaded().then(function () {
-                            userObj.requestCorporateSubmited = false;
-                            userObj.groups=['customer'];
+                            userObj.requestCorporateSubmited = {submitted:true,
+                                accepted:true,
+                                rejected:false};
+                            userObj.groups.push("customer");
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })

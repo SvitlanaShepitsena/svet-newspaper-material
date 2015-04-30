@@ -10,11 +10,16 @@
                     span.fs-caption
                         strong {{u.lname}}
                 td(flex='40')
-                    button.btn.btn--l.btn--green.tc-green-800.btn--flat.mr(lx-ripple='' ng-click='accept(u)')
+                    button.btn.btn--l.btn--green.tc-green-800.btn--flat.mr(ng-if="!u.requestCorporateSubmited.accepted" lx-ripple='' ng-click='accept(u)')
                         i.mdi.mdi-check.mr
                         span.fs-caption Accept
-                    button.btn.btn--l.btn--red.tc-red-400.btn--flat(lx-ripple='' ng-click='reject(u)')
+                    button.btn.btn--l.btn--red.tc-red-400.btn--flat(ng-if="!u.requestCorporateSubmited.accepted" lx-ripple='' ng-click='reject(u)' )
                         i.mdi.mdi-minus-circle.mr
                         span.fs-caption Reject
+                    span.fs-caption.tc-green-800(ng-if="u.requestCorporateSubmited.accepted") Accepted
+                    span.fs-caption.tc-green-800(ng-if="!u.requestCorporateSubmited.accepted") Rejected
+                td(flex)
+                    pre {{u.requestCorporateSubmited}}
+
 
 

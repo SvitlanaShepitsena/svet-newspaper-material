@@ -1,16 +1,24 @@
 .card.mb.p(layout-gt-sm="row" layout-sm="column" layout-align-gt-sm='space-between center')
     div.mb
+        div {{cl.user.userName}}
         div
             span.mdc-display-inline-block.fs-body-2.mr.tc-grey-800 {{cl.title|capitalize:first}}
             span.mdc-display-inline-block.tc-grey-700(style='border:#E0E0E0 1px solid;padding: 1px 4px') ${{cl.price}}
         div
+            span.mdc-display-inline-block.fs-body-1.mr.tc-grey-800 {{cl.description|capitalize:first}}
+        div.mb
             .mdc-display-inline-block.mr.tc-grey-500
                 i.mdi.mdi-calendar-today(style="margin-right:2px")
                 span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
             span.mdc-display-inline-block.fs-caption.tc-grey-800.mr {{cl.state}}, {{cl.city}}
             .mdc-display-inline-block.mr
                 a.fs-caption.tc-grey-800.bgc-grey-300(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{cl.section}}
-        div {{cl.user.userName}}
+        span(style='background-color:#Fffff;border:#EEEEEE 1px solid;padding: 1px 4px')
+            span.fs-caption.tc-grey-500.mr Contact Info:
+            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Name: {{cl.name}},
+            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Phone: {{cl.phone}},
+            a
+                span.mdc-display-inline-block.fs-caption.mr Email: {{cl.email}}
     div(ng-if='isEditable')
         button.btn.btn--s.btn--white.btn--raised.mr(lx-ripple='' ng-click='editCl({cl:cl})')
             i.mdi.mdi-account-remove.mr

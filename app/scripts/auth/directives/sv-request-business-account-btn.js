@@ -7,7 +7,7 @@
                 templateUrl: 'scripts/auth/directives/sv-request-business-account-btn.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    RequestServ.getStatus($rootScope.user.id).then(function (requestSubmited) {
+                    RequestServ.getStatus(CurrentUserServ.get().key).then(function (requestSubmited) {
                         $scope.loaded = true;
                         $scope.requestSubmited = requestSubmited;
                     });
