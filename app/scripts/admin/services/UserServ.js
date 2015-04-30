@@ -9,6 +9,10 @@
                 if (user.fname) {
                     user.userName = user.fname;
                 }
+                if (user.uid) {
+                    user.id = user.uid;
+                }
+                user = _.omit(user,['uid']);
                 return user;
             }
 
@@ -33,6 +37,9 @@
                         userNamesArray.$loaded().then(function () {
                             for (var i = 0; i < userNamesArray.length; i++) {
                                 var user = userNamesArray[i];
+                                if (!user.userName) {
+                                   continue ;
+                                }
                                 if (user.userName.toLocaleLowerCase() === userName.toLocaleLowerCase()) {
                                     reject();
                                 }

@@ -1,8 +1,7 @@
 (function () {
     'use strict';
-
     angular.module('auth')
-        .directive('svSignUpForm', function (UserServ, $state, toastr,CurrentUserServ) {
+        .directive('svSignUpForm', function (UserServ, $state, toastr, CurrentUserServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-sign-up-form.html',
@@ -17,15 +16,12 @@
                     registered: '@',
                     login: '@'
                 },
-
                 controller: function ($scope, AuthServ, $rootScope) {
-
                     $scope.user = {
                         name: '',
                         email: '',
                         password: ''
                     };
-
                     $scope.user = {
                         name: faker.internet.userName(),
                         email: faker.internet.email(),
@@ -39,8 +35,9 @@
                             return;
                         }
                         AuthServ.createUser($scope.user.email, $scope.user.password).then(function (user) {
-                                user.userName = $scope.user.name.trim().toLocaleLowerCase();
-
+                                if ($scope.user && $scope.user.name) {
+                                    user.userName = $scope.user.name.toLocaleLowerCase();
+                                }
                                 UserServ.saveNewUser(user);
                                 $rootScope.user = user;
                                 CurrentUserServ.setUser(user);
@@ -49,7 +46,6 @@
                             }
                         ).catch(function (error) {
                                 toastr.error(error.message);
-
                                 $scope.signUpForm.email.$invalid = true;
                                 $scope.signUpForm.email.$touched = true;
                             })

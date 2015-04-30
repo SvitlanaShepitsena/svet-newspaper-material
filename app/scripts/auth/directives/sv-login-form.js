@@ -17,7 +17,7 @@
 
                     $scope.user = {
                         email: 'alex2@gmail.com',
-                        password: '12345'
+                        password: '123456'
                     }
                     $scope.singIn = function () {
                         AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {

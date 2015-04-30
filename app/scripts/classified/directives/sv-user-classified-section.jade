@@ -8,5 +8,5 @@ div
         .card.p(ng-show='!cls')
             span.display-block.fs-subhead.tc-grey-700 {{'no-classified-yet'|translate}}
         .div(ng-show='!!cls' layout="column")
-            div(ng-repeat='cl in cls|orderBy:"-timestamp"')
+            div(ng-repeat='cl in cls|userCls|orderBy:"-timestamp"')
                 sv-one-classified-thumb(cl="cl" remove-cl="removeCl(cl)" edit-cl="editCl(cl)")

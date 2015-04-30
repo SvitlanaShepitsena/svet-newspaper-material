@@ -6,7 +6,8 @@
             var clsUrl = url + 'cls/all/'
 
             function processClassified(user, cl) {
-                cl.user = user;
+                var shortUser = _.omit(user, ['auth', 'password', 'token']);
+                cl.user = shortUser;
                 return cl;
             }
 
@@ -30,34 +31,33 @@
                         cl = processClassified(user, cl);
                         var classifiedArray = $firebaseArray(new Firebase(clsUrl));
                         classifiedArray.$add(cl).then(function (uid) {
-                          resolve(uid.key());
+                            resolve(uid.key());
                         })
                     });
                 },
                 editCl: function (cl) {
                     var user = CurrentUserServ.get();
+                    var id = cl.$id;
                     return $q(function (resolve, reject) {
                         cl = processClassified(user, cl);
                         var classifiedObject = $firebaseObject(new Firebase(clsUrl));
-                        classifiedArray.$add(cl).then(function (uid) {
-                            var key = uid.key();
-                            UserServ.addUserCl(user.id, cl, key).then(function (uidfinal) {
-                                resolve(uidfinal.key());
-                            });
+                        classifiedObject.$loaded().then(function () {
+
+                            classifiedObject[cl.$id] = cl;
+                            classifiedObject.$save().then(function () {
+                                resolve();
+                            })
+
                         })
                     });
                 },
                 removeCl: function (cl) {
                     var user = CurrentUserServ.get();
                     return $q(function (resolve, reject) {
-                        var classifiedArray = $firebaseObject(new Firebase(clsUrl));
-                        classifiedArray.$loaded().then(function () {
-                            classifiedArray.$remove(cl.$id).then(function (uid) {
-                                console.log(uid);
-                                var key = uid.key();
-                                UserServ.removeUserCl(user.id, cl).then(function (uidfinal) {
-                                    resolve(uidfinal.key());
-                                });
+                        var clObj = $firebaseObject(new Firebase(clsUrl + cl.$id));
+                        clObj.$loaded().then(function () {
+                            clObj.$remove().then(function (uid) {
+                                resolve(uid.key());
                             })
                         })
                     });

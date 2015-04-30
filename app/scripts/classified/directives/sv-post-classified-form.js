@@ -8,7 +8,7 @@
                 link: function ($scope, el, attrs) {
                     $scope.sections = ClassifiedServ.getSections();
                     $scope.selectDropDown = function (section) {
-                        $scope.cl.section = section.$value;
+                        $scope.clCopy.section = section.$value;
                     };
                     $scope.isInvalid = function (field) {
                         if ($scope.classifiedForm[field].$invalid) {
@@ -32,6 +32,17 @@
                             return;
                         }
                         clCopy.timestamp = moment().format('x');
+                        if (clCopy.$id){
+
+                            ClassifiedServ.editCl(clCopy).then(function (uid) {
+                                toastr.info('Your classified ad has been updated.Thank you')
+                                $scope.resetForm();
+                                $scope.populateForm();
+                                $scope.addState = false;
+                                $scope.editState = false;
+                            });
+                        } else{
+
                         ClassifiedServ.addCl(clCopy).then(function (uid) {
                             toastr.info('Your classified ad has been placed.Thank you')
                             $scope.resetForm();
@@ -39,6 +50,7 @@
                             $scope.addState = false;
                             $scope.editState = false;
                         });
+                        }
                     };
                     $scope.resetForm = function () {
                         $scope.clCopy = {

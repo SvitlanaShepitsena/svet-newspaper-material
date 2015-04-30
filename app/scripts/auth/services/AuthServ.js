@@ -32,7 +32,7 @@
                 var at = email.indexOf('@');
                 var userLogin = email.substring(0, at);
                 user = _.extend(user, {
-                    login: userLogin,
+                    userName: userLogin,
                     avatar: 'img/auth/AlexEtman-sepia.jpg'
                 });
 
@@ -86,7 +86,7 @@
                         if (!_.isNull(user)) {
                             updateWithLocalData(user).then(function (user) {
 
-                                UserGroupsServ.getGroups(user.id).then(function (groups) {
+                                UserGroupsServ.getGroups(user).then(function (groups) {
                                     user.groups = groups
                                     NoteServ.getNotifications(user).then(function (user) {
                                         deferred.resolve(user);
@@ -115,7 +115,8 @@
                         if (_.isNull(user)) {
                             deferred.resolve(null);
                         } else {
-                            UserGroupsServ.getGroups(user.id).then(function (groups) {
+                            UserGroupsServ.getGroups(user).then(function (groups) {
+
                                 user.groups = groups
                                 deferred.resolve(user);
                             }).catch(function (error) {
@@ -168,7 +169,7 @@
                     } else {
                         updateWithLocalData(user).then(function (user) {
 
-                            UserGroupsServ.getGroups(user.id).then(function (groups) {
+                            UserGroupsServ.getGroups(user).then(function (groups) {
                                 user.groups = groups;
                                 NoteServ.getNotifications(user).then(function (user) {
                                     deferred.resolve(user);
