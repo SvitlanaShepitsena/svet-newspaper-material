@@ -5,7 +5,7 @@
             var usersUrl = url + '/user-management/users/';
             return {
                 getGroups: function (user) {
-                    var userId = user;
+                    var userId = user.id;
                     return $q(function (resolve, reject) {
                         var usersArr = $firebaseArray(new Firebase(usersUrl));
                         usersArr.$loaded().then(function () {

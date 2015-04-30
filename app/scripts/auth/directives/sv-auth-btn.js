@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ) {
+        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ,CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -16,6 +16,7 @@
                     };
                     ctrl.loginProvider = function (provider) {
                         AuthServ.authProvider(provider).then(function (user) {
+                            CurrentUserServ.setUser(user);
                             if (!user.groups) {
                                 UserServ.saveNewUser(user);
                             }

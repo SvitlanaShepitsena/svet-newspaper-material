@@ -6,9 +6,12 @@
             var currentUser;
             return {
                 setUser: function (user) {
+                    if (!user) {
+                        return;
+                    }
                     currentUser = user;
                     if (!currentUser.userName) {
-                       var usersArr = $firebaseArray(users) ;
+                       var usersArr = $firebaseArray(new Firebase(users)) ;
                         usersArr.$loaded().then(function () {
                             var userLocal = _.find(usersArr,{id:user.id});
                             currentUser.userName = userLocal.userName;
@@ -16,6 +19,9 @@
                         })
                     }
 
+                },
+                cleanUser: function () {
+                    currentUser = null;
                 },
                 get: function () {
                     return currentUser || null;

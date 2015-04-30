@@ -12,7 +12,7 @@
                 if (user.uid) {
                     user.id = user.uid;
                 }
-                user = _.omit(user,['uid']);
+                user = _.omit(user, ['uid']);
                 return user;
             }
 
@@ -25,9 +25,16 @@
                     user = addToReadersGroup(user);
                     return $q(function (resolve, reject) {
                         var usersArr = $firebaseArray(new Firebase(usersUrl));
-                        usersArr.$add(user).then(function (ref) {
-                            resolve(ref.key());
-
+                        usersArr.$loaded().then(function () {
+                            for (var i = 0; i < usersArr.length; i++) {
+                                var dbUser = usersArr[i];
+                                if (dbUser.email === user.email || dbUser.id === user.id) {
+                                    resolve()
+                                }
+                            }
+                            usersArr.$add(user).then(function (ref) {
+                                resolve(ref.key());
+                            });
                         });
                     });
                 },
@@ -38,7 +45,7 @@
                             for (var i = 0; i < userNamesArray.length; i++) {
                                 var user = userNamesArray[i];
                                 if (!user.userName) {
-                                   continue ;
+                                    continue;
                                 }
                                 if (user.userName.toLocaleLowerCase() === userName.toLocaleLowerCase()) {
                                     reject();
