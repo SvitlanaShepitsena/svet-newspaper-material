@@ -28,6 +28,9 @@
                 .state("app.classified.housing", {
                     url: "/housing",
                     templateUrl: "scripts/classified/views/classified-housing-list.html"
+                }).state("app.classified.sale", {
+                    url: "/sale",
+                    templateUrl: "scripts/classified/views/classified-for-sale-list.html"
                 })
                 .state("app.classified.one-classified", {
                     url: "/:clid",

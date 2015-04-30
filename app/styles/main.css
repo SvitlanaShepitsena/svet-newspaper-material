@@ -146,10 +146,6 @@ md-tab-content {
 	height: 100%;
 }
 
-md-tabs-wrapper {
-	padding-bottom: 8px !important;
-}
-
 .data-table--has-primary > tbody > tr > td:first-child,
 .data-table--has-primary > thead > tr > th:first-child {
 	padding: 8px 16px !important;

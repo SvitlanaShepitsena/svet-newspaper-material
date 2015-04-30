@@ -1,1 +1,4 @@
-div Job Lessons
+div
+    div(ng-repeat="cl in allCls|clType:tabs[selectedIndex].title")
+        sv-one-classified-thumb(cl="cl")
+
