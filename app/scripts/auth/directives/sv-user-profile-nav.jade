@@ -4,8 +4,8 @@
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.dashboard' lx-ripple='' style='padding:0px 10px')
                 i.mdi.mdi-view-dashboard &nbsp
                 span {{'dashboard'|translate}}
-        li(ui-sref-active='sv-active-user-menu')
-            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ng-if='isInGroup("author")'  ui-sref='app.user.author-articles' lx-ripple='' style='padding:0px 10px')
+        li(ui-sref-active='sv-active-user-menu' ng-if='isInGroup("author")')
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.author-articles' lx-ripple='' style='padding:0px 10px')
                 i.mdi.mdi-view-list &nbsp
                 span {{'my-articles'|translate}}
         li(ui-sref-active='sv-active-user-menu')
