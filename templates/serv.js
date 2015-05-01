@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('#module#')
-        .factory('#name#Serv', function ($q, url, urlUsers, $firebaseObject, $firebaseArray) {
+        .factory('#name#Serv', function ($q, url, users, $firebaseObject, $firebaseArray) {
 
             return {
 

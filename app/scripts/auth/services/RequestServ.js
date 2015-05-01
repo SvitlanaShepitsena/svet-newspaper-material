@@ -72,8 +72,12 @@
                             userObj.requestCorporateSubmited.accepted = true;
                             userObj.requestCorporateSubmited.rejected = false;
                             userObj.requestCorporateSubmited.decisionDate = moment().format('x');
-
+                            if (!userObj.groups) {
+                                userObj.groups = [] ;
+                            }
+                            if (!_(userObj.groups).contains('customer')) {
                             userObj.groups.push("customer");
+                            }
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })
@@ -95,6 +99,9 @@
                             userObj.requestCorporateSubmited.accepted = false;
                             userObj.requestCorporateSubmited.decisionDate = moment().format('x');
 
+                            var res  = _.remove(userObj.groups, function (group) {
+                                return group === 'customer';
+                            });
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })
