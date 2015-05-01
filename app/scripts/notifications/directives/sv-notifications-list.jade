@@ -14,7 +14,7 @@ div(ng-if='notices')
                 li.p(ng-repeat='n in notices|orderBy:"-timestamp"' tyle='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
-                        p.fs-caption {{n.timestamp}}
+                        p.fs-caption {{n.timestamp|date}}
                         button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened')
                             i.mdi.mdi-check(style='font-weight:bold')
 
@@ -35,6 +35,6 @@ div(ng-if='notices')
                 li.p(ng-repeat='n in notices|orderBy:"-timestamp"' style='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
-                        p.fs-caption {{n.timestamp}}
+                        p.fs-caption {{n.timestamp|date}}
                         button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened')
                             i.mdi.mdi-check(style='font-weight:bold')
