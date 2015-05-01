@@ -10,12 +10,21 @@
                     return $q(function (resolve, reject) {
                         var usersArray = $firebaseArray(new Firebase(users));
                         usersArray.$loaded().then(function () {
-                            var customers = _.where(usersArray, function (user) {
-                                return user.groups.indexOf('customer')>-1;
-                            });
-                            console.log(customers);
+                            usersArray.forEach(function (user, index) {
+                                if (user.groups.indexOf('customer') > -1) {
 
-                            resolve(usersArray);
+                                    if (!user.notices) {
+                                        user.notices = [];
+                                    }
+                                    if (!_.contains(user.notices, event)) {
+                                        user.notices.push(event);
+                                        usersArray.$save(user);
+                                    }
+
+                                }
+                            })
+                            resolve();
+
                         })
 
 

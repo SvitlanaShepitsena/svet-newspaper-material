@@ -4,8 +4,6 @@
 	angular.module('app')
 
 		.controller('MainCtrl', function (AgentServ,NotificationsServ, $scope, $timeout, $mdSidenav, $mdMedia, $rootScope) {
-            console.log('run here HomeCtrl.js');
-            NotificationsServ.addToCustomers();
 
 			var main = this;
 			main.isIe = AgentServ.isIe();

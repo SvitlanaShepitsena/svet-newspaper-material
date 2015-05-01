@@ -99,7 +99,7 @@
                             userObj.requestCorporateSubmited.accepted = false;
                             userObj.requestCorporateSubmited.decisionDate = moment().format('x');
 
-                            var res  = _.remove(userObj.groups, function (group) {
+                            _.remove(userObj.groups, function (group) {
                                 return group === 'customer';
                             });
                             userObj.$save().then(function (success) {
