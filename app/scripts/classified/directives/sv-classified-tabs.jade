@@ -1,5 +1,5 @@
 div
-    md-tabs.tabs-classified.tc-black-2(md-selected='selectedIndex', md-border-bottom='' style='height:auto;min-height:800px')
+    md-tabs.tabs-classified.tc-black-2(md-selected='selectedIndex', md-border-bottom='' style='height:auto;min-height:1700px')
         md-tab.tc-black-2.fs-caption(ng-repeat='tab in tabs', label='{{tab.title|translate}}' md-on-select='switchTab()' md-active='isActive(tab.route)')
             div(ui-view='')
 

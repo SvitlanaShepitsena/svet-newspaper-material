@@ -1,13 +1,9 @@
 (function () {
     'use strict'
-
     angular.module('app')
         .config(['$translateProvider', function ($translateProvider) {
-
             $translateProvider.useCookieStorage();
-
             $translateProvider.translations('en', {
-
                 'Chicago': 'Chicago',
                 'SvetRecommends': 'Svet Recommends',
                 'events': 'Events',
@@ -22,13 +18,11 @@
                 'families-event': 'Families are goings',
                 'join-tip': 'Click to register for visiting this event',
                 'unlink-tip': 'Click to un-register from visiting this event',
-
                 //widgets
                 //    weather
                 'weather': 'Chicago weather',
                 'forecast': 'Weekly Forecast',
                 'degrees': 'F',
-
                 'Tomorrow': 'Tomorrow',
                 'Monday': 'Monday',
                 'Tuesday': 'Tuesday',
@@ -37,8 +31,6 @@
                 'Friday': 'Friday',
                 'Saturday': 'Saturday',
                 'Sunday': 'Sunday',
-
-
                 'join': 'Register',
                 'unlink': 'Un-register',
                 'accept': 'Accept',
@@ -54,11 +46,10 @@
                 'radio': 'Radio',
                 'radio-subhead': ' Sunday morning talk show with Alex Etman.',
                 'radio-body': 'Every Sunday on 1240AM from 11:00 a.m. to 1:00 p.m.',
-
                 'classified': 'Classified',
+                'last-classified': 'Last Classified',
                 'contacts': 'Contact Us',
                 'youtube': 'Youtube Сhannel',
-
                 'loading': 'Loading News',
                 'login-title': 'Log In to Your Account',
                 'not-registered': 'Not Registered',
@@ -74,7 +65,6 @@
                 'registering-conditions': 'you agree to our Data Policy',
                 'already-registered': 'Already registered?',
                 'registration': 'Registration',
-
                 'read-more': 'Read More',
                 'listen': 'Listen',
                 'archive': 'Archive',
@@ -82,7 +72,6 @@
                 'from-the': 'From the',
                 'editor': 'Editor',
                 'interesting-stories': 'Interesting Stories',
-
                 /*Classified*/
                 'community': 'Community',
                 'job': 'Job',
@@ -93,12 +82,9 @@
                 'personal': 'Personal',
                 'lessons': 'Lessons',
                 'svetApp': 'Svet Local App',
-
-
                 /*Footer*/
                 'all-rights-reserved': 'All rights reserved'
             });
-
             $translateProvider.translations('ru', {
                 'chicago': 'Чикаго',
                 'SvetRecommends': 'Свет Рекомендует',
@@ -114,7 +100,6 @@
                 'families-event': 'Семей Придут',
                 'join-tip': 'Кликните чтобы зарегистрироваться',
                 'unlink-tip': 'Отменить регистрацию на посещение',
-
                 'join': 'Пойду',
                 'unlink': 'Отменить',
                 'accept': 'Принять',
@@ -130,14 +115,11 @@
                 'radio': 'Радио',
                 'radio-subhead': 'В воскресенье утром ток-шоу с Александром Етманом.',
                 'radio-body': 'Каждое воскресенье на 1240AM с 11:00 до 1:00 вечера.',
-
-
                 //widgets
                 //    weather
                 'weather': 'Погода в Чикаго',
                 'forecast': 'Прогноз на Неделю',
                 'degrees': 'C',
-
                 'Tomorrow': 'Завтра',
                 'Monday': 'Понедельник',
                 'Tuesday': 'Вторник',
@@ -146,11 +128,9 @@
                 'Friday': 'Пятница',
                 'Saturday': 'Суббота',
                 'Sunday': 'Воскресенье',
-
                 'classified': 'Частные Объявления',
+                'last-classified': 'Свежее Объявление',
                 'contacts': 'Обратная связь',
-
-
                 'loading': 'Загрузка Новостей',
                 'login-title': 'Вход',
                 'login:title': 'Авторизация Svet Media Group',
@@ -166,9 +146,7 @@
                 'registering-conditions': 'условия лицензионного договора',
                 'already-registered': 'Уже зарегистрированы',
                 'registration': 'Регистрация',
-
                 'read-more': 'Подробнее',
-
                 'youtube': 'Youtube Канал',
                 'svetApp': 'Приложение Svet',
                 'listen': 'Cлушать',
@@ -177,7 +155,6 @@
                 'from-the': 'От',
                 'editor': 'Редактора',
                 'interesting-stories': 'Интерестные Истории',
-
                 /*Classified*/
                 'community': 'Сообщество',
                 'job': 'Работа',
@@ -190,8 +167,6 @@
                 /*Footer*/
                 'all-rights-reserved': 'Все права защищены'
             });
-
             $translateProvider.preferredLanguage('en');
         }]);
-
 })();

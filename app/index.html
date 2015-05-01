@@ -128,36 +128,34 @@
                     <span class="mdc-subhead">Читателям и Партнерам</span>
                 </md-toolbar>
                 <md-content class="pr pl pt">
-                    <sv-sidenav-title title="svet-on-social-media" class='mb'></sv-sidenav-title>
+                    <sv-sidenav-title title="svet-on-social-media"></sv-sidenav-title>
                     <sv-svet-social></sv-svet-social>
                     <sv-sidenav-title title="PdfNewspaperArchive" class='mb++'></sv-sidenav-title>
-                    <div layout="row" class="mb+++" layout-align="start">
+                    <div layout="row" class="mb+" layout-align="start">
                         <div flex class="p">
-                            <sv-nav-pdf-thumb
-                                    url="app.new-light-newspaper"
-                                    img="new-svet-thumb-120.jpg">
-                            </sv-nav-pdf-thumb>
+                            <sv-nav-pdf-thumb url="app.new-light-newspaper"
+                                              img="new-svet-thumb-120.jpg"></sv-nav-pdf-thumb>
                         </div>
                         <div flex class="p">
-                            <sv-nav-pdf-thumb
-                                    url="app.saturday-plus-newspaper"
-                                    img="saturday-thumb-120.jpg">
-                            </sv-nav-pdf-thumb>
+                            <sv-nav-pdf-thumb url="app.saturday-plus-newspaper"
+                                              img="saturday-thumb-120.jpg"></sv-nav-pdf-thumb>
                         </div>
                     </div>
-                    <sv-classified-widget></sv-classified-widget>
                     <sv-nav-btn url="app.classified.all"
-                                icon="tag-faces"
+                                icon="tag"
                                 title="classified"
                                 txt-color="white-1"
                                 bgc="red-300"
                                 color="white" btn-size="m"
                                 class="mb++"></sv-nav-btn>
+                    <sv-sidenav-title title="last-classified" class='mb++'></sv-sidenav-title>
+                    <sv-classified-widget class='mb+'></sv-classified-widget>
 
                     <sv-nav-btn url="app.contact"
                                 icon="map-marker"
                                 title="contact us"
-                                txt-color="grey-700"
+                                txt-color="white-1"
+                                custom-class="bgc-svet-700"
                                 color="white" btn-size="m"
                                 class="mb++"></sv-nav-btn>
                 </md-content>

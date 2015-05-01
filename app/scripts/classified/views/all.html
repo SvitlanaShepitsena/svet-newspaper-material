@@ -1,1 +1,1 @@
-<div><div ng-repeat="cl in allCls|clType:tabs[selectedIndex].title"><sv-one-classified-thumb cl="cl"></sv-one-classified-thumb></div></div>
+<div><div ng-repeat="cl in allCls|clType:tabs[selectedIndex].title|orderBy:'-timestamp'"><sv-one-classified-thumb cl="cl"></sv-one-classified-thumb></div></div>

@@ -9,16 +9,12 @@
                     cl: '=',
                     removeCl: '&',
                     editCl: '&',
-                    widget:'='
+                    widget: '='
                 },
                 link: function ($scope, el, attrs) {
                     var currentState = $state.$current.toString();
                     $scope.isEditable = currentState.indexOf('app.user') > -1;
                     $scope.editState = false;
-
-
-
-
                 }
             };
         });
