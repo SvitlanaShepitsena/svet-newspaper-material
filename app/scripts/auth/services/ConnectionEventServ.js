@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth')
-        .factory('ConnectionEventServ', function ($q, url, $firebaseArray, $firebaseObject, NoteServ) {
+        .factory('ConnectionEventServ', function (NotificationsServ, $q, url, $firebaseArray, $firebaseObject, NoteServ) {
             var eventsCorporateUrl = url + '/events/corporate/';
             var eventsPublicUrl = url + '/events/public/';
 

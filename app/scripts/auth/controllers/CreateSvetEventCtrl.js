@@ -6,12 +6,13 @@
 
             $scope.event = {
                 type: 'corporates',
-                title: 'Svet Connection',
-                description: 'Description',
-                date: new Date('01/01/2015'),
+                title: 'Svet Connection Meeting',
+                description: 'Svet Connection networking event helps to increase collaboration among Svet Media Group Partners and build lasting relationships where all parties can help one another',
+                date: new Date('01/06/2015'),
                 startTime: new Date('01/06/2015 10:00:AM'),
                 endTime: new Date('01/06/2015 1:00:PM'),
-                address: 'Address'
+                address: 'Viper Alley. 275 Parkway Dr Lincolnshire, IL 60069',
+                admission:'Svet Partners'
             };
 
             $scope.createEvent = function (event) {
