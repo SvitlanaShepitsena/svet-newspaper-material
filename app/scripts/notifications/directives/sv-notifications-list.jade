@@ -1,4 +1,4 @@
-div(ng-if='user' )
+div(ng-if='notices' )
     lx-dropdown(position='right' width='250px' ng-if="unopened" )
         button.btn.btn--fab.btn--s.btn--red.bgc-red-300(lx-dropdown-toggle)
             span.fs-caption.tc-white-1.sv-notifications-txt {{unopened}}
@@ -13,10 +13,10 @@ div(ng-if='user' )
             div.p(ng-show='!unopened')
                 div No unread notifications
             ul
-                li.p(ng-repeat='n in user.notifications|noticeStatus:false' ng-show='unopened' style='border-bottom:1px #BDBDBD dotted')
+                li.p(ng-repeat='n in notices|noticeStatus:false' ng-show='unopened' style='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
-                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='')
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-clic='markNoticeOpened(n)')
                             i.mdi.mdi-check(style='font-weight:bold')
             ul(style='margin:16px 8px 12px')
                 li(layout="row" layout-align="space-between center")
@@ -39,7 +39,7 @@ div(ng-if='user' )
             div.p(ng-show='!unopened')
                 div No unread notifications
             ul
-                li.p(ng-repeat='n in user.notifications|noticeStatus:false' ng-show='unopened' style='border-bottom:1px #BDBDBD dotted')
+                li.p(ng-repeat='n in notices|noticeStatus:false' ng-show='unopened' style='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
                         button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='')

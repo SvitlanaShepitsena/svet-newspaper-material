@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('notifications')
-        .directive('svNotificationsList', function ($rootScope, $mdMedia, NoteServ) {
+        .directive('svNotificationsList', function ($rootScope, $mdMedia, NotificationsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/notifications/directives/sv-notifications-list.html',
                 scope: {},
@@ -14,19 +14,30 @@
                     $scope.markAllOpened = function () {
                         $scope.unopened = 0;
                     };
-                    $scope.showAll = function () {
-                        $scope.unopened = $scope.user.notifications.length;
+                    $scope.markNoticeOpened = function () {
+                        $scope.unopened = 0;
                     };
-                    $rootScope.$watch('user', function (newVal) {
-                        $scope.user = newVal;
-                        if ($scope.user && $scope.user.notifications) {
-                            $scope.unopened = _.where($scope.user.notifications, {opened: false}).length;
-                            $scope.hasNotices = _.where($scope.user.notifications, {opened: false}).length>0;
+                    $scope.showAll = function () {
+                        $scope.unopened = $scope.user.notices.length;
+                    };
+
+                    $scope.$watch(function () {
+                        return CurrentUserServ.get();
+                    }, function (newValue, oldValue) {
+                        if (newValue === oldValue) {
+                            return;
                         }
-                    }, true);
-                    $rootScope.$watch('loadingUser', function (newVal) {
-                        $scope.loadingUser = newVal;
-                    });
+                        if (newValue && newValue.key) {
+
+                            var key = newValue.key;
+                            var notices = NotificationsServ.getUserNotices(key);
+                            notices.$loaded().then(function () {
+                                $scope.notices = notices;
+                                $scope.unopened = notices.length;
+                            })
+
+                        }
+                    },true);
                 }
             };
         });
