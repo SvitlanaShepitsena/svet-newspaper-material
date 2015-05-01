@@ -26,22 +26,27 @@
                     return $q(function (resolve, reject) {
                         var usersArr = $firebaseArray(new Firebase(usersUrl));
                         usersArr.$loaded().then(function () {
+                            var alreadyInDb = false;
                             for (var i = 0; i < usersArr.length; i++) {
                                 var dbUser = usersArr[i];
-                                if (dbUser.email === user.email || dbUser.id === user.id) {
+                                if (dbUser.userName === user.userName) {
+                                    alreadyInDb = true;
                                     resolve()
                                 }
                             }
-                            usersArr.$add(user).then(function (ref) {
-                                var key = ref.key();
-                                var userObj = $firebaseObject(new Firebase(usersUrl + key));
-                                userObj.$loaded().then(function () {
-                                    userObj.key = key;
-                                    userObj.$save().then(function () {
-                                        resolve(key);
+                            if (!alreadyInDb) {
+
+                                usersArr.$add(user).then(function (ref) {
+                                    var key = ref.key();
+                                    var userObj = $firebaseObject(new Firebase(usersUrl + key));
+                                    userObj.$loaded().then(function () {
+                                        userObj.key = key;
+                                        userObj.$save().then(function () {
+                                            resolve(key);
+                                        })
                                     })
-                                })
-                            });
+                                });
+                            }
                         });
                     });
                 },

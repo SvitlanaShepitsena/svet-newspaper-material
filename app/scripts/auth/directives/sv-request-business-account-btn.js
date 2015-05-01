@@ -18,9 +18,9 @@
                         });
                     };
                     $scope.submitRequest = function () {
-                        var key = CurrentUserServ.get();
+                        var key = CurrentUserServ.get().key;
                         console.log(key);
-                        RequestServ.submitRequest(CurrentUserServ.get().key).then(function () {
+                        RequestServ.submitRequest(key).then(function () {
                             $scope.requestSubmited = true;
                             toastr.success('Your request for Svet Media Group  corporate account has been successfully submitted');
                         }, function (error) {

@@ -12,18 +12,14 @@
                         $scope.users = requests;
                     })
 
-
-
                     $scope.accept = function (user) {
 
                         RequestServ.acceptRequest(user.key).then(function () {
-                            var index = $scope.users.indexOf(user);
                             toastr.info('request has been accepted');
                         })
                     };
                     $scope.reject = function (user) {
-                        RequestServ.cancelRequest(user.key).then(function () {
-                            var index = $scope.users.indexOf(user);
+                        RequestServ.rejectRequest(user.key).then(function () {
                             toastr.info('request has been rejected');
                         })
 

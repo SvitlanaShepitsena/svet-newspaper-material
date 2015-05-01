@@ -31,6 +31,7 @@
 
                         userObj.$loaded().then(function () {
                             userObj.requestCorporateSubmited = {submitted:true,
+                                                                submittedDate:moment().format('x'),
                                                                 accepted:false,
                                                                 rejected:false };
                             userObj.$save().then(function (success) {
@@ -46,14 +47,12 @@
                 cancelRequest: function (userId) {
                     return $q(function (resolve, reject) {
 
-                        var userUrl = users + userId;
-                        var userObj = $firebaseObject(new Firebase(userUrl));
+                        var userRequestUrl = users + userId+'/requestCorporateSubmited';
+                        var userRequestObj = $firebaseObject(new Firebase(userRequestUrl));
 
-                        userObj.$loaded().then(function () {
-                            userObj.requestCorporateSubmited = {submitted:true,
-                                accepted:false,
-                                rejected:true};
-                            userObj.$save().then(function (success) {
+                        userRequestObj.$loaded().then(function () {
+                            userRequestObj.$remove();
+                            userRequestObj.$save().then(function (success) {
                                 resolve(success);
                             })
                         }).catch(function (error) {
@@ -70,10 +69,32 @@
                         var userObj = $firebaseObject(new Firebase(userUrl));
 
                         userObj.$loaded().then(function () {
-                            userObj.requestCorporateSubmited = {submitted:true,
-                                accepted:true,
-                                rejected:false};
+                            userObj.requestCorporateSubmited.accepted = true;
+                            userObj.requestCorporateSubmited.rejected = false;
+                            userObj.requestCorporateSubmited.decisionDate = moment().format('x');
+
                             userObj.groups.push("customer");
+                            userObj.$save().then(function (success) {
+                                resolve(success);
+                            })
+                        }).catch(function (error) {
+                            console.log(userid + 'does not exists');
+                            reject(error);
+                        });
+
+                    });
+                },
+                rejectRequest: function (userId) {
+                    return $q(function (resolve, reject) {
+
+                        var userUrl = users + userId;
+                        var userObj = $firebaseObject(new Firebase(userUrl));
+
+                        userObj.$loaded().then(function () {
+                            userObj.requestCorporateSubmited.rejected = true;
+                            userObj.requestCorporateSubmited.accepted = false;
+                            userObj.requestCorporateSubmited.decisionDate = moment().format('x');
+
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })
@@ -104,7 +125,7 @@
                         });
 
                     });
-                },
+                }
 
             };
         });
