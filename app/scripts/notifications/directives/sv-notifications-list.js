@@ -14,8 +14,9 @@
                     $scope.markAllOpened = function () {
                         $scope.unopened = 0;
                     };
-                    $scope.markNoticeOpened = function () {
-                        $scope.unopened = 0;
+                    $scope.markNoticeOpened = function (notice) {
+                        console.log(notice);
+                        NotificationsServ.markNoticeOpened(notice);
                     };
                     $scope.showAll = function () {
                         $scope.unopened = $scope.user.notices.length;
@@ -33,7 +34,7 @@
                             var notices = NotificationsServ.getUserNotices(key);
                             notices.$loaded().then(function () {
                                 $scope.notices = notices;
-                                $scope.unopened = notices.length;
+                                $scope.unopened = _.filter(notices,{opened:false}).length;
                             })
 
                         }

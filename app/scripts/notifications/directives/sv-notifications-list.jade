@@ -16,7 +16,7 @@ div(ng-if='notices' )
                 li.p(ng-repeat='n in notices|noticeStatus:false' ng-show='unopened' style='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
-                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-clic='markNoticeOpened(n)')
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-click='markNoticeOpened(n)')
                             i.mdi.mdi-check(style='font-weight:bold')
             ul(style='margin:16px 8px 12px')
                 li(layout="row" layout-align="space-between center")

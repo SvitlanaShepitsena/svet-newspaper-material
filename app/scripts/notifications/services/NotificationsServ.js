@@ -2,17 +2,32 @@
     'use strict';
 
     angular.module('notifications')
-        .factory('NotificationsServ', function ($q, url, users, $firebaseObject, $firebaseArray,CurrentUserServ) {
+        .factory('NotificationsServ', function ($q, url, users, $firebaseObject, $firebaseArray, CurrentUserServ) {
 
             return {
                 getUserNotices: function (key) {
-                    console.log(key);
 
-                    var noticesUrl = users+key+'/notices';
+                    var noticesUrl = users + key + '/notices';
 
                     var noticesArray = $firebaseArray(new Firebase(noticesUrl));
                     return noticesArray;
 
+                },
+                markNoticeOpened: function (notice) {
+                    var userKey = CurrentUserServ.get().key;
+                    var noticeUrl = users + userKey + '/notices/' + notice.$id;
+
+                    return $q(function (resolve, reject) {
+                        var noticeObject = $firebaseObject(new Firebase(noticeUrl));
+                        noticeObject.$loaded().then(function () {
+                            noticeObject.opened = true;
+                            noticeObject.$save().then(function () {
+                                resolve();
+                            })
+                        })
+
+
+                    });
                 },
 
                 addToCustomers: function (event) {
@@ -40,10 +55,9 @@
                                 }
                             }
                             usersObj.$save().then(function () {
-                              resolve()
+                                resolve()
 
                             });
-
 
 
                         })
