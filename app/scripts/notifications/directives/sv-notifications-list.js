@@ -11,7 +11,6 @@
                     }, function (sm) {
                         $scope.sm = sm;
                     });
-
                     $scope.markAllOpened = function () {
                         NotificationsServ.markAllNoticesOpened();
                     };
