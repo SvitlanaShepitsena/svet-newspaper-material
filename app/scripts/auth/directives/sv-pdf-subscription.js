@@ -9,8 +9,8 @@
                 scope: {
 
                 },
-                link: function ($scope, user) {
-                    var pdfSubObj = PdfSubscriptionsServ.getObjectRef(user.id);
+                link: function ($scope) {
+                    var pdfSubObj = PdfSubscriptionsServ.getObjectRef();
 
                     pdfSubObj.$bindTo($scope, 'pdfSub').then(function () {
                         $scope.pdfLoaded = true;

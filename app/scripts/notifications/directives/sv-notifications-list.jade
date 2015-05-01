@@ -15,7 +15,7 @@ div(ng-if='notices')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
                         p.fs-caption {{n.timestamp|date}}
-                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened')
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened' ng-click='markNoticeOpened(n)')
                             i.mdi.mdi-check(style='font-weight:bold')
 
     lx-dropdown(position='right' width='250px' ng-if="!unopened" )
@@ -36,5 +36,5 @@ div(ng-if='notices')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
                         p.fs-caption {{n.timestamp|date}}
-                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened')
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened' ng-click='markNoticeOpened(n)')
                             i.mdi.mdi-check(style='font-weight:bold')

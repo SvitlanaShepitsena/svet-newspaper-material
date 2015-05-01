@@ -28,7 +28,7 @@
                         selected = null,
                         previous = null;
                     $scope.tabs = tabs;
-                    $scope.selectedIndex = 1;
+                    $scope.selectedIndex = 0;
                     $scope.$watch('selectedIndex', function (current, old) {
                         previous = selected;
                         selected = tabs[current];
