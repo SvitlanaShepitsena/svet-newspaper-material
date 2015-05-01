@@ -9,7 +9,7 @@
                         return $mdMedia('gt-md');
                     }, function (gtMd) {
                         if (!gtMd) {
-                            el.css('height', '40px');
+                            el.css('height', '42px');
                         }
                         else {
                             el.css('height', 'auto');
