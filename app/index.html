@@ -92,6 +92,12 @@
                 <md-icon md-svg-icon="sv-menu"></md-icon>
             </button>
             <!--<span flex ng-if="main.showShifter"></span>-->
+            <div class='mr'></div>
+            <div class='m'>
+                <button class="btn btn--white btn--raised p" ui-sref="app.classified.all">
+                    <img src="img/header/pic-classified.jpg" style='width:80px'>
+                </button>
+            </div>
             <span flex></span>
             <sv-profile-type class='mr'></sv-profile-type>
             <sv-auth-btn class="mr"></sv-auth-btn>
@@ -407,6 +413,7 @@
 
 <!-- home -->
 <script src="scripts/home/homeIndex.js"></script>
+<script src="scripts/home/directives/sv-header-classified-btn.js"></script>
 <script src="scripts/home/services/CurrentUserServ.js"></script>
 <script src="scripts/home/services/NewsServ.js"></script>
 <script src="scripts/home/directives/sv-nav-bar-media.js"></script>
