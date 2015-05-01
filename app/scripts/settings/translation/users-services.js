@@ -24,7 +24,7 @@
 
                 'manager-dashboard': 'Manager Dashboard',
                 'users': 'Users',
-                'users-requests': 'Users Requests',
+                'users-account-requests': 'Users Business Account Requests',
                 'all-users': 'All Users',
                 'all-notifications': 'All Notifications',
                 'notifications': 'Notifications',
@@ -85,7 +85,7 @@
 
                 'manager-dashboard': 'Панель Управления Менеджера',
                 'users': 'Юзеры',
-                'users-requests': 'Запросы Пользователей',
+                'users-account-requests': 'Запросы Пользователей (Бизнес Профайл)',
                 'all-users': 'Все Юзеры',
                 'all-notifications': 'Все Оповещения',
                 'notifications': 'Оповещения',
