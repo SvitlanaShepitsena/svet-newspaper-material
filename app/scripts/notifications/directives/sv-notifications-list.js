@@ -11,8 +11,9 @@
                     }, function (sm) {
                         $scope.sm = sm;
                     });
+
                     $scope.markAllOpened = function () {
-                        $scope.unopened = 0;
+                        NotificationsServ.markAllNoticesOpened();
                     };
                     $scope.markNoticeOpened = function (notice) {
                         console.log(notice);
@@ -21,7 +22,6 @@
                     $scope.showAll = function () {
                         $scope.unopened = $scope.user.notices.length;
                     };
-
                     $scope.$watch(function () {
                         return CurrentUserServ.get();
                     }, function (newValue, oldValue) {
@@ -29,16 +29,15 @@
                             return;
                         }
                         if (newValue && newValue.key) {
-
                             var key = newValue.key;
-                            var notices = NotificationsServ.getUserNotices(key);
-                            notices.$loaded().then(function () {
-                                $scope.notices = notices;
-                                $scope.unopened = _.filter(notices,{opened:false}).length;
-                            })
-
+                            $scope.notices = NotificationsServ.getUserNotices(key);
+                            $scope.notices.$loaded().then(function () {
+                                $scope.notices.$watch(function () {
+                                    $scope.unopened = _.filter($scope.notices, {opened: false}).length;
+                                })
+                            });
                         }
-                    },true);
+                    }, true);
                 }
             };
         });

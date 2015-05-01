@@ -1,4 +1,4 @@
-div(ng-if='notices' )
+div(ng-if='notices')
     lx-dropdown(position='right' width='250px' ng-if="unopened" )
         button.btn.btn--fab.btn--s.btn--red.bgc-red-300(lx-dropdown-toggle)
             span.fs-caption.tc-white-1.sv-notifications-txt {{unopened}}
@@ -10,20 +10,13 @@ div(ng-if='notices' )
                     a.btn.btn--flat.btn--xs.btn--grey.tc-grey-500(ng-click='markAllOpened()' ng-show='unopened')
                         i.mdi.mdi-check-all.mr
                         span.fs-body-1 Mark All as Read
-            div.p(ng-show='!unopened')
-                div No unread notifications
             ul
-                li.p(ng-repeat='n in notices|noticeStatus:false' ng-show='unopened' style='border-bottom:1px #BDBDBD dotted')
+                li.p(ng-repeat='n in notices|orderBy:"-timestamp"' tyle='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
-                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-click='markNoticeOpened(n)')
+                        p.fs-caption {{n.timestamp}}
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened')
                             i.mdi.mdi-check(style='font-weight:bold')
-            ul(style='margin:16px 8px 12px')
-                li(layout="row" layout-align="space-between center")
-                    div
-                        a.btn.btn--flat.btn--xs.btn--grey.tc-grey-500(ng-click='showAll()')
-                            i.mdi.mdi-view-list.mr
-                            span.fs-body-1 {{'all-notifications'|translate}}
 
     lx-dropdown(position='right' width='250px' ng-if="!unopened" )
         button.btn.btn--fab.btn--s.btn--black.bgc-grey-700(lx-dropdown-toggle)
@@ -36,17 +29,12 @@ div(ng-if='notices' )
                     a.btn.btn--flat.btn--xs.btn--grey.tc-grey-500(ng-click='markAllOpened()' ng-show='unopened')
                         i.mdi.mdi-check-all.mr
                         span.fs-body-1 Mark All as Read
-            div.p(ng-show='!unopened')
-                div No unread notifications
+            div.p(ng-show='!notices.length')
+                | You do not have any notifications
             ul
-                li.p(ng-repeat='n in notices|noticeStatus:false' ng-show='unopened' style='border-bottom:1px #BDBDBD dotted')
+                li.p(ng-repeat='n in notices|orderBy:"-timestamp"' style='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
-                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='')
+                        p.fs-caption {{n.timestamp}}
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened')
                             i.mdi.mdi-check(style='font-weight:bold')
-            ul(style='margin:16px 8px 12px')
-                li(layout="row" layout-align="space-between center")
-                    div
-                        a.btn.btn--flat.btn--xs.btn--grey.tc-grey-500(ng-click='showAll()')
-                            i.mdi.mdi-view-list.mr
-                            span.fs-body-1 {{'all-notifications'|translate}}

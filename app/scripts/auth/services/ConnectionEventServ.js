@@ -22,6 +22,7 @@
                         eventsArray.$add(event).then(function (uid) {
                             var notification = {
                                 note:event.title,
+                                timestamp:moment().format('x'),
                                 opened:false
                             };
                             NotificationsServ.addToCustomers(notification).then(function () {

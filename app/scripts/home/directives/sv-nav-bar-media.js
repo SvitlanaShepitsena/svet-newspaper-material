@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('home')
         .directive('svNavBarMedia', function ($mdMedia) {
             return {

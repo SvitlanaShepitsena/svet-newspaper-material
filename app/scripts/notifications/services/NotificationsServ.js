@@ -45,6 +45,22 @@
 
                     });
                 },
+                markAllNoticesOpened: function () {
+                    var userKey = CurrentUserServ.get().key;
+                    var noticeUrl = users + userKey + '/notices/';
+
+                    return $q(function (resolve, reject) {
+                        var noticesArray = $firebaseArray(new Firebase(noticeUrl));
+                        noticesArray.$loaded().then(function () {
+                            noticesArray.forEach(function (notice) {
+                                notice.opened = true;
+                                noticesArray.$save(notice);
+                            });
+                        })
+
+
+                    });
+                },
 
                 addToCustomers: function (event) {
 
