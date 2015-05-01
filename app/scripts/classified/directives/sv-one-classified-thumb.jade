@@ -20,9 +20,9 @@
             a
                 span.mdc-display-inline-block.fs-caption.mr Email: {{cl.email}}
     div(ng-if='isEditable')
-        button.btn.btn--s.btn--white.btn--raised.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+        button.btn.btn--xs.btn--white.btn--raised.mr(lx-ripple='' ng-click='editCl({cl:cl})')
             i.mdi.mdi-account-remove.mr
             | {{'edit'|translate}}
-        button.btn.btn--s.btn--white.btn--raised(lx-ripple='' ng-click='removeCl({cl:cl})')
+        button.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ng-click='removeCl({cl:cl})')
             i.mdi.mdi-account-remove.mr
             | {{'delete'|translate}}
