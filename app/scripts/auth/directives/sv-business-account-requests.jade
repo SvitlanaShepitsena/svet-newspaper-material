@@ -7,7 +7,7 @@
                 td(flex='')
                     span.fs-caption.mr
                         strong {{u.userName}}
-                td(flex='40')
+                td(flex='20')
                     div(ng-if="!u.requestCorporateSubmited.accepted && !u.requestCorporateSubmited.rejected")
                         button.btn.btn--l.btn--green.tc-green-800.btn--flat.mr( lx-ripple='' ng-click='accept(u)')
                             i.mdi.mdi-check.mr
@@ -15,17 +15,17 @@
                         button.btn.btn--l.btn--red.tc-red-400.btn--flat(ng-if="!u.requestCorporateSubmited.accepted" lx-ripple='' ng-click='reject(u)' )
                             i.mdi.mdi-minus-circle.mr
                             span.fs-caption Reject
-                    div(ng-if="u.requestCorporateSubmited.accepted || u.requestCorporateSubmited.rejected")
-                        div(ng-if="u.requestCorporateSubmited.accepted")
-                            span.fs-caption.tc-green-800 Accepted
-                            button.btn.btn--xs.btn--red.tc-red-400.btn--flat(lx-ripple='' ng-click='reject(u)' )
-                                i.mdi.mdi-minus-circle.mr
-                                span.fs-caption Reject
-                        div(ng-if="u.requestCorporateSubmited.rejected")
-                            span.fs-caption.tc-red-800 Rejected
-                            button.btn.btn--xs.btn--green.tc-green-800.btn--flat.mr( lx-ripple='' ng-click='accept(u)')
-                                i.mdi.mdi-check.mr
-                                span.fs-caption Accept
                 td(flex='20' ng-if='u.requestCorporateSubmited.decisionDate')
                     span.fs-caption {{u.requestCorporateSubmited.decisionDate|date}}
+                td(flex='20' ng-if="u.requestCorporateSubmited.accepted || u.requestCorporateSubmited.rejected")
+                    div(ng-if="u.requestCorporateSubmited.accepted")
+                        span.fs-caption.tc-green-800 Accepted
+                        button.btn.btn--xs.btn--red.tc-red-400.btn--flat(lx-ripple='' ng-click='reject(u)' )
+                            i.mdi.mdi-minus-circle.mr
+                            span.fs-caption Reject
+                    div(ng-if="u.requestCorporateSubmited.rejected")
+                        span.fs-caption.tc-red-800 Rejected
+                        button.btn.btn--xs.btn--green.tc-green-800.btn--flat.mr( lx-ripple='' ng-click='accept(u)')
+                            i.mdi.mdi-check.mr
+                            span.fs-caption Accept
 
