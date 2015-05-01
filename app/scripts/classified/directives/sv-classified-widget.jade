@@ -1,1 +1,5 @@
-div sv-classified-widget Template
+div
+   div.alert.alert-success
+    ul
+        li(ng-repeat='cl in cls|orderBy:"-timestamp"|limitTo:1')
+            sv-one-classified-thumb(cl='cl' widget='true')
