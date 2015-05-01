@@ -13,6 +13,7 @@
                         }
                         else {
                             el.css('height', 'auto');
+                            el.css('min-height', '76px');
                         }
                     });
                 }
