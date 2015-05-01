@@ -20,11 +20,13 @@
                     return $q(function (resolve, reject) {
                         var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
                         eventsArray.$add(event).then(function (uid) {
-                            resolve(uid);
                             var notification = {
                                 note:event.title,
                                 opened:false
-                            }
+                            };
+                            NotificationsServ.addToCustomers(notification).then(function () {
+                                resolve();
+                            });
 
                         });
                     });
