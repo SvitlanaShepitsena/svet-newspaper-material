@@ -1,16 +1,13 @@
 (function () {
     'use strict'
-
     angular.module('app')
-
         .config(['$translateProvider', function ($translateProvider) {
-
             $translateProvider.useCookieStorage();
-
             $translateProvider.translations('en', {
                 'dashboard': 'Dashboard',
                 'my-profile': 'My Profile',
                 'my-ad': 'My Advertisement',
+                'business-ad': 'Business Advertisement',
                 'ad': 'Advertisement',
                 'my-articles': 'My Articles',
                 'my-drafts': 'Drafts',
@@ -21,7 +18,6 @@
                 'statistics': 'Statistics',
                 'comments': 'Comments',
                 'bookmarks': 'Bookmarks',
-
                 'manager-dashboard': 'Manager Dashboard',
                 'users': 'Users',
                 'users-account-requests': 'Users Business Account Requests',
@@ -52,7 +48,6 @@
                 'bonuses': 'Bonuses',
                 // Forms
                 // Register
-
                 'required-field': '* Required Field',
                 'min-length': '* Minimum length 3 symbols',
                 'max-length': '* Maximum length 20 symbols',
@@ -61,18 +56,16 @@
                 'invalid-password': '* Your password must be between 6 and 12 characters long',
                 'login': 'Login',
                 'logout': 'Logout',
-
                 //    Change Fields
                 'fname': 'First Name',
                 'lname': 'Last Name',
                 'uname': 'User Name'
-
             });
-
             $translateProvider.translations('ru', {
                 'dashboard': 'Панель Управления',
                 'my-profile': 'Мой Профайл',
                 'my-ad': 'Моя Реклама',
+                'business-ad': ' Реклама Бизнеса',
                 'ad': ' Реклама',
                 'my-articles': 'Мои Статьи',
                 'my-drafts': 'Черновики',
@@ -82,7 +75,6 @@
                 'settings': 'Настройки',
                 'comments': 'Комментарии',
                 'bookmarks': 'Закладки',
-
                 'manager-dashboard': 'Панель Управления Менеджера',
                 'users': 'Юзеры',
                 'users-account-requests': 'Запросы Пользователей (Бизнес Профайл)',
@@ -91,7 +83,8 @@
                 'notifications': 'Оповещения',
                 'clients': 'Клиенты',
                 'readers': 'Читатели',
-                'customer': 'Клиенты',
+                'customers': 'Клиенты',
+                'customer': 'Клиент',
                 'authors': 'Авторы',
                 'author': 'Автор',
                 'reader-profile': 'Профайл Читателя',
@@ -108,9 +101,8 @@
                 'no-classified-yet': 'У Вас пока нет объявлений',
                 'add-classified': 'Добавить Объявление',
                 'free-classified': 'Вы можете разместить бесплатно',
-                'start-posting-classified': 'Создать Объявление',
+                'start-posting-classified': 'Создать Объявление ',
                 'bonuses': 'Бонусы',
-
                 // Forms
                 // Register
                 'required-field': '* Обязательное Поле',
@@ -121,15 +113,11 @@
                 'invalid-password': '* Ваш пароль должен содержать от 6 до 20 символов',
                 'logout': 'Выйти',
                 'login': 'Войти',
-
                 //    Change Fields
                 'fname': 'Имя',
                 'lname': 'Фамилия',
                 'uname': 'Ник'
-
             });
-
             $translateProvider.preferredLanguage('en');
         }]);
-
 })();

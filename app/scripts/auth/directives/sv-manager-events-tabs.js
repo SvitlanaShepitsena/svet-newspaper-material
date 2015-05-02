@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .directive('svManagerEventsTabs', function () {
             return {
@@ -8,16 +7,7 @@
                 templateUrl: 'scripts/auth/directives/sv-manager-events-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    var tabs = [
-                            {
-                                title: 'network-events',
-                                content: "scripts/auth/templates/manager-events/manager-network-events-temp.html"
-                            },
-                            {
-                                title: 'public-events',
-                                content: "scripts/auth/templates/manager-events/manager-public-events-temp.html"
-                            }
-                        ],
+                    var tabs = [],
                         selected = null,
                         previous = null;
                     $scope.tabs = tabs;
@@ -26,7 +16,6 @@
                         previous = selected;
                         selected = tabs[current];
                     });
-
                 }
             };
         });

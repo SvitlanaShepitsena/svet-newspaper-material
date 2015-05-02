@@ -8,7 +8,6 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
                     $scope.user = CurrentUserServ.get();
-
                     var cls = ClassifiedServ.getAllCls();
                     cls.$loaded().then(function () {
                         $scope.cls = cls;

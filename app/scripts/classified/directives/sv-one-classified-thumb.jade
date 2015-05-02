@@ -19,7 +19,7 @@
             span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Phone: {{cl.phone}},
             a
                 span.mdc-display-inline-block.fs-caption.mr Email: {{cl.email}}
-    div(ng-if='isEditable')
+    div( ng-if='isEditable')
         button.btn.btn--xs.btn--white.btn--raised.mr(lx-ripple='' ng-click='editCl({cl:cl})')
             i.mdi.mdi-account-remove.mr
             | {{'edit'|translate}}
