@@ -9,15 +9,10 @@ div
                 i.mdi.mdi-account-check.mr
                 | {{'registered-users'|translate}}
             lx-dropdown-menu
-                ul(ng-repeat='customer in e.customers')
-                    li
+                ul
+                    li(ng-repeat='customer in e.customers')
                         a.dropdown-link
                             img.img-round.mdc-display-inline-block.mr(ng-src="{{customer.avatar}}" style='width:20px;height:20px')
                             span.display-inline-block.fs-body-2 {{customer.name}} {{customer.fname}} {{customer.lname}}
                     li.dropdown-divider
-                ul.bgc-grey-100
-                    li
-                        a.dropdown-link.tc-grey-500
-                            i.mdi.mdi-view-list.mr
-                            span.fs-body-1 {{'all-registered-users'|translate}}
 

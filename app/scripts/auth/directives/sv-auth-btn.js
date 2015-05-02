@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ,CurrentUserServ) {
+        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -16,16 +16,18 @@
                     };
                     ctrl.loginProvider = function (provider) {
                         AuthServ.authProvider(provider).then(function (user) {
-                            CurrentUserServ.setUser(user);
-                            if (!user.groups) {
-                                UserServ.saveNewUser(user);
-                            }
-                            $rootScope.user = user;
-                            if (UserGroupsServ.isInGroup('manager') || UserGroupsServ.isInGroup('admin')) {
-                                $state.go('app.manager.dashboard', {uid: user.id})
-                            } else {
-                                $state.go('app.user.dashboard', {uid: user.userName || user.fname})
-                            }
+                            CurrentUserServ.setUser(user).then(function (user) {
+
+                                if (!user.groups) {
+                                    UserServ.saveNewUser(user);
+                                }
+                                $rootScope.user = user;
+                                if (UserGroupsServ.isInGroup('manager')) {
+                                    $state.go('app.manager.dashboard', {uid: user.id})
+                                } else {
+                                    $state.go('app.user.dashboard', {uid: user.userName})
+                                }
+                            });
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
                         });

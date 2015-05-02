@@ -37,6 +37,7 @@
                             }
                             eventObject.customers.push(user);
                             eventObject.$save().then(function (uid) {
+
                                 resolve(uid);
                             })
                         })

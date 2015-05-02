@@ -23,6 +23,7 @@
                 },
                 saveNewUser: function (user) {
                     user = addToReadersGroup(user);
+
                     return $q(function (resolve, reject) {
                         var usersArr = $firebaseArray(new Firebase(usersUrl));
                         usersArr.$loaded().then(function () {
@@ -30,8 +31,12 @@
                             for (var i = 0; i < usersArr.length; i++) {
                                 var dbUser = usersArr[i];
                                 if (dbUser.userName === user.userName) {
-                                    alreadyInDb = true;
-                                    resolve()
+                                    if (dbUser.id === user.id) {
+                                        alreadyInDb = true;
+                                        resolve()
+                                    } else {
+                                        user.userName+= _.random(1,20);
+                                    }
                                 }
                             }
                             if (!alreadyInDb) {

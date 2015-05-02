@@ -15,7 +15,6 @@
                         NotificationsServ.markAllNoticesOpened();
                     };
                     $scope.markNoticeOpened = function (notice) {
-                        console.log(notice);
                         NotificationsServ.markNoticeOpened(notice);
                     };
                     $scope.showAll = function () {
@@ -27,10 +26,12 @@
                         if (newValue === oldValue) {
                             return;
                         }
+                        ;
                         if (newValue && newValue.key) {
                             var key = newValue.key;
                             $scope.notices = NotificationsServ.getUserNotices(key);
                             $scope.notices.$loaded().then(function () {
+                                $scope.unopened = _.filter($scope.notices, {opened: false}).length;
                                 $scope.notices.$watch(function () {
                                     $scope.unopened = _.filter($scope.notices, {opened: false}).length;
                                 })
