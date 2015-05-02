@@ -1,4 +1,8 @@
 div
-    md-tabs(md-selected='selectedIndex', md-border-bottom='' style='height:auto;min-height:800px')
-        md-tab.sv-tabs(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
-            md-content.p(class='tab{{$index%4}} p+' ng-include='tab.content')
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{'network-events'|translate}}
+            md-tab-body
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{'public-events'|translate}}
+            md-tab-body

@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .directive('svManagerUsersTabs', function () {
             return {
@@ -8,20 +7,7 @@
                 templateUrl: 'scripts/auth/directives/sv-manager-users-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    var tabs = [
-                            {
-                                title: 'all-users',
-                                content: "scripts/auth/templates/manager-users/manager-all-users-temp.html"
-                            },
-                            {
-                                title: 'customers',
-                                content: "scripts/auth/templates/manager-users/manager-customers-temp.html"
-                            },
-                            {
-                                title: 'authors',
-                                content: "scripts/auth/templates/manager-users/manager-authors-temp.html"
-                            }
-                        ],
+                    var tabs = [],
                         selected = null,
                         previous = null;
                     $scope.tabs = tabs;
@@ -30,7 +16,6 @@
                         previous = selected;
                         selected = tabs[current];
                     });
-
                 }
             };
         });

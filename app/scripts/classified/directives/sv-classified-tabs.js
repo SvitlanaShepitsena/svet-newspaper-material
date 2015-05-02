@@ -6,17 +6,7 @@
                 replace: true,
                 templateUrl: 'scripts/classified/directives/sv-classified-tabs.html',
                 controller: function ($scope, $log) {
-                    var tabs = [
-                            {title: 'all', route: "app.classified.all"},
-                            {title: 'community', route: "app.classified.community"},
-                            {title: 'job', route: "app.classified.job"},
-                            {title: 'lessons', route: "app.classified.lessons"},
-                            {title: 'housing', route: "app.classified.housing"},
-                            {title: 'sale', route: "app.classified.sale"},
-                            {title: 'services', route: "app.classified.services"},
-                            {title: 'personal', route: "app.classified.personal"},
-                            {title: 'cars', route: "app.classified.cars"}
-                        ],
+                    var tabs = [],
                         selected = null,
                         previous = null;
                     $scope.tabs = tabs;

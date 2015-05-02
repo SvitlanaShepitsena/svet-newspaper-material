@@ -1,4 +1,18 @@
 div
-    md-tabs(md-selected='selectedIndex', md-border-bottom='' style='height:auto;min-height:800px')
-        md-tab.sv-tabs(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
-            md-content.p(class='tab{{$index%4}}' ng-include='tab.content')
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{'all-users'|translate}}
+            md-tab-body
+                sv-profile-subheader(subhead-title="all-users")
+                sv-users-list
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{'customers'|translate}}
+            md-tab-body
+                sv-profile-subheader(subhead-title="all-users")
+                sv-users-list
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{'authors'|translate}}
+            md-tab-body
+                sv-profile-subheader(subhead-title="all-users")
+                sv-users-list
+
