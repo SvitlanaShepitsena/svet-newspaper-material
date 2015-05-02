@@ -20,18 +20,13 @@ function getFiles(filePaths) {
   return files;
 }
 
-module.exports = function generateRawFilesJs(grunt, jsFilename, files, banner, cssBanner) {
+module.exports = function generateRawFilesJs(grunt, jsFilename, files, banner) {
   if (!banner) {
     banner = '';
   }
 
-  if (!cssBanner) {
-    cssBanner = '';
-  }
-
   var filesJsObject = {
     banner: banner,
-    cssBanner: cssBanner,
     files: getFiles(files),
   };
 

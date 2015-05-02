@@ -62,7 +62,6 @@
 
       if (toast && ! toast.deleting) { // Avoid clicking when fading out
         toast.deleting = true;
-        toast.isOpened = false;
         $animate.leave(toast.el).then(function() {
           if (toast.scope.options.onHidden) {
             toast.scope.options.onHidden(wasClicked);
@@ -145,20 +144,12 @@
 
       toasts.push(newToast);
 
-      if (options.autoDismiss && options.maxOpened > 0) {
-        var oldToasts = toasts.slice(0, (toasts.length - options.maxOpened));
-        for (var i = 0, len = oldToasts.length; i < len; i++) {
-          remove(oldToasts[i].toastId);
-        }
-      }
-
       if (maxOpenedNotReached()) {
         newToast.open.resolve();
       }
 
       newToast.open.promise.then(function() {
         _createOrGetContainer(options).then(function() {
-          newToast.isOpened = true;
           if (options.newestOnTop) {
             $animate.enter(newToast.el, container).then(function() {
               newToast.scope.init();
@@ -206,7 +197,6 @@
       function createToast() {
         var newToast = {
           toastId: index++,
-          isOpened: false,
           scope: $rootScope.$new(),
           open: $q.defer()
         };
@@ -263,7 +253,6 @@
   angular.module('toastr')
     .constant('toastrConfig', {
       allowHtml: false,
-      autoDismiss: false,
       closeButton: false,
       closeHtml: '<button>&times;</button>',
       containerId: 'toast-container',
@@ -334,6 +323,7 @@
       };
 
       function updateProgress() {
+        console.log('update');
         var percentage = ((hideTime - (new Date().getTime())) / currentTimeOut) * 100;
         element.css('width', percentage + '%');
       }
