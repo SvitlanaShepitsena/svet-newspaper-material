@@ -1,4 +1,4 @@
 div
-    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' style='height:auto;min-height:800px' )
         md-tab.sv-tabs(ng-repeat='tab in tabs', label='{{tab.title|translate}}' )
             md-content.mt(class='tab{{$index%4}}' ng-include='tab.content' sv-tab-swipe )

@@ -21,19 +21,6 @@
                         })
                     });
                 },
-                markAllNoticeOpened: function () {
-                    var userKey = CurrentUserServ.get().key;
-                    var noticesUrl = users + userKey + '/notices/';
-                    return $q(function (resolve, reject) {
-                        var noticeObject = $firebaseObject(new Firebase(noticeUrl));
-                        noticeObject.$loaded().then(function () {
-                            noticeObject.opened = true;
-                            noticeObject.$save().then(function () {
-                                resolve();
-                            })
-                        })
-                    });
-                },
                 markAllNoticesOpened: function () {
                     var userKey = CurrentUserServ.get().key;
                     var noticeUrl = users + userKey + '/notices/';
