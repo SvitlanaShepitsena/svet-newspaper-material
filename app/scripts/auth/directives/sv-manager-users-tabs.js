@@ -20,11 +20,7 @@
                             {
                                 title: 'authors',
                                 content: "scripts/auth/templates/manager-users/manager-authors-temp.html"
-                            },
-                            {
-                                title: 'readers',
-                                content: "scripts/auth/templates/manager-users/manager-readers-temp.html"
-                            },
+                            }
                         ],
                         selected = null,
                         previous = null;

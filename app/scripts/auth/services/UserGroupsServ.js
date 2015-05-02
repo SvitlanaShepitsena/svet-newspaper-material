@@ -5,7 +5,7 @@
             var usersUrl = url + '/user-management/users/';
             return {
                 getGroups: function (user) {
-                    var userId = user.id;
+                    var userId = user.key;
                     return $q(function (resolve, reject) {
                         var usersArr = $firebaseArray(new Firebase(usersUrl));
                         usersArr.$loaded().then(function () {
@@ -25,7 +25,7 @@
                 },
                 toggleUserInGroup: function (user, group) {
                     return $q(function (resolve, reject) {
-                        var userObject = $firebaseObject(new Firebase(usersUrl + user.id));
+                        var userObject = $firebaseObject(new Firebase(usersUrl + user.key));
                         userObject.$loaded().then(function () {
                             if (userObject.groups) {
                                 var index = userObject.groups.indexOf(group);

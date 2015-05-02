@@ -39,7 +39,7 @@
 
             function updateWithLocalData(user) {
                 return $q(function (resolve, reject) {
-                    var userUrl = users + user.id;
+                    var userUrl = users + user.key;
                     var userObj = $firebaseObject(new Firebase(userUrl));
                     userObj.$loaded().then(function () {
                         if (userObj.fname) {
