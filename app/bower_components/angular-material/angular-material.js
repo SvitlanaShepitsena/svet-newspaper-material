@@ -12709,7 +12709,7 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     var index = $scope.selectedIndex,
         totalWidth = elements.paging.offsetWidth,
         tab = elements.tabs[index],
-
+        
         left = tab.offsetLeft,
         right = totalWidth - left - tab.offsetWidth;
     updateInkBarClassName();
