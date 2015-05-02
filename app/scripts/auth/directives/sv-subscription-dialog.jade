@@ -1,1 +1,15 @@
-div sv-subscription-dialog Template
+div
+    button.btn.btn--m.btn--black.btn--flat(ng-click="opendDialog('test')", lx-ripple='') Open dialog
+        lx-dialog.dialog.dialog--l(auto-close='true', onclose='closingDialog()', onscrollend='scrollEndDialog()' id="test")
+            .dialog__header
+                .toolbar.bgc-light-blue-500(class='pl++')
+                    span.toolbar__label.tc-white.fs-title
+                        | Lorem Ipsum
+                    .toolbar__right
+                        button.btn.btn--l.btn--white.btn--icon(lx-ripple='')
+                            i.mdi.mdi-plus
+            .dialog__content
+                p At vero eos et accusamus et iusto odio dignissimos
+            .dialog__actions
+                button.btn.btn--m.btn--black.btn--flat(lx-ripple='', lx-dialog-close='') Cancel button.btn.btn--m.btn--black.btn--flat(lx-ripple='') Lorem Ipsum
+
