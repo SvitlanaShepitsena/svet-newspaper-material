@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .directive('svUserSocialTabs', function () {
             return {
@@ -8,10 +7,7 @@
                 templateUrl: 'scripts/auth/directives/sv-user-social-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    var tabs = [
-                            {title: 'my-friends', content: "My Friends "},
-                            {title: 'find-people', content: "Find People"}
-                        ],
+                    var tabs = [],
                         selected = null,
                         previous = null;
                     $scope.tabs = tabs;
@@ -20,7 +16,6 @@
                         previous = selected;
                         selected = tabs[current];
                     });
-
                 }
             };
         });

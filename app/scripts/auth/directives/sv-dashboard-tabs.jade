@@ -1,9 +1,9 @@
 div()
-    md-tabs(md-selected='selectedIndex', md-border-bottom='')
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{'my-profile'|translate}}
             md-tab-body
-             sv-user-profile-summary
+                sv-user-profile-summary
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{'comments'|translate}}
             md-tab-body Comments

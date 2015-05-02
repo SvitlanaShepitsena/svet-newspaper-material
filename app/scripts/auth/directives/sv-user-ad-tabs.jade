@@ -1,10 +1,12 @@
 div
-    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='' style='height:auto;min-height:800px')
-        md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"classified"|translate}}' )
-            md-content
+    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='' md-dynamic-height)
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{"classified"|translate}}'
+            md-tab-body
                 sv-user-classified-section
-        md-tab.tc-black-2.fs-body-2.sv-tabs(label='{{"business-ad"|translate}}' )
-            md-content
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{"business-ad"|translate}}
+            md-tab-body
                 sv-profile-subheader(subhead-title="my-ad")
                 .card.p.mb
                     span.fs-subhead.display-block.text-center You do not have any visited event yet
