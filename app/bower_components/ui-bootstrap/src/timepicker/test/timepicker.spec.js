@@ -71,6 +71,25 @@ describe('timepicker directive', function () {
     return e;
   }
 
+  function keydown(key) {
+    var e = $.Event('keydown');
+    switch(key) {
+      case 'left':
+        e.which = 37;
+        break;
+      case 'up':
+        e.which = 38;
+        break;
+      case 'right':
+        e.which = 39;
+        break;
+      case 'down':
+        e.which = 40;
+        break;
+    }
+    return e;
+  }
+
   it('contains three row & three input elements', function() {
     expect(element.find('tr').length).toBe(3);
     expect(element.find('input').length).toBe(2);
@@ -80,6 +99,10 @@ describe('timepicker directive', function () {
   it('has initially the correct time & meridian', function() {
     expect(getTimeState()).toEqual(['02', '40', 'PM']);
     expect(getModelState()).toEqual([14, 40]);
+  });
+
+  it('should be pristine', function() {
+    expect(element.controller('ngModel').$pristine).toBe(true);
   });
 
   it('has `selected` current time when model is initially cleared', function() {
@@ -371,6 +394,70 @@ describe('timepicker directive', function () {
     expect(getModelState()).toEqual([15, 40]);
 
     hoursEl.trigger( downMouseWheelEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['02', '40', 'PM']);
+    expect(getModelState()).toEqual([14, 40]);
+  });
+
+  it('responds properly on "keydown" events', function() {
+    var inputs = element.find('input');
+    var hoursEl = inputs.eq(0), minutesEl = inputs.eq(1);
+    var upKeydownEvent = keydown('up');
+    var downKeydownEvent = keydown('down');
+    var leftKeydownEvent = keydown('left');
+
+    expect(getTimeState()).toEqual(['02', '40', 'PM']);
+    expect(getModelState()).toEqual([14, 40]);
+
+    // UP
+    hoursEl.trigger( upKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['03', '40', 'PM']);
+    expect(getModelState()).toEqual([15, 40]);
+
+    hoursEl.trigger( upKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['04', '40', 'PM']);
+    expect(getModelState()).toEqual([16, 40]);
+
+    minutesEl.trigger( upKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['04', '41', 'PM']);
+    expect(getModelState()).toEqual([16, 41]);
+
+    minutesEl.trigger( upKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['04', '42', 'PM']);
+    expect(getModelState()).toEqual([16, 42]);
+
+    // DOWN
+    minutesEl.trigger( downKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['04', '41', 'PM']);
+    expect(getModelState()).toEqual([16, 41]);
+
+    minutesEl.trigger( downKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['04', '40', 'PM']);
+    expect(getModelState()).toEqual([16, 40]);
+
+    hoursEl.trigger( downKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['03', '40', 'PM']);
+    expect(getModelState()).toEqual([15, 40]);
+
+    hoursEl.trigger( downKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['02', '40', 'PM']);
+    expect(getModelState()).toEqual([14, 40]);
+
+    // Other keydown
+    hoursEl.trigger( leftKeydownEvent );
+    $rootScope.$digest();
+    expect(getTimeState()).toEqual(['02', '40', 'PM']);
+    expect(getModelState()).toEqual([14, 40]);
+
+    minutesEl.trigger( leftKeydownEvent );
     $rootScope.$digest();
     expect(getTimeState()).toEqual(['02', '40', 'PM']);
     expect(getModelState()).toEqual([14, 40]);
@@ -690,6 +777,36 @@ describe('timepicker directive', function () {
     });
   });
 
+  describe('$formatter', function () {
+    var ngModel,
+      date;
+
+    beforeEach(function () {
+      ngModel = element.controller('ngModel');
+      date = new Date('Mon Mar 23 2015 14:40:11 GMT-0700 (PDT)');
+    });
+
+    it('should have one formatter', function () {
+      expect(ngModel.$formatters.length).toBe(1);
+    });
+
+    it('should convert a date to a new reference representing the same date', function () {
+      expect(ngModel.$formatters[0](date)).toEqual(date);
+    });
+
+    it('should convert a valid date string to a date object', function () {
+      expect(ngModel.$formatters[0]('Mon Mar 23 2015 14:40:11 GMT-0700 (PDT)')).toEqual(date);
+    });
+
+    it('should set falsy values as null', function () {
+      expect(ngModel.$formatters[0](undefined)).toBe(null);
+      expect(ngModel.$formatters[0](null)).toBe(null);
+      expect(ngModel.$formatters[0]('')).toBe(null);
+      expect(ngModel.$formatters[0](0)).toBe(null);
+      expect(ngModel.$formatters[0](NaN)).toBe(null);
+    });
+  });
+
   describe('user input validation', function () {
     var changeInputValueTo;
 
@@ -878,7 +995,7 @@ describe('timepicker directive', function () {
       doClick(btn1, 2);
       doClick(btn2, 3);
       $rootScope.$digest();
-      expect($rootScope.changeHandler.callCount).toBe(5);
+      expect($rootScope.changeHandler.calls.count()).toBe(5);
     });
 
     it('should not be called when model changes programatically', function() {
