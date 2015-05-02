@@ -3,6 +3,10 @@ div
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{'network-events'|translate}}
             md-tab-body
+                sv-profile-subheader(subhead-title="corporates")
+                sv-events-list(event-filter="corporates")
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{'public-events'|translate}}
             md-tab-body
+                sv-profile-subheader(subhead-title="public-events")
+                sv-events-list(event-filter="public")
