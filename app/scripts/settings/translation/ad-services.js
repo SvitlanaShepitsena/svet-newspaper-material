@@ -7,12 +7,12 @@
             $translateProvider.useCookieStorage()
 
             $translateProvider.translations('en', {
-                'add-business-ad':'Start Campaign'
+                'add-business-ad':'Start New Campaign'
 
             });
 
             $translateProvider.translations('ru', {
-                'add-business-ad':'Начать Кампанию'
+                'add-business-ad':'Начать Новую Кампанию'
             });
 
             $translateProvider.preferredLanguage('en');

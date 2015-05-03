@@ -1,5 +1,20 @@
-div(ui-view='')
-    button.btn.btn--m.btn--red.btn--raised.bgc-red-300(lx-ripple='' ui-sref='app.user.ad.start')
-        i.mdi.mdi-plus.mr
-        | {{'add-business-ad'|translate}}
+div
+    ul
+        li(ng-repeat='ad in ads')
+            div {{ad.title}}
+            div {{ad.place}}
+            div {{ad.timestamp|date}}
+            ul
+                li
+                    div Unique:{{ad.shows.unique}}
+                li
+                    div Unique:{{ad.shows.total}}
+            div
+                img(ng-src="{{ad.banner}}")
+                br
+                br
+    div(ui-view='')
+        button.btn.btn--m.btn--red.btn--raised.bgc-red-300(lx-ripple='' ui-sref='app.user.ad.start')
+            i.mdi.mdi-plus.mr
+            | {{'add-business-ad'|translate}}
 
