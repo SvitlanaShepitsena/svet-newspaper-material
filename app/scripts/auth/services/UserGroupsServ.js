@@ -69,6 +69,11 @@
                     if (!currentUser || !currentUser.groups) {
                         return false;
                     }
+                    if (group === 'reader') {
+                        return currentUser.groups.indexOf('reader') && currentUser.groups.length  === 1;
+                    }
+
+
                     return currentUser.groups.indexOf(group) !== -1;
                 }
             };
