@@ -24,6 +24,7 @@
                     });
                 },
                 toggleUserInGroup: function (user, group) {
+                    console.log('run here UserGroupsServ.js');
                     return $q(function (resolve, reject) {
                         var userObject = $firebaseObject(new Firebase(usersUrl + user.key));
                         userObject.$loaded().then(function () {
@@ -64,10 +65,11 @@
                     });
                 },
                 isInGroup: function (group) {
-                    if (!$rootScope.user || !$rootScope.user.groups) {
+                    var currentUser = CurrentUserServ.get();
+                    if (!currentUser || !currentUser.groups) {
                         return false;
                     }
-                    return CurrentUserServ.get().groups.indexOf(group) !== -1;
+                    return currentUser.groups.indexOf(group) !== -1;
                 }
             };
         });

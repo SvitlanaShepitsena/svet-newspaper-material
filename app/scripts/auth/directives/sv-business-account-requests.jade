@@ -5,10 +5,11 @@
         div.p(flex-gt-sm='20')
             span.fs-caption.mr
                 strong {{u.userName}}
-        div.p(flex-gt-sm='' ng-if="u.requestCorporateSubmited.accepted || u.requestCorporateSubmited.rejected")
-            span.fs-caption.mdc-display-inline-block.mr(ng-if='u.requestCorporateSubmited.decisionDate') {{u.requestCorporateSubmited.decisionDate|date}}
-            span.fs-caption.tc-teal-800(ng-if="u.requestCorporateSubmited.accepted") {{'accepted'|translate}}
-            span.fs-caption.tc-red-800(ng-if="u.requestCorporateSubmited.rejected") {{'rejected'|translate}}
+        div.p(flex-gt-sm='' )
+            div(ng-if="u.requestCorporateSubmited.accepted || u.requestCorporateSubmited.rejected")
+                span.fs-caption.mdc-display-inline-block.mr(ng-if='u.requestCorporateSubmited.decisionDate') {{u.requestCorporateSubmited.decisionDate|date}}
+                span.fs-caption.tc-teal-800(ng-if="u.requestCorporateSubmited.accepted") {{'accepted'|translate}}
+                span.fs-caption.tc-red-800(ng-if="u.requestCorporateSubmited.rejected") {{'rejected'|translate}}
         div.p(flex-gt-sm='')
             button.btn.btn--xs.btn--teal.bgc-teal-300.btn--raised.mr( style='font-size:9px'
             ng-if="!u.requestCorporateSubmited.accepted" lx-ripple='' ng-click='accept(u)')

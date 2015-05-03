@@ -1,10 +1,11 @@
 div(layout-gt-sm='row' layout-sm='column')
     div(flex-gt-sm='60')
         .card(class='mb++')
-            div.bgc-grey-100(class='p+' layout='column')
+            div.bgc-grey-100(class='p+' layout='column' )
                 span.mdc-display-inline-block.mr.mb.fs-subhead.mb Account Status:
-                    span.fs-title.ml Reader Account
-                sv-request-business-account-btn
+                    span.fs-title.ml(ng-if='isInGroup("customer")') Business Account
+                    span.fs-title.ml(ng-if='isInGroup("reader")') Reader Account
+                sv-request-business-account-btn(ng-if='!isInGroup("customer")')
             .divider.divider--dark
             div.mt.mb
                 sv-user-personal-info

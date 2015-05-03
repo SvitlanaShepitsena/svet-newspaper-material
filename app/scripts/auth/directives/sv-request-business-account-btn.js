@@ -7,10 +7,13 @@
                 templateUrl: 'scripts/auth/directives/sv-request-business-account-btn.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    RequestServ.getStatus(CurrentUserServ.get().key).then(function (requestSubmited) {
-                        $scope.loaded = true;
-                        $scope.requestSubmited = requestSubmited;
-                    });
+                    var currentUser = CurrentUserServ.get();
+                    if (currentUser) {
+                        RequestServ.getStatus(currentUser.key).then(function (requestSubmited) {
+                            $scope.loaded = true;
+                            $scope.requestSubmited = requestSubmited;
+                        });
+                    }
                     $scope.cancelRequest = function () {
                         RequestServ.cancelRequest(CurrentUserServ.get().key).then(function () {
                             $scope.requestSubmited = false;
