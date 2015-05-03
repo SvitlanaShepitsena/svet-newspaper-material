@@ -6,18 +6,20 @@
     .p
         ul(layout='column')
             li(ng-repeat='ad in ads|userList')
-                div {{ad.title}}
-                div {{ad.place}}
-                div {{ad.timestamp|date}}
-                ul
-                    li
-                        div Unique:{{ad.shows.unique}}
-                    li
-                        div Unique:{{ad.shows.total}}
+                span.display-block.fs-title.tc-grey-800 {{'campaign-name'|translate}}: {{ad.name}}
+                span.display-block.fs-subhead {{'ad-place'|}}: {{ad.place}}
+                span.display-block.fs-caption.tc-grey-600 {{'date-created'|translate}}: {{ad.timestamp|date}}
                 div
+                    span.display-block.fs-subhead {{'showing-stat'|translate}}
+                    span.display-block.fs-subhead.tc-red-300 {{'unique'|translate}}:{{ad.shows.unique}}
+                    span.display-block.fs-subhead.tc-red-300 {{'total'|translate}}:{{ad.shows.total}}
+                div(class='mb+')
                     img(ng-src="{{ad.banner}}")
                 div
-                    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ui-sref='.start({id:ad.$id})') Edit
-                    button.btn.btn--xs.btn--red.btn--raised(lx-ripple='' ng-click='removeAd(ad)') Delete
-                    br
+                    button.btn.btn--s.btn--white.btn--raised.mr(lx-ripple='' ui-sref='.start({id:ad.$id})')
+                        i.mdi.mdi-pencil.mr
+                        | {{'edit'|translate}}
+                    button.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='removeAd(ad)')
+                        i.mdi.mdi-close.mr
+                        | {{'delete'|translate}}
 
