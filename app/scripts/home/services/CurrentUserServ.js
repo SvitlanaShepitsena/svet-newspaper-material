@@ -5,10 +5,10 @@
             var currentUser;
             return {
                 setUser: function (user) {
-                    if (!user) {
-                        return;
-                    }
                     return $q(function (resolve, reject) {
+                        if (!user) {
+                            resolve();
+                        }
                         currentUser = user;
                         if (!currentUser.userName || !currentUser.key) {
                             var usersArr = $firebaseArray(new Firebase(users));
