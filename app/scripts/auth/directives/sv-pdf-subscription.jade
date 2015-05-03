@@ -1,9 +1,8 @@
 div.card.p.ml
-    span.display-block.fs-subhead {{'newspaper-subscription'|translate}}
+    span.display-block.fs-subhead Newspaper Subscription
     md-divider.mb
-    span.display-block.fs-body-2 {{'newspaper-subscription-quest'|translate}}
-    a.tc-red-300(ui-sref="app.svet-login" style="text-decoration:underline")
-        span.fs-subhead(ng-if="!user") {{'login-subscription'|translate | uppercase}}
+    span.display-block.fs-body-2 Do you have a subscription to New Svet or Saturday+ PDF newspaper?
+    span(ng-if="!user") Please Log In to Subscribe
     div(ng-if='user && !requestSubmited')
         form( name='pdfSubForm')
             div(layout="row" layout-align='start center')
