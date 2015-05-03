@@ -4,13 +4,25 @@
     angular.module('ad')
         .directive('svStartCampaignForm', function () {
             return {
-                replace: true,
                 templateUrl: 'scripts/ad/directives/sv-start-campaign-form.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
 
+                    $scope.ad = {
+                        name: "",
+                        place: "home.top",
+                        banner: ""
+                    }
+
+                    $scope.addBusinessAd = function (ad, file) {
+
+                        var fileReader = new FileReader();
+                        fileReader.readAsDataURL(file.file);
+                        fileReader.onload = function (event) {
+                            $scope.ad.banner = event.target.result;
+                        };
+
+                    };
                 }
             };
         });
