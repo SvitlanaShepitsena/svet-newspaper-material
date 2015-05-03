@@ -15,8 +15,8 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.user = {
-                        //email: 'alex2@gmail.com',
-                        email: 'Icie_Ledner@yahoo.com',
+                        email: 'alex2@gmail.com',
+                        //email: 'Icie_Ledner@yahoo.com',
                         password: '123456'
                     }
                     $scope.singIn = function () {
