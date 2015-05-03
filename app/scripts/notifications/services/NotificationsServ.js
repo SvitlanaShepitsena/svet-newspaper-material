@@ -22,6 +22,7 @@
                     });
                 },
                 markAllNoticesOpened: function () {
+
                     var userKey = CurrentUserServ.get().key;
                     var noticeUrl = users + userKey + '/notices/';
                     return $q(function (resolve, reject) {
