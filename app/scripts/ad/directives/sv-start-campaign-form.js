@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('ad')
-        .directive('svStartCampaignForm', function (AdServ) {
+        .directive('svStartCampaignForm', function (AdServ, AdServ) {
             return {
                 templateUrl: 'scripts/ad/directives/sv-start-campaign-form.html',
                 scope: {},
