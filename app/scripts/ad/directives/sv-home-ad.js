@@ -11,11 +11,14 @@
                 },
                 link: function ($scope, el, attrs) {
                     var allAdds = AdServ.allArr();
-                    allAdds.$loaded().then(function (ads) {
-                        $scope.ad = _.chain(ads).where(function (ad) {
+                    allAdds.$loaded().then(function () {
+                        $scope.placeAds = _.where(allAdds,function (ad) {
                             return ad.place === $scope.place;
-                        }).shuffle().first().value();
-                        console.log($scope.ad.$id);
+                        });
+                        var ind = _.random($scope.placeAds.length);
+                        $scope.ad = $scope.placeAds[ind];
+
+
                         AdServ.increaseShow($scope.ad.$id).then(function () {
                             console.log('success');
                         });

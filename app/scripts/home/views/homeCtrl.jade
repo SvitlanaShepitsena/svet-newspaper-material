@@ -4,10 +4,10 @@ div(layout='column')
         sv-loader
         div LOADING NEWS
     div(layout-sm='column', layout-md='column', layout-gt-md='row', layout-lg='column', layout-gt-lg='column', ng-if='!!appLoaded')
-        sv-home-ad(place = 'home.top')
+        sv-home-ad(plac='home.top')
         div(ng-repeat='nt in news ')
             sv-home-main-news(nt='nt')
-        sv-home-ad(place = 'home.middle')
+        sv-home-ad(place='home.middle')
         div(flex-container='row')
             div(flex-item='8')
                 sv-news-grid
