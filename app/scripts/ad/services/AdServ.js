@@ -47,6 +47,22 @@
 
                     });
                 },
+                increaseShow: function (adId) {
+                    return $q(function (resolve, reject) {
+                        var adUrl = ads + adId;
+                        var adObject = $firebaseObject(new Firebase(adUrl));
+                        adObject.$loaded().then(function () {
+                            adObject.shows.total+=1;
+                            adObject.shows.unique+=1;
+
+                            adObject.$save().then(function (ref) {
+                                resolve(ref.key());
+                            });
+                        })
+
+                    });
+                },
+
                 allArr: function () {
                     var adsUrl = ads;
                     var adsArray = $firebaseArray(new Firebase(adsUrl));

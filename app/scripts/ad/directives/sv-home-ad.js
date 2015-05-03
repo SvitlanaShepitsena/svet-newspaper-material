@@ -15,7 +15,10 @@
                         $scope.ad = _.chain(ads).where(function (ad) {
                             return ad.place === $scope.place;
                         }).shuffle().first().value();
-
+                        console.log($scope.ad.$id);
+                        AdServ.increaseShow($scope.ad.$id).then(function () {
+                            console.log('success');
+                        });
                     });
 
                 }
