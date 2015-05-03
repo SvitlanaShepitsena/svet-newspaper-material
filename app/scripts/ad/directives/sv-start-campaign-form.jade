@@ -25,9 +25,10 @@ div(flow-init='')
             div.m(flex-item='')
                 sv-image-upload()
         div(flex-container='row')
-            button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save")
-                i.mdi.mdi-send.mr
-                | Start Campaign
-            button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")
-                i.mdi.mdi-close
-                | &nbsp Cancel
+            div(class='mb+')
+                button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save")
+                    i.mdi.mdi-send.mr
+                    | Start Campaign
+                button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")
+                    i.mdi.mdi-close
+                    | &nbsp Cancel
