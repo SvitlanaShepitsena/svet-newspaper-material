@@ -7,8 +7,8 @@ lx-dropdown(position='right')
                 a.dropdown-link(ui-sref="app.user.dashboard({uid:user.userName || user.fname})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
-            li
-                a.dropdown-link(ui-sref="app.user.ad({uid:user.userName || user.fname})")
+            li(ng-if='isInGroup("customer")')
+                a.dropdown-link(ui-sref="app.user.ad({uid:user.userName || user.fname})" )
                     i.fa.fa-bullhorn &nbsp
                     | {{'my-ad'|translate}}
             li
