@@ -89,14 +89,15 @@
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
 				.state("app.y", {
-					url: "/y", 
+					url: "/y",
 					controller:"YCtrl as y",
 					templateUrl: "scripts/classified/views/yCtrl.html"
 				})
-				.state("app.start-campaign", {
-					url: "/start-campaign", 
-					controller:"StartCampaignCtrl as startCampaign",
-					templateUrl: "scripts/ad/views/start-campaignCtrl.html"
+
+				.state("app.ad", {
+					url: "/ad", 
+					controller:"AdCtrl as ad",
+					templateUrl: "scripts/ad/views/adCtrl.html"
 				})
 //#state'
         });
