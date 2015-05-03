@@ -3,9 +3,9 @@
         button.btn.btn--m.btn--red.btn--raised.bgc-red-300(lx-ripple='' ui-sref='app.user.ad.start')
             i.mdi.mdi-plus.mr
             | {{'add-business-ad'|translate}}
-    .p
-        ul(layout='column')
-            li(ng-repeat='ad in ads|userList')
+    div(class='pl+ pr+')
+        div(layout='column')
+            div(ng-repeat='ad in ads|userList')
                 span.display-block.fs-title.tc-grey-800 {{'campaign-name'|translate}}: {{ad.name}}
                 span.display-block.fs-subhead {{'ad-place'|translate}}: {{ad.place}}
                 span.display-block.fs-caption.tc-grey-600 {{'date-created'|translate}}: {{ad.timestamp|date}}
@@ -15,7 +15,7 @@
                     span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'total'|translate}}: {{ad.shows.total}}
                 div(class='mb+')
                     img(ng-src="{{ad.banner}}")
-                div
+                div(class='mb+')
                     button.btn.btn--s.btn--white.btn--raised.mr(lx-ripple='' ui-sref='.start({id:ad.$id})')
                         i.mdi.mdi-pencil.mr
                         | {{'edit'|translate}}

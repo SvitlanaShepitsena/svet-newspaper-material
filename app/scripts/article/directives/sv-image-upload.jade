@@ -9,8 +9,8 @@ div
         div(flex-item='')
             button.btn.btn--m.btn--grey.btn--raised(type="button" class='mr+' lx-ripple='' ng-if='!$flow.files.length' id='secondaryButton' onclick="document.getElementById('primaryButton').click()")
                 i.mdi.mdi-check &nbsp
-                | Choose Image
+                | {{'choose-image'|translate}}
             button.btn.btn--m.btn--white.btn--raised.tc-red-300(type='button' lx-ripple ng-click='$flow.files.length=0' ng-if='$flow.files.length')
                 i.mdi.mdi-close &nbsp
-                | Remove Image
+                | {{'remove-image'|translate}}
 
