@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('UserGroupsServ', function ($q, url, $firebaseObject, $firebaseArray, $rootScope,UserServ,CurrentUserServ) {
+        .factory('UserGroupsServ', function ($q, url, $firebaseObject, $firebaseArray, $rootScope, UserServ, CurrentUserServ) {
             var usersUrl = url + '/user-management/users/';
             return {
                 getGroups: function (user) {
@@ -12,7 +12,7 @@
                             var userLocal = _(usersArr).find({id: userId});
                             if (userLocal && userLocal.groups) {
                                 resolve(userLocal.groups);
-                            } else{
+                            } else {
                                 UserServ.saveNewUser(user).then(function () {
                                     resolve(['reader']);
                                 })
@@ -73,10 +73,8 @@
                         return false;
                     }
                     if (group === 'reader') {
-                        return currentUser.groups.indexOf('reader') && currentUser.groups.length  === 1;
+                        return currentUser.groups.indexOf('reader')>-1 && currentUser.groups.length === 1;
                     }
-
-
                     return currentUser.groups.indexOf(group) !== -1;
                 }
             };

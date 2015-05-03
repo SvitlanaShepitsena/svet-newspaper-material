@@ -54,7 +54,6 @@
                     $scope.$watch(function () {
                         return CurrentUserServ.get();
                     }, function (newValue, oldValue) {
-                        if (newValue === oldValue) return;
                         $scope.user = newValue;
 
                     });
