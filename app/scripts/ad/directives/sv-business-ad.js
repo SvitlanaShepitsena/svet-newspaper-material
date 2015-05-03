@@ -10,7 +10,9 @@
 
                 },
                 link: function ($scope, el, attrs) {
-
+                    $scope.startAdCampaign = function () {
+                        
+                    };
                 }
             };
         });
