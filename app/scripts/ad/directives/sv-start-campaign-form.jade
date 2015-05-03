@@ -17,10 +17,10 @@ div(flow-init='')
                 .radio-group
                     .radio-button
                         input#radio1.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.top')
-                        label.radio-button__label(for='radio1') Home Page Top
+                        label.radio-button__label(for='radio1') {{'home-top'|translate}}
                     .radio-button
                         input#radio2.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.middle')
-                        label.radio-button__label(for='radio2') Home Page Middle
+                        label.radio-button__label(for='radio2') {{'home-middle'|translate}}
         div(flex-container='row')
             div.m(flex-item='')
                 sv-image-upload()
@@ -28,7 +28,7 @@ div(flow-init='')
             div(class='mb+')
                 button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save")
                     i.mdi.mdi-send.mr
-                    | Start Campaign
+                    | {{'post'|translate}}
                 button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")
-                    i.mdi.mdi-close
-                    | &nbsp Cancel
+                    i.mdi.mdi-close.mr
+                    | {{'cancel'|translate}}

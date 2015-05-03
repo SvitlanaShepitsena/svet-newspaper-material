@@ -65,6 +65,14 @@
                 'logout': 'Logout',
                 'edit': 'Edit',
                 'delete': 'Delete',
+                'cancel': 'Cancel',
+                'post': 'Post',
+                'choose-image': 'Choose Image',
+                'remove-image': 'Remove Image',
+                'home-top': 'Home Page Top',
+                'home-middle': 'Home Page Middle',
+
+
                 //    Change Fields
                 'fname': 'First Name',
                 'lname': 'Last Name',
@@ -131,6 +139,13 @@
                 'login': 'Войти',
                 'edit': 'Править',
                 'delete': 'Удалить',
+                'cancel': 'Отменить',
+                'post': 'Опубликовать',
+                'choose-image': 'Выбрать изображение',
+                'remove-image': 'Удалить изображение',
+                'home-top': 'Наверу домашней страницы',
+                'home-middle': 'Внизу домашней страницы',
+
                 //    Change Fields
                 'fname': 'Имя',
                 'lname': 'Фамилия',
