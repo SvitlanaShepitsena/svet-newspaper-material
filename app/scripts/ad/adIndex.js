@@ -11,7 +11,7 @@
                     templateUrl: "scripts/auth/views/business-adCtrl.html"
                 })
                 .state("app.user.ad.start", {
-                    url: "/start-campaign",
+                    url: "/start-campaign/:id",
                     controller:"StartCampaignCtrl as startCampaign",
                     templateUrl: "scripts/ad/views/start-campaignCtrl.html"
                 })

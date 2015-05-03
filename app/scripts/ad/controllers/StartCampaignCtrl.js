@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('ad')
-        .controller('StartCampaignCtrl', function ($scope) {
+        .controller('StartCampaignCtrl', function ($scope,$stateParams) {
+            $scope.id = $stateParams.id;
 
         });
 })();

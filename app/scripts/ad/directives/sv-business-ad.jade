@@ -1,6 +1,6 @@
 div
     ul
-        li(ng-repeat='ad in ads')
+        li(ng-repeat='ad in ads|userList')
             div {{ad.title}}
             div {{ad.place}}
             div {{ad.timestamp|date}}
@@ -11,6 +11,9 @@ div
                     div Unique:{{ad.shows.total}}
             div
                 img(ng-src="{{ad.banner}}")
+            div
+                button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ui-sref='.start({id:ad.$id})') Edit
+                button.btn.btn--xs.btn--red.btn--raised(lx-ripple='' ng-click='removeAd(ad)') Delete
                 br
                 br
     div(ui-view='')
