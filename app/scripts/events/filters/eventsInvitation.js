@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('events')
-        .filter('eventsInvitation', function ($rootScope) {
+        .filter('eventsInvitation', function (CurrentUserServ) {
             return function (events, index) {
                 if (!events || events.length === 0) {
                     return;
                 }
                 var finalList = [];
-                var u = $rootScope.user;
+                var u = CurrentUserServ.get();
 
                 if (index == 0) {
                     for (var i = 0; i < events.length; i++) {

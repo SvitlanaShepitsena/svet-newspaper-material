@@ -38,7 +38,6 @@
                     ];
                     $scope.dateMod = '';
 
-                    //var author = $rootScope.user.fname ? $rootScope.user.fname + ' ' + $rootScope.user.lname : '';
                     var author = faker.name.findName();
                     //ctrl.article = {
                     //    author: author,

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $rootScope, $mdMedia, UserGroupsServ, CurrentUserServ) {
+        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -21,7 +21,6 @@
                                 if (!user.groups) {
                                     UserServ.saveNewUser(user);
                                 }
-                                $rootScope.user = user;
                                 if (UserGroupsServ.isInGroup('manager')) {
                                     $state.go('app.manager.dashboard', {uid: user.id})
                                 } else {
@@ -33,7 +32,6 @@
                         });
                     };
                     ctrl.logout = function () {
-                        $rootScope.user = null;
                         AuthServ.logout();
                         $state.go('app.home')
                     };
@@ -52,11 +50,13 @@
                     }, function (size) {
                         ctrl.sm = size;
                     });
-                    $rootScope.$watch('user', function (newVal) {
-                        $scope.user = newVal;
-                    });
-                    $rootScope.$watch('loadingUser', function (newVal) {
-                        $scope.loadingUser = newVal;
+
+                    $scope.$watch(function () {
+                        return CurrentUserServ.get();
+                    }, function (newValue, oldValue) {
+                        if (newValue === oldValue) return;
+                        $scope.user = newValue;
+
                     });
                 }
             };

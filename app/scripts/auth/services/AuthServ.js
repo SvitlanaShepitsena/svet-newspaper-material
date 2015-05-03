@@ -115,7 +115,6 @@
                     return deferred.promise;
                 },
                 logout: function () {
-                    $rootScope.user = null;
                     CurrentUserServ.cleanUser();
                     var authObj = this.getObj();
                     authObj.$unauth();

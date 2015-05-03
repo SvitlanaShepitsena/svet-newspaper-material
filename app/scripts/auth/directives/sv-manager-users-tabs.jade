@@ -4,15 +4,15 @@ div
             md-tab-label {{'all-users'|translate}}
             md-tab-body
                 sv-profile-subheader(subhead-title="all-users")
-                sv-users-list
+                sv-users-list(group-filter='all')
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{'customers'|translate}}
             md-tab-body
-                sv-profile-subheader(subhead-title="all-users")
-                sv-users-list
+                sv-profile-subheader(subhead-title="customers")
+                sv-users-list(group-filter='customer')
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{'authors'|translate}}
             md-tab-body
-                sv-profile-subheader(subhead-title="all-users")
-                sv-users-list
+                sv-profile-subheader(subhead-title="authors")
+                sv-users-list(group-filter='author')
 

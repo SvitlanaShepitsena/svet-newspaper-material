@@ -33,6 +33,9 @@
                                 if (index > -1) {
                                     userObject.groups.splice(index, 1);
                                 } else {
+                                    _.remove(userObject.groups, function (group) {
+                                        return group === 'reader';
+                                    });
                                     userObject.groups.push(group);
                                 }
                             } else {

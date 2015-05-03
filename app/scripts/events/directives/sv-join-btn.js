@@ -1,8 +1,7 @@
 (function () {
     'use strict';
-
     angular.module('events')
-        .directive('svJoinBtn', function (EventServ, $rootScope, toastr, $state) {
+        .directive('svJoinBtn', function (EventServ, CurrentUserServ, toastr, $state) {
             return {
                 templateUrl: 'scripts/events/directives/sv-join-btn.html',
                 require: ['svJoinBtn', '^?svEventSidenavAd', '^?svKohlEvent2015'],
@@ -20,23 +19,21 @@
                 controller: function svJoinBtnCtrl($scope) {
                     var ctrl = this;
                 },
-
                 link: function ($scope, el, attrs, ctrls) {
                     var ctrl = ctrls[0];
-
-                    $rootScope.$watch('user', function (user) {
-                        $scope.user = user;
+                    $scope.$watch(function () {
+                        return CurrentUserServ.get();
+                    }, function (newValue, oldValue) {
+                        if (newValue === oldValue) return;
+                        $scope.user = newValue;
                     });
-
                     var eventUsers = EventServ.getUsersArrayRef(ctrl.eventKey);
                     eventUsers.$loaded().then(function () {
-                        if ($rootScope.user) {
-
-                            var foundUser = _.find(eventUsers, {'id': $rootScope.user.id});
+                        if (CurrentUserServ.get()) {
+                            var foundUser = _.find(eventUsers, {'id': currentUserServ.get().id});
                             ctrl.isUserJoined = foundUser ? true : false;
                             eventUsers.$watch(function (event) {
-
-                                var foundUser = _.find(eventUsers, {'id': $rootScope.user.id});
+                                var foundUser = _.find(eventUsers, {'id': currentUserServ.get().id});
                                 ctrl.isUserJoined = foundUser ? true : false;
                             })
                         }
@@ -46,14 +43,11 @@
                             toastr.success('Thank you for joining event. See you then.');
                             $state.go('app.events.field', {year: 2015});
                         })
-
                     },
                         ctrl.unlinkEvent = function () {
                             EventServ.unlinkUser($scope.user, ctrl.eventKey).then(function () {
-
                                 toastr.warning('You were unlinked from our Event');
                             })
-
                         }
                 }
             };

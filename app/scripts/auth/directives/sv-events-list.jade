@@ -7,7 +7,7 @@ div
             //span.fs-subhead
             button.btn.btn--s.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
                 i.mdi.mdi-account-check.mr
-                | {{'registered-users'|translate}}
+                | {{e.customers.length+' '+ 'registered-users'|translate}}
             lx-dropdown-menu
                 ul
                     li(ng-repeat='customer in e.customers')

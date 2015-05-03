@@ -38,7 +38,15 @@
                             eventObject.customers.push(user);
                             eventObject.$save().then(function (uid) {
 
+                                var notification = {
+                                    note: user.userName+' accepts '+event.title,
+                                    timestamp: moment().format('x'),
+                                    opened: false
+                                };
+                                NotificationsServ.addToManagers(notification).then(function () {
                                 resolve(uid);
+
+                                });
                             })
                         })
                     });

@@ -58,6 +58,31 @@
                             });
                         })
                     });
+                },
+                addToManagers: function (event) {
+                    return $q(function (resolve, reject) {
+                        var usersObj = $firebaseObject(new Firebase(users));
+                        usersObj.$loaded().then(function () {
+                            var keys = _.chain(usersObj).keysIn().filter(function (key) {
+                                return !_.startsWith(key, '$') && key !== 'forEach';
+                            }).value();
+                            for (var i = 0; i < keys.length; i++) {
+                                var key = keys[i];
+                                var user = usersObj[key];
+                                if (user.groups.indexOf('manager') > -1) {
+                                    if (!user.notices) {
+                                        user.notices = [];
+                                    }
+                                    if (!_.contains(user.notices, event)) {
+                                        user.notices.push(event);
+                                    }
+                                }
+                            }
+                            usersObj.$save().then(function () {
+                                resolve()
+                            });
+                        })
+                    });
                 }
             };
         });

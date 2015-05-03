@@ -38,11 +38,10 @@
                                 if ($scope.user && $scope.user.name) {
                                     user.userName = $scope.user.name.toLocaleLowerCase();
                                 }
-                                UserServ.saveNewUser(user);
-                                $rootScope.user = user;
-                                CurrentUserServ.setUser(user);
-                                toastr.success('You are successfully registered')
-                                $state.go('app.user.dashboard', {uid: user.userName});
+                                CurrentUserServ.setUser(user).then(function (user) {
+                                    toastr.success('You are successfully registered')
+                                    $state.go('app.user.dashboard', {uid: user.userName});
+                                });
                             }
                         ).catch(function (error) {
                                 toastr.error(error.message);

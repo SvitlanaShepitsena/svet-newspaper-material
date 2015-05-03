@@ -17,9 +17,7 @@
                         var providerName = $scope.provider.replace('+', '').toLowerCase();
                         console.log('login');
                         AuthServ.authProvider(providerName).then(function (user) {
-                            console.log(user);
                             UserServ.saveNewUser(user);
-                            $rootScope.user = user;
                             $state.go('app.home');
 
                         }).catch(function (error) {
