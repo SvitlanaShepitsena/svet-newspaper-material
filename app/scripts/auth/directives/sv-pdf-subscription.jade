@@ -3,7 +3,7 @@ div.card.p.ml
     md-divider.mb
     span.display-block.fs-body-2 Do you have a subscription to New Svet or Saturday+ PDF newspaper?
     span(ng-if="!user") Please Log In to Subscribe
-    div(ng-if='pdfLoaded')
+    div(ng-if='user && !requestSubmited')
         form( name='pdfSubForm')
             div(layout="row" layout-align='start center')
                 md-checkbox(ng-model="pdfSub.newLight" aria-label="Checkbox")
@@ -11,5 +11,5 @@ div.card.p.ml
             div(layout="row" layout-align='start center')
                 md-checkbox(ng-model="pdfSub.saturday" aria-label="Checkbox")
                 span.mdc-display-inline-block.fs-body-w {{'saturday-plus'|translate}}
-    div(ng-if='!pdfLoaded')
+    div(ng-if='user && requestSubmited')
         md-progress-circular.md-accent(md-mode='indeterminate')

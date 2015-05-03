@@ -6,8 +6,11 @@
             return {
 
                 getObjectRef: function () {
-                    var userKey = CurrentUserServ.get().key ;
-
+                    var currentUser = CurrentUserServ.get();
+                    if (!currentUser) {
+                        return null;
+                    }
+                    var userKey = currentUser.key ;
                     var userUrl = urlUsers.url + userKey + '/pdfSub';
                     var userObj = $firebaseObject(new Firebase(userUrl));
                     return userObj;
