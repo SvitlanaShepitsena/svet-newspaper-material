@@ -1,23 +1,23 @@
-div
-    ul
-        li(ng-repeat='ad in ads|userList')
-            div {{ad.title}}
-            div {{ad.place}}
-            div {{ad.timestamp|date}}
-            ul
-                li
-                    div Unique:{{ad.shows.unique}}
-                li
-                    div Unique:{{ad.shows.total}}
-            div
-                img(ng-src="{{ad.banner}}")
-            div
-                button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ui-sref='.start({id:ad.$id})') Edit
-                button.btn.btn--xs.btn--red.btn--raised(lx-ripple='' ng-click='removeAd(ad)') Delete
-                br
-                br
-    div(ui-view='')
+.card(class='mb++')
+    .p(ui-view='')
         button.btn.btn--m.btn--red.btn--raised.bgc-red-300(lx-ripple='' ui-sref='app.user.ad.start')
             i.mdi.mdi-plus.mr
             | {{'add-business-ad'|translate}}
+    .p
+        ul(layout='column')
+            li(ng-repeat='ad in ads|userList')
+                div {{ad.title}}
+                div {{ad.place}}
+                div {{ad.timestamp|date}}
+                ul
+                    li
+                        div Unique:{{ad.shows.unique}}
+                    li
+                        div Unique:{{ad.shows.total}}
+                div
+                    img(ng-src="{{ad.banner}}")
+                div
+                    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ui-sref='.start({id:ad.$id})') Edit
+                    button.btn.btn--xs.btn--red.btn--raised(lx-ripple='' ng-click='removeAd(ad)') Delete
+                    br
 

@@ -1,13 +1,10 @@
 (function () {
     'use strict';
-
     angular.module('article')
         .directive('svImageUpload', function () {
             return {
                 templateUrl: 'scripts/article/directives/sv-image-upload.html',
                 link: function ($scope, el, attrs) {
-
-
                     //$scope.$watchCollection('$flow.files', function (images) {
                     //    console.log(images);
                     //    if (!images) {
@@ -26,8 +23,6 @@
                     //        $scope.ctrl.article.img = event.target.result;
                     //    };
                     //});
-
-
                 }
             };
         });

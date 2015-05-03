@@ -7,7 +7,7 @@ div
             input.btn.btn-white(id='primaryButton' type='file', flow-btn='')
     div(flex-container='row')
         div(flex-item='')
-            button.btn.btn--m.btn--white.btn--raised.tc-black-1(type="button" class='mr+' lx-ripple='' ng-if='!$flow.files.length' id='secondaryButton' onclick="document.getElementById('primaryButton').click()")
+            button.btn.btn--m.btn--grey.btn--raised(type="button" class='mr+' lx-ripple='' ng-if='!$flow.files.length' id='secondaryButton' onclick="document.getElementById('primaryButton').click()")
                 i.mdi.mdi-check &nbsp
                 | Choose Image
             button.btn.btn--m.btn--white.btn--raised.tc-red-300(type='button' lx-ripple ng-click='$flow.files.length=0' ng-if='$flow.files.length')

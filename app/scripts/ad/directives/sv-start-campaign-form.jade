@@ -1,6 +1,8 @@
-.card.p(flow-init='')
+div(flow-init='')
+    .ml.mr
+        sv-profile-subheader(subhead-title="my-ad-campaign")
     form(name='adForm' novalidate flex-container='column' ng-submit='addBusinessAd(ad,$flow.files[0])')
-        div(class='mt++', flex-container='row', flex-gutter='24')
+        div(flex-container='row', flex-gutter='24')
             div(flex-item='')
                 lx-text-field(label='Campaign Name'
                 fixed-label='true'
@@ -11,20 +13,21 @@
                     required
                     type='text')
         div(flex-container='row')
-            .radio-group
-                .radio-button
-                    input#radio1.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.top')
-                    label.radio-button__label(for='radio1') Home Page Top
-                .radio-button
-                    input#radio2.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.middle')
-                    label.radio-button__label(for='radio2') Home Page Middle
+            div.m(flex-item='')
+                .radio-group
+                    .radio-button
+                        input#radio1.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.top')
+                        label.radio-button__label(for='radio1') Home Page Top
+                    .radio-button
+                        input#radio2.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.middle')
+                        label.radio-button__label(for='radio2') Home Page Middle
         div(flex-container='row')
-            div(flow-init='')
-            sv-image-upload(img='ad.banner')
+            div.m(flex-item='' flow-init='')
+                sv-image-upload(img='ad.banner')
         div(flex-container='row')
             button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save")
                 i.mdi.mdi-send.mr
                 | Start Campaign
-            button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()')
+            button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")
                 i.mdi.mdi-close
                 | &nbsp Cancel

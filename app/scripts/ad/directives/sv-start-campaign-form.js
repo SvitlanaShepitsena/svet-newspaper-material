@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('ad')
         .directive('svStartCampaignForm', function (AdServ, $state, toastr) {
             return {
@@ -18,25 +17,18 @@
                     }
                     else {
                         $scope.ad = AdServ.getObj($scope.id);
-
                     }
-
                     $scope.addBusinessAd = function (ad, file) {
                         if (!file) {
-
                             if ($scope.id) {
-
                                 AdServ.updateAd($scope.ad).then(function (key) {
                                     $state.go('^');
                                     toastr.info('Your Ad Campaign has been saved');
-
                                 });
-                            } else{
-
+                            } else {
                                 AdServ.saveAd($scope.ad).then(function (key) {
                                     $state.go('^');
                                     toastr.info('Your Ad Campaign has been saved');
-
                                 });
                             }
                             return;
@@ -46,22 +38,17 @@
                         fileReader.onload = function (event) {
                             $scope.ad.banner = event.target.result;
                             if ($scope.id) {
-
                                 AdServ.updateAd($scope.ad).then(function (key) {
                                     $state.go('^');
                                     toastr.info('Your Ad Campaign has been saved');
-
                                 });
-                            } else{
-
+                            } else {
                                 AdServ.saveAd($scope.ad).then(function (key) {
                                     $state.go('^');
                                     toastr.info('Your Ad Campaign has been saved');
-
                                 });
                             }
                         };
-
                     };
                 }
             };
