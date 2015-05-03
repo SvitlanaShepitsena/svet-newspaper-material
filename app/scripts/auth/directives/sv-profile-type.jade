@@ -9,7 +9,7 @@ div(style='margin-bottom:5px' )
             | SVET
         span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')
             | AUTHOR
-    div(ng-show='isInGroup("manager")' ng-if='!!user')
+    div(ng-show='user.groups.indexOf("manager")>-1' )
         span.tc-red-300(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')
             | SVET
         span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')

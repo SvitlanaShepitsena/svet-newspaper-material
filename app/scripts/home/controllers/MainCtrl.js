@@ -5,6 +5,7 @@
 
 		.controller('MainCtrl', function (AgentServ,NotificationsServ, $scope, $timeout, $mdSidenav, $mdMedia, $rootScope) {
 
+
 			var main = this;
 			main.isIe = AgentServ.isIe();
 

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('AuthServ', function (UserGroupsServ, $firebaseAuth, $firebaseObject, url, users, $q, $rootScope, NoteServ, CurrentUserServ) {
+        .factory('AuthServ', function (avatar, UserGroupsServ, $firebaseAuth, $firebaseObject, url, users, $q, $rootScope, NoteServ, CurrentUserServ) {
             var mainRef = new Firebase(url);
 
             function processUserFb(data) {
@@ -32,7 +32,7 @@
                 var userLogin = email.substring(0, at);
                 user = _.extend(user, {
                     userName: userLogin,
-                    avatar: 'img/auth/AlexEtman-sepia.jpg'
+                    avatar: email.indexOf('alex') > -1 ? 'img/auth/AlexEtman-sepia.jpg' : avatar
                 });
                 return user;
             }
@@ -77,8 +77,8 @@
                         }
                         if (!_.isNull(user)) {
                             updateWithLocalData(user).then(function (user) {
-                                UserGroupsServ.getGroups(user).then(function (groups) {
-                                    user.groups = groups
+
+                                CurrentUserServ.setUser(user).then(function (user) {
                                     NoteServ.getNotifications(user).then(function (user) {
                                         deferred.resolve(user);
                                     });
@@ -101,14 +101,12 @@
                         if (_.isNull(user)) {
                             deferred.resolve(null);
                         } else {
-                            UserGroupsServ.getGroups(user).then(function (groups) {
-                                user.groups = groups
+                            CurrentUserServ.setUser(user).then(function (user) {
                                 deferred.resolve(user);
                             }).catch(function (error) {
                                 console.log(error);
                             });
                         }
-                        deferred.resolve(user);
                     }).catch(function (error) {
                         deferred.reject(error);
                     });
@@ -140,8 +138,7 @@
                         deferred.resolve(null);
                     } else {
                         updateWithLocalData(user).then(function (user) {
-                            UserGroupsServ.getGroups(user).then(function (groups) {
-                                user.groups = groups;
+                            CurrentUserServ.setUser(user).then(function (user) {
                                 NoteServ.getNotifications(user).then(function (user) {
                                     deferred.resolve(user);
                                 });

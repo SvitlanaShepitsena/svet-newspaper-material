@@ -11,7 +11,7 @@
                         return CurrentUserServ.get();
                     }, function (newValue, oldValue) {
                         $scope.user = newValue;
-                    });
+                    },true);
                     $scope.isInGroup = function (group) {
                         return UserGroupsServ.isInGroup(group);
                     };

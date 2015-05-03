@@ -29,7 +29,7 @@
                     var eventUsers = EventServ.getUsersArrayRef(ctrl.eventKey);
                     eventUsers.$loaded().then(function () {
                         if (CurrentUserServ.get()) {
-                            var foundUser = _.find(eventUsers, {'id': currentUserServ.get().id});
+                            var foundUser = _.find(eventUsers, {'id': CurrentUserServ.get().id});
                             ctrl.isUserJoined = foundUser ? true : false;
                             eventUsers.$watch(function (event) {
                                 var foundUser = _.find(eventUsers, {'id': currentUserServ.get().id});

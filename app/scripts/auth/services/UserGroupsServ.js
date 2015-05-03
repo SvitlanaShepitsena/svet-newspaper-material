@@ -4,25 +4,25 @@
         .factory('UserGroupsServ', function ($q, url, $firebaseObject, $firebaseArray, $rootScope, UserServ, CurrentUserServ) {
             var usersUrl = url + '/user-management/users/';
             return {
-                getGroups: function (user) {
-                    var userId = user.key;
-                    return $q(function (resolve, reject) {
-                        var usersArr = $firebaseArray(new Firebase(usersUrl));
-                        usersArr.$loaded().then(function () {
-                            var userLocal = _(usersArr).find({id: userId});
-                            if (userLocal && userLocal.groups) {
-                                resolve(userLocal.groups);
-                            } else {
-                                UserServ.saveNewUser(user).then(function () {
-                                    resolve(['reader']);
-                                })
-                            }
-                        }).catch(function (error) {
-                            console.log(userid + 'does not exists');
-                            reject(error);
-                        });
-                    });
-                },
+                //getGroups: function (user) {
+                //    var userId = user.key;
+                //    return $q(function (resolve, reject) {
+                //        var usersArr = $firebaseArray(new Firebase(usersUrl));
+                //        usersArr.$loaded().then(function () {
+                //            var userLocal = _(usersArr).find({id: userId});
+                //            if (userLocal && userLocal.groups) {
+                //                resolve(userLocal.groups);
+                //            } else {
+                //                UserServ.saveNewUser(user).then(function () {
+                //                    resolve(['reader']);
+                //                })
+                //            }
+                //        }).catch(function (error) {
+                //            console.log(userid + 'does not exists');
+                //            reject(error);
+                //        });
+                //    });
+                //},
                 toggleUserInGroup: function (user, group) {
                     console.log('run here UserGroupsServ.js');
                     return $q(function (resolve, reject) {
@@ -70,7 +70,7 @@
                 isInGroup: function (group) {
                     var currentUser = CurrentUserServ.get();
                     if (!currentUser || !currentUser.groups) {
-                        return false;
+                        return 0;
                     }
                     if (group === 'reader') {
                         return currentUser.groups.indexOf('reader')>-1 && currentUser.groups.length === 1;
