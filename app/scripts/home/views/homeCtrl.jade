@@ -4,6 +4,7 @@ div(layout='column')
         sv-loader
         div LOADING NEWS
     div(layout-sm='column', layout-md='column', layout-gt-md='row', layout-lg='column', layout-gt-lg='column', ng-if='!!appLoaded')
+
         div(ng-repeat='nt in news ')
             sv-home-main-news(nt='nt')
         div(flex-container='row')
