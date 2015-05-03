@@ -2,14 +2,15 @@
     'use strict';
 
     angular.module('ad')
-        .directive('svBusinessAd', function () {
+        .directive('svStartCampaignForm', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/ad/directives/sv-business-ad.html',
+                templateUrl: 'scripts/ad/directives/sv-start-campaign-form.html',
                 scope: {
 
                 },
                 link: function ($scope, el, attrs) {
+
                 }
             };
         });
