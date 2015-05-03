@@ -94,11 +94,6 @@
 					templateUrl: "scripts/classified/views/yCtrl.html"
 				})
 
-				.state("app.ad", {
-					url: "/ad", 
-					controller:"AdCtrl as ad",
-					templateUrl: "scripts/ad/views/adCtrl.html"
-				})
 //#state'
         });
 })();
