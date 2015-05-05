@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svBottomSheetHandler', function ($mdBottomSheet) {
             return {
                 link: function ($scope, el, attrs) {
@@ -10,7 +10,7 @@
                         event.stopPropagation();
                         $scope.$apply(function () {
                             $mdBottomSheet.show({
-                                templateUrl: '../../../common/templates/social-top-nav-cell.html'
+                                templateUrl: 'scripts/common/templates/social-top-nav-cell.html'
                             });
                         });
                     });
@@ -19,7 +19,7 @@
                         event.stopPropagation();
                         $scope.$apply(function () {
                             $mdBottomSheet.show({
-                                templateUrl: '../../../common/templates/social-top-nav-cell.html'
+                                templateUrl: 'scripts/common/templates/social-top-nav-cell.html'
                             });
                         });
                     });

@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('home')
+    angular.module('sections.home')
         .factory('CurrentUserServ', function (users, $firebaseArray, $q) {
             var currentUser;
             return {

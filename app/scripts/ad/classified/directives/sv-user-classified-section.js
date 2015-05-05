@@ -4,7 +4,7 @@
         .directive('svUserClassifiedSection', function (CurrentUserServ, ClassifiedServ, toastr) {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-user-classified-section.html',
+                templateUrl: 'scripts/ad/classified/directives/sv-user-classified-section.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
                     $scope.user = CurrentUserServ.get();

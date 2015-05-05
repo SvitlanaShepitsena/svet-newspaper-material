@@ -1,6 +1,6 @@
 (function () {
     'use strict'
-    angular.module('archive', ['ui.router'])
+    angular.module('sections.archive', ['ui.router'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                 /*=archive*/

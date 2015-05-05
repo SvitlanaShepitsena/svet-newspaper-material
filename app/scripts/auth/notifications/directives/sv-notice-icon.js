@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('notifications')
+    angular.module('auth.notifications')
         .directive('svNoticeIcon', function () {
             return {
                 link: function ($scope, el, attrs) {

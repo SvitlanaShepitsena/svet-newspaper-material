@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('auth')
+    angular.module('auth.user')
         .controller('UserEventsCtrl', function ($scope) {
 
         });

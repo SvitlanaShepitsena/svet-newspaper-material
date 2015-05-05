@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('archive')
+    angular.module('sections.archive')
         .controller('NewLightNewspaperCtrl', function ($scope) {
 
         });

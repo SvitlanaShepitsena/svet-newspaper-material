@@ -4,7 +4,7 @@
         .directive('svClassifiedTabs', function ($state) {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-classified-tabs.html',
+                templateUrl: 'scripts/ad/classified/directives/sv-classified-tabs.html',
                 controller: function ($scope, $log) {
                     var tabs = [],
                         selected = null,

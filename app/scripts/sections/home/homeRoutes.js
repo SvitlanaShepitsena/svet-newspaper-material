@@ -1,8 +1,12 @@
 (function () {
     'use strict'
-    angular.module('article', ['ui.router'])
+    angular.module('sections.home', ['ui.router'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
-                /*=article*/
+            /*=home*/
+
+
+
+//#state'
         });
 })();

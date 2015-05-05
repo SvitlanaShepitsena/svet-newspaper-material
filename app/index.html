@@ -199,6 +199,7 @@
 
 <script src="./scripts/app.js"></script>
 <script src="./scripts/routes.js"></script>
+<script src="scripts/sections/home/homeRoutes.js"></script>
 <script src="scripts/sections/home/controllers/MainCtrl.js"></script>
 
 <!-- common -->
@@ -212,21 +213,12 @@
 
 <!-- MODULES-->
 
-<!-- ad.classified -->
-<script src="scripts/ad/classified/classifiedRoutes.js"></script>
-<script src="scripts/ad/classified/classified-translation.js"></script>
-
-<!-- ad.classified -->
-<script src="scripts/ad/classified/classifiedRoutes.js"></script>
-<script src="scripts/ad/classified/classified-translation.js"></script>
-
 <!-- auth -->
 <script src="scripts/auth/authRoutes.js"></script>
 <script src="scripts/auth/auth-translation.js"></script>
 
 <!-- auth.user -->
-<script src="scripts/auth/user/userIndex.js"></script>
-<script src="scripts/ad/classified/controllers/NewCtrl2Ctrl.js"></script>
+<script src="scripts/auth/user/userRoutes.js"></script>
 <script src="scripts/auth/user/controllers/AuthorArticlesCtrl.js"></script>
 <script src="scripts/auth/user/controllers/AuthorDraftsCtrl.js"></script>
 <script src="scripts/auth/user/controllers/UserCtrl.js"></script>
@@ -234,19 +226,13 @@
 <script src="scripts/auth/user/controllers/UserSocialCtrl.js"></script>
 
 <!-- auth.manager -->
-<script src="scripts/auth/manager/managerIndex.js"></script>
+<script src="scripts/auth/manager/managerRoutes.js"></script>
 <script src="scripts/auth/manager/controllers/ManagerCtrl.js"></script>
 <script src="scripts/auth/manager/controllers/ManagerDashboardCtrl.js"></script>
 <script src="scripts/auth/manager/controllers/ManagerUsersCtrl.js"></script>
 
-
-<!-- ad -->
-<script src="scripts/ad/promotion/promotionRoutes.js"></script>
-<script src="scripts/ad/promotion/promotion-translation.js"></script>
-
 <!-- ad.classified -->
-<script src="scripts/ad/classified/classifiedIndex.js"></script>
-<script src="scripts/ad/classified/controllers/NewCtrlCtrl.js"></script>
+<script src="scripts/ad/classified/classifiedRoutes.js"></script>
 <script src="scripts/ad/classified/directives/sv-classified-widget.js"></script>
 <script src="scripts/ad/classified/filters/userCls.js"></script>
 <script src="scripts/ad/classified/directives/sv-cl-field.js"></script>
@@ -264,42 +250,43 @@
 <script src="scripts/ad/classified/controllers/ClassifiedCtrl.js"></script>
 
 <!-- ad.promotion -->
-<script src="scripts/ad/promotion/promotionIndex.js"></script>
+<script src="scripts/ad/promotion/promotionRoutes.js"></script>
 <script src="scripts/ad/promotion/directives/sv-home-ad.js"></script>
 <script src="scripts/ad/promotion/filters/userList.js"></script>
 <script src="scripts/ad/promotion/services/AdServ.js"></script>
 <script src="scripts/ad/promotion/directives/sv-start-campaign-form.js"></script>
 <script src="scripts/ad/promotion/controllers/StartCampaignCtrl.js"></script>
 <script src="scripts/ad/promotion/directives/sv-business-ad.js"></script>
+<script src="scripts/ad/promotion/promotion-translation.js"></script>
 
 <!-- header -->
-<script src="scripts/sections/header/headerIndex.js"></script>
+<script src="scripts/sections/header/headerRoutes.js"></script>
 <script src="scripts/sections/header/directives/sv-header-subscription-btn.js"></script>
 <script src="scripts/sections/header/directives/sv-social-bottom-list-cell.js"></script>
 <script src="scripts/sections/header/directives/sv-social-top-nav-cell.js"></script>
 
 <!-- notifications -->
-<script src="scripts/auth/notifications/notificationsIndex.js"></script>
+<script src="scripts/auth/notifications/notificationsRoutes.js"></script>
 <script src="scripts/auth/notifications/services/NotificationsServ.js"></script>
 <script src="scripts/auth/notifications/directives/sv-notice-icon.js"></script>
-<script src="scripts/auth/notifications/directives/sv-drop-align.js"></script>
 <script src="scripts/auth/notifications/directives/sv-notifications-list.js"></script>
+<script src="scripts/auth/notifications/directives/sv-drop-align.js"></script>
 
 
 <!-- widgets -->
-<script src="scripts/sections/widgets/widgetsIndex.js"></script>
-<script src="scripts/sections/widgets/filters/Celcius.js"></script>
+<script src="scripts/sections/widgets/widgetsRoutes.js"></script>
+<script src="scripts/sections/widgets/filters/Celsius.js"></script>
 <script src="scripts/sections/widgets/services/WeatherServ.js"></script>
 
 <!-- archive -->
-<script src="scripts/sections/archive/archiveIndex.js"></script>
+<script src="scripts/sections/archive/archiveRoutes.js"></script>
 <script src="scripts/sections/archive/directives/sv-pdf-newspaper-thumb.js"></script>
 <script src="scripts/sections/archive/directives/sv-pdf-issues.js"></script>
 <script src="scripts/sections/archive/controllers/SaturdayPlusNewspaperCtrl.js"></script>
 <script src="scripts/sections/archive/controllers/NewLightNewspaperCtrl.js"></script>
 
 <!-- events -->
-<script src="scripts/events/eventsIndex.js"></script>
+<script src="scripts/events/eventsRoutes.js"></script>
 <script src="scripts/events/filters/noticeStatus.js"></script>
 <script src="scripts/events/filters/eventsInvitation.js"></script>
 <script src="scripts/events/filters/eventsType.js"></script>
@@ -319,24 +306,6 @@
 <script src="scripts/events/directives/sv-event-sidenav-ad.js"></script>
 <script src="scripts/events/directives/sv-calendar.js"></script>
 <script src="scripts/events/controllers/EventsCtrl.js"></script>
-
-<!-- classified -->
-<script src="scripts/ad/classified/classifiedIndex.js"></script>
-<script src="scripts/ad/classified/directives/sv-classified-widget.js"></script>
-<script src="scripts/ad/classified/filters/userCls.js"></script>
-<script src="scripts/ad/classified/directives/sv-cl-field.js"></script>
-<script src="scripts/ad/classified/controllers/YCtrl.js"></script>
-<script src="scripts/ad/classified/filters/clType.js"></script>
-<script src="scripts/ad/classified/directives/sv-one-classified.js"></script>
-<script src="scripts/ad/classified/directives/sv-one-classified-thumb.js"></script>
-<script src="scripts/ad/classified/controllers/OneClassifiedCtrl.js"></script>
-<script src="scripts/ad/classified/services/ClassifiedServ.js"></script>
-<script src="scripts/ad/classified/directives/sv-user-classified-section.js"></script>
-<script src="scripts/ad/classified/directives/sv-add-classified-btn.js"></script>
-<script src="scripts/ad/classified/directives/sv-classified-bonus.js"></script>
-<script src="scripts/ad/classified/directives/sv-classified-tabs.js"></script>
-<script src="scripts/ad/classified/directives/sv-post-classified-form.js"></script>
-<script src="scripts/ad/classified/controllers/ClassifiedCtrl.js"></script>
 
 
 <script src="scripts/auth/services/UserServ.js"></script>
@@ -390,11 +359,11 @@
 <script src="scripts/auth/controllers/SvetLoginCtrl.js"></script>
 
 <!-- contact -->
-<script src="scripts/sections/contact/contactIndex.js"></script>
+<script src="scripts/sections/contact/contactRoutes.js"></script>
 <script src="scripts/sections/contact/controllers/ContactCtrl.js"></script>
 
 <!-- article -->
-<script src="scripts/article/articleIndex.js"></script>
+<script src="scripts/article/articleRoutes.js"></script>
 <script src="scripts/article/controllers/SvetRecommendsCtrl.js"></script>
 <script src="scripts/article/directives/sv-comments.js"></script>
 <script src="scripts/article/directives/sv-add-comment.js"></script>
@@ -411,10 +380,10 @@
 
 
 <!-- home -->
-<script src="scripts/sections/home/homeIndex.js"></script>
+<script src="scripts/sections/home/controllers/HomeCtrl.js"></script>
+<script src="scripts/sections/home/controllers/AppCtrl.js"></script>
 <script src="scripts/sections/home/services/NewsProcessServ.js"></script>
 <script src="scripts/sections/home/directives/sv-lang-switch.js"></script>
-<script src="scripts/sections/home/controllers/HomeCtrl.js"></script>
 <script src="scripts/sections/home/directives/sv-header-classified-btn.js"></script>
 <script src="scripts/sections/home/services/CurrentUserServ.js"></script>
 <script src="scripts/sections/home/services/NewsServ.js"></script>
@@ -438,7 +407,6 @@
 <script src="scripts/sections/home/directives/sv-left-click-handler.js"></script>
 <script src="scripts/sections/home/directives/sv-right-click-handler.js"></script>
 <script src="scripts/sections/home/directives/sv-nav-btn.js"></script>
-<script src="scripts/sections/home/controllers/AppCtrl.js"></script>
 <script src="scripts/sections/home/services/ImageSizeServ.js"></script>
 <script src="scripts/sections/home/directives/sv-clients-nav.js"></script>
 <script src="scripts/sections/home/directives/sv-svet-social.js"></script>

@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('archive')
+    angular.module('sections.archive')
         .directive('svPdfIssues', function () {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-pdf-issues.html',
+                templateUrl: 'scripts/sections/directives/sv-pdf-issues.html',
                 scope: {
                     isSaturday: '=',
                     startIssue: '=',

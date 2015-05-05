@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svSvetSocial', function ($mdBottomSheet) {
             return {
                 replace: true,

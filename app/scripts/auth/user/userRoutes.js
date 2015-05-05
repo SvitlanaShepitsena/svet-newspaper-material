@@ -8,37 +8,32 @@
                     abstract: true,
                     url: '/:uid',
                     controller: "UserCtrl as user",
-                    templateUrl: "user/views/userCtrl.html"
+                    templateUrl: "scripts/auth/user/views/userCtrl.html"
                 })
                 .state("app.user.dashboard", {
                     url: "/dashboard",
                     controller: "UserDashboardCtrl as userDashboard",
-                    templateUrl: "user/views/userDashboardCtrl.html"
+                    templateUrl: "scripts/auth/user/views/userDashboardCtrl.html"
                 })
                 .state("app.user.author-articles", {
                     url: "/articles",
                     controller: "AuthorArticlesCtrl as authorArticles",
-                    templateUrl: "user/views/author-articlesCtrl.html"
+                    templateUrl: "scripts/auth/user/views/author-articlesCtrl.html"
                 })
                 .state("app.user.author-drafts", {
                     url: "/author-drafts",
                     controller: "AuthorDraftsCtrl as authorDrafts",
-                    templateUrl: "user/views/author-draftsCtrl.html"
+                    templateUrl: "scripts/auth/user/views/author-draftsCtrl.html"
                 })
                 .state("app.user.user-events", {
                     url: "/events",
                     controller: "UserEventsCtrl as userEvents",
-                    templateUrl: "../events/views/user-eventsCtrl.html"
+                    templateUrl: "scripts/events/views/user-eventsCtrl.html"
                 })
                 .state("app.user.profile-settings", {
                     url: "/profile-settings",
                     controller: "ProfileSettingsCtrl as profileSettings",
-                    templateUrl: "user/views/profile-settingsCtrl.html"
-                })
-                .state("app.user.social", {
-                    url: "/social",
-                    controller: "SocialCtrl as social",
-                    templateUrl: "scripts/author/views/socialCtrl.html"
+                    templateUrl: "scripts/auth/user/views/profile-settingsCtrl.html"
                 })
 //#state'
         });

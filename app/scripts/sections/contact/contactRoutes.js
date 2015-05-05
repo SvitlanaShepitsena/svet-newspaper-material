@@ -1,6 +1,6 @@
 (function () {
     'use strict'
-    angular.module('contact', ['ui.router'])
+    angular.module('sections.contact', ['ui.router'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
             /*=moduleName*/

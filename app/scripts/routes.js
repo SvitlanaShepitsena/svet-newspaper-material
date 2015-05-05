@@ -38,11 +38,6 @@
                     controller: "WorldCtrl as world",
                     templateUrl: "scripts/world/views/worldCtrl.html"
                 })
-                .state("app.contact", {
-                    url: "/contact",
-                    controller: "ContactCtrl as contact",
-                    templateUrl: "sections/contact/views/contactCtrl.html"
-                })
                 .state("app.technology", {
                     url: "/technology",
                     controller: "TechnologyCtrl as technology",

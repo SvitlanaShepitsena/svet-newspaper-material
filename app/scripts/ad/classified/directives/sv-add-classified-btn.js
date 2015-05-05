@@ -4,7 +4,7 @@
         .directive('svAddClassifiedBtn', function (ClassifiedServ, $state) {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-add-classified-btn.html',
+                templateUrl: 'scripts/ad/classified/directives/sv-add-classified-btn.html',
                 link: function ($scope, el, attrs) {
                     $scope.startCl = function () {
                         if (!ClassifiedServ.isClAvailable($scope.cls)) {

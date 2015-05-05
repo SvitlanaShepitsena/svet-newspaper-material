@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('header')
+    angular.module('sections.header')
         .directive('svSocialTopNavCell', function ($mdBottomSheet) {
             return {
                 replace: true,
@@ -11,7 +11,7 @@
                     $scope.showListBottomSheet = function ($event) {
                         $scope.alert = '';
                         $mdBottomSheet.show({
-                            templateUrl: '../../../common/templates/social-top-nav-cell.html',
+                            templateUrl: 'scripts/common/templates/social-top-nav-cell.html',
                             targetEvent: $event
                         }).then(function (clickedItem) {
                             $scope.alert = clickedItem.name + ' clicked!';

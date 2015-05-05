@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svLeftClickHandler', function () {
             return {
                 link: function ($scope, el, attrs) {

@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svClientsNav', function () {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-clients-nav.html',
+                templateUrl: 'scripts/sections/home/directives/sv-clients-nav.html',
                 scope: {},
                 bindToController: {
                     someObject: '=',

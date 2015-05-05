@@ -4,7 +4,7 @@
         .directive('svClassifiedBonus', function ($rootScope, CurrentUserServ, ClassifiedServ) {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-classified-bonus.html',
+                templateUrl: 'scripts/ad/classified/directives/sv-classified-bonus.html',
                 link: function ($scope, el, attrs) {
                     $scope.$watch('cls', function (newValue, oldValue) {
                         $scope.cls = newValue;

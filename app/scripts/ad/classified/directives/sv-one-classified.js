@@ -5,7 +5,7 @@
         .directive('svOneClassified', function (ClassifiedServ, $stateParams) {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-one-classified.html',
+                templateUrl: 'scripts/ad/classified/directives/sv-one-classified.html',
                 scope: {
 
                 },

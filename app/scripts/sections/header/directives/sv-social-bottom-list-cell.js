@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('header')
+    angular.module('sections.header')
         .directive('svSocialBottomListCell', function () {
             return {
                 replace: true,
-                templateUrl: 'sv-social-bottom-list-cell.html',
+                templateUrl: 'scripts/sections/header/directives/sv-social-bottom-list-cell.html',
                 scope: {
 
                 },

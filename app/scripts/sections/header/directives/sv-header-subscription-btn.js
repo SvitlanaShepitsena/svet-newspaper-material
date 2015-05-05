@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('header')
+    angular.module('sections.header')
         .directive('svHeaderSubscriptionBtn', function () {
             return {
                 replace: true,
