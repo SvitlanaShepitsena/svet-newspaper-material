@@ -3,8 +3,10 @@
 
     angular.module('#module#')
         .filter('#lname#', function () {
-            return function (input) {
-                return 'test filter: ' + input;
+            return function (list) {
+                return _.where(list, function (item) {
+                    return item;
+                });
             };
         });
 })();

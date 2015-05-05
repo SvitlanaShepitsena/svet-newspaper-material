@@ -1,6 +1,12 @@
 (function () {
     'use strict'
 
-    angular.module('#module#', []);
+    angular.module('#module#', [])
+    .config(function ($stateProvider, $urlRouterProvider) {
+        $stateProvider
+
+//#state'
+
+    });
 })();
 

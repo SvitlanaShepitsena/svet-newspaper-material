@@ -255,31 +255,21 @@ module.exports = function (grunt) {
 
 ////////////////
 
-////////////////
-
         // register
         var state = '\t\t\t\t.state("app.' + _.str.dasherize(lname) + '", {\r\n' +
             '\t\t\t\t\turl: "/' + _.str.dasherize(lname) + '", \r\n' +
-            '\t\t\t\t\tcontroller:"' + name + 'Ctrl as ' + nameCamel + '",\r\n' +
-            '\t\t\t\t\ttemplateUrl: "scripts/' + moduleDirectirized + '/views/' + _.str.dasherize(lname) + 'Ctrl.html"\r\n' +
+            '\t\t\t\t\tcontroller:"' + name + 'Ctrl",\r\n' +
+            '\t\t\t\t\ttemplateUrl: "scripts/' + moduleDirectirized + '/views/' + lname + 'Ctrl.html"\r\n' +
             '\t\t\t\t})\r\n';
 
         var apath = 'app/scripts/app.js';
-        var routesPath = 'app/scripts/routes.js';
+
 
         var tpath = 'app/scripts/' + moduleDirectirized + '/views/' + _.str.dasherize(lname) + 'Ctrl.jade';
         var tpathHtml = 'app/scripts/' + moduleDirectirized + '/views/' + _.str.dasherize(lname) + 'Ctrl.html';
 
         var app = grunt.file.read(apath);
-        var routes = grunt.file.read(routesPath);
 
-        if (rm) {
-            routes = removeFromInside(routes, state);
-        }
-        else {
-
-            routes = enterInside(routes, '//#state', state);
-        }
 
         var placeToInsert = module.split('.');
         var before = placeToInsert || '<!-- links -->';
@@ -314,12 +304,25 @@ module.exports = function (grunt) {
             //grunt.file.delete(tpath);
         } else {
             grunt.file.write(d + name + t, ctrlr);
-            grunt.file.write(tpath, '.well content');
-            grunt.file.write(tpathHtml, '<div class="well">content</div>');
+            grunt.file.write(tpath, 'div content');
+            grunt.file.write(tpathHtml, '<div>content</div>');
+        }
+        grunt.file.write(ipath, indf);
+        var lastSubModule = _.last(moduleDirectirized.split('/'));
+
+        var routesPath = 'app/scripts/' + moduleDirectirized + '/' + lastSubModule + 'Routes.js';
+        var routes = grunt.file.read(routesPath);
+
+        if (rm) {
+            routes = removeFromInside(routes, state);
+        }
+        else {
+
+            routes = enterInside(routes, '//#state', state);
         }
         grunt.file.write(routesPath, routes);
 
-        grunt.file.write(ipath, indf);
+
         grunt.task.run('addcommit');
     })
 
@@ -619,12 +622,12 @@ module.exports = function (grunt) {
         var moduleNameArr = module.split('.');
         var moduleName = moduleNameArr[moduleNameArr.length - 1];
 
-        var moduleIndex = SCRIPT_PATH + moduleDirectirized + '/' + moduleName + 'Index.js';
+        var moduleIndex = SCRIPT_PATH + moduleDirectirized + '/' + moduleName + 'Routes.js';
 
         //grunt.file.delete(moduleIndex);
         //console.log(moduleIndex);
 
-        var isIndexExist = grunt.file.exists(moduleIndex);
+        var isRoutes = grunt.file.exists(moduleIndex);
 
         function includeStyleCreateImgFolder() {
             var styleAddition = "@import '../scripts/" + moduleDirectirized + "/styles/" + moduleName + "'";
@@ -635,19 +638,29 @@ module.exports = function (grunt) {
             }
         }
 
-        if (!isIndexExist) {
+        if (!isRoutes) {
             var moduleTpl = grunt.file.read('templates/module.tpl.js');
             moduleTpl = moduleTpl.replace(/#module#/g, module);
+
+            var translationTpl = grunt.file.read('templates/translation.tpl.js');
+            translationTpl = translationTpl.replace(/#module#/g, module);
+
+
             grunt.file.write(moduleIndex, moduleTpl);
+            var translationFile = moduleIndex.replace('Routes', '-translation');
+            grunt.file.write(translationFile, translationTpl);
 
             var newApp = addInAppJs('// modules', module);
             grunt.file.write(APP, newApp);
             includeStyleCreateImgFolder();
             var slash = moduleIndex.indexOf('/') + 1;
             var moduleIndexShort = moduleIndex.substr(slash);
+            var moduleTranslation = moduleIndexShort.replace('Routes', '-translation');
 
             var indexAddition = '<!-- ' + module + ' -->'
                 + '\r\n<script src="' + moduleIndexShort + '"></script>';
+
+            indexAddition += '\r\n<script src="' + moduleTranslation + '"></script>';
 
             return addInIndexHtml('<!-- MODULES-->', indexAddition);
 
