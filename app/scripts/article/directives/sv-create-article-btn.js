@@ -5,7 +5,7 @@
         .directive('svCreateArticleBtn', function (UserGroupsServ) {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-create-article-btn.html',
+                templateUrl: 'sv-create-article-btn.html',
                 scope: {
 
                 },

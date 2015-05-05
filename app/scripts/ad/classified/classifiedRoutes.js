@@ -51,6 +51,7 @@
                     controller: "OneClassifiedCtrl as oneClassified",
                     templateUrl: "/views/one-classifiedCtrl.html"
                 })
+//#state'
         });
 })();
 

@@ -40,5 +40,6 @@
                     controller: "EventsPhotoGalleryCtrl as eventsPhotoGallery",
                     templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
                 })
+//#state'
         });
 })();

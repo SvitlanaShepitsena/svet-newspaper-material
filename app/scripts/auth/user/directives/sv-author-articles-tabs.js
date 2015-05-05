@@ -1,13 +1,11 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .directive('svAuthorArticlesTabs', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-author-articles-tabs.html',
+                templateUrl: 'sv-author-articles-tabs.html',
                 scope: {},
-
                 link: function ($scope, el, attrs) {
                     var tabs = [
                             {title: 'world', content: "Here will be my politics articles "},
@@ -28,7 +26,6 @@
                         previous = selected;
                         selected = tabs[current];
                     });
-
                 }
             };
         });
