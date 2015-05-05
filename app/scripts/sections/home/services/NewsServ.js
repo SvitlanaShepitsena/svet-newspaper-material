@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	angular.module('home')
+	angular.module('sections.home')
 		.factory('NewsServ', function ($q, url,$firebaseArray) {
 
 			var refArr = $firebaseArray(new Firebase(url + 'articles/'));

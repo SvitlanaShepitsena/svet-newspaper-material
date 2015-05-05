@@ -7,12 +7,12 @@
                 .state("app.manager.create-event", {
                     url: "/create-event",
                     controller: "CreateSvetEventCtrl as createSvetEvent",
-                    templateUrl: "../events/views/create-svet-eventCtrl.html"
+                    templateUrl: "scripts/events/views/create-svet-eventCtrl.html"
                 })
                 .state("app.manager.events", {
                     url: "/events",
                     controller: "ManagerEventsCtrl as managerEvents",
-                    templateUrl: "../events/views/manager-eventsCtrl.html"
+                    templateUrl: "scripts/events/views/manager-eventsCtrl.html"
                 })
                 .state("app.events", {
                     url: "/events",

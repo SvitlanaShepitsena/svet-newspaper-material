@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svNewsGrid', function ($rootScope) {
             return {
                 replace: true,

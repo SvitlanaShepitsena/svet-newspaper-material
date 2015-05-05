@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svFooter', function () {
             return {
                 replace: true,

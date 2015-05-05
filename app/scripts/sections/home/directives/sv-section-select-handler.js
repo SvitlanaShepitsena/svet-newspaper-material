@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svSectionSelectHandler', function ($rootScope) {
             return {
                 link: function ($scope, el, attrs) {

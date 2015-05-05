@@ -4,7 +4,7 @@
         .directive('svAuthorArticlesTabs', function () {
             return {
                 replace: true,
-                templateUrl: 'sv-author-articles-tabs.html',
+                templateUrl: 'scripts/auth/user/directives/sv-author-articles-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
                     var tabs = [

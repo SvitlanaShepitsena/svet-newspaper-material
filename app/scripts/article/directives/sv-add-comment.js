@@ -4,7 +4,7 @@
         .directive('svAddComment', function (CurrentUserServ, ArticleServ) {
             return {
                 replace: true,
-                templateUrl: 'sv-add-comment.html',
+                templateUrl: 'scripts/article/directives/sv-add-comment.html',
                 scope: {},
                 bindToController: {
                     key: '='

@@ -1,7 +1,8 @@
 (function () {
     'use strict'
-    angular.module('archive', ['ui.router'])
+    angular.module('sections.widgets', ['ui.router'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
+            /*=widgets*/
         });
 })();

@@ -3,7 +3,7 @@
     angular.module('ad.promotion')
         .directive('svStartCampaignForm', function (AdServ, $state, toastr) {
             return {
-                templateUrl: '/sv-start-campaign-form.html',
+                templateUrl: 'scripts/ad/promotion/directives/sv-start-campaign-form.html',
                 scope: {
                     id: '='
                 },

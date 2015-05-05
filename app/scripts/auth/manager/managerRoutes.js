@@ -8,17 +8,17 @@
                     url: "/manager/:uid",
                     abstract: true,
                     controller: "ManagerCtrl as manager",
-                    templateUrl: "manager/views/managerCtrl.html"
+                    templateUrl: "scripts/auth/manager/views/managerCtrl.html"
                 })
                 .state("app.manager.dashboard", {
                     url: "/dashboard",
                     controller: "ManagerDashboardCtrl as managerDashboard",
-                    templateUrl: "manager/views/manager-dashboardCtrl.html"
+                    templateUrl: "scripts/auth/manager/views/manager-dashboardCtrl.html"
                 })
                 .state("app.manager.users", {
                     url: "/users",
                     controller: "ManagerUsersCtrl as managerUsers",
-                    templateUrl: "manager/views/manager-usersCtrl.html"
+                    templateUrl: "scripts/auth/manager/views/manager-usersCtrl.html"
                 })
                 .state("app.manager.clients", {
                     url: "/clients",
@@ -28,7 +28,7 @@
                 .state("app.manager.ad", {
                     url: "/advertisement",
                     controller: "ManagerAdCtrl as managerAd",
-                    templateUrl: "../ad/promotion/views/manager-adCtrl.html"
+                    templateUrl: "scripts/ad/promotion/views/manager-adCtrl.html"
                 })
 //#state'
         });

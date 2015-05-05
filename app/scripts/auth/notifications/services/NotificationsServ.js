@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('notifications')
+    angular.module('auth.notifications')
         .factory('NotificationsServ', function ($q, url, users, $firebaseObject, $firebaseArray, CurrentUserServ) {
             return {
                 getUserNotices: function (key) {

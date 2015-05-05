@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svNavBarMedia', function ($mdMedia) {
             return {
                 link: function ($scope, el, attrs) {

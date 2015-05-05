@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svBottomSheetHandler', function ($mdBottomSheet) {
             return {
                 link: function ($scope, el, attrs) {

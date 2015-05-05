@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svNavLink', function ($rootScope, $mdSidenav) {
             return {
                 replace: true,

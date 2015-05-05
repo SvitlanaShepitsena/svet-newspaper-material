@@ -5,7 +5,7 @@
         .directive('svEventBtn', function () {
             return {
                 replace: true,
-                templateUrl: 'sv-event-btn.html',
+                templateUrl: 'scripts/events/directives/sv-event-btn.html',
                 scope: {
                     btnTitle: '@'
                 },

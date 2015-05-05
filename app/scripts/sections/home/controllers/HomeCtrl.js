@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .controller('HomeCtrl', function ($scope,user) {
 
 

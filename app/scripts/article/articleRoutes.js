@@ -7,12 +7,12 @@
                 .state("app.article", {
                     url: "/article/:id",
                     controller: "ArticleCtrl as article",
-                    templateUrl: "views/articleCtrl.html"
+                    templateUrl: "scripts/article/views/articleCtrl.html"
                 })
                 .state("app.user.create-article", {
                     url: "/create-article",
                     controller: "CreateArticleCtrl as createArticle",
-                    templateUrl: "views/create-articleCtrl.html"
+                    templateUrl: "scripts/article/views/create-articleCtrl.html"
                 })
                 .state("app.svet-recommends", {
                     url: "/svet-recommends",

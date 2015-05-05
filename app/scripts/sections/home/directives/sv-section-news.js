@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svSectionNews', function ($rootScope) {
             return {
                 replace: true,

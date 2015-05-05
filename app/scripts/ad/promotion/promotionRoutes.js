@@ -7,12 +7,12 @@
                 .state("app.user.ad", {
                     url: "/business-ad",
                     controller: "BusinessAdCtrl as businessAd",
-                    templateUrl: "../../auth/views/business-adCtrl.html"
+                    templateUrl: "scripts/ad/promotion/views/business-adCtrl.html"
                 })
                 .state("app.user.ad.start", {
                     url: "/start-campaign/:id",
                     controller: "StartCampaignCtrl as startCampaign",
-                    templateUrl: "views/start-campaignCtrl.html"
+                    templateUrl: "scripts/ad/promotion/views/start-campaignCtrl.html"
                 })
 //#state'
         });

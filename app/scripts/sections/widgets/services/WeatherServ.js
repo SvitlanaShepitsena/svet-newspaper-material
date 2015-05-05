@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('widgets')
+    angular.module('sections.widgets')
         .factory('WeatherServ', function ($q, weather, $firebaseObject) {
             var weatherObj = $firebaseObject(new Firebase(weather));
 

@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('notifications')
+    angular.module('auth.notifications')
         .directive('svNotificationsList', function ($rootScope, $mdMedia, NotificationsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/notifications/directives/sv-notifications-list.html',

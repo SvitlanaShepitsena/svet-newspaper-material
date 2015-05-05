@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('home')
+    angular.module('sections.home')
         .factory('AgentServ', function ($window) {
             return {
                 isIe: function () {

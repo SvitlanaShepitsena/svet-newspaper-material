@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('home')
+    angular.module('sections.home')
         .directive('svWeatherSvet', function (WeatherServ, $translate) {
             return {
                 replace: true,
