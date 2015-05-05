@@ -1,6 +1,6 @@
 (function () {
     'use strict'
-    angular.module('ad', ['ui.router'])
+    angular.module('ad.promotion', ['ui.router'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                 /*=ad*/
@@ -16,4 +16,3 @@
                 })
         });
 })();
-

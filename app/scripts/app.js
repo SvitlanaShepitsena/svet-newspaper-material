@@ -1,24 +1,20 @@
 (function () {
     'use strict';
-
     angular.module('app', [
-
         // modules
         'pascalprecht.translate',
-		'auth',
-		'auth.user',
-		'auth.manager',
-		'ad',
+        'auth',
+        'auth.user',
+        'auth.manager',
         'ad.classified',
         'ad.promotion',
-		'header',
-		'notifications',
-		'widgets',
-		'archive',
-		'events',
+        'header',
+        'notifications',
+        'widgets',
+        'archive',
+        'events',
         'contact',
         'article',
-
         'home',
         // 3rd party modules
         'ngCookies',
@@ -44,13 +40,12 @@
                 .icon("hangouts", "./assets/svg/hangouts.svg", 512)
                 .icon("twitter", "./assets/svg/twitter.svg", 512)
                 .icon("phone", "./assets/svg/phone.svg", 512);
-
             $mdThemingProvider.theme('default')
                 .primaryPalette('grey')
-                .accentPalette('red');8
-
+                .accentPalette('red');
+            8
         })
-        // COMMENT ON PRODUCTION
+    // COMMENT ON PRODUCTION
     //    .factory('$exceptionHandler', function ($injector) {
     //        return function (exception, cause) {
     //            var $rootScope = $injector.get('$rootScope');
@@ -64,5 +59,4 @@
     //    }).config(['$compileProvider', function ($compileProvider) {
     //    //$compileProvider.debugInfoEnabled(false);
     //}]);
-
 })();

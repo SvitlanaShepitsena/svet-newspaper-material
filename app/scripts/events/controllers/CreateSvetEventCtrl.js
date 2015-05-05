@@ -1,9 +1,7 @@
 (function () {
     'use strict';
-
     angular.module('auth')
-        .controller('CreateSvetEventCtrl', function (ConnectionEventServ, $scope, toastr,$state) {
-
+        .controller('CreateSvetEventCtrl', function (ConnectionEventServ, $scope, toastr, $state) {
             $scope.event = {
                 type: 'corporates',
                 title: 'Svet Connection Meeting',
@@ -12,28 +10,23 @@
                 startTime: new Date('01/06/2015 10:00:AM'),
                 endTime: new Date('01/06/2015 1:00:PM'),
                 address: 'Viper Alley. 275 Parkway Dr Lincolnshire, IL 60069',
-                admission:'Svet Partners'
+                admission: 'Svet Partners'
             };
-
             $scope.createEvent = function (event) {
                 if ($scope.eventForm.$valid) {
                     event = formatEvent(event);
                     ConnectionEventServ.saveCorporateEvent(event).then(function (data) {
                         toastr.info('Event has been created.');
                         $state.go('app.manager.events');
-
                     });
                 } else {
                     toastr.error('All required fields must be filled');
                 }
-
-
             };
             function formatEvent(event) {
                 var date = (moment(event.date).format("MM/DD/YYYY"));
                 var startTime = (moment(event.startTime)).format('LT');
                 var endTime;
-
                 if (event.endTime) {
                     endTime = date + ' ' + (moment(event.endTime)).format('LT');
                 }
@@ -43,11 +36,8 @@
                     event.endTime = endTime;
                 }
                 event.sentInvitations = false;
-
                 return event;
             }
-
-
         });
 })
 ();

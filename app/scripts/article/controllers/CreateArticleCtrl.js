@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('article')
+    angular.module('auth.user')
         .controller('CreateArticleCtrl', function ($scope) {
             var createArticle = this;
 

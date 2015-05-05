@@ -1,7 +1,7 @@
 (function () {
     'use strict'
 
-    angular.module('ad')
+    angular.module('ad.promotion')
         .config(['$translateProvider', function ($translateProvider) {
 
             $translateProvider.useCookieStorage()

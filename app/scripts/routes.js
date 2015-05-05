@@ -38,21 +38,6 @@
                     controller: "WorldCtrl as world",
                     templateUrl: "scripts/world/views/worldCtrl.html"
                 })
-                .state("app.contact", {
-                    url: "/contact",
-                    controller: "ContactCtrl as contact",
-                    templateUrl: "sections/contact/views/contactCtrl.html"
-                })
-                .state("app.sign-up", {
-                    url: "/sign-up",
-                    controller: "SignUpCtrl as signUp",
-                    templateUrl: "scripts/auth/views/sign-upCtrl.html"
-                })
-                .state("app.svet-login", {
-                    url: "/svet-login",
-                    controller: "SvetLoginCtrl as login",
-                    templateUrl: "scripts/auth/views/svet-loginCtrl.html"
-                })
                 .state("app.technology", {
                     url: "/technology",
                     controller: "TechnologyCtrl as technology",
