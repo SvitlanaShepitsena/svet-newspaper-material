@@ -4,6 +4,7 @@
     angular.module('app', [
 
         // modules
+		'auth.user',
 		'auth.manager',
 		'ad',
         'ad.classified',

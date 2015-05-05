@@ -98,6 +98,11 @@
 					controller:"TestCtrl as test",
 					templateUrl: "scripts/auth/manager/views/testCtrl.html"
 				})
+				.state("app.test", {
+					url: "/test", 
+					controller:"TestCtrl as test",
+					templateUrl: "scripts/auth/user/views/testCtrl.html"
+				})
 //#state'
         });
 })();
