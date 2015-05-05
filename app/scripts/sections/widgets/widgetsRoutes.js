@@ -4,5 +4,7 @@
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
             /*=widgets*/
+
+//#state'
         });
 })();
