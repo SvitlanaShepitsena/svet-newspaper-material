@@ -702,8 +702,9 @@ module.exports = function (grunt) {
             grunt.file.mkdir(imgDir);
         }
 
-        return part1 + '\r\n' + addition + part2;
-    }
+        return part1 + '\r\n' + addition + part2:/Dropbox/WebStorm Setti
+    }ngs/settings.jar
+
 
     function addInAppJs(after, addition) {
         var app = grunt.file.read(APP);
