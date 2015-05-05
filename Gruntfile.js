@@ -9,6 +9,7 @@ var enterInside = function (target, before, insert) {
         return target;
     }
 
+
     var test = target.indexOf(insert);
 
     if (test > 0)return target;
