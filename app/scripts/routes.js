@@ -20,7 +20,7 @@
                 .state("app.home", {
                     url: "/home",
                     controller: "HomeCtrl as home",
-                    templateUrl: "scripts/home/views/homeCtrl.html"
+                    templateUrl: "scripts/sections/home/views/homeCtrl.html"
                 })
                 /*news sections*/
                 .state("app.politics", {
@@ -41,7 +41,7 @@
                 .state("app.contact", {
                     url: "/contact",
                     controller: "ContactCtrl as contact",
-                    templateUrl: "scripts/contact/views/contactCtrl.html"
+                    templateUrl: "sections/contact/views/contactCtrl.html"
                 })
                 .state("app.sign-up", {
                     url: "/sign-up",
@@ -93,16 +93,6 @@
                     controller: "YCtrl as y",
                     templateUrl: "ad/classified/views/yCtrl.html"
                 })
-				.state("app.test", {
-					url: "/test", 
-					controller:"TestCtrl as test",
-					templateUrl: "scripts/auth/manager/views/testCtrl.html"
-				})
-				.state("app.test", {
-					url: "/test", 
-					controller:"TestCtrl as test",
-					templateUrl: "scripts/auth/user/views/testCtrl.html"
-				})
 //#state'
         });
 })();

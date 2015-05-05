@@ -1,5 +1,6 @@
 (function () {
     'use strict'
-    angular.module('ad.promotion', [])
+
+    angular.module('home', []);
 })();
 

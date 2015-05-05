@@ -4,6 +4,8 @@
     angular.module('app', [
 
         // modules
+        'pascalprecht.translate',
+		'auth',
 		'auth.user',
 		'auth.manager',
 		'ad',
@@ -11,13 +13,11 @@
         'ad.promotion',
 		'header',
 		'notifications',
-		'author',
 		'widgets',
 		'archive',
 		'events',
         'contact',
         'article',
-        'auth',
 
         'home',
         // 3rd party modules
@@ -26,7 +26,6 @@
         'ngAnimate',
         'flow',
         'ngSanitize',
-        'pascalprecht.translate',
         'lumx',
         'ngMaterial',
         'ngMessages',
@@ -59,8 +58,7 @@
     //            exception.message += ' (caused by "' + cause + '")';
     //
     //            // Comment on Production
-    //            toastr.error('ERROR!'+exception.message);
-    //            $rootScope.$broadcast('error');
+    //            toastr.error('ERROR!'+exception.message); $rootScope.$broadcast('error');
     //            throw exception;
     //        };
     //    }).config(['$compileProvider', function ($compileProvider) {
