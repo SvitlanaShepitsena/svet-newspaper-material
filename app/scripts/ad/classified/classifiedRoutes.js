@@ -1,3 +1,8 @@
+				.state("app.new-ctrl", {
+					url: "/new-ctrl", 
+					controller:"NewCtrlCtrl",
+					templateUrl: "scripts/ad/classified/views/newCtrlCtrl.html"
+				})
 (function () {
     'use strict'
     angular.module('ad.classified', ['ui.router'])
