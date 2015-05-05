@@ -1,0 +1,18 @@
+div(layout='column')
+
+    div(ng-if='!appLoaded', layout-align='center top', layout='row', flex='')
+        sv-loader
+        div LOADING NEWS
+    div(layout-sm='column', layout-md='column', layout-gt-md='row', layout-lg='column', layout-gt-lg='column', ng-if='!!appLoaded')
+        div(layout='row' layout-align='center')
+            sv-home-ad(plac='home.top')
+        div(ng-repeat='nt in news ')
+            sv-home-main-news(nt='nt')
+        div(layout='row' layout-align='center')
+            sv-home-ad(place='home.middle')
+        div(flex-container='row')
+            div(flex-item='8')
+                sv-news-grid
+            div(flex-item='4')
+                sv-radio-osa(class='mb+' title="radio" subhead="radio-subhead" body='radio-body')
+                sv-from-the-editor(class='mb+')
