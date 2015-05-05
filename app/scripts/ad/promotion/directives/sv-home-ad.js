@@ -4,7 +4,7 @@
         .directive('svHomeAd', function (AdServ) {
             return {
                 replace: true,
-                templateUrl: '../scripts/ad/promotion/directives/sv-home-ad.html',
+                templateUrl: 'scripts/ad/promotion/directives/sv-home-ad.html',
                 scope: {
                     place: '@'
                 },

@@ -5,7 +5,7 @@
         .directive('svPdfIssues', function () {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-pdf-issues.html',
+                templateUrl: 'scripts/sections/directives/sv-pdf-issues.html',
                 scope: {
                     isSaturday: '=',
                     startIssue: '=',

@@ -5,7 +5,7 @@
         .directive('svFooter', function () {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-footer.html',
+                templateUrl: 'scripts/sections/home/directives/sv-footer.html',
                 bindToController: {
                     someObject: '=',
                     someString: '@',

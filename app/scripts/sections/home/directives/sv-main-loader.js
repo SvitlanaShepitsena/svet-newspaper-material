@@ -5,7 +5,7 @@
         .directive('svMainLoader', function () {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-main-loader.html'
+                templateUrl: 'scripts/sections/home//directives/sv-main-loader.html'
             };
         });
 })();

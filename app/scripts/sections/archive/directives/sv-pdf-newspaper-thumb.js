@@ -5,7 +5,7 @@
         .directive('svPdfNewspaperThumb', function () {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-pdf-newspaper-thumb.html',
+                templateUrl: 'scripts/sections/archive/directives/sv-pdf-newspaper-thumb.html',
                 scope: {
                     issue: '=',
                     startIssue: '=',

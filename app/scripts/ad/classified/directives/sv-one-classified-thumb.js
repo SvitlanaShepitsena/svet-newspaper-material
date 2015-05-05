@@ -4,7 +4,7 @@
         .directive('svOneClassifiedThumb', function (CurrentUserServ, ClassifiedServ, toastr, $state) {
             return {
                 replace: true,
-                templateUrl: '../scripts/ad/classified/directives/sv-one-classified-thumb.html',
+                templateUrl: 'scripts/ad/classified/directives/sv-one-classified-thumb.html',
                 scope: {
                     cl: '=',
                     removeCl: '&',

@@ -11,7 +11,7 @@
                     $scope.showListBottomSheet = function ($event) {
                         $scope.alert = '';
                         $mdBottomSheet.show({
-                            templateUrl: '../../../common/templates/social-top-nav-cell.html',
+                            templateUrl: 'scripts/common/templates/social-top-nav-cell.html',
                             targetEvent: $event
                         }).then(function (clickedItem) {
                             $scope.alert = clickedItem.name + ' clicked!';

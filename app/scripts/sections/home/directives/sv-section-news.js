@@ -5,7 +5,7 @@
         .directive('svSectionNews', function ($rootScope) {
             return {
                 replace: true,
-                templateUrl: '..//directives/sv-section-news.html',
+                templateUrl: 'scripts/sections/home/directives/sv-section-news.html',
                 scope: {},
                 bindToController: {
                     sectionName: '@'
