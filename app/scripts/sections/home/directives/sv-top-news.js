@@ -1,13 +1,12 @@
 (function () {
     'use strict';
-
-    angular.module('auth')
-        .directive('svEventBtn', function () {
+    angular.module('article')
+        .directive('svTopNews', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-event-btn.html',
+                templateUrl: 'scripts/sections/home/directives/sv-top-news.html',
                 scope: {
-                    btnTitle: '@'
+                    mainNews: '='
                 },
                 link: function ($scope, el, attrs) {
                 }

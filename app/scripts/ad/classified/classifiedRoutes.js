@@ -1,8 +1,3 @@
-				.state("app.new-ctrl", {
-					url: "/new-ctrl",
-					controller:"NewCtrlCtrl",
-					templateUrl: "scripts/ad/classified/views/newCtrlCtrl.html"
-				})
 (function () {
     'use strict'
     angular.module('ad.classified', ['ui.router'])
@@ -56,12 +51,6 @@
                     controller: "OneClassifiedCtrl as oneClassified",
                     templateUrl: "/views/one-classifiedCtrl.html"
                 })
-
-				.state("app.new-ctrl2", {
-					url: "/new-ctrl2", 
-					controller:"NewCtrl2Ctrl",
-					templateUrl: "scripts/ad/classified/views/newCtrl2Ctrl.html"
-				})
 //#state'
         });
 })();

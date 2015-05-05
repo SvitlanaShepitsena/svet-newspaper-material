@@ -14,5 +14,6 @@
                     controller: "StartCampaignCtrl as startCampaign",
                     templateUrl: "views/start-campaignCtrl.html"
                 })
+//#state'
         });
 })();
