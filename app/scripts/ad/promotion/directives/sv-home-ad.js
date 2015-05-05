@@ -17,7 +17,6 @@
                         var ind = _.random($scope.placeAds.length);
                         $scope.ad = $scope.placeAds[ind];
                         AdServ.increaseShow($scope.ad.$id).then(function () {
-                            console.log('success');
                         });
                     });
                 }
