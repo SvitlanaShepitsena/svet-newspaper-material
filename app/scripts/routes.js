@@ -88,12 +88,16 @@
                     controller: "BusinessCtrl as business",
                     templateUrl: "scripts/business/views/businessCtrl.html"
                 })
-				.state("app.y", {
-					url: "/y",
-					controller:"YCtrl as y",
-					templateUrl: "scripts/classified/views/yCtrl.html"
+                .state("app.y", {
+                    url: "/y",
+                    controller: "YCtrl as y",
+                    templateUrl: "ad/classified/views/yCtrl.html"
+                })
+				.state("app.test", {
+					url: "/test", 
+					controller:"TestCtrl as test",
+					templateUrl: "scripts/auth/manager/views/testCtrl.html"
 				})
-
 //#state'
         });
 })();

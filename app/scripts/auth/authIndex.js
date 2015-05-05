@@ -24,17 +24,17 @@
                 .state("app.user.author-articles", {
                     url: "/articles",
                     controller: "AuthorArticlesCtrl as authorArticles",
-                    templateUrl: "scripts/auth/views/author-articlesCtrl.html"
+                    templateUrl: "../author/views/author-articlesCtrl.html"
                 })
                 .state("app.user.author-drafts", {
                     url: "/author-drafts",
                     controller: "AuthorDraftsCtrl as authorDrafts",
-                    templateUrl: "scripts/auth/views/author-draftsCtrl.html"
+                    templateUrl: "../author/views/author-draftsCtrl.html"
                 })
                 .state("app.user.user-events", {
                     url: "/events",
                     controller: "UserEventsCtrl as userEvents",
-                    templateUrl: "scripts/auth/views/user-eventsCtrl.html"
+                    templateUrl: "../events/views/user-eventsCtrl.html"
                 })
                 .state("app.user.profile-settings", {
                     url: "/profile-settings",
@@ -72,18 +72,18 @@
                 .state("app.manager.events", {
                     url: "/events",
                     controller: "ManagerEventsCtrl as managerEvents",
-                    templateUrl: "scripts/auth/views/manager-eventsCtrl.html"
+                    templateUrl: "../events/views/manager-eventsCtrl.html"
                 })
                 .state("app.manager.ad", {
                     url: "/advertisement",
                     controller:"ManagerAdCtrl as managerAd",
-                    templateUrl: "scripts/auth/views/manager-adCtrl.html"
+                    templateUrl: "../ad/promotion/views/manager-adCtrl.html"
                 })
 
                 .state("app.manager.create-event", {
                     url: "/create-event",
                     controller:"CreateSvetEventCtrl as createSvetEvent",
-                    templateUrl: "scripts/auth/views/create-svet-eventCtrl.html"
+                    templateUrl: "../events/views/create-svet-eventCtrl.html"
                 })
 
 

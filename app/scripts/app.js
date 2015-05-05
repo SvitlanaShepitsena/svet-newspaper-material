@@ -4,29 +4,19 @@
     angular.module('app', [
 
         // modules
+		'auth.manager',
 		'ad',
+        'ad.classified',
+        'ad.promotion',
 		'header',
 		'notifications',
 		'author',
-		'business',
-		'travel',
-		'food',
-		'health',
-		'sport',
-		'art',
-		'technology',
 		'widgets',
 		'archive',
 		'events',
-		'admin',
-		'world',
-		'social',
-		'culture',
-        'classified',
         'contact',
         'article',
         'auth',
-        'politics',
 
         'home',
         // 3rd party modules

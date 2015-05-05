@@ -95,7 +95,7 @@
             <sv-header-classified-btn></sv-header-classified-btn>
             <sv-header-subscription-btn hide-sm></sv-header-subscription-btn>
             <span flex></span>
-            <sv-profile-type  class='mr'></sv-profile-type>
+            <sv-profile-type class='mr'></sv-profile-type>
             <sv-auth-btn class="mr"></sv-auth-btn>
             <sv-notifications-list style='max-height:30px'></sv-notifications-list>
             <div show-gt-lg class="ml"></div>
@@ -208,18 +208,43 @@
 <script src="./scripts/settings/translation/news-nav-services.js"></script>
 <script src="./scripts/settings/translation/users-services.js"></script>
 <script src="./scripts/settings/translation/author-services.js"></script>
-<script src="./scripts/settings/translation/ad-services.js"></script>
 
 <!-- MODULES-->
 
+<!-- auth.manager -->
+<script src="scripts/auth/manager/managerIndex.js"></script>
+<script src="scripts/auth/manager/controllers/TestCtrl.js"></script>
+
 <!-- ad -->
-<script src="scripts/ad/adIndex.js"></script>
-<script src="scripts/ad/directives/sv-home-ad.js"></script>
-<script src="scripts/ad/filters/userList.js"></script>
-<script src="scripts/ad/services/AdServ.js"></script>
-<script src="scripts/ad/directives/sv-start-campaign-form.js"></script>
-<script src="scripts/ad/controllers/StartCampaignCtrl.js"></script>
-<script src="scripts/ad/directives/sv-business-ad.js"></script>
+<script src="scripts/ad/adRoutes.js"></script>
+<script src="scripts/ad/ad-translation.js"></script>
+
+<!-- ad.classified -->
+<script src="scripts/ad/classified/classifiedIndex.js"></script>
+<script src="scripts/ad/classified/directives/sv-classified-widget.js"></script>
+<script src="scripts/ad/classified/filters/userCls.js"></script>
+<script src="scripts/ad/classified/directives/sv-cl-field.js"></script>
+<script src="scripts/ad/classified/controllers/YCtrl.js"></script>
+<script src="scripts/ad/classified/filters/clType.js"></script>
+<script src="scripts/ad/classified/directives/sv-one-classified.js"></script>
+<script src="scripts/ad/classified/directives/sv-one-classified-thumb.js"></script>
+<script src="scripts/ad/classified/controllers/OneClassifiedCtrl.js"></script>
+<script src="scripts/ad/classified/services/ClassifiedServ.js"></script>
+<script src="scripts/ad/classified/directives/sv-user-classified-section.js"></script>
+<script src="scripts/ad/classified/directives/sv-add-classified-btn.js"></script>
+<script src="scripts/ad/classified/directives/sv-classified-bonus.js"></script>
+<script src="scripts/ad/classified/directives/sv-classified-tabs.js"></script>
+<script src="scripts/ad/classified/directives/sv-post-classified-form.js"></script>
+<script src="scripts/ad/classified/controllers/ClassifiedCtrl.js"></script>
+
+<!-- ad.promotion -->
+<script src="scripts/ad/promotion/promotionIndex.js"></script>
+<script src="scripts/ad/promotion/directives/sv-home-ad.js"></script>
+<script src="scripts/ad/promotion/filters/userList.js"></script>
+<script src="scripts/ad/promotion/services/AdServ.js"></script>
+<script src="scripts/ad/promotion/directives/sv-start-campaign-form.js"></script>
+<script src="scripts/ad/promotion/controllers/StartCampaignCtrl.js"></script>
+<script src="scripts/ad/promotion/directives/sv-business-ad.js"></script>
 
 <!-- header -->
 <script src="scripts/header/headerIndex.js"></script>
@@ -236,35 +261,6 @@
 <!-- author -->
 <script src="scripts/author/authorIndex.js"></script>
 <script src="scripts/author/controllers/SocialCtrl.js"></script>
-
-
-<!-- business -->
-<script src="scripts/business/businessIndex.js"></script>
-<script src="scripts/business/controllers/BusinessCtrl.js"></script>
-
-<!-- travel -->
-<script src="scripts/travel/travelIndex.js"></script>
-<script src="scripts/travel/controllers/TravelCtrl.js"></script>
-
-<!-- food -->
-<script src="scripts/food/foodIndex.js"></script>
-<script src="scripts/food/controllers/FoodCtrl.js"></script>
-
-<!-- health -->
-<script src="scripts/health/healthIndex.js"></script>
-<script src="scripts/health/controllers/HealthCtrl.js"></script>
-
-<!-- sport -->
-<script src="scripts/sport/sportIndex.js"></script>
-<script src="scripts/sport/controllers/SportCtrl.js"></script>
-
-<!-- art -->
-<script src="scripts/art/artIndex.js"></script>
-<script src="scripts/art/controllers/ArtCtrl.js"></script>
-
-<!-- technology -->
-<script src="scripts/technology/technologyIndex.js"></script>
-<script src="scripts/technology/controllers/TechnologyCtrl.js"></script>
 
 <!-- widgets -->
 <script src="scripts/widgets/widgetsIndex.js"></script>
@@ -300,10 +296,6 @@
 <script src="scripts/events/directives/sv-calendar.js"></script>
 <script src="scripts/events/controllers/EventsCtrl.js"></script>
 
-<!-- admin -->
-<script src="scripts/admin/adminIndex.js"></script>
-<script src="scripts/admin/directives/sv-tab-swipe.js"></script>
-<script src="scripts/admin/services/UserServ.js"></script>
 
 <!-- social -->
 <script src="scripts/social/socialIndex.js"></script>
@@ -311,35 +303,29 @@
 <script src="scripts/social/directives/sv-add-comment.js"></script>
 <script src="scripts/social/directives/sv-social-top-nav-cell.js"></script>
 
-<!-- world -->
-<script src="scripts/world/worldIndex.js"></script>
-<script src="scripts/world/controllers/WorldCtrl.js"></script>
-
-
-<!-- culture -->
-<script src="scripts/culture/cultureIndex.js"></script>
-<script src="scripts/culture/controllers/CultureCtrl.js"></script>
-
 <!-- classified -->
-<script src="scripts/classified/classifiedIndex.js"></script>
-<script src="scripts/classified/directives/sv-classified-widget.js"></script>
-<script src="scripts/classified/filters/userCls.js"></script>
-<script src="scripts/classified/directives/sv-cl-field.js"></script>
-<script src="scripts/classified/controllers/YCtrl.js"></script>
-<script src="scripts/classified/filters/clType.js"></script>
-<script src="scripts/classified/directives/sv-one-classified.js"></script>
-<script src="scripts/classified/directives/sv-one-classified-thumb.js"></script>
-<script src="scripts/classified/controllers/OneClassifiedCtrl.js"></script>
-<script src="scripts/classified/services/ClassifiedServ.js"></script>
-<script src="scripts/classified/directives/sv-user-classified-section.js"></script>
-<script src="scripts/classified/directives/sv-add-classified-btn.js"></script>
-<script src="scripts/classified/directives/sv-classified-bonus.js"></script>
-<script src="scripts/classified/directives/sv-classified-tabs.js"></script>
-<script src="scripts/classified/directives/sv-post-classified-form.js"></script>
-<script src="scripts/classified/controllers/ClassifiedCtrl.js"></script>
+<script src="scripts/ad/classified/classifiedIndex.js"></script>
+<script src="scripts/ad/classified/directives/sv-classified-widget.js"></script>
+<script src="scripts/ad/classified/filters/userCls.js"></script>
+<script src="scripts/ad/classified/directives/sv-cl-field.js"></script>
+<script src="scripts/ad/classified/controllers/YCtrl.js"></script>
+<script src="scripts/ad/classified/filters/clType.js"></script>
+<script src="scripts/ad/classified/directives/sv-one-classified.js"></script>
+<script src="scripts/ad/classified/directives/sv-one-classified-thumb.js"></script>
+<script src="scripts/ad/classified/controllers/OneClassifiedCtrl.js"></script>
+<script src="scripts/ad/classified/services/ClassifiedServ.js"></script>
+<script src="scripts/ad/classified/directives/sv-user-classified-section.js"></script>
+<script src="scripts/ad/classified/directives/sv-add-classified-btn.js"></script>
+<script src="scripts/ad/classified/directives/sv-classified-bonus.js"></script>
+<script src="scripts/ad/classified/directives/sv-classified-tabs.js"></script>
+<script src="scripts/ad/classified/directives/sv-post-classified-form.js"></script>
+<script src="scripts/ad/classified/controllers/ClassifiedCtrl.js"></script>
+
 
 <!-- auth -->
 <script src="scripts/auth/authIndex.js"></script>
+<script src="scripts/auth/services/UserServ.js"></script>
+<script src="scripts/home/directives/sv-tab-swipe.js"></script>
 <script src="scripts/auth/directives/sv-user-ad-tabs.js"></script>
 <script src="scripts/auth/directives/sv-profile-type.js"></script>
 <script src="scripts/auth/directives/sv-unique-username.js"></script>
@@ -351,23 +337,23 @@
 <script src="scripts/auth/filters/Groups.js"></script>
 <script src="scripts/auth/directives/sv-users-list.js"></script>
 <script src="scripts/auth/directives/sv-manager-users-tabs.js"></script>
-<script src="scripts/auth/controllers/CreateSvetEventCtrl.js"></script>
+<script src="scripts/events/controllers/CreateSvetEventCtrl.js"></script>
 <script src="scripts/auth/directives/sv-business-account-requests.js"></script>
 
 <script src="scripts/auth/directives/sv-manager-profile-summary.js"></script>
 <script src="scripts/auth/directives/sv-manager-dashboard-tabs.js"></script>
-<script src="scripts/auth/controllers/ManagerAdCtrl.js"></script>
-<script src="scripts/auth/controllers/ManagerEventsCtrl.js"></script>
+<script src="scripts/ad/promotion/controllers/ManagerAdCtrl.js"></script>
+<script src="scripts/events/controllers/ManagerEventsCtrl.js"></script>
 <script src="scripts/auth/controllers/ManagerUsersCtrl.js"></script>
 <script src="scripts/auth/directives/sv-manager-profile-nav.js"></script>
 <script src="scripts/auth/services/RequestServ.js"></script>
 <script src="scripts/auth/directives/sv-user-personal-info.js"></script>
 <script src="scripts/auth/directives/sv-request-business-account-btn.js"></script>
 <script src="scripts/auth/directives/sv-user-profile-summary.js"></script>
-<script src="scripts/auth/controllers/BusinessAdCtrl.js"></script>
+<script src="scripts/ad/promotion/controllers/BusinessAdCtrl.js"></script>
 <script src="scripts/auth/directives/sv-pdf-subscription.js"></script>
 <script src="scripts/auth/directives/sv-user-events-tabs.js"></script>
-<script src="scripts/auth/controllers/UserEventsCtrl.js"></script>
+<script src="scripts/events/controllers/UserEventsCtrl.js"></script>
 <script src="scripts/auth/directives/sv-user-social-tabs.js"></script>
 <script src="scripts/auth/directives/sv-create-article-btn.js"></script>
 <script src="scripts/auth/services/PdfSubscriptionsServ.js"></script>
@@ -385,9 +371,9 @@
 <script src="scripts/auth/directives/sv-dashboard-tabs.js"></script>
 <script src="scripts/auth/controllers/ProfileSettingsCtrl.js"></script>
 <script src="scripts/auth/directives/sv-author-articles-tabs.js"></script>
-<script src="scripts/auth/controllers/AuthorDraftsCtrl.js"></script>
+<script src="scripts/author/controllers/AuthorDraftsCtrl.js"></script>
 <script src="scripts/auth/directives/sv-profile-header.js"></script>
-<script src="scripts/auth/controllers/AuthorArticlesCtrl.js"></script>
+<script src="scripts/author/controllers/AuthorArticlesCtrl.js"></script>
 <script src="scripts/auth/controllers/UserDashboardCtrl.js"></script>
 <script src="scripts/auth/directives/sv-user-profile-nav.js"></script>
 <script src="scripts/auth/controllers/SignUpCtrl.js"></script>
@@ -415,10 +401,6 @@
 <script src="scripts/article/controllers/CreateArticleCtrl.js"></script>
 <script src="scripts/article/directives/sv-one-article.js"></script>
 <script src="scripts/article/controllers/ArticleCtrl.js"></script>
-
-<!-- politics -->
-<script src="scripts/politics/politicsIndex.js"></script>
-<script src="scripts/politics/controllers/PoliticsCtrl.js"></script>
 
 
 <!-- home -->

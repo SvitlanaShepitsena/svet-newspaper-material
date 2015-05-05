@@ -5,7 +5,7 @@
     .divider.divider--dark
     div(class='p+ m')
         ul.list(class='mt++')
-            li.list-row.list-row--multi-line.list-row--has-separator(ng-repeat='c in ctrl.comments')
+            li.list-row.list-row--multi-line.list-row--has-separator(ng-repeat='c in comments')
                 .list-row__primary
                     img.img-round.mdc-img-bw(ng-src='{{c.avatar}}', width='40', height='40')
                 .list-row__content
