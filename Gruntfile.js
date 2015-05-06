@@ -23,7 +23,7 @@ var enterInside = function (target, before, insert) {
             temp = target.indexOf(txt, temp);
         });
         start = target.indexOf('>', temp) + 1;
-        start = target.indexOf('Index', start) + 1;
+        start = target.indexOf('Routes', start) + 1;
         start = target.indexOf('>', start) + 1;
         start = target.indexOf('>', start) + 1;
 
