@@ -32,7 +32,7 @@
                         clCopy.timestamp = moment().format('x');
                         if (clCopy.$id) {
                             ClassifiedServ.editCl(clCopy).then(function (uid) {
-                                toastr.info('Your classified ad has been updated.Thank you')
+                                toastr.success('Your classified ad has been updated.Thank you')
                                 $scope.resetForm();
                                 $scope.populateForm();
                                 $scope.addState = false;
@@ -40,7 +40,7 @@
                             });
                         } else {
                             ClassifiedServ.addCl(clCopy).then(function (uid) {
-                                toastr.info('Your classified ad has been placed.Thank you')
+                                toastr.success('Your classified ad has been placed.Thank you')
                                 $scope.resetForm();
                                 $scope.populateForm();
                                 $scope.addState = false;
