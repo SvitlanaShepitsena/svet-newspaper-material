@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('article')
         .filter('length', function () {
             return filterLength;
@@ -12,7 +11,6 @@
                 if (str.length <= maxLength) {
                     return str;
                 }
-
                 return str.substr(0, maxLength);
             }
         });

@@ -77,7 +77,6 @@
                         }
                         if (!_.isNull(user)) {
                             updateWithLocalData(user).then(function (user) {
-
                                 CurrentUserServ.setUser(user).then(function (user) {
                                     NoteServ.getNotifications(user).then(function (user) {
                                         deferred.resolve(user);

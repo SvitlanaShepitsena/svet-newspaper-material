@@ -1,1 +1,19 @@
-<div><div ng-show="addState || editState"><sv-post-classified-form></sv-post-classified-form></div><div ng-show="!addState &amp;&amp; !editState"><div layout="row" layout-align="space-between" class="mb"><sv-add-classified-btn></sv-add-classified-btn><sv-classified-bonus></sv-classified-bonus></div><div ng-show="!cls" class="card p"><span class="display-block fs-subhead tc-grey-700">{{'no-classified-yet'|translate}}</span></div><div ng-show="!!cls" layout="column" class="div"><div ng-repeat="cl in cls|userCls|orderBy:&quot;-timestamp&quot;"><sv-one-classified-thumb cl="cl" remove-cl="removeCl(cl)" edit-cl="editCl(cl)"></sv-one-classified-thumb></div></div></div></div>
+<div>
+    <div ng-show="addState || editState">
+        <sv-add-classified-form></sv-add-classified-form>
+    </div>
+    <div ng-show="!addState &amp;&amp; !editState">
+        <div layout="row" layout-align="space-between" class="mb">
+            <sv-add-classified-btn></sv-add-classified-btn>
+            <sv-classified-bonus></sv-classified-bonus>
+        </div>
+        <div ng-show="!cls" class="card p"><span class="display-block fs-subhead tc-grey-700">{{'no-classified-yet'|translate}}</span>
+        </div>
+        <div ng-show="!!cls" layout="column" class="div">
+            <div ng-repeat="cl in cls|userCls|orderBy:&quot;-timestamp&quot;">
+                <sv-one-classified-thumb cl="cl" remove-cl="removeCl(cl)"
+                                         edit-cl="editCl(cl)"></sv-one-classified-thumb>
+            </div>
+        </div>
+    </div>
+</div>

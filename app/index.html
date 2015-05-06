@@ -167,9 +167,9 @@
 
 
 <script src="./bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/velocity/velocity.min.js"></script>
+<script src="./bower_components/velocity/velocity.min.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-capitalize-filter/capitalize.js"></script>
+<script src="./bower_components/angular-capitalize-filter/capitalize.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
 <scripts src="./bower_components/flow.js/dist/flow.js"></scripts>
 
@@ -192,18 +192,31 @@
 
 <script src="./bower_components/Faker/build/build/faker.min.js"></script>
 <script src="./bower_components/moment/min/moment.min.js"></script>
-<script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+<script src="./bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
 <script src="./bower_components/ng-flow/dist/ng-flow-standalone.js"></script>
 
 <!-- start defaults -->
 
-<script src="./scripts/app.js"></script>
-<script src="./scripts/routes.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/routes.js"></script>
 <script src="scripts/sections/home/homeRoutes.js"></script>
 <script src="scripts/sections/home/controllers/MainCtrl.js"></script>
 
 <!-- common -->
 <script src="scripts/common/commonRoutes.js"></script>
+<script src="scripts/common/directives/sv-bottom-sheet-handler.js"></script>
+<script src="scripts/common/directives/sv-nav-btn.js"></script>
+<script src="scripts/common/directives/sv-nav-link.js"></script>
+<script src="scripts/common/directives/sv-profile-subhead.js"></script>
+<script src="scripts/common/directives/sv-profile-title.js"></script>
+<script src="scripts/common/directives/sv-tab-swipe.js"></script>
+<script src="scripts/common/directives/sv-nav-bar-media.js"></script>
+<script src="scripts/common/directives/sv-loader.js"></script>
+<script src="scripts/common/directives/sv-read-more.js"></script>
+<script src="scripts/common/directives/sv-sidenav-title.js"></script>
+<script src="scripts/common/directives/sv-img-framed.js"></script>
+<script src="scripts/common/directives/sv-left-click-handler.js"></script>
+<script src="scripts/common/directives/sv-right-click-handler.js"></script>
 <script src="scripts/common/settings/colors.js"></script>
 <script src="scripts/common/settings/icons.js"></script>
 <script src="scripts/common/settings/constants.js"></script>
@@ -211,12 +224,7 @@
 <script src="scripts/common/settings/translation/news-nav-services.js"></script>
 <script src="scripts/common/settings/translation/users-services.js"></script>
 <script src="scripts/common/settings/translation/author-services.js"></script>
-<script src="scripts/common/directives/sv-bottom-sheet-handler.js"></script>
-<script src="scripts/common/directives/sv-nav-btn.js"></script>
-<script src="scripts/common/directives/sv-nav-link.js"></script>
-<script src="scripts/common/directives/sv-profile-subheader.js"></script>
-<script src="scripts/common/directives/sv-profile-header.js"></script>
-<script src="scripts/common/directives/sv-tab-swipe.js"></script>
+<script src="scripts/common/services/ImageSizeServ.js"></script>
 
 <!-- MODULES-->
 
@@ -234,13 +242,14 @@
 <script src="scripts/auth/directives/sv-sign-up-form.js"></script>
 <script src="scripts/auth/directives/sv-login-form.js"></script>
 <script src="scripts/auth/directives/sv-auth-btn.js"></script>
-<script src="scripts/auth/services/UserServ.js"></script>
-<script src="scripts/auth/services/NoteServ.js"></script>
+<script src="scripts/auth/services/AgentServ.js"></script>
 <script src="scripts/auth/services/ConnectionEventServ.js"></script>
+<script src="scripts/auth/services/CurrentUserServ.js"></script>
+<script src="scripts/auth/services/UserServ.js"></script>
 <script src="scripts/auth/services/RequestServ.js"></script>
-<script src="scripts/auth/services/PdfSubscriptionsServ.js"></script>
 <script src="scripts/auth/services/UserGroupsServ.js"></script>
 <script src="scripts/auth/services/AuthServ.js"></script>
+<script src="scripts/auth/notifications/services/NoteServ.js"></script>
 <script src="scripts/auth/filters/Groups.js"></script>
 
 <!-- auth.user -->
@@ -285,20 +294,20 @@
 
 <!-- ad.classified -->
 <script src="scripts/ad/classified/classifiedRoutes.js"></script>
-<script src="scripts/ad/classified/filters/userCls.js"></script>
-<script src="scripts/ad/classified/directives/sv-cl-field.js"></script>
-<script src="scripts/ad/classified/controllers/YCtrl.js"></script>
-<script src="scripts/ad/classified/filters/clType.js"></script>
+<script src="scripts/ad/classified/controllers/ClassifiedCtrl.js"></script>
+<script src="scripts/ad/classified/controllers/OneClassifiedCtrl.js"></script>
+<script src="scripts/ad/classified/directives/sv-classified-field.js"></script>
 <script src="scripts/ad/classified/directives/sv-one-classified.js"></script>
 <script src="scripts/ad/classified/directives/sv-one-classified-thumb.js"></script>
-<script src="scripts/ad/classified/controllers/OneClassifiedCtrl.js"></script>
-<script src="scripts/ad/classified/services/ClassifiedServ.js"></script>
 <script src="scripts/ad/classified/directives/sv-user-classified-section.js"></script>
 <script src="scripts/ad/classified/directives/sv-add-classified-btn.js"></script>
 <script src="scripts/ad/classified/directives/sv-classified-bonus.js"></script>
 <script src="scripts/ad/classified/directives/sv-classified-tabs.js"></script>
-<script src="scripts/ad/classified/directives/sv-post-classified-form.js"></script>
-<script src="scripts/ad/classified/controllers/ClassifiedCtrl.js"></script>
+<script src="scripts/ad/classified/directives/sv-classified-widget.js"></script>
+<script src="scripts/ad/classified/directives/sv-add-classified-form.js"></script>
+<script src="scripts/ad/classified/filters/userCls.js"></script>
+<script src="scripts/ad/classified/filters/clType.js"></script>
+<script src="scripts/ad/classified/services/ClassifiedServ.js"></script>
 
 <!-- ad.promotion -->
 <script src="scripts/ad/promotion/promotionRoutes.js"></script>
@@ -311,43 +320,6 @@
 <script src="scripts/ad/promotion/services/AdServ.js"></script>
 <script src="scripts/ad/promotion/filters/userList.js"></script>
 <script src="scripts/ad/promotion/promotion-translation.js"></script>
-
-<!-- header -->
-<script src="scripts/sections/header/headerRoutes.js"></script>
-<script src="scripts/sections/header/directives/sv-header-subscription-btn.js"></script>
-<script src="scripts/sections/header/directives/sv-social-bottom-list-cell.js"></script>
-<script src="scripts/sections/header/directives/sv-social-top-nav-cell.js"></script>
-
-
-<!-- events -->
-<script src="scripts/events/eventsRoutes.js"></script>
-<script src="scripts/events/controllers/CreateSvetEventCtrl.js"></script>
-<script src="scripts/events/controllers/EventCalendarCtrl.js"></script>
-<script src="scripts/events/controllers/EventsPhotoGalleryCtrl.js"></script>
-<script src="scripts/events/controllers/EventsCtrl.js"></script>
-<script src="scripts/events/controllers/FieldEventCtrl.js"></script>
-<script src="scripts/events/controllers/ManagerEventsCtrl.js"></script>
-<script src="scripts/events/controllers/RaviniaEventCtrl.js"></script>
-<script src="scripts/events/controllers/UserEventsCtrl.js"></script>
-
-<script src="scripts/events/directives/sv-calendar.js"></script>
-<script src="scripts/events/directives/sv-create-event-btn.js"></script>
-<script src="scripts/ad/classified/directives/sv-classified-widget.js"></script>
-<script src="scripts/events/directives/sv-event-btn.js"></script>
-<script src="scripts/events/directives/sv-event-families.js"></script>
-<script src="scripts/events/directives/sv-events-list.js"></script>
-<script src="scripts/events/directives/sv-events-nav.js"></script>
-<script src="scripts/events/directives/sv-event-sidenav-ad.js"></script>
-<script src="scripts/events/directives/sv-join-btn.js"></script>
-<script src="scripts/events/directives/sv-slide-show.js"></script>
-<script src="scripts/events/directives/sv-kohl-event2014.js"></script>
-<script src="scripts/events/directives/sv-kohl-event2015.js"></script>
-<script src="scripts/events/directives/sv-ravinia-event.js"></script>
-<script src="scripts/events/filters/noticeStatus.js"></script>
-<script src="scripts/events/filters/eventsInvitation.js"></script>
-<script src="scripts/events/filters/eventsType.js"></script>
-<script src="scripts/events/services/EventServ.js"></script>
-
 
 <!-- article -->
 <script src="scripts/article/articleRoutes.js"></script>
@@ -365,33 +337,68 @@
 <script src="scripts/article/services/ArticleServ.js"></script>
 <script src="scripts/article/filters/Length.js"></script>
 
+<!-- events -->
+<script src="scripts/events/eventsRoutes.js"></script>
+<script src="scripts/events/controllers/CreateSvetEventCtrl.js"></script>
+<script src="scripts/events/controllers/EventCalendarCtrl.js"></script>
+<script src="scripts/events/controllers/EventsPhotoGalleryCtrl.js"></script>
+<script src="scripts/events/controllers/EventsCtrl.js"></script>
+<script src="scripts/events/controllers/FieldEventCtrl.js"></script>
+<script src="scripts/events/controllers/ManagerEventsCtrl.js"></script>
+<script src="scripts/events/controllers/RaviniaEventCtrl.js"></script>
+<script src="scripts/events/controllers/UserEventsCtrl.js"></script>
+<script src="scripts/events/directives/sv-calendar.js"></script>
+<script src="scripts/events/directives/sv-create-event-btn.js"></script>
+<script src="scripts/events/directives/sv-event-btn.js"></script>
+<script src="scripts/events/directives/sv-event-families.js"></script>
+<script src="scripts/events/directives/sv-events-list.js"></script>
+<script src="scripts/events/directives/sv-events-nav.js"></script>
+<script src="scripts/events/directives/sv-event-sidenav-ad.js"></script>
+<script src="scripts/events/directives/sv-join-btn.js"></script>
+<script src="scripts/events/directives/sv-slide-show.js"></script>
+<script src="scripts/events/directives/sv-kohl-event2014.js"></script>
+<script src="scripts/events/directives/sv-kohl-event2015.js"></script>
+<script src="scripts/events/directives/sv-ravinia-event.js"></script>
+<script src="scripts/events/filters/noticeStatus.js"></script>
+<script src="scripts/events/filters/eventsInvitation.js"></script>
+<script src="scripts/events/filters/eventsType.js"></script>
+<script src="scripts/events/services/EventServ.js"></script>
+
+
+<!-- sections.archive -->
+<script src="scripts/sections/archive/archiveRoutes.js"></script>
+<script src="scripts/sections/archive/controllers/SaturdayPlusNewspaperCtrl.js"></script>
+<script src="scripts/sections/archive/controllers/NewLightNewspaperCtrl.js"></script>
+<script src="scripts/sections/archive/directives/sv-nav-pdf-thumb.js"></script>
+<script src="scripts/sections/archive/directives/sv-pdf-newspaper-thumb.js"></script>
+<script src="scripts/sections/archive/directives/sv-pdf-issues.js"></script>
+<script src="scripts/sections/archive/services/PdfSubscriptionsServ.js"></script>
+
+<!-- sections.contact -->
+<script src="scripts/sections/contact/contactRoutes.js"></script>
+<script src="scripts/sections/contact/controllers/ContactCtrl.js"></script>
+
+<!-- sections.header-->
+<script src="scripts/sections/header/headerRoutes.js"></script>
+<script src="scripts/sections/header/directives/sv-header-subscription-btn.js"></script>
+<script src="scripts/sections/header/directives/sv-social-bottom-list-cell.js"></script>
+<script src="scripts/sections/header/directives/sv-social-top-nav-cell.js"></script>
+<script src="scripts/sections/header/directives/sv-lang-switch.js"></script>
+<script src="scripts/sections/header/directives/sv-header-classified-btn.js"></script>
+<script src="scripts/sections/header/directives/sv-social-top-nav.js"></script>
 
 <!-- sections.home -->
 <script src="scripts/sections/home/controllers/HomeCtrl.js"></script>
 <script src="scripts/sections/home/controllers/AppCtrl.js"></script>
-<script src="scripts/sections/header/directives/sv-lang-switch.js"></script>
-<script src="scripts/sections/header/directives/sv-header-classified-btn.js"></script>
 <script src="scripts/sections/home/directives/sv-top-news.js"></script>
-<script src="scripts/common/directives/sv-nav-bar-media.js"></script>
-<script src="scripts/common/directives/sv-loader.js"></script>
-<script src="scripts/common/directives/sv-read-more.js"></script>
-<script src="scripts/common/directives/sv-sidenav-title.js"></script>
-<script src="scripts/common/directives/sv-img-framed.js"></script>
 <script src="scripts/sections/home/directives/sv-from-the-editor.js"></script>
-<script src="scripts/sections/header/directives/sv-social-top-nav.js"></script>
 <script src="scripts/sections/home/directives/sv-section-news.js"></script>
 <script src="scripts/sections/home/directives/sv-news-grid.js"></script>
 <script src="scripts/sections/home/directives/sv-second-news.js"></script>
 <script src="scripts/sections/home/directives/sv-section-select-handler.js"></script>
-<script src="scripts/common/directives/sv-left-click-handler.js"></script>
-<script src="scripts/common/directives/sv-right-click-handler.js"></script>
 <script src="scripts/sections/home/directives/sv-svet-social.js"></script>
 <script src="scripts/sections/home/directives/sv-home-main-news.js"></script>
 <script src="scripts/sections/home/directives/sv-news-sections-nav.js"></script>
-
-<script src="scripts/sections/home/services/AgentServ.js"></script>
-<script src="scripts/sections/home/services/CurrentUserServ.js"></script>
-<script src="scripts/sections/home/services/ImageSizeServ.js"></script>
 <script src="scripts/sections/home/services/NewsProcessServ.js"></script>
 <script src="scripts/sections/home/services/NewsServ.js"></script>
 
@@ -404,16 +411,7 @@
 <script src="scripts/sections/widgets/directives/sv-weather-svet.js"></script>
 <script src="scripts/sections/widgets/filters/Celsius.js"></script>
 <script src="scripts/sections/widgets/services/WeatherServ.js"></script>
-<!-- sections.archive -->
-<script src="scripts/sections/archive/archiveRoutes.js"></script>
-<script src="scripts/sections/archive/directives/sv-nav-pdf-thumb.js"></script>
-<script src="scripts/sections/archive/directives/sv-pdf-newspaper-thumb.js"></script>
-<script src="scripts/sections/archive/directives/sv-pdf-issues.js"></script>
-<script src="scripts/sections/archive/controllers/SaturdayPlusNewspaperCtrl.js"></script>
-<script src="scripts/sections/archive/controllers/NewLightNewspaperCtrl.js"></script>
-<!-- sections.contact -->
-<script src="scripts/sections/contact/contactRoutes.js"></script>
-<script src="scripts/sections/contact/controllers/ContactCtrl.js"></script>
+
 
 </div>
 

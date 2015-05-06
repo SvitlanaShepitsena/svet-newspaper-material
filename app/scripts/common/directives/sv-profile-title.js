@@ -1,10 +1,10 @@
 (function () {
     'use strict';
     angular.module('common')
-        .directive('svProfileHeader', function () {
+        .directive('svProfileTitle', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/common/directives/sv-profile-header.html',
+                templateUrl: 'scripts/common/directives/sv-profile-title.html',
                 scope: {
                     headerTitle: '@'
                 },

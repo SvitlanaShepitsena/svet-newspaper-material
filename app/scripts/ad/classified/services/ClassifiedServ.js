@@ -42,12 +42,10 @@
                         cl = processClassified(user, cl);
                         var classifiedObject = $firebaseObject(new Firebase(clsUrl));
                         classifiedObject.$loaded().then(function () {
-
                             classifiedObject[cl.$id] = cl;
                             classifiedObject.$save().then(function () {
                                 resolve();
                             })
-
                         })
                     });
                 },

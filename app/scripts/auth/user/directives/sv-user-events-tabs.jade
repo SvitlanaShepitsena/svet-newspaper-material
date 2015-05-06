@@ -3,7 +3,7 @@ div
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{"planned-events"|translate}}
             md-tab-body
-                sv-profile-subheader(subhead-title="planned-events")
+                sv-profile-subhead(subhead-title="planned-events")
                 .card.mb.p(ng-repeat='e in events|eventsInvitation:data.selectedIndex' layout-gt-sm="row" layout-align-gt-sm='space-between center')
                     div.mb
                         a.tc-grey-700(style='cursor:pointer;')
@@ -15,13 +15,13 @@ div
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{"visited-events"|translate}}
             md-tab-body
-                sv-profile-subheader(subhead-title="visited-events")
+                sv-profile-subhead(subhead-title="visited-events")
                 .card.p.mb
                     span.fs-subhead.display-block.text-center You do not have any visited event yet
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{"invitations"|translate}}
             md-tab-body
-                sv-profile-subheader(subhead-title="invitations")
+                sv-profile-subhead(subhead-title="invitations")
                 .card.mb.p(ng-repeat='e in events|eventsInvitation:data.selectedIndex' layout-gt-sm="row" layout-align-gt-sm='space-between center')
                     div.mb
                         a.tc-grey-700(style='cursor:pointer;')

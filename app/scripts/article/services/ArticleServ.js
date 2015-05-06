@@ -1,13 +1,9 @@
 (function () {
     'use strict';
-
     angular.module('article')
         .factory('ArticleServ', function ($q, $firebaseArray, $firebaseObject, url) {
-
             var refArr = $firebaseArray(new Firebase(url + 'articles/'));
             var refObj = $firebaseObject(new Firebase(url + 'articles/'));
-
-
             return {
                 allObjRef: function () {
                     return refObj;
@@ -21,7 +17,6 @@
                                 reject(error);
                             }
                         );
-
                     });
                 },
                 addComment: function (fbKey, comment) {
@@ -32,7 +27,6 @@
                                 resolve(uid);
                             }
                         )
-
                     });
                 }
             };

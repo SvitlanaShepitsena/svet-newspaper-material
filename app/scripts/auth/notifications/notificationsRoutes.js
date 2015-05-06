@@ -4,8 +4,6 @@
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
             /*=notifications*/
-
-
 //#state'
         });
 })();

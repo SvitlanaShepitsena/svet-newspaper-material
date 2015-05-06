@@ -1,10 +1,10 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .directive('svPostClassifiedForm', function (ClassifiedServ, toastr) {
+        .directive('svAddClassifiedForm', function (ClassifiedServ, toastr) {
             return {
                 replace: true,
-                templateUrl: 'scripts/ad/classified/directives/sv-post-classified-form.html',
+                templateUrl: 'scripts/ad/classified/directives/sv-add-classified-form.html',
                 link: function ($scope, el, attrs) {
                     $scope.sections = ClassifiedServ.getSections();
                     $scope.selectDropDown = function (section) {
@@ -21,10 +21,8 @@
                         if ($scope.editState) {
                             $scope.cl = $scope.clCopy;
                         }
-
                         $scope.addState = false;
                         $scope.editState = false;
-
                     };
                     $scope.postClassified = function (clCopy) {
                         if ($scope.classifiedForm.$invalid) {
@@ -32,8 +30,7 @@
                             return;
                         }
                         clCopy.timestamp = moment().format('x');
-                        if (clCopy.$id){
-
+                        if (clCopy.$id) {
                             ClassifiedServ.editCl(clCopy).then(function (uid) {
                                 toastr.info('Your classified ad has been updated.Thank you')
                                 $scope.resetForm();
@@ -41,15 +38,14 @@
                                 $scope.addState = false;
                                 $scope.editState = false;
                             });
-                        } else{
-
-                        ClassifiedServ.addCl(clCopy).then(function (uid) {
-                            toastr.info('Your classified ad has been placed.Thank you')
-                            $scope.resetForm();
-                            $scope.populateForm();
-                            $scope.addState = false;
-                            $scope.editState = false;
-                        });
+                        } else {
+                            ClassifiedServ.addCl(clCopy).then(function (uid) {
+                                toastr.info('Your classified ad has been placed.Thank you')
+                                $scope.resetForm();
+                                $scope.populateForm();
+                                $scope.addState = false;
+                                $scope.editState = false;
+                            });
                         }
                     };
                     $scope.resetForm = function () {
@@ -67,9 +63,7 @@
                     $scope.populateForm = function (cl) {
                         if (cl) {
                             $scope.clCopy = angular.copy(cl);
-
                         }
-
                         if (!cl) {
                             $scope.clCopy = {
                                 name: faker.internet.userName(),

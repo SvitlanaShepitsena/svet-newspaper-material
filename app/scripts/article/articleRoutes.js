@@ -19,7 +19,6 @@
                     controller: "SvetRecommendsCtrl as svetRecommends",
                     templateUrl: "scripts/article/views/svet-recommendsCtrl.html"
                 })
-
 //#state'
         });
 })();

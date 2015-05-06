@@ -2,7 +2,6 @@
     'use strict';
     angular.module('auth')
         .factory('NoteServ', function ($q, url, urlUsers, $firebaseObject, $firebaseArray, corporate) {
-
             function getCustomerNotifications(userId) {
                 return $q(function (resolve, reject) {
                     var eventsArr = $firebaseArray(new Firebase(corporate));

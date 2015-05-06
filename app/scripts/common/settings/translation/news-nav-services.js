@@ -1,11 +1,8 @@
 (function () {
     'use strict'
-
     angular.module('app')
         .config(['$translateProvider', function ($translateProvider) {
-
             $translateProvider.useCookieStorage();
-
             $translateProvider.translations('en', {
                 'home': 'Home Page',
                 'politics': 'Politics',
@@ -18,7 +15,6 @@
                 'food': 'Food',
                 'travel': 'Travel'
             });
-
             $translateProvider.translations('ru', {
                 'home': 'Домашняя страница',
                 'politics': 'Политика',
@@ -31,8 +27,6 @@
                 'food': 'Кушать подано',
                 'travel': 'Вокруг Света'
             });
-
             $translateProvider.preferredLanguage('en');
         }]);
-
 })();

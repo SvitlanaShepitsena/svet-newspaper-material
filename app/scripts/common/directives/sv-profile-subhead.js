@@ -1,10 +1,10 @@
 (function () {
     'use strict';
     angular.module('common')
-        .directive('svProfileSubheader', function () {
+        .directive('svProfileSubhead', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/common/directives/sv-profile-subheader.html',
+                templateUrl: 'scripts/common/directives/sv-profile-subhead.html',
                 scope: {
                     subheadTitle: '@'
                 },

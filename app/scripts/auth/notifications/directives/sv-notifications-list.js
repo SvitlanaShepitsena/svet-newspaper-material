@@ -26,7 +26,6 @@
                         if (newValue === oldValue) {
                             return;
                         }
-                        ;
                         if (newValue && newValue.key) {
                             var key = newValue.key;
                             $scope.notices = NotificationsServ.getUserNotices(key);
