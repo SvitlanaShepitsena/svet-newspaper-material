@@ -9,6 +9,7 @@ var enterInside = function (target, before, insert) {
         return target;
     }
 
+
     var test = target.indexOf(insert);
 
     if (test > 0)return target;
@@ -624,8 +625,6 @@ module.exports = function (grunt) {
 
         var moduleIndex = SCRIPT_PATH + moduleDirectirized + '/' + moduleName + 'Routes.js';
 
-        //grunt.file.delete(moduleIndex);
-        //console.log(moduleIndex);
 
         var isRoutes = grunt.file.exists(moduleIndex);
 
@@ -638,33 +637,37 @@ module.exports = function (grunt) {
             }
         }
 
-        if (!isRoutes) {
-            var moduleTpl = grunt.file.read('templates/module.tpl.js');
-            moduleTpl = moduleTpl.replace(/#module#/g, module);
+        var moduleTpl = grunt.file.read('templates/module.tpl.js');
+        moduleTpl = moduleTpl.replace(/#module#/g, module);
 
-            var translationTpl = grunt.file.read('templates/translation.tpl.js');
-            translationTpl = translationTpl.replace(/#module#/g, module);
+        var translationTpl = grunt.file.read('templates/translation.tpl.js');
+        translationTpl = translationTpl.replace(/#module#/g, module);
 
 
+        if (!grunt.file.exists(moduleIndex)) {
             grunt.file.write(moduleIndex, moduleTpl);
-            var translationFile = moduleIndex.replace('Routes', '-translation');
-            grunt.file.write(translationFile, translationTpl);
-
-            var newApp = addInAppJs('// modules', module);
-            grunt.file.write(APP, newApp);
-            includeStyleCreateImgFolder();
-            var slash = moduleIndex.indexOf('/') + 1;
-            var moduleIndexShort = moduleIndex.substr(slash);
-            var moduleTranslation = moduleIndexShort.replace('Routes', '-translation');
-
-            var indexAddition = '<!-- ' + module + ' -->'
-                + '\r\n<script src="' + moduleIndexShort + '"></script>';
-
-            indexAddition += '\r\n<script src="' + moduleTranslation + '"></script>';
-
-            return addInIndexHtml('<!-- MODULES-->', indexAddition);
-
         }
+
+        var translationFile = moduleIndex.replace('Routes', '-translation');
+
+        if (!grunt.file.exists(translationFile)) {
+            grunt.file.write(translationFile, translationTpl);
+        }
+
+        var newApp = addInAppJs('// modules', module);
+        grunt.file.write(APP, newApp);
+        includeStyleCreateImgFolder();
+        var slash = moduleIndex.indexOf('/') + 1;
+        var moduleIndexShort = moduleIndex.substr(slash);
+        var moduleTranslation = moduleIndexShort.replace('Routes', '-translation');
+
+        var indexAddition = '<!-- ' + module + ' -->'
+            + '\r\n<script src="' + moduleIndexShort + '"></script>';
+
+        indexAddition += '\r\n<script src="' + moduleTranslation + '"></script>';
+
+        return addInIndexHtml('<!-- MODULES-->', indexAddition);
+
 
         includeStyleCreateImgFolder();
         return null;
@@ -699,8 +702,9 @@ module.exports = function (grunt) {
             grunt.file.mkdir(imgDir);
         }
 
-        return part1 + '\r\n' + addition + part2;
-    }
+        return part1 + '\r\n' + addition + part2:/Dropbox/WebStorm Setti
+    }ngs/settings.jar
+
 
     function addInAppJs(after, addition) {
         var app = grunt.file.read(APP);

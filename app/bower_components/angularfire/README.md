@@ -7,9 +7,13 @@
 
 AngularFire is the officially supported [AngularJS](http://angularjs.org/) binding for
 [Firebase](http://www.firebase.com/?utm_medium=web&utm_source=angularfire). Firebase is a full
-backend so you don't need servers to build your Angular app. AngularFire provides you with the
-`$firebase` service which allows you to easily keep your `$scope` variables in sync with your
-Firebase backend.
+backend so you don't need servers to build your Angular app.
+
+AngularFire is a complement to the core Firebase client. It provides you with three Angular
+services:
+  * `$firebaseObject` - synchronized objects
+  * `$firebaseArray` - synchronized collections
+  * `$firebaseAuth` - authentication, user management, routing
 
 
 ## Downloading AngularFire
@@ -18,13 +22,13 @@ In order to use AngularFire in your project, you need to include the following f
 
 ```html
 <!-- AngularJS -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 
 <!-- Firebase -->
-<script src="https://cdn.firebase.com/js/client/2.1.1/firebase.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 
 <!-- AngularFire -->
-<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.min.js"></script>
 ```
 
 Use the URL above to download both the minified and non-minified versions of AngularFire from the
@@ -47,12 +51,6 @@ $ bower install angularfire --save
 Once you've included AngularFire and its dependencies into your project, you will have access to
 the `$firebase` service.
 
-You can also start hacking on AngularFire in a matter of seconds on
-[Nitrous.IO](https://www.nitrous.io/?utm_source=github.com&utm_campaign=angularfire&utm_medium=hackonnitrous):
-
-[![Hack firebase/angularfire on
-Nitrous.IO](https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-l-v1-3cc067e71372f6045e1949af9d96095b.png)](https://www.nitrous.io/hack_button?source=embed&runtime=nodejs&repo=firebase%2Fangularfire&file_to_open=README.md)
-
 
 ## Getting Started with Firebase
 
@@ -63,7 +61,7 @@ account](https://www.firebase.com/signup/?utm_medium=web&utm_source=angularfire)
 ## Documentation
 
 The Firebase docs have a [quickstart](https://www.firebase.com/docs/web/bindings/angular/quickstart.html?utm_medium=web&utm_source=angularfire),
-[guide](https://www.firebase.com/docs/web/bindings/angular/guide.html?utm_medium=web&utm_source=angularfire),
+[guide](https://www.firebase.com/docs/web/bindings/angular/guide?utm_medium=web&utm_source=angularfire),
 and [full API reference](https://www.firebase.com/docs/web/bindings/angular/api.html?utm_medium=web&utm_source=angularfire)
 for AngularFire.
 
