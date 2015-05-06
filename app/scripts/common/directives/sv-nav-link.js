@@ -7,7 +7,7 @@
                 templateUrl: 'scripts/common/directives/sv-nav-link.html',
                 scope: {
                     url: '@',
-                    title: '@',
+                    stitle: '@',
                     side: '@',
                     icon: '@',
                     someObject: '=',

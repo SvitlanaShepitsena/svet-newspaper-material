@@ -1,4 +1,9 @@
 div
     ul
         li(ng-repeat='n in newsList|sectionNews:sectionName')
-            pre {{n|json}}
+            a(ui-sref='app.article({id:n.id})' style='text-decoration:none')
+                .list-row__primary
+                    img.img-round.mdc-img-bw(ng-src='{{n.img}}', width='40', height='40')
+                .list-row__content
+                    span.display-block {{n.title | length:25}}
+                    span.display-block.fs-body-1.tc-black-2 {{n.body | length:50}}

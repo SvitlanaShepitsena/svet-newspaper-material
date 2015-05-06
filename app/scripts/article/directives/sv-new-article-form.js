@@ -24,13 +24,7 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
                 link: function ($scope, el, attrs) {
-                    $scope.siteSections = [
-                        'Политика',
-                        'Мы и Деньги',
-                        'Культура',
-                        'Общество',
-                        'Мир'
-                    ];
+                    $scope.siteSections = SectionsServ.all();
                     $scope.dateMod = '';
                     var author = faker.name.findName();
                     //$scope.article = {

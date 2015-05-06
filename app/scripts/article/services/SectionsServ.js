@@ -6,14 +6,13 @@
 
             return {
 
-                get: function () {
+                all: function () {
+                        var urlSections = url+'sections';
+                        var ref = new Firebase(urlSections);
+                        var sectionsArr = $firebaseArray(ref);
 
-                },
+                    return sectionsArr;
 
-                getAssync: function () {
-                    return $q(function (resolve, reject) {
-
-                    });
                 }
             };
         });

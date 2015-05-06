@@ -10,7 +10,7 @@
                         event.preventDefault();
                         event.stopPropagation();
                         $scope.$apply(function () {
-                            $scope.setSection($scope.s);
+                            $scope.setSection($scope.s.$id);
                         });
                     });
 
@@ -18,7 +18,7 @@
                         event.preventDefault();
                         event.stopPropagation();
                         $scope.$apply(function () {
-                            $scope.setSection($scope.s);
+                            $scope.setSection($scope.s.$id);
                         });
                     });
                 }

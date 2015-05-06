@@ -9,8 +9,8 @@ form(name='article' flex-container='column' flow-init)
                 span.fs-subhead {{article.section || "Темa / Section"}}
             lx-dropdown-menu
                 ul
-                    li(ng-repeat='s in siteSections')
-                        a.dropdown-link(sv-section-select-handler="") {{s}}
+                    li(ng-repeat='s in siteSections|orderBy:"order" ')
+                        a.dropdown-link(sv-section-select-handler="") {{s.$id| capitalize:first}}
     div(flex-container='row')
         div(flex-item='8')
             lx-text-field(label='Автор Статьи')

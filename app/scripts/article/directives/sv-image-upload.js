@@ -22,7 +22,7 @@
                             var fileReader = new FileReader();
                             fileReader.readAsDataURL(file.file);
                             fileReader.onload = function (event) {
-                                $scope.ctrl.article.img = event.target.result;
+                                $scope.article.img = event.target.result;
                             };
                         });
                     }
