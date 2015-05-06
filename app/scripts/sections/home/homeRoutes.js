@@ -8,6 +8,11 @@
 
 
 				
+				.state("app.my", {
+					url: "/my", 
+					controller:"MyCtrl",
+					templateUrl: "scripts/sections/home/views/myCtrl.html"
+				})
 //#state'
         });
 })();
