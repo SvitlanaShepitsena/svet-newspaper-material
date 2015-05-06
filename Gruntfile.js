@@ -25,7 +25,7 @@ var enterInside = function (target, before, insert) {
         start = target.indexOf('>', temp) + 1;
         start = target.indexOf('Routes', start) + 1;
         if (start === 0) {
-        start = target.indexOf('#state', start) + 1;
+            start = target.indexOf('#state', start) + 1;
         }
 
         start = target.indexOf('>', start) + 1;
@@ -33,7 +33,14 @@ var enterInside = function (target, before, insert) {
 
     } catch (e) {
         var planB = "<!-- ALL CHECK GENERSTORS -->";
-        start = target.indexOf(planB)+planB.length;
+        var planC = "#state";
+
+        start = target.indexOf(planB);
+        if (start === -1) {
+            start = target.indexOf(planC) + planC.length;
+        } else {
+            start += planB.length;
+        }
     }
 
     var p1 = target.substring(0, start) + newLine;
