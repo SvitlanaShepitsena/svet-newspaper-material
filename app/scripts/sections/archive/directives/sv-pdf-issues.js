@@ -11,12 +11,12 @@
                     issuesToShow: '='
                 },
                 link: function ($scope, el, attrs) {
-                    var urlStart = 'assets/archive/' + ($scope.isSaturday ? 'saturday-plus/' : 'new-light/');
+                    var urlStart = 'assets/archive/svet-newspaper/';
                     $scope.issues = [];
                     for (var i = $scope.startIssue; i <= $scope.startIssue + $scope.issuesToShow; i++) {
                         var issue = {
                             number: i,
-                            img: $scope.isSaturday ? 'saturday' : 'new-svet',
+                            img: 'svet-newspaper',
                             url: urlStart + 'index.html'
                         };
                         $scope.issues.push(issue);

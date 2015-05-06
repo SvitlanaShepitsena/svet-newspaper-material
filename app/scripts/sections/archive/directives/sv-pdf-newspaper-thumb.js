@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('sections.archive')
         .directive('svPdfNewspaperThumb', function () {
             return {
@@ -12,7 +11,6 @@
                     index: '='
                 },
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });

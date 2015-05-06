@@ -130,17 +130,6 @@
                 <md-content class="pr pl pt">
                     <sv-sidenav-title title="svet-on-social-media"></sv-sidenav-title>
                     <sv-svet-social></sv-svet-social>
-                    <sv-sidenav-title title="PdfNewspaperArchive" class='mb++'></sv-sidenav-title>
-                    <div layout="row" class="mb+" layout-align="start">
-                        <div flex class="p">
-                            <sv-nav-pdf-thumb url="app.new-light-newspaper"
-                                              img="new-svet-thumb-120.jpg"></sv-nav-pdf-thumb>
-                        </div>
-                        <div flex class="p">
-                            <sv-nav-pdf-thumb url="app.saturday-plus-newspaper"
-                                              img="saturday-thumb-120.jpg"></sv-nav-pdf-thumb>
-                        </div>
-                    </div>
                     <sv-nav-btn url="app.classified.all"
                                 icon="tag"
                                 title="classified"
@@ -367,8 +356,7 @@
 
 <!-- sections.archive -->
 <script src="scripts/sections/archive/archiveRoutes.js"></script>
-<script src="scripts/sections/archive/controllers/SaturdayPlusNewspaperCtrl.js"></script>
-<script src="scripts/sections/archive/controllers/NewLightNewspaperCtrl.js"></script>
+<script src="scripts/sections/archive/controllers/SvetNewspaperCtrl.js"></script>
 <script src="scripts/sections/archive/directives/sv-nav-pdf-thumb.js"></script>
 <script src="scripts/sections/archive/directives/sv-pdf-newspaper-thumb.js"></script>
 <script src="scripts/sections/archive/directives/sv-pdf-issues.js"></script>
