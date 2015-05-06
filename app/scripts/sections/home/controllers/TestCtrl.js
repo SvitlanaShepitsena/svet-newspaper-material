@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('auth.ya')
+    angular.module('sections.home')
         .controller('TestCtrl', function ($scope) {
 
         });

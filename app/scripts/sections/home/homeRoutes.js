@@ -13,6 +13,11 @@
 					controller:"MyCtrl",
 					templateUrl: "scripts/sections/home/views/myCtrl.html"
 				})
+				.state("app.test", {
+					url: "/test", 
+					controller:"TestCtrl",
+					templateUrl: "scripts/sections/home/views/testCtrl.html"
+				})
 //#state'
         });
 })();
