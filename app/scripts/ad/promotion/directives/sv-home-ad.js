@@ -9,8 +9,10 @@
                     place: '@'
                 },
                 link: function ($scope, el, attrs) {
+
                     var allAdds = AdServ.allArr();
                     allAdds.$loaded().then(function () {
+                    //console.log('run here sv-home-ad.js');
                         $scope.placeAds = _.where(allAdds, function (ad) {
                             return ad.place === $scope.place;
                         });
