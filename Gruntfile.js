@@ -650,22 +650,28 @@ module.exports = function (grunt) {
 
         var translationFile = moduleIndex.replace('Routes', '-translation');
 
-        if (!grunt.file.exists(translationFile)) {
+        var isTranslationExists = grunt.file.exists(translationFile);
+
+        if (!isTranslationExists) {
             grunt.file.write(translationFile, translationTpl);
         }
+        if (!isRoutes) {
 
-        var newApp = addInAppJs('// modules', module);
-        grunt.file.write(APP, newApp);
-        includeStyleCreateImgFolder();
+            var newApp = addInAppJs('// modules', module);
+            grunt.file.write(APP, newApp);
+            includeStyleCreateImgFolder();
+        }
         var slash = moduleIndex.indexOf('/') + 1;
         var moduleIndexShort = moduleIndex.substr(slash);
         var moduleTranslation = moduleIndexShort.replace('Routes', '-translation');
-
-        var indexAddition = '<!-- ' + module + ' -->'
-            + '\r\n<script src="' + moduleIndexShort + '"></script>';
-
-        indexAddition += '\r\n<script src="' + moduleTranslation + '"></script>';
-
+        var indexAddition = '';
+        if (!isRoutes) {
+            indexAddition = '<!-- ' + module + ' -->'
+                + '\r\n<script src="' + moduleIndexShort + '"></script>';
+        }
+        if (!isTranslationExists) {
+            indexAddition += '\r\n<script src="' + moduleTranslation + '"></script>';
+        }
         return addInIndexHtml('<!--MODULES-->', indexAddition);
 
 
@@ -720,6 +726,9 @@ module.exports = function (grunt) {
     }
 
     function addInIndexHtml(after, addition) {
+        if (addition.length === 0) {
+            return;
+        }
         var indexHtml = grunt.file.read(INDEXHTML);
         var start = indexHtml.indexOf(after);
         start = indexHtml.indexOf(eol, start);

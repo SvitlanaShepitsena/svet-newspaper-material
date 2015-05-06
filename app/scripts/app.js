@@ -2,7 +2,6 @@
     'use strict';
     angular.module('app', [
         // modules
-		'auth.ya',
         'pascalprecht.translate',
         'firebase',
         'ngMaterial',
