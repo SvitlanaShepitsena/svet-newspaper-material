@@ -1,10 +1,5 @@
 (function () {
-    'use str				.state("app.test-my", {
-					url: "/test-my", 
-					controller:"TestMyCtrl",
-					templateUrl: "scripts/auth/views/testMyCtrl.html"
-				})
-ict'
+    'use strict'
     angular.module('auth', ['ui.router', 'flow'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
@@ -19,6 +14,7 @@ ict'
                     controller: "SvetLoginCtrl as login",
                     templateUrl: "scripts/auth/views/svet-loginCtrl.html"
                 })
+
 //#state'
         });
 })();

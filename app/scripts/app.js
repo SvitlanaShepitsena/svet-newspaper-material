@@ -3,9 +3,9 @@
     angular.module('app', [
         // modules
         'pascalprecht.translate',
+        'auth',
         'firebase',
         'ngMaterial',
-        'auth',
         'auth.user',
         'auth.manager',
         'ad.classified',
