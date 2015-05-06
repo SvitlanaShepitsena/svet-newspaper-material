@@ -37,9 +37,9 @@ var enterInside = function (target, before, insert) {
 
         start = target.indexOf(planB);
         if (start === -1) {
-            start = target.indexOf(planC) + planC.length;
+            start = target.indexOf(planC);
         } else {
-            start += planB.length;
+            //start += planB.length;
         }
     }
 
