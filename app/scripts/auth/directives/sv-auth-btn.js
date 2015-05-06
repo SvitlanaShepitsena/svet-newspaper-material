@@ -1,13 +1,16 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
+        .directive('svAuthBtn', function (ProfileServ, NoteServ, AgentServ, AuthServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
                 scope: {},
                 bindToController: {},
                 controllerAs: 'ctrl',
+                link: function ($scope, el, attrs) {
+
+                },
                 controller: function ($scope) {
                     var ctrl = this;
                     ctrl.isIe = AgentServ.isIe();
