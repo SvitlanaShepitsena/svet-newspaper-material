@@ -27,6 +27,9 @@ var enterInside = function (target, before, insert) {
         if (start === 0) {
             start = target.indexOf('//#state', start) + 1;
         }
+        if (start === 0) {
+            start = target.indexOf('translation', start) + 1;
+        }
 
         start = target.indexOf('>', start) + 1;
         start = target.indexOf('>', start) + 1;

@@ -44,7 +44,7 @@
                         date: getFormatedDate(),
                         section: getRandomSection($scope.siteSections),
                         title: _.startCase(faker.lorem.sentence()),
-                        body: faker.lorem.paragraphs(9),
+                        body: faker.lorem.sentences(5),
                         tags: getRandomTags()
                     }
                     $scope.setSection = function (section) {
