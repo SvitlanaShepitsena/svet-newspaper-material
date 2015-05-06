@@ -3,6 +3,7 @@
     angular.module('app', [
         // modules
         'pascalprecht.translate',
+        'ngMaterial',
         'auth',
         'auth.user',
         'auth.manager',
@@ -25,7 +26,6 @@
         'flow',
         'ngSanitize',
         'lumx',
-        'ngMaterial',
         'ngMessages',
         'ngTouch',
         'toastr',

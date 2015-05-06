@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('widgets')
+    angular.module('sections.widgets')
         .directive('svWeatherSvet', function (WeatherServ, $translate) {
             return {
                 replace: true,
