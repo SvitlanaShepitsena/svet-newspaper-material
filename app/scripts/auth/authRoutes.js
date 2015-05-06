@@ -1,5 +1,10 @@
 (function () {
-    'use strict'
+    'use str				.state("app.test-my", {
+					url: "/test-my", 
+					controller:"TestMyCtrl",
+					templateUrl: "scripts/auth/views/testMyCtrl.html"
+				})
+ict'
     angular.module('auth', ['ui.router', 'flow'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
