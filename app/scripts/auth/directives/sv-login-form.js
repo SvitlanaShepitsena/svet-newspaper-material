@@ -21,12 +21,11 @@
                     }
                     $scope.singIn = function () {
                         AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {
-                                if (UserGroupsServ.isInGroup('manager')) {
-                                    $state.go('app.manager.dashboard', {uid: user.id});
-                                } else{
-                                    $state.go('app.user.dashboard', {uid: user.userName});
-
-                                }
+                            if (UserGroupsServ.isInGroup('manager')) {
+                                $state.go('app.manager.dashboard', {uid: user.id});
+                            } else {
+                                $state.go('app.user.dashboard', {uid: user.userName});
+                            }
                         }).catch(function (error) {
                             toastr.error(error.message);
                         })

@@ -1,6 +1,6 @@
 (function () {
     'use strict'
-    angular.module('app')
+    angular.module('common')
         .config(['$translateProvider', function ($translateProvider) {
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {

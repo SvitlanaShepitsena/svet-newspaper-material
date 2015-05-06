@@ -1,5 +1,5 @@
 (function () {
-    angular.module('app').config(function ($mdThemingProvider) {
+    angular.module('common').config(function ($mdThemingProvider) {
         var mainNavMap = $mdThemingProvider.extendPalette('grey', {
             'A100': '#474341'
         });

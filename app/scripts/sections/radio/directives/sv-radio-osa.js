@@ -1,11 +1,15 @@
 (function () {
     'use strict';
-    angular.module('auth')
-        .directive('svFormSocialButtons', function () {
+    angular.module('sections.radio')
+        .directive('svRadioOsa', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/directives/sv-form-social-buttons.html',
-                scope: {},
+                templateUrl: 'scripts/sections/radio/directives/sv-radio-osa.html',
+                scope: {
+                    title: '@',
+                    subhead: '@',
+                    body: '@'
+                },
                 bindToController: {},
                 controllerAs: 'ctrl',
                 controller: function ($scope) {

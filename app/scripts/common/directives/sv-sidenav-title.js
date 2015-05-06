@@ -1,0 +1,15 @@
+(function () {
+    'use strict';
+    angular.module('common')
+        .directive('svSidenavTitle', function () {
+            return {
+                replace: true,
+                templateUrl: 'sv-sidenav-title.html',
+                scope: {
+                    title: '@'
+                },
+                link: function ($scope, el, attrs) {
+                }
+            };
+        });
+})();

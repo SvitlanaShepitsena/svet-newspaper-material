@@ -1,5 +1,5 @@
 (function () {
-    angular.module('app')
+    angular.module('common')
         .config(function ($mdIconProvider) {
             $mdIconProvider
                 .defaultIconSet("./assets/svg/avatars.svg", 128)

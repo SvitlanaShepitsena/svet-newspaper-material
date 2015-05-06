@@ -16,12 +16,11 @@
                     };
                     ctrl.loginProvider = function (provider) {
                         AuthServ.authProvider(provider).then(function (user) {
-
-                                if (UserGroupsServ.isInGroup('manager')) {
-                                    $state.go('app.manager.dashboard', {uid: user.id})
-                                } else {
-                                    $state.go('app.user.dashboard', {uid: user.userName})
-                                }
+                            if (UserGroupsServ.isInGroup('manager')) {
+                                $state.go('app.manager.dashboard', {uid: user.id})
+                            } else {
+                                $state.go('app.user.dashboard', {uid: user.userName})
+                            }
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
                         });
@@ -45,12 +44,10 @@
                     }, function (size) {
                         ctrl.sm = size;
                     });
-
                     $scope.$watch(function () {
                         return CurrentUserServ.get();
                     }, function (newValue, oldValue) {
                         $scope.user = newValue;
-
                     });
                 }
             };
