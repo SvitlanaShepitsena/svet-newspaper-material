@@ -28,7 +28,8 @@ var enterInside = function (target, before, insert) {
         start = target.indexOf('>', start) + 1;
 
     } catch (e) {
-        start = target.indexOf(before);
+        var planB = "<!-- ALL CHECK GENERSTORS -->";
+        start = target.indexOf(planB)+planB.length;
     }
 
     var p1 = target.substring(0, start) + newLine;
