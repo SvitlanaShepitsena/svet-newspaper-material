@@ -1,4 +1,4 @@
 div
     ul
-        li(ng-repeat='n in newsList|')
+        li(ng-repeat='n in newsList|sectionNews:sectionName')
             pre {{n|json}}

@@ -3,7 +3,8 @@
 
     angular.module('common')
         .controller('SectionCtrl', function ($scope,$stateParams) {
-            $scope.sname = $stateParams.sname;
+            $scope.sectionName = $stateParams.sectionName;
+            console.log($scope.sectionName);
 
         });
 })();

@@ -4,7 +4,7 @@
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
 				.state("app.section", {
-					url: "/section/:sname",
+					url: "/section/:sectionName",
 					controller:"SectionCtrl",
 					templateUrl: "scripts/common/views/sectionCtrl.html"
 				})
