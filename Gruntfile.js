@@ -729,7 +729,15 @@ module.exports = function (grunt) {
         if (addition.length === 0) {
             return;
         }
+
+
         var indexHtml = grunt.file.read(INDEXHTML);
+        var isThere = indexHtml.indexOf(addition);
+        if (isThere > -1) {
+            return;
+        }
+
+
         var start = indexHtml.indexOf(after);
         start = indexHtml.indexOf(eol, start);
         var part1 = indexHtml.substr(0, start);
