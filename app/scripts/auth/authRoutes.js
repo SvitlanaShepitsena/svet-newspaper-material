@@ -15,6 +15,11 @@
                     templateUrl: "scripts/auth/views/svet-loginCtrl.html"
                 })
 
-//#state'
+//				.state("app.test-my", {
+					url: "/test-my", 
+					controller:"TestMyCtrl",
+					templateUrl: "scripts/auth/views/testMyCtrl.html"
+				})
+#state'
         });
 })();
