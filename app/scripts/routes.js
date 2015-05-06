@@ -8,9 +8,6 @@
                     abstract: true,
                     controller: "AppCtrl as app",
                     resolve: {
-                        user: function (AuthServ, $rootScope) {
-                            return AuthServ.getUser();
-                        },
                         news: function (ArticleServ, $rootScope) {
                             return ArticleServ.allObjRef();
                         }

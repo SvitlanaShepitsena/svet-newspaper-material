@@ -22,13 +22,13 @@
     "angular-translate": "~2.6.1",
     "angular-cookies": "v1.4.0-build.3987+sha.abf59c2",
     "angular-toastr": "1.2.0",
-    "angular-translate-storage-cookie": "~2.6.1",
     "angular-bootstrap-calendar": "~0.8.1",
     "ui-bootstrap": "~0.12.1",
     "angular-simple-slideshow": "~0.0.3",
     "moment": "~2.10.2",
     "angular-capitalize-filter": "~2.0.0",
     "lodash": "~3.8.0",
-    "angularfire": "1.1.1"
+    "angularfire": "1.1.1",
+    "angular-translate-storage-cookie": "~2.7.0"
   }
 }

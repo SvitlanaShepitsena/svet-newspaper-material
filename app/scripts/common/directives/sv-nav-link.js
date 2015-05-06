@@ -20,7 +20,7 @@
                 controller: function ($scope) {
                     var ctrl = this;
                     ctrl.closeSideBar = function () {
-                        $mdSidenav('left').close();v$y
+                        $mdSidenav('left').close();
                         $mdSidenav('right').close();
                     };
                 },
