@@ -4,7 +4,7 @@
         .directive('svNavLink', function ($rootScope, $mdSidenav) {
             return {
                 replace: true,
-                templateUrl: 'scripts/sections/common/directives/sv-nav-link.html',
+                templateUrl: 'scripts/common/directives/sv-nav-link.html',
                 scope: {
                     url: '@',
                     title: '@',

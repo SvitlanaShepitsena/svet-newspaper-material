@@ -1,1 +1,4 @@
-div content
+div
+    ul
+        li(ng-repeat='n in newsList|')
+            pre {{n|json}}
