@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('article')
         .directive('svNewArticleForm', function ($rootScope) {
             function getRandomSection(sections) {
@@ -13,7 +12,6 @@
                 for (var i = 0; i < 5; i++) {
                     rTags.push(faker.lorem.words(1))
                 }
-
                 return rTags.join(', ');
             }
 
@@ -25,10 +23,7 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
-                bindToController: {},
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
+                link: function ($scope, el, attrs) {
                     $scope.siteSections = [
                         'Политика',
                         'Мы и Деньги',
@@ -37,9 +32,8 @@
                         'Мир'
                     ];
                     $scope.dateMod = '';
-
                     var author = faker.name.findName();
-                    //ctrl.article = {
+                    //$scope.article = {
                     //    author: author,
                     //    date: '',
                     //    section: '',
@@ -48,10 +42,9 @@
                     //    tags: ''
                     //
                     //}
-
-                    ctrl.article = {
+                    $scope.article = {
                         isDraft: true,
-                        img:'',
+                        img: '',
                         isTopNews: false,
                         author: author,
                         date: getFormatedDate(),
@@ -60,15 +53,10 @@
                         body: faker.lorem.paragraphs(9),
                         tags: getRandomTags()
                     }
-
                     $scope.setSection = function (section) {
-                        ctrl.article.section = section;
+                        $scope.article.section = section;
                         $scope.$broadcast('close:select', {});
                     }
-                },
-
-                link: function ($scope, el, attrs) {
-
                 }
             };
         });

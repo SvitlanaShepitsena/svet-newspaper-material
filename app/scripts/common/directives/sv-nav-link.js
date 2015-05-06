@@ -4,27 +4,21 @@
         .directive('svNavLink', function ($rootScope, $mdSidenav) {
             return {
                 replace: true,
-                templateUrl: 'scripts/common/directives/sv-nav-link.html',
+                templateUrl: 'scripts/sections/common/directives/sv-nav-link.html',
                 scope: {
                     url: '@',
                     title: '@',
                     side: '@',
-                    icon: '@'
-                },
-                bindToController: {
+                    icon: '@',
                     someObject: '=',
                     someString: '@',
                     someExpr: '&'
                 },
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
-                    ctrl.closeSideBar = function () {
-                        $mdSidenav('left').close();v$y
+                link: function ($scope, el, attrs) {
+                    $scope.closeSideBar = function () {
+                        $mdSidenav('left').close();
                         $mdSidenav('right').close();
                     };
-                },
-                link: function ($scope, el, attrs) {
                 }
             };
         });

@@ -5,18 +5,13 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/sections/home/directives/sv-news-grid.html',
-                scope: {},
-                bindToController: {
+                scope: {
                     sectionNews: '='
                 },
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
-                    $rootScope.$watch('newsGrid', function (newVal) {
-                        ctrl.newsGrid = newVal;
-                    })
-                },
                 link: function ($scope, el, attrs) {
+                    $rootScope.$watch('newsGrid', function (newVal) {
+                        $scope.newsGrid = newVal;
+                    })
                 }
             };
         });

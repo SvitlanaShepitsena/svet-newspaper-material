@@ -1,15 +1,11 @@
 (function () {
     'use strict';
-
     angular.module('events')
-        .directive('svCalendar', function (moment,  $state) {
+        .directive('svCalendar', function (moment, $state) {
             return {
                 templateUrl: 'scripts/events/directives/sv-callendar.html',
                 scope: {},
-                bindToController: {},
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
+                link: function ($scope, el, attrs) {
                     //These variables MUST be set as a minimum for the calendar to work
                     $scope.calendarView = 'year';
                     $scope.calendarDay = new Date();
@@ -41,7 +37,6 @@
                     //        }
                     //    });
                     //}
-
                     $scope.eventClicked = function (event) {
                         if (event.title === "2015 Kohl Children's Museum Event (Public Event)") {
                             $state.go('app.events.field', {year: 2015});
@@ -50,27 +45,20 @@
                             $state.go('app.events.ravinia', {year: 2015});
                         }
                     };
-
                     $scope.eventEdited = function (event) {
                         showModal('Edited', event);
                     };
-
                     $scope.eventDeleted = function (event) {
                         showModal('Deleted', event);
                     };
-
                     $scope.setCalendarToToday = function () {
                         $scope.calendarDay = new Date();
                     };
-
                     $scope.toggle = function ($event, field, event) {
                         $event.preventDefault();
                         $event.stopPropagation();
-
                         event[field] = !event[field];
                     };
-                },
-                link: function ($scope, el, attrs) {
                 }
             };
         });

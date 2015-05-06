@@ -6,15 +6,12 @@
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
                 scope: {},
-                bindToController: {},
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
-                    ctrl.isIe = AgentServ.isIe();
+                link: function ($scope) {
+                    $scope.isIe = AgentServ.isIe();
                     $scope.isManager = function () {
                         return UserGroupsServ.isInGroup('manager');
                     };
-                    ctrl.loginProvider = function (provider) {
+                    $scope.loginProvider = function (provider) {
                         AuthServ.authProvider(provider).then(function (user) {
                             if (UserGroupsServ.isInGroup('manager')) {
                                 $state.go('app.manager.dashboard', {uid: user.id})
@@ -25,24 +22,24 @@
                             console.error("Authentication failed:", error);
                         });
                     };
-                    ctrl.logout = function () {
+                    $scope.logout = function () {
                         AuthServ.logout();
                         $state.go('app.home')
                     };
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');
                     }, function (size) {
-                        ctrl.gtMd = size;
+                        $scope.gtMd = size;
                     });
                     $scope.$watch(function () {
                         return $mdMedia('gt-sm');
                     }, function (size) {
-                        ctrl.gtSm = size;
+                        $scope.gtSm = size;
                     });
                     $scope.$watch(function () {
                         return $mdMedia('sm');
                     }, function (size) {
-                        ctrl.sm = size;
+                        $scope.sm = size;
                     });
                     $scope.$watch(function () {
                         return CurrentUserServ.get();

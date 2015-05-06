@@ -5,13 +5,8 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/sections/home/directives/sv-home-main-news.html',
-                scope: {},
-                bindToController: {
+                scope: {
                     nt: '='
-                },
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
                 },
                 link: function ($scope, el, attrs) {
                 }

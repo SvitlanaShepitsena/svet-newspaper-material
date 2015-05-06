@@ -9,16 +9,11 @@
                     url: '@',
                     img: '@'
                 },
-                bindToController: {},
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
-                    ctrl.closeSideBar = function () {
+                link: function ($scope, el, attrs) {
+                    $scope.closeSideBar = function () {
                         $mdSidenav('left').close();
                         $mdSidenav('right').close();
                     };
-                },
-                link: function ($scope, el, attrs) {
                 }
             };
         });

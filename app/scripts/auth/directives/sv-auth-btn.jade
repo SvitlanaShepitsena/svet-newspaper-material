@@ -1,30 +1,30 @@
-div(ng-class="{'sv':ctrl.gtMd}")
+div(ng-class="{'sv':gtMd}")
     div(layout='row' layout-align="center center" )
         div(ng-if='!user')
-            div(ng-if="ctrl.isIe")
+            div(ng-if="isIe")
                 button.tc-black(lx-ripple=''
-                ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
+                ng-class="{'btn--xl btn--icon':sm, 'btn--l btn--fab mr+':gtSm}",
                 ui-sref='app.svet-login'
                 class='fab__primary btn btn--white tc-black' )
                     i.mdi.mdi-account
                     i.mdi.mdi-login
-            div(ng-if="!ctrl.isIe")
-                .fab.l(ng-class='{ie:ctrl.isIe && !ctrl.sm}')
+            div(ng-if="!isIe")
+                .fab.l(ng-class='{ie:isIe && !sm}')
                     button.tc-black(lx-ripple=''
-                    ng-class="{'btn--xl btn--icon':ctrl.sm, 'btn--l btn--fab mr+':ctrl.gtSm}",
+                    ng-class="{'btn--xl btn--icon':sm, 'btn--l btn--fab mr+':gtSm}",
                     ui-sref='app.svet-login'
                     class='fab__primary btn btn--white tc-black' )
                         i.mdi.mdi-account
                         i.mdi.mdi-login
-                    .fab__actions(ng-class="{'fab__actions--left':!ctrl.isIe&&ctrl.gtSm,'fab__actions--down':ctrl.sm } " )
+                    .fab__actions(ng-class="{'fab__actions--left':!isIe&&gtSm,'fab__actions--down':sm } " )
                         button.btn.btn--fab.btn--m.tc-red-500.btn--white(lx-ripple
                         ui-sref='app.svet-login'
-                        ng-class="{'btn--l':ctrl.sm, 'btn--m':ctrl.gtSm}")
+                        ng-class="{'btn--l':sm, 'btn--m':gtSm}")
                             span.fs-caption Svet
-                        button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='ctrl.loginProvider("facebook")')
+                        button.btn.btn--m.btn-blue.btn--fab.tc-blue-800.btn--white(lx-ripple ng-click='loginProvider("facebook")')
                             i.mdi.mdi-facebook
-                        button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='ctrl.loginProvider("google")')
+                        button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='loginProvider("google")')
                             i.mdi.mdi-google-plus
         div(layout='row' ng-if='!!user' layout-align="center center")
-            sv-user-dropdown-menu(ng-if='!isManager()' user='user' logout='ctrl.logout()')
-            sv-manager-dropdown(ng-if="isManager()" user='user' logout='ctrl.logout()')
+            sv-user-dropdown-menu(ng-if='!isManager()' user='user' logout='logout()')
+            sv-manager-dropdown(ng-if="isManager()" user='user' logout='logout()')

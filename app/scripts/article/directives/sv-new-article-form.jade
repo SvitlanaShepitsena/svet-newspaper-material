@@ -6,7 +6,7 @@ form(name='article' flex-container='column' flow-init)
             //span.fs-subhead
             button.btn.btn--m.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
                 i.mdi.mdi-dots-vertical
-                span.fs-subhead {{ctrl.article.section || "Темa / Section"}}
+                span.fs-subhead {{article.section || "Темa / Section"}}
             lx-dropdown-menu
                 ul
                     li(ng-repeat='s in siteSections')
@@ -14,15 +14,15 @@ form(name='article' flex-container='column' flow-init)
     div(flex-container='row')
         div(flex-item='8')
             lx-text-field(label='Автор Статьи')
-                input.fs-subhead.tc-black-2(type='text', ng-model='ctrl.article.author')
+                input.fs-subhead.tc-black-2(type='text', ng-model='article.author')
     div(flex-container='row')
         div(flex-item='')
             lx-text-field(label='Date')
-                input(ng-model='ctrl.article.date')
+                input(ng-model='article.date')
     div(flex-container='row')
         div(flex-item='')
             lx-text-field(label='Заголовок Статьи / Title')
-                input.fs-subhead.tc-blue-grey-500(ng-model='ctrl.article.title')
+                input.fs-subhead.tc-blue-grey-500(ng-model='article.title')
     div(flex-container='row')
         div(flex-item='')
             div Upload
@@ -30,14 +30,14 @@ form(name='article' flex-container='column' flow-init)
     div(flex-container='row')
         div(flex-item='')
             lx-text-field(label='Текст Статьи / Content')
-                textarea(ng-model='ctrl.article.body') {{ctrl.article.body}}
+                textarea(ng-model='article.body') {{article.body}}
     div(flex-container='row')
         div(flex-item='')
             lx-text-field(label='Tags / Теги')
-                input.fs-capture.tc-blue-grey-400(ng-model='ctrl.article.tags')
+                input.fs-capture.tc-blue-grey-400(ng-model='article.tags')
     div(flex-container='row')
         div(flex-item='')
-            input(type='checkbox' ng-model='ctrl.article.isTopNews')
+            input(type='checkbox' ng-model='article.isTopNews')
             label Основная Новость?
 
 

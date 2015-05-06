@@ -6,18 +6,12 @@
                 replace: true,
                 templateUrl: 'scripts/sections/header/directives/sv-lang-switch.html',
                 scope: {},
-                bindToController: {},
-                controllerAs: 'ctrl',
-                controller: function ($scope) {
-                    var ctrl = this;
-                    var savedLang = $translate.use();
-                    ctrl.langEng = savedLang == 'en';
-                    ctrl.changeLanguage = function (key) {
-                        $translate.use(key);
-                        ctrl.langEng = key == 'en';
-                    };
-                },
                 link: function ($scope, el, attrs) {
+                    $scope.langEng = savedLang == 'en';
+                    $scope.changeLanguage = function (key) {
+                        $translate.use(key);
+                        $scope.langEng = key == 'en';
+                    };
                 }
             };
         });
