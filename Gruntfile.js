@@ -33,7 +33,7 @@ var enterInside = function (target, before, insert) {
 
     } catch (e) {
         var planB = "<!-- ALL CHECK GENERSTORS -->";
-        var planC = "#state";
+        var planC = "//#state";
 
         start = target.indexOf(planB);
         if (start === -1) {
