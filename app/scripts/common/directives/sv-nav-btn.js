@@ -4,7 +4,7 @@
         .directive('svNavBtn', function ($rootScope, $mdSidenav) {
             return {
                 replace: true,
-                templateUrl: 'sv-nav-btn.html',
+                templateUrl: 'scripts/common/directives/sv-nav-btn.html',
                 scope: {
                     url: '@',
                     title: '@',

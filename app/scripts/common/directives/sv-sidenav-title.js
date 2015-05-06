@@ -4,7 +4,7 @@
         .directive('svSidenavTitle', function () {
             return {
                 replace: true,
-                templateUrl: 'sv-sidenav-title.html',
+                templateUrl: 'scripts/common/directives/sv-sidenav-title.html',
                 scope: {
                     title: '@'
                 },

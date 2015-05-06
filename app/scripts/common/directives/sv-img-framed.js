@@ -4,7 +4,7 @@
         .directive('svImgFramed', function () {
             return {
                 replace: true,
-                templateUrl: 'sv-img-framed.html',
+                templateUrl: 'scripts/common/directives/sv-img-framed.html',
                 scope: {
                     img: '=',
                     maxWidth: '=',

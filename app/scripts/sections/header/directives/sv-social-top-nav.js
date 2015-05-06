@@ -4,7 +4,7 @@
         .directive('svSocialTopNav', function () {
             return {
                 replace: true,
-                templateUrl: 'sv-social-top-nav.html',
+                templateUrl: 'scripts/sections/header/directives/sv-social-top-nav.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
                 }

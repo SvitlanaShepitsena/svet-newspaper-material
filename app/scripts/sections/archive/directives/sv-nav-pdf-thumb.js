@@ -4,7 +4,7 @@
         .directive('svNavPdfThumb', function ($rootScope, $mdSidenav) {
             return {
                 replace: true,
-                templateUrl: 'sv-nav-pdf-thumb.html',
+                templateUrl: 'scripts/sections/archive/directives/sv-nav-pdf-thumb.html',
                 scope: {
                     url: '@',
                     img: '@'

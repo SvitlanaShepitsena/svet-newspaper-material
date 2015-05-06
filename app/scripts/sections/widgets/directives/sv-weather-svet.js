@@ -4,7 +4,7 @@
         .directive('svWeatherSvet', function (WeatherServ, $translate) {
             return {
                 replace: true,
-                templateUrl: 'sv-weather-svet.html',
+                templateUrl: 'scripts/sections/widgets/directives/sv-weather-svet.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
                     $scope.tempConverter = function (temp) {

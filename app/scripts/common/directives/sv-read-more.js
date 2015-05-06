@@ -4,7 +4,7 @@
         .directive('svReadMore', function () {
             return {
                 replace: true,
-                templateUrl: 'sv-read-more.html',
+                templateUrl: 'scripts/common/directives/sv-read-more.html',
                 scope: {
                     readMore: '@'
                 },

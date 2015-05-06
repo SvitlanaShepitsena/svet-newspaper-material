@@ -4,7 +4,7 @@
         .directive('svNavLink', function ($rootScope, $mdSidenav) {
             return {
                 replace: true,
-                templateUrl: 'sv-nav-link.html',
+                templateUrl: 'scripts/common/directives/sv-nav-link.html',
                 scope: {
                     url: '@',
                     title: '@',
@@ -20,7 +20,7 @@
                 controller: function ($scope) {
                     var ctrl = this;
                     ctrl.closeSideBar = function () {
-                        $mdSidenav('left').close();
+                        $mdSidenav('left').close();v$y
                         $mdSidenav('right').close();
                     };
                 },
