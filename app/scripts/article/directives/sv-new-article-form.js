@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svNewArticleForm', function ($rootScope) {
+        .directive('svNewArticleForm', function (SectionsServ, $rootScope) {
             function getRandomSection(sections) {
                 var randIndex = Math.floor(Math.random() * sections.length);
                 return sections[randIndex];
