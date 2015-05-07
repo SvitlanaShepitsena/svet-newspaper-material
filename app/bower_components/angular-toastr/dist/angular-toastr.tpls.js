@@ -62,6 +62,7 @@
 
       if (toast && ! toast.deleting) { // Avoid clicking when fading out
         toast.deleting = true;
+        toast.isOpened = false;
         $animate.leave(toast.el).then(function() {
           if (toast.scope.options.onHidden) {
             toast.scope.options.onHidden(wasClicked);
@@ -144,12 +145,20 @@
 
       toasts.push(newToast);
 
+      if (options.autoDismiss && options.maxOpened > 0) {
+        var oldToasts = toasts.slice(0, (toasts.length - options.maxOpened));
+        for (var i = 0, len = oldToasts.length; i < len; i++) {
+          remove(oldToasts[i].toastId);
+        }
+      }
+
       if (maxOpenedNotReached()) {
         newToast.open.resolve();
       }
 
       newToast.open.promise.then(function() {
         _createOrGetContainer(options).then(function() {
+          newToast.isOpened = true;
           if (options.newestOnTop) {
             $animate.enter(newToast.el, container).then(function() {
               newToast.scope.init();
@@ -197,6 +206,7 @@
       function createToast() {
         var newToast = {
           toastId: index++,
+          isOpened: false,
           scope: $rootScope.$new(),
           open: $q.defer()
         };
@@ -253,6 +263,7 @@
   angular.module('toastr')
     .constant('toastrConfig', {
       allowHtml: false,
+      autoDismiss: false,
       closeButton: false,
       closeHtml: '<button>&times;</button>',
       containerId: 'toast-container',
@@ -281,59 +292,6 @@
       titleClass: 'toast-title',
       toastClass: 'toast'
     });
-}());
-
-(function() {
-  'use strict';
-
-  angular.module('toastr')
-    .directive('progressBar', progressBar);
-
-  progressBar.$inject = ['toastrConfig'];
-
-  function progressBar(toastrConfig) {
-    return {
-      replace: true,
-      require: '^toast',
-      templateUrl: function() {
-        return toastrConfig.templates.progressbar;
-      },
-      link: linkFunction
-    };
-
-    function linkFunction(scope, element, attrs, toastCtrl) {
-      var intervalId, currentTimeOut, hideTime;
-
-      toastCtrl.progressBar = scope;
-
-      scope.start = function(duration) {
-        if (intervalId) {
-          clearInterval(intervalId);
-        }
-
-        currentTimeOut = parseFloat(duration);
-        hideTime = new Date().getTime() + currentTimeOut;
-        intervalId = setInterval(updateProgress, 10);
-      };
-
-      scope.stop = function() {
-        if (intervalId) {
-          clearInterval(intervalId);
-        }
-      };
-
-      function updateProgress() {
-        console.log('update');
-        var percentage = ((hideTime - (new Date().getTime())) / currentTimeOut) * 100;
-        element.css('width', percentage + '%');
-      }
-
-      scope.$on('$destroy', function() {
-        // Failsafe stop
-        clearInterval(intervalId);
-      });
-    }
-  }
 }());
 
 (function() {
@@ -444,6 +402,58 @@
       function wantsCloseButton() {
         return scope.options.closeHtml;
       }
+    }
+  }
+}());
+
+(function() {
+  'use strict';
+
+  angular.module('toastr')
+    .directive('progressBar', progressBar);
+
+  progressBar.$inject = ['toastrConfig'];
+
+  function progressBar(toastrConfig) {
+    return {
+      replace: true,
+      require: '^toast',
+      templateUrl: function() {
+        return toastrConfig.templates.progressbar;
+      },
+      link: linkFunction
+    };
+
+    function linkFunction(scope, element, attrs, toastCtrl) {
+      var intervalId, currentTimeOut, hideTime;
+
+      toastCtrl.progressBar = scope;
+
+      scope.start = function(duration) {
+        if (intervalId) {
+          clearInterval(intervalId);
+        }
+
+        currentTimeOut = parseFloat(duration);
+        hideTime = new Date().getTime() + currentTimeOut;
+        intervalId = setInterval(updateProgress, 10);
+      };
+
+      scope.stop = function() {
+        if (intervalId) {
+          clearInterval(intervalId);
+        }
+      };
+
+      function updateProgress() {
+        var percentage = ((hideTime - (new Date().getTime())) / currentTimeOut) * 100;
+        element.css('width', percentage + '%');
+      }
+
+      scope.$on('$destroy', function() {
+        // Failsafe stop
+        clearInterval(intervalId);
+      });
     }
   }
 }());

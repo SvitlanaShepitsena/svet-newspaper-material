@@ -2,9 +2,13 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var streamqueue = require('streamqueue');
 var open = require('open');
+var runSequence = require('run-sequence');
+var bowerFiles = require('main-bower-files');
+var series = require('stream-series');
 
 gulp.task('watch', ['server'], function() {
   $.livereload.listen();
+  gulp.start('test:watch');
   gulp.watch('src/less/*.less', ['less']);
   gulp.watch('src/**/*.js', ['lint']);
   gulp.watch('css/*.css').on('change', $.livereload.changed);
@@ -13,7 +17,7 @@ gulp.task('watch', ['server'], function() {
     './docs/scripts/*.js',
     './docs/styles/*.css',
     './src/**/*.js',
-    './templates/**']
+    './src/templates/**']
   ).on('change', $.livereload.changed);
 });
 
@@ -34,21 +38,26 @@ gulp.task('less', function() {
     .pipe(gulp.dest('css'))
 });
 
-gulp.task('lint', function() {
-  return gulp.src(['src/**/*.js'])
-    .pipe($.eslint())
-    .pipe($.eslint.format());
-});
+var pkg = require('./bower.json');
+var banner = ['/**',
+  ' * <%= pkg.name %> - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @link <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' */',
+  ''].join('\n');
 
 gulp.task('css', function() {
 
   return gulp.src('src/less/calendar.less')
     .pipe($.sourcemaps.init())
     .pipe($.less())
+    .pipe($.header(banner, { pkg : pkg } ))
     .pipe($.rename('angular-bootstrap-calendar.css'))
     .pipe(gulp.dest('dist/css'))
     .pipe($.minifyCss())
     .pipe($.rename('angular-bootstrap-calendar.min.css'))
+    .pipe($.header(banner, { pkg : pkg } ))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist/css'));
 
@@ -57,7 +66,7 @@ gulp.task('css', function() {
 function getTemplates() {
 
   return gulp
-    .src('templates/**/*.html')
+    .src('src/templates/**/*.html')
     .pipe($.htmlmin({
       removeComments: true,
       collapseWhitespace: true
@@ -65,7 +74,7 @@ function getTemplates() {
     .pipe($.angularTemplatecache({
       standalone: false,
       module: 'mwl.calendar',
-      root: 'templates/'
+      root: 'src/templates/'
     }));
 
 }
@@ -90,9 +99,12 @@ function buildJS(withTemplates) {
     .pipe($.sourcemaps.init())
     .pipe($.ngAnnotate())
     .pipe($.concat(unminfilename))
+    .pipe($.wrapJs('(function(window, angular) {\n%= body %\n }) (window, angular);'))
+    .pipe($.header(banner, { pkg : pkg } ))
     .pipe(gulp.dest('dist/js'))
     .pipe($.uglify())
     .pipe($.rename(minFilename))
+    .pipe($.header(banner, { pkg : pkg } ))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist/js'));
 }
@@ -107,4 +119,72 @@ gulp.task('js', ['js-tpls'], function() {
 
 gulp.task('build', ['js', 'css'], function() {});
 
-gulp.task('default', ['build'], function() {});
+function release(importance) {
+  return gulp.src(['./package.json', './bower.json'])
+    .pipe($.bump({type: importance}))
+    .pipe(gulp.dest('./'));
+}
+
+gulp.task('release:patch', function() { return release('patch'); });
+gulp.task('release:minor', function() { return release('minor'); });
+gulp.task('release:major', function() { return release('major'); });
+
+gulp.task('default', ['watch'], function() {});
+
+function lint(failOnError) {
+  var stream = gulp.src(['src/**/*.js'])
+    .pipe($.eslint())
+    .pipe($.eslint.format());
+
+  if (failOnError) {
+    return stream.pipe($.eslint.failOnError());
+  } else {
+    return stream;
+  }
+}
+
+gulp.task('lint', function() {
+  return lint();
+});
+
+gulp.task('ci:lint', function() {
+  return lint(true);
+});
+
+function runTests(action, onDistCode) {
+  var vendorJs = gulp.src(bowerFiles({includeDev: true})).pipe($.filter('*.js'));
+  if (onDistCode) {
+    var appJs = gulp.src('dist/js/angular-bootstrap-calendar-tpls.min.js');
+  } else {
+    var appJs = gulp.src('src/**/*.js').pipe($.sort()).pipe($.angularFilesort());
+  }
+  var templates = gulp.src('src/templates/*.html');
+  var karmaSetup = gulp.src('test/karma.setup.js');
+  var test = gulp.src('test/unit/**/*.js');
+
+  return series(vendorJs, appJs, templates, karmaSetup, test)
+    .pipe($.karma({
+      configFile: 'karma.conf.js',
+      action: action
+    }));
+}
+
+gulp.task('test:src', function() {
+  return runTests('run').on('error', function(err) {
+    throw err;
+  });
+});
+
+gulp.task('test:dist', function() {
+  return runTests('run', true).on('error', function(err) {
+    throw err;
+  });
+});
+
+gulp.task('test:watch', function() {
+  return runTests('watch');
+});
+
+gulp.task('ci', function(done) {
+  runSequence('ci:lint', 'build', 'test:dist', done);
+});
