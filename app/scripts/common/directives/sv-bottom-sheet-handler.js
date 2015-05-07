@@ -9,7 +9,7 @@
                         event.stopPropagation();
                         $scope.$apply(function () {
                             $mdBottomSheet.show({
-                                templateUrl: '../templates/social-top-nav-cell.html'
+                                templateUrl: 'scripts/common/templates/social-top-nav-cell.html'
                             });
                         });
                     });
@@ -18,7 +18,7 @@
                         event.stopPropagation();
                         $scope.$apply(function () {
                             $mdBottomSheet.show({
-                                templateUrl: '../templates/social-top-nav-cell.html'
+                                templateUrl: 'scripts/common/templates/social-top-nav-cell.html'
                             });
                         });
                     });

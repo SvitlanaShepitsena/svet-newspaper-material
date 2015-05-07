@@ -1,9 +1,7 @@
 (function () {
     'use strict';
-
     angular.module('common')
         .factory('NewsGeneratorServ', function ($http, $q, $rootScope) {
-
             var gUrl = 'http://api.feedzilla.com/v1/categories.json';
             var svobodaUrls = ['zmtqte$oot']
             var allCategories = [];
@@ -16,7 +14,6 @@
                     if (tag.indexOf(avoid) > -1) {
                         return true;
                     }
-
                 }
                 return false;
             }
@@ -26,11 +23,8 @@
                 var categNumb = [];
                 news.forEach(function (n) {
                     var indCateg = n.sections;
-
                     indCateg.forEach(function (nin) {
-
                         if (!isInAvoid(nin)) {
-
                             if (nin.length > 0) {
                                 var index = categories.indexOf(nin);
                                 if (index === -1) {
@@ -39,12 +33,9 @@
                                 } else {
                                     categNumb[index]++;
                                 }
-
                             }
                         }
-
                     })
-
                 })
                 //console.log(categories);
                 //console.log(categNumb);
@@ -55,49 +46,38 @@
                     return -tag2.numb;
                 });
                 $rootScope.allCateg = allCategories;
-
                 return allCategories;
-
             }
 
             function classify(news) {
                 news.forEach(function (n) {
                     n.sections = [];
                     var indCateg = n.categories;
-
                     indCateg.forEach(function (nin) {
                         nin = nin.replace('Новости - ', '');
                         nin = nin.replace('Новости', '').toLowerCase();
                         if (nin.length > 0) {
                             n.sections.push(nin);
-
                         }
-
                     })
-
                     n.categories = null;
                 })
                 return news;
-
             }
 
             return {
                 getCategories: function (limit) {
                     if (limit) {
-
                         return _.first(allCategories, limit);
                     }
                     return allCategories;
                 },
-
                 getPoliticalNews: function (number, shuffle) {
                     number = number || 2;
                     //shuffle = shuffle || true;
-
                     var deferred = $q.defer();
                     var urlCom = 'http://www.svoboda.org/api/';
                     var promises = [];
-
                     var allNewsArr = [];
                     for (var i = 0; i < svobodaUrls.length; i++) {
                         var urlEnd = svobodaUrls[i];
@@ -142,18 +122,14 @@
                         //    uniqueNews = _.union(t5, rest);
                         //}
                         //getUniqueCategories(uniqueNews);
-
                         deferred.resolve(allNewsArr[0]);
                     });
-
                     return deferred.promise;
                 },
-
                 getPoliticalNewsWithImages: function (url, number, shuffle) {
                     number = number || 20;
                     shuffle = true;
                     var deferred = $q.defer();
-
                     var result = $http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url));
 
                     function parseXml(xml) {
@@ -165,14 +141,11 @@
                             if (start === -1) {
                                 break;
                             }
-
                             start = xml.indexOf('http', start);
-
                             end = xml.indexOf('"', start);
                             var img = xml.substring(start, end);
                             imgs.push(img);
                             start = end;
-
                         }
                         return imgs;
                     }
@@ -198,20 +171,15 @@
                         } else {
                             finalNews = _.first(news, number);
                         }
-
                         //var categories = getUniqueCategories(finalNews);
                         //finalNews = classify(finalNews);
                         //console.log(categories);
-
                         deferred.resolve(finalNews);
                     }).catch(function (e) {
                         deferred.reject('Error in rss request. Due to: ' + e);
                     });
-
                     return deferred.promise;
-
                 }
-
             };
         });
 })
