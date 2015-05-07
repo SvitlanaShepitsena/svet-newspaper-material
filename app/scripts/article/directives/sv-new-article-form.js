@@ -26,21 +26,19 @@
                 link: function ($scope, el, attrs) {
                     $scope.siteSections = SectionsServ.all();
                     $scope.dateMod = '';
-
-                    NewsGeneratorServ.getPoliticalNews(20,true).then(function (realNews) {
+                    NewsGeneratorServ.getPoliticalNews(20, true).then(function (realNews) {
                         console.log(realNews);
-
-                    $scope.article = {
-                        isDraft: true,
-                        img: realNews.img,
-                        isTopNews: false,
-                        author:realNews.author|| 'Alex Author',
-                        date: getFormatedDate(),
-                        section: getRandomSection($scope.siteSections),
-                        title: realNews.title,
-                        body: realNews.content,
-                        tags: getRandomTags()
-                    }
+                        $scope.article = {
+                            isDraft: true,
+                            img: realNews.img,
+                            isTopNews: false,
+                            author: realNews.author || 'Alex Author',
+                            date: getFormatedDate(),
+                            section: getRandomSection($scope.siteSections),
+                            title: realNews.title,
+                            body: realNews.content,
+                            tags: getRandomTags()
+                        }
                     });
                     $scope.setSection = function (section) {
                         $scope.article.section = section;
