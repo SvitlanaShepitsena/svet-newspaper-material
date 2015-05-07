@@ -166,16 +166,14 @@
                         var news = (data.data.responseData.feed.entries);
 
                         news = joinNewsImages(news, imgs);
-                        if (shuffle) {
-                            news = _.rest(news, 3);
-                            finalNews = _.first(_.shuffle(news), number);
-                        } else {
-                            finalNews = _.first(news, number);
-                        }
-                        //var categories = getUniqueCategories(finalNews);
-                        //finalNews = classify(finalNews);
-                        //console.log(categories);
-                        deferred.resolve(finalNews);
+                        var randomNews = _.shuffle(news)[0];
+
+                        HtmlParseServ.getFullNews(randomNews.link).then(function (fullNews) {
+                            randomNews.body = fullNews.body;
+                            randomNews.tags = fullNews.tags;
+
+                            deferred.resolve(randomNews);
+                        });
                     }).catch(function (e) {
                         deferred.reject('Error in rss request. Due to: ' + e);
                     });
