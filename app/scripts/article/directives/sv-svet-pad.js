@@ -14,7 +14,8 @@
                     var firepadRef = new Firebase(url+'firepad');
                     var content = el.find('#firepad')[0];
 
-                    var codeMirror = CodeMirror(content, { lineWrapping: true });
+                    var codeMirror = CodeMirror.fromTextArea(content, { lineWrapping: true ,
+                        lineNumbers: true});
                     var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
                         { richTextShortcuts: true, richTextToolbar: true, defaultText: ''});
 

@@ -87,11 +87,11 @@
 .firepad {
 	width: 700px;
 	height: 450px;
-	background-color: #f62;
+	background-color: #e0e0e0;
 }
 
 .CodeMirror {
-	background-color: #f62;
+	background-color: #eee;
 }
 
 .sv-notifications-txt {
