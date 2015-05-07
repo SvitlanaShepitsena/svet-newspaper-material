@@ -6,8 +6,9 @@
             $translateProvider.translations('en', {
                 // 'eng':'eng'
                 'new-article': 'New Article',
-                'save-to-drafts': 'New Article',
-                'post-article': 'New Article',
+                'save-to-drafts': 'Save to Drafts',
+                'post-article': 'Post Article',
+                'back-to-my-articles': 'Back to My Articles',
                 'article-author': 'Article Author',
                 'article-title': 'Article Title',
                 'news-section': 'News Section',
@@ -19,8 +20,9 @@
             $translateProvider.translations('ru', {
                 // 'ru':'ru'
                 'new-article': 'Новая Статья',
-                'save-to-drafts': 'New Article',
-                'post-article': 'New Article',
+                'save-to-drafts': 'Сохранить в черновики',
+                'post-article': 'Опубликовать статью',
+                'back-to-my-articles': 'Вернуться к моим статьям',
                 'article-author': 'Автор статьи',
                 'article-title': 'Заголовок статьи',
                 'article-content': 'Содержание статьи',
