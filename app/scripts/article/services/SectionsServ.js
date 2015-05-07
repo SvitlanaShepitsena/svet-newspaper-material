@@ -11,7 +11,7 @@
                 },
                 getRandomSection: function (sections) {
                     var randIndex = Math.floor(Math.random() * sections.length);
-                    return sections[randIndex];
+                    return sections[randIndex].$id;
                 }
             };
         });

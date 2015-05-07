@@ -1,4 +1,5 @@
-div.card(flex-container='column' class='p+' flow-init)
+div(flex-container='column' flow-init)
     sv-profile-title(header-title='new-article')
-    sv-new-article-form
-    sv-manage-article-nav(article='article')
+    .card(class='p+')
+        sv-new-article-form
+        sv-manage-article-nav(article='article')
