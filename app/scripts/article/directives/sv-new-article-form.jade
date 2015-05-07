@@ -7,20 +7,18 @@ div
             md-input-container(flex)
                 label {{'date'|translate}}
                 input(type='text', ng-model='article.date')
-        div(layout='row', layout-sm='column' layout-align='space-between center' class='mb')
-            div
-                div(class='mb')
-                    span.mdc-display-block.fs-subhead.tc-grey-700 Выберите Тему: &nbsp
+        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center')
+            div(class='mb' flex-order-sm='2')
                 lx-dropdown(position='left')
                     //span.fs-subhead
-                    button.btn.btn--m.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
-                        i.mdi.mdi-dots-vertical
+                    button.btn.btn--s.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
+                        i.mdi.mdi-dots-vertical.mr
                         span.fs-subhead {{article.section?article.section:("news-section"|translate)}}
                     lx-dropdown-menu
                         ul
                             li(ng-repeat='s in siteSections|orderBy:"order" ')
                                 a.dropdown-link(sv-section-select-handler="") {{s.$id| capitalize:first}}
-            div
+            div(class='mb+' flex-order-sm='1')
                 input(type='checkbox' ng-model='article.isTopNews' class='mr')
                 label Основная Новость?
         div(layout='column')
@@ -29,11 +27,11 @@ div
                 input(ng-model='article.title' type="text" md-maxlength='150')
             md-input-container(flex='' )
                 label() {{'article-content'|translate}}
-                textarea.p(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid')
+                textarea.p(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid' md-maxlength="5000")
         div(layout='row')
             md-input-container(flex)
                 label {{'tags'|translate}}
-                input(ng-model='article.tags' type="text")
+                input(ng-model='article.tags' type="text" md-maxlength="100")
         div(layout='column' class='mb+')
             span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
             //img(ng-src="{{article.img}}")

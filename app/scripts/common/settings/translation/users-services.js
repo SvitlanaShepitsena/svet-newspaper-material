@@ -67,8 +67,8 @@
                 'delete': 'Delete',
                 'cancel': 'Cancel',
                 'post': 'Post',
-                'choose-image': 'Choose Image',
-                'remove-image': 'Remove Image',
+                'choose-image': 'Choose an Image',
+                'remove-image': 'Remove an Image',
                 'home-top': 'Home Page Top',
                 'home-middle': 'Home Page Middle',
 

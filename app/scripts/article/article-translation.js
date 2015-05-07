@@ -11,8 +11,10 @@
                 'back-to-my-articles': 'Back to My Articles',
                 'article-author': 'Article Author',
                 'article-title': 'Article Title',
+                'date': 'Date',
                 'news-section': 'News Section',
                 'article-content': 'Article Content',
+                'choose-section': 'Choose Section',
                 'upload-img': 'Upload Image',
                 'tags': 'Tags'
                 // 'eng':'eng',
@@ -25,7 +27,9 @@
                 'back-to-my-articles': 'Вернуться к моим статьям',
                 'article-author': 'Автор статьи',
                 'article-title': 'Заголовок статьи',
+                'date': 'Дата',
                 'article-content': 'Содержание статьи',
+                'choose-section': 'Выберите Тему',
                 'news-section': 'Раздел Новостей',
                 'upload-img': 'Загрузить фотографию',
                 'tags': 'Теги'
