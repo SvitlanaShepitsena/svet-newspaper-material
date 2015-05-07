@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svNewArticleForm', function (SectionsServ, NewsGeneratorServ) {
+        .directive('svNewArticleForm', function (SectionsServ, NewsGeneratorServ, FormattedDateServ) {
             function getRandomSection(sections) {
                 var randIndex = Math.floor(Math.random() * sections.length);
                 return sections[randIndex];
@@ -13,11 +13,6 @@
                     rTags.push(faker.lorem.words(1))
                 }
                 return rTags.join(', ');
-            }
-
-            function getFormatedDate() {
-                var today = new Date();
-                return (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
             }
 
             return {
@@ -33,7 +28,7 @@
                             img: realNews.img,
                             isTopNews: false,
                             author: realNews.author || 'Alex Author',
-                            date: getFormatedDate(),
+                            date: FormattedDateServ.getFormattedDate(),
                             section: getRandomSection($scope.siteSections),
                             title: realNews.title,
                             body: realNews.content,
