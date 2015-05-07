@@ -27,3 +27,11 @@
   font-weight: 600;
   margin-bottom: 4px;
 }
+.firepad {
+  width: 700px;
+  height: 450px;
+  background-color: #f62;
+}
+.CodeMirror {
+  background-color: #f62;
+}
