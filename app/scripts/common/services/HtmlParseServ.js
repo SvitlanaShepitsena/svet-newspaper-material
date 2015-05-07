@@ -11,10 +11,17 @@
                 var el = $('<div></div>');
                 el.html(article);
 
-                var text = $('.zoomMe', el).text();
+                var parags = _.take($('.zoomMe', el).find('p'),7);
+                var content = '';
+
+                for (var i = 0; i < parags.length; i++) {
+                    var p = parags[i];
+                    content+= p.innerText+ '\r\n\r\n';
+                }
+
                 var tags = $('.topintend', el).text().replace('Метки:','').trim();
 
-                return {body:text,tags:tags}
+                return {body:content,tags:tags}
 
             }
 
