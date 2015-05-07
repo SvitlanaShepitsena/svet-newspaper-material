@@ -15,11 +15,11 @@
                             img: realNews.img,
                             isTopNews: false,
                             author: realNews.author || 'Alex Author',
-                            date: FormattedDateServ.getFormattedDate(),
+                            date: realNews.publishedDate,
                             section: SectionsServ.getRandomSection($scope.siteSections),
                             title: realNews.title,
-                            body: realNews.content,
-                            tags: TagsServ.getRandomTags()
+                            body: realNews.body,
+                            tags: realNews.tags
                         }
                     });
                     $scope.setSection = function (section) {
