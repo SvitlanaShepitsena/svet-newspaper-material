@@ -35,6 +35,11 @@
                     controller: "ProfileSettingsCtrl as profileSettings",
                     templateUrl: "scripts/auth/user/views/profile-settingsCtrl.html"
                 })
+                .state("app.user.social", {
+                    url: "/social",
+                    controller: "UserSocialCtrl as userSocial",
+                    templateUrl: "scripts/auth/user/views/userSocialCtrl.html"
+                })
 //#state'
         });
 })();
