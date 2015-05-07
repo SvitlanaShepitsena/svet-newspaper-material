@@ -7,12 +7,12 @@ div
         button.btn.btn--m.btn--red.tc-red-300.btn--icon.ml.mr(lx-ripple='')
             i.fa.fa-close
     .author-article-nav(layout='row' layout-align="center center" hide-sm)
-        button.btn.btn--m.btn--teal.tc-teal-300.btn--flat(lx-ripple='' lx-tooltip="Сохранить Статью" ng-click='saveArticle()')
+        button.btn.btn--m.btn--teal.tc-teal-300.btn--flat(lx-ripple='' ng-click='saveArticle()')
             i.fa.fa-save.mr
             | {{'save-to-drafts'|translate}}
-        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(class='ml+' lx-tooltip="Опубликовать Статью" lx-ripple='')
+        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(class='ml+' lx-ripple='')
             i.fa.fa-send-o.mr
             | {{'post-article'|translate}}
-        button.btn.btn--m.btn--red.tc-red-300.btn--flat(class='ml+' lx-tooltip="Отправить в Корзину"  lx-ripple='')
+        button.btn.btn--m.btn--red.tc-red-300.btn--flat(class='ml+' lx-ripple='')
             i.fa.fa-close.mr
-            | {{'delete'|translate}}
+            | {{'cancel'|translate}}
