@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('common')
-        .factory('NewsGeneratorServ', function ($http, $q, $rootScope) {
+        .factory('NewsGeneratorServ', function (HtmlParseServ, $http, $q, $rootScope) {
             var gUrl = 'http://api.feedzilla.com/v1/categories.json';
             var svobodaUrls = ['zmtqte$oot']
             var allCategories = [];
@@ -164,6 +164,7 @@
                         var xml = data.data.responseData.xmlString;
                         var imgs = parseXml(xml);
                         var news = (data.data.responseData.feed.entries);
+
                         news = joinNewsImages(news, imgs);
                         if (shuffle) {
                             news = _.rest(news, 3);
