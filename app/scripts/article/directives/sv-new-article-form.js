@@ -9,7 +9,6 @@
                     $scope.siteSections = SectionsServ.all();
                     $scope.dateMod = '';
                     NewsGeneratorServ.getPoliticalNews(20, true).then(function (realNews) {
-                        console.log(realNews);
                         $scope.article = {
                             isDraft: true,
                             img: realNews.img,
@@ -23,7 +22,6 @@
                         }
                     });
                     $scope.setSection = function (section) {
-                        console.log('run here sv-new-article-form.js');
                         $scope.article.section = section;
                         $scope.$broadcast('close:select', {});
                     }
