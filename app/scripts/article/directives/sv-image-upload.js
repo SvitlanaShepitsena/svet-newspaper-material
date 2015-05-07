@@ -6,7 +6,6 @@
                 templateUrl: 'scripts/article/directives/sv-image-upload.html',
                 link: function ($scope, el, attrs) {
                     if (!$scope.$parent.ad) {
-
                         $scope.$watchCollection('$flow.files', function (images) {
                             if (!images) {
                                 return;
@@ -16,7 +15,6 @@
                             }
                             var lastImg = _.last(images);
                             $scope.$flow.files[0] = lastImg;
-
                             var file = lastImg;
                             var fileReader = new FileReader();
                             fileReader.readAsDataURL(file.file);
