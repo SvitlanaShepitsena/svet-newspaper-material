@@ -4,6 +4,7 @@
         // modules
         'pascalprecht.translate',
         'ngMaterial',
+        'textAngular',
         'auth',
         'auth.user',
         'auth.manager',
@@ -46,7 +47,7 @@
                 .primaryPalette('grey')
                 .accentPalette('red');
         })
-    // COMMENT ON PRODUCTION
+        // COMMENT ON PRODUCTION
         .factory('$exceptionHandler', function ($injector) {
             return function (exception, cause) {
                 var $rootScope = $injector.get('$rootScope');
@@ -54,10 +55,11 @@
                 exception.message = exception.stack;
 
                 // Comment on Production
-                toastr.error('ERROR!'+exception.message); $rootScope.$broadcast('error');
+                toastr.error('ERROR!' + exception.message);
+                $rootScope.$broadcast('error');
                 throw exception;
             };
         }).config(['$compileProvider', function ($compileProvider) {
-        //$compileProvider.debugInfoEnabled(false);
-    }]);
+            //$compileProvider.debugInfoEnabled(false);
+        }]);
 })();

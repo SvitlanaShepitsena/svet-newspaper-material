@@ -11,14 +11,8 @@
                     body: '='
                 },
                 link: function ($scope, el, attrs) {
-                    var firepadRef = new Firebase(url+'firepad');
-                    var content = el.find('#firepad')[0];
-
-                    var codeMirror = CodeMirror.fromTextArea(content, { lineWrapping: true ,
-                        lineNumbers: true});
-                    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-                        { richTextShortcuts: true, richTextToolbar: true, defaultText: ''});
-
+                    console.log('text');
+                    $scope.myContent = '';
 
                 }
             };
