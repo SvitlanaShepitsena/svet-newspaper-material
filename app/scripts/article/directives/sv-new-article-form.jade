@@ -6,7 +6,7 @@ div
                 input(ng-model='article.author', disabled='')
             md-input-container(flex)
                 label {{'date'|translate}}
-                input(type='date', ng-model='article.date')
+                input(type='text', ng-model='article.date')
         div(layout='row', layout-sm='column' layout-align='space-between center' class='mb')
             div
                 div(class='mb')
@@ -15,7 +15,7 @@ div
                     //span.fs-subhead
                     button.btn.btn--m.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
                         i.mdi.mdi-dots-vertical
-                        span.fs-subhead {{"news-section"|translate}}
+                        span.fs-subhead {{article.section?article.section:("news-section"|translate)}}
                     lx-dropdown-menu
                         ul
                             li(ng-repeat='s in siteSections|orderBy:"order" ')
@@ -29,12 +29,12 @@ div
                 input(ng-model='article.title' type="text" md-maxlength='150')
             md-input-container(flex='' )
                 label() {{'article-content'|translate}}
-                textarea(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid') {{article.body}}
+                textarea.p(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid')
         div(layout='row')
             md-input-container(flex)
                 label {{'tags'|translate}}
                 input(ng-model='article.tags' type="text")
         div(layout='column' class='mb+')
-                span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
-                //img(ng-src="{{article.img}}")
-                sv-image-upload
+            span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
+            //img(ng-src="{{article.img}}")
+            sv-image-upload

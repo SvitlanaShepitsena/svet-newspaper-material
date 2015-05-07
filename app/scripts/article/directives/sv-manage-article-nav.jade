@@ -1,9 +1,7 @@
 .author-article-nav(layout='row' layout-align="center center")
-	button.btn.btn--l.btn--blue-grey.btn--icon(lx-ripple='' lx-tooltip="Сохранить Статью" ng-click='saveArticle()')
-		i.mdi.mdi-content-save
-	button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Опубликовать Статью" lx-ripple='')
-		i.mdi.mdi-send
-	button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Сохранить в Черновики" lx-ripple='')
-		i.mdi.mdi-file-document
-	button.btn.btn--l.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Отправить в Корзину"  lx-ripple='')
-		i.mdi.mdi-delete-variant
+    button.btn.btn--m.btn--teal.tc-teal-300.btn--icon(lx-ripple='' lx-tooltip="Сохранить Статью" ng-click='saveArticle()')
+        i.fa.fa-save
+    button.btn.btn--m.btn--grey.tc-grey-700.btn--icon(class='ml+' lx-tooltip="Опубликовать Статью" lx-ripple='')
+        i.fa.fa-send-o
+    button.btn.btn--m.btn--red.tc-red-300.btn--icon(class='ml+' lx-tooltip="Отправить в Корзину"  lx-ripple='')
+        i.fa.fa-close
