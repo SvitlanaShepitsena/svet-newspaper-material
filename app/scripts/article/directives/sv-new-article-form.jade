@@ -27,8 +27,8 @@ div
                 input(ng-model='article.title' type="text" md-maxlength='150')
             md-input-container(flex='' )
                 label() {{'article-content'|translate}}
-                //textarea.p(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid' md-maxlength="5000")
-                sv-svet-pad(body='article.body' ng-if='article.body')
+                textarea.p(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid' md-maxlength="5000")
+                //sv-svet-pad(body='article.body' ng-if='article.body')
         div(layout='row')
             md-input-container(flex)
                 label {{'tags'|translate}}

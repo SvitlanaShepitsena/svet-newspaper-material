@@ -15,9 +15,7 @@
                         user: $scope.user.fname || $scope.user.login,
                         avatar: $scope.user.avatar || ''
                     }
-                    $rootScope.$watch('user', function (newsObj) {
-                        $scope.user = newsObj;
-                    });
+
                     $scope.submitComment = function () {
                         ArticleServ.addComment($scope.key, $scope.comment);
                     };
