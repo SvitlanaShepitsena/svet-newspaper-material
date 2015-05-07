@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svNewArticleForm', function (SectionsServ, $rootScope) {
+        .directive('svNewArticleForm', function (SectionsServ, NewsGeneratorServ) {
             function getRandomSection(sections) {
                 var randIndex = Math.floor(Math.random() * sections.length);
                 return sections[randIndex];
@@ -26,27 +26,22 @@
                 link: function ($scope, el, attrs) {
                     $scope.siteSections = SectionsServ.all();
                     $scope.dateMod = '';
-                    var author = faker.name.findName();
-                    //$scope.article = {
-                    //    author: author,
-                    //    date: '',
-                    //    section: '',
-                    //    title: '',
-                    //    body: '',
-                    //    tags: ''
-                    //
-                    //}
+
+                    NewsGeneratorServ.getPoliticalNews(20,true).then(function (realNews) {
+                        console.log(realNews);
+
                     $scope.article = {
                         isDraft: true,
-                        img: '',
+                        img: realNews.img,
                         isTopNews: false,
-                        author: author,
+                        author:realNews.author|| 'Alex Author',
                         date: getFormatedDate(),
                         section: getRandomSection($scope.siteSections),
-                        title: _.startCase(faker.lorem.sentence()),
-                        body: faker.lorem.sentences(5),
+                        title: realNews.title,
+                        body: realNews.content,
                         tags: getRandomTags()
                     }
+                    });
                     $scope.setSection = function (section) {
                         $scope.article.section = section;
                         $scope.$broadcast('close:select', {});

@@ -8,7 +8,6 @@
                     if (!$scope.$parent.ad) {
 
                         $scope.$watchCollection('$flow.files', function (images) {
-                            console.log(images);
                             if (!images) {
                                 return;
                             }
