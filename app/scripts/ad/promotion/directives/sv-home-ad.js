@@ -12,14 +12,13 @@
 
                     var allAdds = AdServ.allArr();
                     allAdds.$loaded().then(function () {
-                    //console.log('run here sv-home-ad.js');
                         $scope.placeAds = _.where(allAdds, function (ad) {
                             return ad.place === $scope.place;
                         });
                         var ind = _.random($scope.placeAds.length);
                         $scope.ad = $scope.placeAds[ind];
-                        AdServ.increaseShow($scope.ad.$id).then(function () {
-                        });
+                        //AdServ.increaseShow($scope.ad.$id).then(function () {
+                        //});
                     });
                 }
             };

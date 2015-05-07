@@ -7,6 +7,7 @@
                 templateUrl: 'scripts/sections/header/directives/sv-lang-switch.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
+                    var savedLang = $translate.use();
                     $scope.langEng = savedLang == 'en';
                     $scope.changeLanguage = function (key) {
                         $translate.use(key);
