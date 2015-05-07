@@ -1,6 +1,5 @@
 div
-
-    form(name='article' flow-init)
+    form(name='articleForm' flow-init)
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'article-author'|translate}}
@@ -30,7 +29,7 @@ div
                 input(ng-model='article.title' type="text" md-maxlength='150')
             md-input-container(flex='' )
                 label() {{'article-content'|translate}}
-                textarea(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid')
+                textarea(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid') {{article.body}}
         div(layout='row')
             md-input-container(flex)
                 label {{'tags'|translate}}
