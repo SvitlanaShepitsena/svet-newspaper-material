@@ -11,6 +11,7 @@
                 link: function ($scope, el, attrs) {
                     $scope.saveArticle = function () {
                         ArticleServ.add($scope.article).then(function (uid) {
+                                $state.go('^');
                                 toastr.success('Статья сохранена в БД');
                             },
                             function (error) {

@@ -23,6 +23,7 @@
                         }
                     });
                     $scope.setSection = function (section) {
+                        console.log('run here sv-new-article-form.js');
                         $scope.article.section = section;
                         $scope.$broadcast('close:select', {});
                     }

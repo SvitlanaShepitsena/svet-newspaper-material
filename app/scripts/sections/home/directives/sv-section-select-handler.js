@@ -15,6 +15,7 @@
                     });
 
                     el.on('click', function (event) {
+                        console.log('run here sv-section-select-handler.js');
                         event.preventDefault();
                         event.stopPropagation();
                         $scope.$apply(function () {
