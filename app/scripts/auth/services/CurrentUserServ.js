@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('sections.home')
-        .factory('CurrentUserServ', function (users, $firebaseArray, $q) {
+        .factory('CurrentUserServ', function (NewUserProcessServ, users, $firebaseArray, $q) {
             var currentUser;
             return {
                 setUser: function (user) {
@@ -13,9 +13,22 @@
                         if (!currentUser.userName || !currentUser.key) {
                             var usersArr = $firebaseArray(new Firebase(users));
                             usersArr.$loaded().then(function () {
-                                var userLocal = _.find(usersArr, {id: user.id|| user.uid});
-                                currentUser = _.extend(currentUser, userLocal);
-                                resolve(currentUser)
+                                var userLocal = _.find(usersArr, {id: user.id || user.uid});
+                                if (!userLocal) {
+
+
+
+                                    usersArr.$add(currentUser).$save().then(function (ref) {
+                                        userLocal = $firebaseObject(ref);
+                                        userLocal.$loaded().then(function () {
+                                            currentUser=userLocal;
+                                            resolve(currentUser);
+                                        })
+                                    })
+                                } else {
+                                    currentUser = _.extend(currentUser, userLocal);
+                                    resolve(currentUser)
+                                }
                             })
                         }
                     })
