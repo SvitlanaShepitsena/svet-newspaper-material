@@ -1,7 +1,7 @@
 (function () {
     'use strict';
-    angular.module('sections.home')
-        .factory('CurrentUserServ', function (NewUserProcessServ, users, $firebaseArray, $q) {
+    angular.module('auth')
+        .factory('CurrentUserServ', function (users, $firebaseArray,$firebaseObject, $q, NewUserProcessServ) {
             var currentUser;
             return {
                 setUser: function (user) {
@@ -15,14 +15,20 @@
                             usersArr.$loaded().then(function () {
                                 var userLocal = _.find(usersArr, {id: user.id || user.uid});
                                 if (!userLocal) {
+                                    currentUser=NewUserProcessServ.unify(currentUser);
 
 
-
-                                    usersArr.$add(currentUser).$save().then(function (ref) {
+                                    usersArr.$add(currentUser).then(function (ref) {
                                         userLocal = $firebaseObject(ref);
                                         userLocal.$loaded().then(function () {
-                                            currentUser=userLocal;
-                                            resolve(currentUser);
+                                            userLocal.key=ref.key();
+
+
+
+                                            userLocal.$save().then(function (ref) {
+                                            console.log(userLocal);
+                                            resolve(userLocal);
+                                            });
                                         })
                                     })
                                 } else {

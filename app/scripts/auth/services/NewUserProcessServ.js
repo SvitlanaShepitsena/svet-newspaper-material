@@ -1,19 +1,22 @@
 (function () {
     'use strict';
-
     angular.module('auth')
-        .factory('NewUserProcessServ', function ($q, url, users, $firebaseObject, $firebaseArray) {
-
+        .factory('NewUserProcessServ', function () {
             return {
+                unify: function (user) {
+                    if (user.id) {
+                        user.uid=user.id;
+                    }
 
-                get: function () {
+                    if (!user.groups) {
+                        user.groups=['reader'];
+                    }
+                    if (!user.userName) {
+                        user.userName=user.fnam;
+                    }
 
-                },
+                    return user;
 
-                getAssync: function () {
-                    return $q(function (resolve, reject) {
-
-                    });
                 }
             };
         });

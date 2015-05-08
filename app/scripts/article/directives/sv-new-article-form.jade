@@ -1,12 +1,12 @@
 div
-    form(name='articleForm' flow-init)
+    form(name='articleForm' flow-init novalidate)
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'article-author'|translate}}
-                input(ng-model='article.author')
+                input(ng-model='article.author' name='author' required='')
             md-input-container(flex)
                 label {{'date'|translate}}
-                input(type='text', ng-model='article.date')
+                input(type='text', ng-model='article.date' required='')
         div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center')
             div(class='mb' flex-order-sm='2')
                 lx-dropdown(position='left')
@@ -24,7 +24,7 @@ div
         div(layout='column')
             md-input-container(flex='')
                 label {{'article-title'|translate}}
-                input(ng-model='article.title' type="text" md-maxlength='150')
+                input(ng-model='article.title' type="text" md-maxlength='150' required='')
             md-input-container(flex='' )
                 label() {{'article-content'|translate}}
                 //textarea.p(ng-model='article.body', rows='5',  style='background-color:white;border: 1px #e0e0e0 solid' md-maxlength="5000")

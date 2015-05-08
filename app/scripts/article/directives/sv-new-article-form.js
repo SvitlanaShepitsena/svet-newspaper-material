@@ -13,19 +13,30 @@
                     } else {
                         //    new article
                         $scope.dateMod = '';
-                        NewsGeneratorServ.getPoliticalNews(20, true).then(function (realNews) {
+                        //NewsGeneratorServ.getPoliticalNews(20, true).then(function (realNews) {
+                        //    $scope.article = {
+                        //        isDraft: true,
+                        //        img: realNews.img,
+                        //        isTopNews: false,
+                        //        author: CurrentUserServ.get().userName,
+                        //        date: realNews.publishedDate,
+                        //        section: SectionsServ.getRandomSection($scope.siteSections),
+                        //        title: realNews.title,
+                        //        body: realNews.body,
+                        //        tags: realNews.tags
+                        //    }
+                        //});
                             $scope.article = {
                                 isDraft: true,
-                                img: realNews.img,
+                                img: '',
                                 isTopNews: false,
-                                author: CurrentUserServ.get().userName,
-                                date: realNews.publishedDate,
-                                section: SectionsServ.getRandomSection($scope.siteSections),
-                                title: realNews.title,
-                                body: realNews.body,
-                                tags: realNews.tags
+                                author: '',
+                                date: '',
+                                section: '',
+                                title: '',
+                                body: '',
+                                tags: ''
                             }
-                        });
                     }
                     $scope.setSection = function (section) {
                         $scope.article.section = section;
