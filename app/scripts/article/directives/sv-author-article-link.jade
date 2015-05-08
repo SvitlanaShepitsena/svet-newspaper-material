@@ -1,1 +1,7 @@
-div sv-author-article-link Template
+div
+    a(ui-sref='app.article({id:article.id})' style='text-decoration:none')
+        .list-row__primary
+            img.img-round.mdc-img-bw(ng-src='{{article.img}}', width='40', height='40')
+        .list-row__content
+            spaarticle.display-block {{article.title | length:25}}
+            spaarticle.display-block.fs-body-1.tc-black-2 {{article.body | length:50}}
