@@ -10,7 +10,7 @@ div
         button.btn.btn--m.btn--teal.tc-teal-300.btn--flat(lx-ripple='' ng-click='saveArticle()')
             i.fa.fa-save.mr
             | {{'save-to-drafts'|translate}}
-        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(class='ml+' lx-ripple='')
+        button.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ng-click='saveArticle(true)' class='ml+' lx-ripple='')
             i.fa.fa-send-o.mr
             | {{'post-article'|translate}}
         button.btn.btn--m.btn--red.tc-red-300.btn--flat(class='ml+' lx-ripple='')

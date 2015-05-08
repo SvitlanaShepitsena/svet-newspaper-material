@@ -13,7 +13,6 @@
                     btns.css('float', 'left');
                     btns.css('font-size', '14px');
                     btns.css('color', '#757575');
-                    console.log('text');
                     $scope.myContent = '';
                 }
             };

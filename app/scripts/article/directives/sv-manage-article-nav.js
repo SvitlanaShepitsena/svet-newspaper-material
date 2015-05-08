@@ -9,7 +9,10 @@
                     article: '='
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.saveArticle = function () {
+                    $scope.saveArticle = function (active) {
+                        if (active) {
+                            $scope.article.isDraft = false;
+                        }
                         ArticleServ.add($scope.article).then(function (uid) {
                                 $state.go('app.user.author-articles');
                                 toastr.success('Статья сохранена в БД');

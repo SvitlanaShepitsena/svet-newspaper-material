@@ -55,6 +55,9 @@ angular.module('lumx.dropdown', [])
         $scope.isOpened = false;
         $scope.isDropped = false;
 
+
+
+
         this.registerDropdown = function(element)
         {
             dropdown = element;
