@@ -213,37 +213,45 @@ See README.md or https://github.com/fraywing/textAngular/wiki for requirements a
 }
 
 /*custom styles*/
-/*.ta-btn-default.disabled, .ta-btn-default[disabled], fieldset[disabled] .ta-btn-default, .ta-btn-default.disabled:hover, .ta-btn-default[disabled]:hover, fieldset[disabled] .ta-btn-default:hover, .ta-btn-default.disabled:focus, .ta-btn-default[disabled]:focus, fieldset[disabled] .ta-btn-default:focus, .ta-btn-default.disabled:active, .ta-btn-default[disabled]:active, fieldset[disabled] .ta-btn-default:active, .ta-btn-default.disabled.active, .ta-btn-default[disabled].active, fieldset[disabled] .ta-btn-default.active {*/
-    /*background-color: white;*/
-    /*border: 1px rgb(204, 204, 204) solid;*/
-/*}*/
+.ta-btn-default.disabled, .ta-btn-default[disabled], fieldset[disabled] .ta-btn-default, .ta-btn-default.disabled:hover, .ta-btn-default[disabled]:hover, fieldset[disabled] .ta-btn-default:hover, .ta-btn-default.disabled:focus, .ta-btn-default[disabled]:focus, fieldset[disabled] .ta-btn-default:focus, .ta-btn-default.disabled:active, .ta-btn-default[disabled]:active, fieldset[disabled] .ta-btn-default:active, .ta-btn-default.disabled.active, .ta-btn-default[disabled].active, fieldset[disabled] .ta-btn-default.active {
+    background-color: white;
+}
+
+.ta-btn-default {
+    background-color: #ffffff;
+    border: 1px #E0E0E0 solid;
+}
+
+.ta-btn-default:hover, .ta-btn-default:focus, .ta-btn-default:active, .ta-btn-default.active, .open .dropdown-toggle.ta-btn-default {
+    background-color: #E57373 !important;
+    color: #fafafa !important;
+}
+
+.ta-btn-group {
+    display: inline-block;
+    margin-right: 5px;
+}
 
 /*.ta-btn {*/
-    /*border-bottom: 1px solid;*/
-    /*border-left: 1px solid;*/
-    /*border-image-outset: 0px;*/
-    /*border-image-repeat: stretch;*/
-    /*border-image-slice: 100%;*/
-    /*border-image-width: 1;*/
-    /*border-radius: 0px;*/
+/*border-bottom: 1px solid;*/
+/*border-left: 1px solid;*/
+/*border-image-outset: 0px;*/
+/*border-image-repeat: stretch;*/
+/*border-radius: 0px;*/
 /*}*/
 
 /*.ta-btn-group > .ta-btn:first-child:not(:last-child):not(.dropdown-toggle) {*/
-    /*border-radius: 4px 0px 0px 4px;*/
+/*border-radius: 4px 0px 0px 4px;*/
 /*}*/
 
-/*.ta-btn-toolbar > .ta-btn, .ta-btn-toolbar > .ta-btn-group, .ta-btn-toolbar > .input-group {*/
-    /*margin-left: 5px;*/
-/*}*/
-/*.ta-btn-group, .ta-btn-group-vertical{*/
-    /*display: block;*/
-/*}*/
-/*.ta-btn-toolbar .ta-btn-group, .ta-btn-toolbar .input-group{*/
-    /*float: left;*/
-/*}*/
-/*.ta-toolbar .ta-btn-group{*/
-    /*margin-bottom: 5px;*/
-/*}*/
+.ta-btn-toolbar > .ta-btn, .ta-btn-toolbar > .ta-btn-group, .ta-btn-toolbar > .input-group {
+    margin-left: 5px;
+}
+
+.ta-toolbar .ta-btn-group {
+    margin-bottom: 5px;
+}
+
 /*.ta-btn-toolbar>.ta-btn, .ta-btn-toolbar>.ta-btn-group, .ta-btn-toolbar>.input-group{*/
-    /*margin-left: 5px;*/
+/*margin-left: 5px;*/
 /*}*/
