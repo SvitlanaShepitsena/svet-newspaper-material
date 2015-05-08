@@ -84,16 +84,6 @@
 	margin-bottom: 4px;
 }
 
-.firepad {
-	width: 700px;
-	height: 450px;
-	background-color: #e0e0e0;
-}
-
-.CodeMirror {
-	background-color: #eee;
-}
-
 .sv-notifications-txt {
 	font-weight: 500;
 	font-size: 14px;
