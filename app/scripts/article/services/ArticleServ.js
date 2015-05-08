@@ -2,9 +2,13 @@
     'use strict';
     angular.module('article')
         .factory('ArticleServ', function ($q, $firebaseArray, $firebaseObject, url) {
-            var refArr = $firebaseArray(new Firebase(url + 'articles/'));
-            var refObj = $firebaseObject(new Firebase(url + 'articles/'));
+            var ref = new Firebase(url + 'articles/');
+            var refArr = $firebaseArray(ref)
+            var refObj = $firebaseObject(ref);
             return {
+                all: function () {
+                    return refArr;
+                },
                 allObjRef: function () {
                     return refObj;
                 },

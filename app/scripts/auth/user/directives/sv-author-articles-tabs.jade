@@ -3,6 +3,8 @@ div
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label {{'all-news'|translate}}
             md-tab-body
+                div(ng-repeat='n in articles')
+                    sv-one-article-link
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label {{'world'|translate}}
             md-tab-body

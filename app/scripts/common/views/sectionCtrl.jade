@@ -1,4 +1,4 @@
-sv-profile-title(header-title="sectionName")
+sv-profile-title(header-title="{{sectionName}}")
 div(layout='column')
     div(ng-repeat='n in newsList|sectionNews:sectionName')
         a(ui-sref='app.article({id:n.id})' style='text-decoration:none')
