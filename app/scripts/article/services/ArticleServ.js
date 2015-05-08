@@ -9,18 +9,32 @@
                 all: function () {
                     return refArr;
                 },
+                get: function (id) {
+                    return $firebaseObject(ref.child(id))
+                },
                 allObjRef: function () {
                     return refObj;
                 },
                 add: function (article) {
                     return $q(function (resolve, reject) {
-                        refArr.$add(article).then(function (uid) {
-                                resolve(uid);
-                            },
-                            function (error) {
-                                reject(error);
-                            }
-                        );
+                        if (article.$id) {
+                            var articleDb = ref.child(article.$id);
+                            var artFbObj = $firebaseObject(articleDb);
+                            artFbObj.$loaded().then(function () {
+                                artFbObj = article;
+                                artFbObj.$save().then(function (ref) {
+                                    resolve(ref.key());
+                                })
+                            })
+                        } else {
+                            refArr.$add(article).then(function (uid) {
+                                    resolve(uid);
+                                },
+                                function (error) {
+                                    reject(error);
+                                }
+                            );
+                        }
                     });
                 },
                 addComment: function (fbKey, comment) {

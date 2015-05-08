@@ -1,10 +1,8 @@
 (function () {
     'use strict';
-
     angular.module('auth.user')
-        .controller('CreateArticleCtrl', function ($scope) {
-            var createArticle = this;
-
+        .controller('CreateArticleCtrl', function ($scope, $stateParams) {
+            $scope.artId = $stateParams.artId;
         });
 })();
 
