@@ -1,11 +1,20 @@
-div
-    ul.list(class='mt++')
-        li.list-row
-            .list-row__content
+div.card.mb
+    div(layout='column')
+        div.p.bgc-grey-200(layout='row' layout-align='space-between center' )
+            span.fs-caption.mdc-label-default.bgc-grey-200(style='line-height:14px') {{article.section|capitalize}}
+            button.btn.btn--xs.btn--grey.btn--flat(lx-ripple='') Comments: 4
+        div(layout-gt-sm='row' layout-sm='column' layout-align="space-between center")
+            div.p
                 a(ui-sref='app.article({id:article.id})' style='text-decoration:none')
                     span.display-block {{article.title | length:25}}
                     span.display-block.fs-body-1.tc-black-2 {{article.body | length:50}}
-                span.display-block.fs-caption {{article.section|capitalize}}
-            .list-row__secondary
-                i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-information
-    .divider.divider--dark
+            div.mb.pl.pr.pt
+                button.btn.btn--xs.btn--white.btn--raised.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+                    i.mdi.mdi-share-variant.mr
+                    | {{'share'|translate}}
+                button.btn.btn--xs.btn--white.btn--raised.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+                    i.mdi.mdi-pencil.mr
+                    | {{'edit'|translate}}
+                button.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ng-click='removeCl({cl:cl})')
+                    i.mdi.mdi-close.mr
+                    | {{'delete'|translate}}
