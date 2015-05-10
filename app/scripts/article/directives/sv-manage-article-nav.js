@@ -13,9 +13,7 @@
                         if (active) {
                             $scope.article.isDraft = false;
                         }
-
                         $scope.article.authorKey = CurrentUserServ.get().key;
-
                         ArticleServ.add($scope.article).then(function (uid) {
                                 $state.go('app.user.author-articles');
                                 toastr.success('Статья сохранена в БД');
