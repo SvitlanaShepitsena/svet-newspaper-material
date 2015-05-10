@@ -5,18 +5,15 @@
             return {
                 unify: function (user) {
                     if (user.id) {
-                        user.uid=user.id;
+                        user.uid = user.id;
                     }
-
                     if (!user.groups) {
-                        user.groups=['reader'];
+                        user.groups = ['reader'];
                     }
                     if (!user.userName) {
-                        user.userName=user.fnam;
+                        user.userName = user.fname;
                     }
-
                     return user;
-
                 }
             };
         });
