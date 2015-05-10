@@ -2,6 +2,7 @@ div.card.mb
     div(layout='column')
         div.p.bgc-grey-200(layout='row' layout-align='space-between center' )
             span.fs-caption.mdc-label-default.bgc-grey-200(style='line-height:14px') {{article.section|capitalize}}
+            span {{article.timestamp|date}}
             button.btn.btn--xs.btn--grey.btn--flat(lx-ripple='') Comments: 4
         div(layout-gt-sm='row' layout-sm='column' layout-align="space-between center")
             div.p
