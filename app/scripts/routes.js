@@ -8,11 +8,8 @@
                     abstract: true,
                     controller: "AppCtrl as app",
                     resolve: {
-                        user: function (AuthServ, $rootScope) {
+                        user: function (AuthServ) {
                             return AuthServ.getUser();
-                        },
-                        news: function (ArticleServ, $rootScope) {
-                            return ArticleServ.allObjRef();
                         }
                     },
                     template: "<div ui-view=''></div>"
