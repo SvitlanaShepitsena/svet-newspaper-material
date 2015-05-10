@@ -7,6 +7,18 @@
                 .state("app.manager", {
                     url: "/manager/:uid",
                     abstract: true,
+                    resolve: {
+                        rights: function (CurrentUserServ, $q) {
+                            return $q(function (resolve, reject) {
+                                var user = CurrentUserServ.get();
+                                if (user.groups && user.groups.indexOf('manager') > -1) {
+                                    resolve();
+                                } else {
+                                    reject();
+                                }
+                            })
+                        }
+                    },
                     controller: "ManagerCtrl as manager",
                     templateUrl: "scripts/auth/manager/views/managerCtrl.html"
                 })
