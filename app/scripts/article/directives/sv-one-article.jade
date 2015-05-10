@@ -1,8 +1,8 @@
 div(flex-container='column' flex)
     .card(class='m')
-        div.bgc-grey-200(layout='row' layout-align='space-between center' style='padding:4px 12px')
+        div.bgc-grey-200(layout='row' layout-align='space-between center' style='padding:8px 12px')
             sv-one-article-statistics
-            sv-edit-article-panel(ng-if='user && news.authorKey===user.key' )
+            sv-edit-article-btn(ng-if='user && news.authorKey===user.key' )
         div(flex-container='column' class='p+')
             div(class='mb++')
                 span.display-block.fs-display-1 {{news.title}}
