@@ -8,10 +8,9 @@
                     url: "/manager/:uid",
                     abstract: true,
                     resolve: {
-                        rights: function (CurrentUserServ, $q, $stateParams) {
+                        rights: function (user, $q, $stateParams) {
                             var routeUid = $stateParams.uid;
                             return $q(function (resolve, reject) {
-                                var user = CurrentUserServ.get();
                                 if (user.groups && user.groups.indexOf('manager') > -1) {
                                     if (!user.uid || user.uid !== routeUid) {
                                         reject();
