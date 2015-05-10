@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .factory('ArticleServ', function ($q, $firebaseArray, $firebaseObject, url) {
+        .factory('ArticleServ', function ($q, $firebaseArray, $firebaseObject, url,CurrentUserServ) {
             var ref = new Firebase(url + 'articles/');
             var refArr = $firebaseArray(ref)
             var refObj = $firebaseObject(ref);
@@ -15,7 +15,9 @@
                 allObjRef: function () {
                     return refObj;
                 },
-                add: function (article) {
+                add: function (article, isDraft) {
+                    article.isDraft = isDraft;
+                    article.authorKey = CurrentUserServ.get().key
                     return $q(function (resolve, reject) {
                         if (article.$id) {
                             var articleDb = ref.child(article.$id);
