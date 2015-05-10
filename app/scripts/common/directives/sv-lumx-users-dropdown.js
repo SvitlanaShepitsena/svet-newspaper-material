@@ -11,7 +11,9 @@
                     userAvatar: '@',
                     userName: '@',
                     userFirstName: '@',
-                    userLastName: '@'
+                    userLastName: '@',
+                    iconType: '@',
+                    iconName: '@'
                 },
                 link: function ($scope, el, attrs) {
                 }
