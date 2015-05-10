@@ -5,6 +5,7 @@
             $scope.sectionName = $stateParams.sectionName;
             ArticleServ.allForHome().then(function (svetNews) {
                 $scope.newsList = svetNews.newsList;
+
             })
         });
 })();
