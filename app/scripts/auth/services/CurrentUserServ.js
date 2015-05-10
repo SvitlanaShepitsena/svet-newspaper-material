@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('CurrentUserServ', function (users, $firebaseArray, $firebaseObject, $q, NewUserProcessServ) {
+        .factory('CurrentUserServ', function (users, $firebaseArray, $firebaseObject, $q, NewUserProcessServ,$timeout) {
             var currentUser;
             return {
                 setUser: function (user) {
@@ -39,7 +39,13 @@
                 },
                 get: function () {
                     return currentUser || null;
+                },
+                getAssync: function () {
+                    return $q(function (resolve) {
+
+                    })
                 }
+
             };
         });
 })();
