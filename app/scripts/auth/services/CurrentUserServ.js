@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('CurrentUserServ', function (users, $firebaseArray,$firebaseObject, $q, NewUserProcessServ) {
+        .factory('CurrentUserServ', function (users, $firebaseArray, $firebaseObject, $q, NewUserProcessServ) {
             var currentUser;
             return {
                 setUser: function (user) {
@@ -10,24 +10,19 @@
                             resolve();
                         }
                         currentUser = user;
-                        if (!currentUser.userName || !currentUser.key) {
+                        //if (!currentUser.userName || !currentUser.key) {
                             var usersArr = $firebaseArray(new Firebase(users));
                             usersArr.$loaded().then(function () {
-                                var userLocal = _.find(usersArr, {id: user.id || user.uid});
+                                var userLocal = _.find(usersArr, {uid: user.id || user.uid});
                                 if (!userLocal) {
-                                    currentUser=NewUserProcessServ.unify(currentUser);
-
-
+                                    currentUser = NewUserProcessServ.unify(currentUser);
                                     usersArr.$add(currentUser).then(function (ref) {
                                         userLocal = $firebaseObject(ref);
                                         userLocal.$loaded().then(function () {
-                                            userLocal.key=ref.key();
-
-
-
+                                            userLocal.key = ref.key();
                                             userLocal.$save().then(function (ref) {
-                                            console.log(userLocal);
-                                            resolve(userLocal);
+                                                console.log(userLocal);
+                                                resolve(userLocal);
                                             });
                                         })
                                     })
@@ -36,7 +31,7 @@
                                     resolve(currentUser)
                                 }
                             })
-                        }
+                        //}
                     })
                 },
                 cleanUser: function () {

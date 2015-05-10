@@ -1,7 +1,15 @@
 (function () {
     'use strict';
     angular.module('sections.home')
-        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $scope, user, news, $rootScope, toastr, CurrentUserServ) {
+        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ,$state, $scope, user, news, $rootScope, toastr, CurrentUserServ) {
+            var currentState= _.last(_.keys($state.$current.includes));
+            if (currentState.indexOf('app.user')>-1&&user.groups.indexOf('manager')) {
+                $state.go('app.manager.dashboard',{uid:user.uid});
+
+            }
+
+
+
             $scope.user = user;
             news.$bindTo($rootScope, "newsObj").then(function () {
             });

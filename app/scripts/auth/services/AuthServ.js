@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('AuthServ', function (avatar, UserGroupsServ, $firebaseAuth, $firebaseObject, url, users, $q, $rootScope, NoteServ, CurrentUserServ) {
+        .factory('AuthServ', function (NewUserProcessServ, avatar, UserGroupsServ, $firebaseAuth, $firebaseObject, url, users, $q, $rootScope, NoteServ, CurrentUserServ) {
             var mainRef = new Firebase(url);
 
             function processUserFb(data) {
@@ -95,8 +95,11 @@
                     this.getObj().$authWithPassword({
                         email: email,
                         password: password
-                    }).then(function (authData) {
-                        var user = processUserPassword(authData);
+                    }).then(function (user) {
+
+                        user = processUserPassword(user);
+                        user = NewUserProcessServ.unify(user);
+
                         if (_.isNull(user)) {
                             deferred.resolve(null);
                         } else {

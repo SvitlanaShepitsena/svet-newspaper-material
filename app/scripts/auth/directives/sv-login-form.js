@@ -20,6 +20,7 @@
                         password: '123456'
                     }
                     $scope.singIn = function () {
+
                         AuthServ.loginPassword($scope.user.email, $scope.user.password).then(function (user) {
                             if (UserGroupsServ.isInGroup('manager')) {
                                 $state.go('app.manager.dashboard', {uid: user.id});
