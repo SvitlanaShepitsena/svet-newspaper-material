@@ -16,7 +16,9 @@
                                 topNews.push(value);
                                 isTopNewsChosen = true;
                             } else {
-                                secondNews.push(value);
+                                if (value.title && value.body) {
+                                    secondNews.push(value);
+                                }
                             }
                         }
                     });
