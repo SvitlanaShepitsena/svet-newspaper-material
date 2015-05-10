@@ -23,14 +23,5 @@ div.card.mb
         .bgc-grey-100.p(layout='row' layout-align='start center' )
             span.fs-caption.tc-grey-500.mr Comments: 4
             span.fs-caption.tc-grey-500.mr Shares: 5
-            lx-dropdown(position='left')
-                button.btn.btn--xs.btn--grey.btn--flat.tc-black-2(lx-ripple lx-dropdown-toggle)
-                    i.mdi.mdi-account-check.mr
-                    | Likes: 5
-                lx-dropdown-menu
-                    ul
-                        li
-                            a.dropdown-link
-                                img.img-round.mdc-display-inline-block.mr(ng-src="{{userAvatar}}" style='width:20px;height:20px')
-                                span.display-inline-block.fs-body-2 {{user.name}} {{user.fname}} {{user.lname}}
-                        li.dropdown-divider
+            sv-lumx-users-dropdown.ml(btn-title="likes" action-counter="5" user-name="user.name")
+
