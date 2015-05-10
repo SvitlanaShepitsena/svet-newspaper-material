@@ -7,6 +7,19 @@
                 .state("app.user", {
                     abstract: true,
                     url: '/:uid',
+                    resolve: {
+                        rights: function (CurrentUserServ, $q, $stateParams, user) {
+                            var routeUid = $stateParams.uid;
+                            return $q(function (resolve, reject) {
+
+                                if (user && user.userName === routeUid) {
+                                    resolve();
+                                } else {
+                                    reject();
+                                }
+                            })
+                        }
+                    },
                     controller: "UserCtrl as user",
                     templateUrl: "scripts/auth/user/views/userCtrl.html"
                 })
