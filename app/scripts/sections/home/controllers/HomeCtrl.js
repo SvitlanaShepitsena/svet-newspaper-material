@@ -6,6 +6,6 @@
                 $scope.appLoaded = true;
                 $scope.news=svetNews.news;
                 $scope.newsGrid=svetNews.newsGrid;
-            })
+            });
         });
 })();

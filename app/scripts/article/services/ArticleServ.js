@@ -9,7 +9,9 @@
 
             function processNews(newsObj) {
                 var idCounter = 1;
-                var fbKeys = _.slice(_.keys(newsObj), 3);
+                var fbKeys = _.filter(_.keys(newsObj), function (key) {
+                    return key.indexOf('$')===-1 ;
+                });
                 newsObj = _.map(_.filter(newsObj, function (newsOne, index) {
                     if (_.isObject(newsOne)) {
                         return true;
@@ -39,16 +41,17 @@
                     return refObj;
                 },
                 allForHome: function () {
-                    if (svetNews) {
-                        return svetNews;
-                    }
-                    var newsObj = refObj;
                     return $q(function (resolve, reject) {
+                        var newsObj = refObj;
+                        if (svetNews) {
+                           resolve(svetNews) ;
+
+                        }
                         newsObj.$loaded().then(function () {
                             svetNews = processNews(newsObj);
                             resolve(svetNews);
                             newsObj.$watch(function () {
-                            svetNews = processNews(newsObj);
+                                svetNews = processNews(newsObj);
                                 console.log('change news');
                             });
                         });
