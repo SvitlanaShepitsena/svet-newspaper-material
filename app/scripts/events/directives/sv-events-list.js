@@ -4,7 +4,7 @@
         .directive('svEventsList', function (ConnectionEventServ) {
             return {
                 replace: true,
-                templateUrl: 'scripts/events/directives/sv-events-list.html',
+                templateUrl: 'scripts/events/diresv-events-list.html',
                 scope: {
                     eventFilter: '@'
                 },
