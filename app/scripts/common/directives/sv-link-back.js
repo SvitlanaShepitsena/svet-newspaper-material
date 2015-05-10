@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('common')
         .directive('svLinkBack', function () {
             return {
@@ -11,8 +10,6 @@
                     lTitle: '@'
                 },
                 link: function ($scope, el, attrs) {
-
-
                 }
             };
         });

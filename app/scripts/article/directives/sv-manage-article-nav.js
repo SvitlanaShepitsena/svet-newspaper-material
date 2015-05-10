@@ -23,6 +23,10 @@
                             }
                         );
                     }
+                    $scope.cancelArticle = function (active) {
+                        $state.go('app.user.author-articles');
+                        toastr.success('You have canceled creating an article');
+                    }
                 }
             };
         });

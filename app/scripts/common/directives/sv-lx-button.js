@@ -6,7 +6,7 @@
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-lx-button.html',
                 scope: {
-                    url: '@',
+                    bntUrl: '@',
                     methodClick: '&',
                     btnSize: '@',
                     btnType: '@',
