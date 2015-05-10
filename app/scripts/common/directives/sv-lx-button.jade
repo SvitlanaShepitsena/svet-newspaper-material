@@ -1,4 +1,6 @@
-button(class='btn btn--{{btnSize}} btn--{{btnColor}} tc-{{textColor}} btn--{{btnType}}' lx-ripple=''
-ng-click='saveArticle()' )
-    i.fa.fa-save.mr
-    span(hide-sm) {{'save-to-drafts'|translate}}
+button(class='btn btn--{{btnSize}} btn--{{btnColor}} tc-{{textColor}} ' +
+'btn--{{btnType}}'
+lx-ripple
+ng-click='methodClick()' )
+    i(class='{{iconType}} {{iconName}}')
+    span.ml(hide-sm) {{btnTitle|translate}}
