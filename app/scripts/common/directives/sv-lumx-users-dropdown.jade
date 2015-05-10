@@ -1,0 +1,13 @@
+div
+    lx-dropdown(position='left')
+        button.btn.btn--xs.btn--grey.btn--flat.tc-grey-600(lx-ripple lx-dropdown-toggle )
+            i(class='{{iconType}} {{iconName}}' style='margin-right:4px')
+            | {{btnTitle}}:
+            span(style='font-weight:bold;margin-left:4px') {{actionCounter}}
+        lx-dropdown-menu
+            ul
+                li
+                    a.dropdown-lin5
+                        img.img-round.mdc-display-inline-block.mr(ng-src="{{userAvatar}}" style='width:20px;height:20px')
+                        span.display-inline-block.fs-body-2 {{user.name}} {{user.fname}} {{user.lname}}
+                li.dropdown-divider
