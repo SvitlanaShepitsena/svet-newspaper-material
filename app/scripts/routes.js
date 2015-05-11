@@ -17,12 +17,36 @@
                 .state("app.sign-up", {
                     url: "/sign-up",
                     controller: "SignUpCtrl as signUp",
-                    templateUrl: "scripts/auth/views/sign-upCtrl.html"
+                    templateUrl: "scripts/auth/views/sign-upCtrl.html",
+                    resolve: {
+                        currentUser: function (CurrentUserServ, $q) {
+                            return $q(function (resolve, reject) {
+                                var isLoggedIn = !!CurrentUserServ.get();
+                                if (isLoggedIn) {
+                                    reject('You are already logged in. Logout First');
+                                } else {
+                                    resolve();
+                                }
+                            })
+                        }
+                    }
                 })
                 .state("app.svet-login", {
                     url: "/svet-login",
                     controller: "SvetLoginCtrl as login",
-                    templateUrl: "scripts/auth/views/svet-loginCtrl.html"
+                    templateUrl: "scripts/auth/views/svet-loginCtrl.html",
+                    resolve: {
+                        currentUser: function (CurrentUserServ, $q) {
+                            return $q(function (resolve, reject) {
+                                var isLoggedIn = !!CurrentUserServ.get();
+                                if (isLoggedIn) {
+                                    reject('You are already logged in');
+                                } else {
+                                    resolve();
+                                }
+                            })
+                        }
+                    }
                 })
 //#state'
                 .state("app.home", {

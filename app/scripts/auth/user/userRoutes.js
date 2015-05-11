@@ -15,7 +15,7 @@
                                 if (user && user.userName === routeUid) {
                                     resolve();
                                 } else {
-                                    reject();
+                                    reject('You do not have enough priviliges to view that page!');
                                 }
                             })
                         }

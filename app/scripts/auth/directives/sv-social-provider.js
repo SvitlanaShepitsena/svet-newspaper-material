@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svSocialProvider', function (AuthServ, UserServ, $rootScope, $state) {
+        .directive('svSocialProvider', function (AuthServ, UserServ, $rootScope, $state,UserGroupsServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-social-provider.html',
@@ -13,10 +13,12 @@
                     $scope.icon = $scope.icon || $scope.provider;
                     $scope.loginSvetUser = function () {
                         var providerName = $scope.provider.replace('+', '').toLowerCase();
-                        console.log('login');
                         AuthServ.authProvider(providerName).then(function (user) {
-                            UserServ.saveNewUser(user);
-                            $state.go('app.home');
+                            if (UserGroupsServ.isInGroup('manager')) {
+                                $state.go('app.manager.dashboard', {uid: user.id})
+                            } else {
+                                $state.go('app.user.dashboard', {uid: user.userName})
+                            }
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
                         });
