@@ -18,7 +18,9 @@
                 'upload-img': 'Upload Image',
                 'tags': 'Tags',
                 'views': 'Views',
-                'shares': 'Shares'
+                'shares': 'Shares',
+                'private': 'Private',
+                'public': 'Public'
                 // 'eng':'eng',
             });
             $translateProvider.translations('ru', {
@@ -37,7 +39,9 @@
                 'tags': 'Теги',
                 'shares': 'Поделились',
                 'views': 'Просмотры',
-                'likes': 'Понравилось'
+                'likes': 'Понравилось',
+                'private': 'Приватная',
+                'public': 'Публичная'
                 // 'ru':'ru',
             });
             $translateProvider.preferredLanguage('en');

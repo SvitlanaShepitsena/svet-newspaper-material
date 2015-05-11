@@ -10,6 +10,12 @@
                 templateUrl: 'scripts/article/directives/sv-one-article.html',
                 link: function ($scope, el, attrs) {
                     $scope.user = CurrentUserServ.get();
+                    $scope.rating1 = 5;
+                    $scope.rating2 = 2;
+                    $scope.isReadonly = true;
+                    $scope.rateFunction = function (rating) {
+                        console.log("Rating selected: " + rating);
+                    };
                 }
             };
         });
