@@ -16,33 +16,22 @@
                 authWithProvider: function (provider) {
                     return $q(function (resolve, reject) {
                         if (provider === 'google') {
-                            var ref = new Firebase(url);
-                            ref.authWithOAuthPopup("google", function (error, authData) {
-                                var i = 10;
-                            }, {
-                                scope: "email"
+                            authObj.$authWithOAuthPopup("google", {scope: 'email'}).then(function (authData) {
+                                console.log("Logged in as:", authData.google.email);
+                                resolve();
+                            }).catch(function (error) {
+                                console.error("Authentication failed:", error);
                             });
                         }
                         if (provider === 'facebook') {
-                            var ref = new Firebase(url);
+                            ref = new Firebase(url);
                             ref.authWithOAuthPopup("facebook", function (error, authData) {
-                                var i = 10;
+                                console.log("Logged in as:", authData);
+                                resolve();
                             }, {
-                                remember: "sessionOnly",
                                 scope: "email"
                             });
                         }
-                        ref.authWithOAuthPopup(provider, function (error, authData) {
-                            if (error) {
-                                console.log("Login Failed!", error);
-                            } else {
-                                ProfileServ.getProfile(authData).then(function (user) {
-                                    resolve(user);
-                                })
-                            }
-                        }, {
-                            scope: "email"
-                        });
                     });
                 }
             };

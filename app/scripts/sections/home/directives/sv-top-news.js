@@ -9,7 +9,7 @@
                     mainNews: '='
                 },
                 link: function ($scope, el, attrs) {
-                    console.log($scope.mainNews);
+                    //console.log($scope.mainNews);
                 }
             };
         });
