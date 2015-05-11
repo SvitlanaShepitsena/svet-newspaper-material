@@ -15,16 +15,33 @@
                 },
                 authWithProvider: function (provider) {
                     return $q(function (resolve, reject) {
+                        if (provider === 'google') {
+                            var ref = new Firebase(url);
+                            ref.authWithOAuthPopup("google", function (error, authData) {
+                                var i = 10;
+                            }, {
+                                scope: "email"
+                            });
+                        }
+                        if (provider === 'facebook') {
+                            var ref = new Firebase(url);
+                            ref.authWithOAuthPopup("facebook", function (error, authData) {
+                                var i = 10;
+                            }, {
+                                remember: "sessionOnly",
+                                scope: "email"
+                            });
+                        }
                         ref.authWithOAuthPopup(provider, function (error, authData) {
                             if (error) {
                                 console.log("Login Failed!", error);
                             } else {
-                                // the access token will allow us to make Open Graph API calls
-                                console.log(authData.facebook.accessToken);
-                                resolve(authData.facebook);
+                                ProfileServ.getProfile(authData).then(function (user) {
+                                    resolve(user);
+                                })
                             }
                         }, {
-                            scope: "email,user_likes" // the permissions requested
+                            scope: "email"
                         });
                     });
                 }

@@ -6,11 +6,7 @@
 
             return {
 
-                get: function () {
-
-                },
-
-                getAssync: function () {
+                getProfile: function (authData) {
                     return $q(function (resolve, reject) {
 
                     });
