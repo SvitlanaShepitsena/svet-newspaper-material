@@ -5,16 +5,6 @@ div.card(class='mb+')
                 span.fs-caption.mr.tc-grey-50.bgc-grey-500(style='line-height:14px;padding:2px 4px') {{article.section|translate|capitalize}}
                 span.fs-caption.tc-grey-500 {{article.timestamp|date}}
             sv-article-status
-            div(layout='row' layout-align="center center")
-                .fs-body-1.mr.tc-grey-600
-                    i.fa.fa-lock.mr
-                    span.fs-caption(hide-sm) {{'private'|translate}}
-                div
-                    .switch
-                        input#switch1.switch__input(type='checkbox')
-                        label.switch__label.fs-body-1.mr.tc-grey-600(for='switch1' style='margin-bottom:0px')
-                            i.fa.fa-globe.mr
-                            span.fs-caption(hide-sm) {{'public'|translate}}
        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="center center")
             div.p
                 a.tc-grey-700(ui-sref='app.article({id:article.id})' style='text-decoration:none;font-weight:bold')
