@@ -1,5 +1,5 @@
 .card.m.p
-    a.article-thumb-link(ui-sref='app.article({id:secondNews.id})')
+    a.article-thumb-link(ui-sref='app.article({id:secondNews.$id})')
         span.display-block.fs-subhead.tc-black-1.article-thumb-title {{secondNews.title | length:25}}
         .fs-caption.tc-grey-600.article-thumb-author By {{secondNews.author}}
         span.mdc-display-inline-block.fs-body-2.tc-grey-800.article-thumb-body {{secondNews.body | length:50}}
