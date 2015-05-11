@@ -5,7 +5,7 @@ div(flex-container='column' flex)
                 sv-lumx-users-dropdown.ml(btn-title="comments" action-counter="5" user-name="user.name"  icon-type='fa' icon-name="fa-comment")
                 sv-lumx-users-dropdown.ml(btn-title="shares" action-counter="7" user-name="user.name" icon-type='mdi' icon-name="mdi-share-variant")
                 sv-lumx-users-dropdown.ml(btn-title="likes" action-counter="9" user-name="user.name" icon-type='fa' icon-name="fa-thumb-up")
-            sv-edit-article-btn(ng-if='user && news.authorKey===user.key' news='news')
+            sv-edit-article-btn(ng-if='user && news.authorKey===user.key' article='news')
         div(flex-container='column' class='p+')
             div(class='mb++')
                 span.display-block.fs-display-1 {{news.title}}

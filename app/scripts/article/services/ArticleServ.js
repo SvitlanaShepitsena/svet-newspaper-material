@@ -10,7 +10,7 @@
             function processNews(newsObj) {
                 var idCounter = 1;
                 var fbKeys = _.filter(_.keys(newsObj), function (key) {
-                    return key.indexOf('$')===-1 ;
+                    return key.indexOf('$') === -1;
                 });
                 newsObj = _.map(_.filter(newsObj, function (newsOne, index) {
                     if (_.isObject(newsOne)) {
@@ -19,7 +19,7 @@
                 }), function (news, count) {
                     return _.extend(news, {
                         id: idCounter++,
-                        fbkey: fbKeys[count]
+                        index: fbKeys[count]
                     });
                 });
                 var svetNews = {};
@@ -47,8 +47,7 @@
                     return $q(function (resolve, reject) {
                         var newsObj = refObj;
                         if (svetNews) {
-                           resolve(svetNews) ;
-
+                            resolve(svetNews);
                         }
                         newsObj.$loaded().then(function () {
                             svetNews = processNews(newsObj);
@@ -71,12 +70,23 @@
                             artFbObj.$loaded().then(function () {
                                 artFbObj = article;
                                 artFbObj.$save().then(function (ref) {
-                                    resolve(ref.key());
+                                    artFbObj.fbkey = ref.key();
+                                    artFbObj.$save().then(function () {
+                                        resolve(ref.key());
+                                    })
                                 })
                             })
                         } else {
-                            refArr.$add(article).then(function (uid) {
-                                    resolve(uid);
+                            refArr.$add(article).then(function (ref) {
+                                    var id = ref.key()
+                                    var articleDb = ref;
+                                    var artFbObj = $firebaseObject(articleDb);
+                                    artFbObj.$loaded().then(function () {
+                                        artFbObj.fbkey = id;
+                                        artFbObj.$save().then(function (ref2) {
+                                            resolve();
+                                        })
+                                    })
                                 },
                                 function (error) {
                                     reject(error);
