@@ -11,9 +11,7 @@
                         rights: function (CurrentUserServ, $q, $stateParams, user) {
                             var routeUid = $stateParams.uid;
                             return $q(function (resolve, reject) {
-                                if (!user) {
-                                    user = CurrentUserServ.get();
-                                }
+                                user = CurrentUserServ.get();
                                 if (user && user.userName === routeUid) {
                                     resolve();
                                 } else {
