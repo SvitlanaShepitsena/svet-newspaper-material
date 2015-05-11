@@ -1,10 +1,10 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svAritclePublicStatistics', function () {
+        .directive('svArticlePublicStatistics', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/article/directives/sv-aritcle-public-statistics.html',
+                templateUrl: 'scripts/article/directives/sv-article-public-statistics.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
                 }

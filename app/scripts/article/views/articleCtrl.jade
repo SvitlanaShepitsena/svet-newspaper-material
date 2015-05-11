@@ -1,2 +1,2 @@
-sv-link-back(l-title="back-to-my-articles" url="app.user.author-articles")
+sv-link-back(l-title="back-to-my-articles" url="app.user.author-articles" params='{uid:article.author}' ng-if='news.authorKey===user.key')
 sv-one-article(news='article')
