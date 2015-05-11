@@ -9,7 +9,13 @@
                 link: function ($scope, el, attrs) {
                     //$scope.sectionName = $stateParams.sectionName;
                     $scope.user = CurrentUserServ.get();
-                    $scope.articles = ArticleServ.all();
+                    var articles = ArticleServ.all();
+                    articles.$loaded().then(function () {
+                        $scope.articles = articles;
+                        articles.$watch(function () {
+                            $scope.articles = articles;
+                        })
+                    })
                 }
             };
         });

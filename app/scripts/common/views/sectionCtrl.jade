@@ -1,7 +1,7 @@
 sv-profile-title(header-title="{{sectionName}}")
 div(layout='column')
     div(ng-repeat='n in newsList|sectionNews:sectionName')
-        a(ui-sref='app.article({id:n.$id})' style='text-decoration:none')
+        a(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
             .list-row__primary
                 img.img-round.mdc-img-bw(ng-src='{{n.img}}', width='40', height='40')
             .list-row__content
