@@ -6,7 +6,7 @@
                 replace: true,
                 templateUrl: 'sv-lumx-link.html',
                 scope: {
-                    linkUrl: '@',
+                    linkUrl: '=',
                     btnSize: '@',
                     btnType: '@',
                     btnColor: '@',
@@ -17,6 +17,7 @@
                     iconName: '@'
                 },
                 link: function ($scope, el, attrs) {
+                    console.log($scope.linkUrl);
                 }
             };
         });

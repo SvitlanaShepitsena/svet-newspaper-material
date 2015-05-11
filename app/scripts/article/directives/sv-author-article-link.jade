@@ -5,20 +5,21 @@ div.card(class='mb+')
                 span.fs-caption.mr.tc-grey-50.bgc-grey-500(style='line-height:14px;padding:2px 4px') {{article.section|capitalize}}
                 span.fs-caption.tc-grey-500 {{article.timestamp|date}}
             sv-article-status
-        div(layout-gt-sm='row' layout-sm='column' layout-align="space-between center")
+        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="center center")
             div.p
                 a(ui-sref='app.article({id:article.id})' style='text-decoration:none')
                     span.display-block {{article.title | length:25}}
                     span.display-block.fs-body-1.tc-black-2 {{article.body | length:50}}
             div.mb.pl.pr.pt
-                sv-lx-button.mr.ml(btn-size="xs" btn-color="white" text-color="grey-600" btn-type="raised" btn-title="share" icon-type="mdi" icon-name="mdi-share-variant" method-click='editCl({cl:cl})')
-                sv-edit-article-btn
-        .bgc-grey-100.p(layout='row' layout-align='space-between center' )
+                sv-lumx-button.mr.ml(btn-size="s" btn-color="white" text-color="grey-600" btn-type="raised" btn-title="share" icon-type="mdi" icon-name="mdi-share-variant" method-click='editCl({cl:cl})')
+                sv-edit-article-btn(news='article')
+        .bgc-grey-100.p(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="center center")
             div
                 i.fa.fa-eye.fa-fw.tc-grey-600(style='margin-right:4px')
                 span.fs-caption.tc-grey-600 Views: 12
             div(layout='row')
-                sv-lumx-users-dropdown.ml(btn-title="comments" action-counter="5" user-name="user.name"  icon-type='fa' icon-name="fa-comment")
-                sv-lumx-users-dropdown.ml(btn-title="shares" action-counter="7" user-name="user.name" icon-type='mdi' icon-name="mdi-share-variant")
-                sv-lumx-users-dropdown.ml(btn-title="likes" action-counter="9" user-name="user.name" icon-type='fa' icon-name="fa-thumb-up")
+                sv-one-article-statistics
+                //sv-lumx-users-dropdown.ml(btn-title="comments" action-counter="5" icon-type='fa' icon-name="fa-comment")
+                //sv-lumx-users-dropdown.ml(btn-title="shares" action-counter="7"  icon-type='mdi' icon-name="mdi-share-variant")
+                //sv-lumx-users-dropdown.ml(btn-title="likes" action-counter="9"  icon-type='fa' icon-name="fa-thumbs-up")
 

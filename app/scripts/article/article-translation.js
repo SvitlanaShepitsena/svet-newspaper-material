@@ -16,7 +16,9 @@
                 'article-content': 'Article Content',
                 'choose-section': 'Choose Section',
                 'upload-img': 'Upload Image',
-                'tags': 'Tags'
+                'tags': 'Tags',
+                'views': 'Views',
+                'shares': 'Shares'
                 // 'eng':'eng',
             });
             $translateProvider.translations('ru', {
@@ -32,7 +34,10 @@
                 'choose-section': 'Выберите Тему',
                 'news-section': 'Раздел Новостей',
                 'upload-img': 'Загрузить фотографию',
-                'tags': 'Теги'
+                'tags': 'Теги',
+                'shares': 'Распостранение',
+                'views': 'Просмотры',
+                'likes': 'Понравилось'
                 // 'ru':'ru',
             });
             $translateProvider.preferredLanguage('en');

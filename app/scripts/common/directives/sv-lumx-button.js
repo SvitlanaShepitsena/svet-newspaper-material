@@ -1,10 +1,10 @@
 (function () {
     'use strict';
     angular.module('common')
-        .directive('svLxButton', function () {
+        .directive('svLumxButton', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/common/directives/sv-lx-button.html',
+                templateUrl: 'scripts/common/directives/sv-lumx-button.html',
                 scope: {
                     bntUrl: '@',
                     methodClick: '&',
