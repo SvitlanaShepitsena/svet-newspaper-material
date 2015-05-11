@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (NoteServ, AgentServ, AuthServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
+        .directive('svAuthBtn', function ($rootScope, NoteServ, AgentServ, AuthServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -24,7 +24,10 @@
                     };
                     $scope.logout = function () {
                         AuthServ.logout();
-                        $state.go('app.home')
+                        $state.go('app.home');
+                        $scope.user = null;
+                        $rootScope.$broadcast('logout');
+
                     };
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');
