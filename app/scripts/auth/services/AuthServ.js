@@ -96,10 +96,8 @@
                         email: email,
                         password: password
                     }).then(function (user) {
-
                         user = processUserPassword(user);
                         user = NewUserProcessServ.unify(user);
-
                         if (_.isNull(user)) {
                             deferred.resolve(null);
                         } else {
