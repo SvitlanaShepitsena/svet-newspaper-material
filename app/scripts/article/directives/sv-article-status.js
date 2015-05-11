@@ -1,13 +1,18 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svArticleStatus', function () {
+        .directive('svArticleStatus', function (ArticleServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-article-status.html',
-                scope: {},
+                scope: {
+                    key: '='
+                },
                 link: function ($scope, el, attrs) {
-                    console.log('run here sv-article-status.js');
+                    var status = ArticleServ.getDraftObj($scope.key);
+                    status.$bindTo($scope, 'status').then(function () {
+                        var s = status;
+                    });
                 }
             };
         });

@@ -5,8 +5,10 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-edit-article-btn.html',
+                scope:{
+                 news:'='
+                },
                 link: function ($scope, el, attrs) {
-                    console.log($scope.news);
                 }
             };
         });

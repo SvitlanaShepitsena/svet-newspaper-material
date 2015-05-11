@@ -12,6 +12,9 @@
                     $scope.editArticle = function (active) {
                         $state.go('app.user.create-article({uid:user.userName,artId:news.fbkey}');
                     }
+
+
+
                 }
             };
         });

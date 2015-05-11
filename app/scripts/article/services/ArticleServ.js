@@ -37,6 +37,9 @@
                 get: function (id) {
                     return $firebaseObject(ref.child(id))
                 },
+                getDraftObj: function (id) {
+                    return $firebaseObject(ref.child(id).child('isDraft'))
+                },
                 allObjRef: function () {
                     return refObj;
                 },
