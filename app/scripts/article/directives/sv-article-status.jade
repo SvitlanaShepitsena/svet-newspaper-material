@@ -1,11 +1,11 @@
 div(layout='row' layout-align="center center")
     .fs-body-1.mr.tc-grey-600
-        i.fa.fa-lock.mr
-        span.fs-caption(hide-sm) {{'private'|translate}}
+        i.fa.fa-globe.mr
+        span.fs-caption(hide-sm) {{'public'|translate}}
     div
         .switch
             input.switch__input(type='checkbox' id='{{key}}' ng-model='status.$value')
             label.switch__label.fs-body-1.mr.tc-grey-600(for='{{key}}' style='margin-bottom:0px')
-                i.fa.fa-globe.mr
-                span.fs-caption(hide-sm) {{'public'|translate}}
+                i.fa.fa-lock.mr
+                span.fs-caption(hide-sm) {{'private'|translate}}
 
