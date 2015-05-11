@@ -65,7 +65,11 @@
                 },
                 authProvider: function (provider) {
                     var deferred = $q.defer();
-                    this.getObj().$authWithOAuthPopup(provider).then(function (data) {
+                    this.getObj().$authWithOAuthPopup(provider, function (error, authData) {
+                    }, {
+                        remember: "sessionOnly",
+                        scope: "email,user_likes"
+                    }).then(function (data) {
                         if (provider === 'facebook') {
                             var user = processUserFb(data);
                         }

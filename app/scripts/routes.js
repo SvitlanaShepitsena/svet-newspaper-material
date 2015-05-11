@@ -10,6 +10,9 @@
                     resolve: {
                         user: function (AuthServ) {
                             return AuthServ.getUser();
+                        },
+                        profile: function (AuthenticationServ) {
+                            return AuthenticationServ.getProfile();
                         }
                     },
                     template: "<div ui-view=''></div>"

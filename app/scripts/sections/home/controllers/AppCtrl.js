@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('sections.home')
-        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $state, $scope, user, $rootScope, toastr, CurrentUserServ) {
+        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $state, $scope, user, profile, $rootScope, toastr, CurrentUserServ) {
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 toastr.warning(error);
             })
