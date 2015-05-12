@@ -71,7 +71,7 @@ module.exports = function(grunt) {
       demohtml: {
         options: {
           //process html files with gruntfile config
-          processContent: grunt.template.getProfile
+          processContent: grunt.template.process
         },
         files: [{
           expand: true,
