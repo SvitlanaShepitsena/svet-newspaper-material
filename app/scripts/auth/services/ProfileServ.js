@@ -101,8 +101,8 @@
             function findProfile(authData) {
                 return $q(function (resolve, reject) {
                     usersArr.$loaded().then(function () {
-
-                        resolve(null);
+                        var dbProfile = UserUniqueServ.find(authData, usersArr);
+                        resolve(dbProfile.profile);
                     }).catch(function (error) {
                         reject(error);
                     })
@@ -118,6 +118,8 @@
                                     resolve(key);
                                     console.log(key);
                                 })
+                            } else{
+                                resolve(dbProfile)
                             }
                         });
                     });
