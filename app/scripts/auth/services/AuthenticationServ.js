@@ -15,23 +15,13 @@
                 },
                 authWithProvider: function (provider) {
                     return $q(function (resolve, reject) {
-                        if (provider === 'google') {
-                            authObj.$authWithOAuthPopup("google", {scope: 'email'}).then(function (authData) {
+                            authObj.$authWithOAuthPopup(provider, {scope: 'email'}).then(function (authData) {
                                 console.log("Logged in as:", authData);
+
                                 resolve();
                             }).catch(function (error) {
                                 console.error("Authentication failed:", error);
                             });
-                        }
-                        if (provider === 'facebook') {
-                            ref = new Firebase(url);
-                            ref.authWithOAuthPopup("facebook", function (error, authData) {
-                                console.log("Logged in as:", authData);
-                                resolve();
-                            }, {
-                                scope: "email"
-                            });
-                        }
                     });
                 }
             };
