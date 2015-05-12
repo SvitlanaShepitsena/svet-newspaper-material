@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('ProfileServ', function ($q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
+        .factory('ProfileServ', function (UserUniqueServ, $q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
             var ref = new Firebase(users);
             var usersArr = $firebaseArray(ref);
 
@@ -30,12 +30,19 @@
                     usersArr.$add(user).then(function (ref) {
                         if (!createLocal) {
                             createSvetLocalProfile(user.profile.email).then(function (localUid) {
-                                resolve(localUid);
+                                var id = localUid.uid;
+                                var user = $firebaseObject(ref);
+                                user.$loaded().then(function () {
+                                    user.auth.svet.id = id;
+                                    user.$save().then(function () {
+                                        resolve(localUid);
+                                    })
+                                })
                             }).catch(function (error) {
                                 console.error(error);
                                 reject(error);
                             })
-                        } else{
+                        } else {
                             resolve(ref);
                         }
                     })
@@ -52,19 +59,27 @@
                 user.profile.email = authData.google.email;
                 user.profile.userName = userNameProcess(authData.google.displayName);
                 user.profile.avatar = authData.google.cachedUserProfile.picture;
-                user.auth = {google: authData.google};
+                user.auth = {
+                    google: authData.google,
+                    svet: {email: user.profile.email}
+                };
             }
 
             function getFacebook(user, authData) {
                 user.profile.email = authData.facebook.email;
                 user.profile.userName = userNameProcess(authData.facebook.displayName);
                 user.profile.avatar = authData.facebook.cachedUserProfile.picture.data.url;
-                user.auth = {facebook: authData.facebook};
+                user.auth = {
+                    facebook: authData.facebook,
+                    svet: {email: user.profile.email}
+                };
             }
 
             function getSvet(user, authData) {
                 user.profile.email = authData.email;
                 user.profile.userName = authData.userName
+                authData.id = authData.uid;
+                authData = _.omit(authData, 'uid', 'userName');
                 user.auth = {svet: authData};
             }
 
@@ -86,6 +101,7 @@
             function findProfile(authData) {
                 return $q(function (resolve, reject) {
                     usersArr.$loaded().then(function () {
+
                         resolve(null);
                     }).catch(function (error) {
                         reject(error);
