@@ -17,7 +17,7 @@
                     return $q(function (resolve, reject) {
                         if (provider === 'google') {
                             authObj.$authWithOAuthPopup("google", {scope: 'email'}).then(function (authData) {
-                                console.log("Logged in as:", authData.google.email);
+                                console.log("Logged in as:", authData);
                                 resolve();
                             }).catch(function (error) {
                                 console.error("Authentication failed:", error);

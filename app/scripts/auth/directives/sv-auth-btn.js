@@ -17,15 +17,15 @@
 
                         })
 
-                        AuthServ.authProvider(provider).then(function (user) {
-                            if (UserGroupsServ.isInGroup('manager')) {
-                                $state.go('app.manager.dashboard', {uid: user.id})
-                            } else {
-                                $state.go('app.user.dashboard', {uid: user.userName})
-                            }
-                        }).catch(function (error) {
-                            console.error("Authentication failed:", error);
-                        });
+                        //AuthServ.authProvider(provider).then(function (user) {
+                        //    if (UserGroupsServ.isInGroup('manager')) {
+                        //        $state.go('app.manager.dashboard', {uid: user.id})
+                        //    } else {
+                        //        $state.go('app.user.dashboard', {uid: user.userName})
+                        //    }
+                        //}).catch(function (error) {
+                        //    console.error("Authentication failed:", error);
+                        //});
                     };
                     $scope.logout = function () {
                         AuthServ.logout();
