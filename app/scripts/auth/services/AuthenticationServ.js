@@ -17,6 +17,10 @@
                     return $q(function (resolve, reject) {
                         authObj.$authWithOAuthPopup(provider, {scope: 'email'}).then(function (authData) {
                             console.log("Logged in as:", authData);
+                            ProfileServ.getProfile(authData).then(function (profile) {
+
+                            });
+
                             resolve();
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
