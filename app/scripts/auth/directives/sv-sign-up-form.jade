@@ -9,7 +9,7 @@ div(flex-container='column')
                         lx-text-field(label='{{name|translate}}', icon='account' error="signUpForm.userName.$touched && signUpForm.userName.$invalid")
                             input(type='text'
                             name='userName'
-                            ng-model='user.name'
+                            ng-model='user.userName'
                             mg-model-options = '{updateOn:"default "blur"}'
                             sv-unique-username
                             ng-minlength="3"
@@ -43,7 +43,7 @@ div(flex-container='column')
                 a.dispaly-block.fs-body-2(style='border-bottom: #393939 1px dotted; line-height:14px; cursor:pointer') {{conditions|translate}}
         div.bgc-white-1(flex-container='column' flex-align='center start' class='p+')
             div(flex-container='row' class="mb+")
-                button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='createAccount()')
+                button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='createSvetUser()')
                     i.mdi.mdi-check &nbsp
                     | {{register|translate}}
         div.bgc-grey-50(flex-container='row' flex-align='space-between center' class='p+')

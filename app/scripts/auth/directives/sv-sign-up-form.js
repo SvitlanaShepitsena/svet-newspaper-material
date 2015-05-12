@@ -16,23 +16,23 @@
                 },
                 controller: function ($scope, AuthServ, $rootScope) {
                     $scope.user = {
-                        name: '',
+                        userName: '',
                         email: '',
                         password: ''
                     };
                     $scope.user = {
-                        name: faker.internet.userName(),
+                        userName: faker.internet.userName(),
                         email: faker.internet.email(),
                         password: '123456'
                     };
-                    $scope.createSvetAccount = function () {
+                    $scope.createSvetUser = function () {
                         if ($scope.signUpForm.$invalid) {
                             $scope.signUpForm.userName.$touched = true;
                             $scope.signUpForm.email.$touched = true;
                             $scope.signUpForm.password.$touched = true;
                             return;
                         }
-                        ProfileServ.createSvetUser($scope.user.email, $scope.user.password,$scope.user.userName).then(function (user) {
+                        ProfileServ.createSvetUser($scope.user.email, $scope.user.password, $scope.user.userName).then(function (user) {
                                 //if ($scope.userV && $scope.user.name) {
                                 //    user.userName = $scope.user.name.toLocaleLowerCase();
                                 //}

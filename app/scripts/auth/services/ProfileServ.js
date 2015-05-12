@@ -5,7 +5,7 @@
             var ref = new Firebase(users);
             var usersArr = $firebaseArray(ref);
 
-            function createLocalProfile(email) {
+            function createSvetLocalProfile(email) {
                 var credentials = {
                     email: email,
                     password: '123456'
@@ -15,7 +15,7 @@
                     authObj.$createUser(credentials).then(function (userData) {
                         console.log('user has been created: ' + userData);
                         authObj.$resetPassword({email: email}).then(function () {
-                            resolve(userData.uid);
+                            resolve(userData);
                         })
                     }).catch(function (error) {
                         console.error(error);
@@ -24,16 +24,20 @@
                 });
             }
 
-            function saveProfileToDb(authData) {
+            function saveProfileToDb(authData, createLocal) {
                 return $q(function (resolve, reject) {
                     var user = userProcess(authData);
                     usersArr.$add(user).then(function (ref) {
-                        createLocalProfile(user.profile.email).then(function (localUid) {
-                            resolve(localUid);
-                        }).catch(function (error) {
-                            console.error(error);
-                            reject(error);
-                        })
+                        if (!createLocal) {
+                            createSvetLocalProfile(user.profile.email).then(function (localUid) {
+                                resolve(localUid);
+                            }).catch(function (error) {
+                                console.error(error);
+                                reject(error);
+                            })
+                        } else{
+                            resolve(ref);
+                        }
                     })
                 });
             }
@@ -111,7 +115,7 @@
                         }).then(function (authData) {
                             authData.userName = userName;
                             authData.email = email;
-                            saveProfileToDb(authData)
+                            saveProfileToDb(authData, true)
                             resolve(authData);
                         }).catch(function (error) {
                             reject(error);
