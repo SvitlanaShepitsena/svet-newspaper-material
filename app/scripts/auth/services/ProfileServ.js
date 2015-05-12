@@ -9,6 +9,8 @@
                 getProfile: function (authData) {
                     return $q(function (resolve, reject) {
 
+
+
                     });
                 }
             };
