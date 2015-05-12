@@ -9,7 +9,7 @@
                     controller: "AppCtrl as app",
                     resolve: {
                         user: function (AuthServ) {
-                            return AuthServ.getUser();
+                            return {};
                         },
                         profile: function (AuthenticationServ) {
                             return AuthenticationServ.getProfile();

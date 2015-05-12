@@ -18,10 +18,27 @@
                         authObj.$authWithOAuthPopup(provider, {scope: 'email'}).then(function (authData) {
                             console.log("Logged in as:", authData);
                             ProfileServ.getProfile(authData).then(function (profile) {
-
+                                resolve(profile);
+                            }).catch(function (error) {
+                                reject(error);
                             });
-
-                            resolve();
+                        }).catch(function (error) {
+                            console.error("Authentication failed:", error);
+                        });
+                    });
+                },
+                svetLogin: function (email, password) {
+                    return $q(function (resolve, reject) {
+                        authObj.$authWithPassword({
+                            email: email,
+                            password: password
+                        }).then(function (authData) {
+                            console.log("Logged in as:", authData.uid);
+                            ProfileServ.getProfile(authData).then(function (profile) {
+                                resolve(profile);
+                            }).catch(function (error) {
+                                reject(error);
+                            })
                         }).catch(function (error) {
                             console.error("Authentication failed:", error);
                         });

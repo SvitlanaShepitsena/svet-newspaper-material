@@ -12,11 +12,10 @@
                         return UserGroupsServ.isInGroup('manager');
                     };
                     $scope.loginProvider = function (provider) {
-
                         AuthenticationServ.authWithProvider(provider).then(function (user) {
-
+                        }).catch(function (error) {
+                            console.error(error);
                         })
-
                         //AuthServ.authProvider(provider).then(function (user) {
                         //    if (UserGroupsServ.isInGroup('manager')) {
                         //        $state.go('app.manager.dashboard', {uid: user.id})
@@ -32,7 +31,6 @@
                         $state.go('app.home');
                         $scope.user = null;
                         $rootScope.$broadcast('logout');
-
                     };
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');

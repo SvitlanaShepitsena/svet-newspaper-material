@@ -15,7 +15,7 @@ div(flex-container='column')
                 div(flex-container='row' class="mb+")
                     button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='singIn()')
                         i.mdi.mdi-login &nbsp
-                        | {{login|translate}}
+                        | {{loginBtn|translate}}
                 div.mb(flex-container='row' flex-align='start')
                     a.register-link.fs-body-2(ui-sref='app.sign-up') {{registerAccount|translate}}
                     span.fs-body-2 , {{newUser|translate}}
