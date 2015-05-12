@@ -15,13 +15,13 @@
                 },
                 authWithProvider: function (provider) {
                     return $q(function (resolve, reject) {
-                            authObj.$authWithOAuthPopup(provider, {scope: 'email'}).then(function (authData) {
-                                console.log("Logged in as:", authData);
+                        authObj.$authWithOAuthPopup(provider, {scope: 'email'}).then(function (authData) {
+                            console.log("Logged in as:", authData);
 
-                                resolve();
-                            }).catch(function (error) {
-                                console.error("Authentication failed:", error);
-                            });
+                            resolve();
+                        }).catch(function (error) {
+                            console.error("Authentication failed:", error);
+                        });
                     });
                 }
             };
