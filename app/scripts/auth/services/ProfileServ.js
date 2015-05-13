@@ -9,9 +9,9 @@
             function getLoggedUserProfileRef(id) {
                 currentUserProfileRef = $firebaseObject(ref.child(id).child('profile'));
                 currentUserProfileRef.$loaded(function (data) {
-                    user.profile = currentUserProfileRef.userName;
+                    user.profile = currentUserProfileRef;
                     currentUserProfileRef.$watch(function () {
-                        user.profile =currentUserProfileRef.userName;
+                        user.profile =currentUserProfileRef;
 
                     })
                 })

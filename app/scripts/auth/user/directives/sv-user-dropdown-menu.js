@@ -9,7 +9,7 @@
                     logout: '&'
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.user = CurrentUserServ.get();
+                    //$scope.user = CurrentUserServ.get();
                     $scope.isInGroup = function (group) {
                         return UserGroupsServ.isInGroup(group);
                     };

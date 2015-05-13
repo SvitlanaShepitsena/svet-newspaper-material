@@ -26,6 +26,6 @@ div(ng-class="{'sv':gtMd}")
                         button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='loginProvider("google")')
                             i.mdi.mdi-google-plus
         div(layout='row' ng-if='!!user' layout-align="center center")
-            div {{user.profile}}
-            sv-user-dropdown-menu(ng-if='!isManager()' user='user' logout='logout()')
+            div {{user.profile.userName}}
+            sv-user-dropdown-menu(ng-if='!isManager()' user='user.profile' logout='logout()')
             sv-manager-dropdown(ng-if="isManager()" user='user' logout='logout()')
