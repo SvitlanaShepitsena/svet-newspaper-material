@@ -8,13 +8,16 @@
             var unwatch;
 
             function getLoggedUserProfileRef(id) {
-                currentUserProfileRef = $firebaseObject(ref.child(id).child('profile'));
-                currentUserProfileRef.$loaded(function () {
-                    user.profile = currentUserProfileRef;
-                    unwatch = currentUserProfileRef.$watch(function () {
+                return $q(function (resolve, reject) {
+                    currentUserProfileRef = $firebaseObject(ref.child(id).child('profile'));
+                    currentUserProfileRef.$loaded(function () {
                         user.profile = currentUserProfileRef;
-                    });
-                })
+                        resolve();
+                        unwatch = currentUserProfileRef.$watch(function () {
+                            user.profile = currentUserProfileRef;
+                        });
+                    })
+                });
             }
 
             function createSvetLocalProfile(email) {
@@ -116,8 +119,9 @@
                     usersArr.$loaded().then(function () {
                         var dbProfile = UserUniqueServ.find(authData, usersArr);
                         if (dbProfile) {
-                            getLoggedUserProfileRef(dbProfile.$id);
-                            resolve(dbProfile.profile);
+                            getLoggedUserProfileRef(dbProfile.$id).then(function () {
+                                resolve(dbProfile.profile);
+                            });
                         } else {
                             resolve(null);
                         }
@@ -134,10 +138,11 @@
                             if (!dbProfile) {
                                 saveProfileToDb(authData).then(function (key) {
                                     resolve(key);
-                                    //console.log(key);
                                 })
                             } else {
-                                resolve(dbProfile)
+                                getLoggedUserProfileRef(dbProfile.$id).then(function () {
+                                    resolve(dbProfile)
+                                })
                             }
                         });
                     });

@@ -8,9 +8,6 @@
                     abstract: true,
                     controller: "AppCtrl as app",
                     resolve: {
-                        user: function (AuthServ) {
-                            return {};
-                        },
                         profile: function (AuthenticationServ) {
                             return AuthenticationServ.getProfile();
                         }

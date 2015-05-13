@@ -5,12 +5,14 @@
             var ref = new Firebase(url);
             var authObj = $firebaseAuth(ref);
             return {
-                getProfile: function () {
+                checkUserStatus: function () {
                     return $q(function (resolve, reject) {
-                        var ref = new Firebase(url);
-                        var authUser = authObj.$getAuth();
-                        var breakPoint = 1;
-                        resolve();
+                        var loggedInUser = authObj.$getAuth();
+                        if (loggedInUser) {
+                            ProfileServ.getProfile(loggedInUser).then(function () {
+                                resolve();
+                            })
+                        }
                     });
                 },
                 /*Firebase authentication with social media, creating a profile*/

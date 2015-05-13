@@ -11,6 +11,10 @@
                     $scope.isManager = function () {
                         return UserGroupsServ.isInGroup('manager');
                     };
+                    $scope.user = user;
+                    $scope.$watch('user', function (newValue, oldValue) {
+                        console.log(newValue);
+                    });
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
                             console.log(user);
@@ -30,9 +34,8 @@
                         //});
                     };
                     $scope.logout = function () {
-                       AuthenticationServ.logout() ;
+                        AuthenticationServ.logout();
                         $state.go('app.home');
-
                     };
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');

@@ -1,7 +1,9 @@
 (function () {
     'use strict';
     angular.module('sections.home')
-        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $state, $scope, user, profile, $rootScope, toastr, CurrentUserServ) {
+        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $state, $scope, user, profile, $rootScope, toastr) {
+            console.log(profile);
+
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 toastr.warning(error);
             })
@@ -12,7 +14,6 @@
             if (currentState.indexOf('app.manager') > -1 && user.groups.indexOf('reader') > -1) {
                 $state.go('app.user.dashboard', {uid: user.userName});
             }
-            $scope.user = user;
             $rootScope.$on('error', function () {
                 toastr.error('error');
             });
