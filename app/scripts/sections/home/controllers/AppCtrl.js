@@ -1,8 +1,12 @@
 (function () {
     'use strict';
     angular.module('sections.home')
-        .controller('AppCtrl', function AppCtrl(NewsProcessServ, userPromise, ArticleServ, $state, $scope, user, $rootScope, toastr) {
-            //$scope.user=userPromise;
+        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $state, $scope, userPromise, user, $rootScope, toastr) {
+            $scope.userLive = user.profile;
+            $scope.userStatic = userPromise;
+            $scope.$watch(function (newValue, oldValue) {
+                var stop = 1;
+            });
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 toastr.warning(error);
             })

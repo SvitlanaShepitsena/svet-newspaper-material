@@ -4,25 +4,48 @@
         .factory('ProfileServ', function (ProfileLiveServ, user, UserUniqueServ, $q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
             var ref = new Firebase(users);
             var dbUsersArr = $firebaseArray(ref);
-
             var currentUserProfileRef;
             var unwatch;
-
-            function setDynamicUserProfile(id) {
-                return $q(function (resolve, reject) {
-
-                    currentUserProfileRef = $firebaseObject(ref.child(id).child('profile'));
-                    currentUserProfileRef.$loaded(function () {
-                        user.profile = currentUserProfileRef;
-                        unwatch = currentUserProfileRef.$watch(function () {
-                            // Update profile on any change
-                            user.profile = currentUserProfileRef;
-                        });
-                        resolve();
-                    })
-                });
-            }
-
+            return {
+                getProfile: function (authData) {
+                    return $q(function (resolve, reject) {
+                        dbUsersArr.$loaded().then(function () {
+                            var userDbProfile = UserUniqueServ.findDbProfile(authData, dbUsersArr);
+                            if (userDbProfile) {
+                                ProfileLiveServ.setBinding(userDbProfile.$id).then(function () {
+                                    resolve(userDbProfile.profile);
+                                });
+                            } else {
+                                resolve(null);
+                            }
+                        }).catch(function (error) {
+                            reject(error);
+                        })
+                    });
+                },
+                logout: function () {
+                    ProfileLiveServ.undind();
+                },
+                createSvetUser: function (email, password, userName) {
+                    var authObj = $firebaseAuth(ref);
+                    return $q(function (resolve, reject) {
+                        authObj.$createUser({
+                            email: email,
+                            password: password
+                        }).then(function (authData) {
+                            authData.userName = userName;
+                            authData.email = email;
+                            saveProfileToDb(authData, true)
+                            resolve(authData);
+                        }).catch(function (error) {
+                            reject(error);
+                        })
+                    });
+                }
+            };
+            //
+            //
+            //
             function createSvetLocalProfile(email) {
                 var credentials = {
                     email: email,
@@ -46,7 +69,6 @@
                 return $q(function (resolve, reject) {
                     var user = userProcess(authData);
                     dbUsersArr.$add(user).then(function (ref) {
-                        //setDynamicUserProfile(ref.key());
                         if (!createLocal) {
                             createSvetLocalProfile(user.profile.email).then(function (localUid) {
                                 var id = localUid.uid;
@@ -116,46 +138,5 @@
                 }
                 return user;
             }
-
-
-            return {
-                getProfile: function (authData) {
-                    return $q(function (resolve, reject) {
-                        dbUsersArr.$loaded().then(function () {
-                            var userDbProfile = UserUniqueServ.findDbProfile(authData, dbUsersArr);
-
-                            if (userDbProfile) {
-                                setDynamicUserProfile(userDbProfile.$id).then(function () {
-                                    resolve(userDbProfile.profile);
-                                });
-                            } else {
-                                resolve(null);
-                            }
-                        }).catch(function (error) {
-                            reject(error);
-                        })
-                    });
-                },
-                logout: function () {
-                    unwatch();
-                    user.profile = null;
-                },
-                createSvetUser: function (email, password, userName) {
-                    var authObj = $firebaseAuth(ref);
-                    return $q(function (resolve, reject) {
-                        authObj.$createUser({
-                            email: email,
-                            password: password
-                        }).then(function (authData) {
-                            authData.userName = userName;
-                            authData.email = email;
-                            saveProfileToDb(authData, true)
-                            resolve(authData);
-                        }).catch(function (error) {
-                            reject(error);
-                        })
-                    });
-                }
-            };
         });
 })();
