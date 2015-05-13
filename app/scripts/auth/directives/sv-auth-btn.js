@@ -30,10 +30,9 @@
                         //});
                     };
                     $scope.logout = function () {
-                        AuthServ.logout();
+                       AuthenticationServ.logout() ;
                         $state.go('app.home');
-                        $scope.user = null;
-                        $rootScope.$broadcast('logout');
+
                     };
                     $scope.$watch(function () {
                         return $mdMedia('gt-md');

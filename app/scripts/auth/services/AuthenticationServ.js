@@ -45,6 +45,10 @@
                             console.error("Authentication failed:", error);
                         });
                     });
+                },
+                logout: function () {
+                    authObj.$unauth();
+                    ProfileServ.logout();
                 }
             };
         });

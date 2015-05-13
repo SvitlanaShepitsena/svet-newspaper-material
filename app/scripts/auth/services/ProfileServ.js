@@ -5,15 +5,15 @@
             var ref = new Firebase(users);
             var usersArr = $firebaseArray(ref);
             var currentUserProfileRef;
+            var unwatch;
 
             function getLoggedUserProfileRef(id) {
                 currentUserProfileRef = $firebaseObject(ref.child(id).child('profile'));
-                currentUserProfileRef.$loaded(function (data) {
+                currentUserProfileRef.$loaded(function () {
                     user.profile = currentUserProfileRef;
-                    currentUserProfileRef.$watch(function () {
-                        user.profile =currentUserProfileRef;
-
-                    })
+                    unwatch = currentUserProfileRef.$watch(function () {
+                        user.profile = currentUserProfileRef;
+                    });
                 })
             }
 
@@ -127,6 +127,7 @@
             }
 
             return {
+
                 getProfile: function (authData) {
                     return $q(function (resolve, reject) {
                         findProfile(authData).then(function (dbProfile) {
@@ -140,6 +141,11 @@
                             }
                         });
                     });
+                },
+                logout: function () {
+                    unwatch();
+                    user.profile = null;
+
                 },
                 createSvetUser: function (email, password, userName) {
                     var authObj = $firebaseAuth(ref);
