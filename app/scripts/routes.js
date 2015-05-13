@@ -8,7 +8,7 @@
                     abstract: true,
                     controller: "AppCtrl as app",
                     resolve: {
-                        profile: function (AuthenticationServ) {
+                        userPromise: function (AuthenticationServ) {
                             return AuthenticationServ.getProfile();
                         }
                     },
