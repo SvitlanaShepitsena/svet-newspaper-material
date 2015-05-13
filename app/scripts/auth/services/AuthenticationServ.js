@@ -17,7 +17,7 @@
                 authWithProvider: function (provider) {
                     return $q(function (resolve, reject) {
                         authObj.$authWithOAuthPopup(provider, {scope: 'email'}).then(function (authData) {
-                            console.log("Logged in as:", authData);
+                            //console.log("Logged in as:", authData);
                             ProfileServ.getProfile(authData).then(function (profile) {
                                 resolve(profile);
                             }).catch(function (error) {

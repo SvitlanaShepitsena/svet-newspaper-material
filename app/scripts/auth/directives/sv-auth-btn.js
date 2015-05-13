@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (AuthenticationServ, toastr, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
+        .directive('svAuthBtn', function (user, AuthenticationServ, toastr, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -12,10 +12,10 @@
                         return UserGroupsServ.isInGroup('manager');
                     };
                     $scope.loginProvider = function (provider) {
-                        AuthenticationServ.authWithProvider(provider).then(function (user) {
+                        AuthenticationServ.authWithProvider(provider).then(function () {
                             console.log(user);
-                            toastr.info(' Logged as: ' + user.email);
-                            //$scope.user = user;
+                            //toastr.info(' Logged as: ' + user.email);
+                            $scope.user = user;
                         }).catch(function (error) {
                             console.error(error);
                         })

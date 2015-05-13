@@ -1,9 +1,21 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('ProfileServ', function (UserUniqueServ, $q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
+        .factory('ProfileServ', function (user, UserUniqueServ, $q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
             var ref = new Firebase(users);
             var usersArr = $firebaseArray(ref);
+            var currentUserProfileRef;
+
+            function getLoggedUserProfileRef(id) {
+                currentUserProfileRef = $firebaseObject(ref.child(id).child('profile'));
+                currentUserProfileRef.$loaded(function (data) {
+                    user.profile = currentUserProfileRef.userName;
+                    currentUserProfileRef.$watch(function () {
+                        user.profile =currentUserProfileRef.userName;
+
+                    })
+                })
+            }
 
             function createSvetLocalProfile(email) {
                 var credentials = {
@@ -13,7 +25,7 @@
                 return $q(function (resolve, reject) {
                     var authObj = $firebaseAuth(ref);
                     authObj.$createUser(credentials).then(function (userData) {
-                        console.log('user has been created: ' + userData);
+                        //console.log('user has been created: ' + userData);
                         authObj.$resetPassword({email: email}).then(function () {
                             resolve(userData);
                         })
@@ -103,6 +115,7 @@
                     usersArr.$loaded().then(function () {
                         var dbProfile = UserUniqueServ.find(authData, usersArr);
                         if (dbProfile) {
+                            getLoggedUserProfileRef(dbProfile.$id);
                             resolve(dbProfile.profile);
                         } else {
                             resolve(null);
@@ -120,7 +133,7 @@
                             if (!dbProfile) {
                                 saveProfileToDb(authData).then(function (key) {
                                     resolve(key);
-                                    console.log(key);
+                                    //console.log(key);
                                 })
                             } else {
                                 resolve(dbProfile)
