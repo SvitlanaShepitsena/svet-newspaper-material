@@ -127,7 +127,6 @@
             }
 
             return {
-
                 getProfile: function (authData) {
                     return $q(function (resolve, reject) {
                         findProfile(authData).then(function (dbProfile) {
@@ -145,7 +144,6 @@
                 logout: function () {
                     unwatch();
                     user.profile = null;
-
                 },
                 createSvetUser: function (email, password, userName) {
                     var authObj = $firebaseAuth(ref);
