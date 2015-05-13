@@ -102,7 +102,11 @@
                 return $q(function (resolve, reject) {
                     usersArr.$loaded().then(function () {
                         var dbProfile = UserUniqueServ.find(authData, usersArr);
-                        resolve(dbProfile.profile);
+                        if (dbProfile) {
+                            resolve(dbProfile.profile);
+                        } else {
+                            resolve(null);
+                        }
                     }).catch(function (error) {
                         reject(error);
                     })
@@ -118,7 +122,7 @@
                                     resolve(key);
                                     console.log(key);
                                 })
-                            } else{
+                            } else {
                                 resolve(dbProfile)
                             }
                         });

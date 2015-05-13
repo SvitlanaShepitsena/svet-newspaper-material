@@ -13,6 +13,7 @@
                         resolve();
                     });
                 },
+                /*Firebase authentication with social media, creating a profile*/
                 authWithProvider: function (provider) {
                     return $q(function (resolve, reject) {
                         authObj.$authWithOAuthPopup(provider, {scope: 'email'}).then(function (authData) {
@@ -27,6 +28,7 @@
                         });
                     });
                 },
+                /*Firebase authentication with email/password combination, creating a profile*/
                 svetLogin: function (email, password) {
                     return $q(function (resolve, reject) {
                         authObj.$authWithPassword({

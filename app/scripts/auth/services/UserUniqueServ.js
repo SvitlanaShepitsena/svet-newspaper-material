@@ -17,6 +17,7 @@
                             var dbUserObj = $firebaseObject(ref.child(dbUser.$id));
                             dbUserObj.$loaded().then(function () {
                                 dbUserObj.auth.google = user;
+                                dbUserObj.profile.avatar = user.google.cachedUserProfile.picture
                                 dbUserObj.$save();
                             })
                             return dbUser;
@@ -38,6 +39,7 @@
                             var dbUserObj = $firebaseObject(ref.child(dbUser.$id));
                             dbUserObj.$loaded().then(function () {
                                 dbUserObj.auth.facebook = user;
+                                dbUserObj.profile.avatar = user.facebook.cachedUserProfile.picture.data.url
                                 dbUserObj.$save();
                             })
                             return dbUser;

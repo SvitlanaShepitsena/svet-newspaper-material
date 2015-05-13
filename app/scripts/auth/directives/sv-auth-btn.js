@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (AuthenticationServ, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
+        .directive('svAuthBtn', function (AuthenticationServ, toastr, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
@@ -14,6 +14,8 @@
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function (user) {
                             console.log(user);
+                            toastr.info(' Logged as: ' + user.email);
+                            //$scope.user = user;
                         }).catch(function (error) {
                             console.error(error);
                         })
