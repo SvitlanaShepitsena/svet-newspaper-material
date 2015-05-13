@@ -40,6 +40,7 @@
                 return $q(function (resolve, reject) {
                     var user = userProcess(authData);
                     usersArr.$add(user).then(function (ref) {
+                        getLoggedUserProfileRef(ref.key());
                         if (!createLocal) {
                             createSvetLocalProfile(user.profile.email).then(function (localUid) {
                                 var id = localUid.uid;
