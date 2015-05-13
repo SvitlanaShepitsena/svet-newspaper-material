@@ -1,21 +1,24 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('ProfileServ', function (user, UserUniqueServ, $q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
+        .factory('ProfileServ', function (ProfileLiveServ, user, UserUniqueServ, $q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
             var ref = new Firebase(users);
-            var usersArr = $firebaseArray(ref);
+            var dbUsersArr = $firebaseArray(ref);
+
             var currentUserProfileRef;
             var unwatch;
 
-            function getLoggedUserProfileRef(id) {
+            function setDynamicUserProfile(id) {
                 return $q(function (resolve, reject) {
+
                     currentUserProfileRef = $firebaseObject(ref.child(id).child('profile'));
                     currentUserProfileRef.$loaded(function () {
                         user.profile = currentUserProfileRef;
-                        resolve();
                         unwatch = currentUserProfileRef.$watch(function () {
+                            // Update profile on any change
                             user.profile = currentUserProfileRef;
                         });
+                        resolve();
                     })
                 });
             }
@@ -42,8 +45,8 @@
             function saveProfileToDb(authData, createLocal) {
                 return $q(function (resolve, reject) {
                     var user = userProcess(authData);
-                    usersArr.$add(user).then(function (ref) {
-                        getLoggedUserProfileRef(ref.key());
+                    dbUsersArr.$add(user).then(function (ref) {
+                        //setDynamicUserProfile(ref.key());
                         if (!createLocal) {
                             createSvetLocalProfile(user.profile.email).then(function (localUid) {
                                 var id = localUid.uid;
@@ -114,37 +117,23 @@
                 return user;
             }
 
-            function findProfile(authData) {
-                return $q(function (resolve, reject) {
-                    usersArr.$loaded().then(function () {
-                        var dbProfile = UserUniqueServ.find(authData, usersArr);
-                        if (dbProfile) {
-                            getLoggedUserProfileRef(dbProfile.$id).then(function () {
-                                resolve(dbProfile.profile);
-                            });
-                        } else {
-                            resolve(null);
-                        }
-                    }).catch(function (error) {
-                        reject(error);
-                    })
-                });
-            }
 
             return {
                 getProfile: function (authData) {
                     return $q(function (resolve, reject) {
-                        findProfile(authData).then(function (dbProfile) {
-                            if (!dbProfile) {
-                                saveProfileToDb(authData).then(function (key) {
-                                    resolve(key);
-                                })
+                        dbUsersArr.$loaded().then(function () {
+                            var userDbProfile = UserUniqueServ.findDbProfile(authData, dbUsersArr);
+
+                            if (userDbProfile) {
+                                setDynamicUserProfile(userDbProfile.$id).then(function () {
+                                    resolve(userDbProfile.profile);
+                                });
                             } else {
-                                getLoggedUserProfileRef(dbProfile.$id).then(function () {
-                                    resolve(dbProfile)
-                                })
+                                resolve(null);
                             }
-                        });
+                        }).catch(function (error) {
+                            reject(error);
+                        })
                     });
                 },
                 logout: function () {

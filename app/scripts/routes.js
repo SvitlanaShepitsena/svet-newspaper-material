@@ -9,7 +9,7 @@
                     controller: "AppCtrl as app",
                     resolve: {
                         userPromise: function (AuthenticationServ) {
-                            return AuthenticationServ.getProfile();
+                            return AuthenticationServ.checkUserStatus();
                         }
                     },
                     template: "<div ui-view=''></div>"

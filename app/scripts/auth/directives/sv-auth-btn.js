@@ -13,7 +13,7 @@
                     };
                     $scope.user = user;
                     $scope.$watch('user', function (newValue, oldValue) {
-                        console.log(newValue);
+                        //console.log(newValue);
                     });
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {

@@ -60,7 +60,7 @@
             }
 
             return {
-                find: function (user, dbUsers) {
+                findDbProfile: function (user, dbUsers) {
                     var foundUser;
                     if (user.provider === 'google') {
                         foundUser = findForGoogle(user, dbUsers);

@@ -7,11 +7,17 @@
             return {
                 checkUserStatus: function () {
                     return $q(function (resolve, reject) {
-                        var loggedInUser = authObj.$getAuth();
-                        if (loggedInUser) {
-                            ProfileServ.getProfile(loggedInUser).then(function () {
-                                resolve();
+                        var authData = authObj.$getAuth();
+
+                        if (authData) {
+                            // user is  logged in
+                            ProfileServ.getProfile(authData).then(function (profile) {
+                                resolve(profile);
                             })
+
+                        } else {
+                            // user is not logged in
+                            resolve(null);
                         }
                     });
                 },
