@@ -12,26 +12,14 @@
                         return UserGroupsServ.isInGroup('manager');
                     };
                     $scope.user = user;
-                    $scope.$watch('user', function (newValue, oldValue) {
-                        //console.log(newValue);
-                    });
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
-                            console.log(user);
-                            //toastr.info(' Logged as: ' + user.email);
-                            $scope.user = user;
-                        }).catch(function (error) {
-                            console.error(error);
-                        })
-                        //AuthServ.authProvider(provider).then(function (user) {
-                        //    if (UserGroupsServ.isInGroup('manager')) {
-                        //        $state.go('app.manager.dashboard', {uid: user.id})
-                        //    } else {
-                        //        $state.go('app.user.dashboard', {uid: user.userName})
-                        //    }
-                        //}).catch(function (error) {
-                        //    console.error("Authentication failed:", error);
-                        //});
+                            if (user.role && user.role==='manager') {
+                                $state.go('app.manager.dashboard', {uid: user.id})
+                            } else {
+                                $state.go('app.user.dashboard', {uid: user.userName})
+                            }
+                        });
                     };
                     $scope.logout = function () {
                         AuthenticationServ.logout();
@@ -51,11 +39,6 @@
                         return $mdMedia('sm');
                     }, function (size) {
                         $scope.sm = size;
-                    });
-                    $scope.$watch(function () {
-                        return CurrentUserServ.get();
-                    }, function (newValue, oldValue) {
-                        $scope.user = newValue;
                     });
                 }
             };

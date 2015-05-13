@@ -9,11 +9,15 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.user = user;
-                    $scope.$watch('user', function (newValue, oldValue) {
-                        $scope.user=newValue;
-                    });
+
                     $scope.isInGroup = function (group) {
-                        return UserGroupsServ.isInGroup(group);
+
+                        if (group === 'reader') {
+                            if (user) {
+                                return true;
+                            }
+                        }
+                        return user.role && user.role===group;
                     };
                 }
             };

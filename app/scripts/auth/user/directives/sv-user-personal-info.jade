@@ -1,11 +1,11 @@
 .data-table-container
     table.data-table.data-table--has-primary.data-table--has-secondary
         tbody
-            tr.data-table__clickable-row(ng-repeat='prop in props')
+            tr.data-table__clickable-row
                 td
-                    span.fs-caption {{prop.label|translate}}:
+                    span.fs-caption {{'uname'|translate}}:
                 td
-                    input(type="text" ng-model='prop.value')
+                    input(type="text" ng-model='user.profile.userName')
                 td
                     i.icon.icon--xs.icon--grey.icon--flat.mdi.mdi-content-save(ng-click='saveUserProperty(prop)')
 

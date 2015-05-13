@@ -4,7 +4,6 @@
         .factory('ProfileLiveServ', function ($q, url, users, $firebaseObject, $firebaseArray, user) {
             var ref = new Firebase(users);
             var unwatch;
-
             return {
                 setBinding: function (userKey) {
                     return $q(function (resolve, reject) {
@@ -20,6 +19,7 @@
                     });
                 },
                 undind: function () {
+                    user.profile = null;
                     unwatch();
                 }
             };
