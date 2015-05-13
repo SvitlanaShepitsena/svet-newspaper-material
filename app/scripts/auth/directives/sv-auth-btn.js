@@ -12,12 +12,14 @@
                         return UserGroupsServ.isInGroup('manager');
                     };
                     $scope.user = user;
+
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
-                            if (user.role && user.role==='manager') {
-                                $state.go('app.manager.dashboard', {uid: user.id})
+                            if (user.profile.role && user.profile.role==='manager') {
+
+                                $state.go('app.manager.dashboard', {uid: user.key})
                             } else {
-                                $state.go('app.user.dashboard', {uid: user.userName})
+                                $state.go('app.user.dashboard', {uid: user.profile.userName})
                             }
                         });
                     };

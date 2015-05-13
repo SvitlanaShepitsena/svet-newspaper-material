@@ -24,7 +24,7 @@
                     });
                 },
                 logout: function () {
-                    ProfileLiveServ.undind();
+                    ProfileLiveServ.unbind();
                 },
                 createSvetUser: function (email, password, userName) {
                     var authObj = $firebaseAuth(ref);

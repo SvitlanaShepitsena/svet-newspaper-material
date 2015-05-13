@@ -1,34 +1,22 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svRequestBusinessAccountBtn', function (RequestServ, $rootScope, toastr, CurrentUserServ) {
+        .directive('svRequestBusinessAccountBtn', function (RequestServ, user, toastr) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-request-business-account-btn.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    var currentUser = CurrentUserServ.get();
-                    if (currentUser) {
-                        RequestServ.getStatus(currentUser.key).then(function (requestSubmited) {
-                            $scope.loaded = true;
-                            $scope.requestSubmited = requestSubmited;
-                        });
-                    }
+                    $scope.user = user;
                     $scope.cancelRequest = function () {
-                        RequestServ.cancelRequest(CurrentUserServ.get().key).then(function () {
-                            $scope.requestSubmited = false;
+                        RequestServ.cancelRequest(user.key).then(function () {
                             toastr.warning('Your request for Svet Media Group  corporate account has been canceled');
                         });
                     };
                     $scope.submitRequest = function () {
-                        var key = CurrentUserServ.get().key;
-                        console.log(key);
-                        RequestServ.submitRequest(key).then(function () {
-                            $scope.requestSubmited = true;
-                            toastr.success('Your request for Svet Media Group  corporate account has been successfully submitted');
-                        }, function (error) {
-                            toastr.error(error);
-                        });
+                        RequestServ.submitRequest(user.key).then(function () {
+                            toastr.info('Your request for Svet Media Group  submitted');
+                        })
                     };
                 }
             };

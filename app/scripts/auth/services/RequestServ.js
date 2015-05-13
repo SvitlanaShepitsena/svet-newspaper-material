@@ -30,7 +30,7 @@
                         var userObj = $firebaseObject(new Firebase(userUrl));
 
                         userObj.$loaded().then(function () {
-                            userObj.requestCorporateSubmited = {submitted:true,
+                            userObj.profile.requestCorporateSubmited = {submitted:true,
                                                                 submittedDate:moment().format('x'),
                                                                 accepted:false,
                                                                 rejected:false };
@@ -47,7 +47,7 @@
                 cancelRequest: function (userId) {
                     return $q(function (resolve, reject) {
 
-                        var userRequestUrl = users + userId+'/requestCorporateSubmited';
+                        var userRequestUrl = users + userId+'/profile/requestCorporateSubmited';
                         var userRequestObj = $firebaseObject(new Firebase(userRequestUrl));
 
                         userRequestObj.$loaded().then(function () {

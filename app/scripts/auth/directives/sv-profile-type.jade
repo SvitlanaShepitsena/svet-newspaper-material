@@ -1,15 +1,15 @@
-div(style='margin-bottom:5px' )
-    div(ng-show='isInGroup("customer")' ng-if='!!user')
+div(style='margin-bottom:5px' ng-if='!!user.profile')
+    div(ng-show='user.profile.role==="customer"')
         span.tc-red-300(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')
             | SVET
         span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')
             | BUSINESS
-    div(ng-show='isInGroup("author")' ng-if='!!user')
+    div(ng-show='user.profile.role==="author"' )
         span.tc-red-300(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')
             | SVET
         span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')
             | AUTHOR
-    div(ng-show='user.groups.indexOf("manager")>-1' )
+    div(ng-show='user.profile.role==="manager"' )
         span.tc-red-300(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')
             | SVET
         span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')

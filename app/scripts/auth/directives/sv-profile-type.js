@@ -1,20 +1,12 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svProfileType', function (UserGroupsServ, CurrentUserServ) {
+        .directive('svProfileType', function (user) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-profile-type.html',
-                scope: {},
                 link: function ($scope, el, attrs) {
-                    $scope.$watch(function () {
-                        return CurrentUserServ.get();
-                    }, function (newValue, oldValue) {
-                        $scope.user = newValue;
-                    });
-                    $scope.isInGroup = function (group) {
-                        return UserGroupsServ.isInGroup(group);
-                    };
+                    $scope.user=user;
                 }
             };
         });

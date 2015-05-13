@@ -9,16 +9,6 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.user = user;
-
-                    $scope.isInGroup = function (group) {
-
-                        if (group === 'reader') {
-                            if (user) {
-                                return true;
-                            }
-                        }
-                        return user.role && user.role===group;
-                    };
                 }
             };
         });

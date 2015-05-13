@@ -10,6 +10,7 @@
                         var currentUserProfileRef = $firebaseObject(ref.child(userKey).child('profile'));
                         currentUserProfileRef.$loaded(function () {
                             user.profile = currentUserProfileRef;
+                            user.key = userKey;
                             unwatch = currentUserProfileRef.$watch(function () {
                                 // Update profile on any change
                                 user.profile = currentUserProfileRef;
@@ -18,7 +19,7 @@
                         })
                     });
                 },
-                undind: function () {
+                unbind: function () {
                     user.profile = null;
                     unwatch();
                 }

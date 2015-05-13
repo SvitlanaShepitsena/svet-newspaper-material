@@ -1,22 +1,22 @@
 lx-dropdown(position='right')
     button.btn.btn--l.btn--white.btn--fab.btn-flat(lx-dropdown-toggle='' ng-class="{'mr+':gtSm}")
-        img.img-round(ng-src="{{user.avatar}}" style='width:40px;height:40px')
+        img.img-round(ng-src="{{user.profile.avatar}}" style='width:40px;height:40px')
     lx-dropdown-menu
         ul
             li
-                a.dropdown-link(ui-sref='app.manager.dashboard({uid:user.id})')
+                a.dropdown-link(ui-sref='app.manager.dashboard({uid:user.key})')
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
-                a.dropdown-link(ui-sref='app.manager.users({uid:user.id})')
+                a.dropdown-link(ui-sref='app.manager.users({uid:user.key})')
                     i.mdi.mdi-emoticon &nbsp
                     span {{'friends'|translate}}
             li
-                a.dropdown-link(ui-sref='app.manager.events({uid:user.id})')
+                a.dropdown-link(ui-sref='app.manager.events({uid:user.key})')
                     i.mdi.mdi-tag &nbsp
                     span {{'events'|translate}}
             li
-                a.dropdown-link(ui-sref='app.manager.ad({uid:user.id})')
+                a.dropdown-link(ui-sref='app.manager.ad({uid:user.key})')
                     i.fa.fa-bullhorn &nbsp
                     span {{'ad'|translate}}
             li.dropdown-divider
