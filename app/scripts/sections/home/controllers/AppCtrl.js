@@ -2,11 +2,7 @@
     'use strict';
     angular.module('sections.home')
         .controller('AppCtrl', function AppCtrl(AgentServ, NotificationsServ, userAuth, $timeout, $mdSidenav, $mdMedia,
-                                                NewsProcessServ, ArticleServ, $state, $scope, $rootScope, toastr) {
-            $scope.user = userAuth;
-            $scope.$watch('user', function (newValue, oldValue) {
-                console.log(newValue);
-            });
+                                                    NewsProcessServ, ArticleServ, $state, $scope, $rootScope, toastr) {
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 toastr.warning(error);
             })

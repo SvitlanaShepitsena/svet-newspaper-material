@@ -5,11 +5,17 @@
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
+                scope: {},
                 link: function ($scope) {
-                    $scope.$watch('user', function (newValue, oldValue) {
-                        console.log(newValue);
-                    });
                     $scope.isIe = AgentServ.isIe();
+                    $scope.$watch(function () {
+                        return userAuth;
+                    }, function (newValue, oldValue) {
+                        if (newValue === oldValue) {
+                            return;
+                        }
+                        $scope.user=userAuth.profile;
+                    },true);
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
                             if (userAuth.profile && userAuth.profile.role === 'manager') {
@@ -19,9 +25,6 @@
                             }
                         });
                     };
-
-
-
                     $scope.logout = function () {
                         AuthenticationServ.logout();
                         $state.go('app.home');
