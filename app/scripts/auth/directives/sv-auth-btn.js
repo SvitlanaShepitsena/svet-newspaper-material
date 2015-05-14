@@ -1,15 +1,13 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (user, AuthenticationServ, toastr, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
+        .directive('svAuthBtn', function (AuthenticationServ, toastr, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
-                scope: {},
                 link: function ($scope) {
                     $scope.isIe = AgentServ.isIe();
-                    $scope.user = user;
-                    console.log($scope.user);
+
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
                             if (user.profile && user.profile.role === 'manager') {

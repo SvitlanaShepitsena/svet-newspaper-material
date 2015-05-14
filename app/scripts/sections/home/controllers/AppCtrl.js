@@ -1,8 +1,8 @@
 (function () {
     'use strict';
     angular.module('sections.home')
-        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $state, $scope, user, $rootScope, toastr) {
-            $rootScope.$broadcast('user-resolved', user.profile);
+        .controller('AppCtrl', function AppCtrl(NewsProcessServ, ArticleServ, $state, $scope, userAuth, $rootScope, toastr) {
+            $rootScope.$broadcast('user-resolved');
 
 
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {

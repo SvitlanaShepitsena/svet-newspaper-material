@@ -1,12 +1,10 @@
 (function () {
     'use strict';
     angular.module('app')
-        .controller('MainCtrl', function (AgentServ, NotificationsServ, $scope, $timeout, $mdSidenav, $mdMedia, $rootScope) {
-            $scope.$on('user-resolved', function (event, profile) {
-                $scope.user=profile
-                console.log($scope.user);
+        .controller('MainCtrl', function (AgentServ, NotificationsServ, userAuth, $scope, $timeout, $mdSidenav, $mdMedia, $rootScope) {
+            $scope.$on('user-resolved', function () {
+                $scope.user = userAuth.profile;
             });
-
             var main = this;
             main.isIe = AgentServ.isIe();
             $scope.toggleLeft = function () {

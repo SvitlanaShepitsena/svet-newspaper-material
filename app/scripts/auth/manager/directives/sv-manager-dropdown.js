@@ -1,14 +1,10 @@
 (function () {
     'use strict';
     angular.module('auth.manager')
-        .directive('svManagerDropdown', function (user) {
+        .directive('svManagerDropdown', function () {
             return {
                 templateUrl: 'scripts/auth/manager/directives/sv-manager-dropdown.html',
-                scope: {
-                    logout: '&'
-                },
                 link: function ($scope, el, attrs) {
-                    $scope.user = user;
                 }
             };
         });
