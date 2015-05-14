@@ -8,11 +8,11 @@
                     abstract: true,
                     url: '/:uid',
                     resolve: {
-                        userRights: function ($q, $stateParams, userPromise, user) {
+                        userRights: function ($q, $stateParams, userPromise, userAuth) {
                             var routeUid = $stateParams.uid;
-                            var userName = user.profile.userName || userPromise.userName;
+                            var userName = userAuth.profile.userName || userPromise.userName;
                             return $q(function (resolve, reject) {
-                                if (user && user.profile.userName === routeUid) {
+                                if (userAuth && userAuth.profile.userName === routeUid) {
                                     resolve();
                                 } else {
                                     reject('You do not have enough priviliges to view that page!');

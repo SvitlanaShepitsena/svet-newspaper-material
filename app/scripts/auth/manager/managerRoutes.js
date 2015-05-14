@@ -8,10 +8,10 @@
                     url: "/manager/:uid",
                     abstract: true,
                     resolve: {
-                        rights: function ($q, $stateParams, user, userPromise) {
+                        rights: function ($q, $stateParams, userAuth, userPromise) {
                             var routeUid = $stateParams.uid;
                             return $q(function (resolve, reject) {
-                                if (user.profile.role && user.profile.role === 'manager' && user.key===routeUid) {
+                                if (userAuth.profile.role && userAuth.profile.role === 'manager' && userAuth.key===routeUid) {
                                     resolve();
                                 } else {
                                     reject('You do not have enough priviliges to view that page!');

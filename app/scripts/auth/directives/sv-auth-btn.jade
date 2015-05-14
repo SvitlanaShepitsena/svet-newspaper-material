@@ -26,6 +26,6 @@ div(ng-class="{'sv':gtMd}")
                         button.btn.btn--m.btn--fab.tc-red-900.btn--white(lx-ripple ng-click='loginProvider("google")')
                             i.mdi.mdi-google-plus
         div(layout='row' ng-if='!!user' layout-align="center center")
-            //span.fs-body-2.mr.tc-grey-700(style='font-weight:600') {{user.userName|uppercase}}
+            span.fs-body-2.mr.tc-grey-700(style='font-weight:600') {{user.userName|uppercase}}
             sv-user-dropdown-menu(ng-if="user.role!=='manager'" logout='logout()')
             sv-manager-dropdown(ng-if="user.role==='manager'" logout='logout()')

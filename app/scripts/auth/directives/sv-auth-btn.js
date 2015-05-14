@@ -1,17 +1,24 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (AuthenticationServ, toastr, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
+        .directive('svAuthBtn', function (AuthenticationServ, toastr, userAuth, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
+                scope: {},
                 link: function ($scope) {
-                    $scope.isIe = AgentServ.isIe();
+                    $scope.user = userAuth.profile;
+                    $scope.$watch('user', function (newValue, oldValue) {
+                        console.log(newValue);
+                    });
 
+
+                    $scope.isIe = AgentServ.isIe();
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
-                            if (user.profile && user.profile.role === 'manager') {
-                                $state.go('app.manager.dashboard', {uid: user.key})
+                            $scope.user = userAuth.profile;
+                            if (userAuth.profile && userAuth.profile.role === 'manager') {
+                                $state.go('app.manager.dashboard', {uid: userAuth.key})
                             } else {
                                 $state.go('app.user.dashboard', {uid: user.profile.userName})
                             }
