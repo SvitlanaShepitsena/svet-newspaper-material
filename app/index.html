@@ -38,7 +38,7 @@
 
 </head>
 
-<body ng-app="app" layout="column" flow-prevent-drop ng-controller="AppCtrl" ng-cloak="">
+<body ng-app="app" layout="column" flow-prevent-drop ng-controller="MainCtrl as main" ng-cloak="">
 <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
             style="background-color:#474341">
     <div layout="row" layout-align="center center">
@@ -99,9 +99,12 @@
             <sv-header-classified-btn></sv-header-classified-btn>
             <sv-header-subscription-btn hide-sm></sv-header-subscription-btn>
             <span flex></span>
-            <sv-profile-type class='mr'></sv-profile-type>
-            <sv-auth-btn class="mr"></sv-auth-btn>
-            <sv-notifications-list style='max-height:30px'></sv-notifications-list>
+
+            <div layout="row" ng-if="user">
+                <sv-profile-type class='mr'></sv-profile-type>
+                <sv-auth-btn class="mr"></sv-auth-btn>
+                <sv-notifications-list style='max-height:30px'></sv-notifications-list>
+            </div>
             <div show-gt-lg class="ml"></div>
             <button class='btn btn--xl btn--icon'
                     style="width:36px"
@@ -123,7 +126,6 @@
                 <md-toolbar class="text-center bgc-grey-200" sv-nav-bar-media layout-padding=""
                             layout='row' hide-gt-lg
                             layout-align='start center'
-                            ng-controller="RightCtrl">
                     <button lx-ripple class='btn btn--m btn--icon btn--black mr' sv-right-click-handler=""
                             hide-gt-lg=""
                             aria-label="close right" class="txt-white">
@@ -197,6 +199,7 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/routes.js"></script>
 <script src="scripts/sections/home/homeRoutes.js"></script>
+<script src="scripts/sections/home/controllers/MainCtrl.js"></script>
 <!-- MODULES-->
 
 <!-- common -->
