@@ -6,15 +6,12 @@
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
                 link: function ($scope) {
-                    //$scope.$watch('user', function (newValue, oldValue) {
-                    //    console.log(newValue);
-                    //});
-
-
+                    $scope.$watch('user', function (newValue, oldValue) {
+                        console.log(newValue);
+                    });
                     $scope.isIe = AgentServ.isIe();
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
-                            $scope.user = userAuth.profile;
                             if (userAuth.profile && userAuth.profile.role === 'manager') {
                                 $state.go('app.manager.dashboard', {uid: userAuth.key})
                             } else {
@@ -22,6 +19,9 @@
                             }
                         });
                     };
+
+
+
                     $scope.logout = function () {
                         AuthenticationServ.logout();
                         $state.go('app.home');

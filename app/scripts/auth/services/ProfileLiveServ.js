@@ -23,10 +23,10 @@
                             userAuth.profile = (currentUserProfileRef);
                             userAuth.key = userKey;
                             unwatch = currentUserProfileRef.$watch(function () {
-                                console.log('changes');
+                                //console.log('changes');
                                 // Update profile on any change
                                 userAuth.profile = (currentUserProfileRef);
-                                console.log(userAuth.profile);
+                                //console.log(userAuth.profile);
                             });
                             resolve(true);
                         })
