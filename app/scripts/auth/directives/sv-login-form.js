@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svLoginForm', function (toastr, AuthServ, $state, CurrentUserServ, UserGroupsServ, AuthenticationServ) {
+        .directive('svLoginForm', function (toastr,$state, userAuth, AuthenticationServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-login-form.html',
@@ -19,10 +19,10 @@
                     }
                     $scope.singIn = function () {
                         AuthenticationServ.svetLogin($scope.user.email, $scope.user.password).then(function (user) {
-                            if (UserGroupsServ.isInGroup('manager')) {
-                                $state.go('app.manager.dashboard', {uid: user.id});
+                            if (userAuth) {
+                                $state.go('app.manager.dashboard', {uid: userAuth.key});
                             } else {
-                                $state.go('app.user.dashboard', {uid: user.userName});
+                                $state.go('app.user.dashboard', {uid: userAuth.profile.userName});
                             }
                         }).catch(function (error) {
                             toastr.error(error.message);

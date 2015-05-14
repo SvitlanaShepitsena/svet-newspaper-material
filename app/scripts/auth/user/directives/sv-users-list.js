@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth.user')
-        .directive('svUsersList', function (UserServ, UserGroupsServ, toastr, avatar) {
+        .directive('svUsersList', function (UserServ,toastr, avatar) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/user/directives/sv-users-list.html',
