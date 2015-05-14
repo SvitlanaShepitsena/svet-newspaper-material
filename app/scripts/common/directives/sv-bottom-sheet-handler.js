@@ -19,6 +19,7 @@
                         $scope.$apply(function () {
                             $mdBottomSheet.show({
                                 templateUrl: 'scripts/common/templates/social-top-nav-cell.html'
+
                             });
                         });
                     });
