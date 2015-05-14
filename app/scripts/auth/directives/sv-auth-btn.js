@@ -1,10 +1,11 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (AuthenticationServ, toastr, userAuth, NoteServ, AgentServ, $state, UserServ, $mdMedia, UserGroupsServ, CurrentUserServ) {
+        .directive('svAuthBtn', function (AuthenticationServ, userAuth, NoteServ, AgentServ, $state, $mdMedia) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
+                scope: {},
                 link: function ($scope) {
                     $scope.$watch('user', function (newValue, oldValue) {
                         console.log(newValue);
@@ -19,9 +20,6 @@
                             }
                         });
                     };
-
-
-
                     $scope.logout = function () {
                         AuthenticationServ.logout();
                         $state.go('app.home');
