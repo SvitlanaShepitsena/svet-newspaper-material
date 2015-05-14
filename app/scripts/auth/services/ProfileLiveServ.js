@@ -33,8 +33,9 @@
                     });
                 },
                 unbind: function () {
-                    userAuth = {};
                     unwatch();
+                    userAuth.profile = null;
+                    userAuth.key = null;
                 }
             };
         });

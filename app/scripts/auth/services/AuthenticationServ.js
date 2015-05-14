@@ -56,7 +56,7 @@
                 },
                 logout: function () {
                     authObj.$unauth();
-                    ProfileServ.logout();
+                    ProfileServ.cleanProfile();
                 }
             };
         });

@@ -9,7 +9,6 @@
                     place: '@'
                 },
                 link: function ($scope, el, attrs) {
-
                     var allAdds = AdServ.allArr();
                     allAdds.$loaded().then(function () {
                         $scope.placeAds = _.where(allAdds, function (ad) {

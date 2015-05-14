@@ -28,7 +28,7 @@
                         })
                     });
                 },
-                logout: function () {
+                cleanProfile: function () {
                     ProfileLiveServ.unbind();
                 },
                 createSvetUser: function (email, password, userName) {
