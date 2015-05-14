@@ -16,7 +16,12 @@
                                     resolve(userDbProfile.profile);
                                 });
                             } else {
-                                resolve(null);
+                                saveProfileToDb(authData,true).then(function (createdUserKey) {
+                                    ProfileLiveServ.setBinding(createdUserKey).then(function () {
+                                        resolve(createdUserKey);
+                                    });
+
+                                });
                             }
                         }).catch(function (error) {
                             reject(error);
@@ -54,7 +59,6 @@
                 return $q(function (resolve, reject) {
                     var authObj = $firebaseAuth(ref);
                     authObj.$createUser(credentials).then(function (userData) {
-                        //console.log('user has been created: ' + userData);
                         authObj.$resetPassword({email: email}).then(function () {
                             resolve(userData);
                         })
@@ -136,6 +140,7 @@
                 if (!authData.provider) {
                     getSvet(user, authData);
                 }
+                user.profile.role = 'reader';
                 return user;
             }
         });

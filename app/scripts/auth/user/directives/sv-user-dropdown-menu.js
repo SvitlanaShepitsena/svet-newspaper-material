@@ -9,6 +9,7 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.user = user;
+                    console.log($scope.user);
                 }
             };
         });

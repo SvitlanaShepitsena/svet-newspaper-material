@@ -15,7 +15,7 @@
 
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
-                            if (user.profile.role && user.profile.role==='manager') {
+                            if (user.profile && user.profile.role==='manager') {
 
                                 $state.go('app.manager.dashboard', {uid: user.key})
                             } else {
