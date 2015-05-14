@@ -6,9 +6,9 @@
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
                 link: function ($scope) {
-                    $scope.$watch('user', function (newValue, oldValue) {
-                        console.log(newValue);
-                    });
+                    //$scope.$watch('user', function (newValue, oldValue) {
+                    //    console.log(newValue);
+                    //});
 
 
                     $scope.isIe = AgentServ.isIe();

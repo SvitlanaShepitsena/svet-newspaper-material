@@ -20,11 +20,13 @@
                     return $q(function (resolve, reject) {
                         var currentUserProfileRef = $firebaseObject(ref.child(userKey).child('profile'));
                         currentUserProfileRef.$loaded(function () {
-                            userAuth.profile = pickUserProps(currentUserProfileRef);
+                            userAuth.profile = (currentUserProfileRef);
                             userAuth.key = userKey;
                             unwatch = currentUserProfileRef.$watch(function () {
+                                console.log('changes');
                                 // Update profile on any change
-                                userAuth.profile = pickUserProps(currentUserProfileRef);
+                                userAuth.profile = (currentUserProfileRef);
+                                console.log(userAuth.profile);
                             });
                             resolve(true);
                         })

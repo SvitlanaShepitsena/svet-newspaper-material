@@ -3,12 +3,6 @@
     angular.module('sections.home')
         .controller('AppCtrl', function AppCtrl(AgentServ, NotificationsServ, userAuth, $timeout, $mdSidenav, $mdMedia,
                                                 NewsProcessServ, ArticleServ, $state, $scope, $rootScope, toastr) {
-            $scope.user = userAuth.profile;
-            $scope.$watch(function (newValue, oldValue) {
-                console.log('run here AppCtrl.js'+ $scope.user);
-
-            });
-
 
 
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
