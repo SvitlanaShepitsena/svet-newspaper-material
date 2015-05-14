@@ -5,9 +5,7 @@
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
-                scope: {},
                 link: function ($scope) {
-                    $scope.user = userAuth.profile;
                     $scope.$watch('user', function (newValue, oldValue) {
                         console.log(newValue);
                     });
@@ -20,7 +18,7 @@
                             if (userAuth.profile && userAuth.profile.role === 'manager') {
                                 $state.go('app.manager.dashboard', {uid: userAuth.key})
                             } else {
-                                $state.go('app.user.dashboard', {uid: user.profile.userName})
+                                $state.go('app.user.dashboard', {uid: userAuth.profile.userName})
                             }
                         });
                     };

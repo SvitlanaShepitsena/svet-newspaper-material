@@ -1,13 +1,13 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svRequestBusinessAccountBtn', function (RequestServ, user, toastr) {
+        .directive('svRequestBusinessAccountBtn', function (RequestServ, userAuth, toastr) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-request-business-account-btn.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    $scope.user = user;
+                    $scope.user = userAuth;
                     $scope.cancelRequest = function () {
                         RequestServ.cancelRequest(user.key).then(function () {
                             toastr.warning('Your request for Svet Media Group  corporate account has been canceled');

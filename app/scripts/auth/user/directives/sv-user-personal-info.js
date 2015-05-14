@@ -1,13 +1,13 @@
 (function () {
     'use strict';
     angular.module('auth.user')
-        .directive('svUserPersonalInfo', function (toastr,user) {
+        .directive('svUserPersonalInfo', function (toastr,userAuth) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/user/directives/sv-user-personal-info.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    $scope.userName={value: angular.copy(user.profile.userName)};
+                    $scope.userName={value: angular.copy(userAuth.profile.userName)};
 
                     $scope.saveUserProperty = function (property) {
                         UserServ.saveUserProperty(property, CurrentUserServ.get().key).then(function (success) {
