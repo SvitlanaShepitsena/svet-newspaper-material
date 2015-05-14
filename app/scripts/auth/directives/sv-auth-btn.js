@@ -8,15 +8,11 @@
                 scope: {},
                 link: function ($scope) {
                     $scope.isIe = AgentServ.isIe();
-                    $scope.isManager = function () {
-                        return UserGroupsServ.isInGroup('manager');
-                    };
                     $scope.user = user;
-
+                    console.log($scope.user);
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
-                            if (user.profile && user.profile.role==='manager') {
-
+                            if (user.profile && user.profile.role === 'manager') {
                                 $state.go('app.manager.dashboard', {uid: user.key})
                             } else {
                                 $state.go('app.user.dashboard', {uid: user.profile.userName})

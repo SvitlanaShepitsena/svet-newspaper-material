@@ -5,8 +5,8 @@
             return {
                 link: function ($scope, el, attrs) {
                     el.on('touchstart', function (event) {
-                        //event.preventDefault();
-                        //event.stopPropagation();
+                        event.preventDefault();
+                        event.stopPropagation();
                         $scope.$apply(function () {
                             $mdBottomSheet.show({
                                 templateUrl: 'scripts/common/templates/social-top-nav-cell.html'

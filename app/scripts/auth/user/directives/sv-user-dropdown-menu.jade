@@ -1,30 +1,30 @@
 lx-dropdown(position='right')
     button.btn.btn--l.btn--white.btn--fab.btn-flat(lx-dropdown-toggle='' ng-class="{'mr+':gtSm}")
-        img.img-round(ng-src="{{user.profile.avatar}}" style='width:40px;height:40px' ng-if='user.profile')
+        img.img-round(ng-src="{{user.avatar}}" style='width:40px;height:40px' ng-if='user')
     lx-dropdown-menu
         ul
             li
-                a.dropdown-link(ui-sref="app.user.dashboard({uid:user.profile.userName})")
+                a.dropdown-link(ui-sref="app.user.dashboard({uid:user.userName})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li(ng-if='isInGroup("customer")')
-                a.dropdown-link(ui-sref="app.user.ad({uid:user.profile.userName || user.fname})" )
+                a.dropdown-link(ui-sref="app.user.ad({uid:user.userName || user.fname})" )
                     i.fa.fa-bullhorn &nbsp
                     | {{'my-ad'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.social({uid:user.profile.userName|| user.fname})")
+                a.dropdown-link(ui-sref="app.user.social({uid:user.userName|| user.fname})")
                     i.mdi.mdi-emoticon &nbsp
                     | {{'community'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.profile.userName|| user.fname})"  ng-if='isInGroup("author")')
+                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName|| user.fname})"  ng-if='isInGroup("author")')
                     i.mdi.mdi-view-list &nbsp
                     | {{'my-articles'|translate}}
             li
-                a.dropdown-link(ui-sref='app.user.create-article({uid:user.profile.userName|| user.fname})'  ng-if='isInGroup("author")')
+                a.dropdown-link(ui-sref='app.user.create-article({uid:user.userName|| user.fname})'  ng-if='isInGroup("author")')
                     i.mdi.mdi-pencil &nbsp
                     | {{'create-article'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.user-events({uid:user.profile.userName|| user.fname})")
+                a.dropdown-link(ui-sref="app.user.user-events({uid:user.userName|| user.fname})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'events'|translate}}
             li.dropdown-divider

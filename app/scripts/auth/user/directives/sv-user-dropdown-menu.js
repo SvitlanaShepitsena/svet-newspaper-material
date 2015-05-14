@@ -8,7 +8,7 @@
                     logout: '&'
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.user = user;
+                    $scope.user = user.profile;
                     console.log($scope.user);
                 }
             };
