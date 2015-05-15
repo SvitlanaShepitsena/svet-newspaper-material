@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .factory('ArticleServ', function ($q, $firebaseArray, $firebaseObject, url, CurrentUserServ, ArticleProcessServ, NewsProcessServ) {
+        .factory('ArticleServ', function ($q, $firebaseArray, $firebaseObject, url, userAuth, ArticleProcessServ, NewsProcessServ) {
             var ref = new Firebase(url + 'articles/');
             var refArr = $firebaseArray(ref)
             var refObj = $firebaseObject(ref);
@@ -62,7 +62,7 @@
                 add: function (article, isDraft) {
                     article.isDraft = isDraft || false;
                     article.timestamp = moment().format('x');
-                    article.authorKey = CurrentUserServ.get().key
+                    article.authorKey = userAuth.profile.key
                     return $q(function (resolve, reject) {
                         if (article.$id) {
                             var articleDb = ref.child(article.$id);

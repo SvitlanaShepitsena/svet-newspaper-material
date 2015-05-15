@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('ad.promotion')
-        .filter('userList', function (CurrentUserServ) {
+        .filter('userList', function (userAuth) {
             return function (list) {
-                var user = CurrentUserServ.get();
+                var user = userAuth.profile;
                 if (!user || !user.key || list.length === 0) {
                     return;
                 }

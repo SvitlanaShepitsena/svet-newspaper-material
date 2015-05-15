@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth.user')
-        .directive('svBusinessAccountRequests', function (RequestServ, toastr, CurrentUserServ) {
+        .directive('svBusinessAccountRequests', function (RequestServ, toastr, userAuth) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/user/directives/sv-business-account-requests.html',

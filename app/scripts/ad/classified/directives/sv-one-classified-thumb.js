@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .directive('svOneClassifiedThumb', function (CurrentUserServ, ClassifiedServ, toastr, $state) {
+        .directive('svOneClassifiedThumb', function (ClassifiedServ, toastr, $state) {
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-one-classified-thumb.html',

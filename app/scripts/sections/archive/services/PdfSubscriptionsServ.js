@@ -1,10 +1,10 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('PdfSubscriptionsServ', function ($q, urlUsers, $firebaseObject, CurrentUserServ) {
+        .factory('PdfSubscriptionsServ', function ($q, urlUsers, $firebaseObject, userAuth) {
             return {
                 getObjectRef: function () {
-                    var currentUser = CurrentUserServ.get();
+                    var currentUser = userAuth.profile;
                     if (!currentUser) {
                         return null;
                     }

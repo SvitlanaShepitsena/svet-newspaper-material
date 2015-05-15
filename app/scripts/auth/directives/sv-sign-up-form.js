@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svSignUpForm', function (ProfileServ, UserServ, $state, toastr, AuthenticationServ) {
+        .directive('svSignUpForm', function (ProfileServ,  $state, toastr, AuthenticationServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-sign-up-form.html',

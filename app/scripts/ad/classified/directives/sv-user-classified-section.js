@@ -1,13 +1,13 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .directive('svUserClassifiedSection', function (CurrentUserServ, ClassifiedServ, toastr) {
+        .directive('svUserClassifiedSection', function (ClassifiedServ, toastr) {
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-user-classified-section.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    $scope.user = CurrentUserServ.get();
+                    $scope.user = userAuth.profile;
                     var cls = ClassifiedServ.getAllCls();
                     cls.$loaded().then(function () {
                         $scope.cls = cls;

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svAddComment', function (CurrentUserServ, ArticleServ) {
+        .directive('svAddComment', function (userAuth, ArticleServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-add-comment.html',
@@ -9,7 +9,7 @@
                     key: '='
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.user = CurrentUserServ.get();
+                    $scope.user = userAuth.profile;
                     $scope.comment = {
                         body: '',
                         user: $scope.user.fname || $scope.user.login,

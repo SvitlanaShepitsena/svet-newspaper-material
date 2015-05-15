@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('common')
-        .directive('svLinkBack', function (CurrentUserServ,$state) {
+        .directive('svLinkBack', function (userAuth,$state) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-link-back.html',
@@ -12,7 +12,7 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.$watch(function () {
-                        return CurrentUserServ.get();
+                        return userAuth.profile;
                     }, function (newValue, oldValue) {
                         $scope.user = newValue;
                     });

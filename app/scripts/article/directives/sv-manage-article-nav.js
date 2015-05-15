@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svManageArticleNav', function (ArticleServ, toastr, $state, CurrentUserServ) {
+        .directive('svManageArticleNav', function (ArticleServ, toastr, $state, userAuth) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-manage-article-nav.html',

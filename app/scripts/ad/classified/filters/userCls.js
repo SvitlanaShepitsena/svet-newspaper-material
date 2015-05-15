@@ -1,13 +1,13 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .filter('userCls', function (CurrentUserServ) {
+        .filter('userCls', function (userAuth) {
             return function (allCls) {
-                if (!CurrentUserServ.get()) {
+                if (userAuth.profile) {
                     var emp = [];
                     return emp;
                 }
-                return _.filter(allCls, {user: {id: CurrentUserServ.get().id}});
+                return _.filter(allCls, {user: {id: userAuth.key}});
             };
         });
 })();

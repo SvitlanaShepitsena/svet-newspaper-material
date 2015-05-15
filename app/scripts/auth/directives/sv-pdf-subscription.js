@@ -1,13 +1,13 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svPdfSubscription', function (PdfSubscriptionsServ, CurrentUserServ) {
+        .directive('svPdfSubscription', function (PdfSubscriptionsServ, userAuth) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-pdf-subscription.html',
                 scope: {},
                 link: function ($scope) {
-                    $scope.user = CurrentUserServ.get();
+                    $scope.user = userAuth.profile;
                     var pdfSubObj = PdfSubscriptionsServ.getObjectRef();
                     if (pdfSubObj) {
                         $scope.requestSubmited = true;

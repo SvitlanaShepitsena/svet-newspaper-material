@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth.notifications')
-        .factory('NotificationsServ', function ($q, url, users, $firebaseObject, $firebaseArray, CurrentUserServ) {
+        .factory('NotificationsServ', function ($q, url, users, $firebaseObject, $firebaseArray, userAuth) {
             return {
                 getUserNotices: function (key) {
                     var noticesUrl = users + key + '/notices';
@@ -9,7 +9,7 @@
                     return noticesArray;
                 },
                 markNoticeOpened: function (notice) {
-                    var userKey = CurrentUserServ.get().key;
+                    var userKey = userAuth.profile.key;
                     var noticeUrl = users + userKey + '/notices/' + notice.$id;
                     return $q(function (resolve, reject) {
                         var noticeObject = $firebaseObject(new Firebase(noticeUrl));
@@ -22,7 +22,7 @@
                     });
                 },
                 markAllNoticesOpened: function () {
-                    var userKey = CurrentUserServ.get().key;
+                    var userKey = userAuth.profile.key;
                     var noticeUrl = users + userKey + '/notices/';
                     return $q(function (resolve, reject) {
                         var noticesArray = $firebaseArray(new Firebase(noticeUrl));

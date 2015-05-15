@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('ad.promotion')
-        .factory('AdServ', function ($q, url, ads, $firebaseObject, $firebaseArray, CurrentUserServ) {
+        .factory('AdServ', function ($q, url, ads, $firebaseObject, $firebaseArray, userAuth) {
 
             return {
                 saveAd: function (ad) {
                     return $q(function (resolve, reject) {
-                        var user = CurrentUserServ.get();
+                        var user = UserAuth.profile;
                         ad.customer = _.pick(user, 'avatar', 'userName', 'key', 'id');
                         ad.timestamp = moment().format('x');
                         ad.shows = {

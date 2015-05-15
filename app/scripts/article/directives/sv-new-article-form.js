@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svNewArticleForm', function (SectionsServ, NewsGeneratorServ, CurrentUserServ, FormattedDateServ, TagsServ, ArticleServ) {
+        .directive('svNewArticleForm', function (SectionsServ, NewsGeneratorServ, userAuth, FormattedDateServ, TagsServ, ArticleServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
@@ -18,7 +18,7 @@
                                 isDraft: true,
                                 img: realNews.img,
                                 isTopNews: false,
-                                author: CurrentUserServ.get().userName,
+                                author: userAuth.profile.userName,
                                 section: SectionsServ.getRandomSection($scope.siteSections),
                                 title: realNews.title,
                                 body: realNews.body,

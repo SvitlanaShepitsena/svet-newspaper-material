@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svUniqueUsername', function (UserServ, $q, $timeout) {
+        .directive('svUniqueUsername', function ( $q, $timeout) {
             return {
                 require: '?^ngModel',
                 link: function ($scope, el, attrs, ctrl) {

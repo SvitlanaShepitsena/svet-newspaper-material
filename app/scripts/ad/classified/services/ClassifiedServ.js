@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray, UserServ, CurrentUserServ) {
+        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray,  userAuth) {
             var freeClNumber = 10;
             var clsUrl = url + 'cls/all/'
 
@@ -26,7 +26,7 @@
                     return classifiedArray;
                 },
                 addCl: function (cl) {
-                    var user = CurrentUserServ.get();
+                    var user = userAuth.profile;
                     return $q(function (resolve, reject) {
                         cl = processClassified(user, cl);
                         var classifiedArray = $firebaseArray(new Firebase(clsUrl));
@@ -36,7 +36,7 @@
                     });
                 },
                 editCl: function (cl) {
-                    var user = CurrentUserServ.get();
+                    var user = userAuth.profile;
                     var id = cl.$id;
                     return $q(function (resolve, reject) {
                         cl = processClassified(user, cl);
@@ -50,7 +50,7 @@
                     });
                 },
                 removeCl: function (cl) {
-                    var user = CurrentUserServ.get();
+                    var user = userAuth.profile;
                     return $q(function (resolve, reject) {
                         var clObj = $firebaseObject(new Firebase(clsUrl + cl.$id));
                         clObj.$loaded().then(function () {

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .directive('svClassifiedBonus', function ($rootScope, CurrentUserServ, ClassifiedServ) {
+        .directive('svClassifiedBonus', function ($rootScope, ClassifiedServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-classified-bonus.html',
