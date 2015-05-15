@@ -13,7 +13,7 @@
                         }
                     }
                     if (dbUser.auth.svet) {
-                        if (dbUser.auth.svet.email === user.google.email) {
+                        if (dbUser.auth.svet.email.toLowerCase() === user.google.email.toLowerCase()) {
                             var dbUserObj = $firebaseObject(ref.child(dbUser.$id));
                             dbUserObj.$loaded().then(function () {
                                 dbUserObj.auth.google = user;
@@ -35,7 +35,7 @@
                         }
                     }
                     if (dbUser.auth.svet) {
-                        if (dbUser.auth.svet.email === user.facebook.email) {
+                        if (dbUser.auth.svet.email.toLowerCase() === user.facebook.email.toLowerCase()) {
                             var dbUserObj = $firebaseObject(ref.child(dbUser.$id));
                             dbUserObj.$loaded().then(function () {
                                 dbUserObj.auth.facebook = user;
@@ -52,7 +52,7 @@
                 for (var i = 0; i < dbUsers.length; i++) {
                     var dbUser = dbUsers[i];
                     if (dbUser.auth.svet) {
-                        if (dbUser.auth.svet.email === user.password.email) {
+                        if (dbUser.auth.svet.email.toLowerCase() === user.password.email.toLowerCase()) {
                             return dbUser;
                         }
                     }

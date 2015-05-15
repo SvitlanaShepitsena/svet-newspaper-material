@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svSignUpForm', function (ProfileServ, UserServ, $state, toastr, CurrentUserServ) {
+        .directive('svSignUpForm', function (ProfileServ, UserServ, $state, toastr, AuthenticationServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-sign-up-form.html',
@@ -14,7 +14,7 @@
                     registered: '@',
                     login: '@'
                 },
-                controller: function ($scope, AuthServ, $rootScope) {
+                controller: function ($scope) {
                     $scope.user = {
                         userName: '',
                         email: '',
@@ -32,14 +32,10 @@
                             $scope.signUpForm.password.$touched = true;
                             return;
                         }
-                        ProfileServ.createSvetUser($scope.user.email, $scope.user.password, $scope.user.userName).then(function (user) {
-                                //if ($scope.userV && $scope.user.name) {
-                                //    user.userName = $scope.user.name.toLocaleLowerCase();
-                                //}
-                                //CurrentUserServ.setUser(user).then(function (user) {
-                                //    toastr.success('You are successfully registered')
-                                //    $state.go('app.user.dashboard', {uid: user.userName});
-                                //});
+                        ProfileServ.createSvetUser($scope.user.email, $scope.user.password, $scope.user.userName).then(function () {
+                                AuthenticationServ.svetLogin($scope.user.email, $scope.user.password).then(function (profile) {
+                                  $state.go('app.user.dashboard',{uid:profile.userName})  ;
+                                });
                             }
                         ).catch(function (error) {
                                 toastr.error(error.message);

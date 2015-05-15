@@ -19,9 +19,9 @@
                     controller: "SignUpCtrl as signUp",
                     templateUrl: "scripts/auth/views/sign-upCtrl.html",
                     resolve: {
-                        currentUser: function (CurrentUserServ, $q) {
+                        currentUser: function (userAuth, $q) {
                             return $q(function (resolve, reject) {
-                                var isLoggedIn = !!CurrentUserServ.get();
+                                var isLoggedIn = !!userAuth.profile;
                                 if (isLoggedIn) {
                                     reject('You are already logged in. Logout First');
                                 } else {

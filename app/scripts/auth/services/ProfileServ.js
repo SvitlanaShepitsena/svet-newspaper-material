@@ -16,11 +16,10 @@
                                     resolve(userDbProfile.profile);
                                 });
                             } else {
-                                saveProfileToDb(authData,true).then(function (createdUserKey) {
+                                saveProfileToDb(authData, true).then(function (createdUserKey) {
                                     ProfileLiveServ.setBinding(createdUserKey).then(function () {
                                         resolve(createdUserKey);
                                     });
-
                                 });
                             }
                         }).catch(function (error) {
@@ -32,6 +31,7 @@
                     ProfileLiveServ.unbind();
                 },
                 createSvetUser: function (email, password, userName) {
+                    var that = this;
                     var authObj = $firebaseAuth(ref);
                     return $q(function (resolve, reject) {
                         authObj.$createUser({
@@ -40,8 +40,9 @@
                         }).then(function (authData) {
                             authData.userName = userName;
                             authData.email = email;
-                            saveProfileToDb(authData, true)
-                            resolve(authData);
+                            saveProfileToDb(authData, true).then(function () {
+                                    resolve(authData);
+                            })
                         }).catch(function (error) {
                             reject(error);
                         })
@@ -74,7 +75,8 @@
                     var user = userProcess(authData);
                     dbUsersArr.$add(user).then(function (ref) {
                         if (!createLocal) {
-                            createSvetLocalProfile(user.profile.email).then(function (localUid) {
+                            createSvetLocalProfile(user.profile.email.toLowerCase()).then(function (localUid) {
+
                                 var id = localUid.uid;
                                 var user = $firebaseObject(ref);
                                 user.$loaded().then(function () {
