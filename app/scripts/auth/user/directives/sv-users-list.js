@@ -16,13 +16,17 @@
                         var count = _.countBy($scope.users, function (user) {
                             return user.profile.role;
                         });
-                        count.all = $scope.users.length;
+                        count.all = _.filter($scope.users, function (user) {
+                            return user.profile.role!=='manager';
+                        }).length;
                         ctrl.userTypesCount(count);
                         $scope.users.$watch(function () {
                             var count = _.countBy($scope.users, function (user) {
                                 return user.profile.role;
                             });
-                            count.all = $scope.users.length;
+                            count.all = _.filter($scope.users, function (user) {
+                                return user.profile.role!=='manager';
+                            }).length;
                             ctrl.userTypesCount(count);
                         })
                     })

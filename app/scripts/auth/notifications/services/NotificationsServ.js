@@ -2,34 +2,30 @@
     'use strict';
     angular.module('auth.notifications')
         .factory('NotificationsServ', function ($q, url, users, $firebaseObject, $firebaseArray, userAuth) {
+            var ref = new Firebase(users);
             return {
-                getUserNotices: function (key) {
-                    var noticesUrl = users + key + '/notices';
-                    var noticesArray = $firebaseArray(new Firebase(noticesUrl));
-                    return noticesArray;
-                },
-                markNoticeOpened: function (notice) {
+                markNotificationOpened: function (notification) {
                     var userKey = userAuth.profile.key;
-                    var noticeUrl = users + userKey + '/notices/' + notice.$id;
+                    var notificationUrl = users + userKey + '/profile/notifications/' + notification.$id;
                     return $q(function (resolve, reject) {
-                        var noticeObject = $firebaseObject(new Firebase(noticeUrl));
-                        noticeObject.$loaded().then(function () {
-                            noticeObject.opened = true;
-                            noticeObject.$save().then(function () {
+                        var notificationObject = $firebaseObject(new Firebase(notificationUrl));
+                        notificationObject.$loaded().then(function () {
+                            notificationObject.opened = true;
+                            notificationObject.$save().then(function () {
                                 resolve();
                             })
                         })
                     });
                 },
-                markAllNoticesOpened: function () {
+                markAllNotificationsOpened: function () {
                     var userKey = userAuth.profile.key;
-                    var noticeUrl = users + userKey + '/notices/';
+                    var notificationUrl = users + userKey + '/profile/notifications/';
                     return $q(function (resolve, reject) {
-                        var noticesArray = $firebaseArray(new Firebase(noticeUrl));
-                        noticesArray.$loaded().then(function () {
-                            noticesArray.forEach(function (notice) {
-                                notice.opened = true;
-                                noticesArray.$save(notice);
+                        var notificationsArray = $firebaseArray(new Firebase(notificationUrl));
+                        notificationsArray.$loaded().then(function () {
+                            notificationsArray.forEach(function (notification) {
+                                notification.opened = true;
+                                notificationsArray.$save(notification);
                             });
                         })
                     });
@@ -41,26 +37,25 @@
                             var keys = _.chain(usersObj).keysIn().filter(function (key) {
                                 return !_.startsWith(key, '$') && key !== 'forEach';
                             }).value();
-                            for (var i = 0; i < keys.length; i++) {
-                                var key = keys[i];
+                            var promises = [];
+                            angular.forEach(keys, function (key) {
                                 var user = usersObj[key];
-                                if (user.role === 'customer') {
-                                    if (!user.notices) {
-                                        user.notices = [];
-                                    }
-                                    if (!_.contains(user.notices, event)) {
-                                        user.notices.push(event);
-                                    }
+                                if (user.profile.role === 'customer') {
+                                    var userNotificationsRef = ref.child(key).child("profile").child('notifications');
+                                    var notificationsArr = $firebaseArray(userNotificationsRef);
+                                    notificationsArr.$add(event);
+                                    promises.push(notificationsArr.$save());
                                 }
-                            }
-                            usersObj.$save().then(function () {
-                                resolve()
-                            });
+                            })
+                            $q.all(promises).then(function () {
+                                resolve();
+                            })
                         })
                     });
                 },
                 addToManagers: function (event) {
                     return $q(function (resolve, reject) {
+                        var promises = [];
                         var usersObj = $firebaseObject(new Firebase(users));
                         usersObj.$loaded().then(function () {
                             var keys = _.chain(usersObj).keysIn().filter(function (key) {
@@ -69,18 +64,17 @@
                             for (var i = 0; i < keys.length; i++) {
                                 var key = keys[i];
                                 var user = usersObj[key];
-                                if (user.role === ('manager')) {
-                                    if (!user.notices) {
-                                        user.notices = [];
-                                    }
-                                    if (!_.contains(user.notices, event)) {
-                                        user.notices.push(event);
-                                    }
+                                if (user.profile.role === ('manager')) {
+                                    var userNotificationsRef = ref.child(key).child("profile").child('notifications');
+                                    var notificationsArr = $firebaseArray(userNotificationsRef);
+                                    notificationsArr.$add(event);
+                                    var saveProfise = notificationsArr.$save();
+                                    promises.push(saveProfise);
                                 }
                             }
-                            usersObj.$save().then(function () {
-                                resolve()
-                            });
+                            $q.all(promises).then(function () {
+                                resolve();
+                            })
                         })
                     });
                 }

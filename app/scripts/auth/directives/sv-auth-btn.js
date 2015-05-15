@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (AuthenticationServ, toastr, userAuth, NoteServ, AgentServ, $state, $mdMedia) {
+        .directive('svAuthBtn', function (AuthenticationServ, toastr, userAuth, AgentServ, $state, $mdMedia) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
