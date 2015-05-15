@@ -2,12 +2,11 @@
     'use strict';
     angular.module('auth.manager')
         .factory('UsersServ', function ($q, url, users, $firebaseObject, $firebaseArray) {
+            var ref = new Firebase(users);
             return {
-                get: function () {
-                },
-                getAssync: function () {
-                    return $q(function (resolve, reject) {
-                    });
+                allUsersList: function () {
+                    var usersArrayRef = $firebaseArray(ref);
+                    return usersArrayRef;
                 }
             };
         });

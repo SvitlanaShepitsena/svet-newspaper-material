@@ -2,12 +2,12 @@ div(layout='column' layout-fill)
     div(layout='column' ng-repeat='user in users|Groups:groupFilter')
         .card.p.mt.mb(layout='row' layout-align="space-between center")
             a.sv-link(href="#")
-                img.img-round.mdc-display-inline-block.mr(ng-src="{{user.avatar || avatar}}" style='width:20px;height:20px')
-                span.display-inline-block.fs-body-2(href='#' style='color:#616161') {{user.fname?(user.fname+' '+user.lname) : user.userName}}
+                img.img-round.mdc-display-inline-block.mr(ng-src="{{user.profile.avatar || avatar}}" style='width:20px;height:20px')
+                span.display-inline-block.fs-body-2(href='#' style='color:#616161') {{user.profile.userName}}
             div.pr
                 form(name="rform" layout="row" layout-align="center center")
                     label.fs-caption.mr {{'customer'|translate}}
-                        md-checkbox(ng-checked= 'user.groups.indexOf("customer")>-1' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"customer")' )
+                        md-checkbox(ng-checked= 'user.role==="customer"' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"customer")' )
                     label.fs-caption {{'author'|translate}}
-                        md-checkbox(ng-checked= 'user.groups.indexOf("author")>-1' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"author")' )
+                        md-checkbox(ng-checked= 'user.role==="author"' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"author")' )
 
