@@ -70,11 +70,11 @@
                 });
             }
 
-            function saveProfileToDb(authData, createLocal) {
+            function saveProfileToDb(authData) {
                 return $q(function (resolve, reject) {
                     var user = userProcess(authData);
                     dbUsersArr.$add(user).then(function (ref) {
-                        if (!createLocal) {
+                        //if (!createLocal) {
                             createSvetLocalProfile(user.profile.email.toLowerCase()).then(function (localUid) {
 
                                 var id = localUid.uid;
@@ -89,9 +89,9 @@
                                 console.error(error);
                                 reject(error);
                             })
-                        } else {
-                            resolve(ref);
-                        }
+                        //} else {
+                        //    resolve(ref);
+                        //}
                     })
                 });
             }

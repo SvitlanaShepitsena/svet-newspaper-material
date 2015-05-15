@@ -36,9 +36,9 @@
                     controller: "SvetLoginCtrl as login",
                     templateUrl: "scripts/auth/views/svet-loginCtrl.html",
                     resolve: {
-                        currentUser: function (CurrentUserServ, $q) {
+                        currentUser: function (userAuth, $q) {
                             return $q(function (resolve, reject) {
-                                var isLoggedIn = !!CurrentUserServ.get();
+                                var isLoggedIn = !!userAuth.profile;
                                 if (isLoggedIn) {
                                     reject('You are already logged in');
                                 } else {
