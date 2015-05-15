@@ -7,11 +7,11 @@
                     return;
                 }
                 if (group === 'all') {
-                    return users;
+                    return _.reject(users,{profile:{role:'manager'}});
                 }
 
                 return _.filter(users, function (user) {
-                    return user.profile.role === group;
+                    return user.profile.role === group && user.profile.role!=='manager';
                 });
             };
         });

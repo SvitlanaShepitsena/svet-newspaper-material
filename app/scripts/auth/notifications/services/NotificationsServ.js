@@ -44,7 +44,7 @@
                             for (var i = 0; i < keys.length; i++) {
                                 var key = keys[i];
                                 var user = usersObj[key];
-                                if (user.groups.indexOf('customer') > -1) {
+                                if (user.role === 'customer') {
                                     if (!user.notices) {
                                         user.notices = [];
                                     }
@@ -69,7 +69,7 @@
                             for (var i = 0; i < keys.length; i++) {
                                 var key = keys[i];
                                 var user = usersObj[key];
-                                if (user.groups.indexOf('manager') > -1) {
+                                if (user.role === ('manager')) {
                                     if (!user.notices) {
                                         user.notices = [];
                                     }
