@@ -41,7 +41,7 @@
                             authData.userName = userName;
                             authData.email = email;
                             saveProfileToDb(authData, true).then(function () {
-                                    resolve(authData);
+                                resolve(authData);
                             })
                         }).catch(function (error) {
                             reject(error);
@@ -75,20 +75,19 @@
                     var user = userProcess(authData);
                     dbUsersArr.$add(user).then(function (ref) {
                         //if (!createLocal) {
-                            createSvetLocalProfile(user.profile.email.toLowerCase()).then(function (localUid) {
-
-                                var id = localUid.uid;
-                                var user = $firebaseObject(ref);
-                                user.$loaded().then(function () {
-                                    user.auth.svet.id = id;
-                                    user.$save().then(function () {
-                                        resolve(localUid);
-                                    })
+                        createSvetLocalProfile(user.profile.email.toLowerCase()).then(function (localUid) {
+                            var id = localUid.uid;
+                            var user = $firebaseObject(ref);
+                            user.$loaded().then(function () {
+                                user.auth.svet.id = id;
+                                user.$save().then(function () {
+                                    resolve(user.$id);
                                 })
-                            }).catch(function (error) {
-                                console.error(error);
-                                reject(error);
                             })
+                        }).catch(function (error) {
+                            console.error(error);
+                            reject(error);
+                        })
                         //} else {
                         //    resolve(ref);
                         //}
