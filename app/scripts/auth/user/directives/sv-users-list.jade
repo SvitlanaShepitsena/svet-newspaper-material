@@ -7,7 +7,7 @@ div(layout='column' layout-fill)
             div.pr
                 form(name="rform" layout="row" layout-align="center center")
                     label.fs-caption.mr {{'customer'|translate}}
-                        md-checkbox(ng-checked= 'user.role==="customer"' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"customer")' )
+                        md-checkbox(ng-checked= 'user.profile.role=="customer"' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserRole(user,"customer")' )
                     label.fs-caption {{'author'|translate}}
-                        md-checkbox(ng-checked= 'user.role==="author"' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserGroup(user,"author")' )
+                        md-checkbox(ng-checked= 'user.profile.role=="author"' aria-label='chbx' id="chx{{$index}}" ng-click='changeUserRole(user,"author")' )
 

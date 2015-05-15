@@ -7,6 +7,21 @@
             var currentUserProfileRef;
             var unwatch;
             return {
+                changeUserRole: function (user, newRole) {
+                    return $q(function (resolve, reject) {
+                        var userProfileDb = $firebaseObject(ref.child(user.$id).child('profile'));
+                        userProfileDb.$loaded(function () {
+                            if (userProfileDb.role === newRole) {
+                                userProfileDb.role = 'reader'
+                            } else {
+                                userProfileDb.role = newRole;
+                            }
+                            userProfileDb.$save().then(function (ref) {
+                                resolve(ref.key());
+                            })
+                        })
+                    });
+                },
                 getProfile: function (authData) {
                     return $q(function (resolve, reject) {
                         dbUsersArr.$loaded().then(function () {
@@ -71,24 +86,23 @@
             }
 
             function saveProfileToDb(authData, isAuthSvetUserCreated) {
-
                 return $q(function (resolve, reject) {
                     var user = userProcess(authData);
                     dbUsersArr.$add(user).then(function (ref) {
                         if (!isAuthSvetUserCreated) {
-                        createSvetLocalProfile(user.profile.email.toLowerCase()).then(function (localUid) {
-                            var id = localUid.uid;
-                            var user = $firebaseObject(ref);
-                            user.$loaded().then(function () {
-                                user.auth.svet.id = id;
-                                user.$save().then(function () {
-                                    resolve(user.$id);
+                            createSvetLocalProfile(user.profile.email.toLowerCase()).then(function (localUid) {
+                                var id = localUid.uid;
+                                var user = $firebaseObject(ref);
+                                user.$loaded().then(function () {
+                                    user.auth.svet.id = id;
+                                    user.$save().then(function () {
+                                        resolve(user.$id);
+                                    })
                                 })
+                            }).catch(function (error) {
+                                console.error(error);
+                                reject(error);
                             })
-                        }).catch(function (error) {
-                            console.error(error);
-                            reject(error);
-                        })
                         } else {
                             resolve(ref.key());
                         }
