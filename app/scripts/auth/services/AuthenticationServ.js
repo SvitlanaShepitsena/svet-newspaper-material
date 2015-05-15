@@ -8,13 +8,11 @@
                 checkUserStatus: function () {
                     return $q(function (resolve, reject) {
                         var authData = authObj.$getAuth();
-
                         if (authData) {
                             // user is  logged in
                             ProfileServ.getProfile(authData).then(function (profile) {
                                 resolve(profile);
                             })
-
                         } else {
                             // user is not logged in
                             resolve(null);

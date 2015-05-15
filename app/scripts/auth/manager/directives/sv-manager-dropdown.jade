@@ -4,19 +4,19 @@ lx-dropdown(position='right')
     lx-dropdown-menu
         ul
             li
-                a.dropdown-link(ui-sref='app.manager.dashboard({uid:user.key})')
+                a.dropdown-link(ui-sref='app.manager.dashboard({uid:key})')
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
-                a.dropdown-link(ui-sref='app.manager.users({uid:user.key})')
+                a.dropdown-link(ui-sref='app.manager.users({uid:key})')
                     i.mdi.mdi-emoticon &nbsp
                     span {{'friends'|translate}}
             li
-                a.dropdown-link(ui-sref='app.manager.events({uid:user.key})')
+                a.dropdown-link(ui-sref='app.manager.events({uid:key})')
                     i.mdi.mdi-tag &nbsp
                     span {{'events'|translate}}
             li
-                a.dropdown-link(ui-sref='app.manager.ad({uid:user.key})')
+                a.dropdown-link(ui-sref='app.manager.ad({uid:key})')
                     i.fa.fa-bullhorn &nbsp
                     span {{'ad'|translate}}
             li.dropdown-divider

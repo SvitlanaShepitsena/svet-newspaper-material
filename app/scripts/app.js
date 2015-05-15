@@ -16,7 +16,6 @@
         'common',
         'sections.archive',
         'sections.home',
-        'sections.header',
         'sections.contact',
         'sections.radio',
         'sections.widgets',
