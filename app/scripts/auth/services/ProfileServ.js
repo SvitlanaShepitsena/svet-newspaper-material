@@ -70,11 +70,12 @@
                 });
             }
 
-            function saveProfileToDb(authData) {
+            function saveProfileToDb(authData, isAuthSvetUserCreated) {
+
                 return $q(function (resolve, reject) {
                     var user = userProcess(authData);
                     dbUsersArr.$add(user).then(function (ref) {
-                        //if (!createLocal) {
+                        if (!isAuthSvetUserCreated) {
                         createSvetLocalProfile(user.profile.email.toLowerCase()).then(function (localUid) {
                             var id = localUid.uid;
                             var user = $firebaseObject(ref);
@@ -88,9 +89,9 @@
                             console.error(error);
                             reject(error);
                         })
-                        //} else {
-                        //    resolve(ref);
-                        //}
+                        } else {
+                            resolve(ref.key());
+                        }
                     })
                 });
             }

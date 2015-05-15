@@ -75,7 +75,24 @@
                         var breakPoint = 1;
                     }
                     return foundUser;
-                }
+                },
+                isUserNameUnique: function (userName) {
+                    return $q(function (resolve, reject) {
+                        var userNamesArray = $firebaseArray(new Firebase(users));
+                        userNamesArray.$loaded().then(function () {
+                            for (var i = 0; i < userNamesArray.length; i++) {
+                                var user = userNamesArray[i];
+                                if (!user.profile.userName) {
+                                    continue;
+                                }
+                                if (user.profile.userName.toLowerCase() === userName.toLowerCase()) {
+                                    reject();
+                                }
+                            }
+                            resolve();
+                        })
+                    });
+                },
             };
         });
 })();

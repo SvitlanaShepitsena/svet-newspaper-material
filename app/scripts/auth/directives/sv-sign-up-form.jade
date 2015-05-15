@@ -17,7 +17,8 @@ div(flex-container='column')
                             required )
                         div(ng-messages='signUpForm.userName.$error' ng-if='signUpForm.userName.$touched||signUpForm.$submitted')
                             .tc-red-300.fs-caption(ng-message='required') {{'required-field'|translate}}
-                            .tc-red-300.fs-caption(ng-message='username') {{'username-field'|translate}} .tc-red-300.fs-caption(ng-message='minlength') {{'min-length'|translate}}
+                            .tc-red-300.fs-caption(ng-message='username') {{'username-field'|translate}}
+                            .tc-red-300.fs-caption(ng-message='minlength') {{'min-length'|translate}}
                             .tc-red-300.fs-caption(ng-message='maxlength') {{'max-length'|translate}}
                 div(flex-container='column')
                     div(flex-item='')
