@@ -6,6 +6,7 @@
 
             function addNotificationsToAll(keys, usersObj, event) {
                 var promises = [];
+
                 angular.forEach(keys, function (key) {
                     var user = usersObj[key];
                     if (user.profile.role === 'customer') {
