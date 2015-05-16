@@ -3,12 +3,27 @@
     angular.module('auth.notifications')
         .factory('NotificationsServ', function ($q, url, users, $firebaseObject, $firebaseArray, userAuth) {
             var ref = new Firebase(users);
-            return {
-                markNotificationOpened: function (notification) {
-                    var userKey = userAuth.profile.key;
-                    var notificationUrl = users + userKey + '/profile/notifications/' + notification.$id;
-                    return $q(function (resolve, reject) {
-                        var notificationObject = $firebaseObject(new Firebase(notificationUrl));
+
+            function addNotificationsToAll(keys, usersObj, event) {
+                var promises = [];
+                angular.forEach(keys, function (key) {
+                    var user = usersObj[key];
+                    if (user.profile.role === 'customer') {
+                            var userNotificationsRef = ref.child(key).child("profile").child('notifications');
+                            var notificationsArr = $firebaseArray(userNotificationsRef);
+                            notificationsArr.$add(event);
+                            promises.push(notificationsArr.$save());
+                        }
+                    });
+                    return $q.all(promises);
+                }
+
+                return {
+                    markNotificationOpened: function (notification) {
+                        var userKey = userAuth.profile.key;
+                        var notificationUrl = users + userKey + '/profile/notifications/' + notification.$id;
+                        return $q(function (resolve, reject) {
+                            var notificationObject = $firebaseObject(new Firebase(notificationUrl));
                         notificationObject.$loaded().then(function () {
                             notificationObject.opened = true;
                             notificationObject.$save().then(function () {
@@ -37,19 +52,11 @@
                             var keys = _.chain(usersObj).keysIn().filter(function (key) {
                                 return !_.startsWith(key, '$') && key !== 'forEach';
                             }).value();
-                            var promises = [];
-                            angular.forEach(keys, function (key) {
-                                var user = usersObj[key];
-                                if (user.profile.role === 'customer') {
-                                    var userNotificationsRef = ref.child(key).child("profile").child('notifications');
-                                    var notificationsArr = $firebaseArray(userNotificationsRef);
-                                    notificationsArr.$add(event);
-                                    promises.push(notificationsArr.$save());
-                                }
-                            })
-                            $q.all(promises).then(function () {
-                                resolve();
-                            })
+                            addNotificationsToAll(keys, usersObj, event, resolve).then(function (resolvedArray) {
+                                console.log(resolvedArray);
+                            }).catch(function (error) {
+                                console.log(error);
+                            });
                         })
                     });
                 },
