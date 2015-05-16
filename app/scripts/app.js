@@ -2,6 +2,7 @@
     'use strict';
     angular.module('app', [
         // modules
+		'home',
         'pascalprecht.translate',
         'ngMaterial',
         'textAngular',
