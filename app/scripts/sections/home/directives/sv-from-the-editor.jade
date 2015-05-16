@@ -1,19 +1,17 @@
 .card.m
-    span.display-block.fs-subhead.text-center.tc-red-300 {{'from-the-editor'|translate}}
-    md-divider
-    ul.list
-        li.list-row.list-row--has-separator(style='padding: 0px 8px')
-            .list-row__content
-                strong.fs-headline.display-block
-                    | Alex Etman
-                strong.fs-headline.display-block
-                    | Blog
-
-            .list-row__primary.mdc-text-right.img-editor-contner
-                img.img-round.mdc-text-right.img-editor.mdc-img-bw(src='/img/auth/AlexEtman-sepia.jpg')
     div.p
-        img(src="../img/from-the-editor/chukovskiy-06-11-11.jpg")
-    div.pl.pr.pb
-        span.display-block ПОЧЕМУ КОРНЕЙ ЧУКОВСКИЙ ПУГАЛ ДЕТЕЙ?
-        span.display-block.fs-body-1.tc-black-2 31 октября 1916 года Корней Иванович Чуковский написал свою первую сказку...
-        sv-read-more(read-more="read-more")
+        span.display-block.fs-subhead.text-center.tc-red-300 {{'from-the-editor'|translate}}
+    md-divider
+    div.pl.pr
+        ul.list
+            li.list-row.list-row--has-separator(style='padding: 0px 8px')
+                .list-row__content
+                    strong.fs-headline.display-block
+                        | Alex Etman
+                    strong.fs-subhead.tc-grey-600.display-block(style='font-size:18px')
+                        | BLOG
+
+                .list-row__primary.mdc-text-right.img-editor-contner
+                    img.img-round.mdc-text-right.img-editor.mdc-img-bw(src='/img/auth/AlexEtman-sepia.jpg')
+    div.pl.pr
+        sv-editor-article-home-thumb

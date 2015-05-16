@@ -2,7 +2,6 @@
     'use strict';
     angular.module('app', [
         // modules
-		'aritle',
         'pascalprecht.translate',
         'ngMaterial',
         'textAngular',
