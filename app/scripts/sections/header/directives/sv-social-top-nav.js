@@ -7,7 +7,6 @@
                 templateUrl: 'scripts/sections/header/directives/sv-social-top-nav.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    console.log('run here sv-social-top-nav.js');
                 }
             };
         });

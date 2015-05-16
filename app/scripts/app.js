@@ -14,6 +14,7 @@
         'article',
         'events',
         'common',
+        'sections.header',
         'sections.archive',
         'sections.home',
         'sections.contact',

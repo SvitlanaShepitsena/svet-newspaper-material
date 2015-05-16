@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 
-
 <html lang="en">
 <head>
     <title>Svet - русскоязычный новостной портал Чикаго</title>
@@ -43,14 +42,13 @@
 
 
 <body ng-app="app" layout="column" flow-prevent-drop ng-cloak="" ng-controller="AppCtrl">
-<sv-social-top-nav></sv-social-top-nav>
-<div>Test</div>
 <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
             style="background-color:#474341">
     <div layout="row" layout-align="center center">
         <sv-lang-switch></sv-lang-switch>
         <sv-weather-svet class="weather-widget"></sv-weather-svet>
     </div>
+    <sv-social-top-nav></sv-social-top-nav>
     <sv-social-top-nav-cell hide-gt-sm></sv-social-top-nav-cell>
 </md-toolbar>
 
@@ -205,7 +203,6 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/routes.js"></script>
 <script src="scripts/sections/home/homeRoutes.js"></script>
-<script src="scripts/sections/header/directives/sv-social-header-nav.js"></script>
 <!-- MODULES-->
 
 <!-- common -->
