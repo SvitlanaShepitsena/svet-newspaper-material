@@ -71,8 +71,6 @@
                 'remove-image': 'Remove an Image',
                 'home-top': 'Home Page Top',
                 'home-middle': 'Home Page Middle',
-
-
                 //    Change Fields
                 'fname': 'First Name',
                 'lname': 'Last Name',
@@ -89,8 +87,8 @@
                 'showing-stat': 'Статистика показов',
                 'unique': 'Уникальные',
                 'total': 'Всего',
-                'business-ad': ' Реклама Бизнеса',
-                'ad': ' Реклама',
+                'business-ad': 'Бизнес',
+                'ad': 'Рекламная служба',
                 'my-articles': 'Мои Статьи',
                 'my-drafts': 'Черновики',
                 'my-friends': 'Мои Друзья',
@@ -145,7 +143,6 @@
                 'remove-image': 'Удалить изображение',
                 'home-top': 'Наверу домашней страницы',
                 'home-middle': 'Внизу домашней страницы',
-
                 //    Change Fields
                 'fname': 'Имя',
                 'lname': 'Фамилия',
