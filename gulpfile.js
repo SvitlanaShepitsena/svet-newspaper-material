@@ -86,9 +86,9 @@ gulp.task('serve', ['stylus:main', 'jade'], function () {
 
 	gulp.watch(['app/scripts/**/*.jade'], ['jade:watch']);
 
-	gulp.watch("app/**/*.js", ['js-watch']);
+	gulp.watch("app/scripts/**/*.js", ['js-watch']);
 
-	gulp.watch("app/*.html").on('change', reload);
+	gulp.watch("app/index.html").on('change', reload);
 
 });
 
