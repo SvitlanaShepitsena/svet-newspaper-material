@@ -14,6 +14,7 @@
                             return;
                         }
                         $scope.user = newValue;
+
                     });
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
