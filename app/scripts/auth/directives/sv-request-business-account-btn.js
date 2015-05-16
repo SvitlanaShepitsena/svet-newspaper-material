@@ -8,13 +8,14 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
                     $scope.user = userAuth;
+
                     $scope.cancelRequest = function () {
-                        RequestServ.cancelRequest(user.key).then(function () {
+                        RequestServ.cancelRequest(userAuth.key).then(function () {
                             toastr.warning('Your request for Svet Media Group  corporate account has been canceled');
                         });
                     };
                     $scope.submitRequest = function () {
-                        RequestServ.submitRequest(user.key).then(function () {
+                        RequestServ.submitRequest(userAuth.key).then(function () {
                             toastr.info('Your request for Svet Media Group  submitted');
                         })
                     };
