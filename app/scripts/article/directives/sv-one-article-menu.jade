@@ -1,1 +1,3 @@
-div sv-one-article-menu Template
+div.bgc-grey-200(layout='row' layout-align='space-between center' style='padding:8px 12px')
+    sv-article-public-statistics
+    sv-edit-article-btn(ng-if='user && news.authorKey===user.key' article='news')
