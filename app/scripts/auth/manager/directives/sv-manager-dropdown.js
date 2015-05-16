@@ -6,6 +6,7 @@
                 templateUrl: 'scripts/auth/manager/directives/sv-manager-dropdown.html',
                 link: function ($scope, el, attrs) {
                     $scope.key = userAuth.key;
+                    $scope.user = userAuth.profile;
                 }
             };
         });

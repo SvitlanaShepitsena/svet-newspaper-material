@@ -31,13 +31,8 @@
                 },
                 addCustomerToEvent: function (event, user) {
                     return $q(function (resolve, reject) {
-                        var eventObject = $firebaseObject(new Firebase(eventsCorporateUrl + event.$id));
-                        eventObject.$loaded().then(function () {
-                            if (!eventObject.customers) {
-                                eventObject.customers = [];
-                            }
-                            eventObject.customers.push(user);
-                            eventObject.$save().then(function (uid) {
+                        var eventArray = $firebaseArray(new Firebase(eventsCorporateUrl + event.$id+'/customers'));
+                            eventArray.$add(user).then(function (uid) {
                                 var notification = {
                                     note: user.userName + ' accepts ' + event.title,
                                     timestamp: moment().format('x'),
@@ -47,7 +42,6 @@
                                     resolve(uid);
                                 });
                             })
-                        })
                     });
                 },
                 removeCustomerFromEvent: function (event, user) {

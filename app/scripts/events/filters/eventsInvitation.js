@@ -4,17 +4,17 @@
     angular.module('events')
         .filter('eventsInvitation', function (userAuth) {
             return function (events, index) {
-                if (!events || events.length === 0) {
+                if (!events || events.length === 0 || !userAuth.profile) {
                     return;
                 }
                 var finalList = [];
-                var u = userAuth;
+                var userName = userAuth.profile.userName;
 
                 if (index == 0) {
                     for (var i = 0; i < events.length; i++) {
                         var event = events[i];
-                        var customers = _.pluck(event.customers, 'id');
-                        if (customers.indexOf(u.key) > -1) {
+                        var customers = _.pluck(event.customers, 'userName');
+                        if (customers.indexOf(userName) > -1) {
                             finalList.push(event);
                         }
                     }
@@ -24,9 +24,9 @@
 
                     for (var i = 0; i < events.length; i++) {
                         var event = events[i];
-                        var customers = _.pluck(event.customers, 'id');
+                        var customers = _.pluck(event.customers, 'userName');
 
-                        if (customers.indexOf(u.key) === -1) {
+                        if (customers.indexOf(userName) === -1) {
                             finalList.push(event);
                         }
                     }
