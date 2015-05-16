@@ -1,8 +1,10 @@
 div(layout='row', layout-sm='column')
-    div(flex-gt-sm='66')
+    div(flex-gt-sm='66' layout='column')
         sv-top-news(main-news='nt.top')
+        div(layout='row')
+            sv-second-news(second-news='nt.n2')
+            sv-second-news(second-news='nt.n3')
     div(flex-gt-sm='33')
-        sv-second-news(second-news='nt.n2')
-        sv-second-news(second-news='nt.n3')
+        sv-from-the-editor
+        sv-radio-osa(class='mb+' title="radio" subhead="radio-subhead" body='radio-body')
         .main-news-ad
-        sv-second-news(second-news='nt.n3')

@@ -1,9 +1,9 @@
 .card(class='mb+')
     div.p.bgc-grey-200(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' )
-        div.mb.pl.pr.pt
+        div.mb.pl.pt
             img.img-round.mdc-display-inline-block.mr(ng-src="{{cl.user.avatar}}" style='width:24px')
             span.tc-grey-700.mdc-display-inline-block {{cl.user.userName}}
-        div.mb.pl.pr.pt( ng-if='isEditable')
+        div.mb.pt(ng-if='isEditable' layout="row" )
             button.btn.btn--xs.btn--white.btn--raised.mr(lx-ripple='' ng-click='editCl({cl:cl})')
                 i.mdi.mdi-pencil.mr
                 | {{'edit'|translate}}

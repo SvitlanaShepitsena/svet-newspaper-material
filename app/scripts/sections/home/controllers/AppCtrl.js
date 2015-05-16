@@ -2,7 +2,7 @@
     'use strict';
     angular.module('sections.home')
         .controller('AppCtrl', function AppCtrl(AgentServ, NotificationsServ, userAuth, $timeout, $mdSidenav, $mdMedia,
-                                                    NewsProcessServ, ArticleServ, $state, $scope, $rootScope, toastr) {
+                                                NewsProcessServ, ArticleServ, $state, $scope, $rootScope, toastr) {
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 toastr.warning(error);
             })
@@ -29,6 +29,22 @@
                     $scope.showShifter = true;
                 }
             });
+        })
+        .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+            $scope.close = function () {
+                $mdSidenav('left').close()
+                    .then(function () {
+                        $log.debug("close LEFT is done");
+                    });
+            };
+        })
+        .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+            $scope.close = function () {
+                $mdSidenav('right').close()
+                    .then(function () {
+                        $log.debug("close RIGHT is done");
+                    });
+            };
         });
 })();
 

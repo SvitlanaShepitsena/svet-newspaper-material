@@ -3,7 +3,7 @@
     angular.module('common')
         .directive('svRightClickHandler', function () {
             return {
-                link: function ($scope, el, attrs) {
+                link: function ($scope, el, attrs ) {
                     el.on('touchstart', function (event) {
                         event.preventDefault();
                         event.stopPropagation();

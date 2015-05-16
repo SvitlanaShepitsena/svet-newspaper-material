@@ -265,10 +265,9 @@ msie = document.documentMode;
  *                   String ...)
  */
 function isArrayLike(obj) {
-  if (obj == null || isWindow(obj)) {
+  if (obj == null || isWindow(obj) || typeof obj.length == 'undefined') {
     return false;
   }
-
   var length = obj.length;
 
   if (obj.nodeType === NODE_TYPE_ELEMENT && length) {
