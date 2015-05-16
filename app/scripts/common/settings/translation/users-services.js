@@ -79,7 +79,7 @@
             $translateProvider.translations('ru', {
                 'dashboard': 'Панель Управления',
                 'my-profile': 'Мой Профайл',
-                'my-ad': 'Мои Рекламные Кампании',
+                'my-ad': 'Объявления',
                 'my-ad-campaign': 'Моя Рекламная Кампания',
                 'campaign-name': 'Название Кампании',
                 'ad-place': 'Место показа рекламы',
