@@ -11,11 +11,11 @@ div(ng-if='user.notifications')
                         i.mdi.mdi-check-all.mr
                         span.fs-body-1 Mark All as Read
             ul
-                li.p(ng-repeat='(key,n) in user.notifications|orderBy:"-timestamp"' tyle='border-bottom:1px #BDBDBD dotted')
+                li.p(ng-repeat='n in user.notifications|toArray|orderBy:"-timestamp"' tyle='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
                         p.fs-caption {{n.timestamp|date}}
-                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened' ng-click='markOpened(key)')
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened' ng-click='markOpened(n.$id)')
                             i.mdi.mdi-check(style='font-weight:bold')
 
     lx-dropdown(position='right' width='250px' ng-if="!unopened" )
@@ -32,9 +32,9 @@ div(ng-if='user.notifications')
             div.p(ng-show='!user.notifications.length')
                 | You do not have any notifications
             ul
-                li.p(ng-repeat='(key,n) in user.notifications|orderBy:"-timestamp"' style='border-bottom:1px #BDBDBD dotted')
+                li.p(ng-repeat='n in user.notifications |toArray|orderBy:"-timestamp"' style='border-bottom:1px #BDBDBD dotted')
                     div.bgc-grey-100(layout="row" layout-align='space-between center')
                         p.fs-caption {{n.note}}
                         p.fs-caption {{n.timestamp|date}}
-                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened' ng-click='markOpened(key)')
+                        button.btn.btn--xs.btn--white.btn--fab.tc-red-500(lx-ripple='' ng-show='!n.opened' ng-click='markOpened(n.$id)')
                             i.mdi.mdi-check(style='font-weight:bold')

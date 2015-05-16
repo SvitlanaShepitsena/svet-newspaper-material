@@ -1,12 +1,16 @@
 (function () {
     'use strict';
-
     angular.module('auth.notifications')
         .filter('toArray', function () {
-            return function (list) {
-                return _.where(list, function (item) {
-                    return item;
-                });
+            return function (obj) {
+                var finalArr = [];
+                _.forOwnRight(obj, function (value, key) {
+                    if (value.timestamp) {
+                        value.$id = key;
+                        finalArr.push(value);
+                    }
+                })
+                return finalArr;
             };
         });
 })();

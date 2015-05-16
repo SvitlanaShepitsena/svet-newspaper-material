@@ -12,7 +12,7 @@
                         $scope.unopened = _.filter(notifications, function (notification) {
                             return notification.opened === false;
                         }).length;
-                        $scope.notifications = _.toArray(notifications);
+                        //$scope.notifications = _.toArray(notifications);
                     });
                     $scope.markAllOpened = function () {
                         NotificationsServ.markAllNotificationsOpened();
