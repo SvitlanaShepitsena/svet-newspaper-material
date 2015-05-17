@@ -60,7 +60,8 @@
                         return o;
                     }
                     var len = exists.length;
-                    return (freeClNumber - len) > 0;
+                    return true;
+                    //return (freeClNumber - len) > 0;
                 },
                 howManyAllowed: function (exists) {
                     if (!exists) {

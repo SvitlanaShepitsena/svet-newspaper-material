@@ -1,7 +1,7 @@
 .card.p
     sv-profile-subhead(subhead-title="classified")
     form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy)')
-        div(flex-container='row', flex-gutter='24')
+        div(class='mt++', flex-container='row', flex-gutter='24')
             div(flex-item='')
                 lx-text-field(label='Контактное Имя'
                 fixed-label='true'
@@ -9,6 +9,7 @@
                 icon='account')
                     input(ng-model='clCopy.name'
                     name='name'
+                    required
                     type='text')
                 lx-text-field(label='Контактный Телефон', fixed-label='true', icon='phone')
                     input(ng-model='clCopy.phone' type='text')

@@ -6,7 +6,7 @@ div.card.p.ml
     div(ng-if='user && !requestSubmited')
         form( name='pdfSubForm')
             div(layout="row" layout-align='start center')
-                md-checkbox(ng-model="pdfSub.newLight" aria-label="Checkbox")
+                md-checkbox(ng-model="subscription.newLight" aria-label="Checkbox")
                 span.mdc-display-inline-block.fs-body-2 {{'SvetNewspaper'|translate}}
     div(ng-if='user && requestSubmited')
         md-progress-circular.md-accent(md-mode='indeterminate')
