@@ -7,7 +7,6 @@
                 templateUrl: 'scripts/article/directives/sv-create-article-btn.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });
