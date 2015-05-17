@@ -1,15 +1,12 @@
 (function () {
     'use strict';
     angular.module('common')
-        .factory('NewsGeneratorServ', function (HtmlParseServ, $http, $q, $rootScope) {
+        .factory('NewsGeneratorServ', function (SvobodaSaveToDbServ, HtmlParseServ, $http, $q, $rootScope, $firebaseArray, url) {
             var gUrl = 'http://api.feedzilla.com/v1/categories.json';
             var svobodaUrls = ['zmtqte$oot']
             var allCategories = [];
             var avoidCategories = ['игорем', 'померанцев'];
             var avoidNewsWithTitle = ['стрелков'];
-
-
-
 
             function isInAvoid(tag) {
                 for (var i = 0; i < avoidCategories.length; i++) {
@@ -181,7 +178,6 @@
                     });
                     return deferred.promise;
                 },
-
                 getNewsWithImages: function (url, number, shuffle) {
                     var deferred = $q.defer();
                     var result = $http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url));
@@ -218,21 +214,16 @@
                         var xml = data.data.responseData.xmlString;
                         var imgs = parseXml(xml);
                         var news = (data.data.responseData.feed.entries);
-
                         news = joinNewsImages(news, imgs);
-                        var randomNews = _.shuffle(news)[0];
-                        HtmlParseServ.getFullNews(randomNews.link).then(function (fullNews) {
-                            randomNews.body = fullNews.body;
-                            randomNews.tags = fullNews.tags;
+                        HtmlParseServ.getMultipleFullNews(news).then(function (fullNews) {
 
-                            deferred.resolve(randomNews);
-                        });
+                            resolve(fullNews);
+                        })
                     }).catch(function (e) {
                         deferred.reject('Error in rss request. Due to: ' + e);
                     });
                     return deferred.promise;
                 },
-
                 getPoliticalNewsWithImages: function (url, number, shuffle) {
                     var deferred = $q.defer();
                     var result = $http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url));
@@ -269,13 +260,11 @@
                         var xml = data.data.responseData.xmlString;
                         var imgs = parseXml(xml);
                         var news = (data.data.responseData.feed.entries);
-
                         news = joinNewsImages(news, imgs);
                         var randomNews = _.shuffle(news)[0];
                         HtmlParseServ.getFullNews(randomNews.link).then(function (fullNews) {
                             randomNews.body = fullNews.body;
                             randomNews.tags = fullNews.tags;
-
                             deferred.resolve(randomNews);
                         });
                     }).catch(function (e) {
