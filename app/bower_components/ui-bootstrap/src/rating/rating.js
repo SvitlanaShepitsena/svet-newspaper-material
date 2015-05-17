@@ -13,6 +13,13 @@ angular.module('ui.bootstrap.rating', [])
     ngModelCtrl = ngModelCtrl_;
     ngModelCtrl.$render = this.render;
 
+    ngModelCtrl.$formatters.push(function(value) {
+      if (angular.isNumber(value) && value << 0 !== value) {
+        value = Math.round(value);
+      }
+      return value;
+    });
+
     this.stateOn = angular.isDefined($attrs.stateOn) ? $scope.$parent.$eval($attrs.stateOn) : ratingConfig.stateOn;
     this.stateOff = angular.isDefined($attrs.stateOff) ? $scope.$parent.$eval($attrs.stateOff) : ratingConfig.stateOff;
 
@@ -74,10 +81,7 @@ angular.module('ui.bootstrap.rating', [])
     replace: true,
     link: function(scope, element, attrs, ctrls) {
       var ratingCtrl = ctrls[0], ngModelCtrl = ctrls[1];
-
-      if ( ngModelCtrl ) {
-        ratingCtrl.init( ngModelCtrl );
-      }
+      ratingCtrl.init( ngModelCtrl );
     }
   };
 });
