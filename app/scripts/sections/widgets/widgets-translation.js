@@ -1,6 +1,6 @@
 (function () {
     'use strict'
-    angular.module('common')
+    angular.module('sections.widgets')
         .config(['$translateProvider', function ($translateProvider) {
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
