@@ -64,12 +64,9 @@
         div(flex-container='row' class='ml mr')
             div(flex-item='')
                 span.display-block
-                lx-text-field(label='Объявление'
-                error='isInvalid("description")'
-                required)
                     textarea(ng-model='clCopy.description'
                     name="description"
-                    type="text"
+                    rows='4' cols='50'
                     required )
         div(flex-container='row' class='mb+ ml mr')
             div(flex-item='')
