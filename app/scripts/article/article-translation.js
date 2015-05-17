@@ -7,6 +7,7 @@
                 // 'eng':'eng'
                 'new-article': 'New Article',
                 'save-to-drafts': 'Save to Drafts',
+                'save-article': 'Save Article',
                 'post-article': 'Post Article',
                 'back-to-my-articles': 'Back to My Articles',
                 'article-author': 'Article Author',
@@ -27,6 +28,7 @@
                 // 'ru':'ru'
                 'new-article': 'Новая Статья',
                 'save-to-drafts': 'Сохранить в черновики',
+                'save-article': 'Сохранить статью',
                 'post-article': 'Опубликовать статью',
                 'back-to-my-articles': 'Вернуться к моим статьям',
                 'article-author': 'Автор статьи',
