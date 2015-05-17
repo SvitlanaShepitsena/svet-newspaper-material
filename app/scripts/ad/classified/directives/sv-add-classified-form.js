@@ -7,7 +7,6 @@
                 templateUrl: 'scripts/ad/classified/directives/sv-add-classified-form.html',
                 link: function ($scope, el, attrs) {
                     $scope.sections = ClassifiedServ.getSections();
-
                     $scope.selectDropDown = function (section) {
                         $scope.clCopy.section = section.$value;
                     };
@@ -61,7 +60,6 @@
                             description: ''
                         };
                     };
-
                     $scope.populateForm = function (cl) {
                         if (cl) {
                             $scope.clCopy = angular.copy(cl);
@@ -80,7 +78,7 @@
                             };
                         }
                     };
-                    //$scope.populateForm();
+                    $scope.populateForm();
                 }
             };
         });
