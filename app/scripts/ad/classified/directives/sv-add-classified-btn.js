@@ -7,7 +7,7 @@
                 templateUrl: 'scripts/ad/classified/directives/sv-add-classified-btn.html',
                 link: function ($scope, el, attrs) {
                     $scope.startCl = function () {
-                        if (!ClassifiedServ.isClAvailable($scope.cls)) {
+                        if(!ClassifiedServ.isClAvailable($scope.cls)) {
                             $scope.notAllowed = true;
                             $scope.addState = false;
                         } else {
