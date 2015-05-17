@@ -2,6 +2,7 @@
     'use strict';
     angular.module('app', [
         // modules
+		''auth.notifications'',
         'pascalprecht.translate',
         'ngMaterial',
         'textAngular',

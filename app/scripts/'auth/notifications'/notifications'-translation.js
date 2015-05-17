@@ -1,7 +1,7 @@
 (function () {
     'use strict'
 
-    angular.module('auth.notifications')
+    angular.module(''auth.notifications'')
         .config(['$translateProvider', function ($translateProvider) {
 
             $translateProvider.useCookieStorage();
