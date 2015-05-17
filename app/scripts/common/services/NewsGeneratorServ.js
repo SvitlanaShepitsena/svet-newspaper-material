@@ -216,8 +216,18 @@
                         var news = (data.data.responseData.feed.entries);
                         news = joinNewsImages(news, imgs);
                         HtmlParseServ.getMultipleFullNews(news).then(function (fullNews) {
-
-                            resolve(fullNews);
+                            for (var i = 0; i < news.length; i++) {
+                                var singleNews = news[i];
+                                var fullNewsBody = fullNews[i].body;
+                                var fullNewsTags = fullNews[i].tags;
+                                singleNews.body = fullNewsBody;
+                                singleNews.tags = fullNewsTags;
+                            }
+                            SvobodaSaveToDbServ.cleanSvoboda().then(function () {
+                                SvobodaSaveToDbServ.saveAll(news).then(function () {
+                                    deferred.resolve();
+                                })
+                            })
                         })
                     }).catch(function (e) {
                         deferred.reject('Error in rss request. Due to: ' + e);
