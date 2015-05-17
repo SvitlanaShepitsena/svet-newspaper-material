@@ -6,11 +6,13 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-article-status.html',
                 scope: {
-                    key: '='
+                    key: '=',
+                    property: '@',
+                    chBox:'=',
+                    lbl:'@'
                 },
                 link: function ($scope, el, attrs) {
-
-                    var status = ArticleServ.getDraftObj($scope.key);
+                    var status = ArticleServ.getStatus($scope.key, $scope.property);
                     status.$bindTo($scope, 'status').then(function () {
                     });
                 }
