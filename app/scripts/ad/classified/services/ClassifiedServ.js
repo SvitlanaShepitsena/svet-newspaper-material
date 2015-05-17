@@ -1,16 +1,9 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray,  userAuth) {
+        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray, userAuth) {
             var freeClNumber = 10;
             var clsUrl = url + 'cls/all/'
-
-            function processClassified(user, cl) {
-                var shortUser = _.omit(user, ['auth', 'password', 'token']);
-                cl.user = shortUser;
-                return cl;
-            }
-
             return {
                 getClByKey: function (key) {
                     var classifiedObj = $firebaseObject(new Firebase(clsUrl + key));
@@ -26,20 +19,17 @@
                     return classifiedArray;
                 },
                 addCl: function (cl) {
-                    var user = userAuth.profile;
                     return $q(function (resolve, reject) {
-                        cl = processClassified(user, cl);
+                        cl.userKey = userAuth.key;
                         var classifiedArray = $firebaseArray(new Firebase(clsUrl));
-                        classifiedArray.$add(cl).then(function (uid) {
-                            resolve(uid.key());
+                        classifiedArray.$add(cl).then(function (ref) {
+                            resolve(ref.key());
                         })
                     });
                 },
                 editCl: function (cl) {
-                    var user = userAuth.profile;
                     var id = cl.$id;
                     return $q(function (resolve, reject) {
-                        cl = processClassified(user, cl);
                         var classifiedObject = $firebaseObject(new Firebase(clsUrl));
                         classifiedObject.$loaded().then(function () {
                             classifiedObject[cl.$id] = cl;
