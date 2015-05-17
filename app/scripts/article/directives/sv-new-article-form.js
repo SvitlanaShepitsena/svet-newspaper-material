@@ -15,7 +15,7 @@
                         $scope.dateMod = '';
                         NewsGeneratorServ.getPoliticalNews(20, true).then(function (realNews) {
                             $scope.article = {
-                                isDraft: true,
+                                public: false,
                                 img: realNews.img,
                                 isTopNews: false,
                                 author: userAuth.profile.userName,

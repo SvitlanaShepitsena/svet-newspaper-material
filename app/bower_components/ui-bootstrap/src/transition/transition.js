@@ -1,6 +1,5 @@
 angular.module('ui.bootstrap.transition', [])
 
-.value('$transitionSuppressDeprecated', false)
 /**
  * $transition service provides a consistent interface to trigger CSS 3 transitions and to be informed when they complete.
  * @param  {DOMElement} element  The DOMElement that will be animated.
@@ -10,13 +9,7 @@ angular.module('ui.bootstrap.transition', [])
  *   - As a function, it represents a function to be called that will cause the transition to occur.
  * @return {Promise}  A promise that is resolved when the transition finishes.
  */
-.factory('$transition', [
-        '$q', '$timeout', '$rootScope', '$log', '$transitionSuppressDeprecated',
-function($q ,  $timeout ,  $rootScope ,  $log ,  $transitionSuppressDeprecated) {
-
-  if (!$transitionSuppressDeprecated) {
-    $log.warn('$transition is now deprecated. Use $animate from ngAnimate instead.');
-  }
+.factory('$transition', ['$q', '$timeout', '$rootScope', function($q, $timeout, $rootScope) {
 
   var $transition = function(element, trigger, options) {
     options = options || {};
