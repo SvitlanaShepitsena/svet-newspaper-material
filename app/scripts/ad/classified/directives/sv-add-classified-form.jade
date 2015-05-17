@@ -1,5 +1,10 @@
 .card.p
+    a.btn.btn--xs.btn--grey.btn--flat.bgc-grey-300.tc-grey-700(ng-click='cancelAddition()' class='mb++')
+        i.fa.fa-arrow-left.mr
+        | Back to my Classified
     sv-profile-subhead(subhead-title="new-classified")
+    md-divider
+    br
     form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy)')
         div(layout='row', layout-sm='column')
             md-input-container(flex)
@@ -25,7 +30,7 @@
                     lx-dropdown-menu
                         ul
                             li(ng-repeat='s in sections')
-                                a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value}}
+                                a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value|capitalize}}
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'classified-title'|translate}}
@@ -43,7 +48,7 @@
         div(layout='row' layout-align-sm='center center')
             button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Post")
                 i.mdi.mdi-send.mr
-                | {{editState?'Save':'Post'}}
+                | {{editState?'save':'post'|translate}}
             button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()')
                 i.mdi.mdi-close
                 | &nbsp {{'cancel'|translate}}

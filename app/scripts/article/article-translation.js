@@ -6,6 +6,7 @@
             $translateProvider.translations('en', {
                 // 'eng':'eng'
                 'new-article': 'New Article',
+                'add-article': 'Add Article',
                 'save-to-drafts': 'Save to Drafts',
                 'save-article': 'Save Article',
                 'post-article': 'Post Article',
@@ -27,6 +28,7 @@
             $translateProvider.translations('ru', {
                 // 'ru':'ru'
                 'new-article': 'Новая Статья',
+                'add-article': ' Добавить статью',
                 'save-to-drafts': 'Сохранить в черновики',
                 'save-article': 'Сохранить статью',
                 'post-article': 'Опубликовать статью',
