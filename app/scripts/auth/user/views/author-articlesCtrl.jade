@@ -1,4 +1,4 @@
 div(layout='row' layout-align='space-between center')
     sv-profile-title(header-title='author-articles')
-    sv-create-article-btn(ng-if='isInGroup("author")')
+    sv-create-article-btn(ng-if='user.role==="author"')
 sv-author-articles-tabs
