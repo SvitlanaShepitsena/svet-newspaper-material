@@ -52,7 +52,6 @@
                                 a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value}}
         div(flex-container='row' class='ml mr')
             div(flex-item='')
-                span.display-block
                 lx-text-field(label='Заголовок Объявления'
                 error='isInvalid("title")'
                 required)
@@ -62,17 +61,15 @@
                     required )
         div(flex-container='row' class='ml mr')
             div(flex-item='')
-                span.display-block
                 lx-text-field(label='Объявление'
-                error='isInvalid("description")'
                 required)
                     textarea(ng-model='clCopy.description'
+                    cols="5"
+                    rows="18"
                     name="description"
-                    type="text"
                     required )
         div(flex-container='row' class='mb+ ml mr')
             div(flex-item='')
-                span.display-block {{clCopy.description}}
                 lx-text-field(label='Цена Товара / Услуги')
                     input(ng-model='clCopy.price'
                     name="price")

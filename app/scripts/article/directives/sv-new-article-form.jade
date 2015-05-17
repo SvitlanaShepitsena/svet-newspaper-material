@@ -7,7 +7,6 @@ div
         div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center')
             div(class='mb' flex-order-sm='2')
                 lx-dropdown(position='left')
-                    //span.fs-subhead
                     button.btn.btn--s.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
                         i.mdi.mdi-dots-vertical.mr
                         span.fs-subhead {{article.section?article.section:("news-section"|translate)}}

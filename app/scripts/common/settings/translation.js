@@ -68,7 +68,7 @@
                 'read-more': 'Read More',
                 'listen': 'Listen',
                 'archive': 'Archive',
-                'from-the-editor': 'FROM THE EDITOR',
+                'from-the-editor': 'From The Editor',
                 'from-the': 'From the',
                 'editor': 'Editor',
                 'interesting-stories': 'Interesting Stories',
