@@ -8,17 +8,15 @@ lx-dropdown(position='right')
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  ng-if='user.role==="author"')
+                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  )
                     i.mdi.mdi-view-list &nbsp
-                    | {{'my-articles'|translate}}
-            li(ng-if='user.role==="customer"')
+                    span(ng-if='user.role==="reader"') {{'my-blog'|translate}}
+                    span(ng-if='user.role==="author"') {{'my-articles'|translate}}
+            li
                 a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
                     i.fa.fa-bullhorn &nbsp
-                    | {{'my-ad'|translate}}
-            li(ng-if='user.role==="author" || user.role==="reader"' )
-                a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
-                    i.fa.fa-bullhorn &nbsp
-                    | {{'my-classified'|translate}}
+                    span(ng-if='user.role==="customer"') {{'my-ad'|translate}}
+                    span(ng-if='user.role==="author" || user.role==="reader"') {{'my-classified'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.user-events({uid:user.userName})")
                     i.mdi.mdi-tag &nbsp
