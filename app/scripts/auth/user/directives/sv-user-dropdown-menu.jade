@@ -12,21 +12,22 @@ lx-dropdown(position='right')
                     i.fa.fa-bullhorn &nbsp
                     | {{'my-ad'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.social({uid:user.userName})")
-                    i.mdi.mdi-emoticon &nbsp
-                    | {{'community'|translate}}
-            li
                 a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  ng-if='user.role==="author"')
                     i.mdi.mdi-view-list &nbsp
                     | {{'my-articles'|translate}}
             li
-                a.dropdown-link(ui-sref='app.user.create-article({uid:user.userName})'  ng-if='user.role==="author"')
+                a.dropdown-link(ui-sref="app.user.user-events({uid:user.userName})")
+                    i.mdi.mdi-tag &nbsp
+                    | {{'events'|translate}}
+            li
+                a.dropdown-link(ui-sref="app.user.social({uid:user.userName})")
+                    i.mdi.mdi-emoticon &nbsp
+                    | {{'community'|translate}}
+            li.dropdown-divider
+            li
+                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({uid:user.userName})'  ng-if='user.role==="author"')
                     i.mdi.mdi-pencil &nbsp
                     | {{'create-article'|translate}}
-            li
-                a.dropdown-link(ui-sref="app.user.user-events({uid:user.userName})")
-                    i.mdi.mdi-view-dashboard &nbsp
-                    | {{'events'|translate}}
             li.dropdown-divider
             li
                 a.dropdown-link(ng-click='logout()')
