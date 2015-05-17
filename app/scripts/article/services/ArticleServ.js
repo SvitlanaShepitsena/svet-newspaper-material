@@ -37,8 +37,8 @@
                 get: function (id) {
                     return $firebaseObject(ref.child(id))
                 },
-                getDraftObj: function (id) {
-                    return $firebaseObject(ref.child(id).child('public'))
+                getStatus: function (key, property) {
+                    return $firebaseObject(ref.child(key).child(property))
                 },
                 allObjRef: function () {
                     return refObj;
@@ -60,7 +60,7 @@
                     });
                 },
                 add: function (article, isPublic) {
-                    article.public = isPublic;
+                    article.public = article.public || isPublic;
                     article.timestamp = moment().format('x');
                     article.authorKey = userAuth.key
                     return $q(function (resolve, reject) {

@@ -1,11 +1,15 @@
-div(layout='row' layout-align="center center")
-    .fs-body-1.mr.tc-grey-600
-        i.fa.fa-lock.mr
-        span.fs-caption(hide-sm) {{'private'|translate}}
-    div
-        .switch
-            input.switch__input(type='checkbox' id='{{key}}' ng-model='status.$value')
-            label.switch__label.fs-body-1.mr.tc-grey-600(for='{{key}}' style='margin-bottom:0px')
-                i.fa.fa-globe.mr
-                span.fs-caption(hide-sm) {{'public'|translate}}
+div
+    div(ng-if="chBox" layout='row' layout-align="center center")
+        label {{lbl}}
+        md-checkbox(ng-model='status.$value')
+    div(layout='row' layout-align="center center" ng-if='!chBox')
+        .fs-body-1.mr.tc-grey-600
+            i.fa.fa-lock.mr
+            span.fs-caption(hide-sm) {{'private'|translate}}
+        div
+            .switch
+                input.switch__input(type='checkbox' id='{{key}}' ng-model='status.$value')
+                label.switch__label.fs-body-1.mr.tc-grey-600(for='{{key}}' style='margin-bottom:0px')
+                    i.fa.fa-globe.mr
+                    span.fs-caption(hide-sm) {{'public'|translate}}
 
