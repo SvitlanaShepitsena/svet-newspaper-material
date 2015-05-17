@@ -8,12 +8,14 @@
 
             $translateProvider.translations('en', {
                 'business-promotion': 'Business Promotion',
+                'my-business-promotion': 'Business Promotion',
                 'add-business-ad':'Start New Campaign'
 
             });
 
             $translateProvider.translations('ru', {
                 'business-promotion': 'Продвижение Вашего Бизнеса',
+                'my-business-promotion': 'Продвижение Моего Бизнеса',
                 'add-business-ad':'Начать Новую Кампанию'
             });
 

@@ -1,6 +1,6 @@
 div
-    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='' md-dynamic-height )
-        md-tab.sv-tabs(md-stretch-tabs="always" md-tab-active = 'true' ng-if='user.role==="customer"')
+    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='' md-dynamic-height   ng-if='user.role==="customer"')
+        md-tab.sv-tabs(md-stretch-tabs="always" md-tab-active = 'true')
             md-tab-label {{"business-ad"|translate}}
             md-tab-body
                 sv-business-ad
@@ -8,4 +8,6 @@ div
             md-tab-label {{"classified"|translate}}
             md-tab-body
                 sv-user-classified-section
+    div(ng-if='user.role!=="customer"')
+        sv-user-classified-section
 

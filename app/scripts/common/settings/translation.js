@@ -46,8 +46,6 @@
                 'radio': 'Radio',
                 'radio-subhead': ' Sunday morning talk show with Alex Etman.',
                 'radio-body': 'Every Sunday on 1240AM from 11:00 a.m. to 1:00 p.m.',
-                'classified': 'Classified',
-                'last-classified': 'Last Classified',
                 'contacts': 'Contact Us',
                 'youtube': 'Youtube Сhannel',
                 'loading': 'Loading News',
@@ -73,14 +71,6 @@
                 'editor': 'Editor',
                 'interesting-stories': 'Interesting Stories',
                 /*Classified*/
-                'community': 'Community',
-                'job': 'Job',
-                'sale': 'For Sale',
-                'services': 'Services',
-                'cars': 'Cars',
-                'housing': 'Housing',
-                'personal': 'Personal',
-                'lessons': 'Lessons',
                 'svetApp': 'Svet Local App',
                 /*Footer*/
                 'all-rights-reserved': 'All rights reserved'
@@ -128,8 +118,6 @@
                 'Friday': 'Пятница',
                 'Saturday': 'Суббота',
                 'Sunday': 'Воскресенье',
-                'classified': 'Частные Объявления',
-                'last-classified': 'Свежее Объявление',
                 'contacts': 'Обратная связь',
                 'loading': 'Загрузка Новостей',
                 'login-title': 'Вход',
@@ -155,15 +143,6 @@
                 'from-the': 'От',
                 'editor': 'Редактора',
                 'interesting-stories': 'Интерестные Истории',
-                /*Classified*/
-                'community': 'Сообщество',
-                'job': 'Работа',
-                'lessons': 'Уроки',
-                'sale': 'Продажа',
-                'services': 'Услуги',
-                'cars': 'Авто',
-                'housing': 'Недвижимость',
-                'personal': 'Знакомства',
                 /*Footer*/
                 'all-rights-reserved': 'Все права защищены'
             });
