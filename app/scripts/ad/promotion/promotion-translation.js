@@ -8,13 +8,27 @@
 
             $translateProvider.translations('en', {
                 'business-promotion': 'Business Promotion',
-                'add-business-ad':'Start New Campaign'
+                'my-business-promotion': 'Business Promotion',
+                'add-business-ad':'Start New Campaign',
+                'business-ad': 'Business Advertisement',
+                'ad': 'Advertisement',
+                'my-ad': 'My Advertisement',
+                'my-ad-campaign': 'My Advertisement Campaign',
+                'campaign-name': 'Campaign Name',
+                'ad-place': 'Advertisement Place'
 
             });
 
             $translateProvider.translations('ru', {
                 'business-promotion': 'Продвижение Вашего Бизнеса',
-                'add-business-ad':'Начать Новую Кампанию'
+                'my-business-promotion': 'Продвижение Моего Бизнеса',
+                'add-business-ad':'Начать Новую Кампанию',
+                'business-ad': 'Бизнес',
+                'ad': 'Рекламная служба',
+                'my-ad': 'Объявления',
+                'my-ad-campaign': 'Моя Рекламная Кампания',
+                'campaign-name': 'Название Кампании',
+                'ad-place': 'Место показа рекламы'
             });
 
             $translateProvider.preferredLanguage('en');

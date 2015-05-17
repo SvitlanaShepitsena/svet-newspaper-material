@@ -8,7 +8,7 @@ lx-dropdown(position='right')
                 a.dropdown-link(ui-sref="app.user.dashboard({uid:user.userName})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
-            li
+            li(ng-if='user.role===("author") || user.role===("reader")')
                 a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  )
                     i.mdi.mdi-view-list &nbsp
                     span(ng-if='user.role==="reader"') {{'my-blog'|translate}}
