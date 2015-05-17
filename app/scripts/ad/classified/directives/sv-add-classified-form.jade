@@ -63,14 +63,13 @@
                     required )
         div(flex-container='row' class='ml mr')
             div(flex-item='')
-                span.display-block
+                span.display-block {{clCopy.description}}
+                lx-text-field(label='Объявление')
                     textarea(ng-model='clCopy.description'
                     name="description"
-                    rows='4' cols='50'
                     required )
         div(flex-container='row' class='mb+ ml mr')
             div(flex-item='')
-                span.display-block {{clCopy.description}}
                 lx-text-field(label='Цена Товара / Услуги')
                     input(ng-model='clCopy.price'
                     name="price")

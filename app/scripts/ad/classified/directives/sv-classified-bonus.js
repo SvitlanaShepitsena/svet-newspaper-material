@@ -8,11 +8,9 @@
                 link: function ($scope, el, attrs) {
                     $scope.startCl = function () {
                         if (!ClassifiedServ.isClAvailable($scope.cls)) {
-                            console.log('run here sv-classified-bonus.js');
                             $scope.notAllowed = true;
                             $scope.addState = false;
                         } else {
-                            console.log('run here sv-classified-bonus.js');
                             $scope.notAllowed = false;
                             $scope.addState = true;
                         }

@@ -6,8 +6,8 @@
             /*=moduleName*/
                 .state("app.contact", {
                     url: "/contact",
-                    controller: "ContactCtrl as contact",
-                    templateUrl: "sections/contact/views/contactCtrl.html"
+                    controller: "ContactCtrl",
+                    templateUrl: "scripts/sections/contact/views/contactCtrl.html"
                 })
 //#state'
         });
