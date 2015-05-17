@@ -687,7 +687,10 @@ module.exports = function (grunt) {
         if (!isTranslationExists) {
             indexAddition += '\r\n<script src="' + moduleTranslation + '"></script>';
         }
-        return addInIndexHtml('<!--MODULES-->', indexAddition);
+
+        var indexFile=grunt.file.read(INDEXHTML);
+
+        enterInside(indexFile,module.split('.'),indexAddition);
 
 
         includeStyleCreateImgFolder();
