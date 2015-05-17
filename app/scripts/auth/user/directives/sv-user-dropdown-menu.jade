@@ -1,5 +1,7 @@
 lx-dropdown(position='right')
-    button.btn.btn--l.btn--white.btn--fab.btn-flat(lx-dropdown-toggle='' ng-class="{'mr+':gtSm}")
+    a.btn.btn--l.btn--white.btn--fab.btn-flat(lx-dropdown-toggle=''
+    ng-class="{'mr+':gtSm}"
+    ui-sref="app.user.dashboard({uid:user.userName})")
         img.img-round(ng-src="{{user.avatar || defaultAvatar}}" style='width:40px;height:40px' )
     lx-dropdown-menu
         ul

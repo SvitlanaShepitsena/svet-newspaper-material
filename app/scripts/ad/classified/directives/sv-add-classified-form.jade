@@ -1,5 +1,5 @@
 .card.p
-    sv-profile-subhead(subhead-title="classified")
+    sv-profile-subhead(subhead-title="new-classified")
     form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy)')
         div(layout='row', layout-sm='column')
             md-input-container(flex)
@@ -16,7 +16,7 @@
                 label {{'state'|translate}}
                 input(ng-model='clCopy.state' name='state' required='')
             md-input-container.mr(flex)
-                label {{'contact-city'|translate}}
+                label {{'city'|translate}}
                 input(ng-model='clCopy.city' name='city' required='')
             div(flex)
                 lx-dropdown(class='mt' )
@@ -32,7 +32,7 @@
                 input(ng-model='clCopy.title' name='title' required='')
         div(layout='row', layout-sm='column')
             md-input-container(flex)
-                label {{'description'|translate}}
+                label {{'classified-description'|translate}}
                 textarea.bgc-grey-50(ng-model='clCopy.description'
                 rows='3'
                 name='description' required='')
@@ -46,4 +46,4 @@
                 | {{editState?'Save':'Post'}}
             button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()')
                 i.mdi.mdi-close
-                | &nbsp Cancel
+                | &nbsp {{'cancel'|translate}}

@@ -48,13 +48,7 @@
                 'invitations': 'Invitations',
                 'find-people': 'Find People',
                 'subscriptions': 'Subscriptions',
-                'my-classified': 'My Classified',
                 'profile-settings': 'Profile Settings',
-                'no-classified-yet': 'You do not have any classified yet',
-                'free-classified': 'You can Post for Free ',
-                'start-posting-classified': 'Start Posting Classified Now',
-                'add-classified': 'Add Classified',
-                'bonuses': 'Bonuses',
                 // Forms
                 // Register
                 'required-field': '* Required Field',
@@ -123,13 +117,7 @@
                 'invitations': 'Приглашения',
                 'find-people': 'Поиск Людей',
                 'subscriptions': 'Подписки',
-                'my-classified': 'Мои Объявления',
                 'profile-settings': 'Настройки Профайла',
-                'no-classified-yet': 'У Вас пока нет объявлений',
-                'add-classified': 'Добавить Объявление',
-                'free-classified': 'Вы можете разместить бесплатно',
-                'start-posting-classified': 'Создать Объявление ',
-                'bonuses': 'Бонусы',
                 // Forms
                 // Register
                 'required-field': '* Обязательное Поле',
