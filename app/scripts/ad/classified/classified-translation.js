@@ -5,6 +5,7 @@
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
                 'my-classified': 'My Classified',
+                'new-classified': 'New Classified',
                 'no-classified-yet': 'You do not have any classified yet',
                 'free-classified': 'You can Post for Free ',
                 'start-posting-classified': 'Start Posting Classified Now',
@@ -22,6 +23,7 @@
             });
             $translateProvider.translations('ru', {
                 'my-classified': 'Мои Объявления',
+                'new-classified': 'Новое объявление',
                 'no-classified-yet': 'У Вас пока нет объявлений',
                 'add-classified': 'Добавить Объявление',
                 'free-classified': 'Вы можете разместить бесплатно',

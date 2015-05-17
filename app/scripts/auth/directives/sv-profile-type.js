@@ -1,12 +1,17 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svProfileType', function () {
+        .directive('svProfileType', function (userAuth, $state) {
             return {
-                replace: true,
                 templateUrl: 'scripts/auth/directives/sv-profile-type.html',
                 link: function ($scope, el, attrs) {
-
+                    $scope.goToDashboard = function () {
+                        if (userAuth.profile.role === 'manager') {
+                            $state.go('app.manager.dashboard', {uid: userAuth.key});
+                        } else {
+                            $state.go('app.user.dashboard', {uid: userAuth.profile.userName});
+                        }
+                    };
                 }
             };
         });

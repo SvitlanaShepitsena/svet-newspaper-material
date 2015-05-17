@@ -1,11 +1,8 @@
 div(style='margin-bottom:5px' ng-if='!!user')
-    span.tc-red-300(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important')
-        | SVET
-    span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-show='user.role==="customer"')
-        | BUSINESS
-    span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-show='user.role==="reader"')
-        | READER
-    span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-show='user.role==="author"')
-        | AUTHOR
-    span.tc-grey-700(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-show='user.role==="manager"')
-        | MANAGER
+    a.tc-grey-700(ng-click='goToDashboard()' style='cursor:pointer;text-decoration:none')
+        span.tc-red-300(style='margin-right:2px;font-size:16.5px;font-weight:bold;line-height:20px !important')
+            | SVET
+        span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-show='user.role==="customer"')  BUSINESS
+        span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-show='user.role==="reader"')  READER
+        span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-show='user.role==="author"')  AUTHOR
+        span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-show='user.role==="manager"')  MANAGER
