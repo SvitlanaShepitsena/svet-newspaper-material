@@ -25,11 +25,11 @@ lx-dropdown(position='right')
                 a.dropdown-link(ui-sref="app.user.social({uid:user.userName})")
                     i.mdi.mdi-emoticon &nbsp
                     | {{'community'|translate}}
-            li.dropdown-divider
-            li
-                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({uid:user.userName})'  ng-if='user.role==="author"')
+            li.dropdown-divider(ng-if='user.role==="author"')
+            li(ng-if='user.role==="author"')
+                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({uid:user.userName})' )
                     i.mdi.mdi-pencil &nbsp
-                    | {{'create-article'|translate}}
+                    | {{'add-article'|translate}}
             li.dropdown-divider
             li
                 a.dropdown-link(ng-click='logout()')

@@ -1,4 +1,11 @@
 div(layout='column')
-    button.btn.btn--fab.btn--red.btn--l.btn--icon.bgc-red-300.mb(ng-click='startCl()' lx-tooltip="{{'add-classified'|translate}}")
+    button.btn.btn--fab.btn--red.btn--l.btn--icon.bgc-red-300.mb(ng-click='startCl()'
+    hide-gt-sm
+    lx-tooltip="{{'add-classified'|translate}}")
         i.mdi.mdi-plus
+    button.btn.btn--red.btn--l.btn--raised.bgc-red-300.mb(ng-click='startCl()'
+    hide-sm
+    lx-tooltip="{{'add-classified'|translate}}")
+        i.mdi.mdi-plus.mr
+        | Add Classified
     span(ng-show="notAllowed") Please contact Svet Media Group to extend your classifieds limit.
