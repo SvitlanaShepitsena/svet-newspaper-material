@@ -9,10 +9,6 @@
                 link: function ($scope, el, attrs) {
                     $scope.user = userAuth.profile;
                     $scope.cls = ClassifiedServ.getAllCls();
-                    $scope.cls.$loaded().then(function () {
-
-                        var breakPoint=1;
-                    })
 
                     $scope.removeCl = function (cl) {
                         ClassifiedServ.removeCl(cl).then(function (success) {

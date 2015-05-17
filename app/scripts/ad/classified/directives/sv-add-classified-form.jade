@@ -1,7 +1,7 @@
 .card.p
     sv-profile-subhead(subhead-title="classified")
     form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy)')
-        div(flex-container='row', flex-gutter='24')
+        div(class='mt++', flex-container='row', flex-gutter='24')
             div(flex-item='')
                 lx-text-field(label='Контактное Имя'
                 fixed-label='true'
@@ -9,6 +9,7 @@
                 icon='account')
                     input(ng-model='clCopy.name'
                     name='name'
+                    required
                     type='text')
                 lx-text-field(label='Контактный Телефон', fixed-label='true', icon='phone')
                     input(ng-model='clCopy.phone' type='text')
@@ -52,6 +53,7 @@
                                 a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value}}
         div(flex-container='row' class='ml mr')
             div(flex-item='')
+                span.display-block
                 lx-text-field(label='Заголовок Объявления'
                 error='isInvalid("title")'
                 required)
@@ -61,15 +63,14 @@
                     required )
         div(flex-container='row' class='ml mr')
             div(flex-item='')
-                lx-text-field(label='Объявление'
-                required)
+                span.display-block
                     textarea(ng-model='clCopy.description'
-                    cols="5"
-                    rows="18"
                     name="description"
+                    rows='4' cols='50'
                     required )
         div(flex-container='row' class='mb+ ml mr')
             div(flex-item='')
+                span.display-block {{clCopy.description}}
                 lx-text-field(label='Цена Товара / Услуги')
                     input(ng-model='clCopy.price'
                     name="price")

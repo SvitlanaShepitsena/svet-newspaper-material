@@ -11,7 +11,7 @@
                     var pdfSubObj = PdfSubscriptionsServ.getObjectRef();
                     if (pdfSubObj) {
                         $scope.requestSubmited = true;
-                        pdfSubObj.$bindTo($scope, 'pdfSub').then(function () {
+                        pdfSubObj.$bindTo($scope, 'subscription').then(function () {
                             $scope.requestSubmited = false;
                         }).catch(function (error) {
                             $scope.requestSubmited = false;

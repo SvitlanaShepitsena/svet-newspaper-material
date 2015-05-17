@@ -6,15 +6,14 @@
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-classified-bonus.html',
                 link: function ($scope, el, attrs) {
-                    $scope.$watch('cls', function (newValue, oldValue) {
-                        $scope.cls = newValue;
-                        $scope.leftToPost = ClassifiedServ.howManyAllowed($scope.cls)
-                    });
                     $scope.startCl = function () {
                         if (!ClassifiedServ.isClAvailable($scope.cls)) {
+                            console.log('run here sv-classified-bonus.js');
                             $scope.notAllowed = true;
                             $scope.addState = false;
                         } else {
+                            console.log('run here sv-classified-bonus.js');
+                            $scope.notAllowed = false;
                             $scope.addState = true;
                         }
                     };
