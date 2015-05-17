@@ -46,19 +46,18 @@
                 },
                 removeCustomerFromEvent: function (event, user) {
                     return $q(function (resolve, reject) {
-                        var eventObject = $firebaseObject(new Firebase(eventsCorporateUrl + event.$id));
-                        eventObject.$loaded().then(function () {
-                            for (var i = 0; i < eventObject.customers.length; i++) {
-                                var customer = eventObject.customers[i];
-                                if (customer.id === user.id) {
-                                    eventObject.customers.splice(i, 1);
+                        var eventCustomersArr = $firebaseArray(new Firebase(eventsCorporateUrl + event.$id+'/customers'));
+                        eventCustomersArr.$loaded().then(function () {
+                            for (var i = 0; i < eventCustomersArr.length; i++) {
+                                var customer = eventCustomersArr[i];
+                                if (customer.userName === user.userName) {
+                                    eventCustomersArr.$remove(customer).then(function () {
+                                       resolve()
+                                    });
                                     break;
                                 }
                             }
-                            eventObject.$save().then(function (uid) {
-                                resolve(uid);
-                            })
-                        })
+                        });
                     });
                 }
             };
