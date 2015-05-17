@@ -7,14 +7,18 @@ lx-dropdown(position='right')
                 a.dropdown-link(ui-sref="app.user.dashboard({uid:user.userName})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
-            li(ng-if='user.role==="customer"')
-                a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
-                    i.fa.fa-bullhorn &nbsp
-                    | {{'my-ad'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  ng-if='user.role==="author"')
                     i.mdi.mdi-view-list &nbsp
                     | {{'my-articles'|translate}}
+            li(ng-if='user.role==="customer"')
+                a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
+                    i.fa.fa-bullhorn &nbsp
+                    | {{'my-ad'|translate}}
+            li(ng-if='user.role==="author" || user.role==="reader"' )
+                a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
+                    i.fa.fa-bullhorn &nbsp
+                    | {{'my-classified'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.user-events({uid:user.userName})")
                     i.mdi.mdi-tag &nbsp
