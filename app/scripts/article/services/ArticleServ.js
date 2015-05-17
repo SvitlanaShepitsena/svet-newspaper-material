@@ -38,7 +38,7 @@
                     return $firebaseObject(ref.child(id))
                 },
                 getDraftObj: function (id) {
-                    return $firebaseObject(ref.child(id).child('isDraft'))
+                    return $firebaseObject(ref.child(id).child('public'))
                 },
                 allObjRef: function () {
                     return refObj;
