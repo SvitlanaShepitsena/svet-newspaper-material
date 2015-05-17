@@ -9,8 +9,8 @@
                     article: '='
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.saveArticle = function (isDraft) {
-                        ArticleServ.add($scope.article, isDraft).then(function (uid) {
+                    $scope.saveArticle = function (isPublic) {
+                        ArticleServ.add($scope.article, isPublic).then(function (uid) {
                                 $state.go('app.user.author-articles');
                                 toastr.success('Статья сохранена в БД');
                             },

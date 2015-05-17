@@ -43,7 +43,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
       //minimal no of characters that needs to be entered before typeahead kicks-in
       var minSearch = originalScope.$eval(attrs.typeaheadMinLength) || 1;
 
-      //minimal wait time after last character typed before typeahead kicks-in
+      //minimal wait time after last character typed before typehead kicks-in
       var waitTime = originalScope.$eval(attrs.typeaheadWaitMs) || 0;
 
       //should it restrict model values to the ones selected from the popup only?
@@ -131,7 +131,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
           //but we are interested only in responses that correspond to the current view value
           var onCurrentRequest = (inputValue === modelCtrl.$viewValue);
           if (onCurrentRequest && hasFocus) {
-            if (matches && matches.length > 0) {
+            if (matches.length > 0) {
 
               scope.activeIdx = focusFirst ? 0 : -1;
               scope.matches.length = 0;
@@ -172,7 +172,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
       //we need to propagate user's query so we can higlight matches
       scope.query = undefined;
 
-      //Declare the timeout promise var outside the function scope so that stacked calls can be cancelled later
+      //Declare the timeout promise var outside the function scope so that stacked calls can be cancelled later 
       var timeoutPromise;
 
       var scheduleSearchWithTimeout = function(inputValue) {
@@ -225,13 +225,6 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         var candidateViewValue, emptyViewValue;
         var locals = {};
 
-        // The validity may be set to false via $parsers (see above) if
-        // the model is restricted to selected values. If the model
-        // is set manually it is considered to be valid.
-        if (!isEditable) {
-          modelCtrl.$setValidity('editable', true);
-        }
-
         if (inputFormatter) {
 
           locals.$model = modelValue;
@@ -259,7 +252,6 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         model = parserResult.modelMapper(originalScope, locals);
         $setModelValue(originalScope, model);
         modelCtrl.$setValidity('editable', true);
-        modelCtrl.$setValidity('parse', true);
 
         onSelectCallback(originalScope, {
           $item: item,
@@ -329,12 +321,9 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         if (appendToBody) {
           $popup.remove();
         }
-        // Prevent jQuery cache memory leak
-        popUpEl.remove();
       });
 
       var $popup = $compile(popUpEl)(scope);
-
       if (appendToBody) {
         $document.find('body').append($popup);
       } else {
@@ -380,7 +369,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
     };
   })
 
-  .directive('typeaheadMatch', ['$templateRequest', '$compile', '$parse', function ($templateRequest, $compile, $parse) {
+  .directive('typeaheadMatch', ['$http', '$templateCache', '$compile', '$parse', function ($http, $templateCache, $compile, $parse) {
     return {
       restrict:'EA',
       scope:{
@@ -390,10 +379,8 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
       },
       link:function (scope, element, attrs) {
         var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || 'template/typeahead/typeahead-match.html';
-        $templateRequest(tplUrl).then(function(tplContent) {
-          $compile(tplContent.trim())(scope, function(clonedElement){
-            element.replaceWith(clonedElement);
-          });
+        $http.get(tplUrl, {cache: $templateCache}).success(function(tplContent){
+           element.replaceWith($compile(tplContent.trim())(scope));
         });
       }
     };

@@ -1,13 +1,12 @@
 describe('pager directive', function () {
-  var $compile, $rootScope, $document, element;
+  var $compile, $rootScope, element;
   beforeEach(module('ui.bootstrap.pagination'));
   beforeEach(module('template/pagination/pager.html'));
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$document_) {
+  beforeEach(inject(function(_$compile_, _$rootScope_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $rootScope.total = 47; // 5 pages
     $rootScope.currentPage = 3;
-    $document = _$document_;
     element = $compile('<pager total-items="total" ng-model="currentPage"></pager>')($rootScope);
     $rootScope.$digest();
   }));
@@ -22,10 +21,6 @@ describe('pager directive', function () {
 
   function clickPaginationEl(index) {
     getPaginationEl(index).find('a').click();
-  }
-  
-  function getPaginationLinkEl(elem, index) {
-    return elem.find('li').eq(index).find('a');
   }
 
   function updateCurrentPage(value) {
@@ -101,32 +96,6 @@ describe('pager directive', function () {
     expect(getPaginationEl(-1).text()).toBe('Next »');
   });
 
-  it('should blur the "next" link after it has been clicked', function () {
-    $document.find('body').append(element);
-    var linkEl = getPaginationLinkEl(element, -1);
-    
-    linkEl.focus();
-    expect(linkEl).toHaveFocus();
-    
-    linkEl.click();
-    expect(linkEl).not.toHaveFocus();
-    
-    element.remove();
-  });
-
-  it('should blur the "prev" link after it has been clicked', function () {
-    $document.find('body').append(element);
-    var linkEl = getPaginationLinkEl(element, -1);
-
-    linkEl.focus();
-    expect(linkEl).toHaveFocus();
-
-    linkEl.click();
-    expect(linkEl).not.toHaveFocus();
-
-    element.remove();
-  });
-  
   describe('`items-per-page`', function () {
     beforeEach(function() {
       $rootScope.perpage = 5;

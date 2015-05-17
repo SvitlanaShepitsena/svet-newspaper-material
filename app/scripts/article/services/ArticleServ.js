@@ -59,10 +59,10 @@
                         });
                     });
                 },
-                add: function (article, isDraft) {
-                    article.isDraft = isDraft || false;
+                add: function (article, isPublic) {
+                    article.public = isPublic;
                     article.timestamp = moment().format('x');
-                    article.authorKey = userAuth.profile.key
+                    article.authorKey = userAuth.key
                     return $q(function (resolve, reject) {
                         if (article.$id) {
                             var articleDb = ref.child(article.$id);

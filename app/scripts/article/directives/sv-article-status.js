@@ -12,7 +12,6 @@
 
                     var status = ArticleServ.getDraftObj($scope.key);
                     status.$bindTo($scope, 'status').then(function () {
-                        var s = status;
                     });
                 }
             };

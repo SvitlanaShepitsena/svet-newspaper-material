@@ -10,7 +10,7 @@
                     $scope.userName={value: angular.copy(userAuth.profile.userName)};
 
                     $scope.saveUserProperty = function (property) {
-                        UserServ.saveUserProperty(property, userAuth.profile.key).then(function (success) {
+                        UserServ.saveUserProperty(property, userAuth.key).then(function (success) {
                             toastr.success('Saved');
                         })
                     };
