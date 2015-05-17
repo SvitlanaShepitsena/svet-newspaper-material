@@ -8,9 +8,10 @@ lx-dropdown(position='right')
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  ng-if='user.role==="author"')
+                a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  )
                     i.mdi.mdi-view-list &nbsp
-                    | {{'my-articles'|translate}}
+                    span(ng-if='user.role==="reader"') {{'my-blog'|translate}}
+                    span(ng-if='user.role==="author"') {{'my-articles'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
                     i.fa.fa-bullhorn &nbsp

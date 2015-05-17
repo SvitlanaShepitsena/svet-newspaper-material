@@ -4,10 +4,11 @@
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.dashboard' lx-ripple='' style='font-size:11px;padding:0px 10px')
                 i.mdi.mdi-view-dashboard &nbsp
                 span(hide-sm) {{'dashboard'|translate}}
-        li(ui-sref-active='sv-active-user-menu' ng-if='user.role===("author")')
+        li(ui-sref-active='sv-active-user-menu' )
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.author-articles' lx-ripple='' style='font-size:11px;padding:0px 10px')
                 i.mdi.mdi-view-list &nbsp
-                span(hide-sm) {{'my-articles'|translate}}
+                span(hide-sm ng-if='user.role===("author")') {{'my-articles'|translate}}
+                span(hide-sm ng-if='user.role===("reader")') {{'my-blog'|translate}}
         li(ui-sref-active='sv-active-user-menu'  )
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.ad' lx-ripple='' style='font-size:11px;padding:0px 10px')
                 i.fa.fa-bullhorn &nbsp

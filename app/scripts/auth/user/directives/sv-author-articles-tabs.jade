@@ -1,7 +1,7 @@
 div
     md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
         md-tab.sv-tabs(md-stretch-tabs="always")
-            md-tab-label {{'all-news'|translate}}
+            md-tab-label {{'all-articles'|translate}}
             md-tab-body
                 div(ng-repeat='article in articles|authorFr:user.key|orderBy:"-timestamp"')
                     sv-author-article-link(article='article')
