@@ -6,7 +6,8 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-manage-article-nav.html',
                 scope: {
-                    article: '='
+                    article: '=',
+                    artType:'='
                 },
                 link: function ($scope, el, attrs) {
                     $scope.saveArticle = function (isPublic) {

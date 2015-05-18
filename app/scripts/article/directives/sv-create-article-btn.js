@@ -5,7 +5,9 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-create-article-btn.html',
-                scope: {},
+                scope: {
+                    isBlog:'='
+                },
                 link: function ($scope, el, attrs) {
                 }
             };

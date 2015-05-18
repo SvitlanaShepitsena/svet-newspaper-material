@@ -6,7 +6,11 @@ div
             md-input-container(flex)
                 label {{'article-author'|translate}}
                 input(ng-model='article.author' name='author' required='')
-        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center')
+        div(layout='row', layout-sm='column' ng-if='artType==="blog"')
+            md-input-container(flex)
+                label {{'article-topic'|translate}}
+                input(ng-model='article.topic' name='topic')
+        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center' ng-if='artType==="article"')
             div(class='mb' flex-order-sm='2')
                 lx-dropdown(position='left')
                     button.btn.btn--s.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)

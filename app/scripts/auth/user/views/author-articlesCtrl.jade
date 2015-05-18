@@ -1,4 +1,5 @@
 div(layout='row' layout-align='space-between center')
     sv-profile-title(header-title='author-articles')
-    sv-create-article-btn(ng-if='user.role==="author"')
+    sv-create-article-btn(ng-if='user.isAuthor()')
+    sv-create-article-btn(ng-if='user.isEditor()' is-blog='true')
 sv-author-articles-tabs

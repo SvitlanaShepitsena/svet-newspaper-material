@@ -7,6 +7,7 @@
                 // 'eng':'eng'
                 'new-article': 'New Article',
                 'add-article': 'Add Article',
+                'add-blog': 'Add Blog Post',
                 'save-to-drafts': 'Save to Drafts',
                 'save-article': 'Save Article',
                 'post-article': 'Post Article',
@@ -29,6 +30,7 @@
                 // 'ru':'ru'
                 'new-article': 'Новая Статья',
                 'add-article': ' Добавить статью',
+                'add-blog': ' Добавить блог-пост ',
                 'save-to-drafts': 'Сохранить в черновики',
                 'save-article': 'Сохранить статью',
                 'post-article': 'Опубликовать статью',

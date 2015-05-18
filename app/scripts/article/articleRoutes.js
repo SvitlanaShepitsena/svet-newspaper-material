@@ -10,7 +10,7 @@
                     templateUrl: "scripts/article/views/articleCtrl.html"
                 })
                 .state("app.user.create-article", {
-                    url: "/manage-article/:artId",
+                    url: "/manage-article/:artType/:artId",
                     controller: "CreateArticleCtrl as createArticle",
                     templateUrl: "scripts/article/views/create-articleCtrl.html"
                 })

@@ -14,8 +14,9 @@
                         //    new article
                         $scope.article = {
                             public: false,
-                            img: '',
                             isTopNews: false,
+                            isBlog: $scope.artType === 'blog',
+                            img: '',
                             author: userAuth.profile.userName,
                             section: '',
                             title: '',
@@ -28,6 +29,7 @@
                             $scope.article = _.omit(randomSvobodaArticle, '$id');
                             $scope.article.author = userAuth.profile.userName;
                             $scope.article.tags = $scope.article.tags.split(',').join(', ');
+                            $scope.article.isBlog = $scope.artType === 'blog';
                         });
                     };
                     $scope.setSection = function (section) {

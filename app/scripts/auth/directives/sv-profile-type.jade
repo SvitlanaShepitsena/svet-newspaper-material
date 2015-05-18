@@ -4,6 +4,6 @@ div(style='margin-bottom:5px' ng-if='!!user')
             | SVET
         span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-if='user.isManager()')   {{'manager'|translate|uppercase}}
         span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-if='user.isEditor()')  {{'editor'|translate|uppercase}}
-        span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-if='user.isAuthor()')    {{'author'|translate|uppercase}}
+        span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-if='user.isOnlyAuthor()')    {{'author'|translate|uppercase}}
         span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-if='user.isCustomer()')  {{'customer'|translate|uppercase}}
         span(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-if='user.isReader()')    {{'reader'|translate|uppercase}}
