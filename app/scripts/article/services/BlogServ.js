@@ -14,6 +14,7 @@
                     var lastBlogArticleObj = $firebaseObject(ref.child(lastBlog.$id));
                     lastBlogArticleObj.$loaded(function () {
                         lastEditorPost.post = lastBlogArticleObj;
+                        console.log('change array');
                         resolve();
                     });
                 });
@@ -23,11 +24,25 @@
                 setLastBlogLive: function () {
                     return $q(function (resolve, reject) {
                         articlesArr.$loaded(function () {
+                            articlesArr.$watch(function () {
+                                console.log('changed aaa');
+                                setLastBlogBinding(articlesArr).then(function () {
+                                });
+                            })
+
+
                             setLastBlogBinding(articlesArr).then(function () {
                                 resolve();
                             });
+
+
                         });
                     });
+                },
+                getPost: function (postId) {
+
+                    var postObj = $firebaseObject(ref.child(postId));
+                    return postObj;
                 }
             };
         });

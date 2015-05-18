@@ -20,7 +20,7 @@
                     templateUrl: "scripts/article/views/svet-recommendsCtrl.html"
                 })
 				.state("app.one-blog", {
-					url: "/one-blog", 
+					url: "/svet-blog/:author/:postId",
 					controller:"OneBlogCtrl",
 					templateUrl: "scripts/article/views/one-blogCtrl.html"
 				})

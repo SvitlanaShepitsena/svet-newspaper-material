@@ -13,18 +13,19 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.user = {
-                        email: 'chicagobusinessintelligence2@gmail.com',
+                        email: 'alex@gmail.com',
                         //email: 'Icie_Ledner@yahoo.com',
                         password: '123456'
                     }
                     $scope.singIn = function () {
                         AuthenticationServ.svetLogin($scope.user.email, $scope.user.password).then(function (user) {
-                            if (userAuth) {
+                            if (userAuth.profile.isManager()) {
                                 $state.go('app.manager.dashboard', {uid: userAuth.key});
                             } else {
                                 $state.go('app.user.dashboard', {uid: userAuth.profile.userName});
                             }
                         }).catch(function (error) {
+
                             toastr.error(error.message);
                         })
                     }
