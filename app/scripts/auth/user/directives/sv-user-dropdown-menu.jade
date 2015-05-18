@@ -26,7 +26,7 @@ lx-dropdown(position='right')
                 a.dropdown-link(ui-sref="app.user.social({uid:user.userName})")
                     i.mdi.mdi-emoticon &nbsp
                     | {{'community'|translate}}
-            li.dropdown-divider(ng-if='user.role==="author"')
+            li.dropdown-divider(ng-if='user.isAuthor()')
             li(ng-if='user.role==="author"')
                 a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({uid:user.userName})' )
                     i.mdi.mdi-pencil &nbsp

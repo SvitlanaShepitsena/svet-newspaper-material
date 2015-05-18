@@ -21,7 +21,7 @@
                         var currentUserProfileRef = $firebaseObject(ref.child(userKey).child('profile'));
                         currentUserProfileRef.$loaded(function () {
                             /*bound when profile is loaded*/
-                            userAuth.profile = (currentUserProfileRef);
+                            userAuth.profile = ProfileExtentionServ.extend(currentUserProfileRef);
                             userAuth.key = userKey;
                             unwatch = currentUserProfileRef.$watch(function () {
                                 //console.log('changes');
