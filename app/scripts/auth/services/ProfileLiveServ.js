@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('ProfileLiveServ', function ($q, url, users, $firebaseObject, $firebaseArray, userAuth) {
+        .factory('ProfileLiveServ', function (ProfileExtentionServ, $q, url, users, $firebaseObject, $firebaseArray, userAuth) {
             var ref = new Firebase(users);
             var unwatch;
             var userPublicProps = [
@@ -20,11 +20,12 @@
                     return $q(function (resolve, reject) {
                         var currentUserProfileRef = $firebaseObject(ref.child(userKey).child('profile'));
                         currentUserProfileRef.$loaded(function () {
+                            /*bound when profile is loaded*/
                             userAuth.profile = (currentUserProfileRef);
                             userAuth.key = userKey;
                             unwatch = currentUserProfileRef.$watch(function () {
                                 //console.log('changes');
-                                // Update profile on any change
+                                /*bound on watch and update profile on any changes*/
                                 userAuth.profile = (currentUserProfileRef);
                                 //console.log(userAuth.profile);
                             });

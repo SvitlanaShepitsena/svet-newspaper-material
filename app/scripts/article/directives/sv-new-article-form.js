@@ -16,7 +16,7 @@
                             public: false,
                             img: '',
                             isTopNews: false,
-                            author: '',
+                            author: userAuth.profile.userName,
                             section: '',
                             title: '',
                             body: '',
@@ -25,7 +25,9 @@
                     }
                     $scope.generateFromRandomNews = function () {
                         SvobodaSaveToDbServ.getRandom().then(function (randomSvobodaArticle) {
-                            $scope.article = _.omit(randomSvobodaArticle,'$id');
+                            $scope.article = _.omit(randomSvobodaArticle, '$id');
+                            $scope.article.author = userAuth.profile.userName;
+                            $scope.article.tags = $scope.article.tags.split(',').join(', ');
                         });
                     };
                     $scope.setSection = function (section) {

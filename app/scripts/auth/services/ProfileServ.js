@@ -2,7 +2,9 @@
     'use strict';
     angular.module('auth')
         .factory('ProfileServ', function (ProfileLiveServ, UserUniqueServ, $q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
+            /*users - Firebase users url from constants.js*/
             var ref = new Firebase(users);
+            /*get array of users with AngularFire service $firebaseArray*/
             var dbUsersArr = $firebaseArray(ref);
             var currentUserProfileRef;
             var unwatch;
@@ -24,7 +26,9 @@
                 },
                 getProfile: function (authData) {
                     return $q(function (resolve, reject) {
+                        /*get Firebase array with all users*/
                         dbUsersArr.$loaded().then(function () {
+                            /*find user profile in db, if it is exists*/
                             var userDbProfile = UserUniqueServ.findDbProfile(authData, dbUsersArr);
                             if (userDbProfile) {
                                 ProfileLiveServ.setBinding(userDbProfile.$id).then(function () {
