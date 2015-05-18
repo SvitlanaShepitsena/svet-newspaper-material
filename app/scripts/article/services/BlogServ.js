@@ -7,16 +7,18 @@
 
             function setLastBlogBinding(articles) {
                 return $q(function (resolve, reject) {
-
                     var blogs = _.where(articles, {isBlog: true});
-
-                    var lastBlog = _.last(blogs);
-                    var lastBlogArticleObj = $firebaseObject(ref.child(lastBlog.$id));
-                    lastBlogArticleObj.$loaded(function () {
-                        lastEditorPost.post = lastBlogArticleObj;
-                        console.log('change array');
+                    if (blogs.length) {
+                        var lastBlog = _.last(blogs);
+                        var lastBlogArticleObj = $firebaseObject(ref.child(lastBlog.$id));
+                        lastBlogArticleObj.$loaded(function () {
+                            lastEditorPost.post = lastBlogArticleObj;
+                            console.log('change array');
+                            resolve();
+                        });
+                    }else{
                         resolve();
-                    });
+                    }
                 });
             }
 
@@ -29,18 +31,13 @@
                                 setLastBlogBinding(articlesArr).then(function () {
                                 });
                             })
-
-
                             setLastBlogBinding(articlesArr).then(function () {
                                 resolve();
                             });
-
-
                         });
                     });
                 },
                 getPost: function (postId) {
-
                     var postObj = $firebaseObject(ref.child(postId));
                     return postObj;
                 }
