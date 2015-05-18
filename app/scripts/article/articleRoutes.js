@@ -19,6 +19,11 @@
                     controller: "SvetRecommendsCtrl as svetRecommends",
                     templateUrl: "scripts/article/views/svet-recommendsCtrl.html"
                 })
+				.state("app.one-blog", {
+					url: "/one-blog", 
+					controller:"OneBlogCtrl",
+					templateUrl: "scripts/article/views/one-blogCtrl.html"
+				})
 //#state'
         });
 })();

@@ -9,13 +9,11 @@
                 i.mdi.mdi-view-list &nbsp
                 span(hide-sm ng-if='user.isAuthor()') {{'my-articles'|translate}}
                 span(hide-sm ng-if='user.isReader()') {{'my-blog'|translate}}
-
-
         li(ui-sref-active='sv-active-user-menu'  )
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.ad' lx-ripple='' style='font-size:11px;padding:0px 10px')
                 i.fa.fa-bullhorn &nbsp
-                span(hide-sm)(ng-if='user.isAuthor()  || user.role==="reader"') {{'my-classified'|translate}}
-                span(hide-sm ng-if='user.role===("customer")') {{'my-ad'|translate}}
+                span(hide-sm)(ng-if='user.isAuthor()  || user.isReader()') {{'my-classified'|translate}}
+                span(hide-sm ng-if='user.isCustomer()') {{'my-ad'|translate}}
         li(ui-sref-active='sv-active-user-menu')
             a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.social' lx-ripple='' style='font-size:11px;padding:0px 10px')
                 i.mdi.mdi-emoticon &nbsp

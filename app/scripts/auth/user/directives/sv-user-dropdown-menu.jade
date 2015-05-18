@@ -8,16 +8,16 @@ lx-dropdown(position='right')
                 a.dropdown-link(ui-sref="app.user.dashboard({uid:user.userName})")
                     i.mdi.mdi-view-dashboard &nbsp
                     | {{'dashboard'|translate}}
-            li(ng-if='user.role===("author") || user.role===("reader")')
+            li(ng-if='user.isAuthor() || user.isReader')
                 a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  )
                     i.mdi.mdi-view-list &nbsp
-                    span(ng-if='user.role==="reader"') {{'my-blog'|translate}}
-                    span(ng-if='user.role==="author"') {{'my-articles'|translate}}
+                    span(ng-if='user.isReader()') {{'my-blog'|translate}}
+                    span(ng-if='user.isAuthor()') {{'my-articles'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
                     i.fa.fa-bullhorn &nbsp
-                    span(ng-if='user.role==="customer"') {{'my-ad'|translate}}
-                    span(ng-if='user.role==="author" || user.role==="reader"') {{'my-classified'|translate}}
+                    span(ng-if='user.isCustomer()') {{'my-ad'|translate}}
+                    span(ng-if='user.isAuthor()  || user.isReader()') {{'my-classified'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.user-events({uid:user.userName})")
                     i.mdi.mdi-tag &nbsp
@@ -27,7 +27,7 @@ lx-dropdown(position='right')
                     i.mdi.mdi-emoticon &nbsp
                     | {{'community'|translate}}
             li.dropdown-divider(ng-if='user.isAuthor()')
-            li(ng-if='user.role==="author"')
+            li(ng-if='user.isAuthor()')
                 a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({uid:user.userName})' )
                     i.mdi.mdi-pencil &nbsp
                     | {{'add-article'|translate}}

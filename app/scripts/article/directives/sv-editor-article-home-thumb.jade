@@ -2,8 +2,8 @@ div(layout='column')
     //div.p
     //    img(src="../img/from-the-editor/chukovskiy-06-11-11.jpg" style='width:100px')
     div.pl.pr.pb
-        span.display-block ПОЧЕМУ КОРНЕЙ ЧУКОВСКИЙ ПУГАЛ ДЕТЕЙ?
+        span.display-block(ng-bind-html='post.title')
     div.pl.pr.pb
-        span.display-block.fs-body-1.tc-black-2 31 октября 1916 года Корней Иванович Чуковский написал свою первую сказку...
+        span.display-block.fs-body-1.tc-black-2(ng-bind-html='post.body|length:40')
     div.pl.pr.pb
         sv-read-more(read-more="read-more")
