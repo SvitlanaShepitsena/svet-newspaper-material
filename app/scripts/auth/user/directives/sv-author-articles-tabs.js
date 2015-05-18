@@ -8,6 +8,8 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
                     //$scope.sectionName = $stateParams.sectionName;
+                    $scope.selectedIndex = 0;
+
                     $scope.user = userAuth.profile;
                     var articles = ArticleServ.all();
                     articles.$loaded().then(function () {

@@ -4,7 +4,7 @@ div.card(class='mb+')
             div
                 span.fs-caption.mr.tc-grey-50.bgc-grey-500(style='line-height:14px;padding:2px 4px') {{article.section|translate|capitalize}}
                 span.fs-caption.tc-grey-500 {{article.timestamp|date}}
-            sv-article-status(key='article.$id' property='isTopNews' ch-box='true' lbl='Top News')
+            sv-article-status(key='article.$id' property='isTopNews' ch-box='true' lbl='Top News' ng-show='!article.isBlog')
             sv-article-status(key='article.$id' property='public')
        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="center center")
             div.p
