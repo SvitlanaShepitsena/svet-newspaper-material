@@ -48,9 +48,14 @@
                         }
                     }
                 })
-//#state'
+////#state'
                 .state("app.home", {
                     url: "/home",
+                    resolve:{
+                        svetNews: function (ArticleServ) {
+                            return ArticleServ.allHomeNews();
+                        }
+                    },
                     controller: "HomeCtrl as home",
                     templateUrl: "scripts/sections/home/views/homeCtrl.html"
                 })
@@ -60,51 +65,51 @@
                     controller: "PoliticsCtrl as politics",
                     templateUrl: "scripts/politics/views/politicsCtrl.html"
                 })
-                .state("app.culture", {
-                    url: "/culture",
-                    controller: "CultureCtrl as culture",
-                    templateUrl: "scripts/culture/views/cultureCtrl.html"
-                })
-                .state("app.world", {
-                    url: "/world",
-                    controller: "WorldCtrl as world",
-                    templateUrl: "scripts/world/views/worldCtrl.html"
-                })
-                .state("app.technology", {
-                    url: "/technology",
-                    controller: "TechnologyCtrl as technology",
-                    templateUrl: "scripts/technology/views/technologyCtrl.html"
-                })
-                .state("app.art", {
-                    url: "/art",
-                    controller: "ArtCtrl as art",
-                    templateUrl: "scripts/art/views/artCtrl.html"
-                })
-                .state("app.sport", {
-                    url: "/sport",
-                    controller: "SportCtrl as sport",
-                    templateUrl: "scripts/sport/views/sportCtrl.html"
-                })
-                .state("app.health", {
-                    url: "/health",
-                    controller: "HealthCtrl as health",
-                    templateUrl: "scripts/health/views/healthCtrl.html"
-                })
-                .state("app.food", {
-                    url: "/food",
-                    controller: "FoodCtrl as food",
-                    templateUrl: "scripts/food/views/foodCtrl.html"
-                })
-                .state("app.travel", {
-                    url: "/travel",
-                    controller: "TravelCtrl as travel",
-                    templateUrl: "scripts/travel/views/travelCtrl.html"
-                })
-                .state("app.business", {
-                    url: "/business",
-                    controller: "BusinessCtrl as business",
-                    templateUrl: "scripts/business/views/businessCtrl.html"
-                })
+//                .state("app.culture", {
+//                    url: "/culture",
+//                    controller: "CultureCtrl as culture",
+//                    templateUrl: "scripts/culture/views/cultureCtrl.html"
+//                })
+//                .state("app.world", {
+//                    url: "/world",
+//                    controller: "WorldCtrl as world",
+//                    templateUrl: "scripts/world/views/worldCtrl.html"
+//                })
+//                .state("app.technology", {
+//                    url: "/technology",
+//                    controller: "TechnologyCtrl as technology",
+//                    templateUrl: "scripts/technology/views/technologyCtrl.html"
+//                })
+//                .state("app.art", {
+//                    url: "/art",
+//                    controller: "ArtCtrl as art",
+//                    templateUrl: "scripts/art/views/artCtrl.html"
+//                })
+//                .state("app.sport", {
+//                    url: "/sport",
+//                    controller: "SportCtrl as sport",
+//                    templateUrl: "scripts/sport/views/sportCtrl.html"
+//                })
+//                .state("app.health", {
+//                    url: "/health",
+//                    controller: "HealthCtrl as health",
+//                    templateUrl: "scripts/health/views/healthCtrl.html"
+//                })
+//                .state("app.food", {
+//                    url: "/food",
+//                    controller: "FoodCtrl as food",
+//                    templateUrl: "scripts/food/views/foodCtrl.html"
+//                })
+//                .state("app.travel", {
+//                    url: "/travel",
+//                    controller: "TravelCtrl as travel",
+//                    templateUrl: "scripts/travel/views/travelCtrl.html"
+//                })
+//                .state("app.business", {
+//                    url: "/business",
+//                    controller: "BusinessCtrl as business",
+//                    templateUrl: "scripts/business/views/businessCtrl.html"
+//                })
                 .state("app.y", {
                     url: "/y",
                     controller: "YCtrl as y",
