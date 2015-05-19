@@ -7,7 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-home-page-news.html',
                 scope: {
-
+                    oneNews:'='
                 },
                 link: function ($scope, el, attrs) {
 

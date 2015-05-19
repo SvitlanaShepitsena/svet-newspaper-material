@@ -1,8 +1,3 @@
 div(layout='row' layout-sm='column' layout-align="top")
-    .card.m.p(ng-repeat='secondNews in secondaryNews')
-        a.article-thumb-link(ui-sref='app.article({id:secondNews.fbkey})')
-            span.display-block.fs-subhead.tc-black-1.article-thumb-title {{secondNews.title | length:25}}
-            .fs-caption.tc-grey-600.article-thumb-author By {{secondNews.author}}
-            span.mdc-display-inline-block.fs-body-2.tc-grey-800.article-thumb-body(ng-bind-html='secondNews.body |length:50')
-            sv-read-more(read-more="read-more")
-
+    div(ng-repeat='secondNews in secondaryNews')
+        sv-home-page-news(one-news='secondNews')

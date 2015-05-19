@@ -1,1 +1,1 @@
-<div>sv-home-page-news Template</div>
+<div class="card m p"><a ui-sref="app.article({id:oneNews.fbkey})" class="article-thumb-link"><span class="display-block fs-subhead tc-black-1 article-thumb-title">{{oneNews.title | length:25}}</span><div class="fs-caption tc-grey-600 article-thumb-author">By {{oneNews.author}}</div><span ng-bind-html="oneNews.body |length:50" class="mdc-display-inline-block fs-body-2 tc-grey-800 article-thumb-body"></span><sv-read-more read-more="read-more"></sv-read-more></a></div>

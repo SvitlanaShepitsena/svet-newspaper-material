@@ -1,1 +1,6 @@
-div sv-home-page-news Template
+div.card.m.p
+    a.article-thumb-link(ui-sref='app.article({id:oneNews.fbkey})')
+        span.display-block.fs-subhead.tc-black-1.article-thumb-title {{oneNews.title | length:25}}
+        .fs-caption.tc-grey-600.article-thumb-author By {{oneNews.author}}
+        span.mdc-display-inline-block.fs-body-2.tc-grey-800.article-thumb-body(ng-bind-html='oneNews.body |length:50')
+        sv-read-more(read-more="read-more")
