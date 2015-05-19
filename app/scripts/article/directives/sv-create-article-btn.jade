@@ -1,9 +1,9 @@
 div
-    div.mr(ng-if='!isBlog')
+    div.mr(ng-if='isBlog')
         a.btn.btn--red.btn--s.btn--raised.bgc-grey-500.mb( lx-ripple='' ui-sref='app.user.create-article({artType:"blog"})' )
             i.mdi.mdi-plus.mr
             | {{'add-blog'|translate}}
-    div(ng-if='isBlog')
+    div(ng-if='!isBlog')
         a.btn.btn--red.btn--s.btn--raised.bgc-red-300.mb( lx-ripple='' ui-sref='app.user.create-article({artType:"article"})' )
             i.mdi.mdi-plus.mr
             | {{'add-news-article'|translate}}

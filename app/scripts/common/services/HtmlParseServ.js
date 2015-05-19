@@ -12,8 +12,9 @@
                 var content = '';
                 for (var i = 0; i < parags.length; i++) {
                     var p = parags[i];
+                    var parsedHtml;
                     try {
-                        var html = p.outerHTML;
+                        parsedHtml = $sanitize(p.outerHTML);
                     } catch (e) {
                         console.log(e);
                         continue;
@@ -21,7 +22,7 @@
                     if (i === 1) {
                         content += '<br/>';
                     }
-                    content += "&nbsp" + html;
+                    content += parsedHtml;
                 }
                 var tags = $('.topintend', el).text().replace('Метки:', '').trim();
                 return {body: content.trim(), tags: tags}
