@@ -686,7 +686,7 @@ angular.module('material.core')
         }
       }, true);
 
-      var newEvent = document.createEvent('MouseEvents');
+      var newEvent = document.createSvetEvent('MouseEvents');
       newEvent.initMouseEvent('click', false, true, window, {}, 0, 0, 0, 0,
                        false, false, false, false, 0, null);
       newEvent.$material = true;
@@ -1067,11 +1067,11 @@ function mdCompilerService($q, $http, $injector, $compile, $controller, $templat
     *      * `key` - `{string}`: a name of a dependency to be injected into the controller.
     *      * `factory` - `{string|function}`: If `string` then it is an alias for a service.
     *        Otherwise if function, then it is injected and the return value is treated as the
-    *        dependency. If the result is a promise, it is resolved before its value is 
+    *        dependency. If the result is a promise, it is resolved before its value is
     *        injected into the controller.
     *
     * @returns {object=} promise A promise, which will be resolved with a `compileData` object.
-    * `compileData` has the following properties: 
+    * `compileData` has the following properties:
     *
     *   - `element` - `{element}`: an uncompiled element matching the provided template.
     *   - `link` - `{function(scope)}`: A link function, which, when called, will compile
@@ -1090,7 +1090,7 @@ function mdCompilerService($q, $http, $injector, $compile, $controller, $templat
     var transformTemplate = options.transformTemplate || angular.identity;
     var bindToController = options.bindToController;
 
-    // Take resolve values and invoke them.  
+    // Take resolve values and invoke them.
     // Resolves can either be a string (value: 'MyRegisteredAngularConst'),
     // or an invokable 'factory' of sorts: (value: function ValueGetter($dependency) {})
     angular.forEach(resolve, function(value, key) {
@@ -1164,7 +1164,7 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
 
   // Used to attach event listeners once when multiple ng-apps are running.
   var isInitialized = false;
-  
+
   angular
     .module('material.core.gestures', [ ])
     .provider('$mdGesture', MdGestureProvider)
@@ -1201,8 +1201,8 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
     skipClickHijack: function() {
       return forceSkipClickHijack = true;
     },
-    
-    // $get is used to build an instance of $mdGesture 
+
+    // $get is used to build an instance of $mdGesture
     $get : ['$$MdGestureHandler', '$$rAF', '$timeout', function($$MdGestureHandler, $$rAF, $timeout) {
          return new MdGesture($$MdGestureHandler, $$rAF, $timeout);
     }]
@@ -1271,7 +1271,7 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
      * Register handlers. These listen to touch/start/move events, interpret them,
      * and dispatch gesture events depending on options & conditions. These are all
      * instances of GestureHandler.
-     * @see GestureHandler 
+     * @see GestureHandler
      */
     return self
       /*
@@ -1553,7 +1553,7 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
       var eventObj;
 
       if (eventType === 'click') {
-        eventObj = document.createEvent('MouseEvents');
+        eventObj = document.createSvetEvent('MouseEvents');
         eventObj.initMouseEvent(
           'click', true, true, window, srcEvent.detail,
           eventPointer.x, eventPointer.y, eventPointer.x, eventPointer.y,
@@ -1562,7 +1562,7 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
         );
 
       } else {
-        eventObj = document.createEvent('CustomEvent');
+        eventObj = document.createSvetEvent('CustomEvent');
         eventObj.initCustomEvent(eventType, true, true, {});
       }
       eventObj.$material = true;
@@ -1592,9 +1592,9 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
        * click event will be sent ~400ms after a touchend event happens.
        * The only way to know if this click is real is to prevent any normal
        * click events, and add a flag to events sent by material so we know not to prevent those.
-       * 
+       *
        * One exception to click events that should be prevented is click events sent by the
-       * keyboard (eg form submit). 
+       * keyboard (eg form submit).
        */
       document.addEventListener('click', function clickHijacker(ev) {
         var isKeyClick = ev.clientX === 0 && ev.clientY === 0;
@@ -1603,7 +1603,7 @@ mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controlle
           ev.stopPropagation();
         }
       }, true);
-      
+
       isInitialized = true;
     }
 
@@ -2103,7 +2103,7 @@ function InterimElementProvider() {
           show: function() {
             var compilePromise;
             if (options.skipCompile) {
-              compilePromise = $q(function(resolve) { 
+              compilePromise = $q(function(resolve) {
                 resolve({
                   locals: {},
                   link: function() { return options.element; }

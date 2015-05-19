@@ -12,13 +12,22 @@
                 address: 'Viper Alley. 275 Parkway Dr Lincolnshire, IL 60069',
                 admission: 'Svet Partners'
             };
-            $scope.createEvent = function (event) {
+            $scope.createNewEvent = function () {
+                var event= $scope.event;
                 if ($scope.eventForm.$valid) {
                     event = formatEvent(event);
-                    ConnectionEventServ.saveCorporateEvent(event).then(function (data) {
-                        toastr.info('Event has been created.');
-                        $state.go('app.manager.events');
-                    });
+                    if (event.type === 'corporate') {
+                        ConnectionEventServ.saveCorporateEvent(event).then(function (data) {
+                            toastr.info('Event has been created.');
+                            $state.go('app.manager.events');
+                        });
+                    } else{
+
+                        ConnectionEventServ.savePublicEvent(event).then(function (data) {
+                            toastr.info('Event has been created.');
+                            $state.go('app.manager.events');
+                        });
+                    }
                 } else {
                     toastr.error('All required fields must be filled');
                 }

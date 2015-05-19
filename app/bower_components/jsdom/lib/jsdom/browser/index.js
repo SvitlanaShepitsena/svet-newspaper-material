@@ -48,7 +48,7 @@ exports.windowAugmentation = function(dom, options) {
 
   if (doc.addEventListener) {
     if (doc.readyState == 'complete') {
-      var ev = doc.createEvent('HTMLEvents');
+      var ev = doc.createSvetEvent('HTMLEvents');
       ev.initEvent('load', false, false);
       process.nextTick(function () {
         window.dispatchEvent(ev);
