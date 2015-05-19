@@ -29,6 +29,14 @@
                         });
                     });
                 },
+                savePublicEvent: function (event) {
+                    return $q(function (resolve, reject) {
+                        var eventsArray = $firebaseArray(new Firebase(eventsPublicUrl));
+                        eventsArray.$add(event).then(function (uid) {
+                            resolve();
+                        });
+                    });
+                },
                 addCustomerToEvent: function (event, user) {
                     return $q(function (resolve, reject) {
                         var eventArray = $firebaseArray(new Firebase(eventsCorporateUrl + event.$id+'/customers'));

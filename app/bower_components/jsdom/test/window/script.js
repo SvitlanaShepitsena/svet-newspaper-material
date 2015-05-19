@@ -94,7 +94,7 @@ exports.tests = {
         function handle(){};\
         window.addEventListener("load", handle, false);\
         window.removeEventListener("load", handle, false);\
-        var ev = document.createEvent("MouseEvents");\
+        var ev = document.createSvetEvent("MouseEvents");\
         ev.initEvent("click", true, true);\
         window.dispatchEvent(ev);\
         window.DONE=1;\

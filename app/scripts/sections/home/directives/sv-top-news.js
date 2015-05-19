@@ -10,7 +10,6 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.topNews= _.first($scope.news);
-                    console.log($scope.topNews);
                 }
             };
         });

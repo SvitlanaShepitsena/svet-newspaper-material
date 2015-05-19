@@ -3,7 +3,7 @@ div
         div.p.bgc-grey-200
             sv-profile-title(header-title="new-event")
         div.p.mt
-            form.m(name='eventForm' ng-submit='createEvent(event)' novalidate)
+            form.m(name='eventForm' novalidate ng-submit='createNewEvent()')
                 md-input-container(style='padding-bottom:16px')
                     span.display-block.fs-body-2(style='font-size:12.96px;color:rgba(0, 0, 0, 0.258824);font-weight:bold') Event Type
                     md-radio-group(layout="row" ng-model='event.type')
