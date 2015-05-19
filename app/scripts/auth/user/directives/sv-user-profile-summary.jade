@@ -3,8 +3,8 @@ div(layout-gt-sm='row' layout-sm='column')
         .card(class='mb++')
             div.bgc-grey-100(class='p+' layout='column' )
                 span.mdc-display-inline-block.mr.mb.fs-subhead.mb(ng-if='user') Account Status:
-                    span.fs-title.ml(ng-if='user && user.profile.role==="customer"') Business Account
-                    span.fs-title.ml(ng-if='user && !user.profile.role') Reader Account
+                    span.fs-title.ml(ng-if='user && user.isCustomer()') Business Account
+                    span.fs-title.ml(ng-if='user && user.isReader()') Reader Account
                 sv-request-business-account-btn(ng-if='user && !user.profile.role')
             .divider.divider--dark
             div.mt.mb
