@@ -12,10 +12,13 @@
                 var content = '';
                 for (var i = 0; i < parags.length; i++) {
                     var p = parags[i];
-                    content += p.innerText + '\r\n\r\n';
+                    if (i === 1) {
+                        content+='<br/>';
+                    }
+                    content += "&nbsp"+p.outerHTML;
                 }
                 var tags = $('.topintend', el).text().replace('Метки:', '').trim();
-                return {body: content, tags: tags}
+                return {body: content.trim(), tags: tags}
             }
 
             return {

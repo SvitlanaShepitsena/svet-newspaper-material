@@ -21,8 +21,7 @@
                         );
                     }
                     $scope.cancelArticle = function (active) {
-                        //$state.go('app.user.author-articles');
-                        //toastr.info('You have canceled creating an article');
+                        $state.go('app.user.author-articles');
                     }
                 }
             };

@@ -1,6 +1,4 @@
 div
-    div
-        button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='generateFromRandomNews()') Get Random
     form(name='articleForm' flow-init novalidate sv-form-val)
         div(layout='row', layout-sm='column')
             md-input-container(flex)
@@ -11,15 +9,10 @@ div
                 label {{'article-topic'|translate}}
                 input(ng-model='article.topic' name='topic')
         div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center' ng-if='artType==="article"')
-            div(class='mb' flex-order-sm='2')
-                lx-dropdown(position='left')
-                    button.btn.btn--s.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
-                        i.mdi.mdi-dots-vertical.mr
-                        span.fs-subhead {{article.section?article.section:("news-section"|translate)}}
-                    lx-dropdown-menu
-                        ul
-                            li(ng-repeat='s in siteSections|orderBy:"order" ')
-                                a.dropdown-link(sv-section-select-handler="") {{s.$id| capitalize:first}}
+            div(class='mb' flex-order-sm='2' ng-if='sections')
+                md-select(ng-model='article.section')
+                    md-select-label {{article.section?article.section:'Section'}}
+                    md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
             div(class='mb+' flex-order-sm='1')
                 input(type='checkbox' ng-model='article.isTopNews' class='mr')
                 label Основная Новость?
