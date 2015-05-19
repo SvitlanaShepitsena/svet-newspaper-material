@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svAddComment', function (userAuth, ArticleServ) {
+        .directive('svAddComment', function (userAuth) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-add-comment.html',
@@ -16,7 +16,6 @@
                         avatar: $scope.user.avatar || ''
                     }
                     $scope.submitComment = function () {
-                        ArticleServ.addComment($scope.key, $scope.comment);
                     };
                 }
             };

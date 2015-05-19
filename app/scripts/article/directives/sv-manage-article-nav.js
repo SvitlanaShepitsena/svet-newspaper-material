@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svManageArticleNav', function (ArticleServ, toastr, $state, userAuth) {
+        .directive('svManageArticleNav', function (toastr, $state, userAuth, ArticlesServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-manage-article-nav.html',
@@ -11,7 +11,7 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.saveArticle = function (isPublic) {
-                        ArticleServ.add($scope.article, isPublic).then(function (uid) {
+                        ArticlesServ.add($scope.article, isPublic).then(function (uid) {
                                 $state.go('app.user.author-articles');
                                 toastr.success('Статья сохранена в БД');
                             },
@@ -21,8 +21,8 @@
                         );
                     }
                     $scope.cancelArticle = function (active) {
-                        $state.go('app.user.author-articles');
-                        toastr.info('You have canceled creating an article');
+                        //$state.go('app.user.author-articles');
+                        //toastr.info('You have canceled creating an article');
                     }
                 }
             };

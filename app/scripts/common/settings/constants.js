@@ -7,6 +7,11 @@
         .constant('ads', 'https://svet.firebaseio.com/ads/')
         .constant('userAuth', {})
         .constant('lastEditorPost', {})
+        .constant('svetNews', {})
+        .constant('svetPost', {})
+
+
+
         .service('urlUsers', function (url) {
             this.url = url + '/user-management/users/';
         })

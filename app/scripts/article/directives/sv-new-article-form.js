@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svNewArticleForm', function (SectionsServ, NewsGeneratorServ, SvobodaSaveToDbServ, userAuth, FormattedDateServ, TagsServ, ArticleServ) {
+        .directive('svNewArticleForm', function (SectionsServ, NewsGeneratorServ, ArticlesServ, SvobodaSaveToDbServ, userAuth, FormattedDateServ, TagsServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
@@ -9,7 +9,7 @@
                     $scope.siteSections = SectionsServ.all();
                     if ($scope.artId) {
                         //    edit
-                        $scope.article = ArticleServ.get($scope.artId);
+                        $scope.article = ArticlesServ.get($scope.artId);
                     } else {
                         //    new article
                         $scope.article = {

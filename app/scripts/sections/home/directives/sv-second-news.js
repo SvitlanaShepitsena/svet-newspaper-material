@@ -6,9 +6,12 @@
                 replace: true,
                 templateUrl: 'scripts/sections/home/directives/sv-second-news.html',
                 scope: {
-                    secondNews: '='
+                    lowerLimit: '=',
+                    higherLimit: '=',
+                    news:'='
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.secondaryNews= _.rest(_.take($scope.news,3));
                 }
             };
         });

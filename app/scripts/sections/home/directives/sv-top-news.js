@@ -6,10 +6,11 @@
                 replace: true,
                 templateUrl: 'scripts/sections/home/directives/sv-top-news.html',
                 scope: {
-                    mainNews: '='
+                    news: '='
                 },
                 link: function ($scope, el, attrs) {
-                    //console.log($scope.mainNews);
+                    $scope.topNews= _.first($scope.news);
+                    console.log($scope.topNews);
                 }
             };
         });

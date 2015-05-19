@@ -51,7 +51,7 @@
                 .state("app.home", {
                     url: "/home",
                     resolve: {
-                        svetNews: function (ArticlesServ) {
+                        svetNewsPromise: function (ArticlesServ) {
                             return ArticlesServ.setHomeNewsLive();
                         }
                     },

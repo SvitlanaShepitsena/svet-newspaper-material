@@ -1,13 +1,8 @@
 (function () {
     'use strict';
     angular.module('sections.home')
-        .controller('HomeCtrl', function ($scope, ArticleServ, userAuth) {
+        .controller('HomeCtrl', function ($scope, userAuth, svetNews) {
             $scope.user = userAuth.profile;
-
-            ArticleServ.allForHome().then(function (svetNews) {
-                $scope.appLoaded = true;
-                $scope.news = svetNews.news;
-                $scope.newsGrid = svetNews.newsGrid;
-            });
+            $scope.news = svetNews.public;
         });
 })();

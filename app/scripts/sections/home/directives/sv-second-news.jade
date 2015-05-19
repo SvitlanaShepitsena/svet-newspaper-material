@@ -1,7 +1,9 @@
 .card.m.p
-    a.article-thumb-link(ui-sref='app.article({id:secondNews.fbkey})')
-        span.display-block.fs-subhead.tc-black-1.article-thumb-title {{secondNews.title | length:25}}
-        .fs-caption.tc-grey-600.article-thumb-author By {{secondNews.author}}
-        span.mdc-display-inline-block.fs-body-2.tc-grey-800.article-thumb-body {{secondNews.body | length:50}}
-        sv-read-more(read-more="read-more")
+    ul
+        li(ng-repeat='secondNews in secondaryNews')
+            a.article-thumb-link(ui-sref='app.article({id:secondNews.fbkey})')
+                span.display-block.fs-subhead.tc-black-1.article-thumb-title {{secondNews.title | length:25}}
+                .fs-caption.tc-grey-600.article-thumb-author By {{secondNews.author}}
+                span.mdc-display-inline-block.fs-body-2.tc-grey-800.article-thumb-body {{secondNews.body | length:50}}
+                sv-read-more(read-more="read-more")
 
