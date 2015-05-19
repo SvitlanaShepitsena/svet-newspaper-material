@@ -7,12 +7,17 @@
                     profile.isManager = function () {
                         return this.role === 'manager';
                     };
+                    profile.isEditor = function () {
+                        return this.role === 'editor';
+                    };
                     profile.isAuthor = function () {
                         return this.role === 'author';
                     };
-
-                    profile.isEditor = function () {
-                        return this.role === 'editor';
+                    profile.isCustomer = function () {
+                        return this.role === 'customer';
+                    };
+                    profile.isReader = function () {
+                        return this.role === 'reader';
                     };
                     return profile;
                 }
