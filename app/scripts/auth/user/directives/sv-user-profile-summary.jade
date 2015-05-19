@@ -5,7 +5,7 @@ div(layout-gt-sm='row' layout-sm='column')
                 span.mdc-display-inline-block.mr.mb.fs-subhead.mb(ng-if='user') Account Status:
                     span.fs-title.ml(ng-if='user && user.isCustomer()') Business Account
                     span.fs-title.ml(ng-if='user && user.isReader()') Reader Account
-                sv-request-business-account-btn(ng-if='user && !user.profile.role')
+                sv-request-business-account-btn(ng-if='user && user.isReader()')
             .divider.divider--dark
             div.mt.mb
                 sv-user-personal-info
