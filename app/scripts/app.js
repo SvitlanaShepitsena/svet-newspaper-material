@@ -47,6 +47,9 @@
                 .primaryPalette('grey')
                 .accentPalette('red');
         })
+        .config(function ($sceProvider) {
+            $sceProvider.enabled(false);
+        })
         // COMMENT ON PRODUCTION
         .factory('$exceptionHandler', function ($injector) {
             return function (exception, cause) {
