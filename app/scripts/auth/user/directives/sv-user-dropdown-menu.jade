@@ -28,12 +28,12 @@ lx-dropdown(position='right')
                     | {{'community'|translate}}
             li.dropdown-divider(ng-if='user.isAuthor()')
             li(ng-if='user.isAuthor()')
-                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({artType:"article"})' )
+                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({artType:"article",uid:user.userName})' )
                     i.mdi.mdi-plus.mr
                     | {{'add-news-article'|translate}}
-            li.dropdown-divider(ng-if='user.isAuthor()')
-            li(ng-if='user.isAuthor()')
-                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({artType:"blog"})' )
+            li.dropdown-divider(ng-if='user.isEditor()')
+            li(ng-if='user.isEditor()')
+                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({artType:"blog",uid:user.userName})' )
                     i.mdi.mdi-plus.mr
                     | {{'add-blog-post'|translate}}
             li.dropdown-divider
