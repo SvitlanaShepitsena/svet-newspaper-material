@@ -40,18 +40,13 @@
                 },
                 acceptRequest: function (userId) {
                     return $q(function (resolve, reject) {
-                        var userUrl = users + userId;
+                        var userUrl = users + userId + '/profile';
                         var userObj = $firebaseObject(new Firebase(userUrl));
                         userObj.$loaded().then(function () {
                             userObj.requestCorporateSubmited.accepted = true;
                             userObj.requestCorporateSubmited.rejected = false;
                             userObj.requestCorporateSubmited.decisionDate = moment().format('x');
-                            if (!userObj.groups) {
-                                userObj.groups = [];
-                            }
-                            if (!_(userObj.groups).contains('customer')) {
-                                userObj.groups.push("customer");
-                            }
+                            userObj.role = 'customer';
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })
@@ -63,15 +58,13 @@
                 },
                 rejectRequest: function (userId) {
                     return $q(function (resolve, reject) {
-                        var userUrl = users + userId;
+                        var userUrl = users + userId + '/profile';
                         var userObj = $firebaseObject(new Firebase(userUrl));
                         userObj.$loaded().then(function () {
                             userObj.requestCorporateSubmited.rejected = true;
                             userObj.requestCorporateSubmited.accepted = false;
                             userObj.requestCorporateSubmited.decisionDate = moment().format('x');
-                            _.remove(userObj.groups, function (group) {
-                                return group === 'customer';
-                            });
+                            userObj.role = 'reader';
                             userObj.$save().then(function (success) {
                                 resolve(success);
                             })
@@ -88,7 +81,7 @@
                         usersArr.$loaded().then(function () {
                             for (var i = 0; i < usersArr.length; i++) {
                                 var user = usersArr[i];
-                                if (user.requestCorporateSubmited) {
+                                if (user.profile.requestCorporateSubmited) {
                                     requests.push(user);
                                 }
                             }

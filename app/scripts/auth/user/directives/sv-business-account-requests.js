@@ -11,12 +11,12 @@
                         $scope.users = requests;
                     })
                     $scope.accept = function (user) {
-                        RequestServ.acceptRequest(user.key).then(function () {
+                        RequestServ.acceptRequest(user.$id).then(function () {
                             toastr.info('request has been accepted');
                         })
                     };
                     $scope.reject = function (user) {
-                        RequestServ.rejectRequest(user.key).then(function () {
+                        RequestServ.rejectRequest(user.$id).then(function () {
                             toastr.info('request has been rejected');
                         })
                     };
