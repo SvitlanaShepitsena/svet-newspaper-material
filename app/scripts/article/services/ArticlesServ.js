@@ -8,7 +8,7 @@
             function setPublicNewsLive(articles) {
                 var freshArticles = NewsTimeSelectorServ.select(articles);
                 var publicNews = _.where(freshArticles, {isPublic: true, isBlog: false});
-                svetNews.public = _.sortBy(publicNews,'articleOrder');
+                svetNews.public = _.sortBy(publicNews, 'articleOrder');
             }
 
             return {
@@ -35,7 +35,6 @@
                 allObjRef: function () {
                     return refObj;
                 },
-
                 add: function (article, isPublic) {
                     article.isPublic = article.public || isPublic;
                     article.timestamp = moment().format('x');

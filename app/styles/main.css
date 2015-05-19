@@ -77,6 +77,11 @@
   font-weight: 600;
   margin-bottom: 4px;
 }
+@media screen and (max-width: 450px) {
+  .sv-responsive-button {
+    font-size: 9px !important;
+  }
+}
 .sv-notifications-txt {
   font-weight: 500;
   font-size: 14px;

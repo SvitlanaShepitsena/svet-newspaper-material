@@ -1,17 +1,10 @@
 div
-    div(ng-if='!isBlog')
-        a.btn.btn--red.btn--s.btn--raised.bgc-grey-500.mb( lx-ripple='' hide-sm ui-sref='app.user.create-article({artType:"blog"})' )
+    div.mr(ng-if='!isBlog')
+        a.btn.btn--red.btn--s.btn--raised.bgc-grey-500.mb( lx-ripple='' ui-sref='app.user.create-article({artType:"blog"})' )
             i.mdi.mdi-plus.mr
             | {{'add-blog'|translate}}
-        a.btn.btn--fab.btn--grey-500--m.btn--icon.bgc-grey-500.mb( lx-ripple='' hide-gt-sm
-        lx-tooltip="{{'add-blog'|translate}}"
-        ui-sref='app.user.create-article' )
-            i.mdi.mdi-plus
     div(ng-if='isBlog')
-        a.btn.btn--red.btn--s.btn--raised.bgc-red-300.mb( lx-ripple='' hide-sm ui-sref='app.user.create-article({artType:"article"})' )
+        a.btn.btn--red.btn--s.btn--raised.bgc-red-300.mb( lx-ripple='' ui-sref='app.user.create-article({artType:"article"})' )
             i.mdi.mdi-plus.mr
-            | {{'add-article'|translate}}
-        a.btn.btn--fab.btn--red.btn--m.btn--icon.bgc-red-300.mb( lx-ripple='' hide-gt-sm
-        lx-tooltip="{{'add-article'|translate}}"
-        ui-sref='app.user.create-article' )
-            i.mdi.mdi-plus
+            | {{'add-news-article'|translate}}
+

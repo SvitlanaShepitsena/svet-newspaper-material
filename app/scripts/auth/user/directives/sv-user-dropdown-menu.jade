@@ -6,33 +6,38 @@ lx-dropdown(position='right')
         ul
             li
                 a.dropdown-link(ui-sref="app.user.dashboard({uid:user.userName})")
-                    i.mdi.mdi-view-dashboard &nbsp
+                    i.mdi.mdi-view-dashboard.mr
                     | {{'dashboard'|translate}}
             li(ng-if='user.isAuthor() || user.isReader')
                 a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  )
-                    i.mdi.mdi-view-list &nbsp
+                    i.mdi.mdi-view-list.mr
                     span(ng-if='user.isReader()') {{'my-blog'|translate}}
                     span(ng-if='user.isAuthor()') {{'my-articles'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
-                    i.fa.fa-bullhorn &nbsp
+                    i.fa.fa-bullhorn.mr
                     span(ng-if='user.isCustomer()') {{'my-ad'|translate}}
                     span(ng-if='user.isAuthor()  || user.isReader()') {{'my-classified'|translate}}
-            li
+            li(ng-if='!user.isEditor')
                 a.dropdown-link(ui-sref="app.user.user-events({uid:user.userName})")
-                    i.mdi.mdi-tag &nbsp
+                    i.mdi.mdi-tag.mr
                     | {{'events'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.social({uid:user.userName})")
-                    i.mdi.mdi-emoticon &nbsp
+                    i.mdi.mdi-emoticon.mr
                     | {{'community'|translate}}
             li.dropdown-divider(ng-if='user.isAuthor()')
             li(ng-if='user.isAuthor()')
-                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({uid:user.userName})' )
-                    i.mdi.mdi-pencil &nbsp
-                    | {{'add-article'|translate}}
+                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({artType:"article"})' )
+                    i.mdi.mdi-plus.mr
+                    | {{'add-news-article'|translate}}
+            li.dropdown-divider(ng-if='user.isAuthor()')
+            li(ng-if='user.isAuthor()')
+                a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({artType:"blog"})' )
+                    i.mdi.mdi-plus.mr
+                    | {{'add-blog-post'|translate}}
             li.dropdown-divider
             li
                 a.dropdown-link(ng-click='logout()')
-                    i.mdi.mdi-logout &nbsp
+                    i.mdi.mdi-logout.mr
                     | {{'logout'|translate}}

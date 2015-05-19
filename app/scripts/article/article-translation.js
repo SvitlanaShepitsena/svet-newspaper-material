@@ -6,9 +6,15 @@
             $translateProvider.translations('en', {
                 // 'eng':'eng'
                 'new-article': 'New Article',
+                'new-blog-post': 'New Blog Post',
+                'news-articles': 'News Articles',
                 'add-article': 'Add Article',
+                'add-news-article': 'Add News Article',
+                'add-blog-post': 'Add Blog Post',
+                'blog': 'Blog',
                 'add-blog': 'Add Blog Post',
                 'save-to-drafts': 'Save to Drafts',
+                'save-to-public': 'Save to Public',
                 'save-article': 'Save Article',
                 'post-article': 'Post Article',
                 'back-to-my-articles': 'Back to My Articles',
@@ -29,9 +35,15 @@
             $translateProvider.translations('ru', {
                 // 'ru':'ru'
                 'new-article': 'Новая Статья',
+                'new-blog-post': 'Новый блог пост',
+                'news-articles': 'Новости',
+                'blog': 'Блог',
                 'add-article': ' Добавить статью',
-                'add-blog': ' Добавить блог-пост ',
+                'add-news-article': ' Добавить новость',
+                'add-blog-post': 'Добавить блог пост ',
+                'add-blog': ' Добавить блог пост ',
                 'save-to-drafts': 'Сохранить в черновики',
+                'save-to-public': 'Сохранить и опубликовать',
                 'save-article': 'Сохранить статью',
                 'post-article': 'Опубликовать статью',
                 'back-to-my-articles': 'Вернуться к моим статьям',

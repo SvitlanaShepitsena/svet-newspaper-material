@@ -1,7 +1,8 @@
 div(flex-container='column' flow-init)
     div(layout='row')
         sv-link-back(l-title="back-to-my-articles" url="app.user.author-articles")
-    sv-profile-title(header-title='new-article')
+    sv-profile-title(header-title='new-article' ng-if='artType==="article"' )
+    sv-profile-title(header-title='new-blog-post' ng-if='artType==="blog"')
     .card
         div.bgc-grey-100(class='p')
             sv-manage-article-nav(article='article' art-type='artType')
