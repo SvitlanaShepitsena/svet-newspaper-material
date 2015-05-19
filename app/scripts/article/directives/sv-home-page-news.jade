@@ -1,4 +1,5 @@
 div.card.m.p
+    span.fs-caption.display-block(style='font-weight:300;text-decoration:underline') {{oneNews.topic|uppercase}}
     a.article-thumb-link(ui-sref='app.article({id:oneNews.fbkey})')
         span.display-block.fs-subhead.tc-black-1.article-thumb-title {{oneNews.title | length:25}}
         .fs-caption.tc-grey-600.article-thumb-author By {{oneNews.author}}

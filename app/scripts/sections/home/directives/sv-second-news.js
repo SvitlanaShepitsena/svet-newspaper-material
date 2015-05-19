@@ -8,10 +8,10 @@
                 scope: {
                     lowerLimit: '=',
                     higherLimit: '=',
-                    news:'='
+                    news: '='
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.secondaryNews= _.rest(_.take($scope.news,3));
+                    $scope.secondaryNews = _.rest(_.take($scope.news, 3));
                 }
             };
         });

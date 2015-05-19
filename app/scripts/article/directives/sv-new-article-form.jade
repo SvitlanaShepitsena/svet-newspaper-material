@@ -4,18 +4,15 @@ div
             md-input-container(flex)
                 label {{'article-author'|translate}}
                 input(ng-model='article.author' name='author' required='')
-        div(layout='row', layout-sm='column' ng-if='artType==="blog"')
-            md-input-container(flex)
+        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center')
+            div( ng-if='artType==="article"' flex)
+                div(ng-if='sections')
+                    md-select(ng-model='article.section')
+                        md-select-label {{article.section?article.section:'Section'|capitalize}}
+                        md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
+            md-input-container(flex='')
                 label {{'article-topic'|translate}}
                 input(ng-model='article.topic' name='topic')
-        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center' ng-if='artType==="article"')
-            div(ng-if='sections' flex)
-                md-select(ng-model='article.section')
-                    md-select-label {{article.section?article.section:'Section'}}
-                    md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
-            md-input-container(flex='')
-                label {{'article-subsecton'|translate}}
-                input(ng-model='article.title' type="text" md-maxlength='150' required='' name='title')
         div(layout='column')
             md-input-container(flex='')
                 label {{'article-title'|translate}}
