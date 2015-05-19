@@ -10,7 +10,8 @@
                 },
                 templateUrl: 'scripts/sections/home/directives/sv-news-grid.html',
                 link: function ($scope, el, attrs) {
-                    $scope.news= _.rest($scope.news, $scope.exclude);
+                    $scope.gridNews = _.rest($scope.news, 3);
+                    console.log($scope.gridNews);
 
                 }
             };

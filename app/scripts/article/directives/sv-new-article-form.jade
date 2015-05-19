@@ -13,9 +13,6 @@ div
                 md-select(ng-model='article.section')
                     md-select-label {{article.section?article.section:'Section'}}
                     md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
-            div(class='mb+' flex-order-sm='1')
-                input(type='checkbox' ng-model='article.isTopNews' class='mr')
-                label Основная Новость?
         div(layout='column')
             md-input-container(flex='')
                 label {{'article-title'|translate}}

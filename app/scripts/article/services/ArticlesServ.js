@@ -11,6 +11,26 @@
                 svetNews.public = _.sortBy(publicNews, 'articleOrder');
             }
 
+            function getNextNewsOrder() {
+                return $q(function (resolve, reject) {
+                    articlesArr.$loaded(function () {
+                        if (articlesArr.length === 0) {
+                            resolve(1)
+                        }
+                        var freshArticles = NewsTimeSelectorServ.select(articlesArr);
+                        var publicNews = _.where(freshArticles, {isPublic: true, isBlog: false});
+                        if (publicNews.length === 0) {
+                            resolve(1);
+                        } else {
+                            var order = _.pluck(publicNews, 'newsOrder');
+                            var max = _.max(order);
+                            resolve(max + 1);
+                        }
+                        resolve(publicNews);
+                    })
+                });
+            }
+
             return {
                 setHomeNewsLive: function () {
                     return $q(function (resolve, reject) {
@@ -30,10 +50,39 @@
                     return $firebaseObject(ref.child(id))
                 },
                 getStatus: function (key, property) {
-                    return $firebaseObject(ref.child(key).child(property))
+                    return $q(function (resolve, reject) {
+                        var status = $firebaseObject(ref.child(key).child(property));
+                        status.$loaded().then(function () {
+                            resolve(status.$value);
+                        })
+                    });
                 },
                 allObjRef: function () {
                     return refObj;
+                },
+                computeNewsOrder: function (key) {
+                    return $q(function (resolve, reject) {
+                        var articleObj = $firebaseObject(ref.child(key));
+                        articleObj.$loaded(function () {
+                            if (articleObj.isPublic) {
+                                articleObj.isPublic = false;
+                                articleObj.$save().then(function () {
+                                    var newOrderObj = $firebaseObject(articleObj.$ref().child('newsOrder'));
+                                    newOrderObj.$remove().then(function () {
+                                        resolve()
+                                    });
+                                })
+                            } else {
+                                getNextNewsOrder().then(function (nextNewsOrder) {
+                                    articleObj.newsOrder = nextNewsOrder;
+                                    articleObj.isPublic = true;
+                                    articleObj.$save().then(function () {
+                                        resolve();
+                                    });
+                                });
+                            }
+                        })
+                    });
                 },
                 add: function (article, isPublic) {
                     article.isPublic = article.isPublic || isPublic;
@@ -53,6 +102,8 @@
                                 })
                             })
                         } else {
+                            //getNextNewsOrder().then(function (nextNewsOrder) {
+                            //    article.newsOrder = nextNewsOrder;
                             articlesArr.$add(article).then(function (ref) {
                                     var id = ref.key()
                                     var articleDb = ref;
@@ -68,6 +119,7 @@
                                     reject(error);
                                 }
                             );
+                            //})
                         }
                     });
                 }

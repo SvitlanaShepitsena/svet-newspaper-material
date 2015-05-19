@@ -14,11 +14,10 @@
                         //    new article
                         $scope.article = {
                             public: false,
-                            isTopNews: false,
                             isBlog: $scope.artType === 'blog',
                             img: '',
                             author: userAuth.profile.isEditor() ? 'Alex Etman' : userAuth.profile.userName,
-                            section: '',
+                            section: 'politics',
                             title: '',
                             body: '',
                             tags: ''

@@ -8,7 +8,7 @@ div
             span.fs-caption(hide-sm) {{'private'|translate}}
         div
             .switch
-                input.switch__input(type='checkbox' id='{{key}}' ng-model='status.$value')
+                input.switch__input(type='checkbox' id='{{key}}' ng-model='status' ng-change='changeArticleStatus(key)')
                 label.switch__label.fs-body-1.mr.tc-grey-600(for='{{key}}' style='margin-bottom:0px')
                     i.fa.fa-globe.mr
                     span.fs-caption(hide-sm) {{'public'|translate}}

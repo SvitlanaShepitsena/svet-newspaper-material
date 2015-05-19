@@ -12,9 +12,17 @@
                     lbl: '@'
                 },
                 link: function ($scope, el, attrs) {
-                    var status = ArticlesServ.getStatus($scope.key, $scope.property);
-                    status.$bindTo($scope, 'status').then(function () {
+                    ArticlesServ.getStatus($scope.key, $scope.property).then(function (status) {
+                        $scope.status = status;
+                        console.log(status);
                     });
+                    //status.$bindTo($scope, 'status').then(function () {
+                    //});
+                    $scope.changeArticleStatus = function (key) {
+                        ArticlesServ.computeNewsOrder(key).then(function () {
+                            $scope.status = !$scope.status;
+                        })
+                    };
                 }
             };
         });
