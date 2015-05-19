@@ -81,8 +81,7 @@
                         usersArr.$loaded().then(function () {
                             for (var i = 0; i < usersArr.length; i++) {
                                 var user = usersArr[i];
-                                if (user.profile.requestCorporateSubmited) {
-                                    requests.push(user);
+                                if (user.profile.requestCorporateSubmited) { requests.push(user);
                                 }
                             }
                             resolve(requests);
