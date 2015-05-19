@@ -10,13 +10,13 @@
                     //$scope.sectionName = $stateParams.sectionName;
                     $scope.selectedIndex = 0;
                     $scope.user = userAuth.profile;
-                    //var articles = ArticlesServ.all();
-                    //articles.$loaded().then(function () {
-                    //    $scope.articles = articles;
-                    //    articles.$watch(function () {
-                    //        $scope.articles = articles;
-                    //    })
-                    //})
+                    var articles = ArticlesServ.all();
+                    articles.$loaded().then(function () {
+                        $scope.articles = articles;
+                        articles.$watch(function () {
+                            $scope.articles = articles;
+                        })
+                    })
                 }
             };
         });

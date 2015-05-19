@@ -24,7 +24,7 @@
                     });
                 },
                 all: function () {
-                    return refArr;
+                    return articlesArr;
                 },
                 get: function (id) {
                     return $firebaseObject(ref.child(id))
@@ -36,7 +36,7 @@
                     return refObj;
                 },
                 add: function (article, isPublic) {
-                    article.isPublic = article.public || isPublic;
+                    article.isPublic = article.isPublic || isPublic;
                     article.timestamp = moment().format('x');
                     article.authorKey = userAuth.key
                     return $q(function (resolve, reject) {

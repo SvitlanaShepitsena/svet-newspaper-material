@@ -23,10 +23,10 @@
                             /*bound when profile is loaded*/
                             userAuth.profile = ProfileExtentionServ.extend(currentUserProfileRef);
                             userAuth.key = userKey;
-                            unwatch = currentUserProfileRef.$watch(function () {
+                            unwatch = currentUserProfileRef.$watch(function (data) {
                                 //console.log('changes');
                                 /*bound on watch and update profile on any changes*/
-                                userAuth.profile = (currentUserProfileRef);
+                                userAuth.profile = ProfileExtentionServ.extend(currentUserProfileRef);
                                 //console.log(userAuth.profile);
                             });
                             resolve(true);
