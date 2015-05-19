@@ -60,7 +60,7 @@
                 //    Change Fields
                 'fname': 'Имя',
                 'lname': 'Фамилия',
-                'uname': 'Ник'
+                'uname': 'Имя Пользователя'
             });
             $translateProvider.preferredLanguage('en');
         }]);

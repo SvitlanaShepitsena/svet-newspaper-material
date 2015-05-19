@@ -11,7 +11,7 @@
                         return this.role === 'editor';
                     };
                     profile.isAuthor = function () {
-                        return this.role === 'author' || this.role==='editor';
+                        return this.role === 'author' || this.role === 'editor';
                     };
                     profile.isOnlyAuthor = function () {
                         return this.role === 'author';

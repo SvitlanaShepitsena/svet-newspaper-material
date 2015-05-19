@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth.user')
-        .directive('svUserDropdownMenu', function (avatar,alex) {
+        .directive('svUserDropdownMenu', function (avatar, alex) {
             return {
                 templateUrl: 'scripts/auth/user/directives/sv-user-dropdown-menu.html',
                 link: function ($scope, el, attrs) {

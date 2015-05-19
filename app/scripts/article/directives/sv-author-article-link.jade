@@ -5,22 +5,22 @@ div.card(class='mb+')
                 span.fs-caption.mr.tc-grey-50.bgc-grey-500(style='line-height:14px;padding:2px 4px') {{article.section|translate|capitalize}}
                 span.fs-caption.tc-grey-500 {{article.timestamp|date}}
             sv-article-status(key='article.$id' property='isTopNews' ch-box='true' lbl='Top News' ng-show='!article.isBlog')
-            sv-article-status(key='article.$id' property='public')
-       div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="center center")
-            div.p
-                a.tc-grey-700(ui-sref='app.article({id:article.$id})' style='text-decoration:none;font-weight:bold')
-                    span.display-block(ng-bind-html='article.title|length:25')
-                    span.display-block.fs-body-1.tc-black-2(ng-bind-html='article.body|length:50')
-            div.mb.pl.pr.pt
-                sv-lumx-button.mr.ml(btn-size="s" btn-color="white" text-color="grey-600" btn-type="raised" btn-title="share" icon-type="mdi" icon-name="mdi-share-variant" method-click='editCl({cl:cl})')
-                sv-edit-article-btn(article='article')
-        .bgc-grey-100.p(layout='row' layout-align="space-between center")
-            div
-                i.fa.fa-eye.fa-fw.tc-grey-500(style='margin-right:4px')
-                span.fs-caption.tc-grey-500(hide-sm) {{'views'|translate}}
-                span.sv-label-counter 12
-            div(layout='row')
-                sv-lumx-users-dropdown.ml(btn-title="comments" action-counter="5" icon-type='fa' icon-name="fa-comment")
-                sv-lumx-users-dropdown.ml(btn-title="shares" action-counter="7"  icon-type='mdi' icon-name="mdi-share-variant")
-                sv-lumx-users-dropdown.ml(btn-title="likes" action-counter="9"  icon-type='fa' icon-name="fa-thumbs-up")
+            sv-article-status(key='article.$id' property='isPublic')
+    div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="center center")
+        div.p
+            a.tc-grey-700(ui-sref='app.article({id:article.$id})' style='text-decoration:none;font-weight:bold')
+                span.display-block(ng-bind-html='article.title|length:25')
+                span.display-block.fs-body-1.tc-black-2(ng-bind-html='article.body|length:50')
+        div.mb.pl.pr.pt
+            sv-lumx-button.mr.ml(btn-size="s" btn-color="white" text-color="grey-600" btn-type="raised" btn-title="share" icon-type="mdi" icon-name="mdi-share-variant" method-click='editCl({cl:cl})')
+            sv-edit-article-btn(article='article')
+    .bgc-grey-100.p(layout='row' layout-align="space-between center")
+        div
+            i.fa.fa-eye.fa-fw.tc-grey-500(style='margin-right:4px')
+            span.fs-caption.tc-grey-500(hide-sm) {{'views'|translate}}
+            span.sv-label-counter 12
+        div(layout='row')
+            sv-lumx-users-dropdown.ml(btn-title="comments" action-counter="5" icon-type='fa' icon-name="fa-comment")
+            sv-lumx-users-dropdown.ml(btn-title="shares" action-counter="7"  icon-type='mdi' icon-name="mdi-share-variant")
+            sv-lumx-users-dropdown.ml(btn-title="likes" action-counter="9"  icon-type='fa' icon-name="fa-thumbs-up")
 
