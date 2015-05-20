@@ -9,16 +9,23 @@
                     place: '@'
                 },
                 link: function ($scope, el, attrs) {
-                    var allAdds = AdServ.allArr();
-                    allAdds.$loaded().then(function () {
-                        $scope.placeAds = _.where(allAdds, function (ad) {
-                            return ad.place === $scope.place;
-                        });
-                        var ind = _.random($scope.placeAds.length);
-                        $scope.ad = $scope.placeAds[ind];
-                        //AdServ.increaseShow($scope.ad.$id).then(function () {
-                        //});
+                    $scope.adIndex = 0;
+                    AdServ.allArr().then(function (ads) {
+                        $scope.ads = ads;
                     });
+                    var index;
+                    $scope.showPrevAd = function () {
+                        index = $scope.adIndex;
+                        index--;
+                        index = index < 0 ? $scope.ads.length - 1 : index;
+                        $scope.adIndex = index;
+                    };
+                    $scope.showNextAd = function () {
+                        index = $scope.adIndex;
+                        index++;
+                        index = index === $scope.ads.length ? 0 : index;
+                        $scope.adIndex = index;
+                    };
                 }
             };
         });

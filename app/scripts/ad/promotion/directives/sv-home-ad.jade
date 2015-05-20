@@ -1,2 +1,4 @@
 div(style='max-width:685px')
-  img(ng-src="{{ad.banner}}")
+  img(ng-src="{{ads[adIndex].banner}}").svet-corporate
+  button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click="showPrevAd()") Prev
+  button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='showNextAd()') Next

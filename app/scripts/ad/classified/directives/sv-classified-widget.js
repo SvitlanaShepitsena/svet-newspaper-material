@@ -5,7 +5,9 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-classified-widget.html',
-                scope: {},
+                scope: {
+                    isHome:'='
+                },
                 link: function ($scope, el, attrs) {
                     $scope.cls = ClassifiedServ.getAllCls();
                 }

@@ -1,9 +1,7 @@
 (function () {
     'use strict';
-
     angular.module('ad.promotion')
         .factory('AdServ', function ($q, url, ads, $firebaseObject, $firebaseArray, userAuth) {
-
             return {
                 saveAd: function (ad) {
                     return $q(function (resolve, reject) {
@@ -14,24 +12,20 @@
                             unique: 0,
                             total: 0
                         };
-
                         var adsUrl = ads;
                         var adsArray = $firebaseArray(new Firebase(adsUrl));
                         adsArray.$add(ad).then(function (ref) {
                             resolve(ref.key());
                         });
-
                     });
                 },
                 removeAd: function (ad) {
                     return $q(function (resolve, reject) {
-
                         var adUrl = ads + ad.$id;
                         var adObject = $firebaseObject(new Firebase(adUrl));
                         adObject.$remove().then(function (ref) {
                             resolve(ref.key());
                         });
-
                     });
                 },
                 updateAd: function (ad) {
@@ -39,12 +33,11 @@
                         var adUrl = ads + ad.$id;
                         var adObject = $firebaseObject(new Firebase(adUrl));
                         adObject.$loaded().then(function () {
-                            adObject = _.extend(adObject,ad);
+                            adObject = _.extend(adObject, ad);
                             adObject.$save().then(function (ref) {
                                 resolve(ref.key());
                             });
                         })
-
                     });
                 },
                 increaseShow: function (adId) {
@@ -52,28 +45,29 @@
                         var adUrl = ads + adId;
                         var adObject = $firebaseObject(new Firebase(adUrl));
                         adObject.$loaded().then(function () {
-                            adObject.shows.total+=1;
-                            adObject.shows.unique+=1;
-
+                            adObject.shows.total += 1;
+                            adObject.shows.unique += 1;
                             adObject.$save().then(function (ref) {
                                 resolve(ref.key());
                             });
                         })
-
                     });
                 },
-
                 allArr: function () {
                     var adsUrl = ads;
-                    var adsArray = $firebaseArray(new Firebase(adsUrl));
-                    return adsArray;
+                    return $q(function (resolve, reject) {
+                        var adsArray = $firebaseArray(new Firebase(adsUrl));
+                        adsArray.$loaded().then(function () {
+                            var randomOrder= _.shuffle(adsArray);
+                            resolve(randomOrder);
+                        })
+                    });
                 },
                 getObj: function (id) {
-                    var adUrl = ads+id;
+                    var adUrl = ads + id;
                     var adObject = $firebaseObject(new Firebase(adUrl));
                     return adObject;
                 }
-
             };
         });
 })();
