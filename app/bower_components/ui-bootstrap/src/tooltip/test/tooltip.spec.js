@@ -446,8 +446,113 @@ describe('tooltipWithDifferentSymbols', function() {
 
 });
 
+describe( 'tooltip positioning', function() {
+  var elm, elmBody, elmScope, tooltipScope, scope;
+  var $position;
+
+  // load the tooltip code
+  beforeEach(module('ui.bootstrap.tooltip', function ( $tooltipProvider ) {
+    $tooltipProvider.options({ animation: false });
+  }));
+
+  // load the template
+  beforeEach(module('template/tooltip/tooltip-popup.html'));
+
+  beforeEach(inject(function($rootScope, $compile, _$position_) {
+    $position = _$position_;
+    spyOn($position, 'positionElements').and.callThrough();
+
+    scope = $rootScope;
+    scope.text = 'Some Text';
+
+    elmBody = $compile( angular.element(
+      '<div><span tooltip="{{ text }}">Selector Text</span></div>'
+    ))( scope);
+    scope.$digest();
+    elm = elmBody.find('span');
+    elmScope = elm.scope();
+    tooltipScope = elmScope.$$childTail;
+  }));
+
+  it( 'should re-position on every digest', inject( function ($timeout) {
+    elm.trigger( 'mouseenter' );
+
+    scope.$digest();
+    $timeout.flush();
+    var startingPositionCalls = $position.positionElements.calls.count();
+
+    scope.$digest();
+    $timeout.flush();
+    expect($position.positionElements.calls.count()).toEqual(startingPositionCalls + 1);
+    // Check that positionElements was called with elm
+    expect($position.positionElements.calls.argsFor(startingPositionCalls)[0][0])
+      .toBe(elm[0]);
+
+    scope.$digest();
+    $timeout.flush();
+    expect($position.positionElements.calls.count()).toEqual(startingPositionCalls + 2);
+    expect($position.positionElements.calls.argsFor(startingPositionCalls + 1)[0][0])
+      .toBe(elm[0]);
+    scope.$digest();
+  }));
+
+});
+
+describe( 'tooltipHtml', function() {
+  var elm, elmBody, elmScope, tooltipScope, scope;
+
+  // load the tooltip code
+  beforeEach(module('ui.bootstrap.tooltip', function ( $tooltipProvider ) {
+    $tooltipProvider.options({ animation: false });
+  }));
+
+  // load the template
+  beforeEach(module('template/tooltip/tooltip-html-popup.html'));
+
+  beforeEach(inject(function($rootScope, $compile, $sce) {
+    scope = $rootScope;
+    scope.html = 'I say: <strong class="hello">Hello!</strong>';
+    scope.safeHtml = $sce.trustAsHtml(scope.html);
+
+    elmBody = $compile( angular.element(
+      '<div><span tooltip-html="safeHtml">Selector Text</span></div>'
+    ))( scope );
+    scope.$digest();
+    elm = elmBody.find('span');
+    elmScope = elm.scope();
+    tooltipScope = elmScope.$$childTail;
+  }));
+
+  it( 'should render html properly', inject( function () {
+    elm.trigger( 'mouseenter' );
+    expect( elmBody.find('.tooltip-inner').html() ).toBe( scope.html );
+  }));
+
+  it( 'should not open if html is empty', function () {
+    scope.safeHtml = null;
+    scope.$digest();
+    elm.trigger( 'mouseenter' );
+    expect( tooltipScope.isOpen ).toBe( false );
+  });
+
+  it( 'should show on mouseenter and hide on mouseleave', inject( function ($sce) {
+    expect( tooltipScope.isOpen ).toBe( false );
+
+    elm.trigger( 'mouseenter' );
+    expect( tooltipScope.isOpen ).toBe( true );
+    expect( elmBody.children().length ).toBe( 2 );
+
+    expect( $sce.getTrustedHtml(tooltipScope.contentExp()) ).toEqual( scope.html );
+
+    elm.trigger( 'mouseleave' );
+    expect( tooltipScope.isOpen ).toBe( false );
+    expect( elmBody.children().length ).toBe( 1 );
+  }));
+});
+
 describe( 'tooltipHtmlUnsafe', function() {
   var elm, elmBody, elmScope, tooltipScope, scope;
+  var logWarnSpy;
 
   // load the tooltip code
   beforeEach(module('ui.bootstrap.tooltip', function ( $tooltipProvider ) {
@@ -457,9 +562,11 @@ describe( 'tooltipHtmlUnsafe', function() {
   // load the template
   beforeEach(module('template/tooltip/tooltip-html-unsafe-popup.html'));
 
-  beforeEach(inject(function($rootScope, $compile) {
+  beforeEach(inject(function($rootScope, $compile, $log) {
     scope = $rootScope;
     scope.html = 'I say: <strong class="hello">Hello!</strong>';
+
+    logWarnSpy = spyOn($log, 'warn');
 
     elmBody = $compile( angular.element(
       '<div><span tooltip-html-unsafe="{{html}}">Selector Text</span></div>'
@@ -469,6 +576,10 @@ describe( 'tooltipHtmlUnsafe', function() {
     elmScope = elm.scope();
     tooltipScope = elmScope.$$childTail;
   }));
+
+  it( 'should warn that this is deprecated', function () {
+    expect(logWarnSpy).toHaveBeenCalledWith(jasmine.stringMatching('deprecated'));
+  });
 
   it( 'should render html properly', inject( function () {
     elm.trigger( 'mouseenter' );
