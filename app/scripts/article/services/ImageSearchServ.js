@@ -7,6 +7,7 @@
                 fetch: function (query) {
                     return $q(function (resolve, reject) {
                         var queryWithRequest=url+'&q='+encodeURI(query);
+
                         $http.jsonp(queryWithRequest)
                             .success(function (data) {
                                 resolve(data.responseData.results);

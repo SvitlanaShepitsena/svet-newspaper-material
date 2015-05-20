@@ -1,1 +1,1 @@
-<div><form name="searchForm"><input type="text" name="q" ng-model="q.data"/><md-button ng-click="runGoogleSearch(q.data)">Search</md-button></form><div><h3>Results</h3><ul><li ng-repeat="i in images"><img ng-src="{{i.url}}"/></li></ul></div></div>
+<div><form name="searchForm"><input type="text" name="q" ng-model="q.data"/><md-button ng-click="runGoogleSearch(q.data)">Search</md-button></form><div><h3>Results</h3><ul><li ng-repeat="i in images"><img ng-src="{{i.url}}"/><span>{{i.url}}</span></li></ul></div></div>
