@@ -1,4 +1,4 @@
 div
     form(name="searchForm")
         input( type='text' name='q' ng-model='q.data')
-        md-button Search
+        md-button(ng-click='runGoogleSearch()') Search
