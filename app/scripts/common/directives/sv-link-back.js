@@ -13,10 +13,10 @@
                 link: function ($scope, el, attrs) {
                     $scope.navigate = function () {
                         if ($scope.params) {
-                        var authorKey= $scope.params.uid;
-                        if (authorKey === userAuth.key) {
-                            $scope.params.uid=userAuth.profile.userName;
-                        }
+                            var authorKey = $scope.params.uid;
+                            if (authorKey === userAuth.key) {
+                                $scope.params.uid = userAuth.profile.userName;
+                            }
                         }
                         $state.go($scope.url, $scope.params)
                     };
