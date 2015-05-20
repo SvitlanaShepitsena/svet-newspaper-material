@@ -1,8 +1,13 @@
-div(layout='row' layout-align="center center")
-    div
-        i.fa.fa-eye.tc-grey-500(style='margin-right:4px')
-        span.mdc-display-inline-block.fs-caption.tc-grey-500(hide-sm) {{'views'|translate}}
-        span.mdc-display-inline-block.sv-label-counter 12
-    sv-lumx-users-dropdown.ml(btn-title="comments" action-counter="5" user-name="user.name"  icon-type='fa' icon-name="fa-comment")
-    sv-lumx-users-dropdown.ml(btn-title="shares" action-counter="7" user-name="user.name" icon-type='mdi' icon-name="mdi-share-variant")
-    sv-lumx-users-dropdown.ml(btn-title="likes" action-counter="9" user-name="user.name" icon-type='fa' icon-name="fa-thumb-up")
+div(layout='row')
+    .tc-grey-500.mr
+        i.fa.fa-eye.fa-fw
+        span.fs-caption.mdc-label-default(hide-sm) 12 Views
+    .tc-grey-500.mr
+        i.fa.fa-comment.fa-fw
+        span.fs-caption.mdc-label-default(hide-sm) 12 Comments
+    .tc-grey-500.mr
+        i.fa.fa-thumbs-up.fa-fw
+        span.fs-caption.mdc-label-default(hide-sm) 2 Likes
+    .tc-grey-500.mr
+        i.fa.fa-share.fa-fw
+        span.fs-caption.mdc-label-default(hide-sm) 2 Shares

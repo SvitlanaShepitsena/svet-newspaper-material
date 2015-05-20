@@ -44,7 +44,6 @@
                             email: email,
                             password: password
                         }).then(function (authData) {
-                            console.log("Logged in as:", authData.uid);
                             ProfileServ.getProfile(authData).then(function (profile) {
                                 resolve(profile);
                             }).catch(function (error) {

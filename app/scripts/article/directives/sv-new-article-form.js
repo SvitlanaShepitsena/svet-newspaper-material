@@ -18,7 +18,9 @@
                             img: '',
                             author: userAuth.profile.isEditor() ? 'Alex Etman' : userAuth.profile.userName,
                             section: 'politics',
+                            topic: 'Chicago Community',
                             title: '',
+                            summary: 'One short sentence, that will appear on an article thumbnail instead of content.',
                             body: '',
                             tags: ''
                         }

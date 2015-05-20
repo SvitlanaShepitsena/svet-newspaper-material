@@ -18,6 +18,9 @@ div
                 label {{'article-title'|translate}}
                 input(ng-model='article.title' type="text" md-maxlength='150' required='' name='title')
             md-input-container(flex='')
+                label {{'article-summary'|translate}}
+                input(ng-model='article.summary' type="text" md-maxlength='150' required='' name='summary')
+            md-input-container(flex='')
                 label() {{'article-content'|translate}}
                 sv-svet-pad(body='article.body')
         div(layout='row')

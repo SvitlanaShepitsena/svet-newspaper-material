@@ -4,14 +4,9 @@ div(layout-sm='column', layout-md='column', layout-gt-md='row', layout-lg='colum
     div(layout-gt-sm='row' layout-align="top" style='width:100hv;max-width:100hv')
         div(flex-gt-sm='66')
             sv-top-news(news='news')
-            sv-second-news(lower-limit='2' higher-limit='3' news='news')
         div(flex-gt-sm='33')
             sv-from-the-editor
             sv-radio-osa(class='mb+' title="radio" subhead="radio-subhead" body='radio-body')
-    div(layout='row' layout-align='center')
-        sv-home-ad(place='home.middle')
-    div(flex-container='row')
-        div(flex-item='8')
-            sv-news-grid(news='news' exclude='3')
-        div(flex-item='4')
-k
+    sv-second-news(lower-limit='2' higher-limit='3' news='news')
+    sv-home-ad(place='home.middle')
+    sv-news-grid(news='news' exclude='3')

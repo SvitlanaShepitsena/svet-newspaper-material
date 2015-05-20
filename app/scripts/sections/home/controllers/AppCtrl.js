@@ -9,6 +9,12 @@
             $rootScope.$on('error', function () {
                 toastr.error('error');
             });
+            $scope.$on('image-search-show', function () {
+                $scope.imageSearch = true;
+            });
+            $scope.$on('image-search-hide', function () {
+                $scope.imageSearch = false;
+            });
             /*Managing Angular Material Sidenavs Structure*/
             $scope.isIe = AgentServ.isIe();
             $scope.toggleLeft = function () {
