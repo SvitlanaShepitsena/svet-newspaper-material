@@ -31,6 +31,7 @@
     "angular-bootstrap-calendar": "~0.10.1",
     "angularfire": "~1.1.1",
     "bower": "*",
-    "ui-bootstrap": "0.13.0"
+    "ui-bootstrap": "0.13.0",
+    "angular-dragdrop": "~1.0.11"
   }
 }

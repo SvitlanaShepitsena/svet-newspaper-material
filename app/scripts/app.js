@@ -4,6 +4,7 @@
         // modules
         'pascalprecht.translate',
         'ngMaterial',
+        'ngDragDrop',
         'textAngular',
         'auth',
         'auth.user',

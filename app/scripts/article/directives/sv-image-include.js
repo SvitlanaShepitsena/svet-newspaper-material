@@ -1,0 +1,19 @@
+(function () {
+    'use strict';
+    angular.module('article')
+        .directive('svImageInclude', function ($rootScope) {
+            return {
+                replace: true,
+                templateUrl: 'scripts/article/directives/sv-image-include.html',
+                scope: {
+                    url: '='
+                },
+                link: function ($scope, el, attrs) {
+                    $scope.includeImgToArticle = function () {
+                       $rootScope.$broadcast('include-image', {url: $scope.url});
+
+                    };
+                }
+            };
+        });
+})();
