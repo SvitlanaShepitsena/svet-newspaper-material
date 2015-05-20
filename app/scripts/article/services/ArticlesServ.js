@@ -49,6 +49,13 @@
                 get: function (id) {
                     return $firebaseObject(ref.child(id))
                 },
+                remove: function (id) {
+                    return $q(function (resolve, reject) {
+                        $firebaseObject(ref.child(id)).$remove().then(function () {
+                            resolve();
+                        });
+                    });
+                },
                 getStatus: function (key, property) {
                     return $q(function (resolve, reject) {
                         var status = $firebaseObject(ref.child(key).child(property));
