@@ -384,13 +384,8 @@ describe('tabs', function() {
 
   describe('tabset controller', function() {
     function mockTab(isActive) {
-      var _isActive;
-      if (isActive || isActive === false) {
-        _isActive = isActive;
-      }
-
       return {
-        active: _isActive,
+        active: !!isActive,
         onSelect : angular.noop,
         onDeselect : angular.noop
       };
@@ -462,13 +457,6 @@ describe('tabs', function() {
 
         ctrl.addTab(tab2);
         expect(tab1.active).toBe(true);
-      });
-
-      it('should not select first active === false tab as selected', function() {
-        var tab = mockTab(false);
-
-        ctrl.addTab(tab);
-        expect(tab.active).toBe(false);
       });
 
       it('should select a tab added that\'s already active', function() {
@@ -566,15 +554,15 @@ describe('tabs', function() {
     }));
   });
 
-  describe('disable', function() {
+  describe('disabled', function() {
     beforeEach(inject(function($compile, $rootScope) {
       scope = $rootScope.$new();
 
-      function makeTab(disable) {
+      function makeTab(disabled) {
         return {
           active: false,
           select: jasmine.createSpy(),
-          disable: disable
+          disabled: disabled
         };
       }
       scope.tabs = [
@@ -582,7 +570,7 @@ describe('tabs', function() {
       ];
       elm = $compile([
         '<tabset>',
-        '  <tab ng-repeat="t in tabs" active="t.active" select="t.select()" disable="t.disable">',
+        '  <tab ng-repeat="t in tabs" active="t.active" select="t.select()" disabled="t.disabled">',
         '    <tab-heading><b>heading</b> {{index}}</tab-heading>',
         '    content {{$index}}',
         '  </tab>',
@@ -596,7 +584,7 @@ describe('tabs', function() {
       angular.forEach(scope.tabs, function(tab, i) {
         if (activeTab === tab) {
           expect(tab.active).toBe(true);
-          expect(tab.select.calls.count()).toBe( (tab.disable) ? 0 : 1 );
+          expect(tab.select.callCount).toBe( (tab.disabled) ? 0 : 1 );
           expect(_titles.eq(i)).toHaveClass('active');
           expect(contents().eq(i).text().trim()).toBe('content ' + i);
           expect(contents().eq(i)).toHaveClass('active');
@@ -617,11 +605,11 @@ describe('tabs', function() {
 
     it('should toggle between states', function() {
       expect(titles().eq(3)).toHaveClass('disabled');
-      scope.$apply('tabs[3].disable = false');
+      scope.$apply('tabs[3].disabled = false');
       expect(titles().eq(3)).not.toHaveClass('disabled');
 
       expect(titles().eq(2)).not.toHaveClass('disabled');
-      scope.$apply('tabs[2].disable = true');
+      scope.$apply('tabs[2].disabled = true');
       expect(titles().eq(2)).toHaveClass('disabled');
     });
   });

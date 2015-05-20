@@ -2,7 +2,6 @@ describe('accordion', function () {
   var $scope;
 
   beforeEach(module('ui.bootstrap.accordion'));
-  beforeEach(module('ui.bootstrap.collapse'));
   beforeEach(module('template/accordion/accordion.html'));
   beforeEach(module('template/accordion/accordion-group.html'));
 
@@ -266,8 +265,8 @@ describe('accordion', function () {
       });
 
       it('should have visible panel body when the group with isOpen set to true', function () {
-        expect(findGroupBody(0)).toHaveClass('in');
-        expect(findGroupBody(1)).not.toHaveClass('in');
+        expect(findGroupBody(0)[0].clientHeight).not.toBe(0);
+        expect(findGroupBody(1)[0].clientHeight).toBe(0);
       });
     });
 

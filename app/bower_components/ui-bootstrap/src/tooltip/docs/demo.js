@@ -1,5 +1,5 @@
-angular.module('ui.bootstrap.demo').controller('TooltipDemoCtrl', function ($scope, $sce) {
+angular.module('ui.bootstrap.demo').controller('TooltipDemoCtrl', function ($scope) {
   $scope.dynamicTooltip = 'Hello, World!';
   $scope.dynamicTooltipText = 'dynamic';
-  $scope.htmlTooltip = $sce.trustAsHtml('I\'ve been made <b>bold</b>!');
+  $scope.htmlTooltip = 'I\'ve been made <b>bold</b>!';
 });
