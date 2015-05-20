@@ -2,12 +2,9 @@ angular.module('ui.bootstrap.demo').controller('ModalDemoCtrl', function ($scope
 
   $scope.items = ['item1', 'item2', 'item3'];
 
-  $scope.animationsEnabled = true;
-
   $scope.open = function (size) {
 
     var modalInstance = $modal.open({
-      animation: $scope.animationsEnabled,
       templateUrl: 'myModalContent.html',
       controller: 'ModalInstanceCtrl',
       size: size,
@@ -24,11 +21,6 @@ angular.module('ui.bootstrap.demo').controller('ModalDemoCtrl', function ($scope
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-
-  $scope.toggleAnimation = function () {
-    $scope.animationsEnabled = !$scope.animationsEnabled;
-  };
-
 });
 
 // Please note that $modalInstance represents a modal window (instance) dependency.

@@ -7,7 +7,7 @@
             return {
                 saveAd: function (ad) {
                     return $q(function (resolve, reject) {
-                        var user = UserAuth.profile;
+                        var user = userAuth.profile;
                         ad.customer = _.pick(user, 'avatar', 'userName', 'key', 'id');
                         ad.timestamp = moment().format('x');
                         ad.shows = {

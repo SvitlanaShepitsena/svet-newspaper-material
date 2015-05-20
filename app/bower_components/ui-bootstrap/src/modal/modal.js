@@ -1,4 +1,4 @@
-angular.module('ui.bootstrap.modal', [])
+angular.module('ui.bootstrap.modal', ['ui.bootstrap.transition'])
 
 /**
  * A helper, internal data structure that acts as a map but also allows getting / removing
@@ -62,23 +62,20 @@ angular.module('ui.bootstrap.modal', [])
       restrict: 'EA',
       replace: true,
       templateUrl: 'template/modal/backdrop.html',
-      compile: function (tElement, tAttrs) {
-        tElement.addClass(tAttrs.backdropClass);
-        return linkFn;
+      link: function (scope, element, attrs) {
+        scope.backdropClass = attrs.backdropClass || '';
+
+        scope.animate = false;
+
+        //trigger CSS transitions
+        $timeout(function () {
+          scope.animate = true;
+        });
       }
     };
-
-    function linkFn(scope, element, attrs) {
-      scope.animate = false;
-
-      //trigger CSS transitions
-      $timeout(function () {
-        scope.animate = true;
-      });
-    }
   }])
 
-  .directive('modalWindow', ['$modalStack', '$q', function ($modalStack, $q) {
+  .directive('modalWindow', ['$modalStack', '$timeout', function ($modalStack, $timeout) {
     return {
       restrict: 'EA',
       scope: {
@@ -94,35 +91,10 @@ angular.module('ui.bootstrap.modal', [])
         element.addClass(attrs.windowClass || '');
         scope.size = attrs.size;
 
-        scope.close = function (evt) {
-          var modal = $modalStack.getTop();
-          if (modal && modal.value.backdrop && modal.value.backdrop != 'static' && (evt.target === evt.currentTarget)) {
-            evt.preventDefault();
-            evt.stopPropagation();
-            $modalStack.dismiss(modal.key, 'backdrop click');
-          }
-        };
-
-        // This property is only added to the scope for the purpose of detecting when this directive is rendered.
-        // We can detect that by using this property in the template associated with this directive and then use
-        // {@link Attribute#$observe} on it. For more details please see {@link TableColumnResize}.
-        scope.$isRendered = true;
-
-        // Deferred object that will be resolved when this modal is render.
-        var modalRenderDeferObj = $q.defer();
-        // Observe function will be called on next digest cycle after compilation, ensuring that the DOM is ready.
-        // In order to use this way of finding whether DOM is ready, we need to observe a scope property used in modal's template.
-        attrs.$observe('modalRender', function (value) {
-          if (value == 'true') {
-            modalRenderDeferObj.resolve();
-          }
-        });
-
-        modalRenderDeferObj.promise.then(function () {
+        $timeout(function () {
           // trigger CSS transitions
           scope.animate = true;
 
-          var inputsWithAutofocus = element[0].querySelectorAll('[autofocus]');
           /**
            * Auto-focusing of a freshly-opened modal element causes any child elements
            * with the autofocus attribute to lose focus. This is an issue on touch
@@ -131,32 +103,22 @@ angular.module('ui.bootstrap.modal', [])
            * the onscreen keyboard. Fixed by updated the focusing logic to only autofocus
            * the modal element if the modal does not contain an autofocus element.
            */
-          if (inputsWithAutofocus.length) {
-            inputsWithAutofocus[0].focus();
-          } else {
+          if (!element[0].querySelectorAll('[autofocus]').length) {
             element[0].focus();
           }
-
-          // Notify {@link $modalStack} that modal is rendered.
-          var modal = $modalStack.getTop();
-          if (modal) {
-            $modalStack.modalRendered(modal.key);
-          }
         });
+
+        scope.close = function (evt) {
+          var modal = $modalStack.getTop();
+          if (modal && modal.value.backdrop && modal.value.backdrop != 'static' && (evt.target === evt.currentTarget)) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            $modalStack.dismiss(modal.key, 'backdrop click');
+          }
+        };
       }
     };
   }])
-
-  .directive('modalAnimationClass', [
-    function () {
-      return {
-        compile: function (tElement, tAttrs) {
-          if (tAttrs.modalAnimation) {
-            tElement.addClass(tAttrs.modalAnimationClass);
-          }
-        }
-      };
-    }])
 
   .directive('modalTransclude', function () {
     return {
@@ -169,8 +131,8 @@ angular.module('ui.bootstrap.modal', [])
     };
   })
 
-  .factory('$modalStack', ['$animate', '$timeout', '$document', '$compile', '$rootScope', '$$stackedMap',
-    function ($animate, $timeout, $document, $compile, $rootScope, $$stackedMap) {
+  .factory('$modalStack', ['$transition', '$timeout', '$document', '$compile', '$rootScope', '$$stackedMap',
+    function ($transition, $timeout, $document, $compile, $rootScope, $$stackedMap) {
 
       var OPENED_MODAL_CLASS = 'modal-open';
 
@@ -204,7 +166,8 @@ angular.module('ui.bootstrap.modal', [])
         openedWindows.remove(modalInstance);
 
         //remove window DOM element
-        removeAfterAnimate(modalWindow.modalDomEl, modalWindow.modalScope, function() {
+        removeAfterAnimate(modalWindow.modalDomEl, modalWindow.modalScope, 300, function() {
+          modalWindow.modalScope.$destroy();
           body.toggleClass(OPENED_MODAL_CLASS, openedWindows.length() > 0);
           checkRemoveBackdrop();
         });
@@ -214,7 +177,8 @@ angular.module('ui.bootstrap.modal', [])
           //remove backdrop if no longer needed
           if (backdropDomEl && backdropIndex() == -1) {
             var backdropScopeRef = backdropScope;
-            removeAfterAnimate(backdropDomEl, backdropScope, function () {
+            removeAfterAnimate(backdropDomEl, backdropScope, 150, function () {
+              backdropScopeRef.$destroy();
               backdropScopeRef = null;
             });
             backdropDomEl = undefined;
@@ -222,14 +186,19 @@ angular.module('ui.bootstrap.modal', [])
           }
       }
 
-      function removeAfterAnimate(domEl, scope, done) {
+      function removeAfterAnimate(domEl, scope, emulateTime, done) {
         // Closing animation
         scope.animate = false;
 
-        if (domEl.attr('modal-animation') && $animate.enabled()) {
+        var transitionEndEventName = $transition.transitionEndEventName;
+        if (transitionEndEventName) {
           // transition out
-          domEl.one('$animate:close', function closeFn() {
-            $rootScope.$evalAsync(afterAnimating);
+          var timeout = $timeout(afterAnimating, emulateTime);
+
+          domEl.bind(transitionEndEventName, function () {
+            $timeout.cancel(timeout);
+            afterAnimating();
+            scope.$apply();
           });
         } else {
           // Ensure this call is async
@@ -243,7 +212,6 @@ angular.module('ui.bootstrap.modal', [])
           afterAnimating.done = true;
 
           domEl.remove();
-          scope.$destroy();
           if (done) {
             done();
           }
@@ -266,11 +234,8 @@ angular.module('ui.bootstrap.modal', [])
 
       $modalStack.open = function (modalInstance, modal) {
 
-        var modalOpener = $document[0].activeElement;
-
         openedWindows.add(modalInstance, {
           deferred: modal.deferred,
-          renderDeferred: modal.renderDeferred,
           modalScope: modal.scope,
           backdrop: modal.backdrop,
           keyboard: modal.keyboard
@@ -282,16 +247,13 @@ angular.module('ui.bootstrap.modal', [])
         if (currBackdropIndex >= 0 && !backdropDomEl) {
           backdropScope = $rootScope.$new(true);
           backdropScope.index = currBackdropIndex;
-          var angularBackgroundDomEl = angular.element('<div modal-backdrop="modal-backdrop"></div>');
+          var angularBackgroundDomEl = angular.element('<div modal-backdrop></div>');
           angularBackgroundDomEl.attr('backdrop-class', modal.backdropClass);
-          if (modal.animation) {
-            angularBackgroundDomEl.attr('modal-animation', 'true');
-          }
           backdropDomEl = $compile(angularBackgroundDomEl)(backdropScope);
           body.append(backdropDomEl);
         }
 
-        var angularDomEl = angular.element('<div modal-window="modal-window"></div>');
+        var angularDomEl = angular.element('<div modal-window></div>');
         angularDomEl.attr({
           'template-url': modal.windowTemplateUrl,
           'window-class': modal.windowClass,
@@ -299,59 +261,39 @@ angular.module('ui.bootstrap.modal', [])
           'index': openedWindows.length() - 1,
           'animate': 'animate'
         }).html(modal.content);
-        if (modal.animation) {
-          angularDomEl.attr('modal-animation', 'true');
-        }
 
         var modalDomEl = $compile(angularDomEl)(modal.scope);
         openedWindows.top().value.modalDomEl = modalDomEl;
-        openedWindows.top().value.modalOpener = modalOpener;
         body.append(modalDomEl);
         body.addClass(OPENED_MODAL_CLASS);
       };
 
-      function broadcastClosing(modalWindow, resultOrReason, closing) {
-          return !modalWindow.value.modalScope.$broadcast('modal.closing', resultOrReason, closing).defaultPrevented;
-      }
-
       $modalStack.close = function (modalInstance, result) {
         var modalWindow = openedWindows.get(modalInstance);
-        if (modalWindow && broadcastClosing(modalWindow, result, true)) {
+        if (modalWindow) {
           modalWindow.value.deferred.resolve(result);
           removeModalWindow(modalInstance);
-          modalWindow.value.modalOpener.focus();
-          return true;
         }
-        return !modalWindow;
       };
 
       $modalStack.dismiss = function (modalInstance, reason) {
         var modalWindow = openedWindows.get(modalInstance);
-        if (modalWindow && broadcastClosing(modalWindow, reason, false)) {
+        if (modalWindow) {
           modalWindow.value.deferred.reject(reason);
           removeModalWindow(modalInstance);
-          modalWindow.value.modalOpener.focus();
-          return true;
         }
-        return !modalWindow;
       };
 
       $modalStack.dismissAll = function (reason) {
         var topModal = this.getTop();
-        while (topModal && this.dismiss(topModal.key, reason)) {
+        while (topModal) {
+          this.dismiss(topModal.key, reason);
           topModal = this.getTop();
         }
       };
 
       $modalStack.getTop = function () {
         return openedWindows.top();
-      };
-
-      $modalStack.modalRendered = function (modalInstance) {
-        var modalWindow = openedWindows.get(modalInstance);
-        if (modalWindow) {
-          modalWindow.value.renderDeferred.resolve();
-        }
       };
 
       return $modalStack;
@@ -361,18 +303,20 @@ angular.module('ui.bootstrap.modal', [])
 
     var $modalProvider = {
       options: {
-        animation: true,
-        backdrop: true, //can also be false or 'static'
+        backdrop: true, //can be also false or 'static'
         keyboard: true
       },
-      $get: ['$injector', '$rootScope', '$q', '$templateRequest', '$controller', '$modalStack',
-        function ($injector, $rootScope, $q, $templateRequest, $controller, $modalStack) {
+      $get: ['$injector', '$rootScope', '$q', '$http', '$templateCache', '$controller', '$modalStack',
+        function ($injector, $rootScope, $q, $http, $templateCache, $controller, $modalStack) {
 
           var $modal = {};
 
           function getTemplatePromise(options) {
             return options.template ? $q.when(options.template) :
-              $templateRequest(angular.isFunction(options.templateUrl) ? (options.templateUrl)() : options.templateUrl);
+              $http.get(angular.isFunction(options.templateUrl) ? (options.templateUrl)() : options.templateUrl,
+                {cache: $templateCache}).then(function (result) {
+                  return result.data;
+              });
           }
 
           function getResolvePromises(resolves) {
@@ -389,18 +333,16 @@ angular.module('ui.bootstrap.modal', [])
 
             var modalResultDeferred = $q.defer();
             var modalOpenedDeferred = $q.defer();
-            var modalRenderDeferred = $q.defer();
 
             //prepare an instance of a modal to be injected into controllers and returned to a caller
             var modalInstance = {
               result: modalResultDeferred.promise,
               opened: modalOpenedDeferred.promise,
-              rendered: modalRenderDeferred.promise,
               close: function (result) {
-                return $modalStack.close(modalInstance, result);
+                $modalStack.close(modalInstance, result);
               },
               dismiss: function (reason) {
-                return $modalStack.dismiss(modalInstance, reason);
+                $modalStack.dismiss(modalInstance, reason);
               }
             };
 
@@ -443,9 +385,7 @@ angular.module('ui.bootstrap.modal', [])
               $modalStack.open(modalInstance, {
                 scope: modalScope,
                 deferred: modalResultDeferred,
-                renderDeferred: modalRenderDeferred,
                 content: tplAndVars[0],
-                animation: modalOptions.animation,
                 backdrop: modalOptions.backdrop,
                 keyboard: modalOptions.keyboard,
                 backdropClass: modalOptions.backdropClass,
@@ -460,8 +400,8 @@ angular.module('ui.bootstrap.modal', [])
 
             templateAndResolvePromise.then(function () {
               modalOpenedDeferred.resolve(true);
-            }, function (reason) {
-              modalOpenedDeferred.reject(reason);
+            }, function () {
+              modalOpenedDeferred.reject(false);
             });
 
             return modalInstance;

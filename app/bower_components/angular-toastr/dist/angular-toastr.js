@@ -12,7 +12,6 @@
     var toasts = [];
 
     var previousToastMessage = '';
-    var openToasts = {};
 
     var containerDefer = $q.defer();
 
@@ -70,7 +69,6 @@
           }
           toast.scope.$destroy();
           var index = toasts.indexOf(toast);
-          delete openToasts[toast.scope.message];
           toasts.splice(index, 1);
           var maxOpened = toastrConfig.maxOpened;
           if (maxOpened && toasts.length >= maxOpened) {
@@ -166,8 +164,7 @@
               newToast.scope.init();
             });
           } else {
-            var sibling = container[0].lastChild ? angular.element(container[0].lastChild) : null;
-            $animate.enter(newToast.el, container, sibling).then(function() {
+            $animate.enter(newToast.el, container, container[0].lastChild).then(function() {
               newToast.scope.init();
             });
           }
@@ -227,7 +224,7 @@
 
         function cleanOptionsOverride(options) {
           var badOptions = ['containerId', 'iconClasses', 'maxOpened', 'newestOnTop',
-                            'positionClass', 'preventDuplicates', 'preventOpenDuplicates', 'templates'];
+                            'positionClass', 'preventDuplicates', 'templates'];
           for (var i = 0, l = badOptions.length; i < l; i++) {
             delete options[badOptions[i]];
           }
@@ -247,17 +244,14 @@
       }
 
       function shouldExit() {
-        var isDuplicateOfLast = options.preventDuplicates && map.message === previousToastMessage;
-        var isDuplicateOpen = options.preventOpenDuplicates && openToasts[map.message];
-
-        if (isDuplicateOfLast || isDuplicateOpen) {
-          return true;
+        if (options.preventDuplicates) {
+          if (map.message === previousToastMessage) {
+            return true;
+          } else {
+            previousToastMessage = map.message;
+          }
+          return false;
         }
-
-        previousToastMessage = map.message;
-        openToasts[map.message] = true;
-
-        return false;
       }
     }
   }

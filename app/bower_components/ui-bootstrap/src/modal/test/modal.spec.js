@@ -8,6 +8,14 @@ describe('$modal', function () {
     element.trigger(e);
   };
 
+  var waitForBackdropAnimation = function () {
+    inject(function ($transition) {
+      if ($transition.transitionEndEventName) {
+        $timeout.flush();
+      }
+    });
+  };
+
   beforeEach(module('ui.bootstrap.modal'));
   beforeEach(module('template/modal/backdrop.html'));
   beforeEach(module('template/modal/window.html'));
@@ -27,107 +35,60 @@ describe('$modal', function () {
   }));
 
   beforeEach(function () {
-    jasmine.addMatchers({
-      toBeResolvedWith: function(util, customEqualityTesters) {
-        return {
-          compare: function(promise, expected) {
-            promise.then(function(result) {
-              expect(result).toEqual(expected);
+    this.addMatchers({
 
-              if (result === expected) {
-                result.message = 'Expected "' + angular.mock.dump(result) + '" not to be resolved with "' + expected + '".';
-              } else {
-                result.message = 'Expected "' + angular.mock.dump(result) + '" to be resolved with "' + expected + '".';
-              }
-            });
-
-            $rootScope.$digest();
-
-            return {pass: true};
-          }
+      toBeResolvedWith: function(value) {
+        var resolved;
+        this.message = function() {
+          return 'Expected "' + angular.mock.dump(this.actual) + '" to be resolved with "' + value + '".';
         };
+        this.actual.then(function(result){
+          resolved = result;
+        });
+        $rootScope.$digest();
+
+        return resolved === value;
       },
-      toBeRejectedWith: function(util, customEqualityTesters) {
-        return {
-          compare: function(promise, expected) {
-            var result = {};
 
-            promise.then(function() {
-
-            }, function(result) {
-              expect(result).toEqual(expected);
-
-              if (result === expected) {
-                result.message = 'Expected "' + angular.mock.dump(result) + '" not to be rejected with "' + expected + '".';
-              } else {
-                result.message = 'Expected "' + angular.mock.dump(result) + '" to be rejected with "' + expected + '".';
-              }
-            });
-
-            $rootScope.$digest();
-
-            return {pass: true};
-          }
+      toBeRejectedWith: function(value) {
+        var rejected;
+        this.message = function() {
+          return 'Expected "' + angular.mock.dump(this.actual) + '" to be rejected with "' + value + '".';
         };
+        this.actual.then(angular.noop, function(reason){
+          rejected = reason;
+        });
+        $rootScope.$digest();
+
+        return rejected === value;
       },
-      toHaveModalOpenWithContent: function(util, customEqualityTesters) {
-        return {
-          compare: function(actual, content, selector) {
-            var contentToCompare, modalDomEls = actual.find('body > div.modal > div.modal-dialog > div.modal-content');
 
-            contentToCompare = selector ? modalDomEls.find(selector) : modalDomEls;
+      toHaveModalOpenWithContent: function(content, selector) {
 
-            var result = {
-              pass: modalDomEls.css('display') === 'block' && contentToCompare.html() === content
-            };
+        var contentToCompare, modalDomEls = this.actual.find('body > div.modal > div.modal-dialog > div.modal-content');
 
-            if (result.pass) {
-              result.message = '"Expected "' + angular.mock.dump(modalDomEls) + '" not to be open with "' + content + '".';
-            } else {
-              result.message = '"Expected "' + angular.mock.dump(modalDomEls) + '" to be open with "' + content + '".';
-            }
-
-            return result;
-          }
+        this.message = function() {
+          return '"Expected "' + angular.mock.dump(modalDomEls) + '" to be open with "' + content + '".';
         };
+
+        contentToCompare = selector ? modalDomEls.find(selector) : modalDomEls;
+        return modalDomEls.css('display') === 'block' &&  contentToCompare.html() == content;
       },
-      toHaveModalsOpen: function(util, customEqualityTesters) {
-        return {
-          compare: function(actual, expected) {
-            var modalDomEls = actual.find('body > div.modal');
 
-            var result = {
-              pass: util.equals(modalDomEls.length, expected, customEqualityTesters)
-            };
+      toHaveModalsOpen: function(noOfModals) {
 
-            if (result.pass) {
-              result.message = 'Expected "' + angular.mock.dump(modalDomEls) + '" not to have "' + expected + '" modals opened.';
-            } else {
-              result.message = 'Expected "' + angular.mock.dump(modalDomEls) + '" to have "' + expected + '" modals opened.';
-            }
-
-            return result;
-          }
-        };
+        var modalDomEls = this.actual.find('body > div.modal');
+        return modalDomEls.length === noOfModals;
       },
-      toHaveBackdrop: function(util, customEqualityTesters) {
-        return {
-          compare: function(actual, expected) {
-            var backdropDomEls = actual.find('body > div.modal-backdrop');
 
-            var result = {
-              pass: util.equals(backdropDomEls.length, 1, customEqualityTesters)
-            };
+      toHaveBackdrop: function() {
 
-            if (result.pass) {
-              result.message = 'Expected "' + angular.mock.dump(backdropDomEls) + '" not to be a backdrop element".';
-            } else {
-              result.message = 'Expected "' + angular.mock.dump(backdropDomEls) + '" to be a backdrop element".';
-            }
-
-            return result;
-          }
+        var backdropDomEls = this.actual.find('body > div.modal-backdrop');
+        this.message = function() {
+          return 'Expected "' + angular.mock.dump(backdropDomEls) + '" to be a backdrop element".';
         };
+
+        return backdropDomEls.length === 1;
       }
     });
   });
@@ -145,22 +106,16 @@ describe('$modal', function () {
     return modal;
   }
 
-  function close(modal, result, noFlush) {
-    var closed = modal.close(result);
-    if (!noFlush) {
-      $timeout.flush();
-    }
+  function close(modal, result) {
+    modal.close(result);
+    $timeout.flush();
     $rootScope.$digest();
-    return closed;
   }
 
-  function dismiss(modal, reason, noFlush) {
-    var closed = modal.dismiss(reason);
-    if (!noFlush) {
-      $timeout.flush();
-    }
+  function dismiss(modal, reason) {
+    modal.dismiss(reason);
+    $timeout.flush();
     $rootScope.$digest();
-    return closed;
   }
 
   describe('basic scenarios with default options', function () {
@@ -177,6 +132,7 @@ describe('$modal', function () {
 
       expect($document).toHaveModalsOpen(0);
 
+      waitForBackdropAnimation();
       expect($document).not.toHaveBackdrop();
     });
 
@@ -192,7 +148,7 @@ describe('$modal', function () {
 
       expect($document).toHaveModalsOpen(0);
 
-      dismiss(modal, 'closing in test', true);
+      dismiss(modal, 'closing in test');
     });
 
     it('should not throw an exception on a second close', function () {
@@ -207,7 +163,7 @@ describe('$modal', function () {
 
       expect($document).toHaveModalsOpen(0);
 
-      close(modal, 'closing in test', true);
+      close(modal, 'closing in test');
     });
 
     it('should open a modal from templateUrl', function () {
@@ -223,6 +179,7 @@ describe('$modal', function () {
 
       expect($document).toHaveModalsOpen(0);
 
+      waitForBackdropAnimation();
       expect($document).not.toHaveBackdrop();
     });
 
@@ -248,28 +205,6 @@ describe('$modal', function () {
       $rootScope.$digest();
 
       expect($document).toHaveModalsOpen(0);
-    });
-
-    it('should return to the element which had focus before the dialog is invoked', function () {
-      var link = '<a href>Link</a>';
-      var element = angular.element(link);
-      angular.element(document.body).append(element);
-      element.focus();
-      expect(document.activeElement.tagName).toBe('A');
-
-      var modal = open({template: '<div>Content<button>inside modal</button></div>'});
-      $timeout.flush();
-      expect(document.activeElement.tagName).toBe('DIV');
-      expect($document).toHaveModalsOpen(1);
-
-      triggerKeyDown($document, 27);
-      $timeout.flush();
-      $rootScope.$digest();
-
-      expect(document.activeElement.tagName).toBe('A');
-      expect($document).toHaveModalsOpen(0);
-
-      element.remove();
     });
 
     it('should resolve returned promise on close', function () {
@@ -300,23 +235,9 @@ describe('$modal', function () {
           ok: function() {return $q.reject('ko');}
         }}
       );
-      expect(modal.opened).toBeRejectedWith('ko');
+      expect(modal.opened).toBeRejectedWith(false);
     });
 
-    it('should focus on the element that has autofocus attribute when the modal is open/reopen', function () {
-      function openAndCloseModalWithAutofocusElement() {
-        var modal = open({template: '<div><input type="text" id="auto-focus-element" autofocus></div>'});
-
-        expect(angular.element('#auto-focus-element')).toHaveFocus();
-
-        close(modal, 'closed ok');
-
-        expect(modal.result).toBeResolvedWith('closed ok');
-      }
-
-      openAndCloseModalWithAutofocusElement();
-      openAndCloseModalWithAutofocusElement();
-    });
   });
 
   describe('default options can be changed in a provider', function () {
@@ -566,6 +487,7 @@ describe('$modal', function () {
         expect(backdropEl).toHaveClass('in');
 
         dismiss(modal);
+        waitForBackdropAnimation();
 
         modal = open({ template: '<div>With backdrop</div>' });
         backdropEl = $document.find('body > div.modal-backdrop');
@@ -617,40 +539,7 @@ describe('$modal', function () {
 
         expect($document.find('div.modal-dialog')).toHaveClass('modal-lg');
       });
-
-      it('should support custom size modal dialogs', function () {
-        open({
-          template: '<div>Large modal dialog</div>',
-          size: 'custom'
-        });
-
-        expect($document.find('div.modal-dialog')).toHaveClass('modal-custom');
-      });
     });
-
-    describe('animation', function () {
-
-      it('should have animation fade classes by default', function () {
-        open({
-          template: '<div>Small modal dialog</div>',
-        });
-
-        expect($document.find('.modal')).toHaveClass('fade');
-        expect($document.find('.modal-backdrop')).toHaveClass('fade');
-      });
-
-      it('should not have fade classes if animation false', function () {
-        open({
-          template: '<div>Small modal dialog</div>',
-          animation: false
-        });
-
-        expect($document.find('.modal')).not.toHaveClass('fade');
-        expect($document.find('.modal-backdrop')).not.toHaveClass('fade');
-      });
-
-    });
-
   });
 
   describe('multiple modals', function () {
@@ -716,101 +605,6 @@ describe('$modal', function () {
 
       dismiss(modal2);
       expect(body).not.toHaveClass('modal-open');
-    });
-
-    it('should return to the element which had focus before the dialog is invoked', function () {
-      var link = '<a href>Link</a>';
-      var element = angular.element(link);
-      angular.element(document.body).append(element);
-      element.focus();
-      expect(document.activeElement.tagName).toBe('A');
-
-      var modal1 = open({template: '<div>Modal1<button id="focus">inside modal1</button></div>'});
-      $timeout.flush();
-      document.getElementById('focus').focus();
-      expect(document.activeElement.tagName).toBe('BUTTON');
-      expect($document).toHaveModalsOpen(1);
-
-      var modal2 = open({template: '<div>Modal2</div>'});
-      $timeout.flush();
-      expect(document.activeElement.tagName).toBe('DIV');
-      expect($document).toHaveModalsOpen(2);
-
-      dismiss(modal2);
-      expect(document.activeElement.tagName).toBe('BUTTON');
-      expect($document).toHaveModalsOpen(1);
-
-      dismiss(modal1);
-      expect(document.activeElement.tagName).toBe('A');
-      expect($document).toHaveModalsOpen(0);
-
-      element.remove();
-    });
-  });
-
-  describe('modal.closing event', function() {
-    it('should close the modal contingent on the modal.closing event and return whether the modal closed', function() {
-      var preventDefault;
-      var modal;
-      var template = '<div>content</div>';
-
-      function TestCtrl($scope) {
-        $scope.$on('modal.closing', function (event, resultOrReason, closing) {
-          if (preventDefault) {
-            event.preventDefault();
-          }
-        });
-      }
-
-      modal = open({template: template, controller: TestCtrl});
-
-      preventDefault = true;
-      expect(close(modal, 'result')).toBeFalsy();
-      expect($document).toHaveModalsOpen(1);
-
-      preventDefault = false;
-      expect(close(modal, 'result')).toBeTruthy();
-      expect($document).toHaveModalsOpen(0);
-
-      modal = open({template: template, controller: TestCtrl});
-
-      preventDefault = true;
-      expect(dismiss(modal, 'result')).toBeFalsy();
-      expect($document).toHaveModalsOpen(1);
-
-      preventDefault = false;
-      expect(dismiss(modal, 'result')).toBeTruthy();
-      expect($document).toHaveModalsOpen(0);
-    });
-
-    it('should trigger modal.closing and pass result/reason and closing parameters to the event', function() {
-      var called;
-
-      called = false;
-      close(open({
-        template: '<div>content</div>',
-        controller: function($scope) {
-          $scope.$on('modal.closing', function(event, resultOrReason, closing) {
-            called = true;
-            expect(resultOrReason).toBe('result');
-            expect(closing).toBeTruthy();
-          });
-        }
-      }), 'result');
-      expect(called).toBeTruthy();
-
-      called = false;
-      dismiss(open({
-        template: '<div>content</div>',
-        controller: function($scope) {
-          $scope.$on('modal.closing', function(event, resultOrReason, closing) {
-            called = true;
-            expect(resultOrReason).toBe('reason');
-            expect(closing).toBeFalsy();
-          });
-        }
-      }), 'reason');
-      expect(called).toBeTruthy();
     });
   });
 });

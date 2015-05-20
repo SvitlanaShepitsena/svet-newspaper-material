@@ -133,7 +133,6 @@ app.config(function(toastrConfig) {
     onShown: null,
     positionClass: 'toast-top-right',
     preventDuplicates: false,
-    preventOpenDuplicates: false,
     progressBar: false,
     tapToDismiss: true,
     target: 'body',
@@ -164,7 +163,6 @@ Those are the default values, you can pick what you need from it and override wi
 * **onShown**: A callback function called when a toast is shown.
 * **positionClass**: The position where the toasts are added.
 * **preventDuplicates**: Prevent duplicates of the last toast.
-* **preventOpenDuplicates**: Prevent duplicates of open toasts.
 * **progressBar**: A progress bar to see the timeout in real time.
 * **tapToDismiss**: Whether the toast should be dismissed when it is clicked.
 * **target**: The element to put the toastr container.
@@ -236,7 +234,7 @@ There you can override:
 * **allowHtml**: Whether to allow HTML or not in a concrete toast.
 * **closeButton**: Putting a close button on the toast.
 * **closeHtml**: If you need to override how the close button looks like.
-* **extendedTimeOut**: The timeout after you hover it.
+* **extendedTimeout**: The timeout after you hover it.
 * **iconClass**: For the type class you want to use for the toast.
 * **messageClass**: If you want to modify the message look.
 * **onHidden**: Function to call when the toast gets hidden.

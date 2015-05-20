@@ -10,7 +10,7 @@ angular.module('ui.bootstrap.progressbar', [])
         animate = angular.isDefined($attrs.animate) ? $scope.$parent.$eval($attrs.animate) : progressConfig.animate;
 
     this.bars = [];
-    $scope.max = angular.isDefined($scope.max) ? $scope.max : progressConfig.max;
+    $scope.max = angular.isDefined($attrs.max) ? $scope.$parent.$eval($attrs.max) : progressConfig.max;
 
     this.addBar = function(bar, element) {
         if ( !animate ) {
@@ -54,7 +54,6 @@ angular.module('ui.bootstrap.progressbar', [])
         require: '^progress',
         scope: {
             value: '=',
-            max: '=?',
             type: '@'
         },
         templateUrl: 'template/progressbar/bar.html',
@@ -72,7 +71,6 @@ angular.module('ui.bootstrap.progressbar', [])
         controller: 'ProgressController',
         scope: {
             value: '=',
-            max: '=?',
             type: '@'
         },
         templateUrl: 'template/progressbar/progressbar.html',
