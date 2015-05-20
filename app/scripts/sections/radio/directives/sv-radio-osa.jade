@@ -1,5 +1,5 @@
 .card.m
-    ul.list
+    ul.list.bgc-grey-100
         li.list-row.list-row--has-separator(style='padding: 0px 8px')
             .list-row__primary.mdc-text-right.img-editor-contner
                 img.img-round.mdc-text-right.img-editor.mdc-img-bw(src='/img/auth/osa-logo.jpg')
@@ -7,7 +7,7 @@
                 strong.fs-headline.display-block
                     i.mdi.mdi-microphone &nbsp
                     | {{title|translate}} “OSA”
-    div(class='pl pr mb')
+    div.bgc-grey-50(class='pl pr pb')
         span.fs-subhead.tc-black-2.display-block.radio-subhead {{subhead|translate}}
         span.fs-body-2.tc-black-2.display-block.radio-body {{body|translate}}
     .card__actions

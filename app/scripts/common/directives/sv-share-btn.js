@@ -1,14 +1,16 @@
 (function () {
     'use strict';
-    angular.module('auth')
-        .directive('svEventBtn', function () {
+
+    angular.module('common')
+        .directive('svShareBtn', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/events/directives/sv-event-btn.html',
+                templateUrl: 'scripts/common/directives/sv-share-btn.html',
                 scope: {
-                    btnTitle: '@'
+
                 },
                 link: function ($scope, el, attrs) {
+
                 }
             };
         });
