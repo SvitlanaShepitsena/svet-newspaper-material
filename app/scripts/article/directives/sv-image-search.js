@@ -1,22 +1,20 @@
 (function () {
     'use strict';
-
     angular.module('article')
-        .directive('svImageSearch', function (ImageSearchServ, $http) {
+        .directive('svImageSearch', function (ImageSearchServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-image-search.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
-                    $scope.runGoogleSearch = function () {
-                        var url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=maya+plisetskaya&callback=JSON_CALLBACK";
-
-                        $http.jsonp(url)
-                            .success(function(data){
-                                console.log(data);
-                            });
+                    $scope.q = {data: 'maya plisetskaya'}
+                    $scope.runGoogleSearch = function (query) {
+                        if (!query) {
+                            return;
+                        }
+                        ImageSearchServ.fetch(query).then(function (results) {
+                            $scope.images = results;
+                        })
                     };
                 }
             };
