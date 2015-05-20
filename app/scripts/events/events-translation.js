@@ -6,6 +6,7 @@
             $translateProvider.translations('en', {
                 'events': 'Events',
                 'activity-events': 'Activity and Events',
+                'upcoming-events': 'Upcoming Events',
                 'visited-events': 'Visited Events',
                 'planned-events': 'Planned Events',
                 'create-event': 'Create an Event',
@@ -30,6 +31,7 @@
             $translateProvider.translations('ru', {
                 'events': 'Мероприятия',
                 'activity-events': 'События и Мероприятия',
+                'upcoming-events': 'Ближайшие События',
                 'visited-events': ' Посещенные Мероприятия',
                 'planned-events': 'Запланированные  Мероприятия',
                 'create-event': 'Создать Мероприятие',
