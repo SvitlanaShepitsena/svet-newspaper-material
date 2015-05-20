@@ -13,7 +13,6 @@
                         console.log(data);
                     });
 
-
                     var btns = el.find('button').css('padding', '6px 12px');
                     btns.css('float', 'left');
                     btns.css('font-size', '14px');
