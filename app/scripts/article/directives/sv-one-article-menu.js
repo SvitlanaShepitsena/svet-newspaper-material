@@ -5,9 +5,13 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-one-article-menu.html',
-                scope: {},
+                scope: {
+                    news:'='
+                },
                 link: function ($scope, el, attrs) {
                     $scope.user = userAuth;
+                    $scope.user.key = userAuth.key;
+
                 }
             };
         });

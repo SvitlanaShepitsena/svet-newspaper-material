@@ -1,6 +1,6 @@
 div(flex-container='column' flex)
     .card(class='m')
-        sv-one-article-menu
+        sv-one-article-menu(news='news')
         div(class='p+')
             div
                 span.display-block.fs-display-1 {{news.title}}
@@ -14,8 +14,7 @@ div(flex-container='column' flex)
                 img(ng-src="{{news.img}}" ng-if='news.title')
             div(class='mb+')
                 div(class='mb+ ml' style='float:right;width:200px;height:auto')
-                    sv-banner(img-url="../img/ad/ad-promotion/camping-vertical.jpg" link-url="http://www.campeagleridge.com/" alt="Chicago Auditorium Theatre" target='_blank')
                 //img.ml.mt(style='display:block;float:right' src="./img/ad/crystal.jpg")
                 p(ng-bind-html='news.body').fs-body-2
-        sv-one-article-menu
+        sv-one-article-menu(news='news')
 

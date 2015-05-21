@@ -8,7 +8,7 @@
         a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )
             .fs-subhead.tc-black-1 {{topNews.title }}
         span.fs-caption.display-block.tc-grey-500  By {{isFirst? 'Alex Etman':topNews.author|uppercase}}
-        span.fs-body-1.display-block(ng-bind-html="topNews.summary")
+        span.fs-body-1.display-block(ng-bind-html="topNews.body | length:208")
     .p.bgc-grey-100
         sv-article-public-statistics
 
