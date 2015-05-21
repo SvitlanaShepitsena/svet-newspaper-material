@@ -14,6 +14,11 @@
                     controller: "StartCampaignCtrl as startCampaign",
                     templateUrl: "scripts/ad/promotion/views/start-campaignCtrl.html"
                 })
+				.state("app.new-promotion-by-manager", {
+					url: "/new-promotion-by-manager", 
+					controller:"NewPromotionByManagerCtrl",
+					templateUrl: "scripts/ad/promotion/views/new-promotion-by-managerCtrl.html"
+				})
 //#state'
         });
 })();
