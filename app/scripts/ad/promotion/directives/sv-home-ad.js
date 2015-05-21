@@ -10,7 +10,7 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.adIndex = 0;
-                    AdServ.allArr().then(function (ads) {
+                    AdServ.allArrShuffled().then(function (ads) {
                         $scope.ads = ads;
                     });
                     var index;

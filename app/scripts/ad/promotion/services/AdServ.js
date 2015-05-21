@@ -6,14 +6,13 @@
                 saveAd: function (ad) {
                     return $q(function (resolve, reject) {
                         var user = userAuth.profile;
-                        ad.customer = _.pick(user, 'avatar', 'userName', 'key', 'id');
+                        ad.customerKey = userAuth.key;
                         ad.timestamp = moment().format('x');
                         ad.shows = {
                             unique: 0,
                             total: 0
                         };
-                        var adsUrl = ads;
-                        var adsArray = $firebaseArray(new Firebase(adsUrl));
+                        var adsArray = $firebaseArray(new Firebase(ads));
                         adsArray.$add(ad).then(function (ref) {
                             resolve(ref.key());
                         });
@@ -53,15 +52,20 @@
                         })
                     });
                 },
-                allArr: function () {
+                allArrShuffled: function () {
                     var adsUrl = ads;
                     return $q(function (resolve, reject) {
                         var adsArray = $firebaseArray(new Firebase(adsUrl));
                         adsArray.$loaded().then(function () {
-                            var randomOrder= _.shuffle(adsArray);
+                            var randomOrder = _.shuffle(adsArray);
                             resolve(randomOrder);
                         })
                     });
+                },
+                all: function () {
+                    var adsUrl = ads;
+                    var adsArray = $firebaseArray(new Firebase(adsUrl));
+                    return adsArray;
                 },
                 getObj: function (id) {
                     var adUrl = ads + id;
