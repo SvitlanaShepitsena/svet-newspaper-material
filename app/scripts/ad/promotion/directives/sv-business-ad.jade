@@ -6,19 +6,5 @@
     div(class='pl+ pr+')
         div(layout='column')
             div(ng-repeat='ad in ads|userList')
-                span.display-block.fs-title.tc-grey-800 {{'campaign-name'|translate}}: {{ad.name}}
-                span.display-block.fs-caption.tc-grey-600 {{'date-created'|translate}}: {{ad.timestamp|date}}
-                div(class='mb+')
-                    span.display-block.fs-subhead {{'showing-stat'|translate}}
-                    span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'unique'|translate}}: {{ad.shows.unique}}
-                    span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'total'|translate}}: {{ad.shows.total}}
-                div(class='mb+')
-                    img(ng-src="{{ad.banner}}")
-                div(class='mb+')
-                    button.btn.btn--s.btn--white.btn--raised.mr(lx-ripple='' ui-sref='.start({id:ad.$id})')
-                        i.mdi.mdi-pencil.mr
-                        | {{'edit'|translate}}
-                    button.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='removeAd(ad)')
-                        i.mdi.mdi-close.mr
-                        | {{'delete'|translate}}
+                sv-one-business-ad(ad='ad')
 
