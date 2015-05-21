@@ -12,18 +12,19 @@ div(flow-init='')
                     name='name'
                     required
                     type='text')
-        div(flex-container='row')
-            div.m(flex-item='')
-                .radio-group
-                    .radio-button
-                        input#radio1.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.top')
-                        label.radio-button__label(for='radio1') {{'home-top'|translate}}
-                    .radio-button
-                        input#radio2.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.middle')
-                        label.radio-button__label(for='radio2') {{'home-middle'|translate}}
+        //div(flex-container='row')
+        //    div.m(flex-item='')
+        //        .radio-group
+        //            .radio-button
+        //                input#radio1.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.top')
+        //                label.radio-button__label(for='radio1') {{'home-top'|translate}}
+        //            .radio-button
+        //                input#radio2.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.middle')
+        //                label.radio-button__label(for='radio2') {{'home-middle'|translate}}
         div(flex-container='row')
             div.m(flex-item='')
                 sv-image-upload()
+
         div(flex-container='row')
             div(class='mb+')
                 button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save")

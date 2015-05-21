@@ -10,8 +10,8 @@
                 link: function ($scope, el, attrs) {
                     if (!$scope.id) {
                         $scope.ad = {
-                            name: "Ad Campaign " + _.random(1, 99),
-                            place: _.random(0, 1) === 1 ? "home.top" : "home.middle",
+                            name: "Campaign Name " + _.random(1, 99),
+                            //place: _.random(0, 1) === 1 ? "home.top" : "home.middle",
                             banner: ""
                         }
                     }

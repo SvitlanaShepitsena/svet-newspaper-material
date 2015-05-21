@@ -33,7 +33,8 @@
         'toastr',
         'firebase',
         'mwl.calendar',
-        'ui.router'
+        'ui.router',
+        'ui.bootstrap'
     ])
         .config(function ($mdThemingProvider, $mdIconProvider) {
             $mdIconProvider

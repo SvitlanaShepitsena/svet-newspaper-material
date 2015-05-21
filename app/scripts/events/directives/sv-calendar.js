@@ -1,42 +1,44 @@
 (function () {
     'use strict';
     angular.module('events')
-        .directive('svCalendar', function (moment, $state) {
+        .directive('svSvetCalendar', function (moment, $state, $modal) {
             return {
                 templateUrl: 'scripts/events/directives/sv-callendar.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
+                    console.log('ddd');
                     //These variables MUST be set as a minimum for the calendar to work
-                    $scope.calendarView = 'year';
-                    $scope.calendarDay = new Date();
-                    $scope.events = [
-                        {
-                            title: "2015 Kohl Children's Museum Event (Public Event)",
-                            type: 'success',
-                            starts_at: new Date(2015, 4, 15, 11, 0),
-                            ends_at: new Date(2015, 4, 15, 13, 0),
-                            editable: false,
-                            deletable: false
-                        },
-                        {
-                            title: "2015 Ravinia SVET CONNECTIONS (Networking Event)",
-                            type: 'success',
-                            starts_at: new Date(2015, 4, 17, 19, 0),
-                            ends_at: new Date(2015, 4, 17, 23, 0),
-                            editable: false,
-                            deletable: false
-                        }
-                    ];
-                    //function showModal(action, event) {
-                    //    $modal.open({
-                    //        templateUrl: 'scripts/events/views/event-modal.html',
-                    //        controller: function ($scope, $modalInstance) {
-                    //            $scope.$modalInstance = $modalInstance;
-                    //            $scope.action = action;
-                    //            $scope.event = event;
-                    //        }
-                    //    });
-                    //}
+                    //$scope.calendarView = 'year';
+                    //$scope.calendarDay = new Date();
+                    //$scope.events = [
+                    //    {
+                    //        title: "2015 Kohl Children's Museum Event (Public Event)",
+                    //        type: 'success',
+                    //        starts_at: new Date(2015, 4, 15, 11, 0),
+                    //        ends_at: new Date(2015, 4, 15, 13, 0),
+                    //        editable: false,
+                    //        deletable: false
+                    //    },
+                    //    {
+                    //        title: "2015 Ravinia SVET CONNECTIONS (Networking Event)",
+                    //        type: 'success',
+                    //        starts_at: new Date(2015, 4, 17, 19, 0),
+                    //        ends_at: new Date(2015, 4, 17, 23, 0),
+                    //        editable: false,
+                    //        deletable: false
+                    //    }
+                    //];
+                    function showModal(action, event) {
+                        $modal.open({
+                            templateUrl: 'scripts/events/views/event-modal.html',
+                            controller: function ($scope, $modalInstance) {
+                                $scope.$modalInstance = $modalInstance;
+                                $scope.action = action;
+                                $scope.event = event;
+                            }
+                        });
+                    }
+
                     $scope.eventClicked = function (event) {
                         if (event.title === "2015 Kohl Children's Museum Event (Public Event)") {
                             $state.go('app.events.field', {year: 2015});
