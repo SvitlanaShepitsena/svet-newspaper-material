@@ -1,8 +1,6 @@
-div(layout='column')
-    a(ui-sref='app.one-blog({author:user.userName,postId:post.$id})')
-        //div.p
-        //    img(src="../img/from-the-editor/chukovskiy-06-11-11.jpg" style='width:100px')
+div
+    a.tc-grey-700(ui-sref='app.one-blog({author:user.userName,postId:post.$id})' style='text-decoration:none')
         div.pl.pr.pb
-            span.display-block(ng-bind-html='post.title')
+                span.display-block(ng-bind-html='post.title')
         div.pl.pr.pb
-            span.display-block.fs-body-1.tc-black-2(ng-bind-html='post.body|length:80') ...
+            span.display-block.fs-body-1.tc-black-2(ng-bind-html='post.summary')

@@ -1,14 +1,15 @@
 .card.ml.mr
-    div.mb
-        span.fs-caption.display-block.pl.pr.pt(style='font-weight:300;text-decoration:underline') {{topNews.topic|uppercase}}
-    div(layout='row' layout-align='center')
+    div.p.bgc-grey-100
+        span.display-block.fs-subhead.tc-grey-700(style='font-weight:500') {{topNews.topic|uppercase}}
+    md-divider
+    div.mt(layout='row' layout-align='center')
         a.text-center(ui-sref='app.article({id:topNews.fbkey})' )
             sv-img-framed(img = 'topNews.img' max-width='500' max-height='320')
     .p
         a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )
-            .fs-subhead.tc-black-1 {{topNews.title }}
+            .fs-title.tc-black-1 {{topNews.title }}
         span.fs-caption.display-block.tc-grey-500  By {{isFirst? 'Alex Etman':topNews.author|uppercase}}
-        span.fs-body-1.display-block(ng-bind-html="topNews.body | length:208")
+        span.fs-body-1.display-block(ng-bind-html="topNews.body | length:170")
     .p.bgc-grey-100
         sv-article-public-statistics
 
