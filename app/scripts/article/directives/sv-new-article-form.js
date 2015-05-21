@@ -10,6 +10,7 @@
                     if ($scope.artId) {
                         //    edit
                         $scope.article = ArticlesServ.get($scope.artId);
+                        console.log($scope.article);
                     } else {
                         //    new article
                         $scope.article = {
@@ -30,6 +31,9 @@
                             $scope.article.author = userAuth.profile.isEditor() ? 'Alex Etman' : userAuth.profile.userName;
                             $scope.article.tags = $scope.article.tags ? $scope.article.tags.split(',').join(', ') : "";
                             $scope.article.isBlog = $scope.artType === 'blog';
+                            $scope.article.topic = 'news';
+                            $scope.article.summary = randomSvobodaArticle.contentSnippet;
+                            $scope.article.section = 'Politics';
                         });
                     };
                     $scope.setSection = function (section) {
