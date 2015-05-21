@@ -2,7 +2,7 @@ div
     p
         span.display-block.fs-title.tc-grey-800 {{'campaign-name'|translate}}: {{ad.name}}
             span.display-block.fs-caption.tc-grey-600 {{'date-created'|translate}}: {{ad.timestamp|date}}
-            div(class='mb+' ng-if='!user.isManager()')
+            div(class='mb+')
                 img(ng-src="{{ad.banner}}")
             div(class='mb+')
                 span.display-block.fs-subhead {{'showing-stat'|translate}}

@@ -7,10 +7,10 @@
                 templateUrl: 'scripts/ad/promotion/directives/sv-one-business-ad.html',
                 scope: {
                     ad: '=',
-                    removeAd:'&'
+                    removeAd: '&'
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.user=userAuth.profile;
+                    $scope.user = userAuth.profile;
                 }
             };
         });
