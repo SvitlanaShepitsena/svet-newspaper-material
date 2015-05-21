@@ -12,13 +12,11 @@ div(flow-init='')
                     name='name'
                     required
                     type='text')
-
         div(flex-container='row', flex-gutter='24' ng-if='user.isManager()')
             div(flex-item='')
                 md-select(ng-model='ad.customer')
                     md-select-label {{ad.customer?ad.customer:'Select Customer'|capitalize}}
                     md-option(ng-repeat='customer in customers' ng-value='customer.profile.userName' ) {{customer.profile.userName}}
-
         div(flex-container='row')
             div.m(flex-item='')
                 sv-image-upload()

@@ -1,4 +1,9 @@
-div(style='max-width:685px')
-  img(ng-src="{{ads[adIndex].banner}}").svet-corporate
-  button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click="showPrevAd()") Prev
-  button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='showNextAd()') Next
+div(style='max-width:685px; position:relative')
+    img(ng-src="{{ads[adIndex].banner}}").svet-corporate
+    div(layout='row' style='position:relative; top:-70px' layout-align='space-between center')
+        div
+            a.tc-white-2(lx-ripple='' ng-click="showPrevAd()" style='cursor:pointer')
+                i.fa.fa-chevron-left.fa-2x
+        div()
+            a.tc-white-2(lx-ripple='' ng-click='showNextAd()' style='cursor:pointer')
+                i.fa.fa-chevron-right.fa-2x
