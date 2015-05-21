@@ -5,9 +5,16 @@
             return {
                 saveAd: function (ad) {
                     return $q(function (resolve, reject) {
+                        if (ad.customer) {
+                            ad.customerKey=ad.customer.$id;
+                            ad.customerUserName=ad.customer.profile.userName;
+                            ad= _.omit(ad,'customer');
+                        } else{
+
                         var user = userAuth.profile;
                         ad.customerKey = userAuth.key;
                         ad.customerUserName = userAuth.profile.userName;
+                        }
                         ad.timestamp = moment().format('x');
                         ad.shows = {
                             unique: 0,
