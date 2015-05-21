@@ -1,7 +1,12 @@
-div
+.p
     form(name="searchForm")
-        input( type='text' name='q' ng-model='q.data')
-        md-button(ng-click='runGoogleSearch(q.data)') Search
+        div(flex-container='row', flex-gutter='24')
+            div(flex-item='12')
+                lx-search-filter(model='q.data' name="q"  placeholder='Search')
+        //md-input-container
+        //    i.fa.fa-search.fa-fw
+        //    input( type='text' name='q' ng-model='q.data')
+        button.btn.btn--m.btn--white.btn--raised(lx-ripple='' ng-click='runGoogleSearch(q.data)') Search
     div
         h3 Results
         ul

@@ -127,7 +127,10 @@
                         md-is-locked-open="$mdMedia('gt-lg')">
 
                 <div ng-if="imageSearch">
-                    <sv-image-search></sv-image-search>
+                    <div class="bgc-red-100">ddd</div>
+
+                    <lx-search-filter model="searchFilter.first" filter-width="100%"></lx-search-filter>
+
                 </div>
                 <div ng-if="!imageSearch">
                     <md-toolbar class="text-center bgc-grey-200" sv-nav-bar-media layout-padding=""
@@ -212,7 +215,8 @@
 <script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
 <script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
 
-<script src="./bower_components/angularfire/dist/angularfire.js"></script> <script src="./bower_components/lodash/lodash.js"></script>
+<script src="./bower_components/angularfire/dist/angularfire.js"></script>
+<script src="./bower_components/lodash/lodash.js"></script>
 
 <script src="./bower_components/Faker/build/build/faker.min.js"></script>
 <script src="./bower_components/moment/min/moment.min.js"></script>
@@ -402,11 +406,8 @@
 
 <!-- events -->
 <script src="scripts/events/eventsRoutes.js"></script>
-<<<<<<< HEAD
 <script src="scripts/events/directives/sv-one-event-poster.js"></script>
-=======
 <script src="scripts/events/directives/sv-svet-events-calendar.js"></script>
->>>>>>> calendar
 <script src="scripts/events/events-translation.js"></script>
 <script src="scripts/events/controllers/CreateSvetEventCtrl.js"></script>
 <script src="scripts/events/controllers/EventCalendarCtrl.js"></script>
