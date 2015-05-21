@@ -51,6 +51,10 @@
   border-right-width: 1px;
   padding-right: 8px;
 }
+.search-filter__cancel,
+.search-filter__label {
+  color: #757575 !important;
+}
 .sv-label-counter {
   margin-left: 4px;
   font-weight: bold;
@@ -544,8 +548,4 @@ md-sidenav.md-locked-open {
   -webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
-}
-.search-filter--is-focused,
-.search-filter__container {
-  width: 140px !important;
 }
