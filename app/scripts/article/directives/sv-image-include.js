@@ -10,8 +10,7 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.includeImgToArticle = function () {
-                       $rootScope.$broadcast('include-image', {url: $scope.url});
-
+                        $rootScope.$broadcast('include-image', {url: $scope.url});
                     };
                 }
             };

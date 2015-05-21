@@ -1,10 +1,14 @@
 div
     form(name="searchForm")
-        input( type='text' name='q' ng-model='q.data')
-        md-button(ng-click='runGoogleSearch(q.data)') Search
-    div
-        h3 Results
+        .card.p.mb
+            lx-search-filter.mb(model='q.data' name="q"  placeholder='Search')
+        div.text-center.mb
+            button.btn.btn--m.btn--black.bgc-grey-600.btn--raised(lx-ripple='' ng-click='runGoogleSearch(q.data)') Search
+    div.p
+        span.fs-title.display-block Results:
+        md-divider
         ul
             li(ng-repeat='i in images')
                 sv-image-include(url='i.url')
+                span {{i.url}}
 
