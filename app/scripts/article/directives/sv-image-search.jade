@@ -1,14 +1,12 @@
-.p
+div
     form(name="searchForm")
-        div(flex-container='row', flex-gutter='24')
-            div(flex-item='12')
-                lx-search-filter(model='q.data' name="q"  placeholder='Search')
-        //md-input-container
-        //    i.fa.fa-search.fa-fw
-        //    input( type='text' name='q' ng-model='q.data')
-        button.btn.btn--m.btn--white.btn--raised(lx-ripple='' ng-click='runGoogleSearch(q.data)') Search
-    div
-        h3 Results
+        .card.p.mb
+            lx-search-filter.mb(model='q.data' name="q"  placeholder='Search')
+        div.text-center.mb
+            button.btn.btn--m.btn--black.bgc-grey-600.btn--raised(lx-ripple='' ng-click='runGoogleSearch(q.data)') Search
+    div.p
+        span.fs-title.display-block Results:
+        md-divider
         ul
             li(ng-repeat='i in images')
                 sv-image-include(url='i.url')

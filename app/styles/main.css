@@ -51,6 +51,10 @@
   border-right-width: 1px;
   padding-right: 8px;
 }
+.search-filter__cancel,
+.search-filter__label {
+  color: #757575 !important;
+}
 .sv-label-counter {
   margin-left: 4px;
   font-weight: bold;
@@ -271,10 +275,6 @@ body {
   padding: 0px;
 }
 /*custom classes*/
-.search-filter--is-focused,
-.search-filter__container {
-  background-color: #6495ed;
-}
 .bgc-svet-A100 {
   background-color: #474341;
 }
@@ -548,8 +548,4 @@ md-sidenav.md-locked-open {
   -webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
-}
-.search-filter--is-focused,
-.search-filter__container {
-  width: 140px !important;
 }
