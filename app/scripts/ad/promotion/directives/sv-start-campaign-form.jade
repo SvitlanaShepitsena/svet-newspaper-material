@@ -21,13 +21,20 @@ div(flow-init='')
         //            .radio-button
         //                input#radio2.radio-button__input(type='radio', name='place', ng-model="ad.place" value='home.middle')
         //                label.radio-button__label(for='radio2') {{'home-middle'|translate}}
+
         div(flex-container='row')
             div.m(flex-item='')
                 sv-image-upload()
-
+        div(flex-container='row' ng-if='ad.banner')
+            div.m(flex-item='8')
+                span Current Campaign Banner:
+                img(ng-src="{{ad.banner}}")
         div(flex-container='row')
             div(class='mb+')
-                button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save")
+                button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='id' )
+                    i.mdi.mdi-send.mr
+                    | {{'save changes'|translate}}
+                button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='!id')
                     i.mdi.mdi-send.mr
                     | {{'post'|translate}}
                 button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")
