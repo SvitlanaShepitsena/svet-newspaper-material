@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('auth.manager')
-        .directive('svManagerBusinessAdList', function (AdServ,userAuth) {
+        .directive('svManagerBusinessAdList', function (AdServ,userAuth,toastr) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/manager/directives/sv-manager-business-ad-list.html',

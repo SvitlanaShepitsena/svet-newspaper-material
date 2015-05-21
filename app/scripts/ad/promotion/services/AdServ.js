@@ -2,12 +2,25 @@
     'use strict';
     angular.module('ad.promotion')
         .factory('AdServ', function ($q, url, ads, $firebaseObject, $firebaseArray, userAuth) {
+            function getUserKey(users, userName) {
+                for (var i = 0; i < users.length; i++) {
+                    var user = users[i];
+                    if (user.profile.userName === userName) {
+                        return user.$id;
+                    }
+                }
+            }
             return {
-                saveAd: function (ad) {
+                saveAd: function (ad,customers) {
                     return $q(function (resolve, reject) {
+                        if (ad.customerUserName) {
+                            ad.customerKey=getUserKey(customers,ad.customerUserName);
+                        } else{
+
                         var user = userAuth.profile;
                         ad.customerKey = userAuth.key;
                         ad.customerUserName = userAuth.profile.userName;
+                        }
                         ad.timestamp = moment().format('x');
                         ad.shows = {
                             unique: 0,

@@ -42,6 +42,11 @@
                     controller: "ManagerAdCtrl as managerAd",
                     templateUrl: "scripts/ad/promotion/views/manager-adCtrl.html"
                 })
+                .state("app.manager.ad.start", {
+                    url: "/manage-promotion/:id",
+                    controller:"NewPromotionByManagerCtrl",
+                    templateUrl: "scripts/ad/promotion/views/new-promotion-by-managerCtrl.html"
+                })
 //#state'
         });
 })();
