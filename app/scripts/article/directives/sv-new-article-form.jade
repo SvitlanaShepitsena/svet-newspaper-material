@@ -5,7 +5,7 @@ div
                 label {{'article-author'|translate}}
                 input(ng-model='article.author' name='author' required='')
         div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center')
-            div( ng-if='artType==="article"' flex)
+            div( ng-if='!article.isBlog' flex)
                 div(ng-if='sections')
                     md-select(ng-model='article.section')
                         md-select-label {{article.section?article.section:'Section'|capitalize}}
