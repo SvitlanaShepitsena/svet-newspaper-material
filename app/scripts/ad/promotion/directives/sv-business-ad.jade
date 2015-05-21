@@ -5,6 +5,6 @@
             | {{'add-business-ad'|translate}}
     div(class='pl+ pr+')
         div(layout='column')
-            div(ng-repeat='ad in ads|userList')
+            div(ng-repeat='ad in ads|userList as results')
                 sv-one-business-ad(ad='ad')
 

@@ -545,7 +545,3 @@ md-sidenav.md-locked-open {
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
 }
-.search-filter--is-focused,
-.search-filter__container {
-  width: 140px !important;
-}
