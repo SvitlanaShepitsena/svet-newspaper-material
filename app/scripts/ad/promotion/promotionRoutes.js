@@ -10,7 +10,7 @@
                     templateUrl: "scripts/ad/promotion/views/business-adCtrl.html"
                 })
                 .state("app.user.ad.start", {
-                    url: "/start-campaign/:id",
+                    url: "/manage-campaign/:id",
                     controller: "StartCampaignCtrl as startCampaign",
                     templateUrl: "scripts/ad/promotion/views/start-campaignCtrl.html"
                 })

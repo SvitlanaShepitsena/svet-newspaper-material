@@ -6,7 +6,8 @@
                 replace: true,
                 templateUrl: 'scripts/ad/promotion/directives/sv-one-business-ad.html',
                 scope: {
-                    ad: '='
+                    ad: '=',
+                    removeAd:'&'
                 },
                 link: function ($scope, el, attrs) {
                 }
