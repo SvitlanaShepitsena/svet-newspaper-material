@@ -1,13 +1,22 @@
 (function () {
     'use strict';
     angular.module('ad.promotion')
-        .directive('svStartCampaignForm', function (AdServ, $state, toastr) {
+        .directive('svStartCampaignForm', function (AdServ, $state, toastr,userAuth,UsersServ) {
             return {
                 templateUrl: 'scripts/ad/promotion/directives/sv-start-campaign-form.html',
                 scope: {
                     id: '='
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.user=userAuth.profile;
+                    if ($scope.user.isManager()) {
+                        UsersServ.allCustomersList().then(function (customers) {
+                            $scope.customers=customers;
+                        })
+
+                    }
+
+
                     if (!$scope.id) {
                         $scope.ad = {
                             name: "Campaign Name " + _.random(1, 99),
