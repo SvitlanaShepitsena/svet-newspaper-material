@@ -7,6 +7,7 @@
                     return $q(function (resolve, reject) {
                         var user = userAuth.profile;
                         ad.customerKey = userAuth.key;
+                        ad.customerUserName = userAuth.profile.userName;
                         ad.timestamp = moment().format('x');
                         ad.shows = {
                             unique: 0,

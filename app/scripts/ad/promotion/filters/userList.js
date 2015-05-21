@@ -4,10 +4,12 @@
     angular.module('ad.promotion')
         .filter('userList', function (userAuth) {
             return function (list) {
-                var user = userAuth.profile;
 
                 if (!userAuth ||  list.length === 0) {
                     return;
+                }
+                if (userAuth.profile.isManager()) {
+                    return list;
                 }
 
                 return _.filter(list, function (el) {

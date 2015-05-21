@@ -5,7 +5,8 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/promotion/directives/sv-business-ad.html',
-                scope: {},
+                scope: {
+                },
                 link: function ($scope, el, attrs) {
                     $scope.ads = AdServ.all();
                     $scope.removeAd = function (ad) {
