@@ -49,7 +49,7 @@
                                     toastr.info('Your Ad Campaign has been saved');
                                 });
                             } else {
-                                AdServ.saveAd($scope.ad).then(function (key) {
+                                AdServ.saveAd($scope.ad, $scope.customers).then(function (key) {
                                     $state.go('^');
                                     toastr.info('Your Ad Campaign has been saved');
                                 });
