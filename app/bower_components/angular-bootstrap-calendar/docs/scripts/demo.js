@@ -46,33 +46,33 @@ angular
       })
     }*/
 
-    function showModal(action, event) {
-      $modal.open({
-        templateUrl: 'modalContent.html',
-        controller: function($scope, $modalInstance) {
-          $scope.$modalInstance = $modalInstance;
-          $scope.action = action;
-          $scope.event = event;
-        }
-      });
-    }
+      function showModal(action, event) {
+        $modal.open({
+          templateUrl: 'modalContent.html',
+          controller: function($scope, $modalInstance) {
+            $scope.$modalInstance = $modalInstance;
+            $scope.action = action;
+            $scope.event = event;
+          }
+        });
+      }
 
-    $scope.eventClicked = function(event) {
-      showModal('Clicked', event);
-    };
+      $scope.eventClicked = function(event) {
+        showModal('Clicked', event);
+      };
 
-    $scope.eventEdited = function(event) {
-      showModal('Edited', event);
-    };
+      $scope.eventEdited = function(event) {
+        showModal('Edited', event);
+      };
 
-    $scope.eventDeleted = function(event) {
-      showModal('Deleted', event);
-    };
+      $scope.eventDeleted = function(event) {
+        showModal('Deleted', event);
+      };
 
-    $scope.toggle = function($event, field, event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      event[field] = !event[field];
-    };
+      $scope.toggle = function($event, field, event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        event[field] = !event[field];
+      };
 
-  });
+    });
