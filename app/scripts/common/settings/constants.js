@@ -9,6 +9,8 @@
         .constant('lastEditorPost', {})
         .constant('svetNews', {})
         .constant('svetPost', {})
+        .constant('classified', {})
+        .constant('classifiedInterval', 1500)
         .service('urlUsers', function (url) {
             this.url = url + '/user-management/users/';
         })

@@ -2,3 +2,23 @@
   overflow: hidden;
   min-height: 200px;
 }
+.cl-height {
+  height: 200px;
+}
+[sv-animate-on-change] {
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  -ms-transition: all 1s;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+[sv-animate-on-change].changed {
+  background-color: #f00;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+  -webkit-transition: none;
+}

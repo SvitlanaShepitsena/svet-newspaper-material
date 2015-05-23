@@ -1,5 +1,3 @@
-div.ml.mr
-    ul
-        li(ng-repeat='cl in cls|orderBy:"-timestamp"|limitTo:1')
-            a(ui-sref='app.classified.all')
-                sv-one-classified-thumb(cl='cl' widget='true' is-home='isHome')
+div.ml.mr.cl-height.mdc-overflow-hidden
+    a(ui-sref='app.classified.all').position-relative
+        sv-one-classified-thumb(cl='cls[currentClassifiedIndex]' widget='true' is-home='isHome')

@@ -36,6 +36,7 @@
                             $scope.article.section = 'Politics';
                         });
                     };
+
                     $scope.setSection = function (section) {
                         $scope.article.section = section;
                         $scope.$broadcast('close:select', {});

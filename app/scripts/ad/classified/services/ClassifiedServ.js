@@ -1,9 +1,15 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray, userAuth) {
+        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray, userAuth, classified) {
             var freeClNumber = 10;
             var clsUrl = url + 'cls/all/'
+
+            function processClassifiedArray(cls) {
+                var processedList = _.sortBy(cls, 'timestamp');
+                return processedList;
+            }
+
             return {
                 getClByKey: function (key) {
                     var classifiedObj = $firebaseObject(new Firebase(clsUrl + key));
@@ -12,6 +18,20 @@
                 getAllCls: function () {
                     var classifiedArray = $firebaseArray(new Firebase(clsUrl));
                     return classifiedArray;
+                },
+                bindClassifiedsLive: function () {
+                    return $q(function (resolve, reject) {
+                        var classifiedArray = $firebaseArray(new Firebase(clsUrl));
+                        classifiedArray.$loaded(function () {
+                            classified.list = processClassifiedArray(classifiedArray);
+
+                            classifiedArray.$watch(function () {
+                            classified.list = processClassifiedArray(classifiedArray);
+                            });
+
+                            resolve();
+                        });
+                    });
                 },
                 getUserClassifiesArr: function (id) {
                     var classifiedUserUrl = users + id + '/cls/';
