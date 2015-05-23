@@ -16,22 +16,6 @@
                     $scope.isEditable = !$scope.isHome;
                     $scope.editState = false;
 
-                    var firstTime=true;
-                    $scope.$watch('cl', function (newValue, oldValue) {
-                        if (newValue === oldValue) {
-                            return;
-                        }
-                        if (firstTime) {
-                            firstTime=false;
-                            return;
-                        }
-                        $animate.addClass(el,'cl-changed').then(function () {
-
-                        });
-
-
-
-                    });
                 }
             };
         });

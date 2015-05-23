@@ -1,16 +1,17 @@
 (function () {
     'use strict';
-
     angular.module('ad.classified')
-        .directive('svAnimateOnChange', function () {
+        .directive('svAnimateOnChange', function ($timeout) {
             return {
-                replace: true,
-                templateUrl: 'scripts/ad/classified/directives/sv-animate-on-change.html',
-                scope: {
-
-                },
                 link: function ($scope, el, attrs) {
-
+                    $scope.$watch(attrs.svAnimateOnChange, function (nv, ov) {
+                        if (nv != ov) {
+                            el.addClass('changed');
+                            $timeout(function () {
+                                el.removeClass('changed');
+                            }, 1000); // Could be enhanced to take duration as a parameter
+                        }
+                    });
                 }
             };
         });
