@@ -9,6 +9,7 @@
                     oneNews: '='
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.params = {sectionName: $scope.oneNews.section};
                 }
             };
         });
