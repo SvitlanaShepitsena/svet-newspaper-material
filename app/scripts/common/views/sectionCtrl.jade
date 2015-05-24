@@ -10,36 +10,10 @@ div(layout-gt-sm='row' layout-align="top" style='width:100hv;max-width:100hv')
                         span.display-block(ng-bind-html='n.title|length:25')
                         span.display-block.fs-body-1.tc-black-2(ng-bind-html='n.body | length:50')
     div(flex-gt-sm='33')
-        .card.ml.mr.mb
-            div.p.bgc-grey-100
-                span.display-block.fs-subhead.text-center.tc-grey700 {{'popular-news'|translate|uppercase}}
-            md-divider
-            div.p(ng-repeat='n in newsList|sectionNews:sectionName')
-                span.display-block.fs-caption.tc-grey-500(ng-bind-html='n.timestamp|date')
-                span.fs-caption By &nbsp
-                span.fs-caption.tc-grey-500(ng-bind-html='n.author')
-                a.tc-grey-700(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
-                    span.display-block(ng-bind-html='n.title|length:125')
-        .card.ml.mr.mb
-            div.p.bgc-grey-100
-                span.display-block.fs-subhead.text-center.tc-grey700 {{'editor-choice'|translate|uppercase}}
-            md-divider
-            div.p(ng-repeat='n in newsList|sectionNews:sectionName')
-                span.display-block.fs-caption.tc-grey-500(ng-bind-html='n.timestamp|date')
-                span.fs-caption By &nbsp
-                span.fs-caption.tc-grey-500(ng-bind-html='n.author')
-                a.tc-grey-700(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
-                    span.display-block(ng-bind-html='n.title|length:125')
-        .card.ml.mr.mb
-            div.p.bgc-grey-100
-                span.display-block.fs-subhead.text-center.tc-grey700 {{'opinion'|translate|uppercase}}
-            md-divider
-            div.p(ng-repeat='n in newsList|sectionNews:sectionName')
-                span.display-block.fs-caption.tc-grey-500(ng-bind-html='n.timestamp|date')
-                span.fs-caption By &nbsp
-                span.fs-caption.tc-grey-500(ng-bind-html='n.author')
-                a.tc-grey-700(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
-                    span.display-block(ng-bind-html='n.title|length:125')
+        sv-article-thumb-title(section-title="popular")
+        sv-article-thumb-title(section-title="blog")
+        sv-article-thumb-title(section-title="opinion")
+        sv-article-thumb-title(section-title="recommended")
 //footer advertisement
 sv-custom-paper-head-ad
 

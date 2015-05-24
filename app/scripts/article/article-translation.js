@@ -6,6 +6,9 @@
             $translateProvider.translations('en', {
                 // 'eng':'eng'
                 'svetRecommends': 'Svet Recommends',
+                'recommended': 'Recommended',
+                'opinion': 'Opinion',
+                'popular': 'Popular',
                 'new-article': 'New Article',
                 'new-blog-post': 'New Blog Post',
                 'news-articles': 'News Articles',
@@ -39,6 +42,9 @@
             $translateProvider.translations('ru', {
                 // 'ru':'ru'
                 'svetRecommends': 'Свет Рекомендует',
+                'recommended': 'Рекомендуемое',
+                'opinion': 'Мнение',
+                'popular': 'Популярное',
                 'new-article': 'Новая Статья',
                 'new-blog-post': 'Новый блог пост',
                 'news-articles': 'Новости',
