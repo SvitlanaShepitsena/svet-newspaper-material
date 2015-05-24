@@ -1,5 +1,7 @@
 .card.m.p
-    span.fs-caption.display-block(style='font-weight:300;text-decoration:underline') {{oneNews.topic|uppercase}}
+    div(layout='row' layout-align='space-between center')
+        span.fs-caption.display-block(style='font-weight:300;text-decoration:underline') {{oneNews.topic|uppercase}}
+        span.fs-caption.display-block(style='font-weight:300;text-decoration:underline') {{oneNews.section|uppercase}}
     a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:oneNews.fbkey})')
         span.display-block.fs-subhead {{oneNews.title | length:55}}
     a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:oneNews.fbkey})')
