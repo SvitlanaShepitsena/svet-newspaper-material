@@ -5,6 +5,6 @@ div(layout='column')
             .list-row__primary
                 img.img-round.mdc-img-bw(ng-src='{{n.img}}', width='40', height='40')
             .list-row__content
-                span.display-block {{n.title | length:25}}
-                span.display-block.fs-body-1.tc-black-2 {{n.body | length:50}}
+                span.display-block(ng-bind-html='n.title|length:25')
+                span.display-block.fs-body-1.tc-black-2(ng-bind-html='n.body | length:50')
     sv-custom-paper-head-ad

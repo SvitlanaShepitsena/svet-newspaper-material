@@ -13,6 +13,9 @@ div
             md-input-container(flex='')
                 label {{'article-topic'|translate}}
                 input(ng-model='article.topic' name='topic')
+        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-if='user.isEditor()')
+                md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
+                span.mdc-display-inline-block.fs-body-2 {{'svetRecommends'|translate}}
         div(layout='column')
             md-input-container(flex='')
                 label {{'article-title'|translate}}
