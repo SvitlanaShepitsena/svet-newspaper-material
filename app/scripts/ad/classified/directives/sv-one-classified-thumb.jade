@@ -4,7 +4,7 @@
             .mdc-display-inline-block.mr.tc-grey-500
                 i.mdi.mdi-calendar-today(style="margin-right:4px")
                 span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
-                span.fs-caption.tc-grey-500 {{cl.timestamp}}
+                span.fs-caption.tc-grey-500 {{cl.timestamp|isNew}}
             span.mdc-display-inline-block.fs-caption.tc-grey-800.mr {{cl.state}}, {{cl.city}}
         div.mb.pl.pt
             a.fs-caption.tc-grey-700.bgc-grey-300(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{cl.section}}
