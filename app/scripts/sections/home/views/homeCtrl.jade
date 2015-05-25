@@ -13,7 +13,7 @@ div(layout-sm='column', layout-md='column', layout-gt-md='row', layout-lg='colum
         sv-article-thumb-title(class="mb+" section-title="svet-blog" section-icon="blogger" bgc="bgc-svet-700" tc="tc-grey-50")
         sv-article-thumb-title(class="ml mb+" section-title="popular" section-icon="star" bgc="bgc-svet-700" tc="tc-grey-50")
         sv-article-thumb-title(class="ml mb+" section-title="only-on-svet" section-icon="bell" bgc="bgc-svet-700" tc="tc-grey-50")
-    sv-profile-title(header-title="{{'featured'|translate|uppercase}}")
+    span.display-block.fs-display-1.mdc-underline-red.mt.mb(class='mb+') {{'featured'|translate|uppercase}}
     md-divider
     sv-news-grid(news='news' exclude='3')
     div(layout='row')
