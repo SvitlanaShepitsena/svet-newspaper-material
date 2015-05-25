@@ -8,18 +8,16 @@
                     $scope.calendarYear = function () {
                         $scope.calendarView = 'year';
                     };
-
                     $scope.calendarMonth = function () {
                         $scope.calendarView = 'month';
                     };
-
-
                     ConnectionEventServ.setEventsLive().then(function () {
                         $scope.calendarView = 'year';
                         $scope.calendarDay = new Date();
                         $scope.events = svetEventsConst.evts;
-                        $scope.eventClicked = function (event) {
-                            showModal('Clicked', event);
+
+                        $scope.eventClicked = function (domEvt, event) {
+                            showModal("Event:"+event.title);
                         };
                         $scope.eventEdited = function (event) {
                             showModal('Edited', event);
@@ -30,12 +28,31 @@
                             });
                         };
                         $scope.newEvent = function (calendarDate) {
-                            dt.clickedDate = calendarDate;
+                            var now = moment();
+                            var hours = now.hour();
+                            var minutes = now.minute();
+                            dt.clickedDate = calendarDate || now.subtract(hours,'hours').subtract(minutes,'minutes').toDate();
+
                             $mdDialog.show({
                                 controller: DialogController,
                                 templateUrl: 'scripts/events/views/modalContent.html',
                             });
                         }
+
+                        function showModal(event) {
+                            var alert = $mdDialog.alert({
+                                title: 'Svet Event',
+                                content: event,
+                                ok: 'Close'
+                            });
+
+                            $mdDialog
+                                .show( alert )
+                                .finally(function() {
+                                    alert = undefined;
+                                });
+                        }
+
                         function DialogController($scope, $mdDialog, dt) {
                             $scope.clickedDate = dt.clickedDate;
                             $scope.hide = function () {
