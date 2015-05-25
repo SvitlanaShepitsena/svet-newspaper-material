@@ -1,0 +1,24 @@
+form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent()')
+    md-input-container
+        label Title
+        input(required='', name='title', ng-model='event.title')
+        div(ng-messages='eventForm.title.$error && (eventForm.title.$touched || eventForm.$submitted)')
+            div(ng-message='required') This is required.
+    md-input-container
+        label Date
+        input(type='date' required='' name='eventDate' ng-model='event.date')
+        div(ng-messages='eventForm.eventDate.$error && (eventForm.eventDate.$touched || eventForm.$submitted)')
+            div(ng-message='required') This is required.
+    md-input-container
+        label Start Time
+        input(type='time' required='' name='startTime' ng-model='event.startsAt')
+        div(ng-messages='eventForm.startTime.$error && (eventForm.startTime.$touched || eventForm.$submitted)')
+            div(ng-message='required') This is required.
+    md-input-container
+        label End Time (Optional)
+        input(type='time' name='endTime' ng-model='event.endsAt')
+    md-input-container
+        label Address
+        input(type='text' required='' name='address' ng-model='event.address')
+        div(ng-messages='eventForm.address.$error && (eventForm.address.$touched || eventForm.$submitted)')
+            div(ng-message='required') This is required.
