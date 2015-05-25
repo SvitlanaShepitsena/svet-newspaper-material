@@ -6,7 +6,7 @@ div
                 img(ng-src="{{ad.banner}}")
             div(class='mb+')
                 span.display-block.fs-subhead {{'showing-stat'|translate}}
-                span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'unique'|translate}}: {{ad.shows.unique}}
+                //span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'unique'|translate}}: {{ad.shows.unique}}
                 span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'total'|translate}}: {{ad.shows.total}}
             div(class='mb+')
                 button.btn.btn--s.btn--white.btn--raised.mr(lx-ripple='' ui-sref='.start({id:ad.$id})')
