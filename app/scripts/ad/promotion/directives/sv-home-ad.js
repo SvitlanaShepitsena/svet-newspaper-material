@@ -12,6 +12,7 @@
                     $scope.adIndex = 0;
                     AdServ.allArrShuffled().then(function (ads) {
                         $scope.ads = ads;
+                        AdServ.increaseShow($scope.ads[$scope.adIndex].$id);
                     });
                     var index;
                     $scope.showPrevAd = function () {
@@ -19,12 +20,14 @@
                         index--;
                         index = index < 0 ? $scope.ads.length - 1 : index;
                         $scope.adIndex = index;
+                        AdServ.increaseShow($scope.ads[$scope.adIndex].$id);
                     };
                     $scope.showNextAd = function () {
                         index = $scope.adIndex;
                         index++;
                         index = index === $scope.ads.length ? 0 : index;
                         $scope.adIndex = index;
+                        AdServ.increaseShow($scope.ads[$scope.adIndex].$id);
                     };
                 }
             };

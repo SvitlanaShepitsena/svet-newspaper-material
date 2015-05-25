@@ -1,31 +1,34 @@
 (function () {
     'use strict';
     angular.module('events')
-        .directive('svSvetEventsCalendar', function ($mdDialog, dt, ConnectionEventServ,svetEventsConst) {
+        .directive('svSvetEventsCalendar', function ($mdDialog, dt, ConnectionEventServ, svetEventsConst, toastr) {
             return {
                 templateUrl: 'scripts/events/directives/sv-svet-events-calendar.html',
                 link: function ($scope, el, attrs) {
+                    $scope.calendarYear = function () {
+                        $scope.calendarView = 'year';
+                    };
+
+                    $scope.calendarMonth = function () {
+                        $scope.calendarView = 'month';
+                    };
+
+
                     ConnectionEventServ.setEventsLive().then(function () {
                         $scope.calendarView = 'year';
                         $scope.calendarDay = new Date();
-                        $scope.events = svetEventsConst.evts ;
-                            //[
-                            //{
-                            //    title: 'Event 1',
-                            //    type: 'warning',
-                            //    startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-                            //    endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate()
-                            //}
-                        //];
-                        //$scope.eventClicked = function (event) {
-                        //    showModal('Clicked', event);
-                        //};
-                        //$scope.eventEdited = function (event) {
-                        //    showModal('Edited', event);
-                        //};
-                        //$scope.eventDeleted = function (event) {
-                        //    showModal('Deleted', event);
-                        //};
+                        $scope.events = svetEventsConst.evts;
+                        $scope.eventClicked = function (event) {
+                            showModal('Clicked', event);
+                        };
+                        $scope.eventEdited = function (event) {
+                            showModal('Edited', event);
+                        };
+                        $scope.eventDeleted = function (event) {
+                            ConnectionEventServ.removePublicWithKey(event.$id).then(function () {
+                                toastr.info('Events removed');
+                            });
+                        };
                         $scope.newEvent = function (calendarDate) {
                             dt.clickedDate = calendarDate;
                             $mdDialog.show({
