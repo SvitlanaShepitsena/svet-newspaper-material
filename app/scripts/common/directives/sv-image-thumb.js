@@ -17,6 +17,7 @@
                 link: function ($scope, el, attrs) {
                     $scope.circleRadius = $scope.circleRadius || '50%';
                     $scope.imgBottomShift = $scope.imgBottomShift || '10%';
+                    $scope.imgRightShift = $scope.imgRightShift || '20%';
                     $scope.sectionName = $stateParams.sectionName;
                     if (!svetNews.public) {
                         ArticlesServ.setHomeNewsLive().then(function () {
