@@ -20,7 +20,7 @@
                     $scope.textDecoration = $scope.textDecoration || 'underline';
                     $scope.fs = $scope.fs || 'fs-caption';
                     $scope.tc = $scope.tc || 'tc-grey-500';
-                    $scope.bgc = $scope.bgc || 'bgc-grey-200';
+                    $scope.bgc = $scope.bgc || 'bgc-grey-300';
                     $scope.labelPadding = $scope.labelPadding ||
                         '2px 4px';
                     $scope.navigateTo = function () {

@@ -6,6 +6,8 @@
             $translateProvider.translations('en', {
                 // 'eng':'eng'
                 'svetRecommends': 'Svet Recommends',
+                'featured': 'featured',
+                'this-week': 'This Week',
                 'recommended': 'Recommended',
                 'society': 'Society',
                 'digest': 'Digest',
@@ -24,6 +26,7 @@
                 'add-news-article': 'Add News Article',
                 'add-blog-post': 'Add Blog Post',
                 'save-blog': 'Save Post ',
+                'svet-blog': 'Svet Blog',
                 'blog': 'Blog',
                 'add-blog': 'Add Blog Post',
                 'save-to-drafts': 'Save to Drafts',
@@ -51,6 +54,8 @@
                 // 'ru':'ru'
                 'svetRecommends': 'Свет Рекомендует',
                 'recommended': 'Рекомендуемое',
+                'featured': 'featured',
+                'this-week': 'this-week',
                 'only-on-svet': 'Эксклюзив',
                 'history': 'История',
                 'life-styles': 'Стиль Жизни',
@@ -65,6 +70,7 @@
                 'new-blog-post': 'Новый блог пост',
                 'news-articles': 'Новости',
                 'blog': 'Блог',
+                'svet-blog': 'Svet Блог',
                 'add-article': ' Добавить статью',
                 'add-news-article': ' Добавить новость',
                 'add-blog-post': 'Добавить блог пост ',

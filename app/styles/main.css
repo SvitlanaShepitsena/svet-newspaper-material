@@ -80,6 +80,11 @@
   border-right-width: 1px;
   padding-right: 8px;
 }
+img {
+  -ms-filter: grayscale(1) !important;
+  -webkit-filter: grayscale(1) !important;
+  filter: grayscale(1) !important;
+}
 .secondNewsMargin:nth-child(odd) {
   padding-right: 8px;
 }
@@ -111,6 +116,13 @@
 .article-thumb-link:active,
 .article-thumb-link:focus {
   text-decoration: none !important;
+}
+.sv-article-thumb {
+  border-bottom: 1px rgba(0,0,0,0.118) solid;
+  padding-bottom: 8px;
+}
+.sv-article-thumb:nth-last-child(1) {
+  border-bottom: none !important;
 }
 .article-thumb-body {
   line-height: 16px;
