@@ -7,6 +7,7 @@
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
                 link: function ($scope, el, attrs) {
                     $scope.sections = SectionsServ.all();
+                    $scope.user = userAuth.profile;
                     if ($scope.artId) {
                         //    edit
                         $scope.article = ArticlesServ.get($scope.artId);
@@ -22,7 +23,8 @@
                             title: '',
                             summary: 'One short sentence, that will appear on an article thumbnail instead of content.',
                             body: '',
-                            tags: ''
+                            tags: '',
+                            svetRecommends: false
                         }
                     }
                     $scope.generateFromRandomNews = function () {
@@ -34,9 +36,9 @@
                             $scope.article.topic = 'news';
                             $scope.article.summary = randomSvobodaArticle.contentSnippet;
                             $scope.article.section = 'Politics';
+                            $scope.article.svetRecommends = false;
                         });
                     };
-
                     $scope.setSection = function (section) {
                         $scope.article.section = section;
                         $scope.$broadcast('close:select', {});

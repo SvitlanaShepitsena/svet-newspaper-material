@@ -9,6 +9,7 @@
                     headerTitle: '@'
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.headerTitle= _.snakeCase(_.startCase($scope.headerTitle));
                 }
             };
         });

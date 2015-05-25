@@ -1,10 +1,18 @@
-sv-profile-title(header-title="{{sectionName}}")
-div(layout='column')
-    div(ng-repeat='n in newsList|sectionNews:sectionName')
-        a(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
-            .list-row__primary
-                img.img-round.mdc-img-bw(ng-src='{{n.img}}', width='40', height='40')
-            .list-row__content
-                span.display-block {{n.title | length:25}}
-                span.display-block.fs-body-1.tc-black-2 {{n.body | length:50}}
-    sv-custom-paper-head-ad
+div(layout-gt-sm='row' layout-align="top" style='width:100hv;max-width:100hv')
+    div(flex-gt-sm='66')
+        sv-profile-title(header-title="{{sectionName}}")
+        sv-section-articles-list
+    div(flex-gt-sm='33')
+        sv-article-thumb-title(class="ml mb+" section-title="popular")
+        sv-article-thumb-title(class="ml mb+" section-title="blog")
+        sv-article-thumb-title(class="ml mb+" section-title="only-on-svet")
+        sv-article-thumb-title(class="ml mb+" section-title="digest")
+        sv-article-thumb-title(class="ml mb+" section-title="personality")
+        sv-article-thumb-title(class="ml mb+" section-title="history")
+        sv-article-thumb-title(class="ml mb+" section-title="gargantua-recipes")
+        sv-article-thumb-title(class="ml mb+" section-title="useful-tips")
+        sv-article-thumb-title(class="ml mb+" section-title="opinion")
+        sv-article-thumb-title(class="ml mb+" section-title="recommended")
+//footer advertisement
+sv-custom-paper-head-ad
+

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('common')
-        .directive('svNavLink', function ($rootScope, $mdSidenav) {
+        .directive('svNavLink', function ($mdSidenav) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-nav-link.html',

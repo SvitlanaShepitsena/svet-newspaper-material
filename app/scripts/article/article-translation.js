@@ -5,6 +5,18 @@
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
                 // 'eng':'eng'
+                'svetRecommends': 'Svet Recommends',
+                'recommended': 'Recommended',
+                'society': 'Society',
+                'digest': 'Digest',
+                'useful-tips': 'Useful Tips',
+                'history': 'History',
+                'life-styles': 'Lifestyles',
+                'only-on-svet': 'Only on Svet',
+                'personality': 'Personality',
+                'gargantua-recipes': 'Gargantua Recipes',
+                'opinion': 'Opinion',
+                'popular': 'Popular',
                 'new-article': 'New Article',
                 'new-blog-post': 'New Blog Post',
                 'news-articles': 'News Articles',
@@ -37,6 +49,18 @@
             });
             $translateProvider.translations('ru', {
                 // 'ru':'ru'
+                'svetRecommends': 'Свет Рекомендует',
+                'recommended': 'Рекомендуемое',
+                'only-on-svet': 'Эксклюзив',
+                'history': 'История',
+                'life-styles': 'Стиль Жизни',
+                'personality': 'Персона',
+                'digest': 'Кратко',
+                'society': 'Общество',
+                'useful-tips': 'Полезные Советы',
+                'gargantua-recipes': 'Уголок Гаргантюа',
+                'opinion': 'Мнение',
+                'popular': 'Популярное',
                 'new-article': 'Новая Статья',
                 'new-blog-post': 'Новый блог пост',
                 'news-articles': 'Новости',
