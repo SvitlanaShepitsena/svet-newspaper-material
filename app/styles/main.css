@@ -80,6 +80,12 @@
   border-right-width: 1px;
   padding-right: 8px;
 }
+.secondNewsMargin:nth-child(odd) {
+  padding-right: 8px;
+}
+.secondNewsMargin:nth-child(even) {
+  padding-left: 8px !important;
+}
 .search-filter__cancel,
 .search-filter__label {
   color: #757575 !important;

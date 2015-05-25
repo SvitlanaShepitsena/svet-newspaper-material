@@ -1,10 +1,9 @@
-.card.m.p
-    div(layout='row' layout-align='space-between center')
+.card.pb
+    div.p(layout='row' layout-align='space-between center')
         span.fs-caption.display-block(style='font-weight:300;text-decoration:underline') {{oneNews.topic|uppercase}}
         sv-svet-label(section-title="{{oneNews.section}}" route-name='app.section' params="params"  text-decoration="none"  cursor-type="pointer" )
-    a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:oneNews.fbkey})')
-        span.display-block.fs-subhead {{oneNews.title | length:55}}
-    .tc-grey-800
+    .pl.pr
+        a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:oneNews.fbkey})')
+            span.display-block.fs-subhead {{oneNews.title | length:55}}
         span.fs-caption.tc-grey-500 By {{oneNews.author|uppercase}}
-    .tc-grey-800.display-block(ui-sref='app.article({id:oneNews.fbkey})')
-        span.fs-body-1(ng-bind-html='oneNews.summary|length:100')
+        span.display-block.tc-grey-800.fs-body-1(ng-bind-html='oneNews.summary|length:100')
