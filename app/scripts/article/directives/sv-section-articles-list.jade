@@ -1,0 +1,14 @@
+ul.list-unstyled.mr(layout='column')
+    li(class="mb+++" ng-repeat='n in newsList|sectionNews:sectionName')
+        div(layout="row")
+            .mr(style='float:left')
+                a(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
+                    sv-image-thumb(img-container-width="70px" img-container-height="70px" img='{{n.img}}' img-height="120%")
+            div
+                a.tc-grey-800(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
+                    span.display-block.fs-subhead(ng-bind-html='n.title')
+                span.fs-caption By &nbsp
+                span.fs-caption.tc-grey-500(ng-bind-html='n.author|capitalize')
+                span.display-block.fs-body-1.tc-black-2(ng-bind-html='n.body | length:100')
+        md-divider(class='mb mt')
+        sv-article-public-statistics(class='mt ml')
