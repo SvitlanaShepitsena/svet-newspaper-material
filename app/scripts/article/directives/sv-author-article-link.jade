@@ -12,7 +12,7 @@ div.card(class='mb+')
                 span.display-block(ng-bind-html='article.title|length:25')
                 span.display-block.fs-body-1.tc-black-2(ng-bind-html='article.body|length:50')
         div.mb.pl.pr.pt
-            sv-lumx-button.mr.ml(btn-size="s" btn-color="white" text-color="grey-600" btn-type="raised" btn-title="share" icon-type="mdi" icon-name="mdi-share-variant" method-click='editCl({cl:cl})')
+            //sv-lumx-button.mr.ml(btn-size="s" btn-color="white" text-color="grey-600" btn-type="raised" btn-title="share" icon-type="mdi" icon-name="mdi-share-variant" method-click='editCl({cl:cl})')
             sv-edit-article-btn(article='article')
             sv-delete-article-btn(article-key='{{article.fbkey}}')
     .bgc-grey-100.p(layout='row' layout-align="space-between center")
