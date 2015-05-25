@@ -1,14 +1,19 @@
 <md-dialog>
-   <h3>New Event</h3>
-    <md-content>
-    <sv-new-afisha-event-form></sv-new-afisha-event-form>
-    </md-content>
-        <div class="md-actions" layout="row">
-            <md-button ng-click="createAfishaEvent()" class="md-primary">
+    <div class='p pt+'>
+        <span class='ml fs-headline'>{{'new-event'|translate}}</span>
+        <md-divider class='mb mt'></md-divider>
+        <md-content>
+            <sv-new-afisha-event-form></sv-new-afisha-event-form>
+        </md-content>
+        <div class="md-actions" layout="row" layout-align="center">
+            <button ng-click="createAfishaEvent()" class="btn btn--s btn--raised btn--black bgc-grey-600 mr">
+                <i class="mdi mdi-plus"></i>
                 Add
-            </md-button>
-            <md-button ng-click="hide()" class="md-primary">
+            </button>
+            <button ng-click="hide()" class="btn btn--s btn--raised btn--white">
+                <i class="mdi mdi-close"></i>
                 Cancel
-            </md-button>
+            </button>
         </div>
+    </div>
 </md-dialog>
