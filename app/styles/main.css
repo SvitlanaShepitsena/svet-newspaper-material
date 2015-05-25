@@ -80,11 +80,6 @@
   border-right-width: 1px;
   padding-right: 8px;
 }
-img {
-  -ms-filter: grayscale(1) !important;
-  -webkit-filter: grayscale(1) !important;
-  filter: grayscale(1) !important;
-}
 .secondNewsMargin:nth-child(odd) {
   padding-right: 8px;
 }
