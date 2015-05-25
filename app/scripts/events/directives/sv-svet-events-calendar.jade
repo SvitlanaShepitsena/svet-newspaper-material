@@ -1,6 +1,8 @@
 div
+    div
+        button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarYear()') Year view
+        button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarMonth()') Monthly view
     mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay', on-event-click='eventClicked(calendarEvent)',
-    edit-event-html='"<i class=\'glyphicon glyphicon-pencil\'></i>"',
     delete-event-html='"<i class=\'glyphicon glyphicon-remove\'></i>"',
     on-edit-event-click='eventEdited(calendarEvent)',
     on-timespan-click='newEvent(calendarDate)',

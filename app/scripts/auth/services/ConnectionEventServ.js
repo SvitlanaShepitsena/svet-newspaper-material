@@ -50,6 +50,14 @@
                         })
                     });
                 },
+                removePublicWithKey: function (key) {
+                    return $q(function (resolve, reject) {
+                        var publicEvt = $firebaseObject(new Firebase(eventsPublicUrl + key));
+                        publicEvt.$remove().then(function () {
+                            resolve();
+                        });
+                    });
+                },
                 allCorporate: function () {
                     var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
                     return eventsArray;
