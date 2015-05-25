@@ -8,9 +8,17 @@
         .constant('userAuth', {})
         .constant('lastEditorPost', {})
         .constant('svetNews', {})
+        .constant('svetEventsConst', {})
+
+
+
         .constant('svetPost', {})
         .constant('classified', {})
+        .constant('dt', {})
         .constant('classifiedInterval', 63000)
+
+
+
         .service('urlUsers', function (url) {
             this.url = url + '/user-management/users/';
         })

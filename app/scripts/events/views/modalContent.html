@@ -1,12 +1,13 @@
 <md-dialog>
+   <h3>New Event</h3>
     <md-content>
-    <sv-new-event-form></sv-new-event-form>
+    <sv-new-afisha-event-form></sv-new-afisha-event-form>
     </md-content>
         <div class="md-actions" layout="row">
-            <md-button ng-click="answer('not useful')" class="md-primary">
+            <md-button ng-click="createAfishaEvent()" class="md-primary">
                 Add
             </md-button>
-            <md-button ng-click="answer('useful')" class="md-primary">
+            <md-button ng-click="hide()" class="md-primary">
                 Cancel
             </md-button>
         </div>
