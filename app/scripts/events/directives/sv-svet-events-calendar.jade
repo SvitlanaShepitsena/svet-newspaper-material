@@ -1,14 +1,14 @@
 div
-    .mb(layout='row' layout-align='space-between center')
+    div(layout='row' layout-align='space-between center' class='mb++')
         div
             button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarYear()') Year view
             button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarMonth()') Monthly view
         button.btn.btn--xs.btn--red.btn--raised.bgc-red-300(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='newEvent()')
             i.mdi.mdi-plus
             | Add New Event
-
-    mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay',
-    on-event-click='eventClicked($event,calendarEvent)',
-    delete-event-html='"<i class=\'glyphicon glyphicon-remove\'></i>"',
-    on-edit-event-click='eventEdited(calendarEvent)',
-    on-delete-event-click='eventDeleted(calendarEvent)', auto-open='true', day-view-start='06:00', day-view-end='22:00', day-view-split='30')
+    div(class='mb+')
+        mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay',
+        on-event-click='eventClicked($event,calendarEvent)',
+        delete-event-html='"<i class=\'glyphicon glyphicon-remove\'></i>"',
+        on-edit-event-click='eventEdited(calendarEvent)',
+        on-delete-event-click='eventDeleted(calendarEvent)', auto-open='true', day-view-start='06:00', day-view-end='22:00', day-view-split='30')
