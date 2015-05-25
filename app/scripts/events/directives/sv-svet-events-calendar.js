@@ -16,9 +16,7 @@
                         $scope.calendarDay = new Date();
                         $scope.events = svetEventsConst.evts;
                         $scope.eventClicked = function (domEvt, event) {
-                            var eventInfo = "Event:" + event.title+"</br>";
-                            eventInfo += "Address:" + event.address;
-                            showModal(eventInfo);
+                            showModal(event);
                         };
                         $scope.eventEdited = function (event) {
                             showModal('Edited', event);
@@ -60,6 +58,7 @@
                         }
                         function DialogControllerInfo($scope, $mdDialog, dt) {
                             $scope.event = dt.vm;
+
                             $scope.hide = function () {
                                 $mdDialog.hide();
                             };

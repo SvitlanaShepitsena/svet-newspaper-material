@@ -1,14 +1,25 @@
 <md-dialog>
-   <h3>{{event.title}}</h3>
+    <h3>{{event.title}}</h3>
     <md-content>
+        <br/>
+        <br/>
+        <div>
+            <span><b> Address:</b> </span>
+            <span>{{event.address}} </span>
+        </div>
+        <div>
+            <span><b> Starts At:</b> </span>
+            <span>{{event.startsAt|date:"short"}} </span>
+        </div>
+        <div>
+            <span><b> Ends At:</b> </span>
+            <span>{{event.endsAt|date:"short"}} </span>
+        </div>
 
     </md-content>
-        <div class="md-actions" layout="row">
-            <md-button ng-click="createAfishaEvent()" class="md-primary">
-                Add
-            </md-button>
-            <md-button ng-click="hide()" class="md-primary">
-                Cancel
-            </md-button>
-        </div>
+    <div class="md-actions" layout="row">
+        <md-button ng-click="hide()" class="md-primary">
+            Ok
+        </md-button>
+    </div>
 </md-dialog>
