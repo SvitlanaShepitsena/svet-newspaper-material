@@ -30,16 +30,20 @@
             function day(currentDay) {
                 return moment(currentDay).format(calendarConfig.titleFormats.day);
             }
+
             function week(currentDay) {
                 var weekTitleLabel = calendarConfig.titleFormats.week;
                 return weekTitleLabel.replace('{week}', moment(currentDay).week()).replace('{year}', moment(currentDay).format('YYYY'));
             }
+
             function month(currentDay) {
                 return moment(currentDay).format(calendarConfig.titleFormats.month);
             }
+
             function year(currentDay) {
                 return moment(currentDay).format(calendarConfig.titleFormats.year);
             }
+
             return {
                 day: day,
                 week: week,
@@ -60,6 +64,7 @@
                 periodEnd = moment(periodEnd);
                 return eventStart.isAfter(periodStart) && eventStart.isBefore(periodEnd) || eventEnd.isAfter(periodStart) && eventEnd.isBefore(periodEnd) || eventStart.isBefore(periodStart) && eventEnd.isAfter(periodEnd) || eventStart.isSame(periodStart) || eventEnd.isSame(periodEnd);
             }
+
             function getEventsInPeriod(calendarDate, period, allEvents) {
                 var startPeriod = moment(calendarDate).startOf(period);
                 var endPeriod = moment(calendarDate).endOf(period);
@@ -67,11 +72,13 @@
                     return eventIsInPeriod(event.startsAt, event.endsAt, startPeriod, endPeriod);
                 });
             }
+
             function getBadgeTotal(events) {
                 return events.filter(function (event) {
                     return event.incrementsBadgeTotal !== false;
                 }).length;
             }
+
             function getWeekDayNames() {
                 var weekdays = [];
                 var count = 0;
@@ -80,11 +87,13 @@
                 }
                 return weekdays;
             }
+
             function filterEventsInPeriod(events, startPeriod, endPeriod) {
                 return events.filter(function (event) {
                     return eventIsInPeriod(event.startsAt, event.endsAt, startPeriod, endPeriod);
                 });
             }
+
             function getYearView(events, currentDay) {
                 var view = [];
                 var eventsInPeriod = getEventsInPeriod(currentDay, 'year', events);
@@ -106,6 +115,7 @@
                 }
                 return view;
             }
+
             function getMonthView(events, currentDay) {
                 var eventsInPeriod = getEventsInPeriod(currentDay, 'month', events);
                 var startOfMonth = moment(currentDay).startOf('month');
@@ -137,6 +147,7 @@
                 }
                 return view;
             }
+
             function getWeekView(events, currentDay) {
                 var startOfWeek = moment(currentDay).startOf('week');
                 var endOfWeek = moment(currentDay).endOf('week');
@@ -185,6 +196,7 @@
                     events: eventsSorted
                 };
             }
+
             function getDayView(events, currentDay, dayStartHour, dayEndHour, hourHeight) {
                 var calendarStart = moment(currentDay).startOf('day').add(dayStartHour, 'hours');
                 var calendarEnd = moment(currentDay).startOf('day').add(dayEndHour, 'hours');
@@ -236,6 +248,7 @@
                     return event;
                 });
             }
+
             return {
                 getWeekDayNames: getWeekDayNames,
                 getYearView: getYearView,
@@ -267,6 +280,7 @@
                     }
                 };
             }
+
             return debounce;
         }
     ]);
@@ -374,6 +388,7 @@
                         }
                         $scope.$apply();
                     }
+
                     $element.bind('click', onClick);
                     $scope.$on('$destroy', function () {
                         $element.unbind('click', onClick);
@@ -467,7 +482,7 @@
                     });
                     vm.monthClicked = function (month, monthClickedFirstRun) {
                         if (!monthClickedFirstRun) {
-                            $scope.onTimespanClick({ calendarDate: month.date.toDate() });
+                            $scope.onTimespanClick({calendarDate: month.date.toDate()});
                         }
                         vm.view.forEach(function (yearMonth) {
                             if (yearMonth !== month) {
@@ -619,7 +634,7 @@
                     });
                     vm.dayClicked = function (day, dayClickedFirstRun) {
                         if (!dayClickedFirstRun) {
-                            $scope.onTimespanClick({ calendarDate: day.date.toDate() });
+                            $scope.onTimespanClick({calendarDate: day.date.toDate()});
                         }
                         vm.view.forEach(function (monthDay) {
                             if (monthDay !== day) {
@@ -690,10 +705,11 @@
                         vm.hours = [];
                         var dayCounter = moment(dayViewStart);
                         for (var i = 0; i <= dayViewEnd.diff(dayViewStart, 'hours'); i++) {
-                            vm.hours.push({ label: dayCounter.format(calendarConfig.dateFormats.hour) });
+                            vm.hours.push({label: dayCounter.format(calendarConfig.dateFormats.hour)});
                             dayCounter.add(1, 'hour');
                         }
                     }
+
                     var originalLocale = moment.locale();
                     $scope.$on('calendar.refreshView', function () {
                         if (originalLocale !== moment.locale()) {

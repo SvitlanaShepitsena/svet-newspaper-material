@@ -33,8 +33,18 @@ form.m(name='eventForm' novalidate ng-submit='createNewEvent()')
         div(ng-messages='eventForm.address.$error && (eventForm.address.$touched || eventForm.$submitted)')
             div(ng-message='required') This is required.
     md-input-container
+        label Location
+        input(type='text' required='' name='address' ng-model='event.location')
+        //div(ng-messages='eventForm.location.$error && (eventForm.location.$touched || eventForm.$submitted)')
+        //    div(ng-message='required') This is required.
+    md-input-container
+        label About Event
+        //input(type='text' required='' name='address' ng-model='event.about')
+        //div(ng-messages='eventForm.about.$error && (eventForm.about.$touched || eventForm.$submitted)')
+        //    div(ng-message='required') This is required.
+    md-input-container
         label Admission (Optional)
-        input(type='text'  name='admission' ng-model='event.admission')
+        //input(type='text'  name='admission' ng-model='event.admission')
     md-input-container
         label Age Range (Optional)
         input(type='text' name='age' ng-model='event.age')

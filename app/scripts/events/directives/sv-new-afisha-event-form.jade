@@ -22,6 +22,16 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent()')
         input(type='text' required='' name='address' ng-model='event.address')
         div(ng-messages='eventForm.address.$error && (eventForm.address.$touched || eventForm.$submitted)')
             div(ng-message='required') This is required.
+    md-input-container
+        label Location
+        input(type='text' required='' name='address' ng-model='event.location')
+        div(ng-messages='eventForm.location.$error && (eventForm.location.$touched || eventForm.$submitted)')
+            div(ng-message='required') This is required.
+    md-input-container
+        label About Event
+        input(type='text' required='' name='address' ng-model='event.about')
+        div(ng-messages='eventForm.about.$error && (eventForm.about.$touched || eventForm.$submitted)')
+            div(ng-message='required') This is required.
     div(layout='column' class='mb+')
         span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
         //img(ng-src="{{article.img}}")

@@ -80,6 +80,53 @@
   border-right-width: 1px;
   padding-right: 8px;
 }
+.cal-day-today span[data-cal-date] {
+  color: #393939;
+}
+.cal-day-today span[data-cal-date]:hover,
+.cal-day-today span[data-cal-date]:active,
+.cal-day-today span[data-cal-date]:focus {
+  color: #212121;
+}
+.cal-day-today {
+  background-color: #eee;
+}
+.cal-event-list .event.pull-left {
+  margin-top: 0px !important;
+}
+.event-item-delete {
+  text-align: right !important;
+  display: inline-block !important;
+  color: #757575;
+}
+.badge-important {
+  background-color: #757575 !important;
+  color: #f5f5f5 !important;
+  font-weight: 500 !important;
+}
+.cal-slide-content {
+  padding: 32px 16px 16px;
+  color: #424242 !important;
+  background-color: #fafafa !important;
+  -webkit-box-shadow: inset 0px 0px 15px 0px #eee;
+  -webkit-box-shadow: inset 0px 0px 15px 0px #eee;
+  box-shadow: inset 0px 0px 15px 0px #eee;
+}
+.cal-slide-content a.event-item {
+  color: #757575 !important;
+  font-weight: 500;
+}
+.cal-slide-box {
+  border-bottom: 1px solid #e0e0e0;
+}
+.cal-day-tick {
+  color: #757575;
+}
+.cal-slide-content ul li,
+.cal-event-list ul li {
+  display: block;
+  margin-bottom: 4px !important;
+}
 .secondNewsMargin:nth-child(odd) {
   padding-right: 8px;
 }
@@ -342,11 +389,11 @@ body {
   text-decoration: none !important;
   display: inline-block;
 }
-.sv-link,
-cursor pointer {
-  text-decoration: none !important;
-  display: inline-block;
+.sv-link {
+  cursor: pointer;
 }
+text-decoration none !important,
+display inline-block,
 .mdc-img-sepia {
   -webkit-filter: sepia(1);
   filter: sepia(1);
@@ -356,8 +403,9 @@ cursor pointer {
   -webkit-filter: grayscale(1) !important;
   filter: grayscale(1) !important;
 }
-.sv-mr,
-margin-right 8px !important,
+.sv-mr {
+  margin-right: 8px !important;
+}
 .fw-700 {
   font-weight: 700px !important;
 }
