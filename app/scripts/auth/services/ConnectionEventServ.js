@@ -84,10 +84,21 @@
                 savePublicEvent: function (event) {
                     event = formatEvent(event);
                     return $q(function (resolve, reject) {
-                        var eventsArray = $firebaseArray(new Firebase(eventsPublicUrl));
-                        eventsArray.$add(event).then(function (uid) {
-                            resolve();
-                        });
+                        if (event.$id) {
+                            var eventObj = $firebaseObject(new Firebase(eventsPublicUrl+event.$id));
+                            eventObj.$loaded().then(function () {
+                                _.extend(eventObj,event);
+                                eventObj.$save().then(function () {
+                                    resolve();
+                                });
+                            })
+
+                        } else {
+                            var eventsArray = $firebaseArray(new Firebase(eventsPublicUrl));
+                            eventsArray.$add(event).then(function (uid) {
+                                resolve();
+                            });
+                        }
                     });
                 },
                 addCustomerToEvent: function (event, user) {

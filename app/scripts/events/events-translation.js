@@ -5,6 +5,7 @@
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
                 'events': 'Events',
+                'save-changes': 'Save Changes',
                 'event-type': 'Event Type',
                 'activity-events': 'Activity and Events',
                 'purchase-tickets': 'Purchase Tickets',
@@ -31,6 +32,7 @@
                 'rejected': 'Rejected'
             });
             $translateProvider.translations('ru', {
+                'save-changes': 'Сохранить Изменения',
                 'events': 'Мероприятия',
                 'event-type': 'Тип Мероприятия',
                 'activity-events': 'События и Мероприятия',

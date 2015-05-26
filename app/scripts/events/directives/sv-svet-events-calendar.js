@@ -1,10 +1,12 @@
 (function () {
     'use strict';
     angular.module('events')
-        .directive('svSvetEventsCalendar', function ($mdDialog, dt, ConnectionEventServ, svetEventsConst, toastr) {
+        .directive('svSvetEventsCalendar', function ($mdDialog, dt, ConnectionEventServ, svetEventsConst, toastr, userAuth) {
             return {
                 templateUrl: 'scripts/events/directives/sv-svet-events-calendar.html',
                 link: function ($scope, el, attrs) {
+                    $scope.user = userAuth.profile;
+
                     $scope.calendarYear = function () {
                         $scope.calendarView = 'year';
                     };
@@ -19,7 +21,8 @@
                             showModal(event);
                         };
                         $scope.eventEdited = function (event) {
-                            dt.event=event;
+                            dt.event = event;
+                            dt.editState = true;
                             $mdDialog.show({
                                 controller: DialogController,
                                 templateUrl: 'scripts/events/views/modalContent.html',
@@ -50,6 +53,8 @@
 
                         function DialogController($scope, $mdDialog, dt) {
                             $scope.clickedDate = dt.clickedDate;
+                            $scope.event = dt.event;
+                            $scope.editState = dt.editState;
                             $scope.hide = function () {
                                 $mdDialog.hide();
                             };

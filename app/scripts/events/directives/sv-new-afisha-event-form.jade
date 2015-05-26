@@ -53,5 +53,7 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent()' flow-in
             div(ng-message='required') This is required.
     div(layout='column' class='mb+')
         span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
+        div(ng-if='event.editState')
+            img(ng-src='{{event.img}}')
         sv-image-upload
 

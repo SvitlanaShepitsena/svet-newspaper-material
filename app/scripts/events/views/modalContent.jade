@@ -5,8 +5,8 @@ md-dialog(style='min-width:80%;min-height: auto')
         sv-new-afisha-event-form
         .md-actions
             button.btn.btn--s.btn--raised.btn--black.bgc-grey-600.mr(ng-click='createAfishaEvent()')
-                i.mdi.mdi-plus &nbsp
-                | {{'add'|translate}}
+                i.mdi.mdi-plus(ng-if='!event.$id') &nbsp {{'add'|translate}}
+                i.mdi.mdi-plus(ng-if='event.$id') &nbsp {{'save-changes'|translate}}
             button.btn.btn--s.btn--raised.btn--white(ng-click='hide()')
                 i.mdi.mdi-close &nbsp
                 | {{'cancel'|translate}}

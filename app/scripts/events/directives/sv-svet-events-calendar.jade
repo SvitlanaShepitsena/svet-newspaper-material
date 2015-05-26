@@ -3,7 +3,7 @@ div
         div
             button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarYear()') Year view
             button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarMonth()') Monthly view
-        button.btn.btn--xs.btn--red.btn--raised.bgc-red-300(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='newEvent()')
+        button.btn.btn--xs.btn--red.btn--raised.bgc-red-300(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='newEvent()' ng-if='user.isManager()')
             i.mdi.mdi-plus &nbsp
             | {{'create-event'|translate}}
     div(class='mb+')
