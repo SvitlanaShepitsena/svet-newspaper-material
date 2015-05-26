@@ -19,7 +19,12 @@
                             var fileReader = new FileReader();
                             fileReader.readAsDataURL(file.file);
                             fileReader.onload = function (event) {
-                                $scope.article.img = event.target.result;
+                                if ($scope.article) {
+                                    $scope.article.img = event.target.result;
+                                }
+                                if ($scope.event) {
+                                    $scope.event.img = event.target.result;
+                                }
                             };
                         });
                     }

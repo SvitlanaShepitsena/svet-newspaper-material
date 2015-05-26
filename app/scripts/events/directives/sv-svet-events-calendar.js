@@ -19,7 +19,11 @@
                             showModal(event);
                         };
                         $scope.eventEdited = function (event) {
-                            showModal('Edited', event);
+                            dt.event=event;
+                            $mdDialog.show({
+                                controller: DialogController,
+                                templateUrl: 'scripts/events/views/modalContent.html',
+                            });
                         };
                         $scope.eventDeleted = function (event) {
                             ConnectionEventServ.removePublicWithKey(event.$id).then(function () {

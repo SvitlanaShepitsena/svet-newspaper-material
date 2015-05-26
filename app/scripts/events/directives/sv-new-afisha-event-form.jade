@@ -1,39 +1,57 @@
-form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent()')
+form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent()' flow-init)
+    md-input-container(style='padding-bottom:16px')
+        span.display-block.fs-body-2(style='font-size:12.96px;color:rgba(0, 0, 0, 0.258824);font-weight:bold') Event Type
+        md-radio-group(layout="row" ng-model='event.type')
+            md-radio-button(value='public') Svet Public Event
+            md-radio-button(value='connection') Svet Media Group Connection Event
+            md-radio-button(value='community') Chicago Community Event
     md-input-container
         label Title
         input(required='', name='title', ng-model='event.title')
         div(ng-messages='eventForm.title.$error && (eventForm.title.$touched || eventForm.$submitted)')
             div(ng-message='required') This is required.
-    md-input-container
-        label Date
-        input(type='date' required='' name='eventDate' ng-model='event.date')
-        div(ng-messages='eventForm.eventDate.$error && (eventForm.eventDate.$touched || eventForm.$submitted)')
-            div(ng-message='required') This is required.
-    md-input-container
-        label Start Time
-        input(type='time' required='' name='startTime' ng-model='event.startsAt')
-        div(ng-messages='eventForm.startTime.$error && (eventForm.startTime.$touched || eventForm.$submitted)')
-            div(ng-message='required') This is required.
-    md-input-container
-        label End Time (Optional)
-        input(type='time' name='endTime' ng-model='event.endsAt')
-    md-input-container
-        label Address
-        input(type='text' required='' name='address' ng-model='event.address')
-        div(ng-messages='eventForm.address.$error && (eventForm.address.$touched || eventForm.$submitted)')
-            div(ng-message='required') This is required.
-    md-input-container
-        label Location
-        input(type='text' required='' name='address' ng-model='event.location')
-        div(ng-messages='eventForm.location.$error && (eventForm.location.$touched || eventForm.$submitted)')
-            div(ng-message='required') This is required.
+    div(layout='row')
+        md-input-container(flex)
+            label Date
+            input(type='date' required='' name='eventDate' ng-model='event.date')
+            div(ng-messages='eventForm.eventDate.$error && (eventForm.eventDate.$touched || eventForm.$submitted)')
+                div(ng-message='required') This is required.
+        md-input-container(flex)
+            label Start Time
+            input(type='time' required='' name='startTime' ng-model='event.startsAt')
+            div(ng-messages='eventForm.startTime.$error && (eventForm.startTime.$touched || eventForm.$submitted)')
+                div(ng-message='required') This is required.
+        md-input-container(flex)
+            label End Time (Optional)
+            input(type='time' name='endTime' ng-model='event.endsAt')
+    div(layout='row')
+        md-input-container(flex)
+            label Address
+            input(type='text' required='' name='address'
+            ng-model='event.address')
+            div(ng-messages='eventForm.address.$error && (eventForm.address.$touched || eventForm.$submitted)')
+                div(ng-message='required') This is required.
+        md-input-container(flex)
+            label Location
+            input(type='text' required='' name='location' ng-model='event.location')
+            div(ng-messages='eventForm.location.$error && (eventForm.location.$touched || eventForm.$submitted)')
+                div(ng-message='required') This is required.
+        md-input-container(flex)
+            label Location Web Site
+            input(type='text'  name='location' ng-model='event.locationWeb')
     md-input-container
         label About Event
-        input(type='text' required='' name='address' ng-model='event.about')
+        textarea.bgc-grey-100(type='text' name='about' required=''
+        rows='3'
+        ng-model='event.about')
         div(ng-messages='eventForm.about.$error && (eventForm.about.$touched || eventForm.$submitted)')
+            div(ng-message='required') This is required.
+    md-input-container
+        label {{'purchase-tickets'|translate}}
+        input(type='text' required='' name='tickets' ng-model='event.tickets')
+        div(ng-messages='eventForm.tickets.$error && (eventForm.tickets.$touched || eventForm.$submitted)')
             div(ng-message='required') This is required.
     div(layout='column' class='mb+')
         span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
-        //img(ng-src="{{article.img}}")
         sv-image-upload
 

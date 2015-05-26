@@ -1,4 +1,4 @@
-md-dialog(style='min-width:80%')
+md-dialog(style='min-width:80%;min-height: auto')
     md-dialog-content
         span.ml.fs-headline {{event.title}}
         md-divider.mb.mt
@@ -16,21 +16,19 @@ md-dialog(style='min-width:80%')
             span {{event.endsAt|date:"short"}}
 
         div(class='pl+' ui-sref='app.events.field({year:2014})'  style='display:block;float:right').cursor-pointer
-            img.mb(src="../img/events-posters/elena-vaenga-2015.jpg")
+            img.mb(ng-src="{{event.img}}")
         span.display-block.fs-display-1.mb {{event.title}}
         span.display-block.fs-title {{event.startsAt|date:"short"}}
-        a.tc-blue-grey-700.fs-subhead
+        a.tc-blue-grey-700.fs-subhead(href='{{event.locationWeb}}')
             | {{event.location}} Evanston Auditorium
         span.display-block.fs-body-2.tc-grey-700 {{event.address}}
         .mt.mb
-            a.btn.btn--m.btn--black.btn--raised.bgc-grey-600(href='http://www.ticketmaster.com/Elena-Vaenga-tickets/artist/1571574')
+            a.btn.btn--m.btn--black.btn--raised.bgc-grey-600(href='{{event.tickets}}')
                 i.fa.fa-ticket &nbsp
                 | {{'purchase-tickets'|translate}}
         div
             span.display-block.fs-title About Event:
-            p {{'event.about'}}
-            //p Ваенга Елена — исполнитель и автор своих песен.
-            //p В Елене восхищает и поражает все: глубокий и сильный голос, творческий диапазон ее песен, оригинальная манера их исполнения, эмоциональное напряжение, искренность и проникновенность текстов, в которых нет ничего лишнего. Все слова в текстах песен понятны и ясны. Поражает способность Елены Ваенги к перевоплощению и ее артистизм.
+            p {{event.about}}
 
     .md-actions
         md-button.md-primary(ng-click='hide()')
