@@ -37,7 +37,7 @@
                             });
                         }
                         function showModal(event) {
-                            dt.vm=event;
+                            dt.vm = event;
                             $mdDialog.show({
                                 controller: DialogControllerInfo,
                                 templateUrl: 'scripts/events/views/modalContentInfo.html',
@@ -56,9 +56,9 @@
                                 $mdDialog.hide(answer);
                             };
                         }
+
                         function DialogControllerInfo($scope, $mdDialog, dt) {
                             $scope.event = dt.vm;
-
                             $scope.hide = function () {
                                 $mdDialog.hide();
                             };

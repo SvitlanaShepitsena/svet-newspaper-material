@@ -1,0 +1,12 @@
+md-dialog(style='min-width:80%')
+    md-dialog-content
+        span.ml.fs-headline {{'new-event'|translate}}
+        md-divider.mb.mt
+        sv-new-afisha-event-form
+        .md-actions
+            button.btn.btn--s.btn--raised.btn--black.bgc-grey-600.mr(ng-click='createAfishaEvent()')
+                i.mdi.mdi-plus &nbsp
+                | {{'add'|translate}}
+            button.btn.btn--s.btn--raised.btn--white(ng-click='hide()')
+                i.mdi.mdi-close &nbsp
+                | {{'cancel'|translate}}

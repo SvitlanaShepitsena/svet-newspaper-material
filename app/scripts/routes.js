@@ -14,6 +14,16 @@
                     },
                     template: "<div ui-view=''></div>"
                 })
+                .state("app.home", {
+                    url: "/home",
+                    resolve: {
+                        svetNewsPromise: function (ArticlesServ) {
+                            return ArticlesServ.setHomeNewsLive();
+                        }
+                    },
+                    controller: "HomeCtrl as home",
+                    templateUrl: "scripts/sections/home/views/homeCtrl.html"
+                })
                 .state("app.sign-up", {
                     url: "/sign-up",
                     controller: "SignUpCtrl as signUp",
@@ -47,16 +57,6 @@
                             })
                         }
                     }
-                })
-                .state("app.home", {
-                    url: "/home",
-                    resolve: {
-                        svetNewsPromise: function (ArticlesServ) {
-                            return ArticlesServ.setHomeNewsLive();
-                        }
-                    },
-                    controller: "HomeCtrl as home",
-                    templateUrl: "scripts/sections/home/views/homeCtrl.html"
                 })
                 .state("app.y", {
                     url: "/y",

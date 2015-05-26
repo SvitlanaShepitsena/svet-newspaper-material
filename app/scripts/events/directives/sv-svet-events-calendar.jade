@@ -4,8 +4,8 @@ div
             button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarYear()') Year view
             button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarMonth()') Monthly view
         button.btn.btn--xs.btn--red.btn--raised.bgc-red-300(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='newEvent()')
-            i.mdi.mdi-plus
-            | Add New Event
+            i.mdi.mdi-plus &nbsp
+            | {{'create-event'|translate}}
     div(class='mb+')
         mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay',
         on-event-click='eventClicked($event,calendarEvent)',

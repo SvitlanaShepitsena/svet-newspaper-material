@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('AuthenticationServ', function (ProfileServ, $q, $firebaseAuth, url) {
+        .factory('AuthenticationServ', function ($q, url, $firebaseAuth, ProfileServ) {
             /*reference to Firebase App wrapped inside AngularFire object $FirebaseAuth*/
             var ref = new Firebase(url);
             var authObj = $firebaseAuth(ref);
