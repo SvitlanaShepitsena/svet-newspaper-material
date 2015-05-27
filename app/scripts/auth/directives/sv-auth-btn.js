@@ -1,12 +1,13 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svAuthBtn', function (AuthenticationServ, toastr, userAuth, AgentServ, $state, $mdMedia) {
+        .directive('svAuthBtn', function (userAuth, AuthenticationServ, AgentServ, $state, $mdMedia, toastr) {
             return {
                 templateUrl: 'scripts/auth/directives/sv-auth-btn.html',
                 replace: true,
                 link: function ($scope) {
                     $scope.isIe = AgentServ.isIe();
+
                     $scope.$watchCollection(function () {
                         return userAuth.profile;
                     }, function (newValue, oldValue) {
@@ -14,7 +15,6 @@
                             return;
                         }
                         $scope.user = newValue;
-
                     });
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('ProfileServ', function (ProfileLiveServ, UserUniqueServ, $q, url, users, $firebaseObject, $firebaseArray, $firebaseAuth) {
+        .factory('ProfileServ', function ($q, $firebaseObject, $firebaseArray, $firebaseAuth, url, users, ProfileLiveServ, UserUniqueServ) {
             /*users - Firebase users url from constants.js*/
             var ref = new Firebase(users);
             /*get array of users with AngularFire service $firebaseArray*/

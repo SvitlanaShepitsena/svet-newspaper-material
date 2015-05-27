@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .factory('ProfileLiveServ', function (ProfileExtentionServ, $q, url, users, $firebaseObject, $firebaseArray, userAuth) {
+        .factory('ProfileLiveServ', function ($q, url, users, $firebaseObject, ProfileExtentionServ, $firebaseArray, userAuth) {
             var ref = new Firebase(users);
             var unwatch;
             var userPublicProps = [

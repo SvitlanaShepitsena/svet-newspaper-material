@@ -13,10 +13,12 @@
                         var breakPoint = 1;
                         if (authData) {
                             // if user is  logged in get his local profile
+                            //console.log("Logged in User Status:", authData);
                             ProfileServ.getProfile(authData).then(function (profile) {
                                 resolve(profile);
                             })
                         } else {
+                            //console.log("User is not logged in:", authData);
                             // user is not logged in
                             resolve(null);
                         }
@@ -26,7 +28,7 @@
                 authWithProvider: function (provider) {
                     return $q(function (resolve, reject) {
                         authObj.$authWithOAuthPopup(provider, {scope: 'email'}).then(function (authData) {
-                            //console.log("Logged in as:", authData);
+                            //console.log("User is Authenticated as:", authData);
                             ProfileServ.getProfile(authData).then(function (profile) {
                                 resolve(profile);
                             }).catch(function (error) {
