@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('auth')
+    angular.module('events')
         .factory('ConnectionEventServ', function (NotificationsServ, $q, url, $firebaseArray, $firebaseObject, svetEventsConst) {
             var eventsCorporateUrl = url + '/events/corporate/';
             var eventsPublicUrl = url + '/events/public/';
@@ -85,14 +85,13 @@
                     event = formatEvent(event);
                     return $q(function (resolve, reject) {
                         if (event.$id) {
-                            var eventObj = $firebaseObject(new Firebase(eventsPublicUrl+event.$id));
+                            var eventObj = $firebaseObject(new Firebase(eventsPublicUrl + event.$id));
                             eventObj.$loaded().then(function () {
-                                _.extend(eventObj,event);
+                                _.extend(eventObj, event);
                                 eventObj.$save().then(function () {
                                     resolve();
                                 });
                             })
-
                         } else {
                             var eventsArray = $firebaseArray(new Firebase(eventsPublicUrl));
                             eventsArray.$add(event).then(function (uid) {
