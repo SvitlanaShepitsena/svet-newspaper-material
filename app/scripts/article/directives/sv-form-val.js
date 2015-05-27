@@ -9,17 +9,26 @@
                         var formName = ctrl.$name;
                         var inputs = el.find('input[required=""]');
                         var txtareas = el.find('textarea[required=""]');
-                        var radioGroups = el.find('md-radio-group');
-                        var formElements = _.union(inputs, txtareas, radioGroups);
+
+                        var formElements = _.union(inputs, txtareas);
                         angular.forEach(formElements, function (formElement) {
-                            var fullFormElement = formName + '.' + formElement.attr('name');
+                            attachMessages(formElement,formElement.name);
+                        });
+
+                        var radioGroup = el.find('md-radio-group');
+                        var radioGroupsName = radioGroup.attr('name');
+                        attachMessages(radioGroup,radioGroupsName);
+
+
+                        function attachMessages(formElement, elementName) {
+                            var fullFormElement = formName + '.' + elementName;
                             var fullFormElementError = fullFormElement + '.$error';
                             var messages = "<div ng-if='" + fullFormElement + ".$touched || " + formName + ".$submitted' ng-messages='" + fullFormElementError + "'>" +
                                 "<div ng-messages-include='scripts/common/templates/form-error-messages.html'></div>" +
                                 "</div>";
                             var messagesCompilled = $compile(messages)($scope);
                             angular.element(formElement).after(messagesCompilled);
-                        })
+                        }
                     }
                 }
             };
