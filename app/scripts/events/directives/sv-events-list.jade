@@ -3,15 +3,3 @@ div
         div.mb
             span.display-block.fs-body-2 {{e.title}}
             span.display-block.fs-caption {{e.startDate}}
-        lx-dropdown(position='left')
-            //span.fs-subhead
-            button.btn.btn--s.btn--white.btn--raised.tc-black-2(lx-ripple lx-dropdown-toggle)
-                i.mdi.mdi-account-check.mr
-                | {{e.customers.length+' '+ 'registered-users'|translate}}
-            lx-dropdown-menu
-                ul
-                    li(ng-repeat='customer in e.customers')
-                        a.dropdown-link
-                            img.img-round.mdc-display-inline-block.mr(ng-src="{{customer.avatar}}" style='width:20px;height:20px')
-                            span.display-inline-block.fs-body-2 {{customer.userName}}
-                    li.dropdown-divider
