@@ -8,8 +8,9 @@
                     return function ($scope, el, attrs, ctrl) {
                         var formName = ctrl.$name;
                         var inputs = el.find('input[required=""]');
+                        var txtareas = el.find('textarea[required=""]');
                         var radioGroups = el.find('md-radio-group');
-                        var formElements= _.union(inputs,radioGroups);
+                        var formElements= _.union(inputs, txtareas, radioGroups);
 
                         angular.forEach(formElements, function (formElement) {
                             var fullFormElement = formName + '.' + formElement.name;
