@@ -38,12 +38,12 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEventeventAfisha
                 div(ng-message='required') Please add an address to an event.
         md-input-container(flex)
             label Location
-            input(type='text' required='' name='location' ng-model='event.location')
+            input(type='text' required='' name='location' ng-model='event.location' )
             div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.location.$error')
                 div(ng-message='required') Please add a location to an event (For example: "Navy Pier").
         md-input-container(flex)
             label Location Web Site
-            input(type='text'  name='location' ng-model='event.locationWeb')
+            input(type='text'  name='locationWeb' ng-model='event.locationWeb')
     md-input-container
         label About Event
         textarea.bgc-grey-100(type='text' name='about' required=''
