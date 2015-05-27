@@ -1,25 +1,32 @@
-form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent()' flow-init)
+form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent(eventAfishaForm.$valid)' flow-init)
+    div
+        pre {{eventAfishaForm|json}}
     md-input-container(style='padding-bottom:16px')
         span.display-block.fs-body-2(style='font-size:12.96px;color:rgba(0, 0, 0, 0.258824);font-weight:bold') Event Type
-        md-radio-group(layout="row" ng-model='event.type')
+        md-radio-group(layout="row"
+        ng-model='event.type'
+        name="type"
+        required="")
             md-radio-button(value='public') Svet Public Event
             md-radio-button(value='connection') Svet Media Group Connection Event
             md-radio-button(value='community') Chicago Community Event
+        div(ng-if="eventAfishaForm.$submitted" ng-messages='eventAfishaForm.type.$error')
+            div(ng-message='required') Event type definition is required.
     md-input-container
         label Title
         input(required='', name='title', ng-model='event.title')
-        div(ng-messages='eventForm.title.$error && (eventForm.title.$touched || eventForm.$submitted)')
+        div(ng-messages='eventAfishaForm.title.$error && (eventAfishaForm.title.$touched || eventAfishaForm.$submitted)')
             div(ng-message='required') This is required.
     div(layout='row')
         md-input-container(flex)
             label Date
             input(type='date' required='' name='eventDate' ng-model='event.date')
-            div(ng-messages='eventForm.eventDate.$error && (eventForm.eventDate.$touched || eventForm.$submitted)')
+            div(ng-messages='eventAfishaForm.eventDate.$error && (eventAfishaForm.eventDate.$touched || eventAfishaForm.$submitted)')
                 div(ng-message='required') This is required.
         md-input-container(flex)
             label Start Time
             input(type='time' required='' name='startTime' ng-model='event.startsAt')
-            div(ng-messages='eventForm.startTime.$error && (eventForm.startTime.$touched || eventForm.$submitted)')
+            div(ng-messages='eventAfishaForm.startTime.$error && (eventAfishaForm.startTime.$touched || eventAfishaForm.$submitted)')
                 div(ng-message='required') This is required.
         md-input-container(flex)
             label End Time (Optional)
@@ -29,12 +36,12 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent()' flow-in
             label Address
             input(type='text' required='' name='address'
             ng-model='event.address')
-            div(ng-messages='eventForm.address.$error && (eventForm.address.$touched || eventForm.$submitted)')
+            div(ng-messages='eventAfishaForm.address.$error && (eventAfishaForm.address.$touched || eventAfishaForm.$submitted)')
                 div(ng-message='required') This is required.
         md-input-container(flex)
             label Location
             input(type='text' required='' name='location' ng-model='event.location')
-            div(ng-messages='eventForm.location.$error && (eventForm.location.$touched || eventForm.$submitted)')
+            div(ng-messages='eventAfishaForm.location.$error && (eventAfishaForm.location.$touched || eventAfishaForm.$submitted)')
                 div(ng-message='required') This is required.
         md-input-container(flex)
             label Location Web Site
@@ -44,16 +51,21 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEvent()' flow-in
         textarea.bgc-grey-100(type='text' name='about' required=''
         rows='3'
         ng-model='event.about')
-        div(ng-messages='eventForm.about.$error && (eventForm.about.$touched || eventForm.$submitted)')
+        div(ng-messages='eventAfishaForm.about.$error && (eventAfishaForm.about.$touched || eventAfishaForm.$submitted)')
             div(ng-message='required') This is required.
     md-input-container
         label {{'purchase-tickets'|translate}}
         input(type='text' required='' name='tickets' ng-model='event.tickets')
-        div(ng-messages='eventForm.tickets.$error && (eventForm.tickets.$touched || eventForm.$submitted)')
+        div(ng-messages='eventAfishaForm.tickets.$error && (eventAfishaForm.tickets.$touched || eventAfishaForm.$submitted)')
             div(ng-message='required') This is required.
     div(layout='column' class='mb+')
         span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
         div(ng-if='event.editState')
             img(ng-src='{{event.img}}')
         sv-image-upload
+
+    div(layout='column' class='mb+')
+        button.btn.btn--s.btn--raised.btn--black.bgc-grey-600.mr(type='submit')
+            i.mdi.mdi-plus(ng-if='!event.$id') &nbsp {{'add'|translate}}
+            i.mdi.mdi-plus(ng-if='event.$id') &nbsp {{'save-changes'|translate}}
 

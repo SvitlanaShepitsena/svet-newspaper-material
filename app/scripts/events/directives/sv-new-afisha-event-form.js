@@ -36,11 +36,13 @@
                             $scope.event.img = event.target.result;
                         };
                     });
-                    $scope.createAfishaEvent = function () {
-                        ConnectionEventServ.savePublicEvent($scope.event).then(function () {
-                            toastr.info('Thank you for event addition.');
-                            $scope.hide();
-                        });
+                    $scope.createAfishaEvent = function (formValid) {
+                        if (formValid) {
+                            ConnectionEventServ.savePublicEvent($scope.event).then(function () {
+                                toastr.info('Thank you for event addition.');
+                                $scope.hide();
+                            });
+                        }
                     };
                 }
             };
