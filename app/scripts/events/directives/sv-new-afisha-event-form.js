@@ -19,6 +19,9 @@
                             tickets: 'http://www.ticketmaster.com/'
                         };
                         $scope.event.date = $scope.clickedDate;
+                    } else {
+
+                        $scope.event.date = $scope.event.startsAt;
                     }
                     $scope.$watchCollection('$flow.files', function (images) {
                         if (!images) {
