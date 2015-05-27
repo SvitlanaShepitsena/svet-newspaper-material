@@ -1,19 +1,19 @@
 md-dialog(style='min-width:80%;min-height: auto')
     md-dialog-content
-        div(style='float:right')
+        div(layout='row' layout-align='space-between center')
+            span.display-block.fs-display-1.mb {{event.title}}
             button.btn.btn--m.btn--icon(ng-click='hide()')
                 i.mdi.mdi-close
         div(layout='row')
-            div(flex='50')
+            div()
                 .mb
-                    span.display-block.fs-display-1.mb {{event.title}}
                     span.display-block.fs-title {{event.startsAt|date:"short"}}
-                    a.tc-blue-grey-700.fs-subhead(href='{{event.locationWeb}}')
-                        | {{event.location}} Evanston Auditorium
+                    a.tc-blue-grey-700.fs-subhead(href='{{event.locationWeb}}' target='_blank')
+                        | {{event.location}}
                     span.display-block.fs-body-2.tc-grey-700 {{event.address}}
                 .mb(layout='row' layout-align='start center')
                     .mr
-                        a.btn.btn--m.btn--black.btn--raised.bgc-grey-600(href='{{event.tickets}}' target='_blank')
+                        a.btn.btn--m.btn--black.btn--raised.bgc-grey-600(href='{{event.tickets}}')
                             i.fa.fa-ticket &nbsp
                             | {{'purchase-tickets'|translate}}
                     div
@@ -33,6 +33,6 @@ md-dialog(style='min-width:80%;min-height: auto')
                     span.display-block.fs-title About Event:
                     p {{event.about}}
 
-            div
+            div(class='ml+')
                 img.mb(ng-src="{{event.img}}" style="max-width:500px")
 
