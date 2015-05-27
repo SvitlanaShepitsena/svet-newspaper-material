@@ -12,6 +12,7 @@
                 var startMoment = date.add({h: startHour, m: startMinutes});
                 event = _.omit(event, 'date', 'startsAt', 'endsAt');
                 event.startsAt = startMoment.format('x');
+
                 event.endsAt = startMoment.add(2, 'h').format('x');
                 return event;
             }
