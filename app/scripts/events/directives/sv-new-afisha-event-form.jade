@@ -11,19 +11,13 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEventeventAfisha
     md-input-container
         label Title
         input(required='', name='title', ng-model='event.title')
-        //div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.title.$error')
-        //    div(ng-message='required') Please add title to an event.
     div(layout='row')
         md-input-container(flex)
             label Date
             input(type='date' required='' name='eventDate' ng-model='event.date')
-            div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.eventDate.$error')
-                div(ng-message='required') Please add event date.
         md-input-container(flex)
             label Start Time
             input(type='time' required='' name='startTime' ng-model='event.startsAt')
-            div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.startTime.$error')
-                div(ng-message='required') Please add start time to an event.
         md-input-container(flex)
             label End Time (Optional)
             input(type='time' name='endTime' ng-model='event.endsAt')
@@ -32,13 +26,9 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEventeventAfisha
             label Address
             input(type='text' required='' name='address'
             ng-model='event.address')
-            div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.address.$error')
-                div(ng-message='required') Please add an address to an event.
         md-input-container(flex)
             label Location
             input(type='text' required='' name='location' ng-model='event.location' )
-            div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.location.$error')
-                div(ng-message='required') Please add a location to an event (For example: "Navy Pier").
         md-input-container(flex)
             label Location Web Site
             input(type='text'  name='locationWeb' ng-model='event.locationWeb')
@@ -47,13 +37,9 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEventeventAfisha
         textarea.bgc-grey-100(type='text' name='about' required=''
         rows='3'
         ng-model='event.about')
-        div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.about.$error')
-            div(ng-message='required') Please add a description of an event.
     md-input-container
         label {{'purchase-tickets'|translate}}
         input(type='text' required='' name='tickets' ng-model='event.tickets')
-        div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.tickets.$error')
-            div(ng-message='required') Please add information where to purchase tickets (For example: http://www.ticketmaster.com/)
     div(layout='column' class='mb+')
         span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
         div(ng-if='event.editState')
