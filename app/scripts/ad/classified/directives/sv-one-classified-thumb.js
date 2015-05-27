@@ -13,8 +13,6 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
-                    var stateCur=$state.current;
-                    console.log(stateCur);
 
 
                     $scope.user = userAuth.profile;
