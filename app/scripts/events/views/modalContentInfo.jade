@@ -16,7 +16,7 @@ md-dialog(style='min-width:80%;min-height: auto')
                         a.btn.btn--m.btn--black.btn--raised.bgc-grey-600(href='{{event.tickets}}')
                             i.fa.fa-ticket &nbsp
                             | {{'purchase-tickets'|translate}}
-                    div
+                    div(ng-if='event.type!=="community"')
                         lx-dropdown(position='left')
                             //span.fs-subhead
                             button.btn.btn--m.btn--teal.bgc-teal-300.btn--raised.tc-grey-50(lx-ripple lx-dropdown-toggle)
