@@ -38,11 +38,6 @@
                     controller: "AuthorDraftsCtrl as authorDrafts",
                     templateUrl: "scripts/auth/user/views/author-draftsCtrl.html"
                 })
-                .state("app.user.user-events", {
-                    url: "/events",
-                    controller: "UserEventsCtrl as userEvents",
-                    templateUrl: "scripts/events/views/user-eventsCtrl.html"
-                })
                 .state("app.user.profile-settings", {
                     url: "/profile-settings",
                     controller: "ProfileSettingsCtrl as profileSettings",

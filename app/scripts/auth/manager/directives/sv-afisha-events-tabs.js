@@ -1,10 +1,10 @@
 (function () {
     'use strict';
     angular.module('auth.manager')
-        .directive('svManagerEventsTabs', function () {
+        .directive('svAfishaEventsTabs', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/auth/manager/directives/sv-manager-events-tabs.html',
+                templateUrl: 'scripts/auth/manager/directives/sv-afisha-events-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
                     var tabs = [],

@@ -1,0 +1,18 @@
+div
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{'all-events'|translate}}
+            md-tab-body
+                sv-profile-subhead(subhead-title="all-events")
+                sv-events-list(event-filter="public")
+                sv-one-event-poster
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{'svet-public-events'|translate}}
+            md-tab-body
+                sv-profile-subhead(subhead-title="svet-public-events")
+                sv-events-list(event-filter="public")
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label {{'svet-network-events'|translate}}
+            md-tab-body
+                sv-profile-subhead(subhead-title="svet-network-events")
+                sv-events-list(event-filter="corporates")
