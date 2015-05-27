@@ -2,10 +2,11 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc3-master-7d0aeef
+ * v0.9.4-master-668fbe2
  */
-(function () {
+(function( window, angular, undefined ){
 "use strict";
+
 /**
  * @ngdoc module
  * @name material.components.swipe
@@ -69,4 +70,4 @@ function getDirective(name) {
 
 
 
-})();
+})(window, window.angular);
