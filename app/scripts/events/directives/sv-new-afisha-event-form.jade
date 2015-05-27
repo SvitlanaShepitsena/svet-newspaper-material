@@ -45,9 +45,11 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEventeventAfisha
         div(ng-if='event.editState')
             img(ng-src='{{event.img}}')
         sv-image-upload
-
-    div(layout='column' class='mb+')
+    div(class='mb+' layout="row" layout-align='end')
         button.btn.btn--s.btn--raised.btn--black.bgc-grey-600.mr(type='submit')
-            i.mdi.mdi-plus(ng-if='!event.$id') &nbsp {{'add'|translate}}
+            i.mdi.mdi-save(ng-if='!event.$id') &nbsp {{'save'|translate}}
             i.mdi.mdi-plus(ng-if='event.$id') &nbsp {{'save-changes'|translate}}
+        button.btn.btn--s.btn--raised.btn--white(ng-click='hide()')
+            i.mdi.mdi-close &nbsp
+            | {{'cancel'|translate}}
 
