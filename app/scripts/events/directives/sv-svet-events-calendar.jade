@@ -6,6 +6,7 @@ div
         button.btn.btn--xs.btn--red.btn--raised.bgc-red-300(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='newEvent()' ng-if='user.isManager()')
             i.mdi.mdi-plus &nbsp
             | {{'create-event'|translate}}
+
     div(class='mb+' ng-if='user.isManager()')
         mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay',
         on-event-click='eventClicked($event,calendarEvent)',
@@ -14,9 +15,4 @@ div
         on-edit-event-click='eventEdited(calendarEvent)',
         on-delete-event-click='eventDeleted(calendarEvent)', auto-open='true', day-view-start='06:00', day-view-end='22:00', day-view-split='30')
 
-    div(class='mb+' ng-if='!user.isManager()')
-        mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay',
-        on-event-click='eventClicked($event,calendarEvent)',
-        on-edit-event-click='eventEdited(calendarEvent)',
-        on-delete-event-click='eventDeleted(calendarEvent)', auto-open='true', day-view-start='06:00', day-view-end='22:00', day-view-split='30')
 

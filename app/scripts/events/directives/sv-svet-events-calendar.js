@@ -5,18 +5,27 @@
             return {
                 templateUrl: 'scripts/events/directives/sv-svet-events-calendar.html',
                 link: function ($scope, el, attrs) {
+                    $scope.svMonth='';
+                    $scope.$watch('svMonth', function (newValue, oldValue) {
+                        console.log(newValue);
+
+                    });
                     $scope.user = userAuth.profile;
 
                     $scope.calendarYear = function () {
                         $scope.calendarView = 'year';
                     };
+
                     $scope.calendarMonth = function () {
                         $scope.calendarView = 'month';
                     };
+
+                    $scope.calendarView = 'year';
+                    $scope.calendarDay = new Date();
+
                     ConnectionEventServ.setEventsLive().then(function () {
-                        $scope.calendarView = 'year';
-                        $scope.calendarDay = new Date();
                         $scope.events = svetEventsConst.evts;
+
                         $scope.eventClicked = function (domEvt, event) {
                             showModal(event);
                         };
@@ -38,6 +47,10 @@
                             var hours = now.hour();
                             var minutes = now.minute();
                             dt.clickedDate = calendarDate || now.subtract(hours, 'hours').subtract(minutes, 'minutes').toDate();
+
+                            dt.event = null;
+                            dt.editState = false;
+
                             $mdDialog.show({
                                 controller: DialogController,
                                 templateUrl: 'scripts/events/views/modalContent.html',
