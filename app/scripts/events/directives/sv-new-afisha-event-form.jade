@@ -1,4 +1,4 @@
-form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEventeventAfishaForm.$valid)' flow-init)
+form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEventeventAfishaForm.$valid)' flow-init sv-form-val)
     md-input-container(style='padding-bottom:16px')
         span.display-block.fs-body-2(style='font-size:12.96px;color:rgba(0, 0, 0, 0.258824);font-weight:bold') Event Type
         md-radio-group(layout="row"
@@ -8,13 +8,11 @@ form.m(name='eventAfishaForm' novalidate ng-submit='createAfishaEventeventAfisha
             md-radio-button(value='public') Svet Public Event
             md-radio-button(value='connection') Svet Media Group Connection Event
             md-radio-button(value='community') Chicago Community Event
-        div(ng-if="eventAfishaForm.$submitted" ng-messages='eventAfishaForm.type.$error')
-            div(ng-message='required') Event type definition is required.
     md-input-container
         label Title
         input(required='', name='title', ng-model='event.title')
-        div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.title.$error')
-            div(ng-message='required') Please add title to an event.
+        //div(ng-if="eventAfishaForm.$submitted"  ng-messages='eventAfishaForm.title.$error')
+        //    div(ng-message='required') Please add title to an event.
     div(layout='row')
         md-input-container(flex)
             label Date

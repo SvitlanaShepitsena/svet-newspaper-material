@@ -8,13 +8,17 @@
                     return function ($scope, el, attrs, ctrl) {
                         var formName = ctrl.$name;
                         var inputs = el.find('input[required=""]');
-                        angular.forEach(inputs, function (input) {
-                            var fullFormElement = formName + '.' + input.name;
+                        var radioGroups = el.find('md-radio-group');
+                        var formElements= _.union(inputs,radioGroups);
+
+                        angular.forEach(formElements, function (formElement) {
+                            var fullFormElement = formName + '.' + formElement.name;
                             var fullFormElementError = fullFormElement + '.$error';
-                            var messages = "<div ng-if='" + fullFormElement + ".$touched' ng-messages='" + fullFormElementError + "'>" + "<div ng-messages-include='scripts/common/templates/form-error-messages.html'></div>" +
+                            var messages = "<div ng-if='" + fullFormElement + ".$touched || "+formName+".$submitted' ng-messages='" + fullFormElementError + "'>" +
+                                "<div ng-messages-include='scripts/common/templates/form-error-messages.html'></div>" +
                                 "</div>";
                             var messagesCompilled = $compile(messages)($scope);
-                            angular.element(input).after(messagesCompilled);
+                            angular.element(formElement).after(messagesCompilled);
                         })
                     }
                 }
