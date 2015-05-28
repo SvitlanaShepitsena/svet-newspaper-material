@@ -49,7 +49,8 @@
                 .primaryPalette('grey')
                 .accentPalette('red');
         })
-        .config(function ($sceProvider) {
+        .config(function ($sceProvider,$translateProvider) {
+            $translateProvider.useSanitizeValueStrategy(null);
             $sceProvider.enabled(false);
         })
         // COMMENT ON PRODUCTION
