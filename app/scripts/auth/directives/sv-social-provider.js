@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svSocialProvider', function ($rootScope, $state) {
+        .directive('svSocialProvider', function (AuthenticationServ,$state) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-social-provider.html',
