@@ -8,6 +8,6 @@ div
             md-tab-label {{"classified"|translate}}
             md-tab-body
                 sv-user-classified-section
-    div(ng-if='!user.isCustomer()')
+    div(ng-show='!user.isCustomer()')
         sv-user-classified-section
 

@@ -23,6 +23,10 @@
                         }
                         $scope.addState = false;
                         $scope.editState = false;
+
+                        $scope.classifiedForm.$pristine=true;
+                        $scope.resetForm();
+                        $scope.populateForm();
                     };
                     $scope.postClassified = function (clCopy) {
                         if ($scope.classifiedForm.$invalid) {

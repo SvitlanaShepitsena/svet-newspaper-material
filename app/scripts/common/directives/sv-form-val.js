@@ -7,6 +7,7 @@
                 /*Require another directive and inject its controller as the fourth argument to the linking function
                  */
                 require: '?^form',
+                priority:100,
                 compile: function (elTemp, attr) {
                     /*find required form elements with JQuery*/
                     var inputs = elTemp.find('input[required]');
@@ -26,8 +27,6 @@
                     /*get element name with JQuery*/
                     var radioGroupName = radioGroup.attr('name');
                     /*for Angular Material md-select*/
-                    var mdSelects = elTemp.find('md-select[required]');
-                    var mdSelectsName = mdSelects.attr('ng-name');
 
                     return function ($scope, el, attr, ctrl) {
                         var formName = ctrl.$name;
@@ -37,8 +36,8 @@
                         angular.forEach(attachAfterElements, function (formElement, index) {
                             attachMessages(formElement, formElementsNames[index]);
                         });
+
                         attachMessages(radioGroup, radioGroupName);
-                        attachMessages(mdSelects, mdSelectsName);
                         /**/
                         function attachMessages(formElement, elementName) {
                             var appFormElement = formName + '.' + elementName;

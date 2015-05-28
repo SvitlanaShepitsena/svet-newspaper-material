@@ -5,7 +5,7 @@
     sv-profile-subhead(subhead-title="new-classified")
     md-divider
     br
-    form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy)')
+    form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy, classifiedForm.$valid)' sv-form-val)
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'contact-name'|translate}}
