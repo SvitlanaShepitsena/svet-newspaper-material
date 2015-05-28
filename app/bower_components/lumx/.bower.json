@@ -7,7 +7,7 @@
     "Framework"
   ],
   "homepage": "ui.lumapps.com",
-  "version": "0.3.31",
+  "version": "0.3.32",
   "authors": [
     "LumApps"
   ],
@@ -51,11 +51,11 @@
     "angular-route": "latest",
     "highlightjs": "latest"
   },
-  "_release": "0.3.31",
+  "_release": "0.3.32",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.31",
-    "commit": "e57a4cbf7415de8aa2c5f525ad7af0ff38f9aec8"
+    "tag": "v0.3.32",
+    "commit": "16ae44800ff8b6dd65388fd65ce309415661c5f4"
   },
   "_source": "git://github.com/lumapps/lumX.git",
   "_target": "~0.3.24",

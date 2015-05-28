@@ -5,11 +5,9 @@ var toPathname = require("../util").toPathname(__dirname);
 var toFileUrl = require("../util").toFileUrl(__dirname);
 var load = require("../util").load(__dirname +  "/html/");
 
-var level2 = require("../../lib/jsdom/level2/html").dom.level2.html;
-var getImplementation = function() {
-  var doc = new level2.HTMLDocument();
-  return doc.implementation;
-};
+function getImplementation() {
+  return jsdom.jsdom().implementation;
+}
 
 exports.tests = {
   /**
@@ -1459,154 +1457,6 @@ exports.tests = {
 
   /**
    *
-   Checks that Node.isSupported("hTmL", null) returns true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-62018039
-   */
-  HTMLBodyElement07: function(test) {
-    var success;
-    var doc;
-    var body;
-    var state;
-    var version = null;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    body = doc.body;
-    state = body.isSupported("hTmL",version);
-    test.ok(state, 'isSupportedHTML');
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("hTmL", "2.0") returns true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-62018039
-   */
-  HTMLBodyElement08: function(test) {
-    var success;
-    var doc;
-    var body;
-    var state;
-    var version = "2.0";
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    body = doc.body;
-    state = body.isSupported("hTmL",version);
-    test.ok(state, 'isSupportedHTML');
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("xhTmL", null) returns true if hasFeature("XML", null) is true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-62018039
-   */
-  HTMLBodyElement09: function(test) {
-    var success;
-    var doc;
-    var body;
-    var state;
-    var hasXML;
-    var version = null;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    body = doc.body;
-    hasXML = body.isSupported("XML",version);
-    state = body.isSupported("xhTmL",version);
-    test.equal(state, hasXML, "isSupportedXHTML");
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("xhTmL", "2.0") returns true if hasFeature("XML", "2.0") is true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-62018039
-   */
-  HTMLBodyElement10: function(test) {
-    var success;
-    var doc;
-    var body;
-    var state;
-    var hasXML;
-    var version = "2.0";
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    body = doc.body;
-    hasXML = body.isSupported("XML",version);
-    state = body.isSupported("xhTmL",version);
-    test.equal(state, hasXML, "isSupportedXHTML");
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("cOrE", null) returns true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-62018039
-   */
-  HTMLBodyElement11: function(test) {
-    var success;
-    var doc;
-    var body;
-    var state;
-    var version = null;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    body = doc.body;
-    state = body.isSupported("cOrE",version);
-    test.ok(state, 'isSupportedCore');
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("cOrE", "2.0") returns true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-62018039
-   */
-  HTMLBodyElement12: function(test) {
-    var success;
-    var doc;
-    var body;
-    var state;
-    var version = "2.0";
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    body = doc.body;
-    state = body.isSupported("cOrE",version);
-    test.ok(state, 'isSupportedCore');
-    test.done();
-  },
-
-  /**
-   *
    The form attribute returns the FORM element containing this control.
    Retrieve the form attribute and examine its value.
    * @author NIST
@@ -2637,6 +2487,11 @@ exports.tests = {
     vcookie = doc.cookie;
     test.equal(vcookie, "key3=value3; key4=value4", "cookieLink");
 
+    var ret = doc.cookie = null;
+    test.equal(ret, null, "cookieLink");
+    test.equal(doc.cookie, vcookie, "cookieLink");
+
+
     test.done();
   },
 
@@ -2875,142 +2730,6 @@ exports.tests = {
     doc.writeln("&lt;/body>");
     doc.writeln("&lt;/html>");
     doc.close();
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("hTmL", null) returns true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-26809268
-   */
-  HTMLDocument22: function(test) {
-    var success;
-    var doc;
-    var state;
-    var version = null;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    state = doc.isSupported("hTmL",version);
-    test.ok(state, 'isSupportedHTML');
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("hTmL", "2.0") returns true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-26809268
-   */
-  HTMLDocument23: function(test) {
-    var success;
-    var doc;
-    var state;
-    var version = "2.0";
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    state = doc.isSupported("hTmL",version);
-    test.ok(state, 'isSupportedHTML');
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("xhTmL", null) returns true if hasFeature("XML", null) is true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-26809268
-   */
-  HTMLDocument24: function(test) {
-    var success;
-    var doc;
-    var state;
-    var hasXML;
-    var version = null;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    hasXML = doc.isSupported("XML",version);
-    state = doc.isSupported("xhTmL",version);
-    test.equal(state, hasXML, "isSupportedXHTML");
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("xhTmL", "2.0") returns true if hasFeature("XML", "2.0") is true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-26809268
-   */
-  HTMLDocument25: function(test) {
-    var success;
-    var doc;
-    var state;
-    var hasXML;
-    var version = "2.0";
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    hasXML = doc.isSupported("XML",version);
-    state = doc.isSupported("xhTmL",version);
-    test.equal(state, hasXML, "isSupportedXHTML");
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("cOrE", null) returns true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-26809268
-   */
-  HTMLDocument26: function(test) {
-    var success;
-    var doc;
-    var state;
-    var version = null;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    state = doc.isSupported("cOrE",version);
-    test.ok(state, 'isSupportedCore');
-    test.done();
-  },
-
-  /**
-   *
-   Checks that Node.isSupported("cOrE", "2.0") returns true.
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/DOM-Level-2-Core/core#Level-2-Core-Node-supports
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-26809268
-   */
-  HTMLDocument27: function(test) {
-    var success;
-    var doc;
-    var state;
-    var version = "2.0";
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("document");
-    state = doc.isSupported("cOrE",version);
-    test.ok(state, 'isSupportedCore');
     test.done();
   },
 
@@ -9237,99 +8956,7 @@ exports.tests = {
     test.done();
   },
 
-  /**
-   *
-   The form attribute returns the FORM element containing this control.
-   Retrieve the form attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-87069980
-   */
-  HTMLIsIndexElement01: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vform;
-    var fNode;
-    var doc;
-    var prompt;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("isindex");
-    nodeList = doc.getElementsByTagName("isindex");
-    testNode = nodeList.item(0);
-    test.notEqual(testNode, null, 'testNode should not be null');
-    prompt = testNode.prompt;
-    test.equal(prompt, "New Employee: ", "IsIndex.Prompt");
-    fNode = testNode.form;
-    test.notEqual(fNode, null, 'fNode should not be null');
-    vform = fNode.id;
-    test.equal(vform, "form1", "formLink");
-    test.equal(nodeList.length, 2, 'Asize');
-    test.done();
-  },
-
-  /**
-   *
-   The form attribute returns null if control in not within the context of
-   form.
-   Retrieve the form attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-87069980
-   */
-  HTMLIsIndexElement02: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vform;
-    var doc;
-    var prompt;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("isindex");
-    nodeList = doc.getElementsByTagName("isindex");
-    testNode = nodeList.item(1);
-    test.notEqual(testNode, null, 'testNode should not be null');
-    prompt = testNode.prompt;
-    test.equal(prompt, "Old Employee: ", "IsIndex.Prompt");
-    vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.equal(nodeList.length, 2, 'Asize');
-    test.done();
-  },
-
-  /**
-   *
-   The prompt attribute specifies the prompt message.
-   Retrieve the prompt attribute of the 1st isindex element and examine
-   its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33589862
-   */
-  HTMLIsIndexElement03: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vprompt;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("isindex");
-    nodeList = doc.getElementsByTagName("isindex");
-    test.equal(nodeList.length, 2, 'Asize');
-    testNode = nodeList.item(0);
-    vprompt = testNode.prompt;
-    test.equal(vprompt, "New Employee: ", "promptLink");
-    test.done();
-  },
+  // <isindex> tests removed because it's replaced by <label> and <input> in the parser stage now
 
   /**
    *
@@ -10294,9 +9921,7 @@ exports.tests = {
     testNode = nodeList.item(1);
     vcode = testNode.code;
 
-// XXX SUPERSEDED BY DOM4
-//    test.equal(vcode, "", "codeLink");
-    test.strictEqual(vcode, null, "codeLink");
+    test.strictEqual(vcode, "", "codeLink");
     test.done();
   },
 
@@ -19996,7 +19621,8 @@ exports.tests = {
       docRef = this.doc;
     }
     doc = load("anchor");
-    doc.innerHTML = "<html><body><p><a id='Anchor'>Anchor Text</a></body></html>";
+    doc.write("<html><body><p><a id='Anchor'>Anchor Text</a></body></html>");
+    doc.close();
     anchor = doc.getElementById("Anchor");
     doc.readyState = 'loading';
     doc.write("hello world");
@@ -20009,7 +19635,7 @@ exports.tests = {
     var doc;
     var target;
     var evt;
-    var preventDefault;
+    var canceled;
     var performedDefault = false;
 
     var docRef = null;
@@ -20025,8 +19651,8 @@ exports.tests = {
     a._eventDefaults['foo'] = function(event) {
       performedDefault = true;
     };
-    preventDefault = a.dispatchEvent(evt);
-    test.equal(preventDefault, false, 'preventDefault should be *false*');
+    canceled = !a.dispatchEvent(evt);
+    test.equal(canceled, false, 'canceled should be *false*');
     test.ok(performedDefault, 'performedDefault');
     test.done();
   },
@@ -20039,7 +19665,7 @@ exports.tests = {
       var element = doc.createElement(tagName);
       // http://www.w3.org/html/wg/drafts/html/master/forms.html#attr-fe-name plus
       // http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#reflect
-      test.strictEqual(element.name, null, '<' + tagName + '> elements should have null name properties by default.');
+      test.strictEqual(element.name, '', '<' + tagName + '> elements should have empty string name properties by default.');
 
       element.name = 'foo';
       test.strictEqual(element.name, 'foo', '<' + tagName + '> elements should allow setting and retrieving their name properties.');
@@ -20057,28 +19683,57 @@ exports.tests = {
   checked_property_is_boolean: function(test) {
     var doc = load("anchor");
 
-    doc.innerHTML = '<input id="x" type="checkbox" checked>';
+    doc.body.innerHTML = '<input id="x" type="checkbox" checked>';
     var el1 = doc.getElementById("x");
 
     test.strictEqual(el1.checked, true, "no attribute value");
 
-    doc.innerHTML = '<input id="x" type="checkbox" checked="">';
+    doc.body.innerHTML = '<input id="x" type="checkbox" checked="">';
     var el2 = doc.getElementById("x");
 
     test.strictEqual(el2.checked, true, "empty attribute value");
 
-    doc.innerHTML = '<input id="x" type="checkbox">';
+    doc.body.innerHTML = '<input id="x" type="checkbox">';
     var el3 = doc.getElementById("x");
-    el3.checked = false;
+    el3.defaultChecked = false;
 
     test.strictEqual(el3.hasAttribute("checked"), false, "staying false does not insert attribute");
 
-    doc.innerHTML = '<input id="x" type="checkbox" checked="checked">';
+    doc.body.innerHTML = '<input id="x" type="checkbox" checked="checked">';
     var el4 = doc.getElementById("x");
-    el4.checked = false;
+    el4.defaultChecked = false;
 
     test.strictEqual(el4.hasAttribute("checked"), false, "changing to false removes attribute");
 
+    test.done();
+  },
+
+  memoized_queries_cleared_on_innerhtml_set: function(test) {
+    var doc = load('menu');
+    var oldCount = doc.getElementsByTagName('em').length;
+    test.equal(oldCount, 0, 'Count of <em> should be 0');
+    doc.getElementsByTagName('li')[2].innerHTML = 'Give start <em>date</em>';
+    var newCount = doc.getElementsByTagName('em').length;
+    test.equal(newCount, 1, 'Count of <em> should be 1');
+    test.done();
+  },
+
+  memoized_queries_cleared_on_element: function(test) {
+    var doc = load('menu');
+    var menu = doc.getElementsByTagName('menu')[0];
+    var oldCount = menu.getElementsByTagName('li').length;
+    test.equal(oldCount, 3, 'Count of <li> should be 3');
+    menu.innerHTML = '<li>one</li><li>two</li>';
+    var newCount = menu.getElementsByTagName('li').length;
+    test.equal(newCount, 2, 'Count of <li> should be 2 after innerHTML is set');
+    test.done();
+  },
+
+  memoized_href_resolver_returns_valid_url: function(test) {
+    var doc = load('anchor');
+    var a = doc.getElementsByTagName('a')[0];
+    test.ok(a.href.match(/pix\/submit\.gif$/), "anchor href should be valid")
+    test.ok(a.href.match(/pix\/submit\.gif$/), "anchor href (2nd accession) should be valid")
     test.done();
   },
 
@@ -20115,7 +19770,7 @@ exports.tests = {
   filename_with_spaces_in_script_tag_can_be_read: function(test) {
     jsdom.env(
       '<html><head></head><body></body></html>',
-      ['./html/files/js/script with spaces.js'],
+      [path.resolve(__dirname, './html/files/js/script with spaces.js')],
       function(err, window){
         test.strictEqual(err, null, "There should be no errors when using scripts with spaces in their filenames");
         test.done();
@@ -20156,6 +19811,52 @@ exports.tests = {
     );
   },
 
+  radio_group_with_same_name_in_several_forms_work: function(test) {
+    var html = '<form>' +
+        '<input type="radio" name="group1" value="3" checked="checked" id="form1-input1" />' +
+        '<input type="radio" name="group1" value="2" id="form1-input2" />' +
+        '</form><form>' +
+        '<input type="radio" name="group1" value="1" checked="checked" id="form2-input1" />' +
+        '<input type="radio" name="group1" value="5" id="form2-input2" /></form>';
+    jsdom.env(html, function (err, window) {
+        var input1 = window.document.getElementById('form1-input1');
+        var input2 = window.document.getElementById('form1-input2');
+        var input3 = window.document.getElementById('form2-input1');
+
+        input2.checked = true;
+
+        test.equal(input1.checked, false, 'Radio input in the same form should be unchecked');
+        test.ok(input2.checked, 'The radio input should be checked');
+        test.ok(input3.checked, 'Radio input in a different form should still be checked');
+        test.done();
+    });
+  },
+
+  radio_group_with_same_name_outside_form: function(test) {
+    // NOTE: this is virtually the same as the radio_group_with_same_name_in_several_forms_work test,
+    // however this test moves the first radio group outside of a form so they are siblings
+    // of the form containing the other radio group.
+    var html = '<div>' +
+        '<input type="radio" name="group1" value="3" checked="checked" id="form1-input1" />' +
+        '<input type="radio" name="group1" value="2" id="form1-input2" />' +
+        '<form>' +
+        '<input type="radio" name="group1" value="1" checked="checked" id="form2-input1" />' +
+        '<input type="radio" name="group1" value="5" id="form2-input2" /></form>' +
+        '</div>';
+    jsdom.env(html, function (err, window) {
+        var input1 = window.document.getElementById('form1-input1');
+        var input2 = window.document.getElementById('form1-input2');
+        var input3 = window.document.getElementById('form2-input1');
+
+        input2.checked = true;
+
+        test.equal(input1.checked, false, 'Radio input in the same group should be unchecked');
+        test.ok(input2.checked, 'The radio input should be checked');
+        test.ok(input3.checked, 'Radio input in a sibling form should still be checked');
+        test.done();
+    });
+  },
+
   htmlcollection_allows_index_access_for_name_and_id: function(test) {
     jsdom.env(
       '<form><input name="test"><input id="test2"></form>', function (err, window) {
@@ -20189,5 +19890,25 @@ exports.tests = {
     });
 
     test.done();
+  },
+
+  option_element_id_attaching_on_id_change: function(test) {
+    var doc = jsdom.jsdom('<html><head></head><body></body></html>');
+    var option = doc.createElement('option');
+    option.setAttribute('id', 'foo');
+    doc.body.appendChild(option);
+    option.setAttribute('id', 'bar');
+
+    test.ok(!doc.getElementById('foo'), 'getElementById("foo") should not match after the id has been changed from foo to bar');
+    test.ok(doc.getElementById('bar') === option, 'getElementById("bar") should match after the id has been changed from foo to bar');
+    test.done();
+  },
+
+  div_element_to_string: function(test) {
+    var doc = jsdom.jsdom('<html><head></head><body></body></html>');
+    var div = doc.createElement('div');
+
+    test.ok(div.toString() === '[object HTMLDivElement]', 'div.toString() should return "[object HTMLDivElement] just like a browser');
+    test.done();
   }
-}
+};

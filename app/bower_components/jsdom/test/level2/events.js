@@ -1,5 +1,5 @@
 var testcase = require('nodeunit').testCase;
-var events = require("../../lib/jsdom/level2/events").dom.level2.events;
+var events = require("../../lib/jsdom/living");
 var EventMonitor = function() {
   self = this;
   self.atEvents = [];
@@ -24,9 +24,9 @@ var EventMonitor = function() {
   };
 };
 var _setUp = function() {
-  var doc = require('./events/files/hc_staff.xml').hc_staff();
+  var doc = require('../level1/core/files/hc_staff.xml').hc_staff();
   var monitor = this.monitor = new EventMonitor();
-  this.win = doc._parentWindow;
+  this.win = doc.parentWindow;
   this.title = doc.getElementsByTagName("title").item(0);
   this.body = doc.getElementsByTagName("body").item(0);
   this.plist = doc.getElementsByTagName("p").item(0);
@@ -46,7 +46,7 @@ var _tearDown = function(xs) {
 // @author Curt Arnold
 // @see http://www.w3.org/TR/DOM-Level-2-Events/events#Events-DocumentEvent
 exports['DocumentEvent interface'] = function (test) {
-  var doc = require('./events/files/hc_staff.xml').hc_staff();
+  var doc = require('../level1/core/files/hc_staff.xml').hc_staff();
   test.ok((doc.createEvent instanceof Function), "should have createEvent function");
   test.done();
 }
@@ -55,7 +55,7 @@ exports['DocumentEvent interface'] = function (test) {
 // @author Curt Arnold
 // @see http://www.w3.org/TR/DOM-Level-2-Events/events#Events-EventTarget
 exports['EventTarget interface'] = function (test) {
-  var doc = require('./events/files/hc_staff.xml').hc_staff();
+  var doc = require('../level1/core/files/hc_staff.xml').hc_staff();
   test.ok((doc instanceof events.EventTarget), 'should be an instance of EventTarget');
   test.done();
 }
@@ -64,7 +64,7 @@ exports['EventTarget interface'] = function (test) {
 // @author Curt Arnold
 // @see http://www.w3.org/TR/DOM-Level-2-Events/events#Events-DocumentEvent-createEvent
 exports['create event with each event type'] = function(test){
-  var doc = require('./events/files/hc_staff.xml').hc_staff(),
+  var doc = require('../level1/core/files/hc_staff.xml').hc_staff(),
       event_types = {'Events': events.Event,
                      'MutationEvents': events.MutationEvent,
                      'UIEvents': events.UIEvent,
@@ -85,7 +85,7 @@ exports['create event with each event type'] = function(test){
 // @see http://www.w3.org/TR/DOM-Level-2-Events/events#xpointer(id('Events-EventTarget-dispatchEvent')/raises/exception[@name='EventException']/descr/p[substring-before(.,':')='UNSPECIFIED_EVENT_TYPE_ERR'])
 exports['dispatch event'] = testcase({
   setUp: function(cb){
-    this.doc = require('./events/files/hc_staff.xml').hc_staff();
+    this.doc = require('../level1/core/files/hc_staff.xml').hc_staff();
     cb();
   },
 
@@ -129,26 +129,33 @@ exports['dispatch event'] = testcase({
     this.doc.addEventListener("foo", monitor.handleEvent, false);
     var event = this.doc.createEvent("Events");
     event.initEvent("foo",true,false);
+    test.expect(7);
+    test.strictEqual(event.eventPhase, 0);
+    test.strictEqual(event.currentTarget, null);
     this.doc.dispatchEvent(event);
-    test.expect(3);
     test.equal(monitor.atEvents.length, 1, 'should receive atEvent');
     test.equal(monitor.bubbledEvents.length, 0, 'should not receive at bubble phase');
     test.equal(monitor.capturedEvents.length, 0, 'should not receive at capture phase');
+    test.strictEqual(event.eventPhase, 0);
+    test.strictEqual(event.currentTarget, null);
     test.done();
   },
 
-  // An event is dispatched to the document with a capture listener attached.
-  // A capturing EventListener will not be triggered by events dispatched directly to the EventTarget upon which it is registered.
+  // An EventListener registered on the target node with capture true, should receive any event fired on that node.
   'EventListener with capture true': function (test) {
     var monitor = new EventMonitor();
     this.doc.addEventListener("foo", monitor.handleEvent, true);
     var event = this.doc.createEvent("Events");
     event.initEvent("foo",true,false);
+    test.expect(7);
+    test.strictEqual(event.eventPhase, 0);
+    test.strictEqual(event.currentTarget, null);
     this.doc.dispatchEvent(event);
-    test.expect(3);
-    test.equal(monitor.atEvents.length, 0, 'should not receive atEvent');
+    test.equal(monitor.atEvents.length, 1, 'should receive atEvent');
     test.equal(monitor.bubbledEvents.length, 0, 'should not receive at bubble phase');
     test.equal(monitor.capturedEvents.length, 0, 'should not receive at capture phase');
+    test.strictEqual(event.eventPhase, 0);
+    test.strictEqual(event.currentTarget, null);
     test.done();
   },
 
@@ -230,7 +237,7 @@ exports['dispatch event'] = testcase({
 // @see http://www.w3.org/TR/DOM-Level-2-Events/events#Events-Event-initEvent
 exports['init event'] = testcase({
   setUp: function(cb){
-    var doc = require('./events/files/hc_staff.xml').hc_staff();
+    var doc = require('../level1/core/files/hc_staff.xml').hc_staff();
     this._events = ['Events', 'MutationEvents'].map(function(t){ return(doc.createEvent(t)); })
     cb();
   },
@@ -313,7 +320,7 @@ exports['capture event'] = testcase({
     this.plist.firstChild.addEventListener("foo", this.monitor.handleEvent, false);
     var return_val = this.plist.firstChild.dispatchEvent(this.event);
     test.expect(4);
-    test.equal(return_val, false, 'dispatchEvent should return *false*');
+    test.equal(return_val, true, 'dispatchEvent should return *true*');
     test.equal(this.monitor.atEvents.length, 1, 'should be at 1 event');
     test.equal(this.monitor.bubbledEvents.length, 1, 'should have bubbled 1 event');
     test.equal(this.monitor.capturedEvents.length, 0, 'should not have captured any events');
@@ -352,7 +359,7 @@ exports['bubble event'] = testcase({
     this.plist.firstChild.addEventListener("foo", this.monitor.handleEvent, false);
     var return_val = this.plist.firstChild.dispatchEvent(this.event);
     test.expect(4);
-    test.equal(return_val, false, 'dispatchEvent should return *false*');
+    test.equal(return_val, true, 'dispatchEvent should return *true*');
     test.equal(this.monitor.atEvents.length, 1, 'should be at 1 event');
     test.equal(this.monitor.bubbledEvents.length, 1, 'should have 1 bubbled event');
     test.equal(this.monitor.capturedEvents.length, 1, 'should have captured 1 event');
@@ -367,7 +374,7 @@ exports['bubble event'] = testcase({
     this.event.initEvent("foo",false,false);
     var return_val = this.plist.firstChild.dispatchEvent(this.event);
     test.expect(4);
-    test.equal(return_val, false, 'dispatchEvent should return *false*');
+    test.equal(return_val, true, 'dispatchEvent should return *true*');
     test.equal(this.monitor.atEvents.length, 1, 'should be at 1 event');
     test.equal(this.monitor.bubbledEvents.length, 0, 'should not have any bubbled events');
     test.equal(this.monitor.capturedEvents.length, 1, 'should have captured 1 event');
@@ -410,6 +417,21 @@ exports['stop propagation'] = testcase({
     test.equal(this.monitor.bubbledEvents.length, 1, 'should have 1 bubbled event');
     test.equal(this.monitor.capturedEvents.length, 0, 'should have no captured events');
     test.done();
+  },
+
+  'stopPropagation should not prevent listeners on the same element from receiving the event': function(test) {
+    this.win.addEventListener("foo", this.monitor.handleEvent, false);
+    this.body.addEventListener("foo", this.monitor.handleEvent, false);
+    this.plist.addEventListener("foo", this._handleEvent('stopPropagation'), true);
+    this.plist.addEventListener("foo", this._handleEvent('stopPropagation'), false);
+    this.plist.addEventListener("foo",  this.monitor.handleEvent, true);
+    this.plist.addEventListener("foo",  this.monitor.handleEvent, false);
+    this.plist.dispatchEvent(this.event);
+    test.expect(3);
+    test.equal(this.monitor.atEvents.length, 4, 'should be at 4 events');
+    test.equal(this.monitor.bubbledEvents.length, 0, 'should have no bubbled events');
+    test.equal(this.monitor.capturedEvents.length, 0, 'should have no captured events');
+    test.done();
   }
 })
 
@@ -431,7 +453,7 @@ exports['prevent default'] = testcase({
     this.plist.firstChild.addEventListener("foo", this.monitor.handleEvent, false);
     var return_val = this.plist.firstChild.dispatchEvent(this.event);
     test.expect(4);
-    test.equal(return_val, true, 'dispatchEvent should return *true*');
+    test.equal(return_val, false, 'dispatchEvent should return *false*');
     test.equal(this.monitor.atEvents.length, 1, 'should be at 1 event');
     test.equal(this.monitor.bubbledEvents.length, 1, 'should have bubbled 1 event');
     test.equal(this.monitor.capturedEvents.length, 1, 'should have captured 1 event');
@@ -445,7 +467,7 @@ exports['prevent default'] = testcase({
     this.event.initEvent("foo",true,false);
     var return_val = this.plist.firstChild.dispatchEvent(this.event);
     test.expect(4);
-    test.equal(return_val, false, 'dispatchEvent should return *false*');
+    test.equal(return_val, true, 'dispatchEvent should return *true*');
     test.equal(this.monitor.atEvents.length, 1, 'should be at 1 event');
     test.equal(this.monitor.bubbledEvents.length, 1, 'should have bubbled 1 event');
     test.equal(this.monitor.capturedEvents.length, 1, 'should have captured 1 event');

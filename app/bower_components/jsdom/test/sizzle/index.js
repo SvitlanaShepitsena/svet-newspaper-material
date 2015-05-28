@@ -628,8 +628,6 @@ exports['pseudo - misc'] = test(function (window) { with (window) {
 
   document.body.removeChild( tmp );
 
-/** XX TODO make focus work on all elements
-
   // Recreate tmp
   tmp = document.createElement("div");
   tmp.id = "tmp_input";
@@ -672,13 +670,6 @@ exports['pseudo - misc'] = test(function (window) { with (window) {
     ok( match( input, ":focus" ), ":focus matches" );
   }
 
-  // :active selector: this selector does not depend on document focus
-  if ( document.activeElement === input ) {
-    ok( match( input, ":active" ), ":active Matches" );
-  } else {
-    ok( true, "The input did not become active. Skip checking the :active match." );
-  }
-
   input.blur();
 
   // When IE is out of focus, blur does not work. Force it here.
@@ -687,10 +678,7 @@ exports['pseudo - misc'] = test(function (window) { with (window) {
   }
 
   ok( !match( input, ":focus" ), ":focus doesn't match" );
-  ok( !match( input, ":active" ), ":active doesn't match" );
   document.body.removeChild( input );
-
-*/
 
   deepEqual(
     Sizzle( "[id='select1'] *:not(:last-child), [id='select2'] *:not(:last-child)", q("qunit-fixture")[0] ),
@@ -863,4 +851,17 @@ exports['caching'] = test(function (window) { with (window) {
   expect( 1 );
   Sizzle( ":not(code)", document.getElementById("ap") );
   deepEqual( Sizzle( ":not(code)", document.getElementById("foo") ), q("sndp", "en", "yahoo", "sap", "anchor2", "simon"), "Reusing selector with new context" );
+}});
+
+exports['query-memoization'] = test(function (window) { with (window) {
+  expect( 2 );
+  equal(Sizzle('#foo').length, 1, '#foo query should return 1 element');
+  var el = document.getElementById('foo');
+  el.parentNode.removeChild(el);
+  equal(Sizzle('#foo').length, 0, '#foo query should return 0 elements after removal');
+
+  var oldAttrLen = Sizzle('p[lang=en]').length;
+  Sizzle('#ap')[0].setAttribute('lang', 'en');
+  var newAttrLen = Sizzle('p[lang=en]').length;
+  equal(newAttrLen, oldAttrLen + 1, 'Query should return 1 more element for matching attribute test');
 }});

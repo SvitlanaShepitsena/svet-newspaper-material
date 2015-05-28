@@ -1,5 +1,7 @@
 var jsdom = require('../../lib/jsdom'),
-    path = require('path')
+    path = require('path'),
+    fs = require('fs'),
+    http = require('http'),
     jQueryPath = path.resolve(__dirname, '../jquery-fixtures/jquery-1.4.2.js');
 
 exports.tests = {
@@ -26,7 +28,7 @@ exports.tests = {
         })();\
       </script>\
       </head><body></body></html>'
-    ).createWindow();
+    ).parentWindow;
 
     test.equal(window.confirmTheLocalIsOnTheWindow, window.localOnWindow, 'local variables should be attached to the window');
     test.equal(window.hello, "hello world", 'window should be the global context');
@@ -40,8 +42,8 @@ exports.tests = {
   },
 
   scripts_jquerify_have_jsdom_class: function(test) {
-    var window = jsdom.jsdom().createWindow();
-    jsdom.jQueryify(window, [jQueryPath] , function(dom) {
+    var window = jsdom.jsdom().parentWindow;
+    jsdom.jQueryify(window, jQueryPath, function (dom) {
       test.ok(dom.window.$('script').hasClass("jsdom"));
       test.done();
     });
@@ -64,7 +66,7 @@ exports.tests = {
                      window.window===this,\
                      document.parentWindow===this];\
       </script>\
-      </head><body></body></html>').createWindow();
+      </head><body></body></html>').parentWindow;
 
     test.strictEqual(window.results[0], true, "window should equal global this");
     test.strictEqual(window.results[1], true, "window should equal this.window");
@@ -82,7 +84,7 @@ exports.tests = {
       <script>\
         appVersion = aGlobal.win.navigator.appVersion\
       </script>\
-      </head><body></body></html>').createWindow();
+      </head><body></body></html>').parentWindow;
 
     test.strictEqual(window.appVersion, process.version);
     test.done();
@@ -94,12 +96,12 @@ exports.tests = {
         function handle(){};\
         window.addEventListener("load", handle, false);\
         window.removeEventListener("load", handle, false);\
-        var ev = document.createSvetEvent("MouseEvents");\
+        var ev = document.createEvent("MouseEvents");\
         ev.initEvent("click", true, true);\
         window.dispatchEvent(ev);\
         window.DONE=1;\
       </script>\
-      </head><body></body></html>').createWindow();
+      </head><body></body></html>').parentWindow;
     test.strictEqual(window.DONE, 1);
     test.done();
   },
@@ -111,7 +113,7 @@ exports.tests = {
         document.body.innerHTML = "monkey"\
       </script></body></html>';
     test.doesNotThrow(function() {
-      jsdom.jsdom(html).createWindow();
+      jsdom.jsdom(html).parentWindow;
     })
     test.done();
   },
@@ -132,6 +134,53 @@ exports.tests = {
       test.ok(window.b === 42, 'local var gets hung off of the window');
       test.ok(window.exposed === 42, 'read local var from window and exposed it');
       test.done();
+    });
+  },
+
+  env_external_scripts_with_src: function (test) {
+    var app = http.createServer(function (req, res) {
+      fs.createReadStream(__dirname + '/files' + req.url).pipe(res);
+    }).listen(0, function () {
+      jsdom.env({
+        url: 'http://127.0.0.1:' + app.address().port + '/external_script.html',
+        src: ['window.a = "test";'],
+        features: {
+          FetchExternalResources: ['script'],
+          ProcessExternalResources: ['script'],
+          SkipExternalResources: false
+        },
+        done: function (err, window) {
+          test.strictEqual(err, null, 'no errors should occur');
+
+          test.strictEqual(window.a, 'test', 'given src wasn\'t executed');
+          test.strictEqual(window.b, 'other', 'external script wasn\'t executed');
+
+          test.done();
+          app.close();
+        }
+      });
+    });
+  },
+
+  env_external_scripts_no_src: function (test) {
+    var app = http.createServer(function (req, res) {
+      fs.createReadStream(__dirname + '/files' + req.url).pipe(res);
+    }).listen(0, function () {
+      jsdom.env({
+        url: 'http://127.0.0.1:' + app.address().port + '/external_script.html',
+        features: {
+          FetchExternalResources: ['script'],
+          ProcessExternalResources: ['script'],
+          SkipExternalResources: false
+        },
+        done: function (err, window) {
+          test.strictEqual(err, null, 'no errors should occur');
+          test.strictEqual(window.b, 'other', 'external script wasn\'t executed');
+
+          test.done();
+          app.close();
+        }
+      });
     });
   },
 
