@@ -6,8 +6,7 @@ div(flow-init='')
             label {{'campaign-name'|translate}}
             input(type='text' ng-model='ad.name' name='name' required )
         md-input-container(ng-if='user.isManager()')
-            md-select(ng-model='ad.customerUserName' ng-name="customerUserName"   required="")
-                md-select-label {{ad.customerUserName?ad.customerUserName:'Select Customer'}}
+            md-select(ng-model='ad.customerUserName' name="customerUserName"   required="")
                 md-option(ng-repeat='customer in customers' ng-value='customer.profile.userName' ) {{customer.profile.userName}}
         div(class='mb+')
             sv-image-upload()
