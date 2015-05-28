@@ -10,8 +10,8 @@
                         // Scaffold Data
                         $scope.event = {
                             //title: "New Event #" + _.random(0, 100),
-                            startsAt: moment($scope.clickedDate).add(10, 'h').toDate(),
-                            endsAt: moment($scope.clickedDate).add(13, 'h').toDate(),
+                            startsAt: moment($scope.clickedDate).add(10, 'h').startOf('hour').toDate(),
+                            endsAt: moment($scope.clickedDate).add(13, 'h').startOf('hour').toDate(),
                             //address: faker.address.streetAddress() + " Chicago, IL, 60634",
                             location: 'Copernicus Center',
                             locationWeb: faker.internet.domainName(),

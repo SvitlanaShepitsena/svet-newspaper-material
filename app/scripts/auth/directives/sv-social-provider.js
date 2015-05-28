@@ -11,6 +11,18 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.icon = $scope.icon || $scope.provider;
+
+
+                    $scope.loginProvider = function (provider) {
+                        console.log('here');
+                        AuthenticationServ.authWithProvider(provider).then(function () {
+                            if (userAuth.profile && userAuth.profile.isManager()) {
+                                $state.go('app.manager.dashboard', {uid: userAuth.key})
+                            } else {
+                                $state.go('app.user.dashboard', {uid: userAuth.profile.userName})
+                            }
+                        });
+                    };
                 }
             };
         });
