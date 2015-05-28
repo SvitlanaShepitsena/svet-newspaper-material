@@ -1,30 +1,26 @@
 div(flow-init='')
-    .ml.mr
+    div.bgc-grey-200(class='pl+ pr+ pt+ pb')
         sv-profile-subhead(subhead-title="my-ad-campaign")
-    form(name='adForm' novalidate ng-submit='addBusinessAd(ad,$flow.files[0])' sv-form-val)
+    form(class='p+' name='adForm' novalidate ng-submit='addBusinessAd(ad,$flow.files[0])' sv-form-val)
         md-input-container
             label {{'campaign-name'|translate}}
             input(type='text' ng-model='ad.name' name='name' required )
-        div(flex-container='row', flex-gutter='24' ng-if='user.isManager()')
-            div(flex-item='')
-                md-select(ng-model='ad.customerUserName')
-                    md-select-label {{ad.customerUserName?ad.customerUserName:'Select Customer'}}
-                    md-option(ng-repeat='customer in customers' ng-value='customer.profile.userName' ) {{customer.profile.userName}}
-        div(flex-container='row')
-            div.m(flex-item='')
-                sv-image-upload()
-        div(flex-container='row' ng-if='ad.banner')
-            div.m(flex-item='8')
-                span Current Campaign Banner:
-                img(ng-src="{{ad.banner}}")
-        div(flex-container='row')
-            div(class='mb+')
-                button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='id' )
-                    i.mdi.mdi-send.mr
-                    | {{'save changes'|translate}}
-                button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='!id')
-                    i.mdi.mdi-send.mr
-                    | {{'post'|translate}}
-                button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")
-                    i.mdi.mdi-close.mr
-                    | {{'cancel'|translate}}
+        div(ng-if='user.isManager()')
+            md-select(ng-model='ad.customerUserName')
+                md-select-label {{ad.customerUserName?ad.customerUserName:'Select Customer'}}
+                md-option(ng-repeat='customer in customers' ng-value='customer.profile.userName' ) {{customer.profile.userName}}
+        div(class='mb+')
+            sv-image-upload()
+        div(class='mb+')
+            span.fs-subhead.display-block Current Campaign Banner:
+            img(ng-src="{{ad.banner}}")
+        div(class='mb+')
+            button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='id' )
+                i.mdi.mdi-send.mr
+                | {{'save changes'|translate}}
+            button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='!id')
+                i.mdi.mdi-send.mr
+                | {{'post'|translate}}
+            button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")
+                i.mdi.mdi-close.mr
+                | {{'cancel'|translate}}
