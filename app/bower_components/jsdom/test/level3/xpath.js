@@ -1,5 +1,5 @@
 var xpath = require('../../lib/jsdom/level3/xpath');
-var level3 = require('../../lib/jsdom/level3/core').dom.level3.core;
+var level3 = require("../../lib/jsdom/living");
 var jsdom = require('../../lib/jsdom');
 var domTestHelper = require('../DOMTestCase');
 
@@ -428,17 +428,17 @@ exports.testDescendantOrSelfChild = function(test) {
   // from http://trac.webkit.org/export/73247/trunk/LayoutTests/fast/xpath/xpath-functional-test.html
   var doc = jsdom.jsdom(
     '<html><body>' +
-    '<blockquote id="n12" title="12" class="15">' + 
-    '  <!--blockquoteComment-->' + 
-    '  blockquoteText1:' + 
-    '  <br id="n13" title="13" class="10">' + 
-    '  blockquoteText2' + 
-    '  <p id="n14" title="14" class="13">' + 
-    '    <del id="n15" title="15" class="11">del</del>' + 
-    '    <ins id="n16" title="16" class="12">ins</ins>' + 
-    '  </p>' + 
-    '  <!--?pi name="value"?-->' + 
-    '  <font id="n17" title="17" class="14" face="n8 n26">font</font>' + 
+    '<blockquote id="n12" title="12" class="15">' +
+    '  <!--blockquoteComment-->' +
+    '  blockquoteText1:' +
+    '  <br id="n13" title="13" class="10">' +
+    '  blockquoteText2' +
+    '  <p id="n14" title="14" class="13">' +
+    '    <del id="n15" title="15" class="11">del</del>' +
+    '    <ins id="n16" title="16" class="12">ins</ins>' +
+    '  </p>' +
+    '  <!--?pi name="value"?-->' +
+    '  <font id="n17" title="17" class="14" face="n8 n26">font</font>' +
     '</blockquote>' +
     '</html></body>'
   );
@@ -504,7 +504,7 @@ exports.testFollowing = function(test) {
   var newCtx = xpath.axes.following([body, div0, a], xpath.nodeTypes.element, null, true).simplify();
   test.deepEqual(
     xpath.stringifyObject(
-      { nodes: 
+      { nodes:
         [ b, div1, i, u ],
         pos: [ [ 1 ], [ 2, 1 ], [ 3, 2 ], [ 4, 3 ] ],
         lasts: [ [ 4 ], [ 4, 3 ], [ 4, 3 ], [ 4, 3 ] ] }),
@@ -899,136 +899,136 @@ exports.testAttributeNodePredicate = function(test) {
 // Only test cases applicable to XPath are included.
 
 exports.tests.NIST_coreFunction001 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("correct substring",
             xpath.evaluate("substring(substring('internalexternalcorrect substring',9),9)", document, document), "correct substring");
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction002 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("correct substring",
             xpath.evaluate("substring(substring('internalexternalcorrect substring',9,25),9,17)", document, document), "correct substring");
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction003 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("A New Concatenated String",
             xpath.evaluate("concat(concat('A ','N','e'),'w ','Concatenated String')", document, document));
     test.done()
 };
 
 exports.tests.NIST_coreFunction004 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("Unchanged String",
             xpath.evaluate("string(string('Unchanged String'))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction005 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("Correct Substring After",
             xpath.evaluate("substring-after(substring-after('wrongnogoodCorrect Substring After','wrong'),'nogood')", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction006 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("correct substring Before",
             xpath.evaluate("substring-before(substring-before('correct substring Beforenogoodwrong','wrong'),'nogood')", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction007 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("new string",
             xpath.evaluate("translate(translate('old string','old','123'),'123','new')", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction008 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("new string",
             xpath.evaluate("translate('old string',translate('123','123','old'),'new')", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction009 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("new string",
             xpath.evaluate("translate(translate('old string','old string','old string'),translate('123','123','old'),translate('123','123','new'))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction010 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("new string",
             xpath.evaluate("translate(translate('old string','old string','old string'),translate('123','123','old'),translate('123','123','new'))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction011 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("A New Concatenated String",
             xpath.evaluate("concat('A New ',concat('Conca','tena','ted '),'String')", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction012 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("A New Concatenated String",
             xpath.evaluate("concat('A New ','Concatenated ',concat('St','ri','ng'))", document, document));
     test.done();
 };
 
 exports.tests.NIST_coreFunction013 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("A New Concatenated String",
             xpath.evaluate("concat(concat('A ','Ne','w '),concat('Conca','tena','ted '),concat('St','ri','ng'))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction014 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("Correct Substring After",
             xpath.evaluate("substring-after('wrongCorrect Substring After',substring-after('nogoodstringwrong','nogoodstring'))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction015 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("Correct Substring After",
             xpath.evaluate("substring-after(substring-after('nogoodwrongCorrect Substring After','nogood'),substring-after('nogoodstringwrong','nogoodstring'))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction016 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("Correct Substring Before",
             xpath.evaluate("substring-before('Correct Substring Beforewrong',substring-before('wrongnogood','nogood'))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction017 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal("Correct Substring Before",
             xpath.evaluate("substring-before(substring-before('Correct Substring Beforewrongcut here','cut here'),substring-before('wrongnogood','nogood'))", document, document));
-  
+
     test.done();
 };
 
@@ -1040,130 +1040,130 @@ exports.tests.NIST_coreFunction017 = function(test) {
 //
 //
 // exports.tests.NIST_coreFunction018 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "String From Variable"
 //     test.equal("String From Variable",
 //             xpath.evaluate("string($variable1)", document, document));
 // };
 //
 // exports.tests.NIST_coreFunction019 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "String "
 //     test.equal("String From Variable",
 //             xpath.evaluate("concat($variable1,'From ','Variable')", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction020 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "From "
 //     test.equal("String From Variable",
 //             xpath.evaluate("concat('String ',$variable1,'Variable')", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction021 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "Variable"
 //     test.equal("String From Variable",
 //             xpath.evaluate("concat('String ','From ',$variable1)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction022 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "String "
 //     // set $variable2 = "From "
 //     // set $variable3 = "Variable"
 //     test.equal("String From Variable",
 //             xpath.evaluate("concat($variable1,$variable2,$variable3)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction023 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "substring-before with variablecut this"
 //     test.equal("substring-before with variable",
 //             xpath.evaluate("substring-before($variable1,'cut this')", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction024 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "cut this"
 //     test.equal("substring-before with variable",
 //             xpath.evaluate("substring-before('substring-before with variablecut this',$variable1)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction025 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "substring before with variablecut this"
 //     // set $variable2 = "cut this"
 //     test.equal("substring before with variable",
 //             xpath.evaluate("substring-before($variable1,$variable2)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction026 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "cut thissubstring-after with variable"
 //     test.equal("substring-after with variable",
 //             xpath.evaluate("substring-after($variable1,'cut this')", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction027 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "cut this"
 //     test.equal("substring after with variable",
 //             xpath.evaluate("substring-after('cut thissubstring after with variable',$variable1)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction028 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "cut thissubstring-after with variable"
 //     // set $variable2 = "cut this"
 //     test.equal("substring-after with variable",
 //             xpath.evaluate("substring-after($variable1,$variable2)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction029 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "cut thissubstring with variable"
 //     test.equal("substring with variable",
 //             xpath.evaluate("substring($variable1,9)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction030 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "cut thissubstring with variable"
 //     test.equal("substring with variable",
 //             xpath.evaluate("substring($variable1,9,23)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction031 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "should return the value 26"
 //     test.equal(26,
 //             xpath.evaluate("string-length($variable1)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction032 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "translate 1234 variable"
 //     test.equal("translate with variable",
 //             xpath.evaluate("translate($variable1,'1234','with')", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction033 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "1234"
 //     test.equal("translate with variable",
 //             xpath.evaluate("translate('translate 1234 variable',$variable1,'with')", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction034 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "with"
 //     test.equal("translate with variable",
 //             xpath.evaluate("translate('translate 1234 variable','1234',$variable1)", document, document));
 // };
-// 
+//
 // exports.tests.NIST_coreFunction035 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "translate 1234 variable"
 //     // set $variable2 = "1234"
 //     // set $variable3 = "with"
@@ -1178,18 +1178,18 @@ exports.tests.NIST_coreFunction017 = function(test) {
 
 
 exports.tests.NIST_coreFunction060 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(-2,
             xpath.evaluate("floor(-1.99999)", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction061 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(-2,
             xpath.evaluate("floor(-1.0001)", document, document));
-  
+
     test.done();
 };
 
@@ -1197,7 +1197,7 @@ exports.tests.NIST_coreFunction061 = function(test) {
 // coreFunction062 is omitted because it tests XPath variables, as above.
 
 // exports.tests.NIST_coreFunction062 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "3.1"
 //     test.equal(3,
 //             xpath.evaluate("floor($variable1)", document, document));
@@ -1208,75 +1208,75 @@ exports.tests.NIST_coreFunction061 = function(test) {
 
 
 exports.tests.NIST_coreFunction064 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(2,
             xpath.evaluate("floor(ceiling(1.2))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction065 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(1,
             xpath.evaluate("floor(round(1.2))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction066 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(1,
             xpath.evaluate("floor(floor(1.2))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction067 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(1,
             xpath.evaluate("floor((((((2*10)-4)+9) div 5) mod 2))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction068 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(-1,
             xpath.evaluate("ceiling(-1.0001)", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction069 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(-1,
             xpath.evaluate("ceiling(-1.9999)", document, document));
-  
+
     test.done();
 };
 
 // coreFunction070 is omitted because it tests XPath variables, as above.
-// 
+//
 // exports.tests.NIST_coreFunction070 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "2.5"
 //     test.equal(3,
 //             xpath.evaluate("ceiling($variable1)", document, document));
 // };
 
 exports.tests.NIST_coreFunction071 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(2,
             xpath.evaluate("ceiling(floor(2.2))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction072 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(4,
             xpath.evaluate("ceiling(ceiling(3.2))", document, document));
-  
+
     test.done();
 };
 
@@ -1285,25 +1285,25 @@ exports.tests.NIST_coreFunction072 = function(test) {
 
 
 exports.tests.NIST_coreFunction074 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(3,
             xpath.evaluate("ceiling((((((2*10)-4)+9) div 5) div 2))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction075 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(-2,
             xpath.evaluate("round(-1.9999)", document, document));
-  
+
     test.done();
 };
 
 // coreFunction076 is omitted because it tests XPath variables, as above.
-// 
+//
 // exports.tests.NIST_coreFunction076 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     // set $variable1 = "2.3"
 //     test.equal(2
 //             xpath.evaluate("round($variable1)", document, document));
@@ -1314,85 +1314,85 @@ exports.tests.NIST_coreFunction075 = function(test) {
 
 
 exports.tests.NIST_coreFunction078 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(4,
             xpath.evaluate("round(ceiling(3.2))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction079 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(3,
             xpath.evaluate("round((((((2*10)-4)+9) div 5) div 2))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction080 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.ok(isNaN(xpath.evaluate("round(NaN)", document, document)));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction081 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(0,
             xpath.evaluate("round(-0)", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction082 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(0,
             xpath.evaluate("round(-0.25)", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction083 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(2,
             xpath.evaluate("round(round(2.3))", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction084 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(Number.POSITIVE_INFINITY,
             xpath.evaluate("round(2.3 div 0)", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction085 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(Number.NEGATIVE_INFINITY,
             xpath.evaluate("round(-2.3 div 0)", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction086 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(-1.9999,
             xpath.evaluate("number('-1.9999')", document, document));
-  
+
     test.done();
 };
 
 exports.tests.NIST_coreFunction087 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(1.9999,
             xpath.evaluate("number('1.9999')", document, document));
     test.done();
 };
 
 exports.tests.NIST_coreFunction088 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -1406,14 +1406,14 @@ exports.tests.NIST_coreFunction088 = function(test) {
     child1 = document.createElement("child1");
     text = document.createTextNode("Incorrect execution!!");
     child1.appendChild(text);
-    
+
     test.equal(1,
             xpath.evaluate("count(//child1[ancestor::element1])", document, doc));
     test.done();
 };
 
 exports.tests.NIST_coreFunction089 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -1424,7 +1424,7 @@ exports.tests.NIST_coreFunction089 = function(test) {
     doc.appendChild(element1);
     text = document.createTextNode("Test executed Successfully!!");
     element1.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [element1],
             xpath.evaluate("element1[2]", document, doc).nodes);
     test.done();
@@ -1438,49 +1438,49 @@ exports.tests.NIST_coreFunction089 = function(test) {
 // so those tests are omitted here.
 
 exports.tests.NIST_dataManipulation001a = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true,
             xpath.evaluate("2 > 1", document, document));
     test.done();
 };
 
 exports.tests.NIST_dataManipulation001b = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true,
             xpath.evaluate("9 mod 3 = 0", document, document));
     test.done();
 };
 
 exports.tests.NIST_dataManipulation002a = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(false,
             xpath.evaluate("2 > 3", document, document));
     test.done();
 };
 
 exports.tests.NIST_dataManipulation003 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true,
             xpath.evaluate("(((((2*10)-4)+9) div 5) div 2) > 2", document, document));
     test.done();
 };
 
 exports.tests.NIST_dataManipulation004 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(false,
             xpath.evaluate("(((((2*10)-4)+9) div 5) div 2) > 4", document, document));
     test.done();
 };
 
 exports.tests.NIST_dataManipulation007 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true,
             xpath.evaluate("(round(3.7) > 3)", document, document));
     test.done();
 };
 
 exports.tests.NIST_dataManipulation009 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -1490,14 +1490,14 @@ exports.tests.NIST_dataManipulation009 = function(test) {
     var element2 = document.createElement("element2");
     text = document.createTextNode("Incorrect execution!!");
     element2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [element1],
             xpath.evaluate("doc/element1", document, document).nodes);
     test.done();
 };
 
 exports.tests.NIST_dataManipulation013 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -1516,14 +1516,14 @@ exports.tests.NIST_dataManipulation013 = function(test) {
     doc.appendChild(element2);
     text = document.createTextNode("Incorrect execution!!");
     element2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [element1],
             xpath.evaluate("doc/element1[last()]", document, document).nodes);
     test.done();
 };
 
 exports.tests.NIST_dataManipulation014 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -1542,14 +1542,14 @@ exports.tests.NIST_dataManipulation014 = function(test) {
     doc.appendChild(element2);
     text = document.createTextNode("Incorrect execution!!");
     element2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [element1],
             xpath.evaluate("doc/element1[((((((2*10)-4)+9) div 5) mod 3)+1)]", document, document).nodes);
     test.done();
 };
 
 exports.tests.NIST_dataManipulation016 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -1572,7 +1572,7 @@ exports.tests.NIST_dataManipulation016 = function(test) {
 
 
 exports.tests.NIST_expression001 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -1587,14 +1587,14 @@ exports.tests.NIST_expression001 = function(test) {
     sub2.appendChild(child2);
     text = document.createTextNode("child2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1,child2],
             xpath.evaluate("/doc/sub1/child1|/doc/sub2/child2", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression002 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -1609,14 +1609,14 @@ exports.tests.NIST_expression002 = function(test) {
     sub2.appendChild(child2);
     text = document.createTextNode("child2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1,child2],
             xpath.evaluate("sub1/child1|/doc/sub2/child2", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression003 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -1631,20 +1631,20 @@ exports.tests.NIST_expression003 = function(test) {
     sub2.appendChild(child2);
     text = document.createTextNode("descendant number 2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1,child2],
             xpath.evaluate("//child1|//child2", document, doc).nodes);
-    
+
     domTestHelper.arrayEqual(test, [sub1],
             xpath.evaluate("ancestor::sub1|ancestor::sub2", document, child1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [sub2],
             xpath.evaluate("ancestor::sub1|ancestor::sub2", document, child2).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression004 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -1659,20 +1659,20 @@ exports.tests.NIST_expression004 = function(test) {
     sub2.appendChild(child2);
     text = document.createTextNode("descendant number 2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1,child2],
             xpath.evaluate("//child1|//child2", document, doc).nodes);
-    
+
     domTestHelper.arrayEqual(test, [sub1],
             xpath.evaluate("ancestor-or-self::sub1|ancestor-or-self::sub2", document, child1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [sub2],
             xpath.evaluate("ancestor-or-self::sub1|ancestor-or-self::sub2", document, child2).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression005 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var book1 = document.createElement("book");
@@ -1719,20 +1719,20 @@ exports.tests.NIST_expression005 = function(test) {
     text = document.createTextNode("Ten");
     bibliography = document.createElement("bibliography");
     author3.appendChild(bibliography);
-    
+
     domTestHelper.arrayEqual(test, [author1],
             xpath.evaluate("author[name/@real='no']|author[name/@real='yes']", document, book1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [],
             xpath.evaluate("author[name/@real='no']|author[name/@real='yes']", document, book2).nodes);
-    
+
     domTestHelper.arrayEqual(test, [author3],
             xpath.evaluate("author[name/@real='no']|author[name/@real='yes']", document, book3).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression006 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     doc.setAttribute("attr1", "attribute 1 ");
     doc.setAttribute("attr2", "attribute 2");
@@ -1748,14 +1748,14 @@ exports.tests.NIST_expression006 = function(test) {
     var child2 = document.createElement("child2");
     text = document.createTextNode("child number 2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [doc.getAttributeNode("attr1"), doc.getAttributeNode("attr2")],
             xpath.evaluate("attribute::attr1|attribute::attr2", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression007 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     doc.setAttribute("attr1", "attribute 1 ");
     doc.setAttribute("attr2", "attribute 2");
@@ -1771,14 +1771,14 @@ exports.tests.NIST_expression007 = function(test) {
     var child2 = document.createElement("child2");
     text = document.createTextNode("child number 2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [sub1, sub2],
             xpath.evaluate("child::sub1|child::sub2", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression008 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var book1 = document.createElement("book");
@@ -1825,20 +1825,20 @@ exports.tests.NIST_expression008 = function(test) {
     text = document.createTextNode("Ten");
     bibliography = document.createElement("bibliography");
     author3.appendChild(bibliography);
-    
+
     domTestHelper.arrayEqual(test, [author1],
             xpath.evaluate("author[(name/@real='no' and position()=1)]|author[(name/@real='yes' and position()=last())]", document, book1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [],
             xpath.evaluate("author[(name/@real='no' and position()=1)]|author[(name/@real='yes' and position()=last())]", document, book2).nodes);
-    
+
     domTestHelper.arrayEqual(test, [author3],
             xpath.evaluate("author[(name/@real='no' and position()=1)]|author[(name/@real='yes' and position()=last())]", document, book3).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression009 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -1853,14 +1853,14 @@ exports.tests.NIST_expression009 = function(test) {
     sub2.appendChild(child2);
     text = document.createTextNode("descendant number 2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1,child2],
             xpath.evaluate("descendant::child1|descendant::child2", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression010 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -1875,14 +1875,14 @@ exports.tests.NIST_expression010 = function(test) {
     sub2.appendChild(child2);
     text = document.createTextNode("descendant number 2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [doc],
             xpath.evaluate("descendant-or-self::doc|descendant-or-self::doc", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression011 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var book1 = document.createElement("book");
@@ -1929,13 +1929,13 @@ exports.tests.NIST_expression011 = function(test) {
     text = document.createTextNode("Ten");
     bibliography = document.createElement("bibliography");
     author3.appendChild(bibliography);
-    
+
     domTestHelper.arrayEqual(test, [author1],
             xpath.evaluate("author[name='Mary Brady']|author[name/@real='no']", document, book1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [],
             xpath.evaluate("author[name='Mary Brady']|author[name/@real='no']", document, book2).nodes);
-    
+
     domTestHelper.arrayEqual(test, [author3],
             xpath.evaluate("author[name='Mary Brady']|author[name/@real='no']", document, book3).nodes);
     test.done();
@@ -1944,9 +1944,9 @@ exports.tests.NIST_expression011 = function(test) {
 // expression012 tests XPath variables, amongst other features, and is
 // omitted as above for other tests. A modified version that does not test
 // variables is included below.
-// 
+//
 // exports.tests.NIST_expression012 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     var doc = document.createElement("doc");
 //     document.appendChild(doc);
 //     var child1 = document.createElement("child1");
@@ -1961,22 +1961,22 @@ exports.tests.NIST_expression011 = function(test) {
 //     doc.appendChild(child3);
 //     text = document.createTextNode("Selection of this child is an error.");
 //     child3.appendChild(text);
-//     
+//
 //     var result1 = xpath.evaluate("//noChild1", document, doc);
 //     domTestHelper.arrayEqual(test, [], result1.nodes);
-//     
+//
 //     var result2 = xpath.evaluate("//noChild2", document, doc);
 //     domTestHelper.arrayEqual(test, [], result2.nodes);
-//     
+//
 //     // set $var1 = result1.nodes
 //     // set $var2 = result2.nodes
-//     
+//
 //     domTestHelper.arrayEqual(test, [],
 //             xpath.evaluate("$var1|$var2", document, docu));
 // };
 
 exports.tests.NIST_expression012_noVariables = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var child1 = document.createElement("child1");
@@ -1991,20 +1991,20 @@ exports.tests.NIST_expression012_noVariables = function(test) {
     doc.appendChild(child3);
     text = document.createTextNode("Selection of this child is an error.");
     child3.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [],
             xpath.evaluate("//noChild1", document, doc).nodes);
-    
+
     domTestHelper.arrayEqual(test, [],
             xpath.evaluate("//noChild2", document, doc).nodes);
-    
+
     domTestHelper.arrayEqual(test, [],
             xpath.evaluate("//noChild1|//noChild2", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression013 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -2021,10 +2021,10 @@ exports.tests.NIST_expression013 = function(test) {
     sub1.appendChild(child3);
     text = document.createTextNode("following sibling number 3");
     child3.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child2],
             xpath.evaluate("//child2", document, doc).nodes);
-    
+
     domTestHelper.arrayEqual(test, [child1, child3],
             xpath.evaluate("preceding-sibling::child1|following-sibling::child3", document, child2).nodes);
     test.done();
@@ -2034,7 +2034,7 @@ exports.tests.NIST_expression013 = function(test) {
 // key() function.
 
 exports.tests.NIST_expression016 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var book1 = document.createElement("book");
@@ -2091,20 +2091,20 @@ exports.tests.NIST_expression016 = function(test) {
     author4.appendChild(chapters);
     text = document.createTextNode("Five");
     chapters.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [name1],
             xpath.evaluate("author/name|author/bibliography/author/name", document, book1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [name2],
             xpath.evaluate("author/name|author/bibliography/author/name", document, book2).nodes);
-    
+
     domTestHelper.arrayEqual(test, [name3, name4],
             xpath.evaluate("author/name|author/bibliography/author/name", document, book3).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression017 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var book1 = document.createElement("book");
@@ -2161,20 +2161,20 @@ exports.tests.NIST_expression017 = function(test) {
     author4.appendChild(chapters);
     text = document.createTextNode("Five");
     chapters.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [name1],
             xpath.evaluate("author/name|author/bibliography/author/chapters", document, book1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [name2],
             xpath.evaluate("author/name|author/bibliography/author/chapters", document, book2).nodes);
-    
+
     domTestHelper.arrayEqual(test, [name3, chapters],
             xpath.evaluate("author/name|author/bibliography/author/chapters", document, book3).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression018 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var book1 = document.createElement("book");
@@ -2207,10 +2207,10 @@ exports.tests.NIST_expression018 = function(test) {
     chapters2.appendChild(text);
     var bibliography2 = document.createElement("bibliography");
     author2.appendChild(bibliography2);
-    
+
     domTestHelper.arrayEqual(test, [name1],
             xpath.evaluate("author/name|author/noElement", document, book1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [name2],
             xpath.evaluate("author/name|author/noElement", document, book2).nodes);
     test.done();
@@ -2219,9 +2219,9 @@ exports.tests.NIST_expression018 = function(test) {
 // expression019 tests XPath variables, amongst other features, and is
 // omitted as above for other tests. A modified version that does not test
 // variables is included below.
-// 
+//
 // exports.tests.NIST_expression019 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     var doc = document.createElement("doc");
 //     document.appendChild(doc);
 //     var child1 = document.createElement("child1");
@@ -2236,19 +2236,19 @@ exports.tests.NIST_expression018 = function(test) {
 //     doc.appendChild(child3);
 //     text = document.createTextNode("Selection of this child is an error.");
 //     child3.appendChild(text);
-//     
+//
 //     var result = xpath.evaluate("//child1", document, doc);
 //     domTestHelper.arrayEqual(test, [child1], result.nodes);
-//     
+//
 //     // set $var1 = result.nodes
 //     // set $var2 = result.nodes
-//     
+//
 //     domTestHelper.arrayEqual(test, [child1],
 //             xpath.evaluate("$var1|$var2", document, doc));
 // };
 
 exports.tests.NIST_expression019_noVariables = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var child1 = document.createElement("child1");
@@ -2263,17 +2263,17 @@ exports.tests.NIST_expression019_noVariables = function(test) {
     doc.appendChild(child3);
     text = document.createTextNode("Selection of this child is an error.");
     child3.appendChild(text);
-    
+
     var result = xpath.evaluate("//child1", document, doc);
     domTestHelper.arrayEqual(test, [child1], result.nodes);
-    
+
     domTestHelper.arrayEqual(test, [child1],
             xpath.evaluate("//child1|//child1", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression020 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -2288,14 +2288,14 @@ exports.tests.NIST_expression020 = function(test) {
     sub2.appendChild(child2);
     text = document.createTextNode("child2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1, child2],
             xpath.evaluate("sub1/child1|sub2/child2", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression021 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var sub1 = document.createElement("sub1");
@@ -2310,20 +2310,20 @@ exports.tests.NIST_expression021 = function(test) {
     sub2.appendChild(child2);
     text = document.createTextNode("self content number 2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1, child2],
             xpath.evaluate("//child1|//child2", document, doc).nodes);
-    
+
     domTestHelper.arrayEqual(test, [child1],
             xpath.evaluate("self::child1|self::child2", document, child1).nodes);
-    
+
     domTestHelper.arrayEqual(test, [child2],
             xpath.evaluate("self::child1|self::child2", document, child2).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression022 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var child1 = document.createElement("child1");
@@ -2334,14 +2334,14 @@ exports.tests.NIST_expression022 = function(test) {
     doc.appendChild(child2);
     text = document.createTextNode("2");
     child2.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1, child2],
             xpath.evaluate("//child1|//child2", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_expression023 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var child1 = document.createElement("child1");
@@ -2356,7 +2356,7 @@ exports.tests.NIST_expression023 = function(test) {
     doc.appendChild(child3);
     text = document.createTextNode("3");
     child3.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1, child2, child3],
             xpath.evaluate("//child1|//child2|//child3", document, doc).nodes);
     test.done();
@@ -2367,9 +2367,9 @@ exports.tests.NIST_expression023 = function(test) {
 // expression025 tests XPath variables, amongst other features, and is
 // omitted as above for other tests. A modified version that does not test
 // variables is included below.
-// 
+//
 // exports.tests.NIST_expression025 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     var doc = document.createElement("doc");
 //     document.appendChild(doc);
 //     var child1 = document.createElement("child1");
@@ -2383,18 +2383,18 @@ exports.tests.NIST_expression023 = function(test) {
 //     var child3 = document.createElement("child3");
 //     text = document.createTextNode("Selection of this child is an error");
 //     child3.appendChild(text);
-//     
+//
 //     var result = xpath.evaluate("//child1", document, doc);
 //     domTestHelper.arrayEqual(test, [child1], result.nodes);
-//     
+//
 //     // set $var1 = result.nodes
-//     
+//
 //     domTestHelper.arrayEqual(test, [child1, child2],
 //             xpath.evaluate("$var1|child::child2", document, doc).nodes);
 // };
 
 exports.tests.NIST_expression025_noVariables = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var child1 = document.createElement("child1");
@@ -2408,10 +2408,10 @@ exports.tests.NIST_expression025_noVariables = function(test) {
     var child3 = document.createElement("child3");
     text = document.createTextNode("Selection of this child is an error");
     child3.appendChild(text);
-    
+
     var result = xpath.evaluate("//child1", document, doc);
     domTestHelper.arrayEqual(test, [child1], result.nodes);
-    
+
     domTestHelper.arrayEqual(test, [child1, child2],
             xpath.evaluate("//child1|child::child2", document, doc).nodes);
     test.done();
@@ -2420,9 +2420,9 @@ exports.tests.NIST_expression025_noVariables = function(test) {
 // expression026 tests XPath variables, so it is omitted as above. There is no
 // modified version of this test that does not use variables, because it would
 // be redundant with other tests.
-// 
+//
 // exports.tests.NIST_expression026 = function(test) {
-//     var document = new level3.Document();
+//     var document = new level3.Document({ parsingMode: "xml" });
 //     var doc = document.createElement("doc");
 //     document.appendChild(doc);
 //     var child1 = document.createElement("child1");
@@ -2436,58 +2436,58 @@ exports.tests.NIST_expression025_noVariables = function(test) {
 //     var child3 = document.createElement("child3");
 //     text = document.createTextNode("Selection of this child is an error");
 //     child3.appendChild(text);
-//     
+//
 //     var result1 = xpath.evaluate("//child1", document, doc);
 //     domTestHelper.arrayEqual(test, [child1], result1.nodes);
-//     
+//
 //     var result2 = xpath.evaluate("//child2", document, doc);
 //     domTestHelper.arrayEqual(test, [child2], result2.nodes);
-//     
+//
 //     // set $var1 = result1.nodes
 //     // set $var2 = result2.nodes
-//     
+//
 //     domTestHelper.arrayEqual(test, [child1, child2],
 //             xpath.evaluate("$var1|$var2", document, doc).nodes);
 // };
 
 exports.tests.NIST_expression027 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true, xpath.evaluate("(-0 = 0)", document, document));
     test.done();
 };
 
 exports.tests.NIST_expression028 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(false, xpath.evaluate("(-0 < 0)", document, document));
     test.done();
 };
 
 exports.tests.NIST_expression029 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(false, xpath.evaluate("(-0 > 0)", document, document));
     test.done();
 };
 
 exports.tests.NIST_expression030 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true, xpath.evaluate("(-0 >= 0)", document, document));
     test.done();
 };
 
 exports.tests.NIST_expression031 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true, xpath.evaluate("(-0 <= 0)", document, document));
     test.done();
 };
 
 exports.tests.NIST_expression032 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(false, xpath.evaluate("(-0 != 0)", document, document));
     test.done();
 };
 
 exports.tests.NIST_expression033 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true, xpath.evaluate("2.1 > 2.0", document, document));
     test.equal(false, xpath.evaluate("2.1 < 2.0", document, document));
     test.equal(false, xpath.evaluate("2.1 = 2.0", document, document));
@@ -2496,7 +2496,7 @@ exports.tests.NIST_expression033 = function(test) {
 };
 
 exports.tests.NIST_expression034 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true, xpath.evaluate("2.0 < 2.1", document, document));
     test.equal(false, xpath.evaluate("2.0 > 2.1", document, document));
     test.equal(false, xpath.evaluate("2.0 = 2.1", document, document));
@@ -2505,7 +2505,7 @@ exports.tests.NIST_expression034 = function(test) {
 };
 
 exports.tests.NIST_expression035 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true, xpath.evaluate("2.0 <= 2.0", document, document));
     test.equal(false, xpath.evaluate("2.0 > 2.0", document, document));
     test.equal(true, xpath.evaluate("2.0 = 2.0", document, document));
@@ -2514,7 +2514,7 @@ exports.tests.NIST_expression035 = function(test) {
 };
 
 exports.tests.NIST_expression036 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     test.equal(true, xpath.evaluate("2.0 >= 2.0", document, document));
     test.equal(false, xpath.evaluate("2.0 < 2.0", document, document));
     test.equal(true, xpath.evaluate("2.0 = 2.0", document, document));
@@ -2523,7 +2523,7 @@ exports.tests.NIST_expression036 = function(test) {
 };
 
 exports.tests.NIST_locationPath001 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var child1 = document.createElement("child1");
@@ -2532,14 +2532,14 @@ exports.tests.NIST_locationPath001 = function(test) {
     child1.appendChild(text);
     var child2 = document.createElement("child2");
     child1.appendChild(child2);
-    
+
     domTestHelper.arrayEqual(test, [child1],
             xpath.evaluate("child1[child::child2]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath002 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -2565,14 +2565,14 @@ exports.tests.NIST_locationPath002 = function(test) {
     element2.appendChild(child2b);
     text = document.createTextNode("Text from child2 of second element (corect execution!!)");
     child2b.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child2b],
             xpath.evaluate("//child2[ancestor::element2]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath003 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -2598,14 +2598,14 @@ exports.tests.NIST_locationPath003 = function(test) {
     element2.appendChild(child2b);
     text = document.createTextNode("Text from child2 of second element (corect execution!!)");
     child2b.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child2b],
             xpath.evaluate("//child2[ancestor-or-self::element2]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath004 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -2632,14 +2632,14 @@ exports.tests.NIST_locationPath004 = function(test) {
     element2.appendChild(child2b);
     text = document.createTextNode("Text from child2 of second element (corect execution!!)");
     child2b.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child2b],
             xpath.evaluate("//child2[attribute::attr1]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath005 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1a = document.createElement("element1");
@@ -2658,14 +2658,14 @@ exports.tests.NIST_locationPath005 = function(test) {
     element1b.appendChild(child1);
     text = document.createTextNode("Text from child1 of second element");
     child1.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [element1a],
             xpath.evaluate("element1[descendant-or-self::child2]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath006 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1 = document.createElement("element1");
@@ -2690,14 +2690,14 @@ exports.tests.NIST_locationPath006 = function(test) {
     element3.appendChild(child1c);
     text = document.createTextNode("Wrong node selected!!");
     child1c.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1a],
             xpath.evaluate("//child1[parent::element1]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath007 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1a = document.createElement("element1");
@@ -2712,14 +2712,14 @@ exports.tests.NIST_locationPath007 = function(test) {
     doc.appendChild(element1c);
     text = document.createTextNode("Wrong node selected!!");
     element1c.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [element1b],
             xpath.evaluate("element1[(((((2*10)-4)+9) div 5) mod 3 )]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath008 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1a = document.createElement("element1");
@@ -2734,14 +2734,14 @@ exports.tests.NIST_locationPath008 = function(test) {
     doc.appendChild(element1c);
     text = document.createTextNode("Wrong node selected!!");
     element1c.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [element1b],
             xpath.evaluate("element1[(((((2*10)-4)+9) div 5) mod floor(3))]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath009 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1a = document.createElement("element1");
@@ -2756,14 +2756,14 @@ exports.tests.NIST_locationPath009 = function(test) {
     doc.appendChild(element1c);
     text = document.createTextNode("Wrong node selected!!");
     element1c.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [element1b],
             xpath.evaluate("element1[floor(2)]", document, doc).nodes);
     test.done();
 };
 
 exports.tests.NIST_locationPath010 = function(test) {
-    var document = new level3.Document();
+    var document = new level3.Document({ parsingMode: "xml" });
     var doc = document.createElement("doc");
     document.appendChild(doc);
     var element1a = document.createElement("element1");
@@ -2788,7 +2788,7 @@ exports.tests.NIST_locationPath010 = function(test) {
     doc.appendChild(element1c);
     text = document.createTextNode("Wrong Node Selected!!");
     element1c.appendChild(text);
-    
+
     domTestHelper.arrayEqual(test, [child1c],
             xpath.evaluate("doc/element1[(((((2*10)-4)+9) div 5) mod 3)]/child1[last()]", document, document).nodes);
     test.done();

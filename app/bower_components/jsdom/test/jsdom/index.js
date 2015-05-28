@@ -7,9 +7,31 @@ var http = require("http");
 var URL = require('url');
 var um = require('urlmaster');
 
+var serializeDocument = require('../../lib/jsdom').serializeDocument;
+
+function tmpWindow() {
+  return jsdom.jsdom(null, { documentRoot: __dirname }).parentWindow;
+}
+
+function testFunction(test, window, jQuery, checkVersion) {
+  test.notEqual(window.jQuery.find, null, 'window.jQuery.find should not be null');
+  test.notEqual(jQuery.find, null, 'jQuery.find should not be null');
+  jQuery("body").html('<p id="para"><a class="link">click <em class="emph">ME</em></a></p>');
+  var res = jQuery("#para .emph").text();
+  var res2 = jQuery("a.link .emph").text();
+  test.equal(jQuery('p#para a.link', window.document.body).attr('class'), 'link', "selecting from body");
+
+  if (checkVersion) {
+    test.strictEqual(jQuery('body').jquery, '1.4.4', 'jQuery version 1.4.4');
+  }
+
+  test.equal(res, "ME", "selector should work as expected");
+  test.equal(res2, "ME", "selector should work as expected");
+};
+
 exports.tests = {
   build_window: function(test) {
-    var window = jsdom.jsdom().createWindow();
+    var window = jsdom.jsdom().parentWindow;
     test.notEqual(window, null, 'window should not be null');
     test.notEqual(window.document, null, 'window.document should not be null');
     test.done();
@@ -34,35 +56,37 @@ exports.tests = {
     test.done();
   },
 
-  jquerify: function(test) {
+  jquerify_file: function(test) {
     var jQueryFile = path.resolve(__dirname, '../jquery-fixtures/jquery-1.4.4.js');
+
+    test.expect(6);
+    jsdom.jQueryify(tmpWindow(), jQueryFile, function(window, jQuery) {
+      testFunction(test, window, jQuery, true);
+      test.done();
+    });
+  },
+
+  jquerify_url: function(test) {
     var jQueryUrl = 'http://code.jquery.com/jquery-1.4.4.min.js';
 
-    function tmpWindow() {
-      return jsdom.jsdom(null, null, {documentRoot: __dirname}).createWindow();
-    }
+    test.expect(6);
+    jsdom.jQueryify(tmpWindow(), jQueryUrl, function (window, jQuery) {
+      testFunction(test, window, jQuery, true);
+      test.done();
+    });
+  },
 
-    // TODO: may need to run this as two different tests... the test seems to be ending before the second callback is happening
-    function testFunction(window, jQuery) {
-      test.notEqual(window.jQuery.find, null, 'window.jQuery.find should not be null');
-      test.notEqual(jQuery.find, null, 'jQuery.find should not be null');
-      jQuery("body").html('<p id="para"><a class="link">click <em class="emph">ME</em></a></p>');
-      var res = jQuery("#para .emph").text();
-      var res2 = jQuery("a.link .emph").text();
-      test.equal(jQuery('p#para a.link',window.document.body).attr('class'), 'link', "selecting from body");
-      test.strictEqual(jQuery('body').jquery, '1.4.4', 'jQuery version 1.4.4');
-      test.equal(res, "ME", "selector should work as expected");
-      test.equal(res2, "ME", "selector should work as expected");
-    };
-
-    // test.expect(12);
-    jsdom.jQueryify(tmpWindow(), jQueryFile, testFunction);
-    jsdom.jQueryify(tmpWindow(), jQueryUrl, testFunction);
-    test.done();
+  jquerify_invalid: function (test) {
+    test.expect(2);
+    jsdom.jQueryify(tmpWindow(), 1, function (window, jQuery) {
+      test.strictEqual(window.jQuery, undefined);
+      test.strictEqual(jQuery, undefined);
+      test.done();
+    });
   },
 
   jquerify_attribute_selector_gh_400: function(test) {
-    var window = jsdom.jsdom().createWindow();
+    var window = jsdom.jsdom().parentWindow;
 
     jsdom.jQueryify(window, path.resolve(__dirname, '../jquery-fixtures/jquery-1.11.0.js'), function () {
       try {
@@ -130,16 +154,6 @@ exports.tests = {
     });
   },
 
-  env_handle_incomplete_dom_with_script: function(test) {
-    jsdom.env(
-      "http://www.google.com/foo#bar",
-      ['http://code.jquery.com/jquery-1.4.4.min.js'],
-      function(errors, window) {
-        test.equal(errors&&errors.length, 1, 'error handed back to callback');
-        test.done();
-      });
-  },
-
   env_with_features_and_external_resources: function(test) {
     jsdom.env(
       'http://documentcloud.github.com/backbone/examples/todos/index.html',
@@ -152,19 +166,13 @@ exports.tests = {
         }
       },
       function(errors, window) {
-        window.onload = function () {
-          test.equal(typeof window._, 'function', 'Underscore loaded');
-          test.equal(typeof window.$, 'function', 'jQuery loaded');
-          test.done();
-        };
+        test.notEqual(errors, null, 'localStorage error should occur');
+
+        test.equal(typeof window._, 'function', 'Underscore loaded');
+        test.equal(typeof window.$, 'function', 'jQuery loaded');
+        test.done();
       }
     );
-  },
-
-  plain_window_document: function(test) {
-    var window = (jsdom.createWindow());
-    test.strictEqual(typeof window.document, 'undefined', 'jsdom.createWindow() should create a documentless window');
-    test.done();
   },
 
   appendChild_to_document_with_existing_documentElement: function(test) {
@@ -183,26 +191,11 @@ exports.tests = {
     test.done();
   },
 
-  // TODO: break into two tests
-  apply_jsdom_features_at_build_time: function(test) {
-    var doc  = new (jsdom.defaultLevel.Document)(),
-        doc2 = new (jsdom.defaultLevel.Document)(),
-        defaults = jsdom.defaultDocumentFeatures;
-    jsdom.applyDocumentFeatures(doc);
-    for (var i=0; i<defaults.length; i++) {
-      test.ok(doc.implementation.hasFeature(defaults[i]), 'Document has all of the default features');
-    }
-    jsdom.applyDocumentFeatures(doc2, {'FetchExternalResources': false});
-    test.ok(doc2.implementation.hasFeature('ProcessExternalResources'), 'Document has ProcessExternalResources');
-    test.equal(doc2.implementation.hasFeature('FetchExternalResources'), false, 'Document does not have \'FetchExternalResources\'');
-    test.done();
-  },
-
   ensure_scripts_can_be_disabled_via_options_features: function(test) {
     var html = '<html><head><script src="./files/hello.js"></script></head>' +
                '<body><span id="test">hello from html</span></body></html>';
 
-    var doc2 = jsdom.jsdom(html, null, {
+    var doc2 = jsdom.jsdom(html, {
       url: toFileUrl(__filename),
       features: {
         FetchExternalResources: ['script'],
@@ -219,7 +212,7 @@ exports.tests = {
     var html = "<html><head><script src='./files/hello.js'></script></head>" +
                "<body><span id='test'>hello from html</span></body></html>";
 
-    var doc = jsdom.jsdom(html, null, {
+    var doc = jsdom.jsdom(html, {
       url: toFileUrl(__filename),
       features: {
         FetchExternalResources: ["script"],
@@ -238,7 +231,7 @@ exports.tests = {
                "<script src='./files/hello.js'></script></head><body>" +
                "<span id='test'>hello from html</span></body></html>";
 
-    var doc = jsdom.jsdom(html, null, {
+    var doc = jsdom.jsdom(html, {
       url: toFileUrl(__filename),
       features: {
         FetchExternalResources: ["script"],
@@ -258,7 +251,7 @@ exports.tests = {
                '<body><span id="test">hello from html</span><span id="cat">' +
                'hello from cat</body></html>';
 
-    var doc2 = jsdom.jsdom(html, null, {
+    var doc2 = jsdom.jsdom(html, {
       url: toFileUrl(__filename),
       features: {
         FetchExternalResources: ['script'],
@@ -266,21 +259,21 @@ exports.tests = {
         SkipExternalResources: new RegExp('.*/files/h')
       }
     });
-    setTimeout(function() {
+    doc2.parentWindow.onload = function () {
       test.equal(doc2.getElementById("test").innerHTML, 'hello from html', 'js should not be executed (doc2)');
       test.equal(doc2.getElementById("cat").innerHTML, 'hello from nyan cat', 'js should be executed (doc2)');
       test.done();
-    }, 800);
+    };
   },
 
   load_multiple_resources_with_defer_close: function(test) {
-    var html = '<html><head></head><body>' +
+    var html = '<html><head></head><frameset>' +
       '<frame src="../level2/html/files/iframe.html"></frame>' +
       '<frame src="../level2/html/files/iframe.html"></frame>' +
       '<frame src="../level2/html/files/iframe.html"></frame>' +
-      '</body></html>';
+      '</frameset></html>';
 
-    var doc = jsdom.jsdom(html, null,
+    var doc = jsdom.jsdom(html,
       {
         url: toFileUrl(__filename),
         features: {
@@ -290,7 +283,7 @@ exports.tests = {
         deferClose: true
       });
     // iframe.html sets onload handler to call loadComplete, so we mock it.
-    var window = doc.createWindow();
+    var window = doc.parentWindow;
     doc.parent = window;
     window.loadComplete = function () {};
 
@@ -374,7 +367,7 @@ exports.tests = {
 
   window_is_augmented_with_dom_features: function(test) {
     var document = jsdom.jsdom(),
-        window   = document.createWindow();
+        window   = document.parentWindow;
     test.ok(window._augmented, 'window must be augmented');
     test.notEqual(window.Element, null, 'window.Element should not be null');
     test.done();
@@ -394,13 +387,13 @@ exports.tests = {
     test.strictEqual(element3, null, 'nonexistent becomes null');
     test.done();
   },
-  
+
   queryselector_documentfragment: function(test) {
     var html = '<html><body><div id="main"><p class="foo">Foo</p><p>Bar</p></div></body></html>',
         document = jsdom.jsdom(html),
         div = document.body.children.item(0),
         fragment = document.createDocumentFragment();
-    
+
     fragment.appendChild(document.body.firstChild);
     test.strictEqual(document.body.firstChild, null);
     var element = fragment.querySelector("#main p");
@@ -417,7 +410,7 @@ exports.tests = {
   // TODO: look into breaking into a testcase
   queryselectorall: function(test) {
     var html = '<html><body><div id="main"><p>Foo</p><p>Bar</p></div><div id="next"><div id="next-child"><p>Baz</p></div></div></body></html>',
-        document = jsdom.jsdom(html, null),
+        document = jsdom.jsdom(html),
         div = document.body.children.item(0),
         elements = document.querySelectorAll("#main p");
     test.equal(elements.length, 2, 'two results');
@@ -453,10 +446,10 @@ exports.tests = {
     test.equal(elements6.item(0), nextChildDiv.children.item(0), 'child of div#next-child');
     test.done();
   },
-  
+
   queryselectorall__documentfragment: function(test) {
     var html = '<html><body><div id="main"><p>Foo</p><p>Bar</p></div><div id="next"><div id="next-child"><p>Baz</p></div></div></body></html>',
-        document = jsdom.jsdom(html, null),
+        document = jsdom.jsdom(html),
         fragment = document.createDocumentFragment();
     fragment.appendChild(document.body.firstChild);
     fragment.appendChild(document.body.firstChild);
@@ -503,21 +496,21 @@ exports.tests = {
     test.done();
   },
 
-  matchesselector: function(test) {
+  matches: function(test) {
     var html = '<html><body><div id="main"><p class="foo">Foo</p><p>Bar</p></div></body></html>';
     var document = jsdom.jsdom(html);
     var div = document.body.children.item(0);
 
     var element = document.querySelector("#main p");
-    test.equal(element.matchesSelector("#main p"), true, 'p and first-p');
+    test.equal(element.matches("#main p"), true, 'p and first-p');
     var element2 = div.querySelector("p");
-    test.equal(element2.matchesSelector("p"), true, 'p and first-p');
+    test.equal(element2.matches("p"), true, 'p and first-p');
     var element3 = document.querySelector("#main p:not(.foo)");
-    test.equal(element3.matchesSelector("#main p:not(.foo)"), true, 'p and second-p');
+    test.equal(element3.matches("#main p:not(.foo)"), true, 'p and second-p');
 
-    test.equal(element.matchesSelector("#asdf"), false, "doesn't match wrong selector");
-    test.equal(element2.matchesSelector("#asdf"), false, "doesn't match wrong selector");
-    test.equal(element3.matchesSelector("#asdf"), false, "doesn't match wrong selector");
+    test.equal(element.matches("#asdf"), false, "doesn't match wrong selector");
+    test.equal(element2.matches("#asdf"), false, "doesn't match wrong selector");
+    test.equal(element3.matches("#asdf"), false, "doesn't match wrong selector");
 
     test.done();
   },
@@ -538,7 +531,7 @@ exports.tests = {
 
     function testLocal() {
       var url = '/path/to/docroot/index.html';
-      var doc = jsdom.jsdom(html, null, {url: url});
+      var doc = jsdom.jsdom(html, {url: url});
       test.equal(um.addPathEmpty(doc.getElementById("link1").href), 'http://example.com/', 'Absolute URL should be left alone except for possible trailing slash');
       test.equal(doc.getElementById("link2").href, '/local.html', 'Relative URL should be resolved');
       test.equal(doc.getElementById("link3").href, '/path/to/docroot/local.html', 'Relative URL should be resolved');
@@ -549,7 +542,7 @@ exports.tests = {
 
     function testRemote() {
       var url = 'http://example.com/path/to/docroot/index.html';
-      var doc = jsdom.jsdom(html, null, {url: url});
+      var doc = jsdom.jsdom(html, {url: url});
       test.equal(um.addPathEmpty(doc.getElementById("link1").href), 'http://example.com/', 'Absolute URL should be left alone except for possible trailing slash');
       test.equal(doc.getElementById("link2").href, 'http://example.com/local.html', 'Relative URL should be resolved');
       test.equal(doc.getElementById("link3").href, 'http://example.com/path/to/docroot/local.html', 'Relative URL should be resolved');
@@ -560,7 +553,7 @@ exports.tests = {
 
     function testBase() {
       var url  = 'blahblahblah-invalid',
-      doc  = jsdom.jsdom(html, null, {url: url}),
+      doc  = jsdom.jsdom(html, {url: url}),
       base = doc.createElement("base");
       base.href = 'http://example.com/path/to/docroot/index.html';
       doc.getElementsByTagName("head").item(0).appendChild(base);
@@ -590,7 +583,7 @@ exports.tests = {
 
       // now check each base case
       bases.forEach(function (base, i) {
-       var doc = jsdom.jsdom(html, null, { url: locn });
+       var doc = jsdom.jsdom(html, { url: locn });
        var expected = um.resolveTrack(locn, base, refs);
 
       // set up the base
@@ -640,7 +633,7 @@ exports.tests = {
   },
 
   document_should_expose_location: function(test) {
-    var window = jsdom.jsdom("").createWindow();
+    var window = jsdom.jsdom("").parentWindow;
     test.strictEqual(window.document.location, window.location, 'document.location and window.location');
     test.done();
   },
@@ -648,7 +641,7 @@ exports.tests = {
 
   mutation_events : function(test) {
     var document = jsdom.jsdom();
-    document.implementation.addFeature('MutationEvents', '2.0');
+    document.implementation._addFeature('MutationEvents', '2.0');
     var created = '';
     var removed = '';
     document.addEventListener('DOMNodeInserted', function(ev) {
@@ -731,7 +724,7 @@ exports.tests = {
   },
 
   childNodes_updates_on_insertChild : function(test) {
-    var window = jsdom.jsdom("").createWindow();
+    var window = jsdom.jsdom("").parentWindow;
     var div = window.document.createElement("div");
     var text = window.document.createTextNode("bar");
     div.appendChild(text);
@@ -746,7 +739,7 @@ exports.tests = {
   },
 
   option_set_selected : function(test) {
-    var window = jsdom.jsdom("").createWindow();
+    var window = jsdom.jsdom("").parentWindow;
     var select = window.document.createElement("select");
 
     var option0 = window.document.createElement('option');
@@ -779,11 +772,11 @@ exports.tests = {
 
   case_sensitivity_of_markup_missing_html_and_body : function(test){
     var spaces = /[ \n]*/g,
-        doc1 = jsdom.html("<HTML><BODY></BODY></HTML>").outerHTML.replace(spaces, ''),
-        doc2 = jsdom.html("<html><BODY></Body></HTML>").outerHTML.replace(spaces, ''),
-        doc3 = jsdom.html("<html><body></body></html>").outerHTML.replace(spaces, ''),
-        doc4 = jsdom.html("<body></body>").outerHTML.replace(spaces, ''),
-        doc5 = jsdom.html("").outerHTML.replace(spaces, '');
+        doc1 = serializeDocument(jsdom.jsdom("<HTML><BODY></BODY></HTML>")).replace(spaces, ''),
+        doc2 = serializeDocument(jsdom.jsdom("<html><BODY></Body></HTML>")).replace(spaces, ''),
+        doc3 = serializeDocument(jsdom.jsdom("<html><body></body></html>")).replace(spaces, ''),
+        doc4 = serializeDocument(jsdom.jsdom("<body></body>")).replace(spaces, ''),
+        doc5 = serializeDocument(jsdom.jsdom("")).replace(spaces, '');
 
     test.ok(doc1 === doc2 && doc2 == doc3 && doc3 === doc4 && doc4 == doc5,
             'they should all serialize the same');
@@ -791,9 +784,9 @@ exports.tests = {
   },
 
   serialization_of_void_elements : function(test){
-    var html = '<html><body><div><br><hr><audio><source></audio></div></body></html>',
-        doc = jsdom.html(html);
-    test.strictEqual(doc.outerHTML, html)
+    var html = '<html><head></head><body><div><br><hr><audio><source></audio></div></body></html>',
+        doc = jsdom.jsdom(html);
+    test.strictEqual(serializeDocument(doc), html)
     test.done();
   },
 
@@ -812,7 +805,7 @@ exports.tests = {
       "</script>" +
     "</body></html>";
 
-    var window = jsdom.jsdom(html).createWindow();
+    var window = jsdom.jsdom(html).parentWindow;
     test.ok(!!window.myNode.nodeType);
     test.done();
   },
@@ -859,10 +852,10 @@ exports.tests = {
   parsing_and_serializing_unknown_entities: function (test) {
     var html = '<html><body>&nowayjose;&#x263a;&#xblah;&#9q;</body></html>';
     var document = jsdom.jsdom(html);
-    test.strictEqual(document.body.firstChild.nodeValue, "&nowayjose;☺&#xblah;&#9q;",
-                     "Unknown and unparsable entities should be left in the decoded text");
-    test.strictEqual(document.body.innerHTML, "&amp;nowayjose;☺&amp;#xblah;&amp;#9q;",
-                     "Unknown and unparsable entities should be reserialized as literal text");
+    test.strictEqual(document.body.firstChild.nodeValue, "&nowayjose;☺lah;	q;",
+                     "Unknown and unparsable entities should be handled like a browser would");
+    test.strictEqual(document.body.innerHTML, "&amp;nowayjose;☺lah;	q;",
+                     "Unknown and unparsable entities should be handled like a browser would");
     test.done();
   },
 
@@ -971,14 +964,14 @@ exports.tests = {
 
   issues_230_259 : function(test) {
     var instr = '<html><body style="color: #ffffff; foo: bar"></body></html>';
-    var doc = jsdom.html(instr);
-    test.ok(doc.outerHTML.match(/0: *color/) === null);
+    var doc = jsdom.jsdom(instr);
+    test.ok(serializeDocument(doc).match(/0: *color/) === null);
     test.done();
   },
 
   // see: https://github.com/tmpvar/jsdom/issues/262
   issue_262 : function(test) {
-    var document = jsdom.html('<html><body></body></html>');
+    var document = jsdom.jsdom('<html><body></body></html>');
     var a = document.createElement('a');
     a.setAttribute("style", "color:blue");
     a.style.setProperty("color", "red");
@@ -988,7 +981,7 @@ exports.tests = {
 
   // see: https://github.com/tmpvar/jsdom/issues/267
   issue_267 : function(test) {
-    var document = jsdom.html('<html><body></body></html>');
+    var document = jsdom.jsdom('<html><body></body></html>');
     var a = document.createElement('a');
     a.style.width = '100%';
     test.ok(!!a.getAttribute('style').match(/^\s*width\s*:\s*100%\s*;?\s*$/), 'style attribute must contain width');
@@ -1008,7 +1001,7 @@ exports.tests = {
         </head>\
         <body onload='loader()'></body>\
       </html>";
-    var doc = jsdom.jsdom(html, null, { deferClose : true });
+    var doc = jsdom.jsdom(html, { deferClose : true });
     var window = doc.parentWindow;
     // In JSDOM, listeners registered with addEventListener are called before
     // "traditional" listeners, so listening for 'load' will fire before our
@@ -1028,7 +1021,6 @@ exports.tests = {
   test_body_event_handler_script : function (test) {
     test.expect(2);
     var doc = jsdom.jsdom("<html><head></head><body></body></html>",
-                          null,
                           {deferClose : true});
     var window = doc.parentWindow;
     test.equal(window.onload, undefined);
@@ -1129,30 +1121,20 @@ exports.tests = {
     test.done();
   },
 
-  jsdom_levels: function(test) {
-    var level1 = jsdom.level(1);
-    var level2 = jsdom.level(2);
-
-    test.notEqual(level1, level2, 'Level1.core and level2.core are different instances');
-    test.equal(level1.HTMLCollection, null, 'Level1 dom shouldn\'t have HTMLCollection function.');
-
-    test.done();
-  },
-
   issue_335_inline_event_handlers : function(test) {
-    var doc = jsdom.html('<a onclick="somefunction()">call some function</a>');
+    var doc = jsdom.jsdom('<a onclick="somefunction()">call some function</a>');
     var a = doc.getElementsByTagName('a').item(0);
     var onclick = a.getAttribute('onclick');
     test.notEqual(onclick, null);
     test.equal(onclick, 'somefunction()');
-    test.ok(doc.innerHTML.indexOf('onclick') > -1);
+    test.ok(serializeDocument(doc).indexOf('onclick') > -1);
     test.done();
   },
 
   issue_338_internal_nodelist_props : function(test) {
-    var doc = jsdom.html();
+    var doc = jsdom.jsdom();
     var props = Object.keys(doc.body.childNodes);
-    test.equal(props.length, 1, 'Internal properties must not be enumerable');
+    test.equal(props.length, 0, 'Internal properties must not be enumerable');
     test.done();
   },
 
@@ -1173,7 +1155,7 @@ exports.tests = {
   },
 
   setting_and_getting_script_element_text : function (test) {
-    var doc = jsdom.html("<script></script>");
+    var doc = jsdom.jsdom("<script></script>");
     var script = doc.getElementsByTagName('script')[0];
     test.equal(script.text, '');
     script.text = 'var x = 3;';
@@ -1191,8 +1173,9 @@ exports.tests = {
     var content = ' <%= cid %>'
     var script = '<script type="text/x-underscore-tmpl">' + content + '</script>'
     var html = '<html><head>' + script + '</head><body><p>hello world!</p></body></html>'
-    var doc = jsdom.html(html)
-    doc.innerHTML = html;
+    var doc = jsdom.jsdom(html)
+    doc.write(html);
+    doc.close();
     test.equal(doc.head.childNodes[0].innerHTML, content);
     test.done();
   },
@@ -1201,7 +1184,8 @@ exports.tests = {
     jsdom.env({
       html : '<script type="text/javascript">window.a = 1;/* remove me */ console.log("executed?")</script>',
       done : function(errors, window) {
-        window.document.innerHTML = window.document.innerHTML.replace('/* remove me */','');
+        window.document.write(serializeDocument(window.document).replace('/* remove me */',''));
+        window.document.close();
         test.equal(typeof window.a, 'undefined');
         test.done();
       }
@@ -1218,7 +1202,7 @@ exports.tests = {
   },
 
   issue_361_textarea_value_property: function (test) {
-     var doc = jsdom.html('<html><body><textarea id="mytextarea"></textarea></body></html>');
+     var doc = jsdom.jsdom('<html><body><textarea id="mytextarea"></textarea></body></html>');
 
      doc.getElementById('mytextarea').value = '<foo>';
      test.equal(doc.getElementById('mytextarea').value, '<foo>');
@@ -1256,23 +1240,24 @@ exports.tests = {
     test.done();
   },
 
-  css_classes_should_be_attached_to_dom : function(test) {
-    [jsdom.level(2, 'core'), jsdom.level(3, 'core')].forEach(function (dom) {
-      test.notEqual(dom.StyleSheet, undefined);
-      test.notEqual(dom.MediaList, undefined);
-      test.notEqual(dom.CSSStyleSheet, undefined);
-      test.notEqual(dom.CSSRule, undefined);
-      test.notEqual(dom.CSSStyleRule, undefined);
-      test.notEqual(dom.CSSMediaRule, undefined);
-      test.notEqual(dom.CSSImportRule, undefined);
-      test.notEqual(dom.CSSStyleDeclaration, undefined);
-    });
+  css_classes_should_be_attached_to_dom: function (test) {
+    var dom = jsdom.jsdom().parentWindow;
+
+    test.notEqual(dom.StyleSheet, undefined);
+    test.notEqual(dom.MediaList, undefined);
+    test.notEqual(dom.CSSStyleSheet, undefined);
+    test.notEqual(dom.CSSRule, undefined);
+    test.notEqual(dom.CSSStyleRule, undefined);
+    test.notEqual(dom.CSSMediaRule, undefined);
+    test.notEqual(dom.CSSImportRule, undefined);
+    test.notEqual(dom.CSSStyleDeclaration, undefined);
+
     test.done();
   },
 
   lookup_namednodemap_by_property : function (test) {
     var doc = jsdom.jsdom();
-    var core = jsdom.level(3, 'core');
+    var core = doc.parentWindow;
     var map = new core.NamedNodeMap(doc);
     test.equal(map.length, 0);
     var attr1 = doc.createAttribute('attr1');
@@ -1294,7 +1279,7 @@ exports.tests = {
 
   issue_723_namednodemap_property_names_that_collide_with_method_names : function (test) {
     var doc = jsdom.jsdom();
-    var core = jsdom.level(1, 'core');
+    var core = doc.parentWindow;
     var map = new core.NamedNodeMap(doc);
     var fooAttribute = doc.createAttribute('foo');
     map.setNamedItem(fooAttribute);
@@ -1322,9 +1307,9 @@ exports.tests = {
   issue_371_outerhtml_noformat : function(test) {
     var originalHTML = '<li><span>A</span><span>B</span></li>';
     var dom = jsdom.jsdom(originalHTML);
-    var outerHTML = dom.outerHTML;
+    var outerHTML = serializeDocument(dom);
 
-    test.equal(originalHTML, outerHTML);
+    test.equal(outerHTML, '<html><head></head><body>' + originalHTML + '</body></html>');
     test.done();
   },
 
@@ -1341,7 +1326,7 @@ exports.tests = {
     test.expect(1);
 
     var doc = jsdom.jsdom('<html><head></head><body></body></html>');
-    var window = doc.createWindow();
+    var window = doc.parentWindow;
 
     // Add the load event after the document is already created; it shouldn't
     // fire until nextTick. The test will fail (with a timeout) if it has
@@ -1386,8 +1371,19 @@ exports.tests = {
     test.done();
   },
 
+  iframe_contents: function (test) {
+    var document = jsdom.jsdom("<iframe></iframe>");
+    var iframeDocument = document.querySelector("iframe").contentWindow.document;
+
+    test.equal(serializeDocument(iframeDocument), "<html><head></head><body></body></html>");
+    test.ok(iframeDocument.documentElement);
+    test.ok(iframeDocument.head);
+    test.ok(iframeDocument.body);
+    test.done();
+  },
+
   jquery_val_on_selects : function(test) {
-    var window = jsdom.jsdom().createWindow();
+    var window = jsdom.jsdom().parentWindow;
 
     jsdom.jQueryify(window, path.resolve(__dirname, '../jquery-fixtures/jquery-1.11.0.js'), function () {
       window.$("body").append('<html><body><select id="foo"><option value="first">f</option><option value="last">l</option></select></body></html>');
@@ -1411,7 +1407,7 @@ exports.tests = {
   },
 
   jquery_attr_mixed_case : function(test) {
-    var window = jsdom.jsdom().createWindow();
+    var window = jsdom.jsdom().parentWindow;
 
     jsdom.jQueryify(window, path.resolve(__dirname, '../jquery-fixtures/jquery-1.11.0.js'), function () {
       var $el = window.$('<div mixedcase="blah"></div>');
@@ -1423,7 +1419,7 @@ exports.tests = {
   },
 
   "Calling show() method in jQuery 1.11.0 (GH-709)": function (t) {
-    var window = jsdom.jsdom("<!DOCTYPE html><html><head></head><body></body></html>").createWindow();
+    var window = jsdom.jsdom("<!DOCTYPE html><html><head></head><body></body></html>").parentWindow;
 
     jsdom.jQueryify(window, path.resolve(__dirname, "../jquery-fixtures/jquery-1.11.0.js"), function () {
       var $el = window.$("<div></div>");
@@ -1437,7 +1433,7 @@ exports.tests = {
   },
 
   "Calling show() method in jQuery 1.11.0, second case (GH-709)": function (t) {
-    var window = jsdom.jsdom("<!DOCTYPE html><html><head></head><body></body></html>").createWindow();
+    var window = jsdom.jsdom("<!DOCTYPE html><html><head></head><body></body></html>").parentWindow;
 
     jsdom.jQueryify(window, path.resolve(__dirname, "../jquery-fixtures/jquery-1.11.0.js"), function () {
       var $el1 = window.$("<div></div>");
@@ -1497,6 +1493,12 @@ exports.tests = {
     });
   },
 
+  issue_935_document_tostring_returns_null: function(test) {
+    var document = jsdom.jsdom();
+    test.equal(document.toString(), "[object HTMLDocument]");
+    test.done();
+  },
+
   script_with_cookie: function (t) {
     var html = "<!DOCTYPE html><html><head><script src='/foo.js'></script></head><body>foo</body></html>";
 
@@ -1524,7 +1526,7 @@ exports.tests = {
           FetchExternalResources: ["script"],
           ProcessExternalResources: ["script"]
         },
-        done: function (err, window) {
+        created: function (err, window) {
           window.doCheck = function () {
             server.close();
             t.ifError(err);
@@ -1581,5 +1583,25 @@ exports.tests = {
         }
       });
     });
+  },
+
+  addmetatohead: function(test) {
+    var window = jsdom.jsdom().parentWindow;
+    var meta = window.document.createElement("meta");
+    window.document.getElementsByTagName("head").item(0).appendChild(meta);
+    var elements = window.document.getElementsByTagName("head").item(0).childNodes;
+    test.strictEqual(elements.item(elements.length-1), meta, "last element should be the new meta tag");
+    test.ok(serializeDocument(window.document).indexOf("<meta>") > -1, "meta should have open tag");
+    test.strictEqual(serializeDocument(window.document).indexOf("</meta>"), -1, "meta should not be stringified with a closing tag");
+    test.done();
+  },
+
+  "no global leak when using window.location.reload": function (t) {
+    // https://github.com/tmpvar/jsdom/pull/1032
+    t.equal("errors" in global, false, "there should be no errors global before the call");
+    var window = jsdom.jsdom().parentWindow;
+    window.location.reload();
+    t.equal("errors" in global, false, "there should be no errors global after the call");
+    t.done();
   }
 };

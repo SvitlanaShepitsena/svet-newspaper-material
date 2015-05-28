@@ -27,7 +27,7 @@
                     var radioGroupName = radioGroup.attr('name');
                     /*for Angular Material md-select*/
                     var mdSelects = elTemp.find('md-select[required]');
-                    var mdSelectsName = mdSelects.attr('ng-name');
+                    var mdSelectsName = mdSelects.attr('name');
 
                     return function ($scope, el, attr, ctrl) {
                         var formName = ctrl.$name;

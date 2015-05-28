@@ -1,18 +1,13 @@
-var dom = require("../../lib/jsdom/level2/core").dom.level2.core;
+var dom = require("../../lib/jsdom/living");
 var jsdom = require('../../lib/jsdom');
-var browser;
+var serializeDocument = require('../../lib/jsdom').serializeDocument;
 
 exports.tests = {
-  setUp : function(done) {
-    browser = require("../../lib/jsdom/browser/index").browserAugmentation(dom);
-    done();
-  },
   notfound_getelementsbyclassname: function(test) {
-    var doc = new browser.Document();
-    var html = doc.createElement("html");
-    doc.appendChild(html);
-    var body = doc.createElement("body");
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     var p = doc.createElement("p");
     p.className = "unknown";
     body.appendChild(p);
@@ -22,11 +17,10 @@ exports.tests = {
   },
 
   basic_getelementsbyclassname: function(test) {
-    var doc = new browser.Document();
-    var html = doc.createElement("html");
-    doc.appendChild(html);
-    var body = doc.createElement("body");
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     var p = doc.createElement("p");
     p.className = "first-p";
     body.appendChild(p);
@@ -36,11 +30,10 @@ exports.tests = {
   },
 
   multiple_getelementsbyclassname: function(test) {
-    var doc = new browser.Document();
-    var html = doc.createElement("html");
-    doc.appendChild(html);
-    var body = doc.createElement("body");
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     var p = doc.createElement("p");
     p.className = "first-p second third";
     body.appendChild(p);
@@ -54,7 +47,10 @@ exports.tests = {
   },
 
   testclassnameworksasexpected: function(test) {
-    var doc = new browser.Document();
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     var p = doc.createElement("p");
     p.setAttribute("class", "first-p");
     test.equal(p.className, 'first-p', 'class attribute is same as className');
@@ -64,11 +60,10 @@ exports.tests = {
   },
 
   basic_getelementbyid: function(test) {
-    var doc = new browser.Document();
-    var html = doc.createElement("html");
-    doc.appendChild(html);
-    var body = doc.createElement("body");
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     var p = doc.createElement("p");
     p.id = "theid";
     body.appendChild(p);
@@ -78,11 +73,10 @@ exports.tests = {
   },
 
   nonexistant_getelementbyid: function(test) {
-    var doc = new browser.Document();
-    var html = doc.createElement("html");
-    doc.appendChild(html);
-    var body = doc.createElement("body");
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     var p = doc.createElement("p");
     p.id = "theid";
     body.appendChild(p);
@@ -92,17 +86,17 @@ exports.tests = {
   },
 
   remove_nonexistantattribute: function(test) {
-    var doc = new browser.Document();
-    var html = doc.createElement("html");
-    doc.appendChild(html);
-    var body = doc.createElement("body");
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     test.doesNotThrow(function(){ body.removeAttribute("non-existant"); }), 'setValue_throws_NO_MODIFICATION_ERR';
     test.done();
   },
 
   render_singletag: function(test) {
-    var doc = new browser.Document();
+    var doc = jsdom.jsdom();
+
     var p = doc.createElement("p");
     var img = doc.createElement("img");
     p.appendChild(img);
@@ -112,7 +106,8 @@ exports.tests = {
   },
 
   render_specialchars: function(test) {
-	  var doc = new browser.Document();
+    var doc = jsdom.jsdom();
+
 	  var p = doc.createElement("p");
 	  var specials = '"<>&\xA0';
 	  var escapedSpecials = '"&lt;&gt;&amp;&nbsp;';
@@ -120,15 +115,14 @@ exports.tests = {
 	  p.innerHTML = escapedSpecials;
 	  var pp = doc.createElement("p");
 	  pp.appendChild(p);
-	  // This matches the behavior of FireFox, Chrome, and Safari.
-	  // IE8 does not escape <> in attributes, but does escape &shy; in attributes and text content.
-	  test.equal(pp.innerHTML, '<p specials="&quot;&lt;&gt;&amp;&nbsp;">"&lt;&gt;&amp;&nbsp;</p>' );
+	  test.equal(pp.innerHTML, '<p specials="&quot;<>&amp;&nbsp;">"&lt;&gt;&amp;&nbsp;</p>');
 	  test.done();
   },
 
   parse_scripttags: function(test) {
-    var doc = new browser.Document();
-    var head = doc.createElement("head");
+    var doc = jsdom.jsdom();
+    var head = doc.head;
+
     var scriptHtml = '<script>alert("hello world")</script>';
     head.innerHTML = scriptHtml;
     test.equal(scriptHtml, head.innerHTML, "original and processed");
@@ -136,8 +130,8 @@ exports.tests = {
   },
 
   parse_styletags: function(test) {
-    var doc = new browser.Document();
-    var head = doc.createElement("head");
+    var doc = jsdom.jsdom();
+    var head = doc.head;
     var styleHtml = '<style>body: {color: #fff;}</style>';
     head.innerHTML = styleHtml;
     test.equal(styleHtml, head.innerHTML, "original and processed");
@@ -145,25 +139,26 @@ exports.tests = {
   },
 
   parse_doublespacetags: function(test) {
-    var doc = new browser.Document();
+    var doc = jsdom.jsdom();
     var html = '<html><body  class="testing" /></html>';
-    test.doesNotThrow(function(){ doc.innerHTML = html; }), 'setValue_throws_INVALID_CHARACTER_ERR';
+    test.doesNotThrow(function(){ doc.write(html); }), 'setValue_throws_INVALID_CHARACTER_ERR';
     test.done();
   },
 
   serialize_styleattribute: function(test) {
-    var doc = new browser.Document();
-    var domToHtml = require('../../lib/jsdom/browser/domtohtml');
-    doc.appendChild(doc.createElement('html'));
+    var doc = jsdom.jsdom();
+
     doc.documentElement.style.color = 'black';
     doc.documentElement.style.backgroundColor = 'white';
-    test.equal(domToHtml.domToHtml(doc), '<html style="color: black; background-color: white;"></html>\n', '');
+    test.equal(doc.documentElement.outerHTML,
+      '<html style="color: black; background-color: white;"><head></head><body></body></html>');
     test.done();
   },
 
   innerhtml_removeallchildren: function(test) {
-    var doc = new browser.Document();
-    var body = doc.createElement('body');
+    var doc = jsdom.jsdom();
+    var body = doc.body;
+
     body.appendChild(doc.createElement('p'));
     body.innerHTML = "";
     test.equal(body.childNodes.length, 0, 'still has children');
@@ -171,8 +166,9 @@ exports.tests = {
   },
 
   innerhtml_null: function(test) {
-    var doc = new browser.HTMLDocument();
-    var body = doc.createElement('body');
+    var doc = jsdom.jsdom();
+    var body = doc.body;
+
     body.appendChild(doc.createElement('p'));
     body.innerHTML = null;
     test.equal(body.childNodes.length, 0, 'still has children');
@@ -180,56 +176,64 @@ exports.tests = {
   },
 
   serialize_html5_doctype: function(test) {
-    var dom = new browser.DOMImplementation();
-    var doctype = dom.createDocumentType('html');
+    var doc = jsdom.jsdom();
+    var dom = doc.implementation;
+
+    var doctype = dom.createDocumentType('html', '', '');
     var document = dom.createDocument(null, null, doctype);
     var regexp = /^\s*<!DOCTYPE html>/;
-    test.ok(regexp.test(document.outerHTML), 'HTML 5 doctype did not serialize correctly');
+    test.ok(regexp.test(serializeDocument(document)), 'HTML 5 doctype did not serialize correctly');
     test.done();
   },
 
   serialize_html4_strict_doctype: function(test) {
-    var dom = new browser.DOMImplementation();
+    var doc = jsdom.jsdom();
+    var dom = doc.implementation;
+
     var doctype = dom.createDocumentType('html', '-//W3C//DTD HTML 4.01//EN', 'http://www.w3.org/TR/html4/strict.dtd');
     var document = dom.createDocument(null, null, doctype);
     var regexp = /^\s*<!DOCTYPE html PUBLIC "-\/\/W3C\/\/DTD HTML 4.01\/\/EN" "http:\/\/www.w3.org\/TR\/html4\/strict.dtd">/;
-    test.ok(regexp.test(document.outerHTML), 'HTML 4 strict doctype did not serialize correctly');
+    test.ok(regexp.test(serializeDocument(document)), 'HTML 4 strict doctype did not serialize correctly');
     test.done();
   },
 
   serialize_system_doctype: function(test) {
-    var dom = new browser.DOMImplementation();
-    var doctype = dom.createDocumentType('foo', null, 'foo.dtd');
+    var doc = jsdom.jsdom();
+    var dom = doc.implementation;
+
+    var doctype = dom.createDocumentType('foo', '', 'foo.dtd');
     var document = dom.createDocument(null, null, doctype);
     var regexp = /^\s*<!DOCTYPE foo SYSTEM "foo.dtd">/;
-    test.ok(regexp.test(document.outerHTML), 'Doctype did not serialize correctly');
+    test.ok(regexp.test(serializeDocument(document)), 'Doctype did not serialize correctly');
     test.done();
   },
 
   serialize_doctype_containing_quotes: function(test) {
-    var dom = new browser.DOMImplementation();
-    var doctype = dom.createDocumentType('foo', null, 'foo "bar".dtd');
+    var doc = jsdom.jsdom();
+    var dom = doc.implementation;
+
+    var doctype = dom.createDocumentType('foo', '', 'foo "bar".dtd');
     var document = dom.createDocument(null, null, doctype);
     var regexp = /^\s*<!DOCTYPE foo SYSTEM \'foo "bar".dtd\'>/;
-    test.ok(regexp.test(document.outerHTML), 'Doctype did not serialize correctly');
+    test.ok(regexp.test(serializeDocument(document)), 'Doctype did not serialize correctly');
     test.done();
   },
 
   parse_doctype_containing_newline : function(test) {
     var html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n \
-             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n<html></html>',
-        doc  = new browser.Document();
-    doc.innerHTML = html;
+             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n<html></html>';
+
+    var doc = jsdom.jsdom();
+    doc.write(html);
     test.ok(!!doc.doctype, 'doctype should not be falsy');
     test.done();
   },
 
   basic_nodelist_indexOf : function(test) {
-    var doc = new browser.Document();
-    var html = doc.createElement("html");
-    doc.appendChild(html);
-    var body = doc.createElement("body");
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     var p = doc.createElement("p");
     body.appendChild(p);
     var div = doc.createElement("div");
@@ -242,11 +246,10 @@ exports.tests = {
   },
 
   nonexistant_nodelist_indexOf : function(test) {
-    var doc = new browser.Document();
-    var html = doc.createElement("html");
-    doc.appendChild(html);
-    var body = doc.createElement("body");
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
+
     var p = doc.createElement("p");
     body.appendChild(p);
     var div = doc.createElement("div");
@@ -321,13 +324,9 @@ exports.tests = {
   },
 
   select_set_value_updates_value : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +
@@ -346,13 +345,9 @@ exports.tests = {
   },
 
   select_set_value_updates_selectedIndex : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +
@@ -371,13 +366,9 @@ exports.tests = {
   },
 
   select_set_value_updates_option_selected : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +
@@ -398,13 +389,9 @@ exports.tests = {
   },
 
   select_set_selectedIndex_updates_value : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +
@@ -423,13 +410,9 @@ exports.tests = {
   },
 
   select_set_selectedIndex_updates_selectedIndex : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +
@@ -448,13 +431,9 @@ exports.tests = {
   },
 
   select_set_selectedIndex_updates_option_selected : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +
@@ -477,13 +456,9 @@ exports.tests = {
   },
 
   select_set_option_selected_updates_value : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +
@@ -505,13 +480,9 @@ exports.tests = {
   },
 
   select_set_option_selected_updates_selectedIndex : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +
@@ -532,13 +503,9 @@ exports.tests = {
   },
 
   select_set_option_selected_updates_option_selected : function(test) {
-    var doc = new browser.Document();
-
-    var html = doc.createElement("html");
-    var body = doc.createElement("body");
-
-    doc.appendChild(html);
-    html.appendChild(body);
+    var doc = jsdom.jsdom();
+    var html = doc.documentElement;
+    var body = doc.body;
 
     body.innerHTML =
       '<select id="selectElement">' +

@@ -39,13 +39,15 @@ exports.load = function (dirname) {
     }
 
     var contents = fileCache[file] || fs.readFileSync(file, 'utf8');
-    var doc = jsdom.jsdom(null, null, options);
-    var window = doc.createWindow();
+    var doc = jsdom.jsdom(null, options);
+    var window = doc.parentWindow;
 
     doc.parent = window;
     window.loadComplete = function () {};
 
-    doc.innerHTML = contents;
+    doc.write(contents);
+    doc.close();
+
     fileCache[file] = contents;
     return doc;
   };

@@ -1,3 +1,233 @@
+## 3.1.2
+
+* Some fixes to the `NOT_IMPLEMENTED` internal helper, which should eliminate the cases where calling e.g. `window.alert` crashes your application.
+* Fixed a global variable leak when triggering `NOT_IMPLEMENTED` methods, like `window.location.reload`.
+* Fixed the URL resolution algorithm to handle `about:blank` properly on all systems (previously it only worked on Windows). This is especially important since as of 3.0.0 the default URL is `about:blank`.
+* Fixed, at least partially, the ability to run `<script>`s inside a browserified jsdom instance. This is done by dynamically rewriting the source code so that global variable references become explicit references to `window.variableName`, so it is not foolproof.
+
+## 3.1.1
+
+* Updated `Node.prototype.isEqualNode` to the algorithm of the DOM Standard, fixing a bug where it would throw an error along the way.
+* Removed `Node.prototype.isSameNode`, which is not present in the DOM Standard (and was just a verbose `===` check anyway).
+* Fixed a couple small issues while browserifying, mainly around `jsdom.env`. However, while doing so discovered that `<script>`s in general don't work too well in a browserified jsdom; see [#1023](https://github.com/tmpvar/jsdom/issues/1023).
+
+## 3.1.0
+
+* Added support for [custom external resource loading](https://github.com/tmpvar/jsdom#custom-external-resource-loader). (tobie)
+
+## 3.0.3
+
+* Fixed some stray byte-order marks in a couple files, which incidentally [break Browserify](https://github.com/substack/node-browserify/issues/1095). (sterpe)
+
+## 3.0.2
+
+* Fixed another edge case where unchecking a radio button would incorrectly uncheck radio buttons outside the containing form. (zpao)
+
+## 3.0.1
+
+* Fixed errors when serializing text nodes (possibly only occurred when inside `<template>`).
+* Handle null bytes being passed to `jsdom.env`'s autodetecting capabilities. (fluffybunnies)
+* Handle empty HTML strings being passed to `jsdom.env`'s `html` option. (fluffybunnies)
+
+## 3.0.0
+
+This release updates large swathes of the DOM APIs to conform to the standard, mostly by removing old stuff. It also fixes a few bugs, introduces a couple new features, and changes some defaults.
+
+3.0.x will be the last release of jsdom to support Node.js. All future releases (starting with 4.0.0) will require [io.js](https://iojs.org/), whose [new `vm` module](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#vm) will allow us to remove our contextify native-module dependency. (Given that I submitted the relevant patch to joyent/node [1.5 years ago](https://github.com/joyent/node/commit/7afdba6e0bc3b69c2bf5fdbd59f938ac8f7a64c5), I'm very excited that we can finally use it!)
+
+* By default documents now use `about:blank` as their URL, instead of trying to infer some type of file URL from the call site (in Node.js) or using `location.href` (in browsers).
+* Introduced a new "virtual console" abstraction for capturing console output from inside the page. [See the readme for more information.](https://github.com/tmpvar/jsdom#capturing-console-output) Note that `console.error` will no longer contribute to the (non-standard, and likely dying in the future) `window.errors` array. (jeffcarp)
+* Added the named `new Image(width, height)` constructor. (vinothkr)
+* Fixed an exception when using `querySelector` with selectors like `div:last-child > span[title]`.
+* Removed all traces of entities, entity types, notations, default attributes, and CDATA sections.
+* Differentiated between XML and HTML documents better, for example in how they handle the casing of tag names and attributes.
+* Updated `DOMImplementation` to mostly work per-spec, including removing `addFeature` and `removeFeature` methods, the `ownerDocument` property, and making `hasFeature` always return `true`.
+* Re-did the `CharacterData` implementation to follow the algorithms in the DOM Standard; this notably removes a few exceptions that were previously thrown.
+* Re-did `Comment`, `Text`, and `ProcessingInstruction` to follow the DOM Standard and derive from `CharacterData`.
+* Re-did `DocumentType` to follow the DOM Standard and be much simpler, notably removing notations, entities, and default attributes.
+* Fixed a variety of accessors on `Node`, `Element`, `Attr`, and `Document`; some were removed that were nonstandard (especially setters); others were updated to reflect the spec; etc.
+* Re-did name/qname validation, which is done by various APIs, to work with the xml-name-validator package and some centralized algorithms.
+* Made the XML parser at least somewhat aware of processing instructions.
+* Cleaned up doctype parsing and association between doctypes and documents. More exotic doctypes should parse better now.
+* `document.contentType` now is generally inferred from the parsing mode of the document.
+* Moved some properties to `Document.prototype` and `Window.prototype` instead of setting them as own properties during the document/window creation. This should improve memory usage (as well as spec compliance).
+
+## 2.0.0
+
+This release is largely a refactoring release to remove the defunct concept of "levels" from jsdom, in favor of the [living standard model](https://wiki.whatwg.org/wiki/FAQ#What_does_.22Living_Standard.22_mean.3F) that browsers follow. Although the code is still organized that way, that's now [noted as a historical artifact](https://github.com/tmpvar/jsdom/blob/2ff5747488ad4b518fcef97a026c82eab42a0a14/lib/README.md). The public API changes while doing so were fairly minimal, but this sets the stage for a cleaner jsdom code structure going forward.
+
+* Removed: `jsdom.level`, and the `level` option from `jsdom.jsdom`.
+* Change: the nonstandard `Element.prototype.matchesSelector` method was replaced with the standard `Element.prototype.matches`. (KenPowers)
+* Fix: `querySelector` correctly coerces its argument to a string (1.2.2 previously fixed this for `querySelectorAll`).
+
+## 1.5.0
+
+* Add: missing `window.console` methods, viz. `assert`, `clear`, `count`, `debug`, `group`, `groupCollapse`, `groupEnd`, `table`, `time`, `timeEnd`, and `trace`. All except `assert` do nothing for now, but see [#979](https://github.com/tmpvar/jsdom/issues/979) for future plans. (jeffcarp)
+* Tweak: make `childNodes`, and the many places in jsdom that use it, much faster. (Joris-van-der-Wel)
+
+## 1.4.1
+
+* Tweak: faster implementation of `NodeList.prototype.length`, which should speed up common operations like `appendChild` and similar. (Joris-van-der-Wel)
+
+## 1.4.0
+
+* Fix: `HTMLInputElement.prototype.checked` and `defaultChecked` now behave per the spec. (Joris-van-der-Wel)
+* Fix: `HTMLOptionElement.prototype.selected` now behaves per the spec. (Joris-van-der-Wel)
+* Fix: `HTMLInputElement.prototype.value` now behaves per the spec. (Joris-van-der-Wel)
+* Fix: `HTMLTextAreaElement.prototype.value` and `defaultValue` now behave per the spec. (Joris-van-der-Wel)
+* Add: `HTMLTextAreaElement.prototype.defaultValue` now has a setter, and `HTMLTextAreaElement.prototype.textLength` now exists. (Joris-van-der-Wel)
+* Fix: resetting a `<form>` now behaves per spec for all different types of form elements. (Joris-van-der-Wel)
+* Fix: radio buttons reset other radio buttons correctly now per the spec. (Joris-van-der-Wel)
+* Fix: `document.cloneNode` now works. (AVGP)
+* Fix: `hasAttribute` is now case-insensitive, as it should be. (AVGP)
+* Fix: `div.toString()` now returns `[object HTMLDivElement]`. (AVGP)
+
+## 1.3.2
+
+* Fix: check if `module.parent` exists before using it to construct a document's initial URL. Apparently some testing frameworks like Jest do not correctly emulate the module environment; this compensates. (SegFaultx64)
+
+## 1.3.1
+
+* Fix: changing attributes on `<option>` elements will now have the correct consequences. For example changing the `id` attribute now interacts correctly with `document.getElementById`. (Joris-van-der-Wel)
+
+## 1.3.0
+
+* Add: moved `focus` and `blur` methods to `HTMLElement.prototype`, instead of having them only be present on certain element prototypes. Our focus story is still not very spec-compliant, but this is a step in the right direction. (vincentsiao)
+
+## 1.2.3
+
+* Tweak: improve performance of `Node.prototype.insertBefore`, `Node.prototype.removeChild`, and several `AttributeList` methods. (Joris-van-der-Wel)
+
+## 1.2.2
+
+* Fix: `querySelectorAll` correctly coerces its argument to a string; notably this allows you to pass arrays. (jeffcarp)
+* Fix: the `data` setter on text nodes correctly coerces the new value to a string. (medikoo)
+* Fix: `document.toString()` now returns `[object HTMLDocument]`. (jeffcarp)
+
+## 1.2.1
+
+* Fix: handling of `<template>` element parsing and serialization, now that it is supported by parse5. (inikulin)
+
+## 1.2.0
+
+* Add: `NodeFilter`, in particular its constants. (fhemberger)
+* Fix: initial `history.length` should be `1`, not `0`. (rgrove)
+* Fix: `history.pushState` and `history.replaceState` should not fire the `popstate` event. (rgrove)
+
+## 1.1.0
+
+* Add: `document.implementation.createHTMLDocument()`. (fhemberger)
+* Fix: `localName` was sometimes `null` for elements when it should not be. (fhemberger)
+
+## 1.0.3
+
+* Update: no longer requiring separate `cssstyle` and `cssstyle-browserify` dependencies; now `cssstyle` can be used directly. This also un-pins the `cssstyle` dependency so that future fixes arrive as they appear upstream.
+
+## 1.0.2
+
+* Fix: temporarily pin `cssstyle` dependency to at most 0.2.18 until [chad3814/CSSStyleDeclaration#20](https://github.com/chad3814/CSSStyleDeclaration/issues/20) is fixed.
+* Fix: browserifying jsdom should work better now that the required packages are included as `dependencies` instead of `devDependencies`. (Sebmaster)
+* Fix: using `jsom.env` in a browser environment now correctly defaults `options.url` to `location.href` instead of trying to infer a reasonable `fil://` URL using techniques that fail in the browser. (rattrayalex)
+
+## 1.0.1
+
+* Fix: the return value of `EventTarget.prototype.dispatchEvent` should be `true` when the default is *not* prevented; previously it was the opposite. (eventualbuddha)
+
+## 1.0.0
+
+For a consolidated list of changes from 0.11.1 to 1.0.0, see [this wiki page](https://github.com/tmpvar/jsdom/wiki/Changes-from-0.11.1-to-1.0.0).
+
+* Remove: nonstandard `EventTarget.getListeners`; `EventTarget.forwardIterator`; `EventTarget.backwardIterator`; `EventTarget.singleIterator`.
+* Remove: nonstandard `document.innerHTML`. (jorendorff)
+* Fix: `value` and `defaultValue` properties of a `HTMLInputElement` are now correctly synced to the `value=""` attribute. (Sebmaster)
+
+## 1.0.0-pre.7
+
+* Remove: support for old, untested HTML and XML parsers, namely davglass/node-htmlparser and isaacs/sax-js. In the future we plan to work toward a standardized parsing interface that other parsers can implement, instead of adding custom code to jsdom for various parsers. This interface still is being decided though, as it needs to support complex things like pausing the parse stream (for `document.write`) and parsing disconnected fragments (for `document.innerHTML`). (Sebmaster)
+* Add: new `parsingMode` configuration, to allow you to manually specify XML or HTML. (Sebmaster)
+* Change: jsdom will no longer use the presence of `<?xml` or similar to attempt to auto-detect XHTML documents. Instead, it will by default treat them the same as browsers do, with the `<?xml` declaration just being a bogus comment. If you need your document interpreted as XHTML instead of HTML, use the `parsingMode` option. (Sebmaster)
+* Tweak: memoize various DOM-querying functions (e.g. `getElementsByTagName`, `querySelector`, etc.) to improve performance. (ccarpita)
+
+## 1.0.0-pre.6
+
+* Fix: another parsing issues with void elements and `innerHTML`, this time related to disconnected nodes. This was a regression between 0.11.1 and 1.0.0-pre.1. (paton)
+* Fix: same-named radio inputs should not be mutually exclusive unless they are in the same form. (stof)
+
+## 1.0.0-pre.5
+
+* Fix: sometimes calling `window.close()` would cause a segfault. (paton)
+
+## 1.0.0-pre.4
+
+* Fix: attributes and elements now have their `prefix`, `localName`, and `namespaceURI` properties set correctly in all cases. (Excepting `application/xhtml+xml` mode, which jsdom does not support yet.) (Sebmaster)
+
+## 1.0.0-pre.3
+
+* Fix: void elements no longer parsed correctly when using `innerHTML`. This was a regression between 0.11.1 and 1.0.0-pre.1. (Sebmaster)
+
+## 1.0.0-pre.2
+
+* Fix: parsing and serialization of attributes in the form `x:y`, e.g. `xmlns:xlink` or `xlink:href`. This was a regression between 0.11.1 and 1.0.0-pre.1. (Sebmaster)
+
+## 1.0.0-pre.1
+
+This is a prerelease of jsdom's first major version. It incorporates several great additions, as well as a general cleanup of the API surface, which make it more backward-incompatible than usual. Starting with the 1.0.0 release, we will be following semantic versioning, so that you can depend on stability within major version ranges. But we still have [a few more issues](https://github.com/tmpvar/jsdom/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0) before we can get there, so I don't want to do 1.0.0 quite yet.
+
+This release owes a special thanks to [@Sebmaster](https://github.com/Sebmaster), for his amazing work taking on some of the hardest problems in jsdom and solving them with gusto.
+
+### Major changes
+
+* jsdom now can be browserified into a bundle that works in web workers! This is highly experimental, but also highly exciting! (lawnsea)
+* An overhaul of the [initialization lifecycle](https://github.com/tmpvar/jsdom#initialization-lifecycle), to bring more control and address common use cases. (Sebmaster)
+* The excellent [parse5](https://npmjs.org/package/parse5) HTML parser is now the default parser, fixing many parsing bugs and giving us full, official-test-suite-passing HTML parsing support. This especially impacts documents that didn't include optional tags like `<html>`, `<head>`, or `<body>` in their source. We also use parse5 for serialization, fixing many bugs there. (Sebmaster)
+* As part of the new parser story, we are not supporting XML for now. It might work if you switch to a different parser (e.g. htmlparser2), but in the end, HTML and XML are very different, and we are not attempting to be an XML DOM. That said, we eventually want to support XML to the same extent browsers do (i.e., support XHTML and SVG, with an appropriate MIME type switch); this is being planned in [#820](https://github.com/tmpvar/jsdom/issues/820).
+
+### Removed jsdom APIs
+
+* `jsdom.createWindow`: use `document.parentWindow` after creating a document
+* `jsdom.html`: use `jsdom.jsdom`
+* `jsdom.version`: use `require("jsdom/package.json").version`
+* `jsdom.level`: levels are deprecated and will probably be removed in 2.0.0
+* `jsdom.dom`
+* `jsdom.browserAugmentation`
+* `jsdom.windowAugmentation`
+
+### Changed jsdom APIs
+
+* `jsdom.jsdom` no longer takes a level as its second argument.
+* `jsdom.jQueryify` now requires a jQuery URL, since [always picking the latest was a bad idea](http://blog.jquery.com/2014/07/03/dont-use-jquery-latest-js/).
+
+### Removed non-standard DOM APIs
+
+* `document.createWindow`: use `document.parentWindow`
+* `document.innerHTML` and `document.outerHTML`: use the new `jsdom.serializeDocument` to include the DOCTYPE, or use `document.documentElement.outerHTML` to omit it.
+
+### Other fixes
+
+* Allow empty strings to be passed to `jsdom.env`. (michaelmior)
+* Fix for a memory leak in `EventTarget.prototype.dispatchEvent`. (Joris-van-der-Wel)
+* Make event listeners in the capture phase also fire on the event target. (Joris-van-der-Wel)
+* Correctly reset `eventPhase` and `currentTarget` on events, before and after a dispatch. (Joris-van-der-Wel)
+* Fix `document.cookie = null` to not throw, but instead just do nothing. (kapouer)
+
+## 0.11.1
+
+* Add: `Node.prototype.parentElement`. (lukasbuenger)
+* Fix: attributes that are reflected as properties should be `''` when not present, instead of `null`. (Note that `getAttribute` still returns `null` for them). (thejameskyle)
+* Fix: `textContent` now works for nodes that do not have children, like text nodes for example. (hayes)
+* Fix: `jsdom.jQueryify` was using the wrong URL for jQuery by default. (lukasbuenger)
+
+## 0.11.0
+
+* Add: new default level, `living`, reflecting our focus on the [DOM Living Standard](http://dom.spec.whatwg.org/) and the [HTML Living Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/), which are what browsers actually implement. This should open the door for more features of the modern DOM and HTML specs to be implemented in jsdom. (robotlovesyou)
+* Add: `Node.prototype.contains` now implemented. (robotlovesyou)
+* Add: `navigator.cookieEnabled` now implemented; it always returns `true`. (Sebmaster)
+* Change: DOCTYPEs no longer have their `name` property uppercased during parsing, and appear in the output of `document.innerHTML`.
+* Fix: `Node.prototype.compareDocumentPosition` implemented correctly; various document position constants added to the `Node` constructor. (robotlovesyou)
+* Fix: `DocumentType.prototype.parentNode` now returns the document node, not `null`. (robotlovesyou)
+* Fix: various `navigator` properties are now getters, not data properties. (Sebmaster)
+* Fix: a bug involving invalid script paths and `jsdom.jQueryify`. (Sebmaster)
+
 ## 0.10.6
 
 * Add: remaining URL properties to `window.location` and `HTMLAnchorElement`.
