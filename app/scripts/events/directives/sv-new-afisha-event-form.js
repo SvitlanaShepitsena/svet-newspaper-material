@@ -12,7 +12,7 @@
                             //title: "New Event #" + _.random(0, 100),
                             startsAt: moment($scope.clickedDate).add(10, 'h').toDate(),
                             endsAt: moment($scope.clickedDate).add(13, 'h').toDate(),
-                            address: faker.address.streetAddress() + " Chicago, IL, 60634",
+                            //address: faker.address.streetAddress() + " Chicago, IL, 60634",
                             location: 'Copernicus Center',
                             locationWeb: faker.internet.domainName(),
                             //about: "http://" + faker.lorem.paragraph() + '.com',

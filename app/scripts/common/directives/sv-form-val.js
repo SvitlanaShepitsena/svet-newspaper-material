@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('article')
+    angular.module('common')
         .directive('svFormVal', function ($compile) {
             return {
                 restrict: 'A',
