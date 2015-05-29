@@ -24,8 +24,7 @@ form.m(name='eventAfishaForm' ng-submit='createAfishaEvent(eventAfishaForm.$vali
     div(layout='row')
         md-input-container(flex)
             label Address
-            input(type='text' required='' name='address'
-            ng-model='event.address')
+            input(type='text' required='' name='address' ng-model='event.address')
         md-input-container(flex)
             label Location
             input(type='text' required='' name='location' ng-model='event.location' )
@@ -34,9 +33,7 @@ form.m(name='eventAfishaForm' ng-submit='createAfishaEvent(eventAfishaForm.$vali
             input(type='text'  name='locationWeb' ng-model='event.locationWeb')
     md-input-container
         label About Event
-        textarea.bgc-grey-100(type='text' name='about' required=''
-        rows='3'
-        ng-model='event.about')
+        textarea.bgc-grey-100(type='text' name='about' required='' rows='3' ng-model='event.about')
     md-input-container
         label {{'purchase-tickets'|translate}}
         input(type='text' required='' name='tickets' ng-model='event.tickets')
