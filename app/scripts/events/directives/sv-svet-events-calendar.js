@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('events')
-        .directive('svSvetEventsCalendar', function (calendarTitle, calendarHelper, $mdDialog, dt, ConnectionEventServ, svetEventsConst, toastr, userAuth) {
+        .directive('svSvetEventsCalendar', function ($mdDialog, dt, ConnectionEventServ, svetEventsConst, toastr, userAuth) {
             return {
                 templateUrl: 'scripts/events/directives/sv-svet-events-calendar.html',
                 link: function ($scope, el, attrs) {
