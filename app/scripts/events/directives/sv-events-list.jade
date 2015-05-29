@@ -1,11 +1,2 @@
 .card.mb.p(ng-repeat='event in events|orderBy:"-$id"|eventsType:eventFilter' layout-gt-sm="row" layout-sm='column' layout-align-gt-sm="space-between center")
-    div(layout='row')
-        div(class='ml+' flex="30")
-            img.mb(ng-src="{{event.img}}" style="max-width:500px")
-        div()
-            .mb
-                span.display-block.fs-title {{event.startsAt|date:"short"}}
-            div
-                span.display-block.fs-title About Event:
-                p {{event.about}}
-
+    sv-one-event(event='event')
