@@ -9,11 +9,13 @@
                 link: function ($scope, el, attrs) {
                     $scope.userName = {value: angular.copy(userAuth.profile.userName), label: 'userName'};
                     $scope.user = userAuth.profile;
-                    $scope.saveUserName = function (property) {
-                        if ($scope.personalInfoForm.$valid) {
-                            UsersServ.saveUserProperty(property, userAuth.key).then(function (success) {
-                                toastr.success('Saved');
-                            })
+                    $scope.saveUserName = function (property, formValid) {
+                        if (formValid) {
+                            if ($scope.personalInfoForm.$valid) {
+                                UsersServ.saveUserProperty(property, userAuth.key).then(function (success) {
+                                    toastr.success('Saved');
+                                })
+                            }
                         }
                     };
                 }

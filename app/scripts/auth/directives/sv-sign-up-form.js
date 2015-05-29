@@ -1,12 +1,12 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svSignUpForm', function (ProfileServ,  $state, toastr, AuthenticationServ) {
+        .directive('svSignUpForm', function (ProfileServ, $state, toastr, AuthenticationServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-sign-up-form.html',
                 scope: {
-                    title: '@',
+                    headerTitle: '@',
                     name: '@',
                     register: '@',
                     registering: '@',
@@ -34,7 +34,7 @@
                         }
                         ProfileServ.createSvetUser($scope.user.email, $scope.user.password, $scope.user.userName).then(function () {
                                 AuthenticationServ.svetLogin($scope.user.email, $scope.user.password).then(function (profile) {
-                                  $state.go('app.user.dashboard',{uid:profile.userName})  ;
+                                    $state.go('app.user.dashboard', {uid: profile.userName});
                                 });
                             }
                         ).catch(function (error) {

@@ -1,52 +1,28 @@
-div(flex-container='column')
-    .card
-        div(class='p+')
-            span.display-block.fs-title.mb {{title|translate}}
-            .divider.divider--dark
-            form.mt(name='signUpForm' novalidate sv-form-val)
-                div(flex-container='column' flex)
-                    div(flex-item='')
-                        lx-text-field(label='{{name|translate}}' required)
-                            input(type='text'
-                            name='userName'
-                            ng-model='user.userName'
-                            mg-model-options = '{updateOn:"default "blur"}'
-                            sv-unique-username
-                            ng-minlength="3"
-                            ng-maxlength="200"
-                            required="error" )
-                div(flex-container='column')
-                    div(flex-item='')
-                        lx-text-field(label='{{email|translate}}')
-                            input(type='email'
-                            ng-model='user.email'
-                            name='email'
-                            required)
-                        div(ng-messages='signUpForm.email.$error' ng-if='signUpForm.email.$touched||signUpForm.$submitted')
-                            .tc-red-300.fs-caption(ng-message='required') {{'required-field'|translate}}
-                            .tc-red-300.fs-caption(ng-message='email') {{'invalid-email'|translate}}
-                div(flex-container='column'  class="mb+")
-                    div(flex-item='')
-                        lx-text-field(label='{{password|translate}}' error="signUpForm.password.$touched && signUpForm.password.$invalid" required)
-                            input(type='password'
-                            ng-minlength="6"
-                            ng-maxlength="200"
-                            ng-model='user.password'
-                            name='password' required)
-                        div(ng-messages='signUpForm.password.$error' ng-if='signUpForm.password.$touched||signUpForm.$submitted')
-                            .tc-red-300.fs-caption(ng-message='required') {{'invalid-password'|translate}}
-            div(flex-container='column' flex-align='center start')
-                span.dispaly-block.fs-body-2 {{registering|translate}}
-                a.dispaly-block.fs-body-2(style='border-bottom: #393939 1px dotted; line-height:14px; cursor:pointer') {{conditions|translate}}
-        div.bgc-white-1(flex-container='column' flex-align='center start' class='p+')
-            div(flex-container='row' class="mb+")
-                button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='createSvetUser()')
-                    i.mdi.mdi-check &nbsp
-                    | {{register|translate}}
-        div.bgc-grey-50(flex-container='row' flex-align='space-between center' class='p+')
-            div.display-block.fs-body-1 {{registered|translate}}  &nbsp
-            div.mdc-text-right
-                button.btn.btn--s.btn--flat.fs-caption.btn--indigo(lx-ripple ui-sref='app.svet-login') {{login|translate}}
-        div.bgc-grey-200(flex-container='row' flex-align='center' class='p+')
-            sv-form-social-buttons
+.card
+    div.bgc-grey-200(class='pl+ pr+ pt pb')
+        span.display-block.fs-headline.mb(class='mb+ mt+') {{headerTitle|translate}}
+    div(class='p+')
+        form.mt(name='signUpForm' novalidate sv-form-val)
+            md-input-container
+                label {{name|translate}}
+                input(type='text' name='userName' ng-model='user.userName' sv-unique-username ng-minlength="3" ng-maxlength="200" required="error" )
+            md-input-container
+                label {{email|translate}}
+                input(type='email' ng-model='user.email' name='email' required)
+            md-input-container
+                label {{password|translate}}
+                input(type='password' ng-minlength="6" ng-maxlength="200" ng-model='user.password' name='password' required)
+        div
+            span.dispaly-block.fs-body-2.mr {{registering|translate}}
+            a.dispaly-block.fs-body-2(style='border-bottom: #393939 1px dotted; line-height:14px; cursor:pointer') {{conditions|translate}}
+    div.bgc-white-1(class='p+')
+        div(layout='row' class="mb+")
+            button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='createSvetUser()')
+                i.mdi.mdi-check &nbsp
+                | {{register|translate}}
+    div.bgc-grey-50(layout='row' layout-align='space-between center' class='p+')
+        div.display-block.fs-body-1 {{registered|translate}}  &nbsp
+        button.btn.btn--s.btn--flat.fs-caption.btn--indigo(lx-ripple ui-sref='app.svet-login') {{login|translate}}
+    div.bgc-grey-200(layout='row' layout-align='center center' class='p+')
+        sv-form-social-buttons
 
