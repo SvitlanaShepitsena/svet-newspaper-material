@@ -4,7 +4,7 @@
  * it requires no server-side code and can be added to any web app simply by
  * including a couple JavaScript files.
  *
- * Firepad 1.1.0
+ * Firepad 1.1.1
  * http://www.firepad.io/
  * License: MIT
  * Copyright: 2014 Firebase
@@ -2904,7 +2904,7 @@ firepad.RichTextCodeMirror = (function () {
     bind(this, 'onCodeMirrorChange_');
     bind(this, 'onCursorActivity_');
 
-    if (/^4\./.test(CodeMirror.version)) {
+    if (parseInt(CodeMirror.version) >= 4) {
       this.codeMirror.on('changes', this.onCodeMirrorChange_);
     } else {
       this.codeMirror.on('change', this.onCodeMirrorChange_);

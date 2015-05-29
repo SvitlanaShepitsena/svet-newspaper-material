@@ -1,3 +1,4 @@
+var jsdom = require("../..");
 var barfoo = require("./core/files/barfoo.xml");
 // var barfoo_base = require("./core/files/barfoo_base.xml");
 var barfoo_nodefaultns = require("./core/files/barfoo_nodefaultns.xml");
@@ -27,11 +28,10 @@ DOMErrorMonitor.prototype.assertLowerSeverity = function(id, severity) {
     }
   });
 }
-var core = require("../../lib/jsdom/level3/core").dom.level3.core;
-var getImplementation = function() {
-  var doc = new core.Document();
-  return doc.implementation;
-};
+var core = require("../../lib/jsdom/living");
+function getImplementation() {
+  return jsdom.jsdom().implementation;
+}
 
 exports.tests = {
   /**
@@ -19523,306 +19523,6 @@ exports.tests = {
 
   /**
    *
-
-
-   Using isSameNode to check if 2 Document nodes that are equal but do not reference the
-   same object are not the same
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode01: function (test) {
-    var success;
-    var doc1;
-    var doc2;
-    var isSame;
-
-    doc1 = hc_staff.hc_staff();
-
-    doc2 = hc_staff.hc_staff();
-    isSame = doc1.isSameNode(doc2);
-    test.equal(isSame, false, 'nodeissamenode01');
-
-    test.done()
-  },
-
-  /**
-   *
-
-
-   Using isSameNode check if 2 DocumentType nodes that reference the same object are
-   the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode02: function (test) {
-    var success;
-    var doc;
-    var docType1;
-    var docType2;
-    var isSame;
-
-    doc = hc_staff.hc_staff();
-    docType1 = doc.doctype;
-
-    docType2 = doc.doctype;
-
-    isSame = docType1.isSameNode(docType2);
-    test.ok(isSame, 'nodeissamenode02');
-
-    test.done()
-  },
-
-  /**
-   *
-   Using isSameNode check if 2 Element nodes that reference the same object are
-   the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode03: function (test) {
-    var success;
-    var doc;
-    var element1;
-    var element2;
-    var childList;
-    var isSame;
-
-    doc = hc_staff.hc_staff();
-    childList = doc.getElementsByTagName("p");
-    element1 = childList.item(0);
-    element2 = childList.item(0);
-    isSame = element2.isSameNode(element1);
-    test.ok(isSame, 'nodeissamenode03');
-
-    test.done()
-  },
-
-  /**
-   *
-   Using isSameNode check if 2 Element nodes that are equal but do not reference the
-   same object are not the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode04: function (test) {
-    var success;
-    var doc;
-    var element1;
-    var element2;
-    var isSame;
-
-    doc = hc_staff.hc_staff();
-    element1 = doc.createElementNS("http://www.w3.org/1999/xhtml","xhtml:br");
-    element2 = doc.createElementNS("http://www.w3.org/1999/xhtml","xhtml:br");
-    isSame = element2.isSameNode(element1);
-    test.equal(isSame, false, 'nodeissamenode04');
-
-    test.done()
-  },
-
-  /**
-   *
-
-
-   Using isSameNode check if 2 Document Element nodes that reference the same object are
-   the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode05: function (test) {
-    var success;
-    var doc;
-    var element1;
-    var element2;
-    var isSame;
-
-    doc = hc_staff.hc_staff();
-    element1 = doc.documentElement;
-
-    element2 = doc.documentElement;
-
-    isSame = element2.isSameNode(element1);
-    test.ok(isSame, 'nodeissamenode05');
-
-    test.done()
-  },
-
-  /**
-   *
-   Using isSameNode check if 2 Document Element nodes that reference the same object are
-   the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode06: function (test) {
-    var success;
-    var doc;
-    var element;
-    var element1;
-    var attr1;
-    var attr2;
-    var childList;
-    var isSame;
-
-    doc = hc_staff.hc_staff();
-    childList = doc.getElementsByTagName("acronym");
-    element = childList.item(2);
-    element1 = childList.item(2);
-    attr1 = element.getAttributeNode("class");
-    attr2 = element1.getAttributeNode("class");
-    isSame = attr1.isSameNode(attr2);
-    test.ok(isSame, 'nodeissamenode06');
-
-    test.done()
-  },
-
-  /**
-   *
-
-
-   Using isSameNode check if 2 Entity nodes that reference the same object are
-   the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode07: function (test) {
-    var success;
-    var doc;
-    var docType;
-    var entitiesMap;
-    var entity1;
-    var entity2;
-    var isSame;
-
-    doc = hc_staff.hc_staff();
-    docType = doc.doctype;
-
-    entitiesMap = docType.entities;
-
-    entity1 = entitiesMap.getNamedItem("delta");
-    entity2 = entitiesMap.getNamedItem("delta");
-    isSame = entity1.isSameNode(entity2);
-    test.ok(isSame, 'nodeissamenode07');
-
-    test.done()
-  },
-
-  /**
-   *
-
-
-   Using isSameNode check if 2 Notation nodes that reference the same object are
-   the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode08: function (test) {
-    var success;
-    var doc;
-    var docType;
-    var entitiesMap;
-    var notation1;
-    var notation2;
-    var isSame;
-
-    doc = hc_staff.hc_staff();
-    docType = doc.doctype;
-
-    entitiesMap = docType.notations;
-
-    notation1 = entitiesMap.getNamedItem("notation1");
-    notation2 = entitiesMap.getNamedItem("notation1");
-    isSame = notation1.isSameNode(notation2);
-    test.ok(isSame, 'nodeissamenode08');
-
-    test.done()
-  },
-
-  /**
-   *
-
-
-   Using isSameNode check if an Entity and its docType nodes are not the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode09: function (test) {
-    var success;
-    var doc;
-    var docType;
-    var entitiesMap;
-    var entity;
-    var isSame;
-
-    doc = hc_staff.hc_staff();
-    docType = doc.doctype;
-
-    entitiesMap = docType.entities;
-
-    entity = entitiesMap.getNamedItem("alpha");
-    isSame = docType.isSameNode(entity);
-    test.equal(isSame, false, 'nodeissamenode09');
-
-    test.done()
-  },
-
-  /**
-   *
-   Using isSameNode check if an new Document and a new Element node are not the same.
-
-   * @author IBM
-   * @author Neil Delima
-   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core#Node3-isSameNode
-   */
-  nodeissamenode10: function (test) {
-    var success;
-    var doc;
-    var newDoc;
-    var domImpl;
-    var element;
-    var isSame;
-    var nullDocType = null;
-
-    var docElem;
-    var rootNS;
-    var rootName;
-
-    doc = hc_staff.hc_staff();
-    docElem = doc.documentElement;
-
-    rootNS = docElem.namespaceURI;
-
-    rootName = docElem.tagName;
-
-    domImpl = doc.implementation;
-    newDoc = domImpl.createDocument(rootNS,rootName,nullDocType);
-    element = newDoc.createElementNS(rootNS,rootName);
-    isSame = newDoc.isSameNode(element);
-    test.equal(isSame, false, 'nodeissamenode10');
-
-    test.done()
-  },
-
-  /**
-   *
    Return value from lookupNamespaceURI(null) on a Document node with no default namespace should be null.
 
    * @author IBM
@@ -28868,5 +28568,60 @@ exports.tests = {
 
     }
     test.done()
-  }
+  },
+
+  /**
+   * Ensure that the DOCUMENT_POSITION_DISCONNECTED 'constant' is a property of the Node constructor
+   * @author Andrew Smith
+   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1950641247
+   */
+  documentPositionConstants01: function (test) {
+    test.equal(core.Node.DOCUMENT_POSITION_DISCONNECTED, 0x01);
+    test.done();
+  },
+
+  /**
+   * Ensure that the DOCUMENT_POSITION_PRECEEDING 'constant' is a property of the Node constructor
+   * @author Andrew Smith
+   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1950641247
+   */
+  documentPositionConstants02: function (test) {
+    test.equal(core.Node.DOCUMENT_POSITION_PRECEDING, 0x02);
+    test.done();
+  },
+
+  /**
+   * Ensure that the DOCUMENT_POSITION_FOLLOWING 'constant' is a property of the Node constructor
+   * @author Andrew Smith
+   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1950641247
+   */
+  documentPositionConstants03: function (test) {
+    test.equal(core.Node.DOCUMENT_POSITION_FOLLOWING, 0x04);
+    test.done();
+  },
+
+  /**
+   * Ensure that the DOCUMENT_POSITION_CONTAINS 'constant' is a property of the Node constructor
+   * @author Andrew Smith
+   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1950641247
+   */
+  documentPositionConstants04: function (test) {
+    test.equal(core.Node.DOCUMENT_POSITION_CONTAINS, 0x08);
+    test.done();
+  },
+
+  /**
+   * Ensure that the DOCUMENT_POSITION_CONTAINED_BY 'constant' is a property of the Node constructor
+   * @author Andrew Smith
+   * @see http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1950641247
+   */
+  documentPositionConstants05: function (test) {
+    test.equal(core.Node.DOCUMENT_POSITION_CONTAINED_BY, 0x10);
+    test.done();
+  },
+
+  documentPositionConstants06: function (test) {
+    test.equal(core.Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC, 0x20);
+    test.done();
+  },
 }

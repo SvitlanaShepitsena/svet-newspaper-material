@@ -1,5 +1,5 @@
 /*
- LumX v0.3.31
+ LumX v0.3.32
  (c) 2014-2015 LumApps http://ui.lumapps.com
  License: MIT
 */
@@ -196,7 +196,7 @@ angular.module('lumx.date-picker', [])
 
             $scope.days = [];
             $scope.daysOfWeek = [moment.weekdaysMin(1), moment.weekdaysMin(2), moment.weekdaysMin(3), moment.weekdaysMin(4), moment.weekdaysMin(5), moment.weekdaysMin(6), moment.weekdaysMin(0)];
-
+                
             $scope.years = [];
 
             for (var y = moment().year() - 100; y <= moment().year() + 100; y++)
@@ -292,7 +292,7 @@ angular.module('lumx.date-picker', [])
             $yearSelector.css({ height: calendarHeight });
 
             $scope.yearSelection = true;
-
+            
             $timeout(function()
             {
                 var $activeYear = angular.element('.lx-date-picker__year--is-active');
@@ -332,7 +332,7 @@ angular.module('lumx.date-picker', [])
             {
                 $scope.emptyLastDays.push({});
             }
-
+            
             $scope.days = days;
         }
     }])
@@ -635,11 +635,6 @@ angular.module('lumx.dropdown', [])
         $scope.isOpened = false;
         $scope.isDropped = false;
 
-        $scope.$on('close:dropdown', function () {
-            closeDropdownMenu();
-        })
-
-
         this.registerDropdown = function(element)
         {
             dropdown = element;
@@ -895,7 +890,7 @@ angular.module('lumx.dropdown', [])
             LxDropdownService.close($scope);
         });
     }])
-    .directive('lxDropdown', function($rootScope)
+    .directive('lxDropdown', function()
     {
         return {
             restrict: 'E',
@@ -912,8 +907,6 @@ angular.module('lumx.dropdown', [])
             link: function(scope, element, attrs, ctrl)
             {
                 ctrl.registerDropdown(element);
-
-
             }
         };
     })
@@ -1082,15 +1075,15 @@ angular.module('lumx.notification', [])
         {
             var newNotifIndex = notificationList.length - 1;
             notificationList[newNotifIndex].height = getElementHeight(notificationList[newNotifIndex].elem[0]);
-
+            
             var upOffset = 0;
-
+            
             for (var idx = newNotifIndex; idx >= 0; idx--)
             {
                 if (notificationList.length > 1 && idx !== newNotifIndex)
                 {
                     upOffset = 24 + notificationList[newNotifIndex].height;
-
+                    
                     notificationList[idx].margin += upOffset;
                     notificationList[idx].elem.css('marginBottom', notificationList[idx].margin + 'px');
                 }
@@ -1101,7 +1094,7 @@ angular.module('lumx.notification', [])
         function deleteNotification(notification)
         {
             var notifIndex = notificationList.indexOf(notification);
-
+            
             var dnOffset = 24 + notificationList[notifIndex].height;
 
             for (var idx = 0; idx < notifIndex; idx++)
@@ -1883,7 +1876,7 @@ angular.module('lumx.search-filter', [])
                     {
                         if (angular.isDefined(attrs.closed) && !$input.val())
                         {
-                            $searchFilter.velocity({
+                            $searchFilter.velocity({ 
                                 width: 40
                             }, {
                                 duration: 400,
@@ -1897,7 +1890,7 @@ angular.module('lumx.search-filter', [])
                 {
                     if (angular.isDefined(attrs.closed))
                     {
-                        $searchFilter.velocity({
+                        $searchFilter.velocity({ 
                             width: attrs.filterWidth ? attrs.filterWidth: 240
                         }, {
                             duration: 400,
