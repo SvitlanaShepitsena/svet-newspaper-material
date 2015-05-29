@@ -1,13 +1,10 @@
-div(flex-container='column')
+div(layout='column')
     div(ng-if='!user')
         span.display-block.fs-body-1 Войдите, чтобы оставить комментарий.
-    div(ng-if='!!user' flex-container='column')
-        form.mt(flex-container='column' name='addComment' ng-submit='submitComment()')
-            div(flex-container='row')
-                div(flex-item='')
-                    lx-text-field(label='Комментарий / Comment' class='mb+')
-                        textarea(ng-model='comment.body') {{comment.body}}
-            div(flex-container='row')
-                div(flex-item='' )
-                    input.btn.btn--m.btn--white.btn--raised(type='submit' ng-if='comment.body' )
+    div(ng-if='!!user' layout='column')
+        form.mt(layout='column' name='addComment' ng-submit='submitComment()')
+            md-input-container
+                label {{'comment'|translate}}'
+                textarea(ng-model='comment.body') {{comment.body}}
+            button.btn.btn--m.btn--white.btn--raised(type='submit' ng-if='comment.body' )
 
