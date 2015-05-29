@@ -6,7 +6,7 @@ div(flex-container='column')
             form.mt(name='signUpForm' novalidate sv-form-val)
                 div(flex-container='column' flex)
                     div(flex-item='')
-                        lx-text-field(label='{{name|translate}}', icon='account' error="signUpForm.userName.$touched && signUpForm.userName.$invalid")
+                        lx-text-field(label='{{name|translate}}', icon='account' error="signUpForm.userName.$touched && signUpForm.userName.$invalid" required)
                             input(type='text'
                             name='userName'
                             ng-model='user.userName'
@@ -21,7 +21,7 @@ div(flex-container='column')
                         //    .tc-red-300.fs-caption(ng-message='maxlength') {{'max-length'|translate}}
                 div(flex-container='column')
                     div(flex-item='')
-                        lx-text-field(label='{{email|translate}}', icon='email'  error="signUpForm.email.$touched && signUpForm.email.$invalid")
+                        lx-text-field(label='{{email|translate}}', icon='email'  error="signUpForm.email.$touched && signUpForm.email.$invalid" required)
                             input(type='email'
                             ng-model='user.email'
                             name='email')
@@ -30,7 +30,7 @@ div(flex-container='column')
                             .tc-red-300.fs-caption(ng-message='email') {{'invalid-email'|translate}}
                 div(flex-container='column'  class="mb+")
                     div(flex-item='')
-                        lx-text-field(label='{{password|translate}}', icon='lock' error="signUpForm.password.$touched && signUpForm.password.$invalid")
+                        lx-text-field(label='{{password|translate}}', icon='lock' error="signUpForm.password.$touched && signUpForm.password.$invalid" required)
                             input(type='password'
                             ng-minlength="6"
                             ng-maxlength="200"

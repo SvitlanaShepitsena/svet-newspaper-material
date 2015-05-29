@@ -9,33 +9,31 @@
                  */
                 require: '?^form',
                 compile: function (elTemp, attr) {
+                    /*find required form elements with JQuery*/
                     var inputs = elTemp.find('input[required]');
-                    var compileLxElms = _.map(inputs, function (input) {
-
-                        var parent = angular.element(input).parent('lx-text-field');
-                        return parent;
-
-                    });
-
                     var textAreas = elTemp.find('textarea[required]');
-                    var fElements = _.union(inputs, textAreas);
+                    /*for Lumx Form*/
+                    var compileLxElements = _.compact(_.map(inputs, function (input) {
+                        var parent = angular.element(input).parent('lx-text-field');
+                        if (parent.length > 0) {
+                            return parent;
+                        }
+                    }));
+                    var formElements = _.union(inputs, textAreas);
+                    var formElementsNames = _.pluck(formElements, 'name');
 
-                    var inputNames = _.pluck(fElements, 'name');
+                    var radioGroup = elTemp.find('md-radio-group');
+                    /*get element name with JQuery*/
+                    var radioGroupName = radioGroup.attr('name');
+
                     return function ($scope, el, attr, ctrl) {
                         var formName = ctrl.$name;
-                        /*find required form elements with JQuery*/
-                        var inputs = el.find('input[required=""]');
-                        var txtareas = el.find('textarea[required=""]');
-
-                        /*combine two arrays in one with Lodash method*/
-                        var formElements = _.union(inputs, txtareas, compileLxElms);
                         /*attached compiled message to each element of array*/
-                        angular.forEach(formElements, function (formElement, index) {
-                            attachMessages(formElement, inputNames[index]);
+                        var attachAfterElements = compileLxElements.length > 0 ? compileLxElements : formElements;
+
+                        angular.forEach(attachAfterElements, function (formElement, index) {
+                            attachMessages(formElement, formElementsNames[index]);
                         });
-                        var radioGroup = el.find('md-radio-group[required=""]');
-                        /*get element name with JQuery*/
-                        var radioGroupName = radioGroup.attr('name');
                         attachMessages(radioGroup, radioGroupName);
                         /**/
                         function attachMessages(formElement, elementName) {
