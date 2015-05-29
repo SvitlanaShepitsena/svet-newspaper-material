@@ -21,7 +21,7 @@
                         password: ''
                     };
                     $scope.user = {
-                        userName: faker.internet.userName(),
+                        //userName: faker.internet.userName(),
                         email: faker.internet.email(),
                         password: '123456'
                     };
