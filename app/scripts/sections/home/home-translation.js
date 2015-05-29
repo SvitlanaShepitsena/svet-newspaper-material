@@ -4,7 +4,6 @@
         .config(['$translateProvider', function ($translateProvider) {
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
-                'SvetRecommends': 'Svet Recommends',
                 'SvetNewspaper': 'Svet Newspaper',
                 'for-readers-and-partners': 'For Readers and Partners',
                 'new-svet': 'New Svet',
@@ -39,7 +38,6 @@
                 'travel': 'Travel'
             });
             $translateProvider.translations('ru', {
-                'SvetRecommends': 'Свет Рекомендует',
                 'SvetNewspaper': 'Газета Свет',
                 'for-readers-and-partners': 'Читателям и Партнерам',
                 'new-svet': 'Новый Свет',

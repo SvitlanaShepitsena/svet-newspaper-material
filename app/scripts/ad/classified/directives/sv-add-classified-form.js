@@ -7,9 +7,7 @@
                 templateUrl: 'scripts/ad/classified/directives/sv-add-classified-form.html',
                 link: function ($scope, el, attrs) {
                     $scope.sections = ClassifiedServ.getSections();
-                    $scope.selectDropDown = function (section) {
-                        $scope.clCopy.section = section.$value;
-                    };
+
                     $scope.isInvalid = function (field) {
                         if ($scope.classifiedForm[field].$invalid) {
                             return $scope.classifiedForm.$submitted || $scope.classifiedForm[field].$touched
@@ -73,7 +71,7 @@
                                 name: faker.internet.userName(),
                                 phone: faker.phone.phoneNumber(),
                                 email: faker.internet.email(),
-                                section: 'job',
+                                section: '',
                                 city: faker.address.city(),
                                 state: faker.address.state(),
                                 title: faker.lorem.sentence(),

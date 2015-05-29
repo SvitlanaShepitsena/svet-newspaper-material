@@ -2,7 +2,7 @@
     div.bgc-grey-200(class='pl+ pr+ pt pb')
         span.display-block.fs-headline.mb(class='mb+ mt+') {{headerTitle|translate}}
     div(class='p+')
-        form.mt(name="loginForm" sv-form-val novalidate)
+        form.mt(name="loginForm"  novalidate sv-form-val)
             md-input-container(class='mb+')
                 label {{email|translate}}
                 input(name="email" type='text', ng-model='user.email' required)
@@ -16,7 +16,7 @@
             div(class='mb+')
                 a.register-link.fs-body-2(ui-sref='app.sign-up') {{registerAccount|translate}}
                 span.fs-body-2 , {{newUser|translate}}
-    div.bgc-grey-200(flex-container='row' flex-align='start' class='p+')
+    div.bgc-grey-200(layout='row' layout-align='center center' class='p+')
         sv-form-social-buttons
 
 

@@ -34,13 +34,14 @@
                         $scope.article = {
                             isBlog: $scope.artType === 'blog',
                             img: '',
+                            //author: '',
                             author: userAuth.profile.isEditor() ? 'Alex Etman' : userAuth.profile.userName,
-                            section: 'politics',
+                            section: '',
                             topic: 'Chicago Community',
-                            title: '',
+                            title: 'Tags',
                             summary: 'One short sentence, that will appear on an article thumbnail instead of content.',
-                            body: '',
-                            tags: '',
+                            body: 'dddd',
+                            tags: 'tags',
                             svetRecommends: false
                         }
                     }
@@ -56,10 +57,6 @@
                             $scope.article.svetRecommends = false;
                         });
                     };
-                    $scope.setSection = function (section) {
-                        $scope.article.section = section;
-                        $scope.$broadcast('close:select', {});
-                    }
                 }
             };
         });
