@@ -9,7 +9,7 @@ form(name='personalInfoForm' ng-submit='saveUserName(userName, personalInfoForm.
                 .tc-red-300.fs-caption(ng-message='maxlength') {{'max-length'|translate}}
         button.btn.btn--m.btn--grey.btn--icon(lx-ripple='' type="submit")
             i.mdi.mdi-content-save
-    div(layout='row' layout-align='space-between center' class='p+' ng-if='userName.value!==user.userName')
+    div(layout='row' layout-align='space-between center' class='pl+ pr+' ng-if='userName.value!==user.userName')
         .tc-red-300.fs-caption
             span.alert Changing your username will change your profile links!
 
