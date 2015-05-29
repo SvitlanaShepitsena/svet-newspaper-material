@@ -18,6 +18,7 @@
                     };
 
                     ConnectionEventServ.setEventsLive().then(function () {
+                        $scope.eventsLoaded=true;
 
                         $scope.calendarView = 'year';
                         $scope.calendarDay = new Date();
