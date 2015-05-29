@@ -23,7 +23,6 @@
     "angular-cookies": "v1.4.0",
     "angular-translate-storage-cookie": "~2.7.0",
     "moment": "~2.10.2",
-    "angular-capitalize-filter": "~2.0.0",
     "bootstrap": "3.3.4",
     "angular-bootstrap-calendar": "~0.10.1",
     "angularfire": "~1.1.1",
@@ -31,12 +30,14 @@
     "ui-bootstrap": "0.13.0",
     "angular-dragdrop": "~1.0.11",
     "lodash": "~3.9.0",
-    "angular-toastr": "1.4.0",
     "ui.bootstrap": "~0.13.0",
     "angular-bootstrap": "~0.13.0",
     "angular-zeroclipboard": "~0.4.2",
     "zeroclipboard": "~2.2.0",
     "ng-clip": "~0.2.6",
-    "textAngular": "1.4.1"
+    "textAngular": "1.4.1",
+    "angular-capitalize-filter": "2.1.0",
+    "angular-toastr": "1.4.1",
+    "codemirror": "5.3.0"
   }
 }

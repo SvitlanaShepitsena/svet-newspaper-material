@@ -6,15 +6,10 @@
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-events-list.html',
                 scope: {
+                   events:'=',
                     eventFilter: '@'
                 },
                 link: function ($scope, el, attrs) {
-                    if ($scope.eventFilter === 'corporates') {
-                        $scope.svetEvents = ConnectionEventServ.allCorporate();
-                    }
-                    else {
-                        $scope.svetEvents = ConnectionEventServ.allPublic();
-                    }
                 }
             };
         });

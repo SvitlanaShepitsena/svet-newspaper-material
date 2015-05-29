@@ -5,7 +5,6 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/manager/directives/sv-afisha-events-tabs.html',
-                scope: {},
                 link: function ($scope, el, attrs) {
                     var tabs = [],
                         selected = null,

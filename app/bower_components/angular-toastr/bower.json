@@ -1,9 +1,10 @@
 {
   "name": "angular-toastr",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "authors": [
     "Jesus Rodriguez <Foxandxss@gmail.com>"
   ],
+  "license": "MIT",
   "keywords": [
     "angular",
     "angularjs",

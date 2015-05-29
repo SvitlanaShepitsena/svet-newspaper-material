@@ -9,13 +9,13 @@
                     if (!$scope.editState) {
                         // Scaffold Data
                         $scope.event = {
-                            //title: "New Event #" + _.random(0, 100),
+                            title: "New Event #" + _.random(0, 100),
                             startsAt: moment($scope.clickedDate).add(10, 'h').startOf('hour').toDate(),
                             endsAt: moment($scope.clickedDate).add(13, 'h').startOf('hour').toDate(),
-                            //address: faker.address.streetAddress() + " Chicago, IL, 60634",
+                            address: faker.address.streetAddress() + " Chicago, IL, 60634",
                             location: 'Copernicus Center',
                             locationWeb: faker.internet.domainName(),
-                            //about: "http://" + faker.lorem.paragraph() + '.com',
+                            about: "http://" + faker.lorem.paragraph() + '.com',
                             tickets: 'http://www.ticketmaster.com/'
                         };
                         $scope.event.date = $scope.clickedDate;
