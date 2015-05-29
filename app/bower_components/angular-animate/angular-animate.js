@@ -1989,6 +1989,7 @@
                     var node = element[0];
 
                     options = prepareAnimationOptions(options);
+
                     var parent = element.parent();
 
                     // we create a fake runner with a working promise.

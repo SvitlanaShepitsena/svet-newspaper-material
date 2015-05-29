@@ -4,7 +4,6 @@
         .directive('svFormVal', function ($compile) {
             return {
                 restrict: 'A',
-                priority: 1300,
                 /*Require another directive and inject its controller as the fourth argument to the linking function
                  */
                 require: '?^form',
@@ -22,9 +21,13 @@
                     var formElements = _.union(inputs, textAreas);
                     var formElementsNames = _.pluck(formElements, 'name');
 
+                    /*for Angular Material Radio-Group*/
                     var radioGroup = elTemp.find('md-radio-group');
                     /*get element name with JQuery*/
                     var radioGroupName = radioGroup.attr('name');
+                    /*for Angular Material md-select*/
+                    var mdSelects = elTemp.find('md-select[required]');
+                    var mdSelectsName = mdSelects.attr('ng-name');
 
                     return function ($scope, el, attr, ctrl) {
                         var formName = ctrl.$name;
@@ -35,6 +38,7 @@
                             attachMessages(formElement, formElementsNames[index]);
                         });
                         attachMessages(radioGroup, radioGroupName);
+                        attachMessages(mdSelects, mdSelectsName);
                         /**/
                         function attachMessages(formElement, elementName) {
                             var appFormElement = formName + '.' + elementName;

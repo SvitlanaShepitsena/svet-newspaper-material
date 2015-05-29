@@ -15,46 +15,49 @@
                         })
                     }
                     if (!$scope.id) {
-                        $scope.ad = {
-                            name: "Campaign Name " + _.random(1, 99),
-                            //place: _.random(0, 1) === 1 ? "home.top" : "home.middle",
-                            banner: ""
-                        }
+                        //$scope.ad = {
+                        //    name: "Campaign Name " + _.random(1, 99),
+                        //    //place: _.random(0, 1) === 1 ? "home.top" : "home.middle",
+                        //    banner: ""
+                        //}
                     }
                     else {
                         $scope.ad = AdServ.getObj($scope.id);
                     }
-                    $scope.addBusinessAd = function (ad, file) {
-                        if (!file) {
-                            if ($scope.id) {
-                                AdServ.updateAd($scope.ad).then(function (key) {
-                                    $state.go('^');
-                                    toastr.info('Your Ad Campaign has been saved');
-                                });
-                            } else {
-                                AdServ.saveAd($scope.ad).then(function (key) {
-                                    $state.go('^');
-                                    toastr.info('Your Ad Campaign has been saved');
-                                });
+                    $scope.addBusinessAd = function (ad, file, formValid) {
+                        if (formValid) {
+
+                            if (!file) {
+                                if ($scope.id) {
+                                    AdServ.updateAd($scope.ad).then(function (key) {
+                                        $state.go('^');
+                                        toastr.info('Your Ad Campaign has been saved');
+                                    });
+                                } else {
+                                    AdServ.saveAd($scope.ad).then(function (key) {
+                                        $state.go('^');
+                                        toastr.info('Your Ad Campaign has been saved');
+                                    });
+                                }
+                                return;
                             }
-                            return;
-                        }
-                        var fileReader = new FileReader();
-                        fileReader.readAsDataURL(file.file);
-                        fileReader.onload = function (event) {
-                            $scope.ad.banner = event.target.result;
-                            if ($scope.id) {
-                                AdServ.updateAd($scope.ad).then(function (key) {
-                                    $state.go('^');
-                                    toastr.info('Your Ad Campaign has been saved');
-                                });
-                            } else {
-                                AdServ.saveAd($scope.ad, $scope.customers).then(function (key) {
-                                    $state.go('^');
-                                    toastr.info('Your Ad Campaign has been saved');
-                                });
-                            }
-                        };
+                            var fileReader = new FileReader();
+                            fileReader.readAsDataURL(file.file);
+                            fileReader.onload = function (event) {
+                                $scope.ad.banner = event.target.result;
+                                if ($scope.id) {
+                                    AdServ.updateAd($scope.ad).then(function (key) {
+                                        $state.go('^');
+                                        toastr.info('Your Ad Campaign has been saved');
+                                    });
+                                } else {
+                                    AdServ.saveAd($scope.ad, $scope.customers).then(function (key) {
+                                        $state.go('^');
+                                        toastr.info('Your Ad Campaign has been saved');
+                                    });
+                                }
+                            };
+                        } ;
                     };
                 }
             };

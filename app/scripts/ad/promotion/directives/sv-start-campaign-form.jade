@@ -1,12 +1,12 @@
 div(flow-init='')
     div.bgc-grey-200(class='pl+ pr+ pt+ pb')
         sv-profile-subhead(subhead-title="my-ad-campaign")
-    form(class='p+' name='adForm' novalidate ng-submit='addBusinessAd(ad,$flow.files[0])' sv-form-val)
+    form(class='p+' name='adForm' novalidate ng-submit='addBusinessAd(ad,$flow.files[0],adForm.$valid)' sv-form-val)
         md-input-container
             label {{'campaign-name'|translate}}
             input(type='text' ng-model='ad.name' name='name' required )
-        div(ng-if='user.isManager()')
-            md-select(ng-model='ad.customerUserName')
+        md-input-container(ng-if='user.isManager()')
+            md-select(ng-model='ad.customerUserName' ng-name="customerUserName"   required="")
                 md-select-label {{ad.customerUserName?ad.customerUserName:'Select Customer'}}
                 md-option(ng-repeat='customer in customers' ng-value='customer.profile.userName' ) {{customer.profile.userName}}
         div(class='mb+')
