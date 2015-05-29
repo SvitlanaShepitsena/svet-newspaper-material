@@ -24,13 +24,10 @@
                 label {{'city'|translate}}
                 input(ng-model='clCopy.city' name='city' required='')
             div(flex)
-                lx-dropdown(class='mt' )
-                    div.btn.btn--l.btn--white.btn--raised(lx-ripple='', lx-dropdown-toggle='')
-                        | {{clCopy.section || "Select a Category"}}
-                    lx-dropdown-menu
-                        ul
-                            li(ng-repeat='s in sections')
-                                a.dropdown-link(ng-click='selectDropDown(s)') {{s.$value|capitalize}}
+                md-input-container
+                    md-select(name="section" ng-model='clCopy.section' required )
+                        md-select-label {{clCopy.section || "Section"}}
+                        md-option(ng-repeat='s in sections track by $index' ng-value='s.$value' ) {{s.$value}}
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'classified-title'|translate}}

@@ -57,13 +57,6 @@
                             $scope.article.svetRecommends = false;
                         });
                     };
-                    $scope.setSection = function (section) {
-                        $scope.article.section = section;
-                        $scope.$broadcast('close:select', {});
-                    }
-                    $scope.clearValue = function () {
-                        $scope.article.section = undefined;
-                    };
                 }
             };
         });
