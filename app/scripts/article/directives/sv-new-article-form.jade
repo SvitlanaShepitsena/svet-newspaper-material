@@ -7,6 +7,10 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
         icon-name="fa-close" btn-url="app.home"
         method-click='cancelArticle(true)')
     div(class='p+')
+        div(layout='row', layout-sm='column' layout-align='end')
+            div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-show='user.isEditor()')
+                md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
+                span.mdc-display-inline-block.fs-body-2 {{'svet-recommends'|translate}}
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'article-author'|translate}}
@@ -18,16 +22,13 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
                             i.mdi.mdi-checkbox-marked-outline.mr(style='max-width:22px')
                             | {{article.section?article.section:'article-section'|translate}}
                         md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
-            div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-show='user.isEditor()')
-                md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
-                span.mdc-display-inline-block.fs-body-2 {{'svet-recommends'|translate}}
+            md-input-container(flex='')
+                label {{'article-topic'|translate}}
+                input(ng-model='article.topic' name='topic' required)
         div(layout='column')
             md-input-container(flex='')
                 label {{'article-title'|translate}}
                 input(ng-model='article.title' type="text" md-maxlength='150' name='title' required )
-            md-input-container(flex='')
-                label {{'article-topic'|translate}}
-                input(ng-model='article.topic' name='topic' required)
             md-input-container(flex='')
                 label {{'article-summary'|translate}}
                 input(ng-model='article.summary' type="text" md-maxlength='250' name='summary' required)
