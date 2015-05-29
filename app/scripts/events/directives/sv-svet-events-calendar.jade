@@ -1,5 +1,5 @@
-div
-    div(layout='row' layout-align='space-between center' class='mb++'  ng-if='user.isManager()')
+div(ng-show='eventsLoaded')
+    div(layout='row' layout-align='space-between center' class='mb++' )
         div
             button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarYear()') Year view
             button.btn.btn--xs.btn--white.bgc-grey-200.btn--raised.mr(lx-ripple='' mwl-date-modifier increment='calendarView' ng-click='calendarMonth()') Monthly view
@@ -7,7 +7,7 @@ div
             i.mdi.mdi-plus &nbsp
             | {{'create-event'|translate}}
 
-    div(class='mb+' ng-if='user.isManager()')
+    div(class='mb+' ng-show='user.isManager()')
         mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay',
         on-event-click='eventClicked($event,calendarEvent)',
         delete-event-html='"<i class=\'glyphicon glyphicon-remove\' ></i>"',
@@ -15,7 +15,7 @@ div
         on-edit-event-click='eventEdited(calendarEvent)',
         on-delete-event-click='eventDeleted(calendarEvent)', auto-open='true', day-view-start='06:00', day-view-end='22:00', day-view-split='30')
 
-    div(class='mb+' ng-if='!user.isManager()')
+    div(class='mb+' ng-show='!user.isManager()')
         mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay',
         on-event-click='eventClicked($event,calendarEvent)',
         on-edit-event-click='eventEdited(calendarEvent)',

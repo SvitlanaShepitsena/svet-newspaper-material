@@ -27,6 +27,7 @@
         'ngAnimate',
         'flow',
         'ngSanitize',
+        'ngClipboard',
         'lumx',
         'ngMessages',
         'ngTouch',
@@ -53,6 +54,9 @@
             $translateProvider.useSanitizeValueStrategy(null);
             $sceProvider.enabled(false);
         })
+        .config(['ngClipProvider', function(ngClipProvider) {
+            ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
+        }])
         // COMMENT ON PRODUCTION
         .factory('$exceptionHandler', function ($injector) {
             return function (exception, cause) {

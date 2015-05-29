@@ -34,6 +34,9 @@
     "lodash": "~3.9.0",
     "angular-toastr": "1.4.0",
     "ui.bootstrap": "~0.13.0",
-    "angular-bootstrap": "~0.13.0"
+    "angular-bootstrap": "~0.13.0",
+    "angular-zeroclipboard": "~0.4.2",
+    "zeroclipboard": "~2.2.0",
+    "ng-clip": "~0.2.6"
   }
 }

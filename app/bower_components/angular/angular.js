@@ -8105,14 +8105,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         if (newIsolateScopeDirective && (newIsolateScopeDirective.template || newIsolateScopeDirective.templateUrl === null)) {
           scopeToChild = isolateScope;
         }
-        if (linkNode) {
         childLinkFn && childLinkFn(scopeToChild, linkNode.childNodes, undefined, boundTranscludeFn);
 
-        } else {
-          return;
-          childLinkFn && childLinkFn(scopeToChild, undefined, boundTranscludeFn);
-        }
-        //
         // POSTLINKING
         for (i = postLinkFns.length - 1; i >= 0; i--) {
           linkFn = postLinkFns[i];
