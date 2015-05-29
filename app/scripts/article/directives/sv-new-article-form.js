@@ -1,13 +1,30 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svNewArticleForm', function (SectionsServ, NewsGeneratorServ, ArticlesServ, SvobodaSaveToDbServ, userAuth, FormattedDateServ, TagsServ) {
+        .directive('svNewArticleForm', function ($state,toastr, SectionsServ, NewsGeneratorServ, ArticlesServ, SvobodaSaveToDbServ, userAuth, FormattedDateServ, TagsServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
                 link: function ($scope, el, attrs) {
                     $scope.sections = SectionsServ.all();
                     $scope.user = userAuth.profile;
+
+                    $scope.saveArticle = function (isPublic, formValid) {
+                        if (formValid) {
+                            ArticlesServ.add($scope.article, isPublic).then(function (uid) {
+                                    $state.go('app.user.author-articles');
+                                    toastr.success('Статья сохранена в БД');
+                                },
+                                function (error) {
+                                    console.log(error);
+                                }
+                            );
+                        }
+                    }
+                    $scope.cancelArticle = function (active) {
+                        $state.go('app.user.author-articles');
+                    }
+
                     if ($scope.artId) {
                         //    edit
                         $scope.article = ArticlesServ.get($scope.artId);
