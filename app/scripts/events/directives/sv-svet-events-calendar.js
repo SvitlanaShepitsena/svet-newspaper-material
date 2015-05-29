@@ -6,7 +6,6 @@
                 templateUrl: 'scripts/events/directives/sv-svet-events-calendar.html',
                 link: function ($scope, el, attrs) {
 
-
                     $scope.user = userAuth.profile;
                     $scope.calendarYear = function () {
                         $scope.calendarView = 'year';
@@ -15,7 +14,6 @@
                     $scope.calendarMonth = function () {
                         $scope.calendarView = 'month';
                     };
-
 
                     ConnectionEventServ.setEventsLive().then(function () {
 
