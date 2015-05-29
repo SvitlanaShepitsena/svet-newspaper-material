@@ -7,13 +7,15 @@
 
             function formatEvent(event) {
                 var date = moment(event.date);
+
                 var startHour = moment(event.startsAt).hour();
                 var startMinutes = moment(event.startsAt).minute();
-                var startMoment = date.add({h: startHour, m: startMinutes});
+
+                var startMoment = date.startOf('day').add({h: startHour, m: startMinutes});
+
                 event = _.omit(event, 'date', 'startsAt', 'endsAt');
                 event.startsAt = startMoment.format('x');
-
-                event.endsAt = startMoment.add(2, 'h').format('x');
+                event.endsAt = startMoment.add(2, 'h').startOf('hour').format('x');
                 return event;
             }
 
