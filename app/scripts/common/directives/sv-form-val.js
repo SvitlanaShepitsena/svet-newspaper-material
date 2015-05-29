@@ -4,10 +4,8 @@
         .directive('svFormVal', function ($compile) {
             return {
                 restrict: 'A',
-                /*Require another directive and inject its controller as the fourth argument to the linking function
-                 */
-                require: '?^form',
                 priority: 100,
+                require: '?^form',
                 compile: function (elTemp, attr) {
                     /*find required form elements with JQuery*/
                     var inputs = elTemp.find('input[required]');
@@ -22,7 +20,6 @@
                             return parent;
                         }
                     }));
-
                     /*for Angular Material Radio-Group*/
                     var radioGroup = elTemp.find('md-radio-group');
                     /*get element name with JQuery*/
@@ -31,20 +28,20 @@
 
                     return function ($scope, el, attr, ctrl) {
                         var formName = ctrl.$name;
-                        /*attached compiled message to each element of array*/
-                        var requiredElements = lxTextFields.length > 0 ? lxTextFields : formElements;
 
+                        var requiredElements = lxTextFields.length > 0 ? lxTextFields : formElements;
                         angular.forEach(requiredElements, function (formElement, index) {
                             attachMessages(formElement, formElementsNames[index]);
                         });
 
                         attachMessages(radioGroup, radioGroupName);
-                        /**/
+
                         function attachMessages(formElement, elementName) {
                             var appFormElement = formName + '.' + elementName;
                             var appFormElementTouched = appFormElement + '.$touched';
                             var appFormElementError = appFormElement + '.$error';
                             var appFormSubmitted = formName + '.$submitted';
+
                             /*create validation message*/
                             var message = "<div ng-if='" + appFormElementTouched + "|| " + appFormSubmitted +
                                 "'ng-messages='" + appFormElementError + "'>" +
