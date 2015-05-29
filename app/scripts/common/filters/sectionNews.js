@@ -4,7 +4,6 @@
         .filter('sectionNews', function () {
             return function (list, section) {
                 if (!list || !section) return list;
-
                 if (section === 'svetRecommends') {
                     var finalList = _.filter(list, function (item) {
                         return item.svetRecommends;
@@ -14,7 +13,6 @@
                         return item.section.toLowerCase() === section.toLowerCase();
                     });
                 }
-
                 return finalList;
             };
         });

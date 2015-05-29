@@ -12,19 +12,18 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
                 label {{'article-author'|translate}}
                 input(ng-model='article.author' name='author' required='')
         div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center')
-            div( ng-if='!article.isBlog' flex)
-                div(ng-if='sections')
+            div(ng-show='!article.isBlog' flex)
+                div(ng-show='sections')
                     md-input-container
-                        md-select(name="section" ng-model='article.section' required)
-                            md-select-label {{article.section?article.section:'Section'|capitalize}}
+                        md-select(name="section" ng-model='article.section' required )
+                            md-select-label {{article.section?article.section:'article-section'|translate}}
                             md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
-                    button.btn.btn--s.btn--grey.btn--raised(lx-ripple='' ng-click="clearValue()") {{'clear'|translate}}
             md-input-container(flex='')
                 label {{'article-topic'|translate}}
                 input(ng-model='article.topic' name='topic' required)
         div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-show='user.isEditor()')
             md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
-            span.mdc-display-inline-block.fs-body-2 {{'svetRecommends'|translate}}
+            span.mdc-display-inline-block.fs-body-2 {{'svet-recommends'|translate}}
         div(layout='column')
             md-input-container(flex='')
                 label {{'article-title'|translate}}

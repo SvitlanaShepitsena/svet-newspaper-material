@@ -5,7 +5,7 @@
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
                 // 'eng':'eng'
-                'svetRecommends': 'Svet Recommends',
+                'svet-recommends': 'Endorsed by Svet',
                 'featured': 'featured',
                 'this-week': 'This Week',
                 'recommended': 'Recommended',
@@ -38,6 +38,7 @@
                 'article-title': 'Article Title',
                 'article-topic': 'Article Topic',
                 'article-summary': 'Article Summary',
+                'article-section': 'Article Section',
                 'date': 'Date',
                 'news-section': 'News Section',
                 'article-content': 'Article Content',
@@ -52,7 +53,7 @@
             });
             $translateProvider.translations('ru', {
                 // 'ru':'ru'
-                'svetRecommends': 'Свет Рекомендует',
+                'svet-recommends': 'Свет Рекомендует',
                 'recommended': 'Рекомендуемое',
                 'featured': 'featured',
                 'this-week': 'this-week',
@@ -85,6 +86,7 @@
                 'article-title': 'Заголовок статьи',
                 'article-topic': 'Тема Статьи',
                 'article-summary': 'Содержание одним предложением',
+                'article-section': 'Раздел Новостей',
                 'date': 'Дата',
                 'article-content': 'Содержание статьи',
                 'choose-section': 'Выберите Тему',
