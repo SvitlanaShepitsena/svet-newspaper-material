@@ -1,5 +1,5 @@
 div
-    form(name='articleForm' flow-init novalidate sv-form-val)
+    form(name='articleForm' flow-init novalidate)
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'article-author'|translate}}
@@ -12,17 +12,17 @@ div
                         md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
             md-input-container(flex='')
                 label {{'article-topic'|translate}}
-                input(ng-model='article.topic' name='topic')
+                input(ng-model='article.topic' name='topic' required)
         div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-if='user.isEditor()')
-                md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
-                span.mdc-display-inline-block.fs-body-2 {{'svetRecommends'|translate}}
+            md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
+            span.mdc-display-inline-block.fs-body-2 {{'svetRecommends'|translate}}
         div(layout='column')
             md-input-container(flex='')
                 label {{'article-title'|translate}}
-                input(ng-model='article.title' type="text" md-maxlength='150' required='' name='title')
+                input(ng-model='article.title' type="text" md-maxlength='150' name='title' required )
             md-input-container(flex='')
                 label {{'article-summary'|translate}}
-                input(ng-model='article.summary' type="text" md-maxlength='250' required='' name='summary')
+                input(ng-model='article.summary' type="text" md-maxlength='250' name='summary' required)
             md-input-container(flex='')
                 label {{'article-content'|translate}}
                 sv-svet-pad(body='article.body')
