@@ -16,7 +16,7 @@
             md-input-container(flex)
                 label {{'contact-email'|translate}}
                 input(ng-model='clCopy.email' name='email' required='')
-        div(layout='row', layout-sm='column')
+        div(layout='row', layout-sm='column' )
             md-input-container(flex)
                 label {{'state'|translate}}
                 input(ng-model='clCopy.state' name='state' required='')
@@ -24,10 +24,11 @@
                 label {{'city'|translate}}
                 input(ng-model='clCopy.city' name='city' required='')
             div(flex)
-                md-input-container
-                    md-select(name="section" ng-model='clCopy.section' required )
-                        md-select-label {{clCopy.section || "Section"}}
-                        md-option(ng-repeat='s in sections track by $index' ng-value='s.$value' ) {{s.$value}}
+                md-select(name="section" ng-model='clCopy.section' required )
+                    md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
+                        i.mdi.mdi-checkbox-marked-outline(style='max-width:22px')
+                        | {{clCopy.section || 'classified-section'|translate}}
+                    md-option(ng-repeat='s in sections track by $index' ng-value='s.$value' ) {{s.$value}}
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'classified-title'|translate}}
@@ -43,7 +44,7 @@
                 label {{'price'|translate}}
                 input(ng-model='clCopy.price' name='price' required='')
         div(layout='row' layout-align-sm='center center')
-            button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Post")
+            button.btn.btn--s.btn--raised.btn--grey.m( type='submit' lx-ripple value="Post")
                 i.mdi.mdi-send.mr
                 | {{editState?'save':'post'|translate}}
             button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()')

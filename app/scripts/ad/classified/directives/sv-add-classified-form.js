@@ -7,7 +7,6 @@
                 templateUrl: 'scripts/ad/classified/directives/sv-add-classified-form.html',
                 link: function ($scope, el, attrs) {
                     $scope.sections = ClassifiedServ.getSections();
-
                     $scope.isInvalid = function (field) {
                         if ($scope.classifiedForm[field].$invalid) {
                             return $scope.classifiedForm.$submitted || $scope.classifiedForm[field].$touched
@@ -21,8 +20,7 @@
                         }
                         $scope.addState = false;
                         $scope.editState = false;
-
-                        $scope.classifiedForm.$pristine=true;
+                        $scope.classifiedForm.$pristine = true;
                         $scope.resetForm();
                         $scope.populateForm();
                     };

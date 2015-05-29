@@ -11,23 +11,23 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
             md-input-container(flex)
                 label {{'article-author'|translate}}
                 input(ng-model='article.author' name='author' required='')
-        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='space-between center')
             div(ng-show='!article.isBlog' flex)
                 div(ng-show='sections')
-                    md-input-container
-                        md-select(name="section" ng-model='article.section' required )
-                            md-select-label {{article.section?article.section:'article-section'|translate}}
-                            md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
-            md-input-container(flex='')
-                label {{'article-topic'|translate}}
-                input(ng-model='article.topic' name='topic' required)
-        div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-show='user.isEditor()')
-            md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
-            span.mdc-display-inline-block.fs-body-2 {{'svet-recommends'|translate}}
+                    md-select(name="section" ng-model='article.section' required )
+                        md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
+                            i.mdi.mdi-checkbox-marked-outline.mr(style='max-width:22px')
+                            | {{article.section?article.section:'article-section'|translate}}
+                        md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
+            div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-show='user.isEditor()')
+                md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
+                span.mdc-display-inline-block.fs-body-2 {{'svet-recommends'|translate}}
         div(layout='column')
             md-input-container(flex='')
                 label {{'article-title'|translate}}
                 input(ng-model='article.title' type="text" md-maxlength='150' name='title' required )
+            md-input-container(flex='')
+                label {{'article-topic'|translate}}
+                input(ng-model='article.topic' name='topic' required)
             md-input-container(flex='')
                 label {{'article-summary'|translate}}
                 input(ng-model='article.summary' type="text" md-maxlength='250' name='summary' required)

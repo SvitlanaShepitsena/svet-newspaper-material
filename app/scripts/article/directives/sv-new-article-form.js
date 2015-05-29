@@ -38,7 +38,7 @@
                             author: userAuth.profile.isEditor() ? 'Alex Etman' : userAuth.profile.userName,
                             section: '',
                             topic: 'Chicago Community',
-                            title: 'Tags',
+                            title: '',
                             summary: 'One short sentence, that will appear on an article thumbnail instead of content.',
                             body: 'dddd',
                             tags: 'tags',
