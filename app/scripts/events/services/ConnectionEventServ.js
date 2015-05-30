@@ -104,7 +104,19 @@
                         } else {
                             var eventsArray = $firebaseArray(new Firebase(eventsPublicUrl));
                             eventsArray.$add(event).then(function (uid) {
-                                resolve();
+
+                                if (event.type === 'connection') {
+                                    var notification = {
+                                        note: event.title,
+                                        timestamp: moment().format('x'),
+                                        opened: false
+                                    };
+                                    NotificationsServ.addToCustomers(notification).then(function () {
+                                        resolve();
+                                    });
+                                }
+
+
                             });
                         }
                     });

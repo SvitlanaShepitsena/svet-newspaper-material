@@ -10,8 +10,8 @@
                 angular.forEach(keys, function (key) {
                     var user = usersObj[key];
                     if (user.profile.role === userType) {
-                        var userNotificationsRef = ref.child(key).child("profile").child('notifications');
-                        var notificationsArr = $firebaseArray(userNotificationsRef);
+                        var managerRef=new Firebase(users+key+'/profile/'+'notifications');
+                        var notificationsArr = $firebaseArray(managerRef);
                         var addPromise = notificationsArr.$add(event);
                         promises.push(addPromise);
                     }
@@ -46,14 +46,14 @@
                         })
                     });
                 },
-                addToCustomers: function (event) {
+                addToCustomers: function (notification) {
                     return $q(function (resolve, reject) {
                         var usersObj = $firebaseObject(new Firebase(users));
                         usersObj.$loaded().then(function () {
                             var keys = _.chain(usersObj).keysIn().filter(function (key) {
                                 return !_.startsWith(key, '$') && key !== 'forEach';
                             }).value();
-                            addNotificationsToUserType(keys, usersObj, event, 'customer').then(function (resolvedArray) {
+                            addNotificationsToUserType(keys, usersObj, notification, 'customer').then(function (resolvedArray) {
                                 resolve(resolvedArray);
                             }).catch(function (error) {
                                 reject(error);
@@ -61,14 +61,14 @@
                         })
                     });
                 },
-                addToManagers: function (event) {
+                addToManagers: function (notification) {
                     return $q(function (resolve, reject) {
                         var usersObj = $firebaseObject(new Firebase(users));
                         usersObj.$loaded().then(function () {
                             var keys = _.chain(usersObj).keysIn().filter(function (key) {
                                 return !_.startsWith(key, '$') && key !== 'forEach';
                             }).value();
-                            addNotificationsToUserType(keys, usersObj, event, 'manager').then(function (resolvedArray) {
+                            addNotificationsToUserType(keys, usersObj, notification, 'manager').then(function (resolvedArray) {
                                 resolve(resolvedArray);
                             }).catch(function (error) {
                                 reject(error);

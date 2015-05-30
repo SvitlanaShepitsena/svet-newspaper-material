@@ -15,18 +15,21 @@ div
                     a.btn.btn--m.btn--black.btn--raised.bgc-grey-600(href='{{event.tickets}}')
                         i.fa.fa-ticket &nbsp
                         | {{'purchase-tickets'|translate}}
-                div(ng-if='event.type!=="community"')
+            .mb(layout='row' layout-align='start center' ng-if='user.isCustomer()')
+                .mr
+                    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='registerToEvent()') Register
+                div(ng-if='event.type==="connection"')
                     lx-dropdown(position='left')
                         //span.fs-subhead
                         button.btn.btn--m.btn--teal.bgc-teal-300.btn--raised.tc-grey-50(lx-ripple lx-dropdown-toggle)
                             i.mdi.mdi-account-check.mr
-                            | {{e.customers.length+' '+ 'registered-users'|translate}}
+                            | {{e.users.length+' '+ 'registered-users'|translate}}
                         lx-dropdown-menu
                             ul
-                                li(ng-repeat='customer in e.customers')
+                                li(ng-repeat='user in event.users')
                                     a.dropdown-link
-                                        img.img-round.mdc-display-inline-block.mr(ng-src="{{customer.avatar}}" style='width:20px;height:20px')
-                                        span.display-inline-block.fs-body-2 {{customer.userName}}
+                                        img.img-round.mdc-display-inline-block.mr(ng-src="{{user.avatar}}" style='width:20px;height:20px')
+                                        span.display-inline-block.fs-body-2 {{user.userName}}
                                 li.dropdown-divider
             div
                 span.display-block.fs-title About Event:

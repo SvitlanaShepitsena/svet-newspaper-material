@@ -2,16 +2,29 @@
     'use strict';
 
     angular.module('events')
-        .factory('EventServ', function ($q, url, $firebaseArray, $firebaseObject) {
-            var allEventsUrl = url + 'events/'
+        .factory('EventServ', function ($q, url, $firebaseArray, $firebaseObject, NotificationsServ) {
+            var allEventsUrl = url + 'events/public/'
             return {
-                joinUser: function (user, eventKey) {
+                joinUser: function (user, event) {
+                    var eventKey=event.$id;
                     return $q(function (resolve, reject) {
                         var eventUsersUrl = allEventsUrl + eventKey + '/users/';
 
                         var eventUsersObj = $firebaseArray(new Firebase(eventUsersUrl));
-                        eventUsersObj.$add(user).then(function (ref) {
-                            resolve(ref.key);
+
+                        var shortUser = _.pick(user.profile, 'userName', 'avatar');
+
+                        eventUsersObj.$add(shortUser).then(function (ref) {
+
+                            var notification = {
+                                note: event.title,
+                                timestamp: moment().format('x'),
+                                user:user.profile.userName,
+                                opened: false
+                            };
+                            NotificationsServ.addToManagers(notification).then(function () {
+                                resolve();
+                            });
                         })
 
                     });
@@ -29,7 +42,6 @@
                             })
 
                         })
-
 
                     });
                 },
