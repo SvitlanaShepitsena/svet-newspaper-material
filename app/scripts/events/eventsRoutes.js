@@ -41,7 +41,7 @@
                     templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
                 })
 				.state("app.one-event", {
-					url: "/one-event", 
+					url: "/one-event/:eid",
 					controller:"OneEventCtrl",
 					templateUrl: "scripts/events/views/one-eventCtrl.html"
 				})

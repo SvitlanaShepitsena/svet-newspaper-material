@@ -40,6 +40,12 @@
             }
 
             return {
+                get: function (id) {
+                    var eventUrl = eventsPublicUrl + id;
+                    var ref = new Firebase(eventUrl);
+                    var eventObj = $firebaseObject(ref);
+                    return eventObj;
+                },
                 setEventsLive: function () {
                     return $q(function (resolve, reject) {
                         var eventsArr = $firebaseArray(new Firebase(eventsPublicUrl));

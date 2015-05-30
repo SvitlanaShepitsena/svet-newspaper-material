@@ -8,7 +8,7 @@ div(layout='row')
                 button.btn.btn--xs.btn--grey.btn--raised.mr(lx-ripple='' ng-click="quickView($event,event)")
                     i.fa.fa-eye.fa-fw &nbsp
                     | {{'quick-view'|translate}}
-                button.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ng-click="" target='_blank')
+                a.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ui-sref='app.one-event({eid:event.$id})' target='_blank')
                     i.mdi.mdi-arrow-right &nbsp
                     | {{'more-info'|translate}}
         span.display-block.fs-caption.mb  {{event.startsAt|date:"short"}}
