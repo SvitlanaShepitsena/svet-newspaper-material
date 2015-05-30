@@ -1,2 +1,5 @@
-.card.mb(ng-repeat='event in events|orderBy:"-$id"|eventsType:eventFilter' layout-gt-sm="row" layout-sm='column' layout-align-gt-sm="space-between center")
-    sv-one-event-thumb.p(event='event')
+div
+    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='svShowEvetsFrom("future")') Active
+    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='svShowEvetsFrom("past")') Ended
+    .card.mb(ng-repeat='event in events|orderBy:"-$id"|eventsType:eventFilter|previosFutureFr:isFuture' layout-gt-sm="row" layout-sm='column' layout-align-gt-sm="space-between center")
+        sv-one-event-thumb.p(event='event')
