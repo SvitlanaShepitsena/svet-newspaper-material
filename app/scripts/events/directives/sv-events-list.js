@@ -12,7 +12,7 @@
                 link: function ($scope, el, attrs) {
                     $scope.isFuture = true;
 
-                    $scope.svShowEvetsFrom= function (term) {
+                    $scope.svShowEvetsFrom = function (term) {
                         if (term === 'future') {
                             $scope.isFuture = true;
                         }
