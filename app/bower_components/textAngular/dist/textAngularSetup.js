@@ -575,14 +575,17 @@ angular.module('textAngularSetup', [])
 
                     }
                 }, 100);
-                $mdDialog.show($mdDialog.confirm().title('Test').ok('Ok')).then(function () {
-                    imageLink = 'http://upload.wikimedia.org/wikipedia/commons/c/ca/Maya_Plisetskaya_-_1974.jpg';
-                    $timeout(function () {
+                $mdDialog.show({
+                    templateUrl: 'dialog1.tmpl.html',
+                })
+                    .then(function () {
+                        imageLink = 'http://upload.wikimedia.org/wikipedia/commons/c/ca/Maya_Plisetskaya_-_1974.jpg';
+                        $timeout(function () {
 
-                        $interval.cancel(inter);
-                    }, 100);
+                            $interval.cancel(inter);
+                        }, 100);
 
-                });
+                    });
             },
             onElementSelect: {
                 element: 'img',
