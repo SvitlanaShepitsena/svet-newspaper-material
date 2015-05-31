@@ -6,7 +6,7 @@
             var allEventsUrl = url + 'events/public/'
             return {
                 joinUser: function (user, event) {
-                    var eventKey=event.$id;
+                    var eventKey = event.$id;
                     return $q(function (resolve, reject) {
                         var eventUsersUrl = allEventsUrl + eventKey + '/users/';
 
@@ -17,10 +17,10 @@
                         eventUsersObj.$add(shortUser).then(function (ref) {
 
                             var notification = {
-                                note: event.title,
+                                note: shortUser.userName + ' accepts ' + event.title,
                                 timestamp: moment().format('x'),
-                                user:user.profile.userName,
-                                opened: false
+                                opened: false,
+                                eid:event.$id
                             };
                             NotificationsServ.addToManagers(notification).then(function () {
                                 resolve();
@@ -35,11 +35,16 @@
                         var eventUsersArray = $firebaseArray(new Firebase(eventUsersUrl));
                         eventUsersArray.$loaded().then(function () {
 
-                            var foundUser = _.find(eventUsersArray, {'id': user.id});
+                            var foundUsers = _.filter(eventUsersArray, {'userName': user.profile.userName});
 
-                            eventUsersArray.$remove(foundUser).then(function (ref) {
-                                resolve(ref);
-                            })
+                            for (var i = 0; i < foundUsers.length; i++) {
+                                var userForRemoval = foundUsers[i];
+                                (function (userObj) {
+                                    eventUsersArray.$remove(userObj);
+                                })(userForRemoval );
+
+                            }
+                            resolve();
 
                         })
 

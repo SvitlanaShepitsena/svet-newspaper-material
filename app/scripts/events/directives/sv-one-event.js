@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('events')
-        .directive('svOneEvent', function (userAuth, EventServ) {
+        .directive('svOneEvent', function (userAuth, EventServ, toastr) {
             return {
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-one-event.html',
@@ -11,12 +11,26 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.user = userAuth.profile;
+
+                    $scope.isRegistered = !!_.find($scope.event.users, {userName: userAuth.profile.userName});
+
+                    console.log($scope.isRegistered);
+
                     $scope.isDialog = function () {
                         return attrs.dialogHide;
                     };
                     $scope.registerToEvent = function () {
                         EventServ.joinUser(userAuth, $scope.event).then(function () {
-                            alert('done');
+                            toastr.info('You have joined event');
+                            $scope.isRegistered = true;
+                        })
+
+                    };
+                    $scope.unRegisterFromEvent = function () {
+                        EventServ.unlinkUser(userAuth, $scope.event.$id).then(function () {
+                            toastr.warning('You have unlinked from  event');
+                            $scope.isRegistered = false;
+
                         })
 
                     };

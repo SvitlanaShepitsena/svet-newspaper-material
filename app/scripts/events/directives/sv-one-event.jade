@@ -15,9 +15,10 @@ div
                     a.btn.btn--m.btn--black.btn--raised.bgc-grey-600(href='{{event.tickets}}')
                         i.fa.fa-ticket &nbsp
                         | {{'purchase-tickets'|translate}}
-            .mb(layout='row' layout-align='start center' ng-if='user.isCustomer()')
-                .mr
-                    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='registerToEvent()') Register
+            .mb(layout='row' layout-align='start center' )
+                .mr(ng-if='user.isCustomer()')
+                    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-show='!isRegistered' ng-click='registerToEvent()') Register
+                    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-show='isRegistered' ng-click='unRegisterFromEvent()') Unlink
                 div(ng-if='event.type==="connection"')
                     lx-dropdown(position='left')
                         //span.fs-subhead
