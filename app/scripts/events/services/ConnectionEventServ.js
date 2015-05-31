@@ -40,6 +40,12 @@
             }
 
             return {
+                get: function (id) {
+                    var eventUrl = eventsPublicUrl + id;
+                    var ref = new Firebase(eventUrl);
+                    var eventObj = $firebaseObject(ref);
+                    return eventObj;
+                },
                 setEventsLive: function () {
                     return $q(function (resolve, reject) {
                         var eventsArr = $firebaseArray(new Firebase(eventsPublicUrl));
@@ -98,7 +104,19 @@
                         } else {
                             var eventsArray = $firebaseArray(new Firebase(eventsPublicUrl));
                             eventsArray.$add(event).then(function (uid) {
-                                resolve();
+
+                                if (event.type === 'connection') {
+                                    var notification = {
+                                        note: event.title,
+                                        timestamp: moment().format('x'),
+                                        opened: false
+                                    };
+                                    NotificationsServ.addToCustomers(notification).then(function () {
+                                        resolve();
+                                    });
+                                }
+
+
                             });
                         }
                     });

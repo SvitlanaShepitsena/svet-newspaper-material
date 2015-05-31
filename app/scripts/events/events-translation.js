@@ -30,7 +30,8 @@
                 'accept': 'Accept',
                 'reject': 'Reject',
                 'accepted': 'Accepted',
-                'rejected': 'Rejected'
+                'rejected': 'Rejected',
+                'quick-view': 'Quick View'
             });
             $translateProvider.translations('ru', {
                 'save-changes': 'Сохранить Изменения',
@@ -60,7 +61,8 @@
                 'accept': 'Принять',
                 'reject': 'Отклонить',
                 'accepted': 'Принят',
-                'rejected': 'Отклонен'
+                'rejected': 'Отклонен',
+                'quick-view': 'Быстрый просмотр'
             });
             $translateProvider.preferredLanguage('en');
         }]);

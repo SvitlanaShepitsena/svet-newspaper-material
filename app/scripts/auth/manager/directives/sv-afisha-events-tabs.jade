@@ -4,7 +4,7 @@ div
             md-tab-label {{'all-events'|translate}}
             md-tab-body
                 sv-profile-subhead(subhead-title="all-events")
-                sv-events-list(event-filter="community" events='events')
+                sv-events-list(event-filter="all" events='events')
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label {{'svet-public-events'|translate}}
             md-tab-body
@@ -14,4 +14,4 @@ div
             md-tab-label {{'svet-network-events'|translate}}
             md-tab-body
                 sv-profile-subhead(subhead-title="svet-network-events")
-                sv-events-list(event-filter="corporates" events='events')
+                sv-events-list(event-filter="connection" events='events')

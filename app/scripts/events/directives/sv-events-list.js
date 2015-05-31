@@ -6,10 +6,21 @@
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-events-list.html',
                 scope: {
-                   events:'=',
+                    events: '=',
                     eventFilter: '@'
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.isFuture = true;
+
+                    $scope.svShowEvetsFrom= function (term) {
+                        if (term === 'future') {
+                            $scope.isFuture = true;
+                        }
+                        if (term === 'past') {
+                            $scope.isFuture = false;
+                        }
+
+                    };
                 }
             };
         });

@@ -15,11 +15,10 @@
                         })
                     }
                     if (!$scope.id) {
-                        //$scope.ad = {
-                        //    name: "Campaign Name " + _.random(1, 99),
-                        //    //place: _.random(0, 1) === 1 ? "home.top" : "home.middle",
-                        //    banner: ""
-                        //}
+                        $scope.ad = {
+                            name: "Campaign Name " + _.random(1, 99),
+                            banner: ""
+                        }
                     }
                     else {
                         $scope.ad = AdServ.getObj($scope.id);
