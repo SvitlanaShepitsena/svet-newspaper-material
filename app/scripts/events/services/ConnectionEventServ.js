@@ -78,11 +78,12 @@
                 saveCorporateEvent: function (event) {
                     return $q(function (resolve, reject) {
                         var eventsArray = $firebaseArray(new Firebase(eventsCorporateUrl));
-                        eventsArray.$add(event).then(function (uid) {
+                        eventsArray.$add(event).then(function (ref) {
                             var notification = {
                                 note: event.title,
                                 timestamp: moment().format('x'),
-                                opened: false
+                                opened: false,
+                                eid: ref.key()
                             };
                             NotificationsServ.addToCustomers(notification).then(function () {
                                 resolve();
@@ -103,19 +104,19 @@
                             })
                         } else {
                             var eventsArray = $firebaseArray(new Firebase(eventsPublicUrl));
-                            eventsArray.$add(event).then(function (uid) {
+                            eventsArray.$add(event).then(function (ref) {
 
                                 if (event.type === 'connection') {
                                     var notification = {
                                         note: event.title,
                                         timestamp: moment().format('x'),
-                                        opened: false
+                                        opened: false,
+                                        eid: ref.key()
                                     };
                                     NotificationsServ.addToCustomers(notification).then(function () {
                                         resolve();
                                     });
                                 }
-
 
                             });
                         }

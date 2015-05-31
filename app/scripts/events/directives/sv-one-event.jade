@@ -10,18 +10,22 @@ div
                 a.tc-blue-grey-700.fs-subhead(href='{{event.locationWeb}}' target='_blank')
                     | {{event.location}}
                 span.display-block.fs-body-2.tc-grey-700 {{event.address}}
-            .mb(layout='row' layout-align='start center')
-                .mr
+            .mb(layout='column' layout-align='start')
+                .mb.mr(ng-if='user.isCustomer()' ng-show='event.type==="!community"')
+                    button.btn.btn--m.btn--white.btn--raised.tc-red-300(lx-ripple='' ng-show='!isRegistered' ng-click='registerToEvent()')
+                        i.mdi.mdi-account-check &nbsp
+                        | {{'register'|translate}}
+                    button.btn.btn--m.btn--white.btn--raised.tc-red-300(lx-ripple='' ng-show='isRegistered' ng-click='unRegisterFromEvent()')
+                        i.mdi.mdi-account-minus &nbsp
+                        | {{'cancel-registration'|translate}}
+                .mb.mr(ng-show='event.type==="community"')
                     a.btn.btn--m.btn--black.btn--raised.bgc-grey-600(href='{{event.tickets}}')
                         i.fa.fa-ticket &nbsp
                         | {{'purchase-tickets'|translate}}
-            .mb(layout='row' layout-align='start center' ng-if='user.isCustomer()')
-                .mr
-                    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='registerToEvent()') Register
                 div(ng-if='event.type==="connection"')
                     lx-dropdown(position='left')
                         //span.fs-subhead
-                        button.btn.btn--m.btn--teal.bgc-teal-300.btn--raised.tc-grey-50(lx-ripple lx-dropdown-toggle)
+                        button.btn.btn--m.btn--black.bgc-grey-600.btn--raised.tc-grey-50(lx-ripple lx-dropdown-toggle)
                             i.mdi.mdi-account-check.mr
                             | {{e.users.length+' '+ 'registered-users'|translate}}
                         lx-dropdown-menu
@@ -29,7 +33,7 @@ div
                                 li(ng-repeat='user in event.users')
                                     a.dropdown-link
                                         img.img-round.mdc-display-inline-block.mr(ng-src="{{user.avatar}}" style='width:20px;height:20px')
-                                        span.display-inline-block.fs-body-2 {{user.userName}}
+                                        span.display-inline-block.fs-body-2 {{user.userName|capitalize}}
                                 li.dropdown-divider
             div
                 span.display-block.fs-title About Event:

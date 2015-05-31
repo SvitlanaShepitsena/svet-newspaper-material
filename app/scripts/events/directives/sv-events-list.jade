@@ -1,5 +1,7 @@
 div
-    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='svShowEvetsFrom("future")') Active
-    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='svShowEvetsFrom("past")') Ended
-    .card.mb(ng-repeat='event in events|orderBy:"-$id"|eventsType:eventFilter|previosFutureFr:isFuture' layout-gt-sm="row" layout-sm='column' layout-align-gt-sm="space-between center")
+    div(layout='row' class='mb+')
+        button.btn.btn--xs.btn--grey.btn--flat.tc-red-400(lx-ripple='' ng-click='svShowEvetsFrom("future")') {{'active-events'|translate}}
+        span.fs-subhead.mr.ml |
+        button.btn.btn--xs.btn--grey.btn--flat.tc-grey-700(lx-ripple='' ng-click='svShowEvetsFrom("past")') {{'ended-events'|translate}}
+    .card.bgc-grey-200(class='mb+' ng-repeat='event in events|orderBy:"-$id"|eventsType:eventFilter|previosFutureFr:isFuture' layout-gt-sm="row" layout-sm='column' layout-align-gt-sm="space-between center")
         sv-one-event-thumb.p(event='event')
