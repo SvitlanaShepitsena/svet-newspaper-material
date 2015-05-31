@@ -4,7 +4,8 @@
         .config(['$translateProvider', function ($translateProvider) {
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
-                'Chicago': 'Chicago',
+                'chicago': 'Chicago',
+                'usa': 'USA',
                 /*=form*/
                 'login-title': 'Log In to Your Account',
                 'not-registered': 'Not Registered',
@@ -35,6 +36,7 @@
             });
             $translateProvider.translations('ru', {
                 'chicago': 'Чикаго',
+                'usa': 'США',
                 /*=form*/
                 'login-title': 'Вход',
                 'login:title': 'Авторизация Svet Media Group',

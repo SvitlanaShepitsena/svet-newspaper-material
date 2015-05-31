@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth.notifications')
-        .directive('svNotificationsList', function (userAuth, $mdMedia, NotificationsServ,$state) {
+        .directive('svNotificationsList', function (userAuth, $mdMedia, NotificationsServ, $state) {
             return {
                 templateUrl: 'scripts/auth/notifications/directives/sv-notifications-list.html',
                 link: function ($scope, el, attrs) {
@@ -19,7 +19,7 @@
                     };
                     $scope.markOpened = function (notification) {
                         NotificationsServ.markNotificationOpened(notification.$id);
-                        $state.go('app.one-event',{eid:notification.eid});
+                        $state.go('app.one-event', {eid: notification.eid});
                     };
                 }
             };

@@ -17,10 +17,10 @@
                         eventUsersObj.$add(shortUser).then(function (ref) {
 
                             var notification = {
-                                note: shortUser.userName + ' accepts ' + event.title,
+                                note: shortUser.userName.toUpperCase() + ' accepts ' + event.title,
                                 timestamp: moment().format('x'),
                                 opened: false,
-                                eid:event.$id
+                                eid: event.$id
                             };
                             NotificationsServ.addToManagers(notification).then(function () {
                                 resolve();
@@ -41,7 +41,7 @@
                                 var userForRemoval = foundUsers[i];
                                 (function (userObj) {
                                     eventUsersArray.$remove(userObj);
-                                })(userForRemoval );
+                                })(userForRemoval);
 
                             }
                             resolve();

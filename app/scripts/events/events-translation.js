@@ -6,6 +6,7 @@
             $translateProvider.translations('en', {
                 'events': 'Events',
                 'active-events': 'Active Events',
+                'cancel-registration': 'Cancel Registration',
                 'ended-events': 'Ended Events',
                 'save-changes': 'Save Changes',
                 'event-type': 'Event Type',
@@ -39,6 +40,7 @@
                 'save-changes': 'Сохранить Изменения',
                 'events': 'Мероприятия',
                 'ended-events': 'Прошедшие Мероприятия',
+                'cancel-registration': 'Отменить регистрацию',
                 'event-type': 'Тип Мероприятия',
                 'chicago-community-events': 'Афиша Чикаго',
                 'all-events': 'Афиша Чикаго',
