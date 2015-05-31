@@ -7,6 +7,7 @@ var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 var cmq = require('gulp-combine-media-queries');
 var nib = require('nib');
+
 ///////////////////////////// Error Handling ////////////////////////////////////////////////
 var onError = function (err) {
     p.notify.onError({
@@ -19,6 +20,7 @@ var onError = function (err) {
 };
     var scripts = "app/scripts/";
 ///////////////////////////// JADE ////////////////////////////////////////////////
+
 gulp.task("jade", function () {
     return gulp.src(["app/scripts/**/*.jade"])
         .pipe(p.newer({dest: scripts, ext: '.html'}))
@@ -27,6 +29,7 @@ gulp.task("jade", function () {
         .pipe(gulp.dest(scripts))
 });
 gulp.task('jade:watch', ['jade'], browserSync.reload);
+
 ///////////////////////////// Stylus/Css ////////////////////////////////////////////////
 gulp.task("stylus:scripts", function () {
     return gulp.src(["app/scripts/**/*.styl",])
@@ -69,6 +72,8 @@ gulp.task('serve', ['stylus:main', 'jade'], function () {
     gulp.watch(['app/scripts/**/*.jade'], ['jade:watch']);
     gulp.watch("app/scripts/**/*.js", ['js-watch']);
     gulp.watch("app/index.html").on('change', reload);
+
+    gulp.watch("app/bower_components/textAngular/dist/*.js").on('change', reload);
 });
 gulp.task('default', ['serve']);
 ///**********************
