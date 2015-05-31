@@ -563,18 +563,13 @@ angular.module('textAngularSetup', [])
                 var imageLink;
 
                 function runMe(selectedImage) {
-                    return that.$editor().wrapSelection('insertImage', selectedImage, true);
+                    that.$editor().wrapSelection('insertHtml', selectedImage, true);
+                    //that.$editor().wrapSelection('insertHtml', selectedImage, true);
 
                 }
 
-                var inter = $interval(function () {
-                    console.log('interval');
-                    if (imageLink) {
-                        runMe(imageLink);
-                        runMe(imageLink);
+                var runned = false;
 
-                    }
-                }, 100);
                 $mdDialog.show({
                     controller: function ($scope) {
                         $scope.hide = function () {
@@ -582,13 +577,10 @@ angular.module('textAngularSetup', [])
                         };
 
                         $scope.insertImage = function (imgUrl) {
-                            imageLink = imgUrl.url;
+                            $mdDialog.hide(imgUrl).then(function () {
+                                imageLink = imgUrl.url;
 
-                            $timeout(function () {
-
-                                $interval.cancel(inter);
-                            }, 100);
-                            $mdDialog.hide();
+                            });
 
                         };
 
@@ -596,12 +588,8 @@ angular.module('textAngularSetup', [])
                     templateUrl: 'scripts/article/views/articleImageDialog.html',
                 })
                     .then(function () {
-                        imageLink = 'http://upload.wikimedia.org/wikipedia/commons/c/ca/Maya_Plisetskaya_-_1974.jpg';
-                        $timeout(function () {
 
-                            $interval.cancel(inter);
-                        }, 100);
-
+                        runMe(imageLink);
                     });
             },
             onElementSelect: {

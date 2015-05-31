@@ -51,7 +51,7 @@
         })
         .config(function ($sceProvider,$translateProvider) {
             $translateProvider.useSanitizeValueStrategy(null);
-            $sceProvider.enabled(false);
+            //$sceProvider.enabled(false);
         })
         // COMMENT ON PRODUCTION
         .factory('$exceptionHandler', function ($injector) {
