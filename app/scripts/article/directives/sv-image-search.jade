@@ -9,6 +9,6 @@ div
         md-divider
         ul
             li(ng-repeat='i in images')
-                sv-image-include(clip-copy='i.url' url='i.url')
+                sv-image-include(url='i.url' ng-click='insertImage({imgUrl:i})')
                 span {{i.url}}
 

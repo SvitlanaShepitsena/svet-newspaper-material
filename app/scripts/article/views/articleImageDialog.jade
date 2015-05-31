@@ -1,2 +1,4 @@
-div
-    sv-image-search
+md-dialog(style='min-width:80%;min-height: auto' aria-label='Image dialog')
+    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='hide()') Hide
+    md-dialog-content
+        sv-image-search(insert-image='insertImage(imgUrl)')

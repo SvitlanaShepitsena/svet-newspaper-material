@@ -562,21 +562,38 @@ angular.module('textAngularSetup', [])
 
                 var imageLink;
 
-                function runMe() {
-                    return that.$editor().wrapSelection('insertImage', imageLink, true);
+                function runMe(selectedImage) {
+                    return that.$editor().wrapSelection('insertImage', selectedImage, true);
 
                 }
 
                 var inter = $interval(function () {
                     console.log('interval');
                     if (imageLink) {
-                        runMe();
-                        runMe();
+                        runMe(imageLink);
+                        runMe(imageLink);
 
                     }
                 }, 100);
                 $mdDialog.show({
-                    templateUrl: 'dialog1.tmpl.html',
+                    controller: function ($scope) {
+                        $scope.hide = function () {
+                            $mdDialog.hide();
+                        };
+
+                        $scope.insertImage = function (imgUrl) {
+                            imageLink = imgUrl.url;
+
+                            $timeout(function () {
+
+                                $interval.cancel(inter);
+                            }, 100);
+                            $mdDialog.hide();
+
+                        };
+
+                    },
+                    templateUrl: 'scripts/article/views/articleImageDialog.html',
                 })
                     .then(function () {
                         imageLink = 'http://upload.wikimedia.org/wikipedia/commons/c/ca/Maya_Plisetskaya_-_1974.jpg';
