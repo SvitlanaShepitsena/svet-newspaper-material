@@ -6,6 +6,9 @@
             $translateProvider.translations('en', {
                 'all-rights-reserved': 'All rights reserved',
                 'all-registered-users': 'Full List',
+                'account-status': 'Account Status',
+                'business-account': 'Business Account',
+                'reader-account': 'Reader Account',
                 'username': 'User Name',
                 'email': 'Email',
                 'password': 'Password',
@@ -59,6 +62,9 @@
             $translateProvider.translations('ru', {
                 'all-rights-reserved': 'Все права защищены',
                 'all-registered-users': 'Весь Список',
+                'account-status': 'Статус Профайла',
+                'business-account': 'Бизнес Профайл',
+                'reader-account': 'Профайл Читателя',
                 'username': 'Контактное Имя',
                 'email': 'Электронный Адрес',
                 'password': 'Пароль',

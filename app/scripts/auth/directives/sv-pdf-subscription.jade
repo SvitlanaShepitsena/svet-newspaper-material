@@ -1,12 +1,13 @@
-div.card.p.ml
-    span.display-block.fs-subhead Newspaper Subscription
-    md-divider.mb
-    span.display-block.fs-body-2 Do you have a subscription to Svet Newspaper?
-    span(ng-if="!user") Please Log In to Subscribe
-    div(ng-if='user && !requestSubmited')
-        form( name='pdfSubForm')
-            div(layout="row" layout-align='start center')
-                md-checkbox(ng-model="subscription.newLight" aria-label="Checkbox")
-                span.mdc-display-inline-block.fs-body-2 {{'SvetNewspaper'|translate}}
+.card.ml
+    div.bgc-grey-100(class='pl+ pr+ pt pb' layout='column' )
+        span.display-block.fs-subhead.mb Newspaper Subscription
+    div.mt.mb
+        p.fs-body-2.pl.pr.tc-grey-900 Please subscribe to receive weekly Svet Newspaper in PDF format.
+        span(ng-if="!user") Please Log In to Subscribe
+        div(ng-if='user && !requestSubmited')
+            form( name='pdfSubForm')
+                div(layout="row" layout-align='start center')
+                    md-checkbox(ng-model="subscription.newLight" aria-label="Checkbox")
+                    span.mdc-display-inline-block.fs-body-2 {{'SvetNewspaper'|translate}}
     div(ng-if='user && requestSubmited')
         md-progress-circular.md-accent(md-mode='indeterminate')

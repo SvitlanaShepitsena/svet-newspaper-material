@@ -56,7 +56,7 @@
                 'archive': 'Архив',
                 'from-the-editor': 'От Редактора',
                 'from-the': 'От',
-                'editor': 'Редактора',
+                'editor': 'Редактор',
                 'interesting-stories': 'Интерестные Истории',
                 /*=news nav*/
                 'home': 'Домашняя страница',

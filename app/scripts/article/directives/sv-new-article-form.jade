@@ -2,7 +2,7 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
     .bgc-grey-200.p(layout='row' layout-align="space-around center")
         button.btn.btn--m.btn--teal.btn--flat.tc-teal-300(lx-ripple='' type='submit')
             i.fa.fa-save.fa-fw &nbsp
-            | Save
+            | {{'save'|translate}}
         sv-lumx-button(btn-size="m" btn-color="red" text-color="red-300" btn-type="flat" btn-title="cancel" icon-type="fa"
         icon-name="fa-close" btn-url="app.home"
         method-click='cancelArticle(true)')
@@ -11,17 +11,18 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
             div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-show='user.isEditor()')
                 md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
                 span.mdc-display-inline-block.fs-body-2 {{'svet-recommends'|translate}}
-        div(layout='row', layout-sm='column')
+        div(layout='row', layout-sm='column' layout-align-gt-sm='space-between center')
             md-input-container(flex)
                 label {{'article-author'|translate}}
                 input(ng-model='article.author' name='author' required='')
-            div(ng-show='!article.isBlog' flex)
+            md-input-container(ng-show='!article.isBlog' class='mr ml')
                 div(ng-show='sections')
-                    md-select(name="section" ng-model='article.section' required )
+                    md-select(name="section" ng-model='article.section' required  style='margin-bottom:0px')
                         md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
-                            i.mdi.mdi-checkbox-marked-outline.mr(style='max-width:22px')
+                            i.mdi.mdi-checkbox-marked-outline.mr.mb(style='max-width:22px')
                             | {{article.section?article.section:'article-section'|translate}}
-                        md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' ) {{section.$id}}
+                        md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' style='height:38px')
+                            .fs-body-2 {{section.$id|capitalize}}
             md-input-container(flex='')
                 label {{'article-topic'|translate}}
                 input(ng-model='article.topic' name='topic' required)
@@ -46,7 +47,7 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
     .bgc-grey-200.p(layout='row' layout-align="space-around center")
         button.btn.btn--m.btn--teal.btn--flat.tc-teal-300(lx-ripple='' type='submit')
             i.fa.fa-save.fa-fw &nbsp
-            | Save
+            | {{'save'|translate}}
         sv-lumx-button(btn-size="m" btn-color="red" text-color="red-300" btn-type="flat" btn-title="cancel" icon-type="fa"
         icon-name="fa-close" btn-url="app.home"
         method-click='cancelArticle(true)')
