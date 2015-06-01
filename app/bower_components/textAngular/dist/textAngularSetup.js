@@ -563,7 +563,9 @@ angular.module('textAngularSetup', [])
                 var imageLink;
 
                 function runMe(selectedImage) {
-                    that.$editor().wrapSelection('insertHtml', selectedImage, true);
+
+                    var embed = '<img src='+selectedImage+' />';
+                    that.$editor().wrapSelection('insertHTML', embed, true);
                     //that.$editor().wrapSelection('insertHtml', selectedImage, true);
 
                 }
@@ -587,10 +589,7 @@ angular.module('textAngularSetup', [])
                     },
                     templateUrl: 'scripts/article/views/articleImageDialog.html',
                 })
-                    .then(function () {
 
-                        runMe(imageLink);
-                    });
             },
             onElementSelect: {
                 element: 'img',
