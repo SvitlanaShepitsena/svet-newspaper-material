@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svDeleteArticleBtn', function () {
+        .directive('svDeleteArticleBtn', function ($mdDialog, toastr) {
             return {
                 replace: true,
                 require: '^svAuthorArticlesTabs',
@@ -11,8 +11,23 @@
                 },
                 link: function ($scope, el, attrs, ctrl) {
                     $scope.removeArticle = function () {
-                        ctrl.removeOneArticle($scope.articleKey);
-
+                        $mdDialog.show({
+                            controller: function ($scope, $mdDialog) {
+                                $scope.delete = function () {
+                                    $mdDialog.hide(true);
+                                }
+                                $scope.cancel = function () {
+                                    $mdDialog.cancel()
+                                }
+                            },
+                            templateUrl: 'scripts/events/views/modalDeleteConfirm.html',
+                        }).then(function () {
+                            ctrl.removeOneArticle($scope.articleKey).then(function () {
+                                toastr.warning('Article is successfully removed');
+                            }, function () {
+                                toastr.info('Article removal canceled');
+                            });
+                        })
                     };
                 }
             };

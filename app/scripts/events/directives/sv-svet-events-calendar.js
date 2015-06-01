@@ -30,7 +30,7 @@
                         };
                         $scope.eventDeleted = function (event) {
                             $mdDialog.show({
-                                controller: function ($scope,$mdDialog) {
+                                controller: function ($scope, $mdDialog) {
                                     $scope.delete = function () {
                                         $mdDialog.hide(true);
                                     }
