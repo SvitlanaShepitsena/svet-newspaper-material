@@ -563,14 +563,11 @@ angular.module('textAngularSetup', [])
                 var imageLink;
 
                 function runMe(selectedImage) {
-
-                    var embed = '<img src='+selectedImage+' />';
-                    that.$editor().wrapSelection('insertHTML', embed, true);
-                    //that.$editor().wrapSelection('insertHtml', selectedImage, true);
-
+                    var selection = $rootScope.lastSelection;
+                    var embed = '<img src=' + selectedImage + ' contenteditable="false" allowfullscreen="true" frameborder="0"  />';
+                    taSelection.insertHtml(embed,undefined,selection);
                 }
 
-                var runned = false;
 
                 $mdDialog.show({
                     controller: function ($scope) {
@@ -581,7 +578,7 @@ angular.module('textAngularSetup', [])
                         $scope.insertImage = function (imgUrl) {
                             $mdDialog.hide(imgUrl).then(function () {
                                 imageLink = imgUrl.url;
-
+                                runMe(imageLink);
                             });
 
                         };

@@ -35,7 +35,7 @@
     "angular-zeroclipboard": "~0.4.2",
     "zeroclipboard": "~2.2.0",
     "ng-clip": "~0.2.6",
-    "textAngular": "1.4.1",
+    "textAngular": "~1.4.1",
     "angular-capitalize-filter": "2.1.0",
     "angular-toastr": "1.4.1",
     "codemirror": "5.3.0"
