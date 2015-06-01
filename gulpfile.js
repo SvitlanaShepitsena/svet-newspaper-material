@@ -73,9 +73,8 @@ gulp.task('serve', ['stylus:main', 'jade'], function () {
     gulp.watch("app/scripts/**/*.js", ['js-watch']);
     gulp.watch("app/index.html").on('change', reload);
 
-    gulp.watch("app/bower_components/textAngular/dist/*.js").on('change', reload);
-});
-gulp.task('default', ['serve']);
+    //gulp.watch("app/bower_components/textAngular/dist/*.js").on('change', reload);
+}); gulp.task('default', ['serve']);
 ///**********************
 // ANGULAR
 // ***********************/

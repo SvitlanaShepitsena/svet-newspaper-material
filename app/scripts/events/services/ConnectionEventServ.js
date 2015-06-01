@@ -116,6 +116,8 @@
                                     NotificationsServ.addToCustomers(notification).then(function () {
                                         resolve();
                                     });
+                                }  else{
+                                    resolve();
                                 }
 
                             });

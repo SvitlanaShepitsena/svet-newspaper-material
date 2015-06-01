@@ -29,13 +29,17 @@
                             });
                         };
                         $scope.eventDeleted = function (event) {
-                            var confirm = $mdDialog.confirm()
-                                .title('Would you like to delete this event?')
-                                .content('Click ok to confirm.')
-                                .ariaLabel('Lucky day')
-                                .ok('Ok')
-                                .cancel('cancel')
-                            $mdDialog.show(confirm).then(function () {
+                            $mdDialog.show({
+                                controller: function ($scope,$mdDialog) {
+                                    $scope.delete = function () {
+                                        $mdDialog.hide(true);
+                                    }
+                                    $scope.cancel = function () {
+                                        $mdDialog.cancel()
+                                    }
+                                },
+                                templateUrl: 'scripts/events/views/modalDeleteConfirm.html',
+                            }).then(function () {
                                 ConnectionEventServ.removePublicWithKey(event.$id).then(function () {
                                     toastr.warning('Events removed');
                                 });
@@ -50,10 +54,12 @@
                             dt.clickedDate = calendarDate || now.subtract(hours, 'hours').subtract(minutes, 'minutes').toDate();
                             dt.event = null;
                             dt.editState = false;
-                            $mdDialog.show({
-                                controller: DialogController,
-                                templateUrl: 'scripts/events/views/modalContent.html',
-                            });
+                            $mdDialog.show(
+                                {
+                                    controller: DialogController,
+                                    templateUrl: 'scripts/events/views/modalContent.html',
+                                }
+                            );
                         }
                         function showModal(event) {
                             dt.vm = event;
