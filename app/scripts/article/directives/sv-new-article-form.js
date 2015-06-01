@@ -47,7 +47,7 @@
                     }
                     $scope.generateFromRandomNews = function () {
                         SvobodaSaveToDbServ.getRandom().then(function (randomSvobodaArticle) {
-                            $scope.article = _.omit(randomSvobodaArticle, '$id');
+                            $scope.article = _.omit(randomSvobodaArticle, '$id','img');
                             $scope.article.author = userAuth.profile.isEditor() ? 'Alex Etman' : userAuth.profile.userName;
                             $scope.article.tags = $scope.article.tags ? $scope.article.tags.split(',').join(', ') : "";
                             $scope.article.isBlog = $scope.artType === 'blog';

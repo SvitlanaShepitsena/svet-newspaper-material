@@ -703,14 +703,15 @@
                             end: brException(range.endContainer, range.endOffset),
                             collapsed: range.collapsed
                         };
-                        // Check if the container is a text node and return its parent if so
-                        //container = container.nodeType === 3 ? container.parentNode : container;
-                        //if (container.parentNode === selection.start.element ||
-                        //    container.parentNode === selection.end.element) {
-                        //    selection.container = container.parentNode;
-                        //} else {
-                        //    selection.container = container;
-                        //}
+                        //Check if the container is a text node and return its parent if so
+                        container = container.nodeType === 3 ? container.parentNode : container;
+                        if (container.parentNode === selection.start.element ||
+                            container.parentNode === selection.end.element) {
+                            selection.container = container.parentNode;
+                        } else {
+                            selection.container = container;
+                        }
+                        $rootScope.lastSelection = range;
                         return selection;
                     },
                     getOnlySelectedElements: function () {
@@ -770,10 +771,10 @@
                     },
                     // from http://stackoverflow.com/questions/6690752/insert-html-at-caret-in-a-contenteditable-div
                     // topNode is the contenteditable normally, all manipulation MUST be inside this.
-                    insertHtml: function (html, topNode) {
+                    insertHtml: function (html, topNode, rangyGiven) {
                         var parent, secondParent, _childI, nodes, i, lastNode, _tempFrag;
                         var element = angular.element("<div>" + html + "</div>");
-                        var range = rangy.getSelection().getRangeAt(0);
+                        var range = rangyGiven || rangy.getSelection().getRangeAt(0);
                         var frag = _document.createDocumentFragment();
                         var children = element[0].childNodes;
                         var isInline = true;
@@ -802,7 +803,7 @@
 
                         // Other Edge case - selected data spans multiple blocks.
                         if (isInline) {
-                            range.deleteContents();
+                            //range.deleteContents();
                         } else { // not inline insert
                             if (range.collapsed && range.startContainer !== topNode) {
                                 if (range.startContainer.innerHTML && range.startContainer.innerHTML.match(/^<[^>]*>$/i)) {
@@ -872,7 +873,6 @@
                         }
 
                         range.insertNode(frag);
-                        $rootScope.$apply();
                         if (lastNode) {
                             api.setSelectionToElementEnd(lastNode);
                         }

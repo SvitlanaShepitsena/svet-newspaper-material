@@ -1,9 +1,14 @@
 (function () {
     'use strict';
     angular.module('common')
-        .factory('HtmlParseServ', function ($q, $http, $sanitize,$sce) {
+        .factory('HtmlParseServ', function ($q, $http, $sanitize, $sce) {
             var startChar = '<div class="article_txt_intro">';
             var endChar = '<p id="ctl00_ctl00';
+
+            function removeImages(p) {
+                var parsedP = $(p).find('img');
+                return p;
+            }
 
             function parseContent(article) {
                 var el = $('<div></div>');
@@ -15,6 +20,7 @@
                     var parsedHtml;
                     try {
                         parsedHtml = $sanitize(p.outerHTML);
+                        parsedHtml = removeImages(parsedHtml);
                     } catch (e) {
                         console.log(e);
                         continue;
