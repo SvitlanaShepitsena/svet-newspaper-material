@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svDeleteArticleBtn', function () {
+        .directive('svDeleteArticleBtn', function (toastr) {
             return {
                 replace: true,
                 require: '^svAuthorArticlesTabs',
@@ -13,6 +13,7 @@
                     $scope.removeArticle = function () {
                         ctrl.removeOneArticle($scope.articleKey);
 
+                        //toastr.info('Delete runned');
                     };
                 }
             };

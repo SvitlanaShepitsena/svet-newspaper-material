@@ -1,0 +1,11 @@
+div
+    span.label.label-default.tc-grey-600.bgc-grey-200.mr( ng-if="type==='community'")
+        i.mdi.mdi-city(style='margin-right:4px; font-size: 14px')
+        | {{'chicago-community-event'|translate}}
+    span.label.label-default.tc-grey-600.bgc-red-50.mr( ng-if="type==='connection'")
+        i.mdi.mdi-briefcase-check(style='margin-right:4px; font-size: 14px')
+        | {{'svet-connection-event'|translate}}
+    span.label.label-default.tc-grey-600.bgc-teal-50.mr( ng-if="type==='public'")
+        i.fa.fa-users(style='margin-right:4px; font-size: 11px')
+        | {{'svet-public-event'|translate}}
+
