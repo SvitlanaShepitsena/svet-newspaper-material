@@ -1,11 +1,10 @@
-.card.p
+div
     a.btn.btn--xs.btn--grey.btn--flat.bgc-grey-300.tc-grey-700(ng-click='cancelAddition()' class='mb++')
         i.fa.fa-arrow-left.mr
         | {{'back-to-my-classified'|translate|capitalize}}
-    sv-profile-subhead(subhead-title="new-classified")
-    md-divider
-    br
-    form(name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy, classifiedForm.$valid)' sv-form-val)
+    div.bgc-grey-200(class='pl+ pr+ pt+ pb')
+        sv-profile-subhead(subhead-title="new-classified")
+    form(class='p+'  name='classifiedForm' novalidate flex-container='column' ng-submit='postClassified(clCopy, classifiedForm.$valid)' sv-form-val)
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'contact-name'|translate}}

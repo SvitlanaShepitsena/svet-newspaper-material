@@ -1,10 +1,8 @@
-.card(ui-view='' class='mb++')
-    .p
-        button.btn.btn--m.btn--red.btn--raised.bgc-red-300(lx-ripple='' ui-sref='app.manager.ad.start')
-            i.mdi.mdi-plus.mr
-            | {{'add-business-ad'|translate}}
-    div(class='pl+ pr+')
-        div(layout='column')
-            div(ng-repeat='ad in ads|orderBy:"-timestamp"')
-                sv-one-business-ad(ad='ad' remove-ad='removeAd(ad)')
+div(ui-view='' class='mb++')
+    button.btn.btn--m.btn--red.btn--raised.bgc-red-300(lx-ripple='' ui-sref='app.manager.ad.start' class='mb+')
+        i.mdi.mdi-plus.mr
+        | {{'add-business-ad'|translate}}
+    div(layout='column')
+        div(ng-repeat='ad in ads|orderBy:"-timestamp"')
+            sv-one-campaign-thumb(ad='ad' remove-ad='removeAd(ad)')
 

@@ -19,7 +19,7 @@ div(flow-init='')
             button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='id' )
                 i.mdi.mdi-send.mr
                 | {{'save changes'|translate}}
-            button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='!id')
+            button.btn.btn--s.btn--raised.btn--white.m.tc-teal-400( type='submit' lx-ripple value="Save" ng-if='!id')
                 i.mdi.mdi-send.mr
                 | {{'post'|translate}}
             button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")

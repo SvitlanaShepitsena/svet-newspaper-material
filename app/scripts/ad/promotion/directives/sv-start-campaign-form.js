@@ -25,7 +25,6 @@
                     }
                     $scope.addBusinessAd = function (ad, file, formValid) {
                         if (formValid) {
-
                             if (!file) {
                                 if ($scope.id) {
                                     AdServ.updateAd($scope.ad).then(function (key) {
@@ -56,7 +55,8 @@
                                     });
                                 }
                             };
-                        } ;
+                        }
+                        ;
                     };
                 }
             };

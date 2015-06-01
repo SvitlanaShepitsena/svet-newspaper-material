@@ -12,7 +12,7 @@
 
                     $scope.removeAd = function (ad) {
                         AdServ.removeAd(ad).then(function () {
-                            toastr.warning('You campaign has been deleted');
+                            toastr.success('You campaign has been deleted');
                         })
                     };
                 }

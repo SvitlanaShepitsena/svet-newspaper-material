@@ -10,16 +10,16 @@
                     }
                 }
             }
+
             return {
-                saveAd: function (ad,customers) {
+                saveAd: function (ad, customers) {
                     return $q(function (resolve, reject) {
                         if (ad.customerUserName) {
-                            ad.customerKey=getUserKey(customers,ad.customerUserName);
-                        } else{
-
-                        var user = userAuth.profile;
-                        ad.customerKey = userAuth.key;
-                        ad.customerUserName = userAuth.profile.userName;
+                            ad.customerKey = getUserKey(customers, ad.customerUserName);
+                        } else {
+                            var user = userAuth.profile;
+                            ad.customerKey = userAuth.key;
+                            ad.customerUserName = userAuth.profile.userName;
                         }
                         ad.timestamp = moment().format('x');
                         ad.shows = {

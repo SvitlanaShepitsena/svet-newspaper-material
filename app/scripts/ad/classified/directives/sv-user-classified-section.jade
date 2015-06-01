@@ -1,5 +1,5 @@
 div
-    div(ng-show='addState || editState')
+    .card.mb(ng-show='addState || editState')
         sv-add-classified-form
     div(ng-show='!addState && !editState')
         .mb(layout='row', layout-align='space-between')

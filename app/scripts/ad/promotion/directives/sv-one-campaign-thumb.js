@@ -1,10 +1,10 @@
 (function () {
     'use strict';
     angular.module('ad.promotion')
-        .directive('svOneBusinessAd', function (userAuth) {
+        .directive('svOneCampaignThumb', function (userAuth) {
             return {
                 replace: true,
-                templateUrl: 'scripts/ad/promotion/directives/sv-one-business-ad.html',
+                templateUrl: 'scripts/ad/promotion/directives/sv-one-campaign-thumb.html',
                 scope: {
                     ad: '=',
                     removeAd: '&'
