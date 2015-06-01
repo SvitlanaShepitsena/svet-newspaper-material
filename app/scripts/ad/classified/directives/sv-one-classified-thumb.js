@@ -1,8 +1,12 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .directive('svOneClassifiedThumb', function (ClassifiedServ, toastr, $state, $timeout, $animate, userAuth) {
+        .config(function ($translateProvider) {
+            $translateProvider.directivePriority(10);
+        })
+        .directive('svOneClassifiedThumb', function (ClassifiedServ, toastr, $state, $timeout, $animate, userAuth, $translate) {
             return {
+                priority: 10,
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-one-classified-thumb.html',
                 scope: {
@@ -13,8 +17,10 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
-
-
+                    $translate.directivePriority(10);
+                    $translate('delete').then(function (translation) {
+                        $scope.deleteTitle = translation;
+                    });
                     $scope.user = userAuth.profile;
                     $scope.editState = false;
                     $scope.isEditable = function () {

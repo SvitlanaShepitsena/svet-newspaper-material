@@ -2,6 +2,7 @@
     'use strict'
     angular.module('common')
         .config(['$translateProvider', function ($translateProvider) {
+            $translateProvider.directivePriority(10);
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
                 'chicago': 'Chicago',
