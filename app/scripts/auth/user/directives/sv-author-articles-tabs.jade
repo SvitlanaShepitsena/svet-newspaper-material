@@ -8,6 +8,8 @@ div
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label {{'blog'|translate}}
             md-tab-body
+                div
+                    span.fs-subhead You do not have any articles yet
                 div(ng-repeat='article in articles|articleBlogFr:selectedIndex|authorFr:user.key|orderBy:"-timestamp"')
                     sv-author-article-link(article='article')
 
