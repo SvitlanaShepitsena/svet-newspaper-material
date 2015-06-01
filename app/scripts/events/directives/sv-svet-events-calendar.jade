@@ -10,8 +10,8 @@ div(ng-show='eventsLoaded')
     div(class='mb+' ng-show='user.isManager()')
         mwl-calendar(events='events', view='calendarView', view-title='calendarTitle', current-day='calendarDay',
         on-event-click='eventClicked($event,calendarEvent)',
-        delete-event-html='"<i class=\'glyphicon glyphicon-remove\' ></i>"',
-        edit-event-html='"<i class=\'glyphicon glyphicon-pencil\'></i>"',
+        delete-event-html='"<i class=\'glyphicon  glyphicon-remove\' ></i>"',
+        edit-event-html='"<i class=\'glyphicon tc-grey-600 glyphicon-edit\'></i>"',
         on-edit-event-click='eventEdited(calendarEvent)',
         on-delete-event-click='eventDeleted(calendarEvent)', auto-open='true', day-view-start='06:00', day-view-end='22:00', day-view-split='30')
 
