@@ -35,15 +35,13 @@
                                 .ariaLabel('Lucky day')
                                 .ok('Ok')
                                 .cancel('cancel')
-                            $mdDialog.show(confirm).then(function() {
+                            $mdDialog.show(confirm).then(function () {
                                 ConnectionEventServ.removePublicWithKey(event.$id).then(function () {
                                     toastr.warning('Events removed');
                                 });
-                            }, function() {
-
+                            }, function () {
                                 toastr.info('Events removal canceled');
                             });
-
                         };
                         $scope.newEvent = function (calendarDate) {
                             var now = moment();

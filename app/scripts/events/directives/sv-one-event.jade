@@ -4,9 +4,7 @@ div
         button.btn.btn--m.btn--icon(ng-show='isDialog()' ng-click='hide()')
             i.mdi.mdi-close
     div.mb(layout='row')
-        span.label.label-default.tc-grey-600.bgc-grey-200.mr(style='display: inline-block', ng-if="event.type==='community'")
-            i.mdi.mdi-city(style='font-size: 14px', ng-show='event.type==="community"')
-            | Chicago Community Event
+        sv-event-widget(type='{{event.type}}')
     div(layout='row')
         div()
             .mb
