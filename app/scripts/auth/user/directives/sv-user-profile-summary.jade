@@ -1,6 +1,6 @@
 div(layout-gt-sm='row' layout-sm='column')
     div(flex-gt-sm='60')
-        .card(class='mb++')
+        .card(class='mb' class='ml mr')
             div.bgc-grey-100(class='pl+ pr+ pt pb' layout='column' )
                 span.fs-subhead.mb.mr(ng-if='user') {{'account-status'|translate}}:
                     span.fs-title.ml(ng-if='user && user.isCustomer()') {{'business-account'|translate}}
@@ -9,4 +9,4 @@ div(layout-gt-sm='row' layout-sm='column')
             div.mt.mb
                 sv-user-personal-info
     div(flex-gt-sm='40')
-        sv-pdf-subscription
+        sv-pdf-subscription(class='ml mr')
