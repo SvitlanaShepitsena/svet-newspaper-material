@@ -4,7 +4,7 @@
             i.mdi.mdi-icon(class='mdi-{{sectionIcon}}') &nbsp
             | {{sectionTitle|translate|uppercase}}
     md-divider
-    div.p(layout='column')
+    .p(layout='column')
         .mb.sv-article-thumb(ng-repeat='n in newsList|sectionNews:sectionName|limitTo:3')
             //span.display-block.fs-caption.tc-grey-500(ng-bind-html='n.timestamp|date')
             span.fs-caption By &nbsp
