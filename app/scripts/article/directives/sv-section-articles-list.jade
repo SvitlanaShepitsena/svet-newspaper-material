@@ -1,7 +1,7 @@
 ul.list-unstyled(layout='column')
     li(class="mb" ng-repeat='n in newsList|sectionNews:sectionName')
-        .card(layout="row" class='pt pb ml mr mb')
-            div(style='float:left' class='')
+        .card(layout="row" class='pt pb')
+            div.p(style='float:left' class='')
                 a(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
                     sv-image-thumb(img-container-width="70px" img-container-height="70px" img='{{n.img}}' img-height="150%")
             div
