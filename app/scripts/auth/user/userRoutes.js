@@ -48,6 +48,11 @@
                     controller: "UserSocialCtrl as userSocial",
                     templateUrl: "scripts/auth/user/views/userSocialCtrl.html"
                 })
+                .state("app.user.homepage-rank", {
+                    url: "/homepage-rank",
+                    controller: "HomepageRankCtrl",
+                    templateUrl: "scripts/article/views/homepage-rankCtrl.html"
+                })
 //#state'
         });
 })();
