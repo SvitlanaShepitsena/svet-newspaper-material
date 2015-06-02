@@ -48,6 +48,7 @@
                 'views': 'Views',
                 'shares': 'Shares',
                 'private': 'Private',
+                'articles-ranking': 'Home Rank',
                 'public': 'Public'
                 // 'eng':'eng',
             });
@@ -88,6 +89,7 @@
                 'article-summary': 'Содержание одним предложением',
                 'article-section': 'Раздел Новостей',
                 'date': 'Дата',
+                'articles-ranking': 'Ранг Новостей',
                 'article-content': 'Содержание статьи',
                 'choose-section': 'Выберите Тему',
                 'news-section': 'Раздел Новостей',
