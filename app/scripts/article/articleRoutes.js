@@ -31,6 +31,11 @@
                     templateUrl: "scripts/article/views/one-blogCtrl.html"
                 })
 				
+				.state("app.homepage-rank", {
+					url: "/homepage-rank", 
+					controller:"HomepageRankCtrl",
+					templateUrl: "scripts/article/views/homepage-rankCtrl.html"
+				})
 //#state'
         });
 })();
