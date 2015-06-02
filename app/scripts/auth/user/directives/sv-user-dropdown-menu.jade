@@ -13,6 +13,10 @@ lx-dropdown(position='right')
                     i.mdi.mdi-view-list.mr
                     span(ng-if='user.isReader()') {{'my-blog'|translate}}
                     span(ng-if='user.isAuthor()') {{'my-articles'|translate}}
+            li(ng-if='user.isEditor()')
+                a.dropdown-link(ui-sref="app.user.homepage-rank({uid:user.userName})"  )
+                    i.mdi.mdi-view-list.mr
+                    span() {{'articles-ranking'|translate}}
             li
                 a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
                     i.fa.fa-bullhorn.mr

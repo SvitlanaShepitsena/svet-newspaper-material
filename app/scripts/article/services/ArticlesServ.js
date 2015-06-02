@@ -46,6 +46,16 @@
                 all: function () {
                     return articlesArr;
                 },
+                allPublic: function () {
+                    return $q(function (resolve, reject) {
+                        articlesArr.$loaded().then(function () {
+                            var articlesPub = _.filter(articlesArr, function (article) {
+                                return article.isPublic;
+                            });
+                            resolve(articlesPub);
+                        });
+                    });
+                },
                 get: function (id) {
                     return $firebaseObject(ref.child(id))
                 },
@@ -66,6 +76,19 @@
                 },
                 allObjRef: function () {
                     return refObj;
+                },
+                changeRank: function (articles) {
+                    return $q(function (resolve, reject) {
+                        articlesArr.$loaded().then(function () {
+                            for (var i = 0; i < articles.length; i++) {
+                                var article = articles[i];
+                                var articleDb = _.find(articlesArr, {$id: article.$id});
+                                articleDb.newsOrder = i+1;
+                                articlesArr.$save(articleDb);
+                            }
+                            resolve();
+                        })
+                    });
                 },
                 computeNewsOrder: function (key) {
                     return $q(function (resolve, reject) {
