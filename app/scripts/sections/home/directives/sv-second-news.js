@@ -3,7 +3,6 @@
     angular.module('sections.home')
         .directive('svSecondNews', function () {
             return {
-                replace: true,
                 templateUrl: 'scripts/sections/home/directives/sv-second-news.html',
                 scope: {
                     lowerLimit: '=',
