@@ -3,7 +3,7 @@ div
         md-tab.sv-tabs(md-stretch-tabs="always" ng-if='!user.isReader()')
             md-tab-label {{'news-articles'|translate}}
             md-tab-body
-                div(ng-repeat='article in articles|articleBlogFr:selectedIndex||orderBy:"-timestamp"')
+                div(ng-repeat='article in articles|articleBlogFr:selectedIndex|orderBy:"-timestamp"')
                     sv-author-article-link(article='article')
         //md-tab.sv-tabs(md-stretch-tabs="always")
         //    md-tab-label {{'blog'|translate}}
