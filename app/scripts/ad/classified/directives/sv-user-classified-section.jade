@@ -8,8 +8,7 @@ div
         .mb(layout='row', layout-align='space-between')
             sv-add-classified-btn
             sv-classified-bonus
-        .card.p(ng-show='!cls')
-            span.display-block.fs-subhead.tc-grey-700 {{'no-classified-yet'|translate}}
         .div(ng-show='!!cls' layout="column")
+            sv-zero-length-notice(list='cls' owner-field='userKey' item='classifieds')
             div(ng-repeat='cl in cls|userCls|orderBy:"-timestamp"')
                 sv-one-classified-thumb(cl="cl" remove-cl="removeCl(cl)" edit-cl="editCl(cl)")

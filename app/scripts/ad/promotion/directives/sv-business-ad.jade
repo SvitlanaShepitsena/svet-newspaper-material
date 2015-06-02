@@ -3,5 +3,6 @@ div(ui-view='' class='mb++')
         i.mdi.mdi-plus.mr
         | {{'add-business-ad'|translate}}
     div(layout='column')
+        sv-zero-length-notice(list='ads' owner-field='customerKey' item='campaigns')
         div(ng-repeat='ad in ads|userList as results')
             sv-one-campaign-thumb(ad='ad' remove-ad='removeAd(ad)')
