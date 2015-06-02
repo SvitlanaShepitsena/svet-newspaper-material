@@ -1,4 +1,9 @@
 md-dialog(style='min-width:80%;min-height: auto' aria-label='Image dialog')
-    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='hide()') Hide
-    md-dialog-content
+    div(layout='row' layout-align='space-between center' class='pl pr pt')
+        div(class='ml+ mr+ mt+')
+            span.display-block.fs-headline.tc-grey-700 Google Images Custom Search
+        button.btn.btn--m.btn--icon(lx-ripple='' ng-click='hide()')
+            i.mdi.mdi-close
+    md-dialog-content(style='padding-top:0px')
+        span.display-block.fs-subhead.tc-red-300(class='mb mt') Find labeled for reuse usage rights images on Google
         sv-image-search(insert-image='insertImage(imgUrl)')
