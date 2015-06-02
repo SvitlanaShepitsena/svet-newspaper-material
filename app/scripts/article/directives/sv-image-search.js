@@ -6,7 +6,7 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-image-search.html',
                 scope: {
-                    insertImage:'&'
+                    insertImage: '&'
                 },
                 link: function ($scope, el, attrs) {
                     $scope.q = {data: 'maya plisetskaya'}

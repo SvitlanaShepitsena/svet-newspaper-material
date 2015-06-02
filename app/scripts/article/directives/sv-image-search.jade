@@ -1,11 +1,11 @@
 div
-    form(name="searchForm")
-        .card.p.mb
+    form(name="searchForm" layout="row" layout-align='start center')
+        .card.p(class='ml mr mb')
             lx-search-filter.mb(model='q.data' name="q"  placeholder='Search')
-        div.text-center.mb
-            button.btn.btn--m.btn--black.bgc-grey-600.btn--raised(lx-ripple='' ng-click='runGoogleSearch(q.data)') Search
+        div.text-center(class='ml mr mb')
+            button.btn.btn--m.btn--black.bgc-grey-600.btn--raised(lx-ripple='' ng-click='runGoogleSearch(q.data)') {{'search'|translate}}
     div.p
-        span.fs-title.display-block Results:
+        span.fs-title.display-block {{'results'|translate}}:
         md-divider
         ul
             li(ng-repeat='i in images')
