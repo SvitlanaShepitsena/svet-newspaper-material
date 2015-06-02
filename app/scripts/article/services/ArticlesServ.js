@@ -8,7 +8,17 @@
             function setPublicNewsLive(articles) {
                 var freshArticles = NewsTimeSelectorServ.select(articles);
                 var publicNews = _.where(freshArticles, {isPublic: true, isBlog: false});
-                svetNews.public = _.sortBy(publicNews, 'articleOrder');
+                svetNews.public = _.sortBy(publicNews, 'newsOrder');
+            }
+
+            function setImgProp(article) {
+                var wart = $('<div></div>').append(article.body);
+                var imgs = wart.find('img');
+                if (imgs.length > 0) {
+                    var mainImage = imgs[0];
+                    article.img = mainImage.src;
+                }
+                return article
             }
 
             function getNextNewsOrder() {
@@ -83,7 +93,7 @@
                             for (var i = 0; i < articles.length; i++) {
                                 var article = articles[i];
                                 var articleDb = _.find(articlesArr, {$id: article.$id});
-                                articleDb.newsOrder = i+1;
+                                articleDb.newsOrder = i + 1;
                                 articlesArr.$save(articleDb);
                             }
                             resolve();
@@ -117,7 +127,8 @@
                 add: function (article, isPublic) {
                     article.isPublic = article.isPublic || isPublic;
                     article.timestamp = moment().format('x');
-                    article.authorKey = userAuth.key
+                    article.authorKey = userAuth.key;
+                    article = setImgProp(article);
                     return $q(function (resolve, reject) {
                         if (article.$id) {
                             var articleDb = ref.child(article.$id);

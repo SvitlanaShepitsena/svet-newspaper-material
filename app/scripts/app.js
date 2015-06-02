@@ -60,10 +60,10 @@
                 var toastr = $injector.get('toastr');
                 exception.message = exception.stack;
 
-                // Comment on Production
-                //toastr.error('ERROR!' + exception.message);
-                //$rootScope.$broadcast('error');
-                //throw exception;
+                 //Comment on Production
+                toastr.error('ERROR!' + exception.message);
+                $rootScope.$broadcast('error');
+                throw exception;
             };
         })
         .config(['$compileProvider', function ($compileProvider) {
