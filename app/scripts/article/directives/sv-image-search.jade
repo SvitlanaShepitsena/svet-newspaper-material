@@ -6,9 +6,9 @@ div
             button.btn.btn--m.btn--black.bgc-grey-600.btn--raised(lx-ripple='' ng-click='runGoogleSearch(q.data)') {{'search'|translate}}
     div.p
         span.fs-title.display-block {{'results'|translate}}:
-        md-divider
-        ul
-            li(ng-repeat='i in images')
+        md-divider(class='mb+ mt')
+        div(layout-gt-sm='row' layout-sm='column' layout-wrap layout-align-gt-sm='space-between' layout-align-sm='center')
+            div(ng-repeat='i in images' flex="30" class='mb')
                 sv-image-include(url='i.url' ng-click='insertImage({imgUrl:i})')
-                span {{i.url}}
+                a(href='{{i.url}}' target='_blank') {{i.url}}
 
