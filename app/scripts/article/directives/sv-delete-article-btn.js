@@ -4,7 +4,7 @@
         .directive('svDeleteArticleBtn', function (toastr) {
             return {
                 replace: true,
-                require: '^svAuthorArticlesTabs',
+                require: '^?svAuthorArticlesTabs',
                 templateUrl: 'scripts/article/directives/sv-delete-article-btn.html',
                 scope: {
                     articleKey: '@'
