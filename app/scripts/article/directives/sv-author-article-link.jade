@@ -12,13 +12,3 @@
         div.mb.pl.pr.pt
             sv-edit-article-btn.mr(article='article')
             sv-delete-article-btn(article-key='{{article.fbkey}}')
-    .bgc-grey-100.p(layout='row' layout-align="space-between center")
-        div
-            i.fa.fa-eye.fa-fw.tc-grey-500(style='margin-right:4px')
-            span.fs-caption.tc-grey-500(hide-sm) {{'views'|translate}}
-            span.sv-label-counter 12
-        div(layout='row')
-            sv-lumx-users-dropdown.ml(btn-title="comments" action-counter="5" icon-type='fa' icon-name="fa-comment")
-            sv-lumx-users-dropdown.ml(btn-title="shares" action-counter="7"  icon-type='mdi' icon-name="mdi-share-variant")
-            sv-lumx-users-dropdown.ml(btn-title="likes" action-counter="9"  icon-type='fa' icon-name="fa-thumbs-up")
-

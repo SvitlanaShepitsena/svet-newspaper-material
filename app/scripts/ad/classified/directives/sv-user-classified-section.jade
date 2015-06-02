@@ -1,4 +1,7 @@
 div
+    a.btn.btn--xs.btn--grey.btn--flat(ng-click='cancelAddition()' class='mb++' ng-show='addState || editState')
+        i.fa.fa-arrow-left.mr
+        | {{'back-to-my-classified'|translate|capitalize}}
     .card.mb(ng-show='addState || editState')
         sv-add-classified-form
     div(ng-show='!addState && !editState')

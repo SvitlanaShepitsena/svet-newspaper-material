@@ -1,3 +1,3 @@
-div(layout-gt-sm='row' layout-align="top")
-    div(ng-repeat='secondNews in secondaryNews' class='secondNewsMargin')
+div(layout-gt-sm='row' layout-align-gt-sm="space-between" class='ml mr')
+    div(ng-repeat='secondNews in secondaryNews' class='secondNewsMargin' flex)
         sv-home-page-news(one-news='secondNews')

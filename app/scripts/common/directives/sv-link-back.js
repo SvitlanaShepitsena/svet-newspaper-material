@@ -7,6 +7,7 @@
                 templateUrl: 'scripts/common/directives/sv-link-back.html',
                 scope: {
                     url: '@',
+                    method: '&',
                     params: '=',
                     lTitle: '@'
                 },

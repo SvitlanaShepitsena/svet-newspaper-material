@@ -68,7 +68,7 @@
             <sv-news-sections-nav class="mb+"></sv-news-sections-nav>
             <!--<sv-events-link class="mb+"></sv-events-link>-->
             <sv-nav-btn url="app.section({sectionName:'svet-recommends'})"
-                        title="Svet Recommends"
+                        title="{{'svet-recommends'|translate}}"
                         icon="compass"
                         txt-color="white-1"
                         bgc="red-300"
@@ -120,7 +120,7 @@
 
         <div layout="row" layout-fill flex> <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
             <md-content layout-fill>
-                <div class="mr+ ml+ mt+" ui-view="" flex></div>
+                <div class="mt+" ui-view="" flex></div>
             </md-content>
             <!-- Right SideBar-->
             <md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
@@ -158,7 +158,7 @@
 
                         <sv-nav-btn url="app.contact"
                                     icon="map-marker"
-                                    title="contact us"
+                                    title="{{'contacts'|translate}}"
                                     txt-color="white-1"
                                     custom-class="bgc-svet-700"
                                     color="white"

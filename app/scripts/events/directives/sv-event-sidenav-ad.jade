@@ -1,13 +1,14 @@
-.card(ui-sref='app.events.field({year:2015})').cursor-pointer
-    .card__img.card__img--top(style='padding:0px !important')
-        img(src="img/ad/kohl-museum/m-1.jpg")
-        span.mdc-display-inline-block.fs-title.tc-white.bgc-red-400(style='padding:0px 8px;margin: 0px -15px;opacity:0.8') Kohl Children's Museum
-    div(class='p+')
-        .fs-subhead {{eventTitle|translate}}
-        .paragraph.fs-body-1.mb
-            | {{body|translate}}
-        sv-event-families(event-key='kohl2015' families='families-event')
-    .card__actions
-        div(layout='row' layout-align="space-around center")
-            sv-join-btn(event-key='kohl2015' title-join="join" unlink-tip="unlink-tip" join-tip="join-tip" title-unlink="unlink" class='btn--m')
-            sv-share-btn
+.card
+    a.tc-grey-800(href='https://www.facebook.com/events/798799786842498/' target='_blank')
+        .card__img.card__img--top(style='padding:0px !important')
+            img(src="img/ad/kohl-museum/m-1.jpg")
+            span.mdc-display-inline-block.fs-title.tc-white.bgc-red-400(style='padding:0px 8px;margin: 0px -15px;opacity:0.8') Kohl Children's Museum
+        div(class='p+')
+            .fs-subhead {{eventTitle|translate}}
+            .paragraph.fs-body-1.mb
+                | {{body|translate}}
+            //sv-event-families(event-key='kohl2015' families='families-event')
+        //.card__actions
+        //    div(layout='row' layout-align="space-around center")
+        //        sv-join-btn(event-key='kohl2015' title-join="join" unlink-tip="unlink-tip" join-tip="join-tip" title-unlink="unlink" class='btn--m')
+        //        sv-share-btn
