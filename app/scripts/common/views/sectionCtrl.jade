@@ -1,12 +1,13 @@
-div(layout-gt-sm='row' layout-align="top" style='width:100hv;max-width:100hv')
+div(layout-gt-sm='row' layout-align="top" style='width:100hv;max-width:100hv' class='ml mr')
     div(flex-gt-sm='66')
         sv-profile-title(header-title="{{sectionName}}")
         sv-section-articles-list
-    div(flex-gt-sm='33')
-        sv-article-thumb-title(class="ml mb+" section-title="opinion" section-icon="account-star")
-        sv-article-thumb-title(class="ml mb+" section-title="recommended")
-        sv-article-thumb-title(class="ml mb+" section-title="useful-tips" section-icon="account-alert")
-        sv-article-thumb-title(class="ml mb+" section-title="gargantua-recipes" section-icon="food-variant")
+    div(flex-gt-sm='33' )
+        div(class='ml mr')
+            sv-article-thumb-title(class="mb+" section-title="opinion" section-icon="account-star")
+            sv-article-thumb-title(class="mb+" section-title="recommended")
+            sv-article-thumb-title(class="mb+" section-title="useful-tips" section-icon="account-alert")
+            sv-article-thumb-title(class="mb+" section-title="gargantua-recipes" section-icon="food-variant")
 //footer advertisement
 sv-custom-paper-head-ad
 
