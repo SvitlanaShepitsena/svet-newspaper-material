@@ -1,4 +1,4 @@
-ul.list-unstyled.mr(layout='column')
+ul.list-unstyled(layout='column')
     li(class="mb+++" ng-repeat='n in newsList|sectionNews:sectionName')
         .card(layout="row" class='mb+ pt pb')
             div(style='float:left' class='')
@@ -10,4 +10,3 @@ ul.list-unstyled.mr(layout='column')
                 span.fs-caption By &nbsp
                 span.fs-caption.tc-grey-500(ng-bind-html='n.author|capitalize')
                 span.display-block.fs-body-1.tc-black-2(ng-bind-html='n.body | length:100')
-
