@@ -1,4 +1,4 @@
-.card
+.card.pb
     div.p.bgc-grey-100
         span.display-block.fs-subhead.tc-grey-700(style='font-weight:500') {{topNews.topic|uppercase}}
     md-divider
@@ -10,7 +10,7 @@
             .fs-title.tc-black-1 {{topNews.title }}
         span.fs-caption.display-block.tc-grey-500  By {{isFirst? 'Alex Etman':topNews.author|uppercase}}
         span.fs-body-1.display-block(ng-bind-html="topNews.body | length:170")
-    div(layout='row' layout-align='end start' class='pr mb')
+    div(layout='row' layout-align='end start' class='pr')
         button.btn.btn--xs.btn--grey.btn--flat(ui-sref='app.article({id:topNews.fbkey})' ) {{'read-more'|translate}} >>
         //sv-read-more(url='app.article({id:topNews.fbkey})' read-more="read-more")
     //.p.bgc-grey-100
