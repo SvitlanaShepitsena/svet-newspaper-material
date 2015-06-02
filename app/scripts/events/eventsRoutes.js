@@ -1,6 +1,6 @@
 (function () {
     'use strict'
-    angular.module('events', ['ui.router','ui.bootstrap','mwl.calendar','ui.bootstrap.tpls'])
+    angular.module('events', ['ui.router','mwl.calendar'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                 /*=events*/

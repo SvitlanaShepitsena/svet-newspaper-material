@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('events')
-        .controller('EventCalendarCtrl', function ($scope, $modal, $templateCache) {
+        .controller('EventCalendarCtrl', function ($scope) {
         });
 })();
 
