@@ -3,7 +3,7 @@
     angular.module('common')
         .factory('NewsGeneratorServ', function (SvobodaSaveToDbServ, HtmlParseServ, $http, $q, $rootScope, $firebaseArray, url) {
             var gUrl = 'http://api.feedzilla.com/v1/categories.json';
-            var svobodaUrls = ['zmgrpqe$mqpo']
+            var svobodaUrls = ['zmgrpqe$mqpo','zyoqpteqgqpq']
             var allCategories = [];
             var avoidCategories = ['игорем', 'померанцев'];
             var avoidNewsWithTitle = ['стрелков'];
@@ -87,41 +87,7 @@
                         }));
                     }
                     $q.all(promises).then(function () {
-                        var uniqueNews = [];
-                        var uniqueImgs = [];
-                        //allNewsArr.forEach(function (oneNews) {
-                        //    for (var i = 0; i < oneNews.length; i++) {
-                        //        var singleNews = oneNews[i];
-                        //        var titleTokens = _.map(singleNews.title.split(' '), function (token) {
-                        //            return token.toLowerCase();
-                        //        });
-                        //        var interSection = _.intersection(titleTokens, avoidNewsWithTitle);
-                        //        if (interSection.length === 0) {
-                        //            var img = singleNews.img;
-                        //            if (uniqueImgs.indexOf(img) === -1) {
-                        //                uniqueImgs.push(img);
-                        //                uniqueNews.push(singleNews);
-                        //            }
-                        //        }
-                        //
-                        //    }
-                        //});
-                        //uniqueNews = _.first(_.sortBy(uniqueNews, function (sNews) {
-                        //    return -sNews.content.length;
-                        //}), number);
-                        //
-                        //var counter = 0;
-                        //uniqueNews = _.map(uniqueNews, function (eNews) {
-                        //    eNews.id = counter++;
-                        //    return eNews;
-                        //});
-                        //
-                        //if (shuffle) {
-                        //    var t5 = _.shuffle(_.take(uniqueNews, 5));
-                        //    var rest = _.rest(uniqueNews, 5);
-                        //    uniqueNews = _.union(t5, rest);
-                        //}
-                        //getUniqueCategories(uniqueNews);
+
                         deferred.resolve(allNewsArr[0]);
                     });
                     return deferred.promise;
@@ -141,39 +107,7 @@
                     $q.all(promises).then(function () {
                         var uniqueNews = [];
                         var uniqueImgs = [];
-                        //allNewsArr.forEach(function (oneNews) {
-                        //    for (var i = 0; i < oneNews.length; i++) {
-                        //        var singleNews = oneNews[i];
-                        //        var titleTokens = _.map(singleNews.title.split(' '), function (token) {
-                        //            return token.toLowerCase();
-                        //        });
-                        //        var interSection = _.intersection(titleTokens, avoidNewsWithTitle);
-                        //        if (interSection.length === 0) {
-                        //            var img = singleNews.img;
-                        //            if (uniqueImgs.indexOf(img) === -1) {
-                        //                uniqueImgs.push(img);
-                        //                uniqueNews.push(singleNews);
-                        //            }
-                        //        }
-                        //
-                        //    }
-                        //});
-                        //uniqueNews = _.first(_.sortBy(uniqueNews, function (sNews) {
-                        //    return -sNews.content.length;
-                        //}), number);
-                        //
-                        //var counter = 0;
-                        //uniqueNews = _.map(uniqueNews, function (eNews) {
-                        //    eNews.id = counter++;
-                        //    return eNews;
-                        //});
-                        //
-                        //if (shuffle) {
-                        //    var t5 = _.shuffle(_.take(uniqueNews, 5));
-                        //    var rest = _.rest(uniqueNews, 5);
-                        //    uniqueNews = _.union(t5, rest);
-                        //}
-                        //getUniqueCategories(uniqueNews);
+
                         deferred.resolve(allNewsArr[0]);
                     });
                     return deferred.promise;
@@ -223,11 +157,11 @@
                                 singleNews.body = fullNewsBody;
                                 singleNews.tags = fullNewsTags;
                             }
-                            SvobodaSaveToDbServ.cleanSvoboda().then(function () {
+                            //SvobodaSaveToDbServ.cleanSvoboda().then(function () {
                                 SvobodaSaveToDbServ.saveAll(news).then(function () {
                                     deferred.resolve();
                                 })
-                            })
+                            //})
                         })
                     }).catch(function (e) {
                         deferred.reject('Error in rss request. Due to: ' + e);
