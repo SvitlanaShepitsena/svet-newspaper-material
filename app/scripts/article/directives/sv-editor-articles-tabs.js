@@ -15,6 +15,7 @@
                     var articles = ArticlesServ.all();
                     articles.$loaded().then(function () {
                         $scope.articles = articles;
+                        console.log(articles);
                         articles.$watch(function () {
                             $scope.articles = articles;
                         })
