@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('common')
-        .directive('svImageThumb', function ($stateParams, svetNews, ArticlesServ) {
+        .directive('svImageThumb', function ($stateParams, svetNews, ArticlesServ, defimg) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-image-thumb.html',
@@ -15,6 +15,8 @@
                     imgHeight: '@'
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.defimg = defimg;
+
                     $scope.circleRadius = $scope.circleRadius || '50%';
                     $scope.imgBottomShift = $scope.imgBottomShift || '10%';
                     $scope.imgRightShift = $scope.imgRightShift || '20%';
