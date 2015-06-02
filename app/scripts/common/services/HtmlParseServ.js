@@ -19,16 +19,15 @@
                     var p = parags[i];
                     var parsedHtml;
                     try {
-                        parsedHtml = $sanitize(p.outerHTML);
-                        parsedHtml = removeImages(parsedHtml);
+                        parsedHtml = ($(p).text());
+                        //parsedHtml = removeImages(parsedHtml);
+                        var brek = 1;
                     } catch (e) {
                         console.log(e);
                         continue;
                     }
-                    if (i === 1) {
-                        content += '<br/>';
-                    }
-                    content += parsedHtml;
+                    content += '<p>' + parsedHtml + '<p/>';
+                    var breakPoint = 1;
                 }
                 var tags = $('.topintend', el).text().replace('Метки:', '').trim();
                 return {body: content.trim(), tags: tags}

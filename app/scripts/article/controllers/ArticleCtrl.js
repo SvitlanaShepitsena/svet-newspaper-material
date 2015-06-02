@@ -7,7 +7,6 @@
             var id = $stateParams.id;
             ArticlesServ.get(id).$loaded().then(function (article) {
                 $scope.article = article;
-                console.log(article);
             });
         });
 })();
