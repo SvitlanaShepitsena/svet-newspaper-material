@@ -9,11 +9,24 @@
                     list: '=',
                     filter: '@',
                     filterValue: '@',
-                    item: '@'
+                    item: '@',
+                    ownerField: '@'
                 },
-                link: function ($scope, el, attrs) {
-                    $scope.filteredList = $filter($scope.filter, $scope.filterValue)($scope.list);
-                    var breakPoint = 1;
+                link:
+                    function ($scope, el, attrs) {
+                        $scope.$watch('list', function (newValue, oldValue) {
+
+
+                            if ($scope.ownerField) {
+                                var filteredList = $filter($scope.filter, $scope.filterValue)($scope.list);
+                                $scope.filteredList = _.filter(filteredList, function (item) {
+                                    return item[$scope.ownerField]===userAuth.key;
+                                });
+                                var i=10;
+                            } else {
+                                $scope.filteredList = $filter($scope.filter, $scope.filterValue)($scope.list);
+                            }
+                        });
                 }
             };
         });
