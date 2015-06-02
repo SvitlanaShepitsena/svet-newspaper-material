@@ -157,11 +157,11 @@
                                 singleNews.body = fullNewsBody;
                                 singleNews.tags = fullNewsTags;
                             }
-                            //SvobodaSaveToDbServ.cleanSvoboda().then(function () {
+                            SvobodaSaveToDbServ.cleanSvoboda().then(function () {
                                 SvobodaSaveToDbServ.saveAll(news).then(function () {
                                     deferred.resolve();
                                 })
-                            //})
+                            })
                         })
                     }).catch(function (e) {
                         deferred.reject('Error in rss request. Due to: ' + e);

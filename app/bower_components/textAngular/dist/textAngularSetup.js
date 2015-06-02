@@ -564,7 +564,7 @@ angular.module('textAngularSetup', [])
 
                 function runMe(selectedImage) {
                     var selection = $rootScope.lastSelection;
-                    var embed = '<img src=' + selectedImage + ' contenteditable="false" allowfullscreen="true" frameborder="0"  />';
+                var embed = '<img src=' + selectedImage + ' contenteditable="true" allowfullscreen="true" frameborder="0" ng-style="padding:5px" />';
                     taSelection.insertHtml(embed,undefined,selection);
                 }
 
