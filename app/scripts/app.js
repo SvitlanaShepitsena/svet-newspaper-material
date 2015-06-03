@@ -2,11 +2,12 @@
     'use strict';
     angular.module('app', [
         // modules
-		'blogs',
+        'ui.router',
         'pascalprecht.translate',
         'ngMaterial',
         'ngDragDrop',
         'textAngular',
+		'blogs',
         'auth',
         'auth.user',
         'auth.manager',
@@ -34,7 +35,6 @@
         'toastr',
         'firebase',
         'mwl.calendar',
-        'ui.router',
         'ui.sortable'
     ])
         .config(function ($mdThemingProvider, $mdIconProvider) {

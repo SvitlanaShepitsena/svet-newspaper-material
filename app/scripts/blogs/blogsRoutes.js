@@ -5,8 +5,8 @@
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
 
-				.state("app.all-blogs", {
-					url: "/all-blogs", 
+				.state("app.blogs", {
+					url: "/blogs",
 					controller:"AllBlogsCtrl",
 					templateUrl: "scripts/blogs/views/all-blogsCtrl.html"
 				})
