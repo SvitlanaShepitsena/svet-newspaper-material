@@ -26,6 +26,26 @@
                         password: '123456',
                         acceptPolicy: true
                     };
+                    $scope.termsConditionsModal = function () {
+                        $mdDialog.show(
+                            {
+                                controller: TermsConditionsController,
+                                templateUrl: 'scripts/auth/views/terms-conditions.html',
+                            }
+                        );
+                    };
+                    function TermsConditionsController($scope, $mdDialog) {
+                        $scope.hide = function () {
+                            $mdDialog.hide();
+                        };
+                        $scope.cancel = function () {
+                            $mdDialog.cancel();
+                        };
+                        $scope.answer = function (answer) {
+                            $mdDialog.hide(answer);
+                        };
+                    }
+
                     $scope.createSvetUser = function () {
                         if ($scope.signUpForm.$invalid) {
                             $scope.signUpForm.userName.$touched = true;

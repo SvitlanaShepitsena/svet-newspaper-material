@@ -8,6 +8,9 @@
     font-size: 13px !important;
   }
 }
+.nav-link {
+  background-color: #e0e0e0 !important;
+}
 .ie {
   position: relative;
   top: 50px;
@@ -37,8 +40,6 @@
   display: block;
   font-size: 13px;
   line-height: 16px;
-}
-@media screen and (max-width: 992px) {
 }
 .tabs-classified {
   overflow: hidden;

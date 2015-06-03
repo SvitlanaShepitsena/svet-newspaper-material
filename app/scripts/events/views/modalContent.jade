@@ -1,5 +1,7 @@
 md-dialog(style='min-width:80%;min-height: auto')
-    md-dialog-content
+    div.bgc-grey-200(layout="row" layout-align='space-between center' class='p+')
         span.ml.fs-headline {{'new-event'|translate}}
-        md-divider.mb.mt
+        button.btn.btn--s.btn--icon.btn--grey(ng-click='hide()')
+            i.mdi.mdi-close &nbsp
+    md-dialog-content
         sv-new-afisha-event-form
