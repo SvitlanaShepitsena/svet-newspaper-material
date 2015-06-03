@@ -8,6 +8,7 @@
         .constant('userAuth', {})
         .constant('lastEditorPost', {})
         .constant('svetNews', {})
+        .constant('svetBlogsConst', {})
         .constant('svetEventsConst', {})
         .constant('svetPost', {})
         .constant('classified', {})
