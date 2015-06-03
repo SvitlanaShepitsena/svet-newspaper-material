@@ -2,6 +2,7 @@
     'use strict';
     angular.module('app', [
         // modules
+		'blogs',
         'pascalprecht.translate',
         'ngMaterial',
         'ngDragDrop',
