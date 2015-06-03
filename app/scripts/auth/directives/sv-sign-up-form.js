@@ -33,6 +33,7 @@
                             $scope.signUpForm.password.$touched = true;
                             return;
                         }
+                        $scope.user.userName= $scope.user.userName.replace(/\s+/g,'-').toLowerCase();
                         ProfileServ.createSvetUser($scope.user.email, $scope.user.password, $scope.user.userName).then(function () {
                                 AuthenticationServ.svetLogin($scope.user.email, $scope.user.password).then(function (profile) {
                                     $state.go('app.user.dashboard', {uid: profile.userName});

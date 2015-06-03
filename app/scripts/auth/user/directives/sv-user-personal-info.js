@@ -12,6 +12,7 @@
                     $scope.saveUserName = function (property, formValid) {
                         if (formValid) {
                             if ($scope.personalInfoForm.$valid) {
+                                property.value = property.value.replace(/\s+/g, '-').toLowerCase();
                                 UsersServ.saveUserProperty(property, userAuth.key).then(function (success) {
                                     toastr.success('Saved');
                                 })

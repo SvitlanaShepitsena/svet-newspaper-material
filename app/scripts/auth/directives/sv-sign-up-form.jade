@@ -5,7 +5,7 @@
         form.mt(name='signUpForm' novalidate sv-form-val)
             md-input-container
                 label {{name|translate}}
-                input(type='text' name='userName' ng-model='user.userName' sv-unique-username ng-minlength="3" ng-maxlength="200" required="error" )
+                input(type='text' name='userName'  ng-model='user.userName' sv-unique-username ng-minlength="3" ng-maxlength="200" required="error" )
             md-input-container
                 label {{email|translate}}
                 input(type='email' ng-model='user.email' name='email' required)
@@ -13,7 +13,7 @@
                 label {{password|translate}}
                 input(type='password' ng-minlength="6" ng-maxlength="200" ng-model='user.password' name='password' required)
         div(layout='row' layout-align='start center' )
-            md-checkbox(ng-model='user.acceptPolicy')
+            md-checkbox(ng-model='user.acceptPolicy' aria-label='terms & conditions')
             a.dispaly-block.fs-body-2(style='border-bottom: #393939 1px dotted; line-height:14px; cursor:pointer') {{conditions|translate}}
     div.bgc-white-1(class='p+')
         div(layout='row' class="mb+")
