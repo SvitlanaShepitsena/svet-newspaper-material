@@ -16,12 +16,11 @@ div(flow-init='')
             span.fs-subhead.display-block Current Campaign Banner:
             img(ng-src="{{ad.banner}}")
         div(class='mb+')
-            button.btn.btn--s.btn--raised.btn--white.m( type='submit' lx-ripple value="Save" ng-if='id' )
-                i.mdi.mdi-send.mr
+            button.btn.btn--s.btn--raised.btn--white.tc-teal-300.m( type='submit' lx-ripple value="Save" ng-if='id' )
+                i.fa.fa-save.mr
                 | {{'save changes'|translate}}
             button.btn.btn--s.btn--raised.btn--white.m.tc-teal-400( type='submit' lx-ripple value="Save" ng-if='!id')
-                i.mdi.mdi-send.mr
-                | {{'post'|translate}}
+                i.mdi.mdi-send.mr | {{'post'|translate}}
             button.btn.btn--s.btn--raised.btn--white.m(type='button' lx-ripple ng-click='cancelAddition()' ui-sref="^")
                 i.mdi.mdi-close.mr
                 | {{'cancel'|translate}}

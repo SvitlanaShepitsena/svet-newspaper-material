@@ -9,11 +9,11 @@
         div.mb.pl.pt
             a.fs-caption.tc-grey-700.bgc-grey-300(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{cl.section}}
         div.mb.pt(ng-show='isEditable()' layout="row")
-            button.btn.btn--xs.btn--white.btn--raised.mr(lx-ripple='' ng-click='editCl({cl:cl})')
-                i.mdi.mdi-pencil.mr
+            button.btn.btn--s.btn--white.btn--raised.tc-teal-300.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+                i.fa.fa-pencil.fa-fw &nbsp
                 | {{'edit'|translate}}
-            a.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ng-click='removeCl()' sv-confirm-deletion='classified')
-                i.mdi.mdi-close.mr
+            a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='removeCl()' sv-confirm-deletion='classified')
+                i.fa.fa-trash.fa-fw &nbsp
                 span {{'delete'|translate}}
     div.p(layout='column')
         div.mb.pl.pr.pt

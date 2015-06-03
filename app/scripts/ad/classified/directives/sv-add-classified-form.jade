@@ -19,12 +19,13 @@ div
             md-input-container.mr(flex)
                 label {{'city'|translate}}
                 input(ng-model='clCopy.city' name='city' required='')
-            div(flex)
-                md-select(name="section" ng-model='clCopy.section' required )
+            md-input-container(class="mr ml" flex)
+                md-select(name="section" ng-model='clCopy.section' style='margin-bottom:0px' required)
                     md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
-                        i.mdi.mdi-checkbox-marked-outline(style='max-width:22px')
+                        i.mdi.mdi-checkbox-marked-outline.mb(style='max-width:22px')
                         | {{clCopy.section || 'classified-section'|translate}}
-                    md-option(ng-repeat='s in sections track by $index' ng-value='s.$value' ) {{s.$value}}
+                    md-option(ng-repeat='s in sections track by $index' ng-value='s.$value' style='height:38px')
+                        .fs-body-2 {{s.$value|capitalize}}
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'classified-title'|translate}}

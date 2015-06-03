@@ -7,7 +7,6 @@
  See README.md or https://github.com/fraywing/textAngular/wiki for requirements and use.
  */
 angular.module('textAngularSetup', [])
-
 // Here we set up the global display defaults, to set your own use a angular $provider#decorator.
     .value('taOptions', {
         toolbar: [
@@ -44,7 +43,6 @@ angular.module('textAngularSetup', [])
                     reader.onload = function () {
                         if (reader.result !== '') insertAction('insertImage', reader.result, true);
                     };
-
                     reader.readAsDataURL(file);
                     // NOTE: For async procedures return a promise and resolve it when the editor should update the model.
                     return true;
@@ -52,12 +50,10 @@ angular.module('textAngularSetup', [])
                 return false;
             }
     })
-
 // This is the element selector string that is used to catch click events within a taBind, prevents the default and $emits a 'ta-element-select' event
 // these are individually used in an angular.element().find() call. What can go here depends on whether you have full jQuery loaded or just jQLite with angularjs.
 // div is only used as div.ta-insert-video caught in filter.
     .value('taSelectableElements', ['a', 'img'])
-
 // This is an array of objects with the following options:
 //				selector: <string> a jqLite or jQuery selector string
 //				customAttribute: <string> an attribute to search for
@@ -81,7 +77,6 @@ angular.module('textAngularSetup', [])
             }
         }
     ])
-
     .value('taTranslations', {
         // moved to sub-elements
         //toggleHTML: "Toggle HTML",
@@ -416,7 +411,6 @@ angular.module('textAngularSetup', [])
                     if (_preLis.length === 0 || _postLis.length === 0) {
                         if (_postLis.length === 0) _parent.after(newElem);
                         else _parent[0].parentNode.insertBefore(newElem[0], _parent[0]);
-
                         if (_preLis.length === 0 && _postLis.length === 0) _parent.remove();
                         else angular.element(possibleNodes[0]).remove();
                     } else {
@@ -446,7 +440,6 @@ angular.module('textAngularSetup', [])
                 restoreSelection();
             }
         });
-
         var imgOnSelectAction = function (event, $element, editorScope) {
             // setup the editor toolbar
             // Credit to the work at http://hackerwins.github.io/summernote/ for this editbar logic/display
@@ -500,7 +493,6 @@ angular.module('textAngularSetup', [])
             buttonGroup.append(quartButton);
             buttonGroup.append(resetButton);
             container.append(buttonGroup);
-
             buttonGroup = angular.element('<div class="btn-group" style="padding-right: 6px;">');
             var floatLeft = angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-align-left"></i></button>');
             floatLeft.on('click', function (event) {
@@ -539,7 +531,6 @@ angular.module('textAngularSetup', [])
             buttonGroup.append(floatNone);
             buttonGroup.append(floatRight);
             container.append(buttonGroup);
-
             buttonGroup = angular.element('<div class="btn-group">');
             var remove = angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-trash-o"></i></button>');
             remove.on('click', function (event) {
@@ -549,44 +540,36 @@ angular.module('textAngularSetup', [])
             });
             buttonGroup.append(remove);
             container.append(buttonGroup);
-
             editorScope.showPopover($element);
             editorScope.showResizeOverlay($element);
         };
-
         taRegisterTool('insertImage', {
             iconclass: 'fa fa-picture-o',
             tooltiptext: taTranslations.insertImage.tooltip,
             action: function () {
                 var that = this
-
                 var imageLink;
 
                 function runMe(selectedImage) {
                     var selection = $rootScope.lastSelection;
-                var embed = '<img src=' + selectedImage + ' contenteditable="true" allowfullscreen="true" frameborder="0" ng-style="padding:5px" />';
-                    taSelection.insertHtml(embed,undefined,selection);
+                    var embed = '<img src=' + selectedImage + ' contenteditable="true" allowfullscreen="true" frameborder="0" ng-style="padding:5px" />';
+                    taSelection.insertHtml(embed, undefined, selection);
                 }
-
 
                 $mdDialog.show({
                     controller: function ($scope) {
                         $scope.hide = function () {
                             $mdDialog.hide();
                         };
-
                         $scope.insertImage = function (imgUrl) {
                             $mdDialog.hide(imgUrl).then(function () {
                                 imageLink = imgUrl.url;
                                 runMe(imageLink);
                             });
-
                         };
-
                     },
                     templateUrl: 'scripts/article/views/articleImageDialog.html',
                 })
-
             },
             onElementSelect: {
                 element: 'img',
@@ -701,7 +684,6 @@ angular.module('textAngularSetup', [])
                 /* istanbul ignore next: will default to '' when undefined */
                 var workingHTML = textElement[0].innerHTML || '';
                 var noOfWords = 0;
-
                 /* istanbul ignore if: will default to '' when undefined */
                 if (workingHTML.replace(/\s*<[^>]*?>\s*/g, '') !== '') {
                     noOfWords = workingHTML.replace(/<\/?(b|i|em|strong|span|u|strikethrough|a|img|small|sub|sup|label)( [^>*?])?>/gi, '') // remove inline tags without adding spaces
@@ -710,12 +692,10 @@ angular.module('textAngularSetup', [])
                         .replace(/\s+/ig, ' ') // condense spacing
                         .match(/\S+/g).length; // count remaining non-space strings
                 }
-
                 //Set current scope
                 this.wordcount = noOfWords;
                 //Set editor scope
                 this.$editor().wordcount = noOfWords;
-
                 return false;
             }
         });
@@ -726,7 +706,6 @@ angular.module('textAngularSetup', [])
             activeState: function () { // this fires on keyup
                 var textElement = this.$editor().displayElements.text;
                 var sourceText = textElement[0].innerText || textElement[0].textContent; // to cover the non-jquery use case.
-
                 // Caculate number of chars
                 var noOfChars = sourceText.replace(/(\r\n|\n|\r)/gm, "").replace(/^\s+/g, ' ').replace(/\s+$/g, ' ').length;
                 //Set current scope

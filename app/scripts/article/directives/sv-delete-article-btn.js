@@ -12,7 +12,6 @@
                 link: function ($scope, el, attrs, ctrl) {
                     $scope.removeArticle = function () {
                         ctrl.removeOneArticle($scope.articleKey);
-
                         //toastr.info('Delete runned');
                     };
                 }
