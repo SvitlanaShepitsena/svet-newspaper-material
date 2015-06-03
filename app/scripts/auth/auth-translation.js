@@ -4,6 +4,7 @@
         .config(['$translateProvider', function ($translateProvider) {
             $translateProvider.useCookieStorage()
             $translateProvider.translations('en', {
+                'terms-conditions': 'Svet Media Group Statement of Rights and Responsibilities',
                 'all-rights-reserved': 'All rights reserved',
                 'all-registered-users': 'Full List',
                 'account-status': 'Account Status',
@@ -19,7 +20,6 @@
                 'registering-conditions': 'I have read and agree to the SMG Terms & Conditions ',
                 'already-registered': 'Already registered?',
                 'registration': 'Registration',
-
                 'author-dashboard': 'Dashboard',
                 'author-articles': 'My Articles',
                 'author-drafts': 'My Drafts',
@@ -60,6 +60,7 @@
                 'profile-settings': 'Profile Settings'
             });
             $translateProvider.translations('ru', {
+                'terms-conditions': 'Правила пользования интерактивными ресурсами сайта Svet Media Group',
                 'all-rights-reserved': 'Все права защищены',
                 'all-registered-users': 'Весь Список',
                 'account-status': 'Статус Профайла',
@@ -75,7 +76,6 @@
                 'registering-conditions': 'Я прочитад и принимаю условия использования портала SMG',
                 'already-registered': 'Уже зарегистрированы',
                 'registration': 'Регистрация',
-
                 'author-dashboard': 'Панель Управления',
                 'author-articles': 'Мои Статьи',
                 'author-drafts': 'Мои Черновики',
