@@ -9,11 +9,6 @@
                     controller: "CreateSvetEventCtrl as createSvetEvent",
                     templateUrl: "scripts/events/views/create-svet-eventCtrl.html"
                 })
-                .state("app.manager.events", {
-                    url: "/events",
-                    controller: "ManagerEventsCtrl as managerEvents",
-                    templateUrl: "scripts/events/views/manager-eventsCtrl.html"
-                })
                 .state("app.events", {
                     url: "/events",
                     abstract: true,
