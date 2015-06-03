@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth')
-        .directive('svSignUpForm', function (ProfileServ, $state, toastr, AuthenticationServ) {
+        .directive('svSignUpForm', function (ProfileServ, $state, toastr, AuthenticationServ, $mdDialog) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/directives/sv-sign-up-form.html',
@@ -21,9 +21,10 @@
                         password: ''
                     };
                     $scope.user = {
-                        //userName: faker.internet.userName(),
+                        userName: faker.internet.userName(),
                         email: faker.internet.email(),
-                        password: '123456'
+                        password: '123456',
+                        acceptPolicy: true
                     };
                     $scope.createSvetUser = function () {
                         if ($scope.signUpForm.$invalid) {

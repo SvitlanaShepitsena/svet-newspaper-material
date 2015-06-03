@@ -16,7 +16,7 @@
                 'register-account': 'Please Register',
                 'new-user': 'if you do not have an account',
                 'by-registering': 'By clicking Register',
-                'registering-conditions': 'you agree to our Data Policy',
+                'registering-conditions': 'I have read and agree to the SMG Terms & Conditions ',
                 'already-registered': 'Already registered?',
                 'registration': 'Registration',
 
@@ -72,7 +72,7 @@
                 'register-account': 'Зарегистрируйтесь',
                 'new-user': 'Eсли Вы новый пользователь',
                 'by-registering': 'Регистрируясь, вы принимаете',
-                'registering-conditions': 'условия лицензионного договора',
+                'registering-conditions': 'Я прочитад и принимаю условия использования портала SMG',
                 'already-registered': 'Уже зарегистрированы',
                 'registration': 'Регистрация',
 

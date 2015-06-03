@@ -15,6 +15,10 @@
                     var parsedHtml;
                     try {
                         parsedHtml = $sanitize(p.outerHTML);
+                        if (!!~parsedHtml.indexOf('background-color')) {
+                            continue;
+                        }
+                        parsedHtml.replace(/\&\#34;/g,'"');
                     } catch (e) {
                         console.log(e);
                         continue;
