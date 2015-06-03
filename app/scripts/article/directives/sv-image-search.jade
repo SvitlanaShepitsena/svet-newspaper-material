@@ -10,5 +10,7 @@ div
         div(layout-gt-sm='row' layout-sm='column' layout-wrap layout-align-gt-sm='space-between' layout-align-sm='center')
             div(ng-repeat='i in images' flex="30" class='mb')
                 sv-image-include(url='i.url' ng-click='insertImage({imgUrl:i})')
-                button.btn.btn--s.btn--white.btn--raised(lx-ripple='' ng-href='{{i.url}}' target='_blank') {{'image-source-website'|translate}}
+                a.btn.btn--m.btn--white.tc-grey-800.btn--raised.mb(lx-ripple='' ng-href='{{i.url}}' target='_blank')
+                    i.fa.fa-file-image-o.fa-fw &nbsp
+                    | {{'image-source-website'|translate}}
 

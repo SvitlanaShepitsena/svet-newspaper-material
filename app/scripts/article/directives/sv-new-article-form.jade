@@ -15,14 +15,13 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
             md-input-container(flex)
                 label {{'article-author'|translate}}
                 input(ng-model='article.author' name='author' required='')
-            md-input-container(ng-show='!article.isBlog' class='mr ml')
-                div(ng-show='sections')
-                    md-select(name="section" ng-model='article.section' required  style='margin-bottom:0px')
-                        md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
-                            i.mdi.mdi-checkbox-marked-outline.mr.mb(style='max-width:22px')
-                            | {{article.section?article.section:'article-section'|translate}}
-                        md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' style='height:38px')
-                            .fs-body-2 {{section.$id|capitalize}}
+            md-input-container(ng-show='!article.isBlog' class='mr ml' flex='')
+                md-select(name="section" ng-model='article.section' required  style='margin-bottom:0px' ng-show='sections')
+                    md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
+                        i.mdi.mdi-checkbox-marked-outline.mr.mb(style='max-width:22px')
+                        | {{article.section?article.section:'article-section'|translate}}
+                    md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' style='height:38px')
+                        .fs-body-2 {{section.$id|capitalize}}
             md-input-container(flex='')
                 label {{'article-topic'|translate}}
                 input(ng-model='article.topic' name='topic' required)
