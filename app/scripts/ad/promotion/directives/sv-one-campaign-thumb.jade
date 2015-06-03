@@ -9,9 +9,10 @@
         //span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'unique'|translate}}: {{ad.shows.unique}}
         span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'total'|translate}}: {{ad.shows.total}}
     div(class='ml+ mr+ mb+')
-        button.btn.btn--s.btn--white.btn--raised.mr(lx-ripple='' ui-sref='.start({id:ad.$id})')
-            i.mdi.mdi-pencil.mr
+        button.btn.btn--s.btn--white.btn--raised.tc-teal-300.mr(lx-ripple='' ui-sref='.start({id:ad.$id})')
+            i.fa.fa-pencil.fa-fw &nbsp
             | {{'edit'|translate}}
         button.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='removeAd()' sv-confirm-deletion='ad')
-            i.mdi.mdi-close.mr
-            | {{'delete'|translate}}
+            i.fa.fa-trash.fa-fw &nbsp
+            span {{'delete'|translate}}
+

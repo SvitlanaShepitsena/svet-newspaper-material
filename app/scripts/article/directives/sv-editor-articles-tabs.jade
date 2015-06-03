@@ -1,5 +1,5 @@
 div
-    button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='saveArticlesRank()' ng-disabled='!isRankChanged') Save Ranking
+    button.btn.btn--xs.btn--black.bgc-grey-600.btn--raised(lx-ripple='' ng-click='saveArticlesRank()' ng-disabled='!isRankChanged') Save Ranking
     md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
         md-tab.sv-tabs(md-stretch-tabs="always" ng-if='!user.isReader()')
             md-tab-label {{'news-articles'|translate}}
@@ -9,8 +9,7 @@ div
                         span {{$index+1}}.
                         sv-author-article-link(article='article')
         //md-tab.sv-tabs(md-stretch-tabs="always")
-        //    md-tab-label {{'blog'|translate}}
-        //    md-tab-body
+        //    md-tab-label {{'blog'|translate}} md-tab-body
         //        sv-zero-length-notice(list='articles' filter='articleBlogFr' filter-value='1' item='blogs' owner-field='authorKey')
         //        div(ng-repeat='article in articles|articleBlogFr:selectedIndex|authorFr:user.key|orderBy:"-timestamp"')
         //            sv-author-article-link(article='article')

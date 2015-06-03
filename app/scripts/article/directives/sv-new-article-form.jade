@@ -15,8 +15,8 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
             md-input-container(flex)
                 label {{'article-author'|translate}}
                 input(ng-model='article.author' name='author' required='')
-            md-input-container(ng-show='!article.isBlog' class='mr ml' flex='')
-                md-select(name="section" ng-model='article.section' required  style='margin-bottom:0px' ng-show='sections')
+            md-input-container(ng-show='!article.isBlog' class='ml' flex='')
+                md-select(name="section" ng-model='article.section' style='margin-bottom:0px' ng-show='sections' required  )
                     md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
                         i.mdi.mdi-checkbox-marked-outline.mr.mb(style='max-width:22px')
                         | {{article.section?article.section:'article-section'|translate}}
