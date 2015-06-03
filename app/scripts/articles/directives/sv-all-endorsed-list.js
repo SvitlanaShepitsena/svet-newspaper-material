@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('articles')
-        .directive('svAllArticlesList', function () {
+        .directive('svAllEndorsedList', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/articles/directives/sv-all-articles-list.html',
+                templateUrl: 'scripts/articles/directives/sv-all-endorsed-list.html',
                 scope: {
 
                 },
