@@ -8,10 +8,10 @@
                 link: function ($scope, el, attrs) {
                     $scope.sections = SectionsServ.all();
                     $scope.user = userAuth.profile;
-
                     $scope.saveArticle = function (isPublic, formValid) {
                         if (formValid) {
-                            ArticlesServ.add($scope.article, isPublic).then(function (uid) {
+                            var parsedArticle = SvHtmlValidatorServ.cleanArticle($scope.article);
+                            ArticlesServ.add(parsedArticle, isPublic).then(function (uid) {
                                     $state.go('app.user.author-articles');
                                     toastr.success('Статья сохранена в БД');
                                 },
@@ -24,7 +24,6 @@
                     $scope.cancelArticle = function (active) {
                         $state.go('app.user.author-articles');
                     }
-
                     if ($scope.artId) {
                         //    edit
                         $scope.article = ArticlesServ.get($scope.artId);
@@ -47,12 +46,12 @@
                     }
                     $scope.generateFromRandomNews = function () {
                         SvobodaSaveToDbServ.getRandom().then(function (randomSvobodaArticle) {
-                            $scope.article = _.omit(randomSvobodaArticle, '$id','img');
+                            $scope.article = _.omit(randomSvobodaArticle, '$id', 'img');
                             $scope.article.author = userAuth.profile.isEditor() ? 'Alex Etman' : userAuth.profile.userName;
                             $scope.article.tags = $scope.article.tags ? $scope.article.tags.split(',').join(', ') : "";
                             $scope.article.isBlog = $scope.artType === 'blog';
                             $scope.article.topic = 'news';
-                            $scope.article.summary = randomSvobodaArticle?randomSvobodaArticle.contentSnippet:'Summary';
+                            $scope.article.summary = randomSvobodaArticle ? randomSvobodaArticle.contentSnippet : 'Summary';
                             $scope.article.section = 'Politics';
                             $scope.article.svetRecommends = false;
                         });
