@@ -22,10 +22,6 @@ lx-dropdown(position='right')
                     i.fa.fa-bullhorn.mr
                     span(ng-if='user.isCustomer()') {{'my-ad'|translate}}
                     span(ng-if='user.isAuthor()  || user.isReader()') {{'my-classified'|translate}}
-            li
-                a.dropdown-link(ui-sref="app.user.social({uid:user.userName})")
-                    i.mdi.mdi-emoticon.mr
-                    | {{'community'|translate}}
             li.dropdown-divider(ng-if='user.isAuthor()')
             li(ng-if='user.isAuthor()')
                 a.dropdown-link.tc-red-300(ui-sref='app.user.create-article({artType:"article",uid:user.userName})' )
