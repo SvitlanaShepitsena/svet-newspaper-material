@@ -1,8 +1,7 @@
 (function () {
     'use strict';
-
     angular.module('blogs')
-        .controller('AllBlogsCtrl', function ($scope) {
+        .controller('AllBlogsCtrl', function (BlogsServ, $scope, ArticlesServ) {
 
         });
 })();

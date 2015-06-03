@@ -8,12 +8,12 @@
 
             $translateProvider.translations('en', {
                // 'eng':'eng'
-               // 'eng':'eng',
+                'svet-blog':'SVET Blog'
             });
 
             $translateProvider.translations('ru', {
                // 'ru':'ru'
-               // 'ru':'ru',
+                'svet-blog':'SVET Блог'
             });
 
             $translateProvider.preferredLanguage('en');
