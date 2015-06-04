@@ -8,8 +8,8 @@
                     controller: "AllBlogsCtrl",
                     templateUrl: "scripts/blogs/views/all-blogsCtrl.html"
                 })
-				.state("app.one-blog", {
-					url: "/one-blog", 
+				.state("app.blogs.one-blog-article", {
+					url: "/:authorName/:blogId",
 					controller:"OneBlogCtrl",
 					templateUrl: "scripts/blogs/views/one-blogCtrl.html"
 				})
