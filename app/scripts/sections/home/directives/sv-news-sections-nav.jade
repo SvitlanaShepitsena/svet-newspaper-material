@@ -1,18 +1,8 @@
 div(layout='column' layout-align="left center")
     md-list.list-nav
         sv-nav-link(side='left', url='app.home', stitle='home', icon='mdi mdi-home')
-        md-item.aside-elem
-            md-item-content
-                md-button(ui-sref-active="nav-link" ui-sref='app.section({sectionName:"chicago"})' ng-click='closeSideBar() '
-                style='font-size:14px;line-height:24px;padding:6px;display:block;width:100%;text-align:left;margin:0px;height:auto')
-                    img(src="img/icons/chicago1.png" style="display:inline-block; padding-right:6px; opacity:0.8" width="22")
-                    | {{'chicago'|translate}}
-        md-item.aside-elem
-            md-item-content
-                md-button(ui-sref-active="nav-link" ui-sref='app.section({sectionName:"usa"})' ng-click='closeSideBar()'
-                style='font-size:14px;line-height:24px;padding:6px;display:block;width:100%;text-align:left;margin:0px;height:auto;')
-                    img(src="img/icons/usa.png" style="display:inline-block; padding-right:6px; opacity:0.8" width="22")
-                    | {{'usa'|translate}}
+        sv-nav-link-custom(side='left', url='app.section({sectionName:"chicago"})', stitle='chicago', icon-link="img/icons/chicago1.png" icon-width="22px" )
+        sv-nav-link-custom(side='left', url='app.section({sectionName:"usa"})', stitle='usa', icon-link="img/icons/usa.png" icon-width="22px" )
         sv-nav-link(side='left', url='app.section({sectionName:"world"})', stitle='world', icon='mdi mdi-earth')
         sv-nav-link(side='left', url='app.section({sectionName:"politics"})', stitle='politics', icon='mdi mdi-bank')
         sv-nav-link(side='left', url='app.section({sectionName:"banking"})', stitle='banking', icon='mdi mdi-coin')
