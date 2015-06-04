@@ -22,16 +22,25 @@
                     body: '='
                 },
                 link: function ($scope, el, attrs) {
-                    var text = el.find('#toolbarWC, #toolbarCC');
-                    text.css({
+                    var editorImg = el.find('.ta-scroll-window > .ta-bind >p > img');
+                    editorImg.css({
+                        'width': '280px',
+                        'max-width': '280px',
+                    });
+
+                    var editorDiv = el.find('div');
+                    editorDiv.css({
+                        'margin-bottom': '4px',
+                    });
+                    var editorText = el.find('button, #toolbarWC, #toolbarCC');
+                    editorText.css({
                         'font-size': '12px',
+                        'display': 'inline-block',
                         'padding': '6px 12px',
                     });
-                    var btns = el.find('button');
-                    btns.css({
-                        'padding': '6px 12px',
+                    var editorButton = el.find('button');
+                    editorButton.css({
                         'float': 'left',
-                        'font-size': '12px',
                         'color': '#757575',
                     });
                     $scope.myContent = '';

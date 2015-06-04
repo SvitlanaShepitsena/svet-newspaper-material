@@ -352,6 +352,25 @@ md-tab-content {
 /**********************
  = Bootstrap active button fix
 ***********************/
+.ta-scroll-window > .ta-bind > p > img {
+  max-width: 90%;
+}
+.popover-content {
+  margin-bottom: 0px !important;
+}
+.ta-scroll-window {
+  padding-bottom: 30px !important;
+}
+.sv-popover {
+  font-weight: bold !important;
+  font-size: 12px;
+}
+.sv-popover .btn-group {
+  display: inline-block;
+}
+.sv-popover .btn-group button {
+  padding: 4px 8px;
+}
 btn:active,
 .btn.active {
   background-image: none;
