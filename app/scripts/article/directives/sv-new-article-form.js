@@ -8,9 +8,7 @@
                 link: function ($scope, el, attrs) {
                     $scope.$watch('article.title', function (newValue, oldValue) {
                         // Remove in Production
-                        if (newValue === oldValue) {
-                            return;
-                        }
+
                         $rootScope.title=newValue;
                     });
 
