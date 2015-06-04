@@ -349,6 +349,9 @@ md-tab-content {
 .sv-tab-dashboard {
   padding: 12px 24px;
 }
+/**********************
+ = Bootstrap active button fix
+***********************/
 btn:active,
 .btn.active {
   background-image: none;
