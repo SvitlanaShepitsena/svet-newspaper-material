@@ -1,13 +1,17 @@
 (function () {
     'use strict';
-
     angular.module('article')
-        .filter('authorFr', function () {
-            return function (userName) {
-                return (_.map(userName.split('-'), function (initial) {
-                    return _.capitalize(initial);
-                })).join(' ');
-
+        .filter('authorFr', function (userAuth) {
+            return function (list, authorKey) {
+                if (!list) {
+                    return list;
+                }
+                if (!authorKey) {
+                    authorKey = userAuth.key;
+                }
+                return _.filter(list, function (item) {
+                    return item.authorKey === authorKey;
+                });
             };
         });
 })();
