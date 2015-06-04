@@ -2,6 +2,7 @@
     'use strict';
     angular.module('app', [
         // modules
+		'custom',
         'ui.router',
         'pascalprecht.translate',
         'ngMaterial',
