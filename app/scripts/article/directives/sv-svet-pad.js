@@ -6,7 +6,7 @@
                 // $delegate is the taOptions we are decorating
                 // register the tool with textAngular
                 taOptions.toolbar = [
-                    ['h1', 'p', 'pre', 'quote'],
+                    ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'pre', 'quote'],
                     ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
                     ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
                     ['html', 'insertImage','insertLink', 'insertVideo', 'wordcount', 'charcount']
@@ -22,11 +22,27 @@
                     body: '='
                 },
                 link: function ($scope, el, attrs) {
+                    var editorImg = el.find('.ta-scroll-window > .ta-bind >p > img');
+                    editorImg.css({
+                        'width': '280px',
+                        'max-width': '280px',
+                    });
 
-                    var btns = el.find('button').css('padding', '6px 12px');
-                    btns.css('float', 'left');
-                    btns.css('font-size', '14px');
-                    btns.css('color', '#757575');
+                    var editorDiv = el.find('div');
+                    editorDiv.css({
+                        'margin-bottom': '4px',
+                    });
+                    var editorText = el.find('button, #toolbarWC, #toolbarCC');
+                    editorText.css({
+                        'font-size': '12px',
+                        'display': 'inline-block',
+                        'padding': '6px 12px',
+                    });
+                    var editorButton = el.find('button');
+                    editorButton.css({
+                        'float': 'left',
+                        'color': '#757575',
+                    });
                     $scope.myContent = '';
                 }
             };

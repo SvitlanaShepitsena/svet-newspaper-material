@@ -98,7 +98,7 @@
     </md-sidenav>
 
     <!-- =Content-->
-    <div layout="column" flex>
+    <div layout="column" flex style='max-width:100%'>
         <md-toolbar layout="row" class="md-hue-1" sv-nav-bar-media style='padding:0px 4px' layout-align="center center">
             <button class='btn btn--xl btn--icon'
                     style="width:36px"
@@ -137,48 +137,47 @@
             <md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
                         md-is-locked-open="$mdMedia('gt-lg')">
 
-                <div ng-if="imageSearch">
-                    <sv-image-search></sv-image-search>
+                <!--<div ng-if="imageSearch">-->
+                <!--<sv-image-search></sv-image-search>-->
+                <!--</div>-->
 
-                </div>
-                <div ng-if="!imageSearch">
-                    <md-toolbar class="text-center bgc-grey-200" sv-nav-bar-media layout-padding=""
-                                layout='row' hide-gt-lg
-                                layout-align='start center'
-                    <button lx-ripple class='btn btn--m btn--icon btn--black' sv-right-click-handler=""
-                            hide-gt-lg=""
-                            style='cursor:pointer'
-                            aria-label="close right" class="txt-white">
-                        <i class="mdi mdi-close"></i>
-                    </button>
-                    <span class="mdc-display-inline-block mdc-subhead ml">{{'for-readers-and-partners'|translate}}</span>
-                    </md-toolbar>
-                    <md-content class="pr pl pt">
-                        <sv-sidenav-title title="svet-on-social-media"></sv-sidenav-title>
-                        <sv-svet-social></sv-svet-social>
-                        <sv-nav-btn url="app.classified.all"
-                                    icon="tag"
-                                    title="classified"
-                                    txt-color="white-1"
-                                    bgc="red-300"
-                                    color="white" btn-size="m"
-                                    class="mb++"></sv-nav-btn>
-                        <sv-sidenav-title title="last-classified" class='mb++'></sv-sidenav-title>
+                <md-toolbar class="text-center bgc-grey-200" sv-nav-bar-media layout-padding=""
+                            layout='row' hide-gt-lg
+                            layout-align='start center'
+                <button lx-ripple class='btn btn--m btn--icon btn--black' sv-right-click-handler=""
+                        hide-gt-lg=""
+                        style='cursor:pointer'
+                        aria-label="close right" class="txt-white">
+                    <i class="mdi mdi-close"></i>
+                </button>
+                <span class="mdc-display-inline-block mdc-subhead ml">{{'for-readers-and-partners'|translate}}</span>
+                </md-toolbar>
+                <md-content class="pr pl pt">
+                    <sv-sidenav-title title="svet-on-social-media"></sv-sidenav-title>
+                    <sv-svet-social></sv-svet-social>
+                    <sv-nav-btn url="app.classified.all"
+                                icon="tag"
+                                title="classified"
+                                txt-color="white-1"
+                                bgc="red-300"
+                                color="white" btn-size="m"
+                                class="mb++"></sv-nav-btn>
+                    <sv-sidenav-title title="last-classified" class='mb++'></sv-sidenav-title>
 
-                        <sv-classified-widget is-home="true" class='mb+'></sv-classified-widget>
+                    <sv-classified-widget is-home="true" class='mb+'></sv-classified-widget>
 
-                        <sv-nav-btn url="app.contact"
-                                    icon="map-marker"
-                                    title="{{'contacts'|translate}}"
-                                    txt-color="white-1"
-                                    custom-class="bgc-svet-700"
-                                    color="white"
-                                    btn-size="m"
-                                    class="mb++"></sv-nav-btn>
-                        <!--<sv-gofundme-thumb></sv-gofundme-thumb>-->
+                    <sv-nav-btn url="app.contact"
+                                icon="map-marker"
+                                title="{{'contacts'|translate}}"
+                                txt-color="white-1"
+                                custom-class="bgc-svet-700"
+                                color="white"
+                                btn-size="m"
+                                class="mb++"></sv-nav-btn>
+                    <!--<sv-gofundme-thumb></sv-gofundme-thumb>-->
 
-                    </md-content>
-                </div>
+                </md-content>
+
             </md-sidenav>
         </div>
     </div>
