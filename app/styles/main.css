@@ -355,11 +355,16 @@ md-tab-content {
 .ta-scroll-window > .ta-bind > p > img {
   max-width: 90%;
 }
+.ta-scroll-window > .ta-bind {
+  background-color: #f5f5f5 !important;
+}
 .popover-content {
   margin-bottom: 0px !important;
 }
 .ta-scroll-window {
-  padding-bottom: 30px !important;
+  background-color: #e0e0e0 !important;
+  padding-top: 10px !important;
+  padding-bottom: 40px !important;
 }
 .sv-popover {
   font-weight: bold !important;
