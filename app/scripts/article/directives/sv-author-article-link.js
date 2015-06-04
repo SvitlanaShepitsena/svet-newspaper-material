@@ -7,7 +7,8 @@
                 templateUrl: 'scripts/article/directives/sv-author-article-link.html',
                 scope: {
                     article: '=',
-                    index: '='
+                    index: '=',
+                    isRank:'='
                 },
                 link: function ($scope, el, attrs) {
 
