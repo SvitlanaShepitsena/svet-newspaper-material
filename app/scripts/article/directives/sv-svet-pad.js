@@ -22,11 +22,21 @@
                     body: '='
                 },
                 link: function ($scope, el, attrs) {
+                    var text = el.find('#toolbarWC #toolbarCC');
+                    text.css({
+                        'font-size': '12px',
+                    });
 
-                    var btns = el.find('button').css('padding', '6px 12px');
-                    btns.css('float', 'left');
-                    btns.css('font-size', '14px');
-                    btns.css('color', '#757575');
+
+
+
+                    var btns = el.find('button');
+                    btns.css({
+                        'padding': '6px 12px',
+                        'float': 'left',
+                        'font-size': '12px',
+                        'color': '#757575',
+                    });
                     $scope.myContent = '';
                 }
             };
