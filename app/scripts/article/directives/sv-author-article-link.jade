@@ -1,8 +1,9 @@
 .card(class='mb+')
-    div.p.bgc-grey-200(layout='row' layout-align='space-between center' )
+    div.bgc-grey-200(layout='row' layout-align='space-between' )
         div
-            sv-svet-label.mr(section-title="{{article.section}}" route-name='app.section' params='{sectionName:article.section}' cursor-type='pointer' bgc="bgc-grey-200" tc="tc-grey-600")
-            span.fs-caption.tc-grey-500 {{article.timestamp|date}}
+            span.m.mdc-display-inline-block.fs-caption.tc-grey-700.bgc-red-100(style='padding:0px 4px;font-weight:500;float:left') # {{index}}
+            sv-svet-label.mr.mt.mb(section-title="{{article.section}}" route-name='app.section' params='{sectionName:article.section}' cursor-type='pointer' bgc="bgc-grey-200" tc="tc-grey-600")
+            span.mdc-display-inline-block.mt.mb.fs-caption.tc-grey-500 {{article.timestamp|date}}
         sv-article-status(key='article.$id' property='isPublic')
     div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="start")
         div.p

@@ -6,8 +6,7 @@ div
             md-tab-body
                 div(ui-sortable='sortableOptions' ng-model='articles')
                     div(ng-repeat='article in articles' style='cursor:move')
-                        span {{$index+1}}.
-                        sv-author-article-link(article='article')
+                        sv-author-article-link(article='article' index="$index+1")
         //md-tab.sv-tabs(md-stretch-tabs="always")
         //    md-tab-label {{'blog'|translate}} md-tab-body
         //        sv-zero-length-notice(list='articles' filter='articleBlogFr' filter-value='1' item='blogs' owner-field='authorKey')

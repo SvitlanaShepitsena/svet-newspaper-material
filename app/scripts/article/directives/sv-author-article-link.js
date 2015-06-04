@@ -6,7 +6,8 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-author-article-link.html',
                 scope: {
-                    article: '='
+                    article: '=',
+                    index: '='
                 },
                 link: function ($scope, el, attrs) {
                     $scope.editArticle = function (active) {
