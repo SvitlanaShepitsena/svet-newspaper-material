@@ -30,7 +30,7 @@
                     };
                     function processArticles(articles) {
                         var filteredList = _.filter(articles, function (article) {
-                            return article.isPublic;
+                            return article.isPublic && !article.isBlog;
                         });
                         var sortedList = _.sortBy(filteredList, 'newsOrder');
                         return sortedList;
