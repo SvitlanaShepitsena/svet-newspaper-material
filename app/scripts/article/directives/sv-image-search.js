@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svImageSearch', function (ImageSearchServ) {
+        .directive('svImageSearch', function (ImageSearchServ,$rootScope) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-image-search.html',
@@ -9,7 +9,7 @@
                     insertImage: '&'
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.q = {data: 'maya plisetskaya'}
+                    $scope.q = {data: $rootScope.title};
                     $scope.runGoogleSearch = function (query) {
                         if (!query) {
                             return;

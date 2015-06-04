@@ -1,11 +1,19 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svNewArticleForm', function (SvHtmlValidatorServ, $state, toastr, SectionsServ, NewsGeneratorServ, ArticlesServ, SvobodaSaveToDbServ, userAuth, FormattedDateServ, TagsServ) {
+        .directive('svNewArticleForm', function ($rootScope, SvHtmlValidatorServ, $state, toastr, SectionsServ, NewsGeneratorServ, ArticlesServ, SvobodaSaveToDbServ, userAuth, FormattedDateServ, TagsServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
                 link: function ($scope, el, attrs) {
+                    $scope.$watch('article.title', function (newValue, oldValue) {
+                        // Remove in Production
+                        if (newValue === oldValue) {
+                            return;
+                        }
+                        $rootScope.title=newValue;
+                    });
+
                     $scope.sections = SectionsServ.all();
                     $scope.user = userAuth.profile;
                     $scope.saveArticle = function (isPublic, formValid) {

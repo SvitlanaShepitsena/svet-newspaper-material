@@ -557,7 +557,7 @@ angular.module('textAngularSetup', [])
                 }
 
                 $mdDialog.show({
-                    controller: function ($scope) {
+                    controller: function ($scope,$rootScope) {
                         $scope.hide = function () {
                             $mdDialog.hide();
                         };

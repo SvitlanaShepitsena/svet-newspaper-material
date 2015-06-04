@@ -5,11 +5,11 @@ div
             md-tab-body
                 sv-zero-length-notice(list='articles' filter='articleBlogFr' filter-value='0' item='articles' owner-field='authorKey')
                 div(ng-repeat='article in articles|articleBlogFr:selectedIndex|authorFr:user.key|orderBy:"-timestamp"')
-                    sv-author-article-link(article='article')
+                    sv-author-article-link(article='article' index='$index+1')
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label {{'blog'|translate}}
             md-tab-body
                 sv-zero-length-notice(list='articles' filter='articleBlogFr' filter-value='1' item='blogs' owner-field='authorKey')
                 div(ng-repeat='article in articles|articleBlogFr:selectedIndex|authorFr:user.key|orderBy:"-timestamp"')
-                    sv-author-article-link(article='article')
+                    sv-author-article-link(article='article' index='$index+1')
 
