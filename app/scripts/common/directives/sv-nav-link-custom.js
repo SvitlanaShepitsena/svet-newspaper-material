@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('custom')
+    angular.module('common')
         .directive('svNavLinkCustom', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/custom/directives/sv-nav-link-custom.html',
+                templateUrl: 'scripts/common/directives/sv-nav-link-custom.html',
                 scope: {
 
                 },
