@@ -11,7 +11,7 @@
                 span.display-block(ng-bind-html='article.title|length:25')
                 span.display-block.fs-body-1.tc-black-2(ng-bind-html='article.body|length:50')
             span.fs-caption Author: &nbsp
-            span.fs-caption.tc-grey-500(ng-bind-html='article.author')
+            span.fs-caption.tc-grey-500(ng-bind-html='article.author|authorNameFr')
         div.mb.pl.pr.pt(ng-hide='isRank')
             sv-edit-article-btn.mr(article='article')
             sv-delete-article-btn(article-key='{{article.fbkey}}')
