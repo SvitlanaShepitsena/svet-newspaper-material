@@ -1,19 +1,19 @@
 (function () {
     'use strict';
     angular.module('article')
-        .config(function ($provide) {
-            $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions){
-                // $delegate is the taOptions we are decorating
-                // register the tool with textAngular
-                taOptions.toolbar = [
-                    ['h1', 'p', 'pre', 'quote'],
-                    ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
-                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
-                    ['html', 'insertImage','insertLink', 'insertVideo', 'wordcount', 'charcount']
-                ];
-                return taOptions;
-            }]);
-        })
+        //.config(function ($provide) {
+        //    $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions){
+        //        // $delegate is the taOptions we are decorating
+        //        // register the tool with textAngular
+        //        taOptions.toolbar = [
+        //            ['h1', 'p', 'pre', 'quote'],
+        //            ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+        //            ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+        //            ['html', 'insertImage','insertLink', 'insertVideo', 'wordcount', 'charcount']
+        //        ];
+        //        return taOptions;
+        //    }]);
+        //})
         .directive('svSvetPad', function (url) {
             return {
                 replace: true,

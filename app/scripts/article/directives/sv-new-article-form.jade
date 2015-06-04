@@ -43,6 +43,17 @@ form(name='articleForm' ng-submit="saveArticle(false,articleForm.$valid)" flow-i
             span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
             //img(ng-src="{{article.img}}")
             sv-image-upload
+        div(layout='column' class='mb+')
+                p Допустимые форматы для фото: JPG, JPEG, PNG.
+                p Максимальный размер фото: 3 Мб, изображение должно быть не менее 640x480 пикселей.
+        div(layout='row' class='mb+' layout-align='start center')
+            md-checkbox(ng-model='user.acceptPolicy' aria-label='terms')
+            span.tc-grey-700 I accept &nbsp
+            a
+                span.tc-grey-900(style='font-weight:600') Terms and conditions about uploading and using images and photo materials
+        div(layout='row' class='mb+' layout-align='start center')
+            md-checkbox(ng-model='user.acceptPolicy' aria-label='terms')
+            span.tc-grey-700 Turn off comments
     .bgc-grey-200.p(layout='row' layout-align="space-around center")
         button.btn.btn--m.btn--teal.btn--flat.tc-teal-300(lx-ripple='' type='submit')
             i.fa.fa-save.fa-fw &nbsp
