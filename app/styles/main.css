@@ -349,6 +349,20 @@ md-tab-content {
 .sv-tab-dashboard {
   padding: 12px 24px;
 }
+btn:active,
+.btn.active {
+  background-image: none;
+}
+btn-default:hover,
+.btn-default:focus {
+  background-color: #e0e0e0;
+  background-position: 0 -15px;
+}
+.btn-default:active,
+.btn-default.active {
+  background-color: #e0e0e0;
+  border-color: #dbdbdb;
+}
 /*Bugs with Safari*/
 html,
 body {
