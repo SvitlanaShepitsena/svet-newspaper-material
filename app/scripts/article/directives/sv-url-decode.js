@@ -12,7 +12,7 @@
                         }
 
                         return modelValue.replace(/&#34;/g, '"');
-                    })
+                    });
 
                 }
             };
