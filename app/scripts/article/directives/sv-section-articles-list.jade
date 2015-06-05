@@ -8,7 +8,7 @@ ul.list-unstyled(layout='column')
                 a.tc-grey-800(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
                     span.display-block.fs-subhead(ng-bind-html='safeParsing(n.title)')
                 span.fs-caption By &nbsp
-                span.fs-caption.tc-grey-500(ng-bind-html='safeParsing(n.author|capitalize)')
-                span.display-block.fs-body-1.tc-black-2(ng-bind-html='safeParsing(n.body | length:100)')
+                span.fs-caption.tc-grey-500(ng-bind-html='safeParsing(n.author)')
+                span.display-block.fs-body-1.tc-black-2(ng-bind-html='safeParsing(n.summary)')
                 div(layout='row' layout-align='end start' class='pr')
                     button.btn.btn--xs.btn--grey.btn--flat(ui-sref='app.article({id:n.fbkey})' ) {{'read-more'|translate}} >>

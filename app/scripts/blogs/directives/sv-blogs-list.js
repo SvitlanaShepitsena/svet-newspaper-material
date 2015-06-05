@@ -6,9 +6,7 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/blogs/directives/sv-blogs-list.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
 
                     BlogsServ.setBlogsLive().then(function () {

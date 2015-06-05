@@ -426,6 +426,30 @@ body {
   text-decoration: none !important;
   display: inline-block;
 }
+.mdc-link:hover,
+.mdc-link:active,
+.mdc-link:focus {
+  text-decoration: none !important;
+  color: #e57373 !important;
+}
+.sv-hover-red {
+  text-decoration: none !important;
+}
+.sv-hover-red:hover,
+.sv-hover-red:active,
+.sv-hover-red:focus {
+  text-decoration: none !important;
+  color: #e57373 !important;
+}
+.sv-hover-grey {
+  text-decoration: none !important;
+}
+.sv-hover-grey:hover,
+.sv-hover-grey:active,
+.sv-hover-grey:focus {
+  text-decoration: none !important;
+  color: #757575 !important;
+}
 .sv-link {
   cursor: pointer;
 }
