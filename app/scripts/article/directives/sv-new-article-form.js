@@ -9,7 +9,7 @@
                     $scope.$watch('article.title', function (newValue, oldValue) {
                         // Remove in Production
 
-                        $rootScope.title=newValue;
+                        $rootScope.title = newValue;
                     });
 
                     $scope.sections = SectionsServ.all();
@@ -18,8 +18,7 @@
                         if (formValid) {
                             var parsedArticle = SvHtmlValidatorServ.cleanArticle($scope.article);
                             ArticlesServ.add(parsedArticle, isPublic).then(function (uid) {
-                                    $state.go('app.user.author-articles');
-                                    toastr.success('Статья сохранена в БД');
+                                    toastr.success('Your changes are successfully saved');
                                 },
                                 function (error) {
                                     console.log(error);
@@ -27,6 +26,7 @@
                             );
                         }
                     }
+
                     $scope.cancelArticle = function (active) {
                         $state.go('app.user.author-articles');
                     }
