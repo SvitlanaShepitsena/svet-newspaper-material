@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svSectionArticlesList', function (ArticlesServ, svetNews, $stateParams) {
+        .directive('svSectionArticlesList', function (ArticlesServ, svetNews, $stateParams,$sce) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-section-articles-list.html',
@@ -15,6 +15,11 @@
                     } else {
                         $scope.newsList = svetNews.public;
                     }
+
+                    $scope.safeParsing = function (html) {
+                        return $sce.trustAsHtml(html);
+
+                    };
                 }
             };
         });
