@@ -15,7 +15,7 @@ div
             div(layout='row', layout-sm='column' layout-align-gt-sm='space-between center')
                 md-input-container(flex)
                     label {{'article-author'|translate}}
-                    input(ng-model='article.author' name='author' required='')
+                    input(ng-model='article.author' sv-author-humanize name='author' required='')
                 md-input-container(class='ml' flex='')
                     md-select(name="section" ng-model='article.section' style='margin-bottom:0px' ng-show='sections' required  )
                         md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
