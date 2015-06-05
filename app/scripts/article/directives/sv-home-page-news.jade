@@ -5,7 +5,7 @@
     .pl.pr
         a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:oneNews.fbkey})')
             span.display-block.fs-subhead {{oneNews.title | length:55}}
-        span.fs-caption.tc-grey-500 By {{oneNews.author|uppercase}}
+        span.fs-caption.tc-grey-500 By {{oneNews.author|capitalize}}
         span.display-block.tc-grey-800.fs-body-1(ng-bind-html='oneNews.summary|length:100')
     div(layout='row' layout-align='end start' class='pr')
         button.btn.btn--xs.btn--grey.btn--flat(ui-sref='app.article({id:oneNews.fbkey})' ) {{'read-more'|translate}} >>

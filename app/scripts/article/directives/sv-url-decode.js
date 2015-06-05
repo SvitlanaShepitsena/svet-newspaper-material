@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('article')
         .directive('svUrlDecode', function () {
             return {
@@ -10,10 +9,8 @@
                         if (!modelValue) {
                             return;
                         }
-
                         return modelValue.replace(/&#34;/g, '"');
-                    });
-
+                    })
                 }
             };
         });
