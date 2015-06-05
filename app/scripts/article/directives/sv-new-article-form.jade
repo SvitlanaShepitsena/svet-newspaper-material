@@ -29,7 +29,7 @@ div
             div(layout='column')
                 md-input-container(flex='')
                     label {{'article-title'|translate}}
-                    input(ng-model='article.title' type="text" md-maxlength='150' name='title' required )
+                    input(ng-model='article.title' sv-url-decode type="text" md-maxlength='150' name='title' required )
                 md-input-container(flex='')
                     label {{'article-summary'|translate}}
                     input(ng-model='article.summary' type="text" md-maxlength='250' name='summary' required)
