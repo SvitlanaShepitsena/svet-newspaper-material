@@ -40,10 +40,10 @@ div
                 md-input-container(flex)
                     label {{'tags'|translate}}
                     input(ng-model='article.tags' name='tags' type="text" md-maxlength="100" required)
-        //    div(layout='column' class='mb+')
-        //        span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
-        //        //img(ng-src="{{article.img}}")
-        //        sv-image-upload
+            div(layout='column' class='mb+')
+                span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
+                //img(ng-src="{{article.img}}")
+                sv-image-upload
         //    div(layout='column' class='mb+')
         //            p Допустимые форматы для фото: JPG, JPEG, PNG.
         //            p Максимальный размер фото: 3 Мб, изображение должно быть не менее 640x480 пикселей.

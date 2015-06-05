@@ -352,6 +352,10 @@ md-tab-content {
 /**********************
  = Bootstrap active button fix
 ***********************/
+p {
+  font-size: 1.2em;
+  font-weight: 400;
+}
 .ta-scroll-window > .ta-bind > p > img {
   max-width: 90%;
 }
