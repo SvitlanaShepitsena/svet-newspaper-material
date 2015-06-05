@@ -25,21 +25,21 @@ div
                             .fs-body-2 {{section.$id|capitalize}}
                 md-input-container(flex='')
                     label {{'article-topic'|translate}}
-                    input(ng-model='article.topic' name='topic' required)
+                    input(ng-model='article.topic' sv-url-decode name='topic' required)
             div(layout='column')
                 md-input-container(flex='')
                     label {{'article-title'|translate}}
-                    input(ng-model='article.title' sv-url-decode type="text" md-maxlength='150' name='title' required )
+                    input(ng-model='article.title'  sv-url-decode type="text" md-maxlength='150' name='title' required )
                 md-input-container(flex='')
                     label {{'article-summary'|translate}}
-                    input(ng-model='article.summary' type="text" md-maxlength='250' name='summary' required)
+                    input(ng-model='article.summary' sv-url-decode  type="text" md-maxlength='250' name='summary' required)
                 md-input-container(flex='')
                     label {{'article-content'|translate}}
-                    sv-svet-pad(body='article.body')
+                    sv-svet-pad(body='article.body' )
             div(layout='row')
                 md-input-container(flex)
                     label {{'tags'|translate}}
-                    input(ng-model='article.tags' name='tags' type="text" md-maxlength="100" required)
+                    input(ng-model='article.tags' sv-url-decode name='tags' type="text" md-maxlength="100" required)
             div(layout='column' class='mb+')
                 span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
                 //img(ng-src="{{article.img}}")

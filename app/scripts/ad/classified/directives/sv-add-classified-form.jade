@@ -29,17 +29,20 @@ div
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'classified-title'|translate}}
-                input(ng-model='clCopy.title' name='title' required='')
+                input(ng-model='clCopy.title' sv-url-decode name='title' required='')
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'classified-description'|translate}}
                 textarea.bgc-grey-50(ng-model='clCopy.description'
+                sv-url-decode
                 rows='3'
                 name='description' required='')
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'price'|translate}}
-                input(ng-model='clCopy.price' name='price' required='')
+                input(ng-model='clCopy.price'
+                sv-url-decode
+                name='price' required='')
         div(layout='row' layout-align-sm='center center')
             button.btn.btn--s.btn--raised.btn--grey.m( type='submit' lx-ripple value="Post")
                 i.mdi.mdi-send.mr
