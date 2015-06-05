@@ -9,7 +9,7 @@
                     $scope.$watch('article.title', function (newValue, oldValue) {
                         // Remove in Production
 
-                        $rootScope.title=newValue;
+                        $rootScope.title = newValue;
                     });
 
                     $scope.sections = SectionsServ.all();
@@ -27,6 +27,7 @@
                             );
                         }
                     }
+
                     $scope.cancelArticle = function (active) {
                         $state.go('app.user.author-articles');
                     }
