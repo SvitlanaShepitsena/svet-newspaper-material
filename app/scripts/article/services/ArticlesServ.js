@@ -129,7 +129,7 @@
                     article.timestamp = moment().format('x');
                     article.authorKey = userAuth.key;
                     article = setImgProp(article);
-                    article.author=article.author.replace(/\s+/g,'-');
+                    article.author = article.author;
                     return $q(function (resolve, reject) {
                         if (article.$id) {
                             var articleDb = ref.child(article.$id);
