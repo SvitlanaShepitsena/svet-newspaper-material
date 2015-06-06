@@ -2,6 +2,9 @@
   "name": "svet-newspaper-material",
   "private": false,
   "version": "0.0.0",
+  "scripts": {
+    "install": "node node_modules/protractor/bin/webdriver-manager update"
+  },
   "description": "",
   "repository": "https://github.com/ChicagoBusinessIntelligence1/svet-newspaper-material",
   "license": "MIT",

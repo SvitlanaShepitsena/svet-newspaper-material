@@ -1,10 +1,10 @@
 div
     div.mr(ng-if='isBlog')
-        a.btn.btn--red.btn--s.btn--raised.bgc-grey-500.mb( lx-ripple='' ui-sref='app.user.create-article({artType:"blog"})' )
+        a.btn.btn--red.btn--s.btn--raised.bgc-grey-500.mb( lx-ripple='' ui-sref='app.user.create-article({artType:"blog"})' id="addBlog" )
             i.mdi.mdi-plus.mr
             | {{'add-blog'|translate}}
     div(ng-if='!isBlog')
-        a.btn.btn--red.btn--s.btn--raised.bgc-red-300.mb( lx-ripple='' ui-sref='app.user.create-article({artType:"article"})')
+        a.btn.btn--red.btn--s.btn--raised.bgc-red-300.mb( lx-ripple='' ui-sref='app.user.create-article({artType:"article"})' id="addNews")
             i.mdi.mdi-plus.mr
             | {{'add-news-article'|translate}}
 

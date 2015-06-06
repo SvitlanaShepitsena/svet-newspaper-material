@@ -1,19 +1,22 @@
 'use strict'
-
-describe('angularjs homepage todo list', function() {
-    it('should add a todo', function() {
-        browser.get('https://angularjs.org');
-
-        element(by.model('todoList.todoText')).sendKeys('write first protractor test');
-        element(by.css('[value="add"]')).click();
-
-        var todoList = element.all(by.repeater('todo in todoList.todos'));
-        expect(todoList.count()).toEqual(3);
-        expect(todoList.get(2).getText()).toEqual('write first protractor test');
-
-        // You wrote your first test, cross it off the list
-        todoList.get(2).element(by.css('input')).click();
-        var completedAmount = element.all(by.css('.done-true'));
-        expect(completedAmount.count()).toEqual(2);
+describe('editor profile functionality', function () {
+    //it('should click on auth btn and open svet-login page', function () {
+    //    browser.get('http://localhost:3000/#/home');
+    //    element(by.id('authBtn')).click();
+    //    expect(browser.getCurrentUrl()).toBe('http://localhost:3000/#/svet-login');
+    //});
+    //it('should click on login btn and open svet-login page', function () {
+    //    browser.get('http://localhost:3000/#/svet-login');
+    //    element(by.id('svetLoginBtn')).click();
+    //    expect(browser.getCurrentUrl()).toBe('http://localhost:3000/#/alexander-etman/dashboard');
+    //});
+    it('come to login page, login to editor account, open create an article form and check "endorsed by Svet" checkbox', function () {
+        browser.get('http://localhost:3000/#/home');
+        element(by.id('authBtn')).click();
+        element(by.id('svetLoginBtn')).click();
+        element(by.id('myArticles')).click();
+        element(by.id('addNews')).click();
+        element(by.tagName('md-checkbox')).click();
+        expect(browser.getCurrentUrl()).toBe('http://localhost:3000/#/alexander-etman/manage-article/article/');
     });
 });

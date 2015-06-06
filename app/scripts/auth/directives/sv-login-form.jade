@@ -10,7 +10,7 @@
                 label {{password|translate}}
                 input(name="password" type='password', ng-model='user.password' required)
             div(class='mb+')
-                button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='singIn()')
+                button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='singIn()' id="svetLoginBtn")
                     i.mdi.mdi-login &nbsp
                     | {{loginBtn|translate}}
             div(class='mb+')

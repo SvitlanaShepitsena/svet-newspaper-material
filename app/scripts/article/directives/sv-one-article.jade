@@ -6,10 +6,14 @@ div(flex-container='column' flex)
                 span.display-block.fs-display-1 {{news.title}}
             div.tc-grey-600
                 span.fs-caption Svet Media Group &nbsp
-                span.fs-body-1 {{'date'|translate}}: {{news.date}}
+                span.mdc-display-inline-block.mt.mb.fs-caption.tc-grey-500 {{article.timestamp|date}}
+
             div.tc-grey-600.mb
                 span.fs-body-1 {{'author'|translate}}: &nbsp
                 span.fs-subhead {{news.author|capitalize}}
+            div.tc-grey-600.mb
+                span.fs-body-1 {{'date'|translate}}: &nbsp
+                span.fs-subhead {{news.timestamp|date}}
             //div.atricle-img.mdc-img-bw(class='mb+')
             //    img(ng-src="{{news.img}}" ng-if='news.title')
             div(class='mb+')
