@@ -11,8 +11,7 @@ describe('editor profile functionality', function () {
     //    expect(browser.getCurrentUrl()).toBe('http://localhost:3000/#/alexander-etman/dashboard');
     //});
     it('come to login page, login to editor account, open create an article form and check "endorsed by Svet" checkbox', function () {
-        browser.get('http://localhost:3000/#/home');
-        element(by.id('authBtn')).click();
+        browser.get('http://localhost:3000/#/svet-login');
         element(by.id('svetLoginBtn')).click();
         element(by.id('myArticles')).click();
         element(by.id('addNews')).click();
