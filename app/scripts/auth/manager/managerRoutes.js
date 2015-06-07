@@ -32,11 +32,6 @@
                     controller: "ManagerUsersCtrl as managerUsers",
                     templateUrl: "scripts/auth/manager/views/manager-usersCtrl.html"
                 })
-                .state("app.manager.clients", {
-                    url: "/clients",
-                    controller: "ManagerClientsCtrl as managerClients",
-                    templateUrl: "scripts/auth/views/manager-clientsCtrl.html"
-                })
                 .state("app.manager.ad", {
                     url: "/advertisement",
                     controller: "ManagerAdCtrl as managerAd",
