@@ -153,7 +153,7 @@
                                     artFbObj.$loaded().then(function () {
                                         artFbObj.fbkey = id;
                                         artFbObj.$save().then(function (ref2) {
-                                            resolve();
+                                            resolve(id);
                                         })
                                     })
                                 },

@@ -4,10 +4,12 @@ exports.config = {
     capabilities: {
         'browserName': 'chrome',
         "chromeOptions": {
-            binary: 'C:/Users/Andri y/AppData/Local/Google/Chrome SxS/Application/chrome.exe',
+            binary: 'C:/Users/chica/AppData/Local/Google/Chrome SxS/Application/chrome.exe',
             args: [],
             extensions: [],
         }
     },
-    specs: ['article-deletion.js']
+    getPageTimeout: 1000,
+    framework: 'jasmine2',
+    specs: ['author-profile.js']
 };

@@ -7,12 +7,13 @@ describe('editor profile functionality', function () {
         element(by.id('myArticles')).click();
         element.all(by.repeater('article in articles')).then(function (articles) {
             articles[0].element(by.id('deleteArticle')).click().then(function () {
-                element(by.id('confDelBtn')).click();
+                element(by.id('confDelBtn')).click().then(function () {
+                    element.all(by.repeater('article in articles')).then(function (articles) {
+                        var titleElement = articles[0].element(by.id('authorArticleLinkSection'));
+                        expect(titleElement.getText()).not.toContain('Test Title');
+                    });
+                });
             });
-        });
-        element.all(by.repeater('article in articles')).then(function (articles) {
-            var titleElement = articles[0].element(by.id('authorArticleLinkSection'));
-            expect(titleElement.getText()).not.toContain('Test Title');
         });
     });
 });
