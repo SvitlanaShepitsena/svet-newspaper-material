@@ -8,7 +8,7 @@
     div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="start")
         div.p
             a.tc-grey-700(ui-sref='app.article({id:article.$id})' style='text-decoration:none;font-weight:bold')
-                span.display-block(ng-bind-html='article.title')
+                span.display-block(ng-bind-html='article.title' id="authorArticleLinkTitle")
                 span.display-block.fs-body-1.tc-black-2(ng-bind-html='article.summary|length:80')
             span.fs-caption Author: &nbsp
             span.fs-caption.tc-grey-500(ng-bind-html='article.author|authorNameFr')

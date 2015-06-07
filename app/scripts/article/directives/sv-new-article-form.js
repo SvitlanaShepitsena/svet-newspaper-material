@@ -8,10 +8,8 @@
                 link: function ($scope, el, attrs) {
                     $scope.$watch('article.title', function (newValue, oldValue) {
                         // Remove in Production
-
                         $rootScope.title = newValue;
                     });
-
                     $scope.sections = SectionsServ.all();
                     $scope.user = userAuth.profile;
                     $scope.saveArticle = function (isPublic, formValid) {
@@ -26,7 +24,6 @@
                             );
                         }
                     }
-
                     $scope.cancelArticle = function (active) {
                         $state.go('app.user.author-articles');
                     }
