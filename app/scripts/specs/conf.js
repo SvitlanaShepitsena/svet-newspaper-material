@@ -4,10 +4,10 @@ exports.config = {
     capabilities: {
         'browserName': 'chrome',
         "chromeOptions": {
-            binary: 'C:/Users/Andri y/AppData/Local/Google/Chrome SxS/Application/chrome.exe',
+            binary:"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
             args: [],
             extensions: [],
         }
     },
-    specs: ['todo-spec.js']
+    specs: ['article-form-validation.js']
 };
