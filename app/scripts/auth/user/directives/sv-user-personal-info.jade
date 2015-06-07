@@ -3,10 +3,6 @@ form(name='personalInfoForm' ng-submit='saveUserName(userName, personalInfoForm.
         md-input-container(flex)
             label {{'uname'|translate}}:
             input(type="text" name='userName' ng-model='userName.value' sv-unique-username required)
-            div(ng-messages='personalInfoForm.userName.$error' ng-if='personalInfoForm.userName.$touched||personalInfoForm.$submitted')
-                .tc-red-300.fs-caption(ng-message='username') {{'username-field'|translate}}
-                .tc-red-300.fs-caption(ng-message='minlength') {{'min-length'|translate}}
-                .tc-red-300.fs-caption(ng-message='maxlength') {{'max-length'|translate}}
         button.btn.btn--m.btn--grey.btn--icon(lx-ripple='' type="submit" ng-disabled='user.userName===userName.value')
             i.mdi.mdi-content-save
     div(layout='row' layout-align='space-between center' class='pl+ pr+' ng-if='userName.value!==user.userName')

@@ -8,6 +8,7 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
                     $scope.userName = {value: angular.copy(userAuth.profile.userName), label: 'userName'};
+                    $scope.oldUserName=userAuth.profile.userName;
                     $scope.user = userAuth.profile;
                     $scope.saveUserName = function (property, formValid) {
                         if (formValid) {
