@@ -15,6 +15,7 @@
         .constant('viewModalConst', {})
         .constant('dt', {})
         .constant('classifiedInterval', 63000)
+        //.constant('classifiedInterval', 3000)
         .service('urlUsers', function (url) {
             this.url = url + '/user-management/users/';
         })
