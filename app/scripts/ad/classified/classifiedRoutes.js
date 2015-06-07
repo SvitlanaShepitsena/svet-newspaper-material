@@ -6,7 +6,13 @@
                 /*=ad*/
                 /*classified*/
                 .state("app.classified", {
+                    abstract:true,
                     url: "/classified",
+                    resolve:{
+                        clsLive: function (ClassifiedServ) {
+                            return ClassifiedServ.bindClassifiedsLive();
+                        }
+                    },
                     controller: "ClassifiedCtrl as classified",
                     templateUrl: "scripts/ad/classified/views/classifiedCtrl.html"
                 })
@@ -20,7 +26,8 @@
                 })
                 .state("app.classified.job", {
                     url: "/job",
-                    templateUrl: "scripts/ad/classified/views/classified-job-list.html"
+                    templateUrl: "scripts/ad/classified/views/all.html"
+
                 })
                 .state("app.classified.lessons", {
                     url: "/lessons",
@@ -47,7 +54,7 @@
                     templateUrl: "scripts/ad/classified/views/classified-cars-list.html"
                 })
                 .state("app.classified.one-classified", {
-                    url: "/:clid",
+                    url: "/:clSection/:clId",
                     controller: "OneClassifiedCtrl as oneClassified",
                     templateUrl: "scripts/ad/classified/views/one-classifiedCtrl.html"
                 })

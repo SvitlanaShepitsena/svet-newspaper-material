@@ -1,20 +1,21 @@
 div
     md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
-        md-tab.sv-tabs(md-stretch-tabs="always")
-            md-tab-label {{'all'|translate}}
+        md-tab.sv-tabs(md-stretch-tabs="always" md-active='$state.includes("all")')
+            md-tab-label
+                span(ui-sref='.all') {{'all'|translate}}
             md-tab-body
-                div(ng-repeat="cl in allCls|clType:'all'|orderBy:'-timestamp'")
-                    sv-one-classified-thumb(cl='cl')
+                div(ui-view='')
         md-tab.sv-tabs(md-stretch-tabs="always")
-            md-tab-label {{'community'|translate}}
+            md-tab-label
+                span(ui-sref='.community') {{'community'|translate}}
             md-tab-body
                 div(ng-repeat="cl in allCls|clType:'community'|orderBy:'-timestamp'")
                     sv-one-classified-thumb(cl='cl')
-        md-tab.sv-tabs(md-stretch-tabs="always")
-            md-tab-label {{'job'|translate}}
+        md-tab.sv-tabs(md-stretch-tabs="always" md-active='$state.is("app.classified.job")')
+            md-tab-label
+                span(ui-sref='.job') {{'job'|translate}}
             md-tab-body
-                div(ng-repeat="cl in allCls|clType:'job'|orderBy:'-timestamp'")
-                    sv-one-classified-thumb(cl='cl')
+                div(ui-view='')
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label {{'lessons'|translate}}
             md-tab-body
