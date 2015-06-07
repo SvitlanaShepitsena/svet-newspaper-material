@@ -1,7 +1,7 @@
 'use strict'
 describe('editor profile functionality', function () {
     it('by opening a list of articles,' +
-        ' should find an article by id and delete it,', function () {
+        'should find last added article and delete it,', function () {
         browser.get('http://localhost:3000/#/svet-login');
         element(by.id('svetLoginBtn')).click();
         element(by.id('myArticles')).click();
