@@ -2,47 +2,47 @@ div
     md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label
-                span(ui-sref='app.classified.all') {{'all'|translate}}
+                span(ui-sref='app.classified.all' ui-sref-opts="{reload: true}") {{'all'|translate}}
             md-tab-body
                 div(ui-view='')
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label
-                span(ui-sref='app.classified.community') {{'community'|translate}}
+                span(ui-sref='app.classified.community' ui-sref-opts="{reload: true}") {{'community'|translate}}
             md-tab-body
                 div(ui-view='')
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label
-                span(ui-sref='app.classified.job') {{'job'|translate}}
+                span(ui-sref='app.classified.job' ui-sref-opts="{reload: true}") {{'job'|translate}}
             md-tab-body
                 div(ui-view='')
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label
-                span(ui-sref='app.classified.lessons') {{'lessons'|translate}}
+                span(ui-sref='app.classified.lessons' ui-sref-opts="{reload: true}") {{'lessons'|translate}}
             md-tab-body
                 div(ui-view='')
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label
-                span(ui-sref='app.classified.housing') {{'housing'|translate}}
+                span(ui-sref='app.classified.housing' ui-sref-opts="{reload: true}") {{'housing'|translate}}
+            md-tab-body
+                div(ui-view='')
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label
+                span(ui-sref='app.classified.sale' ui-sref-opts="{reload: true}") {{'sale'|translate}}
+            md-tab-body
+                div(ui-view='')
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label
+                span(ui-sref='app.classified.services' ui-sref-opts="{reload: true}") {{'services'|translate}}
             md-tab-body
                 div(ui-view='')
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label
-                span(ui-sref='app.classified.sale') {{'sale'|translate}}
+                span(ui-sref='app.classified.personal' ui-sref-opts="{reload: true}") {{'personal'|translate}}
             md-tab-body
                 div(ui-view='')
         md-tab.sv-tabs(md-stretch-tabs="always")
             md-tab-label
-                span(ui-sref='app.classified.services') {{'services'|translate}}
-            md-tab-body
-                div(ui-view='')
-        md-tab.sv-tabs(md-stretch-tabs="always")
-            md-tab-label
-                span(ui-sref='app.classified.personal') {{'personal'|translate}}
-            md-tab-body
-                div(ui-view='')
-        md-tab.sv-tabs(md-stretch-tabs="always")
-            md-tab-label
-                span(ui-sref='app.classified.cars') {{'cars'|translate}}
+                span(ui-sref='app.classified.cars' ui-sref-opts="{reload: true}") {{'cars'|translate}}
             md-tab-body
                 div(ui-view='')
 
