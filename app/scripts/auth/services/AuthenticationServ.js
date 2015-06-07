@@ -52,7 +52,8 @@
                                 reject(error);
                             })
                         }).catch(function (error) {
-                            console.error("Authentication failed:", error);
+
+                            reject(error);
                         });
                     });
                 },
