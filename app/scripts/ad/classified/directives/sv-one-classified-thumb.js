@@ -4,7 +4,7 @@
         .config(function ($translateProvider) {
             $translateProvider.directivePriority(10);
         })
-        .directive('svOneClassifiedThumb', function (ClassifiedServ, toastr, $state, $timeout, $animate, userAuth, $translate, viewModalConst) {
+        .directive('svOneClassifiedThumb', function (ClassifiedServ, $mdDialog, toastr, $state, $timeout, $animate, userAuth, $translate, viewModalConst) {
             return {
                 priority: 10,
                 replace: true,
@@ -17,12 +17,6 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.$watch('cl', function (newValue) {
-                        if (!newValue) {
-                            return;
-                        }
-                        viewModalConst.cl = $scope.cl;
-                    });
                     $translate.directivePriority(10);
                     $translate('delete').then(function (translation) {
                         $scope.deleteTitle = translation;
@@ -43,6 +37,28 @@
                             return true;
                         }
                     };
+                    $scope.showClassifiedModal = function (clickedCl) {
+                        viewModalConst.cl = clickedCl;
+
+                        $mdDialog.show(
+                            {
+                                controller: ClassifiedModalController,
+                                templateUrl: 'scripts/ad/classified/views/modalClassified.html',
+                            }
+                        );
+                    };
+                    function ClassifiedModalController($scope, $mdDialog, viewModalConst) {
+                        $scope.cl = viewModalConst.cl;
+                        $scope.hide = function () {
+                            $mdDialog.hide();
+                        };
+                        $scope.cancel = function () {
+                            $mdDialog.cancel();
+                        };
+                        $scope.answer = function (answer) {
+                            $mdDialog.hide(answer);
+                        };
+                    }
                 }
             };
         });

@@ -19,26 +19,7 @@
                             $scope.currentClassifiedIndex = index;
                         }, classifiedInterval);
                     });
-                    $scope.showClassifiedModal = function () {
-                        $mdDialog.show(
-                            {
-                                controller: ClassifiedModalController,
-                                templateUrl: 'scripts/ad/classified/views/modalClassified.html',
-                            }
-                        );
-                    };
-                    function ClassifiedModalController($scope, $mdDialog, viewModalConst) {
-                        $scope.cl = viewModalConst.cl;
-                        $scope.hide = function () {
-                            $mdDialog.hide();
-                        };
-                        $scope.cancel = function () {
-                            $mdDialog.cancel();
-                        };
-                        $scope.answer = function (answer) {
-                            $mdDialog.hide(answer);
-                        };
-                    }
+
                 }
             };
         });
