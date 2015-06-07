@@ -1,7 +1,7 @@
 'use strict'
 describe('editor profile functionality', function () {
     it('by filling article form fields, clicking on save bth, then clicking on back to articles link,' +
-        ' should find a created article by id of the article with index #0,', function () {
+        ' should get all articles by repeater, then get an article with index #0 and then find expected article title text,', function () {
         browser.get('http://localhost:3000/#/svet-login');
         element(by.id('svetLoginBtn')).click();
         element(by.id('myArticles')).click();
