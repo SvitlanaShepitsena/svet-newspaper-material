@@ -1,6 +1,7 @@
 'use strict'
 describe('editor profile functionality', function () {
-    it('by clicking at save-changes with an empty field form shouls show validation messages', function () {
+    it('by filling article form fields, clicking on save bth, then clicking on back to articles link,' +
+        ' should find a created article by id of the article with index #0,', function () {
         browser.get('http://localhost:3000/#/svet-login');
         element(by.id('svetLoginBtn')).click();
         element(by.id('myArticles')).click();

@@ -9,5 +9,5 @@ exports.config = {
             extensions: [],
         }
     },
-    specs: ['article-addition.js']
+    specs: ['article-edition.js']
 };
