@@ -16,7 +16,11 @@
                         if (formValid) {
                             var parsedArticle = SvHtmlValidatorServ.cleanArticle($scope.article);
                             ArticlesServ.add(parsedArticle, isPublic).then(function (uid) {
+
+                                    $state.go($state.current.name, {artId: uid});
+                                    $scope.article.$id = uid;
                                     toastr.success('Your changes are successfully saved');
+
                                 },
                                 function (error) {
                                     console.log(error);
