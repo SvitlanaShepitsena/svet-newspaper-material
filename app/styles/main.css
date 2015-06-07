@@ -437,6 +437,7 @@ body {
   display: inline-block;
 }
 .mdc-link {
+  cursor: pointer !important;
   text-decoration: none !important;
   display: inline-block;
 }
@@ -466,6 +467,14 @@ body {
 }
 .sv-link {
   cursor: pointer;
+  text-decoration: none !important;
+  display: inline-block;
+}
+.sv-link:hover,
+.sv-link:active,
+.sv-link:focus {
+  text-decoration: none !important;
+  color: #757575 !important;
 }
 .sv-label {
   color: rgba(0,0,0,0.259);

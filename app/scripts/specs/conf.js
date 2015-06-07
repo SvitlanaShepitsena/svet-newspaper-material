@@ -4,7 +4,7 @@ exports.config = {
     capabilities: {
         'browserName': 'chrome',
         "chromeOptions": {
-            binary: 'C:/Users/chica/AppData/Local/Google/Chrome SxS/Application/chrome.exe',
+            binary: 'C:/Users/Andri y/AppData/Local/Google/Chrome SxS/Application/chrome.exe',
             args: [],
             extensions: [],
         }

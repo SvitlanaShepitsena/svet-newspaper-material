@@ -17,8 +17,12 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
-                    viewModalConst.cl = $scope.cl;
-
+                    $scope.$watch('cl', function (newValue) {
+                        if (!newValue) {
+                            return;
+                        }
+                        viewModalConst.cl = $scope.cl;
+                    });
                     $translate.directivePriority(10);
                     $translate('delete').then(function (translation) {
                         $scope.deleteTitle = translation;
