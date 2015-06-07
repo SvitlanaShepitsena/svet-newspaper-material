@@ -18,6 +18,7 @@
                 'username-field': 'This username is already taken',
                 'invalid-password': '* Your password must be between 6 and 12 characters long',
                 /*=buttons*/
+                'quick-look': 'Quick Look',
                 'login': 'Login',
                 'logout': 'Logout',
                 'edit': 'Edit',
@@ -44,6 +45,7 @@
                 'usa': 'США',
                 /*=form*/
                 'login-title': 'Вход',
+                'quick-look': 'Быстрый просмотр',
                 'login:title': 'Авторизация Svet Media Group',
                 'not-registered': 'Не зарегистрированы',
                 'registered-users': 'Зарегистрировались',

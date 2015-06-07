@@ -22,8 +22,10 @@
         div.pl.pr
             span.mdc-display-inline-block.fs-body-1.mr.tc-grey-800 {{cl.description|capitalize:first|length:55}} &nbsp
                 span ...
-    div.p(layout='row' layout-align='start')
-            button.btn.btn--xs.btn--grey.btn--flat {{'read-more'|translate}} >>
+        div.mb.pl.pr.pt
+            button.btn.btn--xs.btn--white.btn--raised.tc-grey-500.mb
+                i.fa.fa-eye.mr
+                | {{'quick-look'|translate}}
     div.p.bgc-grey-100(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' ng-show="!widget")
         div
             span.fs-caption.tc-grey-600.mr Contact Info:
