@@ -58,6 +58,11 @@
                     controller: "OneClassifiedCtrl as oneClassified",
                     templateUrl: "scripts/ad/classified/views/one-classifiedCtrl.html"
                 })
+				.state("app.manager-classified", {
+					url: "/manager-classified", 
+					controller:"ManagerClassifiedCtrl",
+					templateUrl: "scripts/ad/classified/views/manager-classifiedCtrl.html"
+				})
 //#state'
         });
 })();
