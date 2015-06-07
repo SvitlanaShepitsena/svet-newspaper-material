@@ -4,7 +4,7 @@
         .config(function ($translateProvider) {
             $translateProvider.directivePriority(10);
         })
-        .directive('svOneClassifiedThumb', function (ClassifiedServ, toastr, $state, $timeout, $animate, userAuth, $translate) {
+        .directive('svOneClassifiedThumb', function (ClassifiedServ, toastr, $state, $timeout, $animate, userAuth, $translate, viewModalConst) {
             return {
                 priority: 10,
                 replace: true,
@@ -17,6 +17,8 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
+                    viewModalConst.cl = $scope.cl;
+
                     $translate.directivePriority(10);
                     $translate('delete').then(function (translation) {
                         $scope.deleteTitle = translation;

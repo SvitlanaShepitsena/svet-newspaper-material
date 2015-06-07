@@ -5,6 +5,8 @@
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
                 'classified': 'Classified',
+                'svet-classified': 'Svet Classified',
+                'watch-all-svet-classified': 'Watch All Svet Classified',
                 'classified-section': 'Classified Section',
                 'last-classified': 'Last Classified',
                 'community': 'Community',
@@ -35,6 +37,8 @@
             });
             $translateProvider.translations('ru', {
                 'classified': 'Частные Объявления',
+                'svet-classified': 'Частные Объявления',
+                'watch-all-svet-classified': 'Смотреть Все Частные Объявления',
                 'classified-section': 'Раздел  Объявления',
                 'last-classified': 'Свежее Объявление',
                 'community': 'Сообщество',

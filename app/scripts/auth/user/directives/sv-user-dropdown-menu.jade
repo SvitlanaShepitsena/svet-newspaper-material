@@ -8,7 +8,7 @@ lx-dropdown(position='right')
                 a.dropdown-link(ui-sref="app.user.dashboard({uid:user.userName})")
                     i.mdi.mdi-view-dashboard.mr
                     | {{'dashboard'|translate}}
-            li(ng-if='user.isAuthor() || user.isReader()')
+            li(ng-if='user.isAuthor()')
                 a.dropdown-link(ui-sref="app.user.author-articles({uid:user.userName})"  )
                     i.mdi.mdi-view-list.mr
                     span(ng-if='user.isReader()') {{'my-blog'|translate}}

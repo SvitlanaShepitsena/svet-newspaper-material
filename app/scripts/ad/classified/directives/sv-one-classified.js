@@ -1,22 +1,14 @@
 (function () {
     'use strict';
-
     angular.module('ad.classified')
-        .directive('svOneClassified', function (ClassifiedServ, $stateParams) {
+        .directive('svOneClassified', function () {
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-one-classified.html',
                 scope: {
-
+                    cl: '='
                 },
                 link: function ($scope, el, attrs) {
-
-                    var clIndex = $stateParams.clid;
-                    var clObject = ClassifiedServ.getClByKey(clIndex);
-
-                    clObject.$bindTo($scope,'cl').then(function () {
-                        $scope.loaded = true;
-                    });
                 }
             };
         });
