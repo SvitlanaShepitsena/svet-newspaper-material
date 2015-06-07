@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .directive('svClassifiedWidget', function (ClassifiedServ, classified, $interval, classifiedInterval) {
+        .directive('svClassifiedWidget', function (ClassifiedServ, classified, $interval, classifiedInterval, $mdDialog) {
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-classified-widget.html',
@@ -19,6 +19,26 @@
                             $scope.currentClassifiedIndex = index;
                         }, classifiedInterval);
                     });
+                    $scope.showClassifiedModal = function () {
+                        $mdDialog.show(
+                            {
+                                controller: ClassifiedModalController,
+                                templateUrl: 'scripts/ad/classified/views/modalClassified.html',
+                            }
+                        );
+                    };
+                    function ClassifiedModalController($scope, $mdDialog, viewModalConst) {
+                        $scope.cl = viewModalConst.cl;
+                        $scope.hide = function () {
+                            $mdDialog.hide();
+                        };
+                        $scope.cancel = function () {
+                            $mdDialog.cancel();
+                        };
+                        $scope.answer = function (answer) {
+                            $mdDialog.hide(answer);
+                        };
+                    }
                 }
             };
         });

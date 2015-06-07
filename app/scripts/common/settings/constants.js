@@ -12,6 +12,7 @@
         .constant('svetEventsConst', {})
         .constant('svetPost', {})
         .constant('classified', {})
+        .constant('viewModalConst', {})
         .constant('dt', {})
         .constant('classifiedInterval', 63000)
         .service('urlUsers', function (url) {

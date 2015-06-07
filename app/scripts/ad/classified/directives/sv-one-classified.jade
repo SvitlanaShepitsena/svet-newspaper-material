@@ -1,21 +1,16 @@
-.card.mb.p(layout-gt-sm="row" layout-align-gt-sm='space-between center' )
-    div
+div(sv-animate-on-change='cl')
+    div(class='ml++ mr++ mt+ mb+')
+        span.mdc-display-inline-block.fs-title.mr.tc-grey-800 {{cl.title|capitalize:first}}
+        span.fs-subhead.tc-grey-600 ({{cl.state}}, {{cl.city}})
+        div(layout='row' layout-align='start center')
+            span.fs-cuption.tc-grey-600.display-block.mr {{cl.timestamp|date}}
+            a.fs-caption.tc-grey-700.bgc-grey-300.display-block(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{cl.section}}
+        span.fs-body-2.tc-grey-700.display-block {{cl.description}}
+    .bgc-grey-100(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' ng-show="!widget" class='pl++ pr++ pt+ pb+')
         div
-            span.mdc-display-inline-block.fs-body-2.mr.tc-grey-800 {{cl.title|capitalize:first}}
-            span.mdc-display-inline-block.tc-grey-700(style='border:#E0E0E0 1px solid;padding: 1px 4px') ${{cl.price}}
+            span.fs-caption.tc-grey-600.mr Contact Info:
+            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Name: {{cl.name}},
         div
-            span.fs-body-1 {{cl.description}}
+            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Phone: {{cl.phone}},
         div
-            .mdc-display-inline-block.mr.tc-grey-500
-                i.mdi.mdi-calendar-today(style="margin-right:2px")
-                span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
-            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr {{cl.state}}, {{cl.city}}
-            .mdc-display-inline-block.mr
-                a.fs-caption.tc-grey-800.bgc-grey-300(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{cl.section}}
-    div(ng-if='isEditable()')
-        button.btn.btn--s.btn--white.btn--raised(lx-ripple='' ng-click='editCl({cl:cl})')
-            i.mdi.mdi-account-remove.mr
-            | {{'edit'|translate}}
-        button.btn.btn--s.btn--white.btn--raised(lx-ripple='' ng-click='removeCl({cl:cl})')
-            i.mdi.mdi-account-remove.mr
-            | {{'delete'|translate}}
+            span.mdc-display-inline-block.fs-caption.mr Email: {{cl.email}}
