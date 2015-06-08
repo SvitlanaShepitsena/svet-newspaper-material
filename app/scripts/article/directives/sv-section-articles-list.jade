@@ -1,14 +1,14 @@
 ul.list-unstyled(layout='column')
     li(class="mb" ng-repeat='n in newsList|sectionNews:sectionName')
         .card(layout="row" class='pt pb')
-            div.p(style='float:left' class='')
-                a(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
-                    sv-image-thumb(img-container-width="70px" img-container-height="70px" img='{{n.img}}' img-height="150%")
-            div
+            div.pl.pr(style='float:left' class='')
+                a(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none;max-width:70px')
+                    sv-image-thumb(img-container-width="70px" img-container-height="70px" img='{{n.img}}' img-height="150%" img-width="auto" img-bottom-shift="10%")
+            div(class='ml mr')
                 a.tc-grey-800(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')
                     span.display-block.fs-subhead(ng-bind-html='safeParsing(n.title)')
                 span.fs-caption By &nbsp
                 span.fs-caption.tc-grey-500(ng-bind-html='safeParsing((n.author|authorNameFr))')
                 span.display-block.fs-body-1.tc-black-2(ng-bind-html='safeParsing(n.summary)')
-                div(layout='row' layout-align='end start' class='pr')
+                div(layout='row' layout-align='end')
                     button.btn.btn--xs.btn--grey.btn--flat(ui-sref='app.article({id:n.fbkey})' ) {{'read-more'|translate}} >>

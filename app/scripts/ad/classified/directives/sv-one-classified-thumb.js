@@ -17,6 +17,8 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.timeLeft = moment($scope.cl.timestamp).add('7','day');
+
                     $translate.directivePriority(10);
                     $translate('delete').then(function (translation) {
                         $scope.deleteTitle = translation;

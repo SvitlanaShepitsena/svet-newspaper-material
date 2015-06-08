@@ -6,7 +6,7 @@
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-classified-tabs.html',
                 link: function ($scope, el, attrs) {
-                    $scope.svTabs=['all','community','job','lessons','housing', 'sale','services','personal','cars',];
+                    $scope.svTabs=['community','job','lessons','housing', 'sale','services','personal','cars',];
                     $scope.$watch('svRoute', function (newValue, oldValue) {
                         if (!newValue) {
                             return;

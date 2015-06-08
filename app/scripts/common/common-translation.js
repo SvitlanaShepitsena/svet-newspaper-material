@@ -46,7 +46,7 @@
                 'usa': 'США',
                 /*=form*/
                 'login-title': 'Вход',
-                'quick-look': 'Быстрый просмотр',
+                'quick-look': 'Просмотр',
                 'login:title': 'Авторизация Svet Media Group',
                 'not-registered': 'Не зарегистрированы',
                 'registered-users': 'Зарегистрировались',
