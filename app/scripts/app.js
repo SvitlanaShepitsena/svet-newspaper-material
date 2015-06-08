@@ -2,13 +2,14 @@
     'use strict';
     angular.module('app', [
         // modules
+		'ad',
         'ui.router',
         'pascalprecht.translate',
+        'auth',
         'ngMaterial',
         'ngDragDrop',
         'textAngular',
 		'blogs',
-        'auth',
         'auth.user',
         'auth.manager',
         'auth.notifications',

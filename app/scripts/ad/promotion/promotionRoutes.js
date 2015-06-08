@@ -11,7 +11,7 @@
                     templateUrl: "scripts/ad/promotion/views/customer-adCtrl.html"
                 })
 
-                .state("app.customer-classified", {
+                .state("app.user.classified", {
                     url: "/customer-classified",
                     controller:"CustomerClassifiedCtrl",
                     templateUrl: "scripts/auth/views/customer-classifiedCtrl.html"

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('auth.user')
+    angular.module('auth')
         .controller('CustomerClassifiedCtrl', function ($scope) {
 
         });

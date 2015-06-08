@@ -2,15 +2,14 @@ div
     md-tabs.tabs-classified.tc-black-2(md-border-bottom='' md-dynamic-height )
         md-tab.sv-tabs(md-stretch-tabs="always" md-tab-active = 'true')
             md-tab-label
-                span(ui-sref='app.user.ad') {{"business-ad"|translate}}
+                span(ui-sref='app.user.ad.promotion') {{"business-ad"|translate}}
             md-tab-body
                 sv-business-ad
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label
-                span(ui-sref='app.user.classified') {{"classified"|translate}}
+                span(ui-sref='app.user.ad.classified') {{"classified"|translate}}
             md-tab-body
-                div(ui-view="")
-                    sv-user-classified-section
+                sv-user-classified-section
     div(ng-show='!user.isCustomer()')
         sv-user-classified-section
 

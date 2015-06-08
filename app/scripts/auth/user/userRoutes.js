@@ -53,11 +53,6 @@
                     controller: "HomepageRankCtrl",
                     templateUrl: "scripts/article/views/homepage-rankCtrl.html"
                 })
-				.state("app.customer-classified", {
-					url: "/customer-classified", 
-					controller:"CustomerClassifiedCtrl",
-					templateUrl: "scripts/auth/user/views/customer-classifiedCtrl.html"
-				})
 //#state'
         });
 })();
