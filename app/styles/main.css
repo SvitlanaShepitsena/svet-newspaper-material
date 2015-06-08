@@ -232,22 +232,6 @@ md-icon {
   fill: #393939;
   margin: 0px;
 }
-.sv-tabs {
-  font-size: 14px !important;
-  padding: 10px 15px 4px;
-  line-height: 15px;
-}
-.tabs-classified .md-tab {
-  padding: 0px !important;
-}
-md-tab-item span {
-  font-size: 11px !important;
-  font-weight: 500 !important;
-}
-md-tab-content {
-  margin-top: 16px;
-  height: 100%;
-}
 .data-table--has-primary > tbody > tr > td:first-child,
 .data-table--has-primary > thead > tr > th:first-child {
   padding: 8px 16px !important;
@@ -533,6 +517,27 @@ display inline-block,
 }
 .bgc-dark-grey {
   background-color: #555 !important;
+}
+/**********************
+  =tabs
+***********************/
+.sv-tabs {
+  font-size: 14px !important;
+  line-height: 15px;
+}
+.sv-tab-span {
+  padding: 12px 24px !important;
+}
+.tabs-classified .md-tab {
+  padding: 0px !important;
+}
+md-tab-item span {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+md-tab-content {
+  margin-top: 16px;
+  height: 100%;
 }
 /***************/
 /*=lumx custom typography*/
