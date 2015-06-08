@@ -10,10 +10,11 @@
                     controller: "CustomerAdCtrl as customerAd",
                     templateUrl: "scripts/ad/promotion/views/customer-adCtrl.html"
                 })
-                .state("app.user.classified", {
+
+                .state("app.customer-classified", {
                     url: "/customer-classified",
-                    controller: "CustomerClassifiedCtrl",
-                    templateUrl: "scripts/ad/promotion/views/customer-classifiedCtrl.html"
+                    controller:"CustomerClassifiedCtrl",
+                    templateUrl: "scripts/auth/views/customer-classifiedCtrl.html"
                 })
                 .state("app.user.ad.start", {
                     url: "/manage-campaign/:id",
