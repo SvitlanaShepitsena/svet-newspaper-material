@@ -1,15 +1,16 @@
 .card(class='mb+' sv-animate-on-change='cl')
     div.p.bgc-grey-200(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' )
-        .pl.pr
-            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr(ng-show='isEditable()') {{'active'|translate|uppercase}}
-            .mdc-display-inline-block.mr.tc-grey-500
-                i.mdi.mdi-calendar-today(style="margin-right:4px")
-                span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
-                span.fs-caption.tc-grey-500 {{cl.timestamp|isNewCl}}
-            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr(ng-show='!isEditable()') {{cl.state}}, {{cl.city}}
         div.mb.pl.pt
             a.fs-caption.tc-grey-700.bgc-grey-300.sv-link(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{cl.section}}
+        div
+            span(ng-show='isEditable()')
+                sv-status-label(label-title="active" ng-show='!widget')
+                span.fs-caption Time left: 7 days
+            span.fs-caption.tc-grey-800.mr(ng-show='!isEditable()') {{cl.city}}
         div.mb.pt(ng-show='isEditable()' layout="row")
+            button.btn.btn--s.btn--white.btn--raised.tc-grey-700.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+                i.fa.fa-share.fa-fw &nbsp
+                | {{'repost'|translate}}
             button.btn.btn--s.btn--white.btn--raised.tc-teal-300.mr(lx-ripple='' ng-click='editCl({cl:cl})')
                 i.fa.fa-pencil.fa-fw &nbsp
                 | {{'edit'|translate}}
@@ -18,12 +19,14 @@
                 span {{'delete'|translate}}
     div.p(layout='column')
         div.mb.pl.pr.pt
+            //a.fs-caption.tc-grey-700.bgc-grey-300.sv-link.mr(style="padding: 2px 4px; border-radius:3px;cursor:pointer" ng-show="!widget") {{cl.section}}
             span.mdc-display-inline-block.fs-body-2.mr.tc-grey-800 {{cl.title|capitalize:first}}
             span.mdc-display-inline-block.tc-grey-700(style='border:#E0E0E0 1px solid;padding: 1px 4px' ng-show="cl.price") ${{cl.price}}
-        div.pl.pr
-            span.mdc-display-inline-block.fs-body-1.mr.tc-grey-800 {{cl.description|capitalize:first|length:55}} &nbsp
-                span ...
     .bgc-grey-100(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' class='pl pr pt+ pb')
+        .mdc-display-inline-block.mr.ml.tc-grey-500
+            span.fs-caption.tc-grey-500 {{cl.timestamp|isNewCl}}
+            i.mdi.mdi-calendar-today(style="margin-right:4px")
+            span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
         sv-quick-look-btn(modal-method='showClassifiedModal(cl)')
     //div.p.bgc-grey-100(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' ng-show="!widget")
     //    div

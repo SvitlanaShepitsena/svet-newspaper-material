@@ -18,6 +18,7 @@
                 'username-field': 'This username is already taken',
                 'invalid-password': '* Your password must be between 6 and 12 characters long',
                 /*=buttons*/
+                'repost': 'Repost',
                 'quick-look': 'Quick Look',
                 'login': 'Login',
                 'logout': 'Logout',
@@ -56,6 +57,7 @@
                 'username-field': 'Это имя пользователя уже используется',
                 'invalid-password': '* Ваш пароль должен содержать от 6 до 20 символов',
                 /*=buttons*/
+                'repost': 'Активировать',
                 'logout': 'Выйти',
                 'login': 'Войти',
                 'edit': 'Править',
