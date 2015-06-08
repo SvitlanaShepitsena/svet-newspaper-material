@@ -38,7 +38,7 @@
                                         $mdDialog.cancel()
                                     }
                                 },
-                                templateUrl: 'scripts/events/views/modalDeleteConfirm.html',
+                                templateUrl: 'scripts/common/views/modalDeleteConfirm.html',
                             }).then(function () {
                                 ConnectionEventServ.removePublicWithKey(event.$id).then(function () {
                                     toastr.warning('Events removed');

@@ -1,0 +1,9 @@
+md-dialog
+    md-dialog-content(style='padding:0px')
+        .bgc-grey-100(class='p+')
+            span.display-block.fs-title.tc-red-300 {{message}}
+            span.display-block.fs-subhead.tc-grey-600 Click ban to confirm.
+        .bgc-grey-200(layout="row" class='p+' layout-align='space-around center')
+            button.btn.btn--s.btn--black.btn--raised.bgc-grey-600.mr(lx-ripple='' id="confBanBtn" ng-click="delete()") {{'ban'|translate}}
+            button.btn.btn--s.btn--.btn--raised(lx-ripple='' ng-click="cancel()") {{'cancel'|translate}}
+

@@ -21,7 +21,7 @@
                                     $mdDialog.cancel()
                                 }
                             },
-                            templateUrl: 'scripts/events/views/modalDeleteConfirm.html',
+                            templateUrl: 'scripts/common/views/modalDeleteConfirm.html',
                         }).then(function () {
                             var removalMethod = $parse(attrs.ngClick);
                             removalMethod($scope);

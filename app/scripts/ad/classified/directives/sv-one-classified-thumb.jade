@@ -29,7 +29,10 @@
             i.mdi.mdi-calendar-today(style="margin-right:4px")
             span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
         .mb(ng-show="!widget && user.isManager()")
-            sv-ban-btn(ban-method='banByManager(cl)')
+            a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='banCl()' sv-confirm-ban='classified')
+                i.fa.fa-trash.fa-fw &nbsp
+                span {{'delete'|translate}}
+            sv-ban-btn(ban-method='banByManager(cl)' sv-confirm-ban="classified")
         .mb
             sv-quick-look-btn(modal-method='showClassifiedModal(cl)')
 

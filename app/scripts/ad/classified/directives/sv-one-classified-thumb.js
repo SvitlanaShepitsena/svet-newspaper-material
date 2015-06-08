@@ -8,6 +8,7 @@
                 scope: {
                     cl: '=',
                     removeCl: '&',
+                    banCl: '&',
                     editCl: '&',
                     widget: '=',
                     isHome: '='
