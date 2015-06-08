@@ -4,7 +4,7 @@
         .config(function ($translateProvider) {
             $translateProvider.directivePriority(10);
         })
-        .directive('svOneClassifiedThumb', function (ClassifiedServ, $mdDialog, toastr, $state, $timeout, $animate, userAuth, $translate, viewModalConst) {
+        .directive('svOneClassifiedThumb', function (TimeLeftServ, ClassifiedServ, $mdDialog, toastr, $state, $timeout, $animate, userAuth, $translate, viewModalConst) {
             return {
                 priority: 10,
                 replace: true,
