@@ -16,12 +16,15 @@
                     $scope.$watch('cl.timestamp', function (newValue, oldValue) {
                         if (newValue) {
                             var timeObj = TimeLeftServ.computeInDays(newValue, 7);
-                            $scope.status= timeObj.isActive;
-                            $scope.timeLeft= timeObj.timeLeft;
+                            $scope.status = timeObj.isActive;
+                            $scope.timeLeft = timeObj.timeLeft;
                         }
                     });
-
-
+                    $scope.banByManager = function (cl) {
+                        ClassifiedServ.banCl(cl).then(function () {
+                            toastr.warning('Classified is banned');
+                        })
+                    };
                     $scope.user = userAuth.profile;
                     $scope.editState = false;
                     $scope.isEditable = function () {
@@ -40,7 +43,6 @@
                     };
                     $scope.showClassifiedModal = function (clickedCl) {
                         viewModalConst.cl = clickedCl;
-
                         $mdDialog.show(
                             {
                                 controller: ClassifiedModalController,

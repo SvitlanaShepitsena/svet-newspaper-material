@@ -6,6 +6,9 @@
             var clsUrl = url + 'cls/all/'
 
             function processClassifiedArray(cls) {
+                cls = _.filter(cls, function (cl) {
+                    return !cl.banned;
+                });
                 var processedList = _.sortBy(cls, 'timestamp');
                 return processedList;
             }
@@ -24,11 +27,10 @@
                         var classifiedArray = $firebaseArray(new Firebase(clsUrl));
                         classifiedArray.$loaded(function () {
                             classified.list = processClassifiedArray(classifiedArray);
-
                             classifiedArray.$watch(function () {
-                            classified.list = processClassifiedArray(classifiedArray);
+                                var newList=processClassifiedArray(classifiedArray);
+                                classified.list = newList ;
                             });
-
                             resolve();
                         });
                     });
@@ -53,6 +55,18 @@
                         var classifiedObject = $firebaseObject(new Firebase(clsUrl));
                         classifiedObject.$loaded().then(function () {
                             classifiedObject[cl.$id] = cl;
+                            classifiedObject.$save().then(function () {
+                                resolve();
+                            })
+                        })
+                    });
+                },
+                banCl: function (cl) {
+                    var id = cl.$id;
+                    return $q(function (resolve, reject) {
+                        var classifiedObject = $firebaseObject(new Firebase(clsUrl + id));
+                        classifiedObject.$loaded().then(function () {
+                            classifiedObject.banned = true;
                             classifiedObject.$save().then(function () {
                                 resolve();
                             })
