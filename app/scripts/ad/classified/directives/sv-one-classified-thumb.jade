@@ -8,7 +8,7 @@
                 span.fs-caption(ng-show='status') Expires: {{timeLeft}}
                 span.fs-caption(ng-show='!status') Expired {{timeLeft}}
         div(ng-if='cl.banned')
-            sv-status-label(label-title="banned" ng-show='!widget')
+            sv-status-label(label-title="banned" ng-show='!widget' tc="tc-white-1" bgc="bgc-red-300" label-padding="4px" fs="fs-caption")
         span.fs-caption.tc-grey-800.mr(ng-show='!isEditable()') {{cl.city}}
         div.mb.pt(ng-show='isEditable()' layout="row")
             div(ng-show='!cl.banned')

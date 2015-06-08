@@ -1,10 +1,31 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .directive('svAddClassifiedForm', function (ClassifiedServ, toastr) {
+        .directive('svAddClassifiedForm', function (ClassifiedServ, toastr, $mdDialog) {
             return {
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-add-classified-form.html',
+                controller: function ($scope) {
+                    $scope.termsConditionsClassifiedModal = function () {
+                        $mdDialog.show(
+                            {
+                                controller: TermsConditionsClassifiedController,
+                                templateUrl: 'scripts/common/views/terms-conditions-classified.html',
+                            }
+                        );
+                    };
+                    function TermsConditionsClassifiedController($scope, $mdDialog) {
+                        $scope.hide = function () {
+                            $mdDialog.hide();
+                        };
+                        $scope.cancel = function () {
+                            $mdDialog.cancel();
+                        };
+                        $scope.answer = function (answer) {
+                            $mdDialog.hide(answer);
+                        };
+                    }
+                },
                 link: function ($scope, el, attrs) {
                     $scope.sections = ClassifiedServ.getSections();
                     $scope.isInvalid = function (field) {
@@ -57,6 +78,7 @@
                             state: '',
                             title: '',
                             price: '',
+                            acceptClassifiedPolicy: '',
                             description: ''
                         };
                     };

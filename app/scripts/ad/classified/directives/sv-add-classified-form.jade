@@ -22,7 +22,7 @@ div
             md-input-container(class="mr ml" flex)
                 md-select(name="section" ng-model='clCopy.section' style='margin-bottom:0px' required)
                     md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
-                        i.mdi.mdi-checkbox-marked-outline.mb(style='max-width:22px')
+                        i.mdi.mdi-checkbox-marked-outline.mb(style='max-width:22px') &nbsp
                         | {{clCopy.section || 'classified-section'|translate}}
                     md-option(ng-repeat='s in sections track by $index' ng-value='s.$value' style='height:38px')
                         .fs-body-2 {{s.$value|capitalize}}
@@ -43,7 +43,11 @@ div
                 input(ng-model='clCopy.price'
                 sv-url-decode
                 name='price' required='')
-        div(layout='row' layout-align-sm='center center')
+        div(layout='row' layout-align='center center')
+            md-checkbox(ng-model='clCopy.acceptClassifiedPolicy' aria-label='terms')
+            div
+                a.fs-body-2(style='border-bottom: #393939 1px dotted; line-height:14px; cursor:pointer' ng-click="termsConditionsClassifiedModal()") I have read and accept Classified Terms and Conditions
+        div(layout='row' layout-align='center center')
             button.btn.btn--s.btn--raised.btn--grey.m( type='submit' lx-ripple value="Post")
                 i.mdi.mdi-send.mr
                 | {{editState?'save':'post'|translate}}
