@@ -1,13 +1,13 @@
 div
-    md-tabs.tabs-classified.tc-black-2(md-border-bottom='' md-dynamic-height )
-        md-tab(md-stretch-tabs="always" md-tab-active = 'true' style='padding:0px')
-            md-tab-label
-                span.display-block.sv-tab-span(ui-sref='app.user.ad.promotion' ) {{"business-ad"|translate}}
-            md-tab-body
-                div(ui-view='')
+    md-tabs.tabs-classified.tc-black-2( md-selected='selectedIndex'  md-border-bottom='' md-dynamic-height )
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label
-                span.display-block.sv-tab-span(ui-sref='app.user.ad.classified' ) {{"classified"|translate}}
+                span(ui-sref='app.user.ad.promotion') {{"business-ad"|translate}}
+            md-tab-body
+               div(ui-view='')
+        md-tab.sv-tabs(md-stretch-tabs="always" )
+            md-tab-label
+                span(ui-sref='app.user.ad.classified') {{"classified"|translate}}
             md-tab-body
                 div(ui-view='')
     //div(ng-show='!user.isCustomer()')
