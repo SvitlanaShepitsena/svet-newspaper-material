@@ -6,9 +6,9 @@
                 /*=ad*/
                 /*classified*/
                 .state("app.classified", {
-                    abstract: true,
+                    abstract:true,
                     url: "/classified",
-                    resolve: {
+                    resolve:{
                         clsLive: function (ClassifiedServ) {
                             return ClassifiedServ.bindClassifiedsLive();
                         }
@@ -16,6 +16,10 @@
                     controller: "ClassifiedCtrl as classified",
                     templateUrl: "scripts/ad/classified/views/classifiedCtrl.html"
                 })
+                //.state("app.classified.all", {
+                //    url: "/all",
+                //    templateUrl: "scripts/ad/classified/views/classified-general.html"
+                //})
                 .state("app.classified.community", {
                     url: "/community",
                     templateUrl: "scripts/ad/classified/views/classified-general.html"
@@ -23,6 +27,7 @@
                 .state("app.classified.job", {
                     url: "/job",
                     templateUrl: "scripts/ad/classified/views/classified-general.html"
+
                 })
                 .state("app.classified.lessons", {
                     url: "/lessons",
@@ -53,6 +58,7 @@
                     controller: "OneClassifiedCtrl as oneClassified",
                     templateUrl: "scripts/ad/classified/views/one-classifiedCtrl.html"
                 })
+
 //#state'
         });
 })();
