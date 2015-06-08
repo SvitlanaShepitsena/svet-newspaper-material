@@ -42,11 +42,6 @@
                     controller: "NewPromotionByManagerCtrl",
                     templateUrl: "scripts/ad/promotion/views/new-promotion-by-managerCtrl.html"
                 })
-                .state("app.manager-classifieds", {
-                    url: "/manager-classifieds",
-                    controller: "ManagerClassifiedsCtrl",
-                    templateUrl: "scripts/auth/manager/views/manager-classifiedsCtrl.html"
-                })
 //#state'
         });
 })();

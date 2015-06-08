@@ -27,12 +27,7 @@
             span.fs-caption.tc-grey-500 {{cl.timestamp|isNewCl}}
             i.mdi.mdi-calendar-today(style="margin-right:4px")
             span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
+        button.btn.btn--xs.btn--red.bgc-red-300.btn--raised(lx-ripple='' ng-show="!widget")
+            i.fa.fa-ban.fa-fw &nbsp
+            | {{"ban"|translate}}
         sv-quick-look-btn(modal-method='showClassifiedModal(cl)')
-    //div.p.bgc-grey-100(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' ng-show="!widget")
-    //    div
-    //        span.fs-caption.tc-grey-600.mr Contact Info:
-    //        span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Name: {{cl.name}},
-    //    div
-    //        span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Phone: {{cl.phone}},
-    //    div
-    //        span.mdc-display-inline-block.fs-caption.mr Email: {{cl.email}}

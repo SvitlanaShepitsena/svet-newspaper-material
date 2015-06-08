@@ -20,7 +20,7 @@
                 /*=buttons*/
                 'repost': 'Repost',
                 'quick-look': 'Quick Look',
-                'full-description': 'Full Description',
+                'full-description': 'More Info',
                 'login': 'Login',
                 'logout': 'Logout',
                 'edit': 'Edit',
