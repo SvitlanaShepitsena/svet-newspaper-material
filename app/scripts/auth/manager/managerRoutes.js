@@ -32,26 +32,21 @@
                     controller: "ManagerUsersCtrl as managerUsers",
                     templateUrl: "scripts/auth/manager/views/manager-usersCtrl.html"
                 })
-                .state("app.manager.classifieds", {
-                    url: "/manager-classifieds",
-                    controller: "ManagerClassifiedsCtrl",
-                    templateUrl: "scripts/auth/manager/views/manager-classifiedsCtrl.html"
-                })
                 .state("app.manager.ad", {
                     url: "/advertisement",
                     controller: "ManagerAdCtrl as managerAd",
                     templateUrl: "scripts/ad/promotion/views/manager-adCtrl.html"
                 })
+				.state("app.manager.classified", {
+					url: "/manager-classified",
+					controller:"ManagerClassifiedCtrl",
+					templateUrl: "scripts/auth/manager/views/manager-classifiedCtrl.html"
+				})
                 .state("app.manager.ad.start", {
                     url: "/manage-promotion/:id",
                     controller: "NewPromotionByManagerCtrl",
                     templateUrl: "scripts/ad/promotion/views/new-promotion-by-managerCtrl.html"
                 })
-				.state("app.manager-classified", {
-					url: "/manager-classified", 
-					controller:"ManagerClassifiedCtrl",
-					templateUrl: "scripts/auth/manager/views/manager-classifiedCtrl.html"
-				})
 //#state'
         });
 })();
