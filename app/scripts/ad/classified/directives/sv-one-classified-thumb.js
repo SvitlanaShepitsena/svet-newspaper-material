@@ -14,13 +14,17 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.$watch('cl.timestamp', function (newValue, oldValue) {
+                    $scope.$watch('cl', function (newValue, oldValue) {
                         if (newValue) {
-                            var timeObj = TimeLeftServ.computeInDays(newValue, 7);
+
+
+                            var timeObj = TimeLeftServ.computeInDays(newValue.timestamp, 7);
                             $scope.status = timeObj.isActive;
                             $scope.timeLeft = timeObj.timeLeft;
                         }
-                    });
+                    }, true);
+
+
                     $scope.banByManager = function (cl) {
                         ClassifiedServ.banCl(cl).then(function () {
                             toastr.warning('Classified is banned');
