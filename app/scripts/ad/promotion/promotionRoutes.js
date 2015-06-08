@@ -5,9 +5,9 @@
             $stateProvider
                 /*=ad*/
                 .state("app.user.ad", {
-                    url: "/business-ad",
-                    controller: "BusinessAdCtrl as businessAd",
-                    templateUrl: "scripts/ad/promotion/views/business-adCtrl.html"
+                    url: "/customer-ad",
+                    controller: "CustomerAdCtrl as customerAd",
+                    templateUrl: "scripts/ad/promotion/views/customer-adCtrl.html"
                 })
                 .state("app.user.ad.start", {
                     url: "/manage-campaign/:id",
