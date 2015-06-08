@@ -3,11 +3,11 @@ md-dialog.sv-dialog-md(aria-label='Classified dialog')
         span.ml.fs-headline
             i.mdi.mdi-tag &nbsp
             | {{'svet-classified'|translate}} &nbsp
-        a.btn.btn--xs.btn--black.btn--raised.bgc-grey-600(lx-ripple='' ui-sref='app.classified.all' ng-click='hide()')
+        a.btn.btn--xs.btn--black.btn--raised.bgc-grey-600(lx-ripple='' ng-show='widget' ng-click='goToSectionList()')
             i.mdi.mdi-tag &nbsp
             | {{'watch-all-svet-classified'|translate}}
         button.btn.btn--s.btn--icon.btn--grey(ng-click='hide()')
             i.mdi.mdi-close &nbsp
     md-dialog-content(style='margin:0px;padding:0px')
-        sv-one-classified(cl='cl')
+        sv-one-classified(cl='cl' widget='widget')
 

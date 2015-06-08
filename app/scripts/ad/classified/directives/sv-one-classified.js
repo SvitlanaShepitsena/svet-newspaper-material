@@ -6,7 +6,8 @@
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-one-classified.html',
                 scope: {
-                    cl: '='
+                    cl: '=',
+                    widget: '='
                 },
                 link: function ($scope, el, attrs) {
                 }

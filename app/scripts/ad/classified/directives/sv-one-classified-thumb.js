@@ -16,15 +16,11 @@
                 link: function ($scope, el, attrs) {
                     $scope.$watch('cl', function (newValue, oldValue) {
                         if (newValue) {
-
-
                             var timeObj = TimeLeftServ.computeInDays(newValue.timestamp, 7);
                             $scope.status = timeObj.isActive;
                             $scope.timeLeft = timeObj.timeLeft;
                         }
                     }, true);
-
-
                     $scope.banByManager = function (cl) {
                         //toastr.info('ban ban skit!'+cl.$id)
                         ClassifiedServ.banCl(cl).then(function () {
@@ -49,6 +45,7 @@
                     };
                     $scope.showClassifiedModal = function (clickedCl) {
                         viewModalConst.cl = clickedCl;
+                        viewModalConst.widget = $scope.widget;
                         $mdDialog.show(
                             {
                                 controller: ClassifiedModalController,
@@ -56,8 +53,14 @@
                             }
                         );
                     };
-                    function ClassifiedModalController($scope, $mdDialog, viewModalConst) {
+                    function ClassifiedModalController($scope, $mdDialog, viewModalConst, $state) {
                         $scope.cl = viewModalConst.cl;
+                        $scope.widget = viewModalConst.widget;
+                        $scope.goToSectionList = function () {
+                            var routeName = 'app.classified.' + $scope.cl.section;
+                            $state.go(routeName);
+                            $scope.hide();
+                        };
                         $scope.hide = function () {
                             $mdDialog.hide();
                         };

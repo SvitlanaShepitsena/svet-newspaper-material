@@ -11,12 +11,13 @@
             sv-status-label(label-title="banned" ng-show='!widget')
         span.fs-caption.tc-grey-800.mr(ng-show='!isEditable()') {{cl.city}}
         div.mb.pt(ng-show='isEditable()' layout="row")
-            button.btn.btn--s.btn--white.btn--raised.tc-grey-700.mr(lx-ripple='' ng-click='editCl({cl:cl})')
-                i.fa.fa-share.fa-fw &nbsp
-                | {{'repost'|translate}}
-            button.btn.btn--s.btn--white.btn--raised.tc-teal-300.mr(lx-ripple='' ng-click='editCl({cl:cl})')
-                i.fa.fa-pencil.fa-fw &nbsp
-                | {{'edit'|translate}}
+            div(ng-show='!cl.banned')
+                button.btn.btn--s.btn--white.btn--raised.tc-grey-700.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+                    i.fa.fa-share.fa-fw &nbsp
+                    | {{'repost'|translate}}
+                button.btn.btn--s.btn--white.btn--raised.tc-teal-300.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+                    i.fa.fa-pencil.fa-fw &nbsp
+                    | {{'edit'|translate}}
             a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='removeCl()' sv-confirm-deletion='classified')
                 i.fa.fa-trash.fa-fw &nbsp
                 span {{'delete'|translate}}
