@@ -15,13 +15,9 @@
                     templateUrl: "scripts/auth/views/customer-classifiedCtrl.html"
                 })
                 .state("app.user.ad.promotion", {
-                    views: {
-                        "promotionCh": {
-                            url: "/customer-ad",
-                            controller: "CustomerAdCtrl as customerAd",
-                            templateUrl: "scripts/ad/promotion/views/customer-adCtrl.html"
-                        }
-                    }
+                    url: "/customer-ad",
+                    controller: "CustomerAdCtrl as customerAd",
+                    templateUrl: "scripts/ad/promotion/views/customer-adCtrl.html"
                 })
                 .state("app.user.ad.start", {
                     url: "/manage-campaign/:id",
