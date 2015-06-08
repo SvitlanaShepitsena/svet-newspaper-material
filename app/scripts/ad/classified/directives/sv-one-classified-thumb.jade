@@ -27,7 +27,8 @@
             span.fs-caption.tc-grey-500 {{cl.timestamp|isNewCl}}
             i.mdi.mdi-calendar-today(style="margin-right:4px")
             span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
-        button.btn.btn--xs.btn--red.bgc-red-300.btn--raised(lx-ripple='' ng-show="!widget")
-            i.fa.fa-ban.fa-fw &nbsp
-            | {{"ban"|translate}}
-        sv-quick-look-btn(modal-method='showClassifiedModal(cl)')
+        .mb(ng-show="!widget")
+            sv-ban-btn
+        .mb
+            sv-quick-look-btn(modal-method='showClassifiedModal(cl)')
+
