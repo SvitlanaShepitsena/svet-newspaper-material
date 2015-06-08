@@ -4,8 +4,10 @@
         .factory('TimeLeftServ', function ($q, url, users, $firebaseObject, $firebaseArray) {
             return {
                 computeInDays: function (timestamp, days) {
-                    var timeLeft = moment(timestamp).add(days, 'days').fromNow();
-                    return timeLeft;
+                    var timeWeekAfter = moment(timestamp,'x').add(days, 'days');
+                    //var timeLeft = moment(timestamp,'x').add(days, 'days').fromNow();
+                    var isActive=timeWeekAfter.isAfter();
+                    return {isActive:isActive,timeLeft:timeWeekAfter.fromNow()}
                 }
             };
         });

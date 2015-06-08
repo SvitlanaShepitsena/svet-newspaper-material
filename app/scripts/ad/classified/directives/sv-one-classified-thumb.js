@@ -1,12 +1,8 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .config(function ($translateProvider) {
-            $translateProvider.directivePriority(10);
-        })
         .directive('svOneClassifiedThumb', function (TimeLeftServ, ClassifiedServ, $mdDialog, toastr, $state, $timeout, $animate, userAuth, $translate, viewModalConst) {
             return {
-                priority: 10,
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-one-classified-thumb.html',
                 scope: {
@@ -17,19 +13,22 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
-                    //$scope.timeLeft = TimeLeftServ.computeInDays($scope.cl.timestamp,6);
-
-                    $translate.directivePriority(10);
-                    $translate('delete').then(function (translation) {
-                        $scope.deleteTitle = translation;
+                    $scope.$watch('cl.timestamp', function (newValue, oldValue) {
+                        if (newValue) {
+                            var timeObj = TimeLeftServ.computeInDays(newValue, 7);
+                            $scope.status= timeObj.isActive;
+                            $scope.timeLeft= timeObj.timeLeft;
+                        }
                     });
+
+
                     $scope.user = userAuth.profile;
                     $scope.editState = false;
                     $scope.isEditable = function () {
                         if ($scope.isHome) {
                             return false;
                         }
-                        if ($state.$current.name.indexOf('classified') > -1) {
+                        if ($state.current.name.indexOf('classified') > -1 && $state.current.name.indexOf('user') === -1) {
                             return false;
                         }
                         if (!userAuth.profile) {
