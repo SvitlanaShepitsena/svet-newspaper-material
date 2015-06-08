@@ -4,12 +4,12 @@ div
             md-tab-label
                 span(ui-sref='app.user.ad.promotion') {{"business-ad"|translate}}
             md-tab-body
-                sv-business-ad
+               div(ui-view='promotionCh')
         md-tab.sv-tabs(md-stretch-tabs="always" )
             md-tab-label
                 span(ui-sref='app.user.ad.classified') {{"classified"|translate}}
             md-tab-body
-                sv-user-classified-section
-    div(ng-show='!user.isCustomer()')
-        sv-user-classified-section
+                div(ui-view='')
+    //div(ng-show='!user.isCustomer()')
+    //    sv-user-classified-section
 

@@ -18,7 +18,7 @@ lx-dropdown(position='right')
                     i.mdi.mdi-view-list.mr
                     span() {{'articles-ranking'|translate}}
             li
-                a.dropdown-link(ui-sref="app.user.ad({uid:user.userName })" )
+                a.dropdown-link(ui-sref="app.user.ad.promotion({uid:user.userName })" )
                     i.fa.fa-bullhorn.mr
                     span(ng-if='user.isCustomer()') {{'my-ad'|translate}}
                     span(ng-if='user.isAuthor()  || user.isReader()') {{'my-classified'|translate}}
