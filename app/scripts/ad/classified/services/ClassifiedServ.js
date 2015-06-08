@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .factory('ClassifiedServ', function ($q, url, users, $firebaseObject, $firebaseArray, userAuth, classified) {
+        .factory('ClassifiedServ', function ($q, url, $rootScope, users, $firebaseObject, $firebaseArray, userAuth, classified) {
             var freeClNumber = 10;
             var clsUrl = url + 'cls/all/'
 
@@ -29,7 +29,8 @@
                             classified.list = processClassifiedArray(classifiedArray);
                             classifiedArray.$watch(function () {
                                 var newList=processClassifiedArray(classifiedArray);
-                                classified.list = newList ;
+                                classified.list = newList;
+                                //$rootScope.$apply();
                             });
                             resolve();
                         });

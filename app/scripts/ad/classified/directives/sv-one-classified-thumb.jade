@@ -2,12 +2,14 @@
     div.p.bgc-grey-200(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' )
         div.mb.pl.pt
             a.fs-caption.tc-grey-700.bgc-grey-300.sv-link(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{cl.section}}
-        div
+        div(ng-if='!cl.banned')
             span(ng-show='isEditable()')
                 sv-status-label(label-title="{{status?'Active':'Not Active'}}" ng-show='!widget')
                 span.fs-caption(ng-show='status') Expires: {{timeLeft}}
                 span.fs-caption(ng-show='!status') Expired {{timeLeft}}
-            span.fs-caption.tc-grey-800.mr(ng-show='!isEditable()') {{cl.city}}
+        div(ng-if='cl.banned')
+            sv-status-label(label-title="banned" ng-show='!widget')
+        span.fs-caption.tc-grey-800.mr(ng-show='!isEditable()') {{cl.city}}
         div.mb.pt(ng-show='isEditable()' layout="row")
             button.btn.btn--s.btn--white.btn--raised.tc-grey-700.mr(lx-ripple='' ng-click='editCl({cl:cl})')
                 i.fa.fa-share.fa-fw &nbsp
