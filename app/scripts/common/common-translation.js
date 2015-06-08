@@ -20,6 +20,7 @@
                 /*=buttons*/
                 'repost': 'Repost',
                 'quick-look': 'Quick Look',
+                'full-description': 'More Info',
                 'login': 'Login',
                 'logout': 'Logout',
                 'edit': 'Edit',
@@ -47,6 +48,7 @@
                 /*=form*/
                 'login-title': 'Вход',
                 'quick-look': 'Просмотр',
+                'full-description': 'Подробнее',
                 'login:title': 'Авторизация Svet Media Group',
                 'not-registered': 'Не зарегистрированы',
                 'registered-users': 'Зарегистрировались',

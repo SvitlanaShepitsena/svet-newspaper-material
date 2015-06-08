@@ -153,14 +153,15 @@
                 <md-content class="pr pl pt">
                     <sv-sidenav-title title="svet-on-social-media"></sv-sidenav-title>
                     <sv-svet-social></sv-svet-social>
-                    <sv-nav-btn url="app.classified.all"
+                    <sv-nav-btn url="app.classified.community"
                                 icon="tag"
                                 title="classified"
                                 txt-color="white-1"
                                 bgc="red-300"
                                 color="white" btn-size="m"
                                 class="mb++"></sv-nav-btn>
-                    <sv-sidenav-title title="last-classified" icon-type="mdi" icon-name="mdi-clock-fast" class='mb++'></sv-sidenav-title>
+                    <sv-sidenav-title title="new-classified" icon-type="mdi" icon-name="mdi-clock-fast"
+                                      class='mb++'></sv-sidenav-title>
 
                     <sv-classified-widget is-home="true" class='mb+'></sv-classified-widget>
 
@@ -244,6 +245,7 @@
 
 <!-- common -->
 <script src="scripts/common/commonRoutes.js"></script>
+<script src="scripts/common/directives/sv-ban-btn.js"></script>
 <script src="scripts/common/directives/sv-status-label.js"></script>
 <script src="scripts/common/directives/sv-quick-look-btn.js"></script>
 <script src="scripts/common/directives/sv-zero-length-notice.js"></script>
