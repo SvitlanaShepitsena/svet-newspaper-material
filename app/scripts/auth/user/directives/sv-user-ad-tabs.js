@@ -7,7 +7,12 @@
                 templateUrl: 'scripts/auth/user/directives/sv-user-ad-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    $scope.selectedIndex = $state.is('app.user.ad.classified') ? 1 : 0;
+                    $scope.$watch(function () {
+                        return $state.current;
+                    }, function (newValue, oldValue) {
+                        var lastRouteChunk = _.last(newValue.name.split('.'));
+                        $scope.selectedIndex = lastRouteChunk === 'promotion' ? 0 : 1;
+                    });
                     $scope.user = userAuth.profile;
                 }
             };
