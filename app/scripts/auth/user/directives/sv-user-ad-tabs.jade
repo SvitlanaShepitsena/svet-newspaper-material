@@ -1,7 +1,8 @@
 div
-    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='' md-dynamic-height   ng-if='user.isCustomer()')
+    md-tabs.tabs-classified.tc-black-2(md-selected='data.selectedIndex', md-border-bottom='' md-dynamic-height   ng-show='user.isCustomer()')
         md-tab.sv-tabs(md-stretch-tabs="always" md-tab-active = 'true')
-            md-tab-label {{"business-ad"|translate}}
+            md-tab-label
+                span(ui-sref='') {{"business-ad"|translate}}
             md-tab-body
                 sv-business-ad
         md-tab.sv-tabs(md-stretch-tabs="always" )

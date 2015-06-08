@@ -14,6 +14,11 @@
                     controller: "StartCampaignCtrl as startCampaign",
                     templateUrl: "scripts/ad/promotion/views/start-campaignCtrl.html"
                 })
+				.state("app.customer-classified", {
+					url: "/customer-classified", 
+					controller:"CustomerClassifiedCtrl",
+					templateUrl: "scripts/ad/promotion/views/customer-classifiedCtrl.html"
+				})
 //#state'
         });
 })();
