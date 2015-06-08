@@ -6,7 +6,7 @@
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-ban-btn.html',
                 scope: {
-                    banMethod: '&'
+                    cl: '='
                 },
                 link: function ($scope, el, attrs) {
                 }

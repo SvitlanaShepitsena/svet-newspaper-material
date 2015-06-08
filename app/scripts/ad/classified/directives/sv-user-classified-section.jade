@@ -11,4 +11,4 @@ div
         .div(ng-show='!!cls' layout="column")
             sv-zero-length-notice(list='cls' owner-field='userKey' item='classifieds')
             div(ng-repeat='cl in cls|userCls|orderBy:"-timestamp"')
-                sv-one-classified-thumb(cl="cl" remove-cl="removeCl(cl)" edit-cl="editCl(cl)")
+                sv-one-classified-thumb(cl="cl" remove-cl="removeCl(cl)" edit-cl="editCl(cl)" )

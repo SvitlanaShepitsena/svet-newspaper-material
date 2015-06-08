@@ -26,9 +26,10 @@
 
 
                     $scope.banByManager = function (cl) {
+                        //toastr.info('ban ban skit!'+cl.$id)
                         ClassifiedServ.banCl(cl).then(function () {
                             toastr.warning('Classified is banned');
-                        })
+                        });
                     };
                     $scope.user = userAuth.profile;
                     $scope.editState = false;

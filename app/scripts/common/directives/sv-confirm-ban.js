@@ -2,7 +2,7 @@
     'use strict';
     angular.module('common')
         .value('confirmBanMessage', {msg: 'Are you sure?'})
-        .directive('svConfirmBan', function ($mdDialog, confirmBanMessage, toastr, $parse) {
+        .directive('svConfirmBan', function ($mdDialog, confirmBanMessage, toastr, $parse, ClassifiedServ) {
             return {
                 priority: -1,
                 link: function ($scope, el, attrs) {
@@ -15,6 +15,7 @@
                             controller: function ($scope, $mdDialog, confirmBanMessage) {
                                 $scope.message = confirmBanMessage.msg;
                                 $scope.banByManager = function () {
+                                    console.log('run here sv-confirm-ban.js');
                                     $mdDialog.hide(true);
                                 }
                                 $scope.cancel = function () {
@@ -23,6 +24,7 @@
                             },
                             templateUrl: 'scripts/common/views/modalBanConfirm.html',
                         }).then(function () {
+                            console.log('Promise');
                             var banMethod = $parse(attrs.ngClick);
                             banMethod($scope);
                         })
