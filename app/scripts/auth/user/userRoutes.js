@@ -53,6 +53,11 @@
                     controller: "HomepageRankCtrl",
                     templateUrl: "scripts/article/views/homepage-rankCtrl.html"
                 })
+				.state("app.author-blogs", {
+					url: "/author-blogs", 
+					controller:"AuthorBlogsCtrl",
+					templateUrl: "scripts/auth/user/views/author-blogsCtrl.html"
+				})
 //#state'
         });
 })();

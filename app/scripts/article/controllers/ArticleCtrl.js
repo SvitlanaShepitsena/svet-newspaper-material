@@ -2,6 +2,7 @@
     'use strict';
     angular.module('article')
         .controller('ArticleCtrl', function ($scope, ArticlesServ, $stateParams, userAuth) {
+            console.log('run here ArticleCtrl.js');
             $scope.user = userAuth.profile;
             $scope.userKey = userAuth.key;
             var id = $stateParams.id;
