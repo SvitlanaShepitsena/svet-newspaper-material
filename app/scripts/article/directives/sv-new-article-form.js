@@ -6,6 +6,12 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
                 link: function ($scope, el, attrs) {
+                    $scope.$watch('articleForm', function (newValue, oldValue) {
+                        if (newValue) {
+                            $scope.isFormChanged=newValue.$dirty;
+                        }
+                    });
+
                     $scope.$watch('article.title', function (newValue, oldValue) {
                         // Remove in Production
                         $rootScope.title = newValue;
@@ -16,11 +22,9 @@
                         if (formValid) {
                             var parsedArticle = SvHtmlValidatorServ.cleanArticle($scope.article);
                             ArticlesServ.add(parsedArticle, isPublic).then(function (uid) {
-
                                     $state.go($state.current.name, {artId: uid});
                                     $scope.article.$id = uid;
                                     toastr.success('Your changes are successfully saved');
-
                                 },
                                 function (error) {
                                     console.log(error);
