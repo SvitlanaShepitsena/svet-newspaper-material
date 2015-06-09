@@ -14,6 +14,7 @@
                                 return
                             }
 
+
                             var lastImg = _.last(images);
                             $scope.$flow.files[0] = lastImg;
                             var file = lastImg;
