@@ -19,6 +19,7 @@
                             var timeObj = TimeLeftServ.computeInDays(newValue.timestamp, 7);
                             $scope.status = timeObj.isActive;
                             $scope.timeLeft = timeObj.timeLeft;
+                            $scope.isNew=TimeLeftServ.isNew(newValue.timestamp,24);
                         }
                     }, true);
                     $scope.banByManager = function (cl) {

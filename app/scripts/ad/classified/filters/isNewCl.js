@@ -8,8 +8,7 @@
                 }
                 var now = parseInt(moment().format('x'));
                 var parsed = parseInt(ts);
-
-                var format=(now-parsed)/(3600);
+                var format = (now - parsed) / (6600);
                 if (format < 24) {
                     return 'New!'
                 }
