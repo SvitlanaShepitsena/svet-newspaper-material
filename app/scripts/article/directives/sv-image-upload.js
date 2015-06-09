@@ -21,27 +21,31 @@
                             fileReader.onload = function (event) {
                                 if ($scope.article) {
                                     var uri = event.target.result;
-                                    el.append("<img style=\"visibility:hidden\" id='hiddenImage' src='" + uri + "' />");
-                                    var hiddenImg = el.find('#hiddenImage');
-                                    var size = file.size;
-                                    var width = hiddenImg.width();
-                                    var height = hiddenImg.height();
-                                    var imageToValidate = {
-                                        size: size,
-                                        width: width,
-                                        height: height
+                                    var img = new Image();
+                                    img.src = uri;
+
+                                    img.onload = function(){
+
+                                        var size = file.size;
+                                        var width = img.width;
+                                        var height = img.height;
+                                        var imageToValidate = {
+                                            size: size,
+                                            width: width,
+                                            height: height
+                                        };
+                                        var errMessages = ImageValidationServ.validate(imageToValidate, attrs)
+                                        if (errMessages.length) {
+                                            errMessages.forEach(function (err) {
+                                                toastr.error(err);
+                                            });
+                                            $scope.$flow.files = [];
+                                            el.trigger('blur');
+                                        } else {
+                                            runMe(event.target.result);
+                                        }
+                                        alert( imgSize.w +' '+ imgSize.h );
                                     };
-                                    hiddenImg.remove();
-                                    var errMessages = ImageValidationServ.validate(imageToValidate, attrs)
-                                    if (errMessages.length) {
-                                        errMessages.forEach(function (err) {
-                                            toastr.error(err);
-                                        });
-                                        $scope.$flow.files = [];
-                                        el.trigger('blur');
-                                    } else {
-                                        runMe(event.target.result);
-                                    }
                                     //$scope.article.img = event.target.result;
                                 }
                                 if ($scope.event) {
