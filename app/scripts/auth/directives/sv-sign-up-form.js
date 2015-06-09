@@ -24,7 +24,7 @@
                         userName: faker.internet.userName(),
                         email: faker.internet.email(),
                         password: '123456',
-                        acceptPolicy: true
+                        acceptPolicy: false
                     };
                     $scope.termsConditionsModal = function () {
                         $mdDialog.show(
