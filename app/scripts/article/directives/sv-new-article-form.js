@@ -8,10 +8,9 @@
                 link: function ($scope, el, attrs) {
                     $scope.$watch('articleForm', function (newValue, oldValue) {
                         if (newValue) {
-                            $scope.isFormChanged=newValue.$dirty;
+                            $scope.isFormChanged = newValue.$dirty;
                         }
                     });
-
                     $scope.$watch('article.title', function (newValue, oldValue) {
                         // Remove in Production
                         $rootScope.title = newValue;

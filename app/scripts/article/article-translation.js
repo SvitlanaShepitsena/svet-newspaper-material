@@ -45,13 +45,21 @@
                 'news-section': 'News Section',
                 'article-content': 'Article Content',
                 'choose-section': 'Choose Section',
-                'upload-img': 'Upload Image',
+                'upload-img': 'Upload Image from Your PC',
                 'tags': 'Tags',
                 'views': 'Views',
                 'shares': 'Shares',
                 'private': 'Private',
                 'articles-ranking': 'Home Rank',
-                'public': 'Public'
+                'public': 'Public',
+                // =images
+                'image-format': 'You can upload images in JPG, JPEG, PNG format.',
+                'image-max-size': 'Maximum image size: 3MB',
+                'image-min-dimensions': 'Minimum image dimensions: 640x480px',
+                'image-width': 'Minimum image width is 640px',
+                'image-height': 'Minimum image height is 640px',
+                'image-terms-conditions': 'I accept uploading and using photo and images terms and conditions'
+
                 // 'eng':'eng',
             });
             $translateProvider.translations('ru', {
@@ -103,7 +111,15 @@
                 'views': 'Просмотры',
                 'likes': 'Понравилось',
                 'private': 'Приватная',
-                'public': 'Публичная'
+                'public': 'Публичная',
+                // =images
+                'image-format': 'Допустимые форматы для фото: JPG, JPEG, PNG',
+                'image-max-size': 'Максимальный размер фото: 3 Мб',
+                'image-min-dimensions': 'Изображение должно быть не менее 640x480 пикселей',
+                'image-width': 'Мимимальная ширина фото 640px',
+                'image-height': 'Мимимальная высота фото 480px',
+                'image-terms-conditions': 'Я принимаю Соглашение о передаче фото- и видеоматериалов'
+
                 // 'ru':'ru',
             });
             $translateProvider.preferredLanguage('en');

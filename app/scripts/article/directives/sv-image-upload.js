@@ -21,8 +21,9 @@
                             fileReader.onload = function (event) {
                                 if ($scope.article) {
                                     var uri = event.target.result;
-                                    el.append("<img style=\"visibility:hidden\" id='hiddenImage' src='" + uri + "' />");
-                                    var hiddenImg = el.find('#hiddenImage');
+                                    $('body').append("<img style=\"visibility:hidden\" id='hiddenImage' src='" + uri + "' />");
+                                    var h = document.querySelector('#hiddenImage').naturalHeight;
+                                    var hiddenImg = $('body').find('#hiddenImage');
                                     var size = file.size;
                                     var width = hiddenImg.width();
                                     var height = hiddenImg.height();

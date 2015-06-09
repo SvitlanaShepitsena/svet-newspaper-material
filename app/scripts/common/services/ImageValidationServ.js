@@ -5,7 +5,7 @@
             return {
                 validate: function (img, attrs) {
                     var errMessages = [];
-                    if (attrs.svMaxSize && img.size > attrs.svMaxSize*1048576) {
+                    if (attrs.svMaxSize && img.size > attrs.svMaxSize * 1048576) {
                         errMessages.push('Image exceeds max size limit.');
                     }
                     if (attrs.svMinWidth && img.width < attrs.svMinWidth) {
