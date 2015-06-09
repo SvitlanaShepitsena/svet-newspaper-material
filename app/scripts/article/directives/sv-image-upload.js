@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svImageUpload', function ($rootScope, taSelection) {
+        .directive('svImageUpload', function (ImageValidationServ, $rootScope, taSelection) {
             return {
                 templateUrl: 'scripts/article/directives/sv-image-upload.html',
                 link: function ($scope, el, attrs) {
@@ -31,7 +31,7 @@
                             };
                         });
                     }
-                    ;
+
 
                     function runMe(selectedImage) {
                         var selection = $rootScope.lastSelection;
