@@ -37,7 +37,6 @@
                     if ($scope.artId) {
                         //    edit
                         $scope.article = ArticlesServ.get($scope.artId);
-                        console.log($scope.article);
                     } else {
                         //    new article
                         $scope.article = {
