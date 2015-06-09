@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svImageUpload', function (ImageValidationServ, $rootScope, taSelection) {
+        .directive('svImageUpload', function (ImageValidationServ, $rootScope, taSelection, toastr) {
             return {
                 templateUrl: 'scripts/article/directives/sv-image-upload.html',
                 link: function ($scope, el, attrs) {
@@ -13,7 +13,6 @@
                             if (!images.length) {
                                 return
                             }
-
                             var lastImg = _.last(images);
                             $scope.$flow.files[0] = lastImg;
                             var file = lastImg;
@@ -21,9 +20,29 @@
                             fileReader.readAsDataURL(file.file);
                             fileReader.onload = function (event) {
                                 if ($scope.article) {
+                                    var uri = event.target.result;
+                                    el.append("<img style=\"visibility:hidden\" id='hiddenImage' src='" + uri + "' />");
+                                    var hiddenImg = el.find('#hiddenImage');
+                                    var size = file.size;
+                                    var width = hiddenImg.width();
+                                    var height = hiddenImg.height();
+                                    var imageToValidate = {
+                                        size: size,
+                                        width: width,
+                                        height: height
+                                    };
+                                    hiddenImg.remove();
+                                    var errMessages = ImageValidationServ.validate(imageToValidate, attrs)
+                                    if (errMessages.length) {
+                                        errMessages.forEach(function (err) {
+                                            toastr.error(err);
+                                        });
+                                        $scope.$flow.files = [];
+                                        el.trigger('blur');
+                                    } else {
+                                        runMe(event.target.result);
+                                    }
                                     //$scope.article.img = event.target.result;
-                                    runMe(event.target.result);
-
                                 }
                                 if ($scope.event) {
                                     $scope.event.img = event.target.result;
@@ -31,15 +50,12 @@
                             };
                         });
                     }
-
-
                     function runMe(selectedImage) {
                         var selection = $rootScope.lastSelection;
                         var embed = '<img src=' + selectedImage + ' contenteditable="true" allowfullscreen="true" frameborder="0" ng-style="padding:5px" />';
                         taSelection.insertHtml(embed, undefined, selection);
                         $scope.$flow.files = [];
-
-                       el.trigger('blur')
+                        el.trigger('blur')
                     }
                 }
             };
