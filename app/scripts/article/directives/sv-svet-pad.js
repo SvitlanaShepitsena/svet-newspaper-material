@@ -9,7 +9,7 @@
                     ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'pre', 'quote'],
                     ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
                     ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
-                    ['html', 'insertImage','insertLink', 'insertVideo', 'wordcount', 'charcount']
+                    ['html', 'insertImage','insertLink', 'wordcount', 'charcount']
                 ];
                 return taOptions;
             }]);

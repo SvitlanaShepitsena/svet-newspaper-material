@@ -8,6 +8,7 @@ p {
   width: 100%;
 }
 p img {
+  margin: 0px auto;
   padding: 8px;
 }
 .secondNewsMargin:nth-child(odd) {
