@@ -550,7 +550,6 @@ angular.module('textAngularSetup', [])
                 var that = this
                 var imageLink;
 
-
                 function runMe(selectedImage) {
                     var selection = $rootScope.lastSelection;
                     var embed = '<img src=' + selectedImage + ' contenteditable="true" allowfullscreen="true" frameborder="0" ng-style="padding:5px" />';
@@ -558,7 +557,7 @@ angular.module('textAngularSetup', [])
                 }
 
                 $mdDialog.show({
-                    controller: function ($scope,$rootScope) {
+                    controller: function ($scope,$rootScope) { 
                         $scope.hide = function () {
                             $mdDialog.hide();
                         };
