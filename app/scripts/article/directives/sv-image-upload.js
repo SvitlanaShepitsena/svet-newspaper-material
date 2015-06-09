@@ -14,7 +14,6 @@
                                 return
                             }
 
-
                             var lastImg = _.last(images);
                             $scope.$flow.files[0] = lastImg;
                             var file = lastImg;
@@ -31,12 +30,16 @@
                                 }
                             };
                         });
-                    };
+                    }
+                    ;
 
                     function runMe(selectedImage) {
                         var selection = $rootScope.lastSelection;
                         var embed = '<img src=' + selectedImage + ' contenteditable="true" allowfullscreen="true" frameborder="0" ng-style="padding:5px" />';
                         taSelection.insertHtml(embed, undefined, selection);
+                        $scope.$flow.files = [];
+
+                       el.trigger('blur')
                     }
                 }
             };
