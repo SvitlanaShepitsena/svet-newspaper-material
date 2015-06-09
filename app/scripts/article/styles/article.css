@@ -1,6 +1,15 @@
 /**********************
  =search
 ***********************/
+/**********************
+  =Styles for Text Editor
+***********************/
+p {
+  width: 100%;
+}
+p img {
+  padding: 8px;
+}
 .secondNewsMargin:nth-child(odd) {
   padding-right: 8px;
 }

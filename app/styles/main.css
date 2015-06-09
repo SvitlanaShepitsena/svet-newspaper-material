@@ -138,6 +138,12 @@
   display: block;
   margin-bottom: 4px !important;
 }
+p {
+  width: 100%;
+}
+p img {
+  padding: 8px;
+}
 .secondNewsMargin:nth-child(odd) {
   padding-right: 8px;
 }
