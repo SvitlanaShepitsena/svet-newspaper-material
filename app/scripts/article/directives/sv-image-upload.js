@@ -30,13 +30,16 @@
                                 }
                             };
                         });
-                    };
+                    }
+                    ;
 
                     function runMe(selectedImage) {
                         var selection = $rootScope.lastSelection;
                         var embed = '<img src=' + selectedImage + ' contenteditable="true" allowfullscreen="true" frameborder="0" ng-style="padding:5px" />';
                         taSelection.insertHtml(embed, undefined, selection);
-                        $scope.$flow.files=[];
+                        $scope.$flow.files = [];
+
+                       el.trigger('blur')
                     }
                 }
             };
