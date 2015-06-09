@@ -4,6 +4,9 @@
 /**********************
   =Styles for Text Editor
 ***********************/
+p {
+  width: 100%;
+}
 p img {
   padding: 8px;
 }
