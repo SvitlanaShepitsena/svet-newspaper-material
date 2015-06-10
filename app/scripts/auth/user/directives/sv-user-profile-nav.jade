@@ -5,7 +5,7 @@
                 i.mdi.mdi-view-dashboard &nbsp
                 span(hide-sm) {{'dashboard'|translate}}
         li(ui-sref-active='sv-active-user-menu' ng-if='user.isAuthor()')
-            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.author-articles' lx-ripple='' style='font-size:11px;padding:0px 10px' id="myArticles")
+            a.btn.btn--m.btn--grey.tc-grey-700.btn--flat(ui-sref='app.user.news.articles' lx-ripple='' style='font-size:11px;padding:0px 10px' id="myArticles")
                 i.mdi.mdi-view-list &nbsp
                 span(hide-sm ng-if='user.isAuthor()') {{'my-articles'|translate}}
                 //span(hide-sm ng-if='user.isReader()') {{'my-blog'|translate}}

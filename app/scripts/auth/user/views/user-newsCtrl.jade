@@ -1,0 +1,6 @@
+div(layout-gt-sm='row' layout-sm='column' layout-align='space-between center')
+    sv-profile-title(header-title='author-articles')
+    div(layout='row')
+        sv-create-article-btn.mr(ng-if='user.isAuthor()  || user.isReader()')
+        sv-create-article-btn.ml(ng-if='user.isEditor()' is-blog='true')
+sv-author-articles-tabs

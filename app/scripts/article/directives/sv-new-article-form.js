@@ -32,7 +32,7 @@
                         }
                     }
                     $scope.cancelArticle = function (active) {
-                        $state.go('app.user.author-articles');
+                        $state.go('app.user.news.articles');
                     }
                     if ($scope.artId) {
                         //    edit
