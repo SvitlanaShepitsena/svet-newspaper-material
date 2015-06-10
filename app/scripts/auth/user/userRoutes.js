@@ -33,6 +33,13 @@
                     controller: "AuthorArticlesCtrl as authorArticles",
                     templateUrl: "scripts/auth/user/views/author-articlesCtrl.html"
                 })
+
+                .state("app.author-blogs", {
+                    url: "/blogs",
+                    controller:"AuthorBlogsCtrl",
+                    templateUrl: "scripts/auth/user/views/author-blogsCtrl.html"
+                })
+
                 .state("app.user.author-drafts", {
                     url: "/author-drafts",
                     controller: "AuthorDraftsCtrl as authorDrafts",
