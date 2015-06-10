@@ -1,6 +1,7 @@
 div(flex-container='column' flow-init)
     div(layout='row')
-        sv-link-back(l-title="back-to-my-articles" url="app.user.author-articles")
+        sv-link-back(l-title="back-to-my-articles" url="app.user.news.articles" ng-show='artType==="article"')
+        sv-link-back(l-title="back-to-my-blogs" url="app.user.news.blogs" ng-show='artType==="blog"')
     div(layout='row' layout-align='space-between center' )
         div
             sv-profile-title(header-title='new-article' ng-if='artType==="article"' )

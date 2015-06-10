@@ -1,6 +1,3 @@
-div(layout-gt-sm='row' layout-sm='column' layout-align='space-between center')
-    sv-profile-title(header-title='author-articles')
-    div(layout='row')
-        sv-create-article-btn.mr(ng-if='user.isAuthor()  || user.isReader()')
-        sv-create-article-btn.ml(ng-if='user.isEditor()' is-blog='true')
-sv-author-articles-tabs
+sv-zero-length-notice(list='articles' filter='articleBlogFr' filter-value='0' item='articles' owner-field='authorKey')
+div(ng-repeat='article in articles|articleBlogFr:selectedIndex|authorFr:user.key|orderBy:"-timestamp"')
+    sv-author-article-link(article='article' index='$index+1')

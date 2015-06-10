@@ -24,13 +24,22 @@
                     templateUrl: "scripts/auth/user/views/userCtrl.html"
                 })
 
-                .state("app.user.author-articles", {
+
+
+                .state("app.user.news", {
+                    abstract: true,
+                    url: "/news",
+                    controller:"UserNewsCtrl",
+                    templateUrl: "scripts/auth/user/views/user-newsCtrl.html"
+                })
+
+                .state("app.user.news.articles", {
                     url: "/articles",
                     controller: "AuthorArticlesCtrl as authorArticles",
                     templateUrl: "scripts/auth/user/views/author-articlesCtrl.html"
                 })
 
-                .state("app.user.author-blogs", {
+                .state("app.user.news.blogs", {
                     url: "/blogs",
                     controller:"AuthorBlogsCtrl",
                     templateUrl: "scripts/auth/user/views/author-blogsCtrl.html"
@@ -62,11 +71,6 @@
                     controller: "HomepageRankCtrl",
                     templateUrl: "scripts/article/views/homepage-rankCtrl.html"
                 })
-				.state("app.user-news", {
-					url: "/user-news", 
-					controller:"UserNewsCtrl",
-					templateUrl: "scripts/auth/user/views/user-newsCtrl.html"
-				})
 //#state'
         });
 })();
