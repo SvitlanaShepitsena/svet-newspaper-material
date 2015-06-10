@@ -37,7 +37,7 @@
 </head>
 
 
-<body ng-app="app" layout="column" flow-prevent-drop ng-cloak="" ng-controller="AppCtrl" style="overflow-y: hidden">
+<body ng-app="app"  ng-cloak="" ng-controller="AppCtrl" style="overflow-y: hidden">
 <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
             style="background-color:#474341">
     <div layout="row" layout-align="center center">
@@ -124,9 +124,9 @@
             </button>
         </md-toolbar>
 
-        <div layout="row" layout-fill flex> <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
-            <md-content layout-fill class='sv-scrollable'>
-                <div class="mt+" ui-view="" flex></div>
+        <md-content layout="row"> <!--<sv-footer style="position: fixed; bottom:0px"></sv-footer>-->
+            <md-content flex class='sv-scrollable md-padding main-content'>
+                <div style='height:2000px' class="mt+" ui-view="" flex></div>
             </md-content>
             <!-- Right SideBar-->
             <md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
@@ -508,7 +508,6 @@
 
 <!-- sections.radio -->
 <script src="scripts/sections/radio/radioRoutes.js"></script>
-<script src="scripts/sections/radio/radio-translation.js"></script>
 <script src="scripts/sections/radio/controllers/RadioCtrl.js"></script>
 <script src="scripts/sections/home/directives/sv-classified-header-phone.js"></script>
 <script src="scripts/sections/radio/directives/sv-radio-osa.js"></script>
