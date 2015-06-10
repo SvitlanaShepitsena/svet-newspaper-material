@@ -3,7 +3,7 @@
     angular.module('common')
         .factory('NewsGeneratorServ', function (SvobodaSaveToDbServ, HtmlParseServ, $http, $q, $rootScope, $firebaseArray, url) {
             var gUrl = 'http://api.feedzilla.com/v1/categories.json';
-            var svobodaUrls = ['zjgoprey_ipr']
+            var svobodaUrls = ['epiqq']
             var allCategories = [];
             var avoidCategories = ['игорем', 'померанцев'];
             var avoidNewsWithTitle = ['стрелков'];

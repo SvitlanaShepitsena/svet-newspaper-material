@@ -10,7 +10,7 @@
                 link: function ($scope, el, attrs) {
                     $scope.authObj = $firebaseAuth(new Firebase(url));
 
-                    fillForm();
+                    //fillForm();
 
                     $scope.changePassword = function () {
                         $scope.authObj.$changePassword({
