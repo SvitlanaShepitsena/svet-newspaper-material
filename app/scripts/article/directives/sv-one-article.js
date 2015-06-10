@@ -13,6 +13,7 @@
                     $scope.rating1 = 5;
                     $scope.rating2 = 2;
                     $scope.isReadonly = true;
+
                     $scope.rateFunction = function (rating) {
                         console.log("Rating selected: " + rating);
                     };

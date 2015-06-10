@@ -9,7 +9,7 @@
                     insertImage: '&'
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.q = {data: $rootScope.title};
+                    $scope.q = {data: $rootScope.title.replace(/&#34;/g, '"')};
                     $scope.runGoogleSearch = function (query) {
                         if (!query) {
                             return;
