@@ -34,21 +34,14 @@ div
                     label {{'article-summary'|translate}}
                     input(ng-model='article.summary' sv-url-decode  type="text" md-maxlength='250' name='summary' required)
                 md-input-container(flex='')
-                    label {{'article-content'|translate}}
                     sv-svet-pad(body='article.body' )
+            div(layout='column' class='mb+')
+                sv-image-upload(sv-max-size='3' sv-min-width='320' sv-min-height='240' )
             div(layout='row')
                 md-input-container(flex)
                     label {{'tags'|translate}}
                     input(ng-model='article.tags' sv-url-decode name='tags' type="text" md-maxlength="100" required)
-            div(layout='column' class='mb+')
-                span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
                 //img(ng-src="{{article.img}}")
-                div.mb
-                    span.fs-caption.display-block {{'image-format'|translate}}
-                    span.fs-caption.display-block {{'image-max-size'|translate}}.
-                    span.fs-caption.display-block {{'image-min-dimensions'|translate}}.
-                span.fs-subhead Put a cursor in the article description where you want your image to be placed.
-                sv-image-upload(sv-max-size='3' sv-min-width='320' sv-min-height='240' )
         //    div(layout='row' class='mb+' layout-align='start center')
         //        md-checkbox(ng-model='user.acceptPolicy' aria-label='terms')
         //        span.tc-grey-700 I accept &nbsp
