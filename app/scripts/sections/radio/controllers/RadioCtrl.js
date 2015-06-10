@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('radio')
+    angular.module('sections.radio')
         .controller('RadioCtrl', function ($scope) {
 
         });

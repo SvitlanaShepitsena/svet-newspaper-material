@@ -1,7 +1,7 @@
 (function () {
     'use strict'
 
-    angular.module('radio')
+    angular.module('sections.radio')
         .config(['$translateProvider', function ($translateProvider) {
 
             $translateProvider.useCookieStorage();

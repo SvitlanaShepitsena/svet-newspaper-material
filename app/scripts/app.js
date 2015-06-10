@@ -2,7 +2,6 @@
     'use strict';
     angular.module('app', [
         // modules
-		'radio',
         'ui.router',
         'pascalprecht.translate',
         'auth',
