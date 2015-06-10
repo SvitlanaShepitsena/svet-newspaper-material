@@ -14,7 +14,7 @@
                 return taOptions;
             }]);
         })
-        .value('svTextAngular',{selected:false})
+        .value('svTextAngular', {selected: false})
         .directive('svSvetPad', function (url, svTextAngular) {
             return {
                 replace: true,
@@ -33,7 +33,7 @@
                         return svetPad;
                     }, function (newValue, oldValue) {
                         if (newValue && newValue !== oldValue) {
-                            svTextAngular.selected=_.contains(newValue,'focussed');
+                            svTextAngular.selected = _.contains(newValue, 'focussed');
                         }
                     });
                     var editorDiv = el.find('div');
