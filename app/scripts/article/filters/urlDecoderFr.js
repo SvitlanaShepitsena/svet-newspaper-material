@@ -3,10 +3,11 @@
 
     angular.module('article')
         .filter('urlDecoderFr', function () {
-            return function (list) {
-                return _.where(list, function (item) {
-                    return item;
-                });
+            return function (html) {
+                if (html) {
+
+                    return html.replace(/&#34;/g, '"');
+                }
             };
         });
 })();

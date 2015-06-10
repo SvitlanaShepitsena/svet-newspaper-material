@@ -3,7 +3,7 @@ div(flex-container='column' flex)
         sv-one-article-menu(news='news')
         div(class='p+')
             div
-                span.display-block.fs-display-1 {{news.title}}
+                span.display-block.fs-display-1 {{news.title|urlDecoderFr}}
             div.tc-grey-600
                 span.fs-caption Svet Media Group &nbsp
                 span.mdc-display-inline-block.mt.mb.fs-caption.tc-grey-500 {{article.timestamp|date}}
