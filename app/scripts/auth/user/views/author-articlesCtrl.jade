@@ -1,3 +1,6 @@
-sv-zero-length-notice(list='articles' filter='articleBlogFr' filter-value='0' item='articles' owner-field='authorKey')
-div(ng-repeat='article in articles|articleBlogFr:selectedIndex|authorFr:user.key|orderBy:"-timestamp"')
-    sv-author-article-link(article='article' index='$index+1')
+div(ng-show='!loaded')
+    sv-loader
+div(ng-show='loaded')
+    sv-zero-length-notice(list='articles' filter='articleBlogFr' filter-value='0' item='articles' owner-field='authorKey')
+    div(ng-repeat='article in articles|articleBlogFr:selectedIndex|authorFr:user.key|orderBy:"-timestamp"')
+        sv-author-article-link(article='article' index='$index+1')

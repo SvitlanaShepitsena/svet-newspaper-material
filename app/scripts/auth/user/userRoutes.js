@@ -15,7 +15,7 @@
                                 if (userAuth && userAuth.profile.userName === routeUid) {
                                     resolve();
                                 } else {
-                                    reject('You do not have enough priviliges to view that page!');
+                                    reject('You do not have enough privileges to view that page!');
                                 }
                             })
                         }
