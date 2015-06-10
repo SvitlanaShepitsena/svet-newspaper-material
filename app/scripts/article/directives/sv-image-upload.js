@@ -12,7 +12,6 @@
                         if (newValue === false) {
                             $timeout(function () {
                                 $scope.svTextAngularelected = newValue;
-                                console.log(newValue);
                             },100)
                         } else {
 

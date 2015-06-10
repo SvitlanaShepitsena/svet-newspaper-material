@@ -23,23 +23,34 @@
                     controller: "UserCtrl as user",
                     templateUrl: "scripts/auth/user/views/userCtrl.html"
                 })
-                .state("app.user.dashboard", {
-                    url: "/dashboard",
-                    controller: "UserDashboardCtrl as userDashboard",
-                    templateUrl: "scripts/auth/user/views/userDashboardCtrl.html"
+
+
+
+                .state("app.user.news", {
+                    abstract: true,
+                    url: "/news",
+                    controller:"UserNewsCtrl",
+                    templateUrl: "scripts/auth/user/views/user-newsCtrl.html"
                 })
-                .state("app.user.author-articles", {
+
+                .state("app.user.news.articles", {
                     url: "/articles",
                     controller: "AuthorArticlesCtrl as authorArticles",
                     templateUrl: "scripts/auth/user/views/author-articlesCtrl.html"
                 })
 
-                .state("app.author-blogs", {
+                .state("app.user.news.blogs", {
                     url: "/blogs",
                     controller:"AuthorBlogsCtrl",
                     templateUrl: "scripts/auth/user/views/author-blogsCtrl.html"
                 })
 
+
+                .state("app.user.dashboard", {
+                    url: "/dashboard",
+                    controller: "UserDashboardCtrl as userDashboard",
+                    templateUrl: "scripts/auth/user/views/userDashboardCtrl.html"
+                })
                 .state("app.user.author-drafts", {
                     url: "/author-drafts",
                     controller: "AuthorDraftsCtrl as authorDrafts",
