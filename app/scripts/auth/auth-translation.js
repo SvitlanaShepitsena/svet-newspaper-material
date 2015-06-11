@@ -58,6 +58,8 @@
                 'find-people': 'Find People',
                 'subscriptions': 'Subscriptions',
                 'forgot-pass': 'Forgot password?',
+                'email-recovery': 'Email used for registration',
+                'send-temp-pass': 'Send',
                 'profile-settings': 'Profile Settings'
             });
             $translateProvider.translations('ru', {
@@ -114,7 +116,9 @@
                 'invitations': 'Приглашения',
                 'find-people': 'Поиск Людей',
                 'subscriptions': 'Подписки',
-                'forgot-pass': 'Забыди Пароль?',
+                'forgot-pass': 'Забыли Пароль?',
+                'email-recovery': 'Email используемый при регистрации',
+                'send-temp-pass': 'Отослать',
                 'profile-settings': 'Настройки Профайла'
             });
             $translateProvider.preferredLanguage('en');

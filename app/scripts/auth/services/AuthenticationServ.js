@@ -60,7 +60,11 @@
                 logout: function () {
                     authObj.$unauth();
                     ProfileServ.cleanProfile();
-                }
+                },
+                resetPassword: function (email) {
+                    return authObj.$resetPassword({email:email});
+                },
+
             };
         });
 })();
