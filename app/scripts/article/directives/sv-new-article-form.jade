@@ -8,6 +8,8 @@ div
             icon-name="fa-close" btn-url="app.home"
             method-click='cancelArticle(true)')
         div(class='p+')
+            sv-read-txt
+        div(class='p+')
             div(layout='row', layout-sm='column' layout-align='end')
                 div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-if='user.isEditor() && !article.isBlog')
                     md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
