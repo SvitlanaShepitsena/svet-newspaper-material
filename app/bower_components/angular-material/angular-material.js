@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.8-rc1-master-434a509
+ * v0.10.0-rc2
  */
 (function( window, angular, undefined ){
 "use strict";
@@ -10,7 +10,7 @@
 (function(){
 "use strict";
 
-angular.module('ngMaterial', ["ng","ngAnimate","ngAria","material.core","material.core.gestures","material.core.theming.palette","material.core.theming","material.components.autocomplete","material.components.backdrop","material.components.bottomSheet","material.components.button","material.components.card","material.components.checkbox","material.components.chips","material.components.content","material.components.dialog","material.components.divider","material.components.gridList","material.components.icon","material.components.input","material.components.list","material.components.progressCircular","material.components.progressLinear","material.components.radioButton","material.components.select","material.components.sidenav","material.components.slider","material.components.sticky","material.components.subheader","material.components.swipe","material.components.switch","material.components.tabs","material.components.toast","material.components.toolbar","material.components.tooltip","material.components.whiteframe"]);
+angular.module('ngMaterial', ["ng","ngAnimate","ngAria","material.core","material.core.gestures","material.core.theming.palette","material.core.theming","material.components.autocomplete","material.components.backdrop","material.components.bottomSheet","material.components.button","material.components.card","material.components.checkbox","material.components.chips","material.components.content","material.components.dialog","material.components.divider","material.components.fabActions","material.components.fabSpeedDial","material.components.fabTrigger","material.components.fabToolbar","material.components.gridList","material.components.icon","material.components.input","material.components.list","material.components.menu","material.components.progressCircular","material.components.radioButton","material.components.progressLinear","material.components.sidenav","material.components.select","material.components.sticky","material.components.slider","material.components.swipe","material.components.subheader","material.components.switch","material.components.tabs","material.components.toast","material.components.toolbar","material.components.whiteframe","material.components.tooltip"]);
 })();
 (function(){
 "use strict";
@@ -544,6 +544,11 @@ angular.module('material.core')
     // and uses CSS/JS to prevent it from scrolling
     disableScrollAround: function(element) {
       element = element instanceof angular.element ? element[0] : element;
+
+      if (this.getClosest(element, 'MD-DIALOG')) {
+        return angular.noop;
+      }
+
       var parentEl = element;
       var disableTarget;
 
@@ -5369,6 +5374,547 @@ MdDividerDirective.$inject = ["$mdTheming"];
 (function(){
 "use strict";
 
+(function() {
+  'use strict';
+
+  angular
+    .module('material.components.fabActions', ['material.core'])
+    .directive('mdFabActions', MdFabActionsDirective);
+
+  /**
+   * @ngdoc directive
+   * @name mdFabActions
+   * @module material.components.fabSpeedDial
+   *
+   * @restrict E
+   *
+   * @description
+   * The `<md-fab-actions>` directive is used inside of a `<md-fab-speed-dial>` or
+   * `<md-fab-toolbar>` directive to mark the an element (or elements) as the actions and setup the
+   * proper event listeners.
+   *
+   * @usage
+   * See the `<md-fab-speed-dial>` or `<md-fab-toolbar>` directives for example usage.
+   */
+  function MdFabActionsDirective() {
+    return {
+      restrict: 'E',
+
+      require: ['^?mdFabSpeedDial', '^?mdFabToolbar'],
+
+      link: function(scope, element, attributes, controllers) {
+        // Grab whichever parent controller is used
+        var controller = controllers[0] || controllers[1];
+
+        // Make the children open/close their parent directive
+        if (controller) {
+          angular.forEach(element.children(), function(child) {
+            angular.element(child).on('focus', controller.open);
+            angular.element(child).on('blur', controller.close);
+          });
+        }
+
+        // After setting up the listeners, wrap every child in a new div and add a class that we can
+        // scale/fling independently
+        element.children().wrap('<div class="md-fab-action-item">');
+      }
+    }
+  }
+
+})();
+})();
+(function(){
+"use strict";
+
+(function() {
+  'use strict';
+
+  angular
+    .module('material.components.fabSpeedDial', [
+      'material.core',
+      'material.components.fabTrigger',
+      'material.components.fabActions'
+    ])
+    .directive('mdFabSpeedDial', MdFabSpeedDialDirective)
+    .animation('.md-fling', MdFabSpeedDialFlingAnimation)
+    .animation('.md-scale', MdFabSpeedDialScaleAnimation);
+
+  /**
+   * @ngdoc directive
+   * @name mdFabSpeedDial
+   * @module material.components.fabSpeedDial
+   *
+   * @restrict E
+   *
+   * @description
+   * The `<md-fab-speed-dial>` directive is used to present a series of popup elements (usually
+   * `<md-button>`s) for quick access to common actions.
+   *
+   * There are currently two animations available by applying one of the following classes to
+   * the component:
+   *
+   *  - `md-fling` - The speed dial items appear from underneath the trigger and move into their
+   *    appropriate positions.
+   *  - `md-scale` - The speed dial items appear in their proper places by scaling from 0% to 100%.
+   *
+   * @usage
+   * <hljs lang="html">
+   * <md-fab-speed-dial direction="up" class="md-fling">
+   *   <md-fab-trigger>
+   *     <md-button aria-label="Add..."><md-icon icon="/img/icons/plus.svg"></md-icon></md-button>
+   *   </md-fab-trigger>
+   *
+   *   <md-fab-actions>
+   *     <md-button aria-label="Add User">
+   *       <md-icon icon="/img/icons/user.svg"></md-icon>
+   *     </md-button>
+   *
+   *     <md-button aria-label="Add Group">
+   *       <md-icon icon="/img/icons/group.svg"></md-icon>
+   *     </md-button>
+   *   </md-fab-actions>
+   * </md-fab-speed-dial>
+   * </hljs>
+   *
+   * @param {string=} md-direction From which direction you would like the speed dial to appear
+   * relative to the trigger element.
+   * @param {expression=} md-open Programmatically control whether or not the speed-dial is visible.
+   */
+  function MdFabSpeedDialDirective() {
+    FabSpeedDialController.$inject = ["$scope", "$element", "$animate"];
+    return {
+      restrict: 'E',
+
+      scope: {
+        direction: '@?mdDirection',
+        isOpen: '=?mdOpen'
+      },
+
+      bindToController: true,
+      controller: FabSpeedDialController,
+      controllerAs: 'vm',
+
+      link: FabSpeedDialLink
+    };
+
+    function FabSpeedDialLink(scope, element) {
+      // Prepend an element to hold our CSS variables so we can use them in the animations below
+      element.prepend('<div class="md-css-variables"></div>');
+    }
+
+    function FabSpeedDialController($scope, $element, $animate) {
+      var vm = this;
+
+      // Define our open/close functions
+      // Note: Used by fabTrigger and fabActions directives
+      vm.open = function() {
+        $scope.$apply('vm.isOpen = true');
+      };
+
+      vm.close = function() {
+        $scope.$apply('vm.isOpen = false');
+      };
+
+      setupDefaults();
+      setupListeners();
+      setupWatchers();
+
+      // Set our default variables
+      function setupDefaults() {
+        // Set the default direction to 'down' if none is specified
+        vm.direction = vm.direction || 'down';
+
+        // Set the default to be closed
+        vm.isOpen = vm.isOpen || false;
+      }
+
+      // Setup our event listeners
+      function setupListeners() {
+        $element.on('mouseenter', vm.open);
+        $element.on('mouseleave', vm.close);
+      }
+
+      // Setup our watchers
+      function setupWatchers() {
+        // Watch for changes to the direction and update classes/attributes
+        $scope.$watch('vm.direction', function(newDir, oldDir) {
+          // Add the appropriate classes so we can target the direction in the CSS
+          $animate.removeClass($element, 'md-' + oldDir);
+          $animate.addClass($element, 'md-' + newDir);
+        });
+
+
+        // Watch for changes to md-open
+        $scope.$watch('vm.isOpen', function(isOpen) {
+          var toAdd = isOpen ? 'md-is-open' : '';
+          var toRemove = isOpen ? '' : 'md-is-open';
+
+          $animate.setClass($element, toAdd, toRemove);
+        });
+      }
+    }
+  }
+
+  function MdFabSpeedDialFlingAnimation() {
+    function runAnimation(element) {
+      var el = element[0];
+      var ctrl = element.controller('mdFabSpeedDial');
+      var items = el.querySelectorAll('.md-fab-action-item');
+
+      // Grab our element which stores CSS variables
+      var variablesElement = el.querySelector('.md-css-variables');
+
+      // Setup JS variables based on our CSS variables
+      var startZIndex = variablesElement.style.zIndex;
+
+      // Always reset the items to their natural position/state
+      angular.forEach(items, function(item, index) {
+        var styles = item.style;
+
+        styles.transform = '';
+        styles.transitionDelay = '';
+        styles.opacity = 1;
+
+        // Make the items closest to the trigger have the highest z-index
+        item.style.zIndex = (items.length - index) + startZIndex;
+      });
+
+      // If the control is closed, hide the items behind the trigger
+      if (!ctrl.isOpen) {
+        angular.forEach(items, function(item, index) {
+          var newPosition, axis;
+
+          switch (ctrl.direction) {
+            case 'up':
+              newPosition = item.scrollHeight * (index + 1);
+              axis = 'Y';
+              break;
+            case 'down':
+              newPosition = -item.scrollHeight * (index + 1);
+              axis = 'Y';
+              break;
+            case 'left':
+              newPosition = item.scrollWidth * (index + 1);
+              axis = 'X';
+              break;
+            case 'right':
+              newPosition = -item.scrollWidth * (index + 1);
+              axis = 'X';
+              break;
+          }
+
+          item.style.transform = 'translate' + axis + '(' + newPosition + 'px)';
+        });
+      }
+    }
+
+    return {
+      addClass: function(element, className, done) {
+        if (element.hasClass('md-fling')) {
+          runAnimation(element);
+        }
+      },
+      removeClass: function(element, className, done) {
+        runAnimation(element);
+      }
+    }
+  }
+
+  function MdFabSpeedDialScaleAnimation() {
+    var delay = 65;
+
+    function runAnimation(element) {
+      var el = element[0];
+      var ctrl = element.controller('mdFabSpeedDial');
+      var items = el.querySelectorAll('.md-fab-action-item');
+
+      // Always reset the items to their natural position/state
+      angular.forEach(items, function(item, index) {
+        var styles = item.style,
+          offsetDelay = index * delay;
+
+        styles.opacity = ctrl.isOpen ? 1 : 0;
+        styles.transform = ctrl.isOpen ? 'scale(1)' : 'scale(0)';
+        styles.transitionDelay = (ctrl.isOpen ?  offsetDelay : (items.length - offsetDelay)) + 'ms';
+      });
+    }
+
+    return {
+      addClass: function(element, className, done) {
+        runAnimation(element);
+      },
+
+      removeClass: function(element, className, done) {
+        runAnimation(element);
+      }
+    }
+  }
+})();
+
+})();
+(function(){
+"use strict";
+
+(function() {
+  'use strict';
+
+  angular
+    .module('material.components.fabTrigger', [ 'material.core' ])
+    .directive('mdFabTrigger', MdFabTriggerDirective);
+
+  /**
+   * @ngdoc directive
+   * @name mdFabTrigger
+   * @module material.components.fabSpeedDial
+   *
+   * @restrict E
+   *
+   * @description
+   * The `<md-fab-trigger>` directive is used inside of a `<md-fab-speed-dial>` or
+   * `<md-fab-toolbar>` directive to mark the an element (or elements) as the trigger and setup the
+   * proper event listeners.
+   *
+   * @usage
+   * See the `<md-fab-speed-dial>` or `<md-fab-toolbar>` directives for example usage.
+   */
+  function MdFabTriggerDirective() {
+    return {
+      restrict: 'E',
+
+      require: ['^?mdFabSpeedDial', '^?mdFabToolbar'],
+
+      link: function(scope, element, attributes, controllers) {
+        // Grab whichever parent controller is used
+        var controller = controllers[0] || controllers[1];
+
+        // Make the children open/close their parent directive
+        if (controller) {
+          angular.forEach(element.children(), function(child) {
+            angular.element(child).on('focus', controller.open);
+            angular.element(child).on('blur', controller.close);
+          });
+        }
+      }
+    }
+  }
+})();
+
+
+})();
+(function(){
+"use strict";
+
+(function() {
+  'use strict';
+
+  angular
+    .module('material.components.fabToolbar', [
+      'material.core',
+      'material.components.fabTrigger',
+      'material.components.fabActions'
+    ])
+    .directive('mdFabToolbar', MdFabToolbarDirective)
+    .animation('.md-fab-toolbar', MdFabToolbarAnimation);
+
+  /**
+   * @ngdoc directive
+   * @name mdFabToolbar
+   * @module material.components.fabToolbar
+   *
+   * @restrict E
+   *
+   * @description
+   *
+   * The `<md-fab-toolbar>` directive is used present a toolbar of elements (usually `<md-button>`s)
+   * for quick access to common actions when a floating action button is activated (via hover or
+   * keyboard navigation).
+   *
+   * @usage
+   *
+   * <hljs lang="html">
+   * <md-fab-toolbar>
+   *   <md-fab-trigger>
+   *     <md-button aria-label="Add..."><md-icon icon="/img/icons/plus.svg"></md-icon></md-button>
+   *   </md-fab-trigger>
+   *
+   *   <md-fab-actions>
+   *     <md-button aria-label="Add User">
+   *       <md-icon icon="/img/icons/user.svg"></md-icon>
+   *     </md-button>
+   *
+   *     <md-button aria-label="Add Group">
+   *       <md-icon icon="/img/icons/group.svg"></md-icon>
+   *     </md-button>
+   *   </md-fab-actions>
+   * </md-fab-toolbar>
+   * </hljs>
+   *
+   * @param {expression=} md-open Programmatically control whether or not the toolbar is visible.
+   */
+  function MdFabToolbarDirective() {
+    FabToolbarController.$inject = ["$scope", "$element", "$animate"];
+    return {
+      restrict: 'E',
+      transclude: true,
+      template:
+        '<div class="md-fab-toolbar-wrapper">' +
+        '  <div class="md-fab-toolbar-content" ng-transclude></div>' +
+        '</div>',
+
+      scope: {
+        isOpen: '=?mdOpen'
+      },
+
+      bindToController: true,
+      controller: FabToolbarController,
+      controllerAs: 'vm',
+
+      link: link
+    };
+
+    function FabToolbarController($scope, $element, $animate) {
+      var vm = this;
+
+      // Set the default to be closed
+      vm.isOpen = vm.isOpen || false;
+
+      vm.open = function() {
+        vm.isOpen = true;
+        $scope.$apply();
+      };
+
+      vm.close = function() {
+        vm.isOpen = false;
+        $scope.$apply();
+      };
+
+      // Add our class so we can trigger the animation on start
+      $element.addClass('md-fab-toolbar');
+
+      // Setup some mouse events so the hover effect can be triggered
+      // anywhere over the toolbar
+      $element.on('mouseenter', vm.open);
+      $element.on('mouseleave', vm.close);
+
+      // Watch for changes to md-open and toggle our class
+      $scope.$watch('vm.isOpen', function(isOpen) {
+        var toAdd = isOpen ? 'md-is-open' : '';
+        var toRemove = isOpen ? '' : 'md-is-open';
+
+        $animate.setClass($element, toAdd, toRemove);
+      });
+    }
+
+    function link(scope, element, attributes) {
+      // Don't allow focus on the trigger
+      element.find('md-fab-trigger').find('button').attr('tabindex', '-1');
+
+      // Prepend the background element to the trigger's button
+      element.find('md-fab-trigger').find('button')
+        .prepend('<div class="md-fab-toolbar-background"></div>');
+    }
+  }
+
+  function MdFabToolbarAnimation() {
+    var originalIconDelay;
+
+    function runAnimation(element, className, done) {
+      var el = element[0];
+      var ctrl = element.controller('mdFabToolbar');
+
+      // Grab the relevant child elements
+      var backgroundElement = el.querySelector('.md-fab-toolbar-background');
+      var triggerElement = el.querySelector('md-fab-trigger button');
+      var iconElement = el.querySelector('md-fab-trigger button md-icon');
+      var actions = element.find('md-fab-actions').children();
+
+      // If we have both elements, use them to position the new background
+      if (triggerElement && backgroundElement) {
+        // Get our variables
+        var color = window.getComputedStyle(triggerElement).getPropertyValue('background-color');
+        var width = el.offsetWidth;
+        var height = el.offsetHeight;
+
+        // Make a square
+        var scale = width * 2;
+
+        // Set some basic styles no matter what animation we're doing
+        backgroundElement.style.backgroundColor = color;
+        backgroundElement.style.borderRadius = width + 'px';
+
+        // If we're open
+        if (ctrl.isOpen) {
+
+          // Set the width/height to take up the full toolbar width
+          backgroundElement.style.width = scale + 'px';
+          backgroundElement.style.height = scale + 'px';
+
+          // Set the top/left to move up/left (or right) by the scale width/height
+          backgroundElement.style.top = -(scale / 2) + 'px';
+
+          if (element.hasClass('md-left')) {
+            backgroundElement.style.left = -(scale / 2) + 'px';
+            backgroundElement.style.right = null;
+          }
+
+          if (element.hasClass('md-right')) {
+            backgroundElement.style.right = -(scale / 2) + 'px';
+            backgroundElement.style.left = null;
+          }
+
+          // Set the next close animation to have the proper delays
+          backgroundElement.style.transitionDelay = '0ms';
+          iconElement.style.transitionDelay = '.3s';
+
+          // Apply a transition delay to actions
+          angular.forEach(actions, function(action, index) {
+            action.style.transitionDelay = (actions.length - index) * 25 + 'ms';
+          });
+        } else {
+          // Otherwise, set the width/height to the trigger's width/height
+          backgroundElement.style.width = triggerElement.offsetWidth + 'px';
+          backgroundElement.style.height = triggerElement.offsetHeight + 'px';
+
+          // Reset the position
+          backgroundElement.style.top = '0px';
+
+          if (element.hasClass('md-left')) {
+            backgroundElement.style.left = '0px';
+            backgroundElement.style.right = null;
+          }
+
+          if (element.hasClass('md-right')) {
+            backgroundElement.style.right = '0px';
+            backgroundElement.style.left = null;
+          }
+
+          // Set the next open animation to have the proper delays
+          backgroundElement.style.transitionDelay = '200ms';
+          iconElement.style.transitionDelay = '0ms';
+
+          // Apply a transition delay to actions
+          angular.forEach(actions, function(action, index) {
+            action.style.transitionDelay = (index * 25) + 'ms';
+          });
+        }
+      }
+    }
+
+    return {
+      addClass: function(element, className, done) {
+        runAnimation(element, className, done);
+      },
+
+      removeClass: function(element, className, done) {
+        runAnimation(element, className, done);
+      }
+    }
+  }
+})();
+})();
+(function(){
+"use strict";
+
 /**
  * @ngdoc module
  * @name material.components.gridList
@@ -6276,35 +6822,8 @@ function mdIconDirective($mdIcon, $mdTheming, $mdAria, $interpolate ) {
       svgSrc  : '@mdSvgSrc'
     },
     restrict: 'E',
-    transclude:true,
-    template: getTemplate,
-    link: postLink
+    link : postLink
   };
-
-  function getTemplate(element, attr) {
-    var isEmptyAttr  = function(key) { return angular.isDefined(attr[key]) ? attr[key].length == 0 : false    },
-        hasAttrValue = function(key) { return attr[key] && attr[key].length > 0;     },
-        attrValue    = function(key) { return hasAttrValue(key) ? attr[key] : '' };
-
-    // If using the deprecated md-font-icon API
-    // If using ligature-based font-icons, transclude the ligature or NRCs
-
-    var tmplFontIcon = '<span class="md-font {{classNames}}" ng-class="fontIcon"></span>';
-    var tmplFontSet  = '<span class="{{classNames}}" ng-transclude></span>';
-
-    var tmpl = hasAttrValue('mdSvgIcon')     ? ''           :
-               hasAttrValue('mdSvgSrc')      ? ''           :
-               isEmptyAttr('mdFontIcon')     ? ''           :
-               hasAttrValue('mdFontIcon')    ? tmplFontIcon : tmplFontSet;
-
-    // If available, lookup the fontSet style and add to the list of classnames
-    // NOTE: Material Icons expects classnames like `.material-icons.md-48` instead of `.material-icons .md-48`
-
-    var names = (tmpl == tmplFontSet) ? $mdIcon.fontSet(attrValue('mdFontSet'))  + ' ' : '';
-        names = (names + attrValue('class')).trim();
-
-    return $interpolate( tmpl )({ classNames: names });
-  }
 
 
   /**
@@ -6313,6 +6832,8 @@ function mdIconDirective($mdIcon, $mdTheming, $mdAria, $interpolate ) {
    */
   function postLink(scope, element, attr) {
     $mdTheming(element);
+
+    prepareForFontIcon();
 
     // If using a font-icon, then the textual name of the icon itself
     // provides the aria-label.
@@ -6348,6 +6869,7 @@ function mdIconDirective($mdIcon, $mdTheming, $mdAria, $interpolate ) {
 
       });
     }
+
     function parentsHaveText() {
       var parent = element.parent();
       if (parent.attr('aria-label') || parent.text()) {
@@ -6357,6 +6879,18 @@ function mdIconDirective($mdIcon, $mdTheming, $mdAria, $interpolate ) {
         return true;
       }
       return false;
+    }
+
+    function prepareForFontIcon () {
+      if (!scope.svgIcon && !scope.svgSrc) {
+        if (scope.fontIcon) {
+          element.addClass('md-font');
+          element.addClass(scope.fontIcon);
+        } else {
+          element.addClass($mdIcon.fontSet(scope.fontSet));
+        }
+      }
+
     }
   }
 }
@@ -6442,8 +6976,8 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria", "$interpolate"];
     * @param {string} id Icon name/id used to register the icon
     * @param {string} url specifies the external location for the data file. Used internally by `$http` to load the
     * data or as part of the lookup in `$templateCache` if pre-loading was configured.
-    * @param {string=} iconSize Number indicating the width and height of the icons in the set. All icons
-    * in the icon set must be the same size. Default size is 24.
+    * @param {number=} viewBoxSize Sets the width and height the icon's viewBox.
+    * It is ignored for icons with an existing viewBox. Default size is 24.
     *
     * @returns {obj} an `$mdIconProvider` reference; used to support method call chains for the API
     *
@@ -6472,8 +7006,9 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria", "$interpolate"];
     * @param {string} id Icon name/id used to register the iconset
     * @param {string} url specifies the external location for the data file. Used internally by `$http` to load the
     * data or as part of the lookup in `$templateCache` if pre-loading was configured.
-    * @param {string=} iconSize Number indicating the width and height of the icons in the set. All icons
-    * in the icon set must be the same size. Default size is 24.
+    * @param {number=} viewBoxSize Sets the width and height of the viewBox of all icons in the set. 
+    * It is ignored for icons with an existing viewBox. All icons in the icon set should be the same size.
+    * Default value is 24.
     *
     * @returns {obj} an `$mdIconProvider` reference; used to support method call chains for the API
     *
@@ -6501,8 +7036,9 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria", "$interpolate"];
     *
     * @param {string} url specifies the external location for the data file. Used internally by `$http` to load the
     * data or as part of the lookup in `$templateCache` if pre-loading was configured.
-    * @param {string=} iconSize Number indicating the width and height of the icons in the set. All icons
-    * in the icon set must be the same size. Default size is 24.
+    * @param {number=} viewBoxSize Sets the width and height of the viewBox of all icons in the set. 
+    * It is ignored for icons with an existing viewBox. All icons in the icon set should be the same size.
+    * Default value is 24.
     *
     * @returns {obj} an `$mdIconProvider` reference; used to support method call chains for the API
     *
@@ -6552,15 +7088,14 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria", "$interpolate"];
 
    /**
     * @ngdoc method
-    * @name $mdIconProvider#defaultIconSize
+    * @name $mdIconProvider#defaultViewBoxSize
     *
     * @description
     * While `<md-icon />` markup can also be style with sizing CSS, this method configures
     * the default width **and** height used for all icons; unless overridden by specific CSS.
     * The default sizing is (24px, 24px).
-    *
-    * @param {string} iconSize Number indicating the width and height of the icons in the set. All icons
-    * in the icon set must be the same size. Default size is 24.
+    * @param {number=} viewBoxSize Sets the width and height of the viewBox for an icon or an icon set.
+    * All icons in a set should be the same size. The default value is 24.
     *
     * @returns {obj} an `$mdIconProvider` reference; used to support method call chains for the API
     *
@@ -6571,14 +7106,14 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria", "$interpolate"];
     *     // Configure URLs for icons specified by [set:]id.
     *
     *     $mdIconProvider
-    *          .defaultIconSize(36)   // Register a default icon size (width == height)
+    *          .defaultViewBoxSize(36)   // Register a default icon size (width == height)
     *   });
     * </hljs>
     *
     */
 
  var config = {
-   defaultIconSize: 24,
+   defaultViewBoxSize: 24,
    defaultFontSet: 'material-icons',
    fontSets : [ ]
  };
@@ -6586,28 +7121,35 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria", "$interpolate"];
  function MdIconProvider() { }
 
  MdIconProvider.prototype = {
-
-   icon : function icon(id, url, iconSize) {
+   icon : function (id, url, viewBoxSize) {
      if ( id.indexOf(':') == -1 ) id = '$default:' + id;
 
-     config[id] = new ConfigurationItem(url, iconSize );
+     config[id] = new ConfigurationItem(url, viewBoxSize );
      return this;
    },
-   iconSet : function iconSet(id, url, iconSize) {
-     config[id] = new ConfigurationItem(url, iconSize );
+
+   iconSet : function (id, url, viewBoxSize) {
+     config[id] = new ConfigurationItem(url, viewBoxSize );
      return this;
    },
-   defaultIconSet : function defaultIconSet(url, iconSize) {
+
+   defaultIconSet : function (url, viewBoxSize) {
      var setName = '$default';
 
      if ( !config[setName] ) {
-       config[setName] = new ConfigurationItem(url, iconSize );
+       config[setName] = new ConfigurationItem(url, viewBoxSize );
      }
 
-     config[setName].iconSize = iconSize || config.defaultIconSize;
+     config[setName].viewBoxSize = viewBoxSize || config.defaultViewBoxSize;
+
      return this;
    },
 
+   defaultViewBoxSize : function (viewBoxSize) {
+     config.defaultViewBoxSize = viewBoxSize;
+     return this;
+   },
+   
    /**
     * Register an alias name associated with a font-icon library style ;
     */
@@ -6680,9 +7222,9 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria", "$interpolate"];
     *  Configuration item stored in the Icon registry; used for lookups
     *  to load if not already cached in the `loaded` cache
     */
-   function ConfigurationItem(url, iconSize) {
+   function ConfigurationItem(url, viewBoxSize) {
      this.url = url;
-     this.iconSize = iconSize || config.defaultIconSize;
+     this.viewBoxSize = viewBoxSize || config.defaultViewBoxSize;
    }
 
  /**
@@ -6880,13 +7422,13 @@ mdIconDirective.$inject = ["$mdIcon", "$mdTheming", "$mdAria", "$interpolate"];
     *  loaded iconCache store.
     */
    function prepareAndStyle() {
-     var iconSize = this.config ? this.config.iconSize : config.defaultIconSize;
+     var viewBoxSize = this.config ? this.config.viewBoxSize : config.defaultViewBoxSize;
          angular.forEach({
            'fit'   : '',
            'height': '100%',
            'width' : '100%',
            'preserveAspectRatio': 'xMidYMid meet',
-           'viewBox' : this.element.getAttribute('viewBox') || ('0 0 ' + iconSize + ' ' + iconSize)
+           'viewBox' : this.element.getAttribute('viewBox') || ('0 0 ' + viewBoxSize + ' ' + viewBoxSize)
          }, function(val, attr) {
            this.element.setAttribute(attr, val);
          }, this);
@@ -7548,6 +8090,616 @@ MdListController.$inject = ["$scope", "$element", "$mdListInkRipple"];
 
 /**
  * @ngdoc module
+ * @name material.components.menu
+ */
+
+angular.module('material.components.menu', [
+  'material.core',
+  'material.components.backdrop'
+])
+.directive('mdMenu', MenuDirective)
+.controller('mdMenuCtrl', MenuController);
+
+/**
+ * @ngdoc directive
+ * @name mdMenu
+ * @module material.components.menu
+ * @restrict E
+ * @description
+ *
+ * Menus are elements that open when clicked. They are useful for displaying
+ * additional options within the context of an action.
+ *
+ * Every `md-menu` must specify exactly two child elements. The first element is what is
+ * left in the DOM and is used to open the menu. This element is called the trigger element.
+ * The trigger element's scope has access to `$mdOpenMenu()`
+ * which it may call to open the menu.
+ *
+ * The second element is the `md-menu-content` element which represents the
+ * contents of the menu when it is open. Typically this will contain `md-menu-item`s,
+ * but you can do custom content as well.
+ *
+ * <hljs lang="html">
+ * <md-menu>
+ *  <!-- Trigger element is a md-button with an icon -->
+ *  <md-button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open sample menu">
+ *    <md-icon md-svg-icon="call:phone"></md-icon>
+ *  </md-button>
+ *  <md-menu-content>
+ *    <md-menu-item><md-button ng-click="doSomething()">Do Something</md-button></md-menu-item>
+ *  </md-menu-content>
+ * </md-menu>
+ * </hljs>
+
+ * ## Sizing Menus
+ *
+ * The width of the menu when it is open may be specified by specifying a `width`
+ * attribute on the `md-menu-content` element.
+ * See the [Material Design Spec](http://www.google.com/design/spec/components/menus.html#menus-specs)
+ * for more information.
+ *
+ *
+ * ## Aligning Menus
+ *
+ * When a menu opens, it is important that the content aligns with the trigger element.
+ * Failure to align menus can result in jarring experiences for users as content
+ * suddenly shifts. To help with this, `md-menu` provides serveral APIs to help
+ * with alignment.
+ *
+ * ### Target Mode
+ *
+ * By default, `md-menu` will attempt to align the `md-menu-content` by aligning
+ * designated child elements in both the trigger and the menu content.
+ *
+ * To specify the alignment element in the `trigger` you can use the `md-menu-origin`
+ * attribute on a child element. If no `md-menu-origin` is specified, the `md-menu`
+ * will be used as the origin element.
+ *
+ * Similarly, the `md-menu-content` may specify a `md-menu-align-target` for a
+ * `md-menu-item` to specify the node that it should try and align with.
+ *
+ * In this example code, we specify an icon to be our origin element, and an
+ * icon in our menu content to be our alignment target. This ensures that both
+ * icons are aligned when the menu opens.
+ *
+ * <hljs lang="html">
+ * <md-menu>
+ *  <md-button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open some menu">
+ *    <md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>
+ *  </md-button>
+ *  <md-menu-content>
+ *    <md-menu-item>
+ *      <md-button ng-click="doSomething()" aria-label="Do something">
+ *        <md-icon md-menu-align-target md-svg-icon="call:phone"></md-icon>
+ *        Do Something
+ *      </md-button>
+ *    </md-menu-item>
+ *  </md-menu-content>
+ * </md-menu>
+ * </hljs>
+ *
+ * Sometimes we want to specify alignment on the right side of an element, for example
+ * if we have a menu on the right side a toolbar, we want to right align our menu content.
+ *
+ * We can specify the origin by using the `md-position-mode` attribute on both
+ * the `x` and `y` axis. Right now only the `x-axis` has more than one option.
+ * You may specify the default mode of `target target` or
+ * `target-right target` to specify a right-oriented alignment target. See the
+ * position section of the demos for more examples.
+ *
+ * ### Menu Offsets
+ *
+ * It is sometimes unavoidable to need to have a deeper level of control for
+ * the positioning of a menu to ensure perfect alignment. `md-menu` provides
+ * the `md-offset` attribute to allow pixel level specificty of adjusting the
+ * exact positioning.
+ *
+ * This offset is provided in the format of `x y` or `n` where `n` will be used
+ * in both the `x` and `y` axis.
+ *
+ * For example, to move a menu by `2px` from the top, we can use:
+ * <hljs lang="html">
+ * <md-menu md-offset="2 0">
+ *   <!-- menu-content -->
+ * </md-menu>
+ * </hljs>
+ *
+ * @usage
+ * <hljs lang="html">
+ * <md-menu>
+ *  <md-button ng-click="$mdOpenMenu()" class="md-icon-button">
+ *    <md-icon md-svg-icon="call:phone"></md-icon>
+ *  </md-button>
+ *  <md-menu-content>
+ *    <md-menu-item><md-button ng-click="doSomething()">Do Something</md-button></md-menu-item>
+ *  </md-menu-content>
+ * </md-menu>
+ * </hljs>
+ *
+ * @param {string} md-position-mode The position mode in the form of
+             `x`, `y`. Default value is `target`,`target`. Right now the `x` axis
+             also suppports `target-right`.
+ * @param {string} md-offset An offset to apply to the dropdown after positioning
+             `x`, `y`. Default value is `0`,`0`.
+ *
+ */
+
+function MenuDirective($mdMenu) {
+  return {
+    restrict: 'E',
+    require: 'mdMenu',
+    controller: 'mdMenuCtrl', // empty function to be built by link
+    scope: true,
+    compile: compile
+  };
+
+  function compile(templateElement) {
+    templateElement.addClass('md-menu');
+    templateElement.children().eq(0).attr('aria-haspopup', 'true');
+    if (templateElement.children().length != 2) {
+      throw Error('Invalid HTML for md-menu. Expected two children elements.');
+    }
+    return link;
+  }
+
+  function link(scope, element, attrs, mdMenuCtrl) {
+
+    // Move everything into a md-menu-container and pass it to the controller
+    var menuContainer = angular.element(
+      '<div class="md-open-menu-container md-whiteframe-z2"></div>'
+    );
+    var menuContents = element.children()[1];
+    menuContainer.append(menuContents);
+    mdMenuCtrl.init(menuContainer);
+
+  }
+}
+MenuDirective.$inject = ["$mdMenu"];
+
+function MenuController($mdMenu, $attrs, $element, $scope) {
+
+  var menuContainer;
+  var ctrl = this;
+
+  // Called by our linking fn to provide access to the menu-content
+  // element removed during link
+  this.init = function(setMenuContainer) {
+    menuContainer = setMenuContainer;
+  };
+
+  // Uses the $mdMenu interim element service to open the menu contents
+  this.open = function openMenu() {
+    $element.attr('aria-expanded', 'true');
+    $mdMenu.show({
+      mdMenuCtrl: ctrl,
+      element: menuContainer,
+      target: $element[0]
+    });
+  };
+  // Expose a open function to the child scope for html to use
+  $scope.$mdOpenMenu = this.open;
+
+  // Use the $mdMenu interim element service to close the menu contents
+  this.close = function closeMenu(skipFocus) {
+    $element.attr('aria-expanded', 'false');
+    $mdMenu.hide();
+
+    if (!skipFocus) {
+      $element.children()[0].focus();
+    }
+  };
+
+  // Build a nice object out of our string attribute which specifies the
+  // target mode for left and top positioning
+  this.positionMode = function() {
+    var attachment = ($attrs.mdPositionMode || 'target').split(' ');
+
+    // If attachment is a single item, duplicate it for our second value.
+    // ie. 'target' -> 'target target'
+    if (attachment.length == 1) {
+      attachment.push(attachment[0]);
+    }
+
+    return {
+      left: attachment[0],
+      top: attachment[1]
+    };
+  };
+
+  // Build a nice object out of our string attribute which specifies
+  // the offset of top and left in pixels.
+  this.offsets = function() {
+    var offsets = ($attrs.mdOffset || '0 0').split(' ').map(parseFloat);
+    if (offsets.length == 2) {
+      return {
+        left: offsets[0],
+        top: offsets[1]
+      };
+    } else if (offsets.length == 1) {
+      return {
+        top: offsets[0],
+        left: offsets[0]
+      };
+    } else {
+      throw Error('Invalid offsets specified. Please follow format <x, y> or <n>');
+    }
+  };
+}
+MenuController.$inject = ["$mdMenu", "$attrs", "$element", "$scope"];
+
+})();
+(function(){
+"use strict";
+
+angular.module('material.components.menu')
+.provider('$mdMenu', MenuProvider);
+
+/*
+ * Interim element provider for the menu.
+ * Handles behavior for a menu while it is open, including:
+ *    - handling animating the menu opening/closing
+ *    - handling key/mouse events on the menu element
+ *    - handling enabling/disabling scroll while the menu is open
+ *    - handling redrawing during resizes and orientation changes
+ *
+ */
+
+function MenuProvider($$interimElementProvider) {
+  var MENU_EDGE_MARGIN = 8;
+
+  menuDefaultOptions.$inject = ["$$rAF", "$window", "$mdUtil", "$mdTheming", "$timeout", "$mdConstant", "$document"];
+  return $$interimElementProvider('$mdMenu')
+    .setDefaults({
+      methods: ['target'],
+      options: menuDefaultOptions
+    });
+
+  /* @ngInject */
+  function menuDefaultOptions($$rAF, $window, $mdUtil, $mdTheming, $timeout, $mdConstant, $document) {
+    return {
+      parent: 'body',
+      onShow: onShow,
+      onRemove: onRemove,
+      hasBackdrop: true,
+      disableParentScroll: true,
+      skipCompile: true,
+      themable: true
+    };
+
+    /** 
+     * Boilerplate interimElement onShow function
+     * Handles inserting the menu into the DOM, positioning it, and wiring up
+     * various interaction events
+     */
+    function onShow(scope, element, opts) {
+
+      // Sanitize and set defaults on opts
+      buildOpts(opts);
+
+      // Wire up theming on our menu element
+      $mdTheming.inherit(opts.menuContentEl, opts.target);
+
+      // Register various listeners to move menu on resize/orientation change
+      handleResizing();
+
+      // Disable scrolling
+      if (opts.disableParentScroll) {
+        opts.restoreScroll = $mdUtil.disableScrollAround(opts.target);
+      }
+
+      // Only activate click listeners after a short time to stop accidental double taps/clicks
+      // from clicking the wrong item
+      $timeout(activateInteraction, 75, false);
+
+      if (opts.backdrop) {
+        $mdTheming.inherit(opts.backdrop, opts.parent);
+        opts.parent.append(opts.backdrop);
+      }
+      showMenu();
+
+      // Return the promise for when our menu is done animating in
+      return $mdUtil.transitionEndPromise(element, {timeout: 350});
+
+      /** Check for valid opts and set some sane defaults */
+      function buildOpts() {
+        if (!opts.target) {
+          throw Error(
+            '$mdMenu.show() expected a target to animate from in options.target'
+          );
+        }
+        angular.extend(opts, {
+          alreadyOpen: false,
+          isRemoved: false,
+          target: angular.element(opts.target), //make sure it's not a naked dom node
+          parent: angular.element(opts.parent),
+          menuContentEl: angular.element(element[0].querySelector('md-menu-content')),
+          backdrop: opts.hasBackdrop && angular.element('<md-backdrop class="md-menu-backdrop md-click-catcher">')
+        });
+      }
+
+      /** Wireup various resize listeners for screen changes */
+      function handleResizing() {
+        opts.resizeFn = function() {
+          positionMenu(scope, element, opts);
+        };
+        angular.element($window).on('resize', opts.resizeFn);
+        angular.element($window).on('orientationchange', opts.resizeFn);
+      }
+
+      /**
+       * Place the menu into the DOM and call positioning related functions
+       */
+      function showMenu() {
+        opts.parent.append(element);
+
+        element.removeClass('md-leave');
+        // Kick off our animation/positioning but first, wait a few frames
+        // so all of our computed positions/sizes are accurate
+        $$rAF(function() {
+          $$rAF(function() {
+            positionMenu(scope, element, opts);
+            // Wait a frame before fading in menu (md-active) so that we don't trigger
+            // transitions on the menu position changing
+            $$rAF(function() {
+              element.addClass('md-active');
+              opts.alreadyOpen = true;
+              element[0].style[$mdConstant.CSS.TRANSFORM] = '';
+            });
+          });
+        });
+      }
+
+
+      /**
+       * Activate interaction on the menu. Wire up keyboard listerns for
+       * clicks, keypresses, backdrop closing, etc.
+       */
+      function activateInteraction() {
+        element.addClass('md-clickable');
+
+        // close on backdrop click
+        opts.backdrop && opts.backdrop.on('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          opts.mdMenuCtrl.close(true);
+        });
+
+        // Wire up keyboard listeners.
+        // Close on escape, focus next item on down arrow, focus prev item on up
+        opts.menuContentEl.on('keydown', function(ev) {
+          scope.$apply(function() {
+            switch (ev.keyCode) {
+              case $mdConstant.KEY_CODE.ESCAPE: opts.mdMenuCtrl.close(); break;
+              case $mdConstant.KEY_CODE.UP_ARROW: focusMenuItem(ev, opts.menuContentEl, opts, -1); break;
+              case $mdConstant.KEY_CODE.DOWN_ARROW: focusMenuItem(ev, opts.menuContentEl, opts, 1); break;
+            }
+          });
+        });
+
+        // Close menu on menu item click, if said menu-item is not disabled
+        opts.menuContentEl.on('click', function(e) {
+          var target = e.target;
+          // Traverse up the event until we get to the menuContentEl to see if
+          // there is an ng-click and that the ng-click is not disabled
+          do {
+            if (target && target.hasAttribute('ng-click')) {
+              if (!target.hasAttribute('disabled')) {
+                close();
+              }
+              break;
+            }
+          } while ((target = target.parentNode) && target != opts.menuContentEl)
+
+          function close() {
+            scope.$apply(function() {
+              opts.mdMenuCtrl.close();
+            });
+          }
+        });
+
+        // kick off initial focus in the menu on the first element
+        var focusTarget = opts.menuContentEl[0].querySelector('[md-menu-focus-target]');
+        if (!focusTarget) focusTarget = opts.menuContentEl[0].firstElementChild.firstElementChild;
+        focusTarget.focus();
+      }
+    }
+
+    /**
+      * Takes a keypress event and focuses the next/previous menu
+      * item from the emitting element
+      * @param {event} e - The origin keypress event
+      * @param {angular.element} menuEl - The menu element
+      * @param {object} opts - The interim element options for the mdMenu
+      * @param {number} direction - The direction to move in (+1 = next, -1 = prev)
+      */
+    function focusMenuItem(e, menuEl, opts, direction) {
+      var currentItem = $mdUtil.getClosest(e.target, 'MD-MENU-ITEM');
+
+      var items = nodesToArray(menuEl[0].children);
+      var currentIndex = items.indexOf(currentItem);
+
+      // Traverse through our elements in the specified direction (+/-1) and try to
+      // focus them until we find one that accepts focus
+      for (var i = currentIndex + direction; i >= 0 && i < items.length; i = i + direction) {
+        var focusTarget = items[i].firstElementChild || items[i];
+        var didFocus = attemptFocus(focusTarget);
+        if (didFocus) {
+          break;
+        }
+      }
+    }
+
+    /**
+     * Attempts to focus an element. Checks whether that element is the currently
+     * focused element after attempting.
+     * @param {HTMLElement} el - the element to attempt focus on
+     * @returns {bool} - whether the element was successfully focused
+     */
+    function attemptFocus(el) {
+      if (el && el.getAttribute('tabindex') != -1) {
+        el.focus();
+        if ($document[0].activeElement == el) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+
+    /**
+     * Boilerplate interimElement onRemove function
+     * Handles removing the menu from the DOM, cleaning up the element
+     * and removing various listeners
+     */
+    function onRemove(scope, element, opts) {
+      opts.isRemoved = true;
+      element.addClass('md-leave')
+        .removeClass('md-clickable');
+
+      // Disable resizing handlers
+      angular.element($window).off('resize', opts.resizeFn);
+      angular.element($window).off('orientationchange', opts.resizeFn);
+      opts.resizeFn = undefined;
+
+      // Wait for animate out, then remove from the DOM
+      return $mdUtil.transitionEndPromise(element, { timeout: 350 }).then(function() {
+        element.removeClass('md-active');
+        opts.backdrop && opts.backdrop.remove();
+        if (element[0].parentNode === opts.parent[0]) {
+          opts.parent[0].removeChild(element[0]);
+        }
+        opts.restoreScroll && opts.restoreScroll();
+      });
+    }
+
+    /**
+     * Computes menu position and sets the style on the menu container
+     * @param {HTMLElement} el - the menu container element
+     * @param {object} opts - the interim element options object
+     */
+    function positionMenu(el, opts) {
+      if (opts.isRemoved) return;
+
+      var containerNode = el[0],
+          openMenuNode = el[0].firstElementChild,
+          openMenuNodeRect = openMenuNode.getBoundingClientRect(),
+          boundryNode = opts.parent[0],
+          boundryNodeRect = boundryNode.getBoundingClientRect();
+
+      var originNode = opts.target[0].querySelector('[md-menu-origin]') || opts.target[0],
+          originNodeRect = originNode.getBoundingClientRect();
+
+
+      var bounds = {
+        left: boundryNodeRect.left + MENU_EDGE_MARGIN,
+        top: boundryNodeRect.top + MENU_EDGE_MARGIN,
+        bottom: boundryNodeRect.bottom - MENU_EDGE_MARGIN,
+        right: boundryNodeRect.right - MENU_EDGE_MARGIN
+      };
+
+
+      var alignTarget, alignTargetRect, existingOffsets;
+      var positionMode = opts.mdMenuCtrl.positionMode();
+
+      if (positionMode.top == 'target' || positionMode.left == 'target' || positionMode.left == 'target-right') {
+        // TODO: Allow centering on an arbitrary node, for now center on first menu-item's child
+        alignTarget = openMenuNode.firstElementChild.firstElementChild || openMenuNode.firstElementChild;
+        alignTarget = alignTarget.querySelector('[md-menu-align-target]') || alignTarget;
+        alignTargetRect = alignTarget.getBoundingClientRect();
+
+        existingOffsets = {
+          top: containerNode.style.top,
+          left: containerNode.style.left
+        };
+      }
+
+      var position = { };
+      var transformOrigin = 'top ';
+
+      switch (positionMode.top) {
+        case 'target':
+          position.top = existingOffsets.top + originNodeRect.top - alignTargetRect.top;
+          break;
+        // Future support for mdMenuBar
+        // case 'top':
+        //   position.top = originNodeRect.top;
+        //   break;
+        // case 'bottom':
+        //   position.top = originNodeRect.top + originNodeRect.height;
+        //   break;
+        default:
+          throw new Error('Invalid target mode "' + positionMode.top + '" specified for md-menu on Y axis.');
+      }
+
+      switch (positionMode.left) {
+        case 'target':
+          position.left = existingOffsets.left + originNodeRect.left - alignTargetRect.left;
+          transformOrigin += 'left';
+          break;
+        case 'target-right':
+          position.left = originNodeRect.right - openMenuNodeRect.width + (openMenuNodeRect.right - alignTargetRect.right);
+          transformOrigin += 'right';
+          break;
+        // Future support for mdMenuBar
+        // case 'left':
+        //   position.left = originNodeRect.left;
+        //   transformOrigin += 'left';
+        //   break;
+        // case 'right':
+        //   position.left = originNodeRect.right - containerNode.offsetWidth;
+        //   transformOrigin += 'right';
+        //   break;
+        default:
+          throw new Error('Invalid target mode "' + positionMode.left + '" specified for md-menu on X axis.');
+      }
+
+      var offsets = opts.mdMenuCtrl.offsets();
+      position.top += offsets.top;
+      position.left += offsets.left;
+
+      clamp(position);
+
+      el.css({
+        top: position.top + 'px',
+        left: position.left + 'px'
+      });
+
+      containerNode.style[$mdConstant.CSS.TRANSFORM_ORIGIN] = transformOrigin;
+
+      // Animate a scale out if we aren't just repositioning
+      if (!opts.alreadyOpen) {
+        containerNode.style[$mdConstant.CSS.TRANSFORM] = 'scale(' +
+          Math.min(originNodeRect.width / containerNode.offsetWidth, 1.0) + ',' +
+          Math.min(originNodeRect.height / containerNode.offsetHeight, 1.0) +
+        ')';
+      }
+
+      /**
+       * Clamps the repositioning of the menu within the confines of
+       * bounding element (often the screen/body)
+       */
+      function clamp(pos) {
+        pos.top = Math.max(Math.min(pos.top, bounds.bottom - containerNode.offsetHeight), bounds.top);
+        pos.left = Math.max(Math.min(pos.left, bounds.right - containerNode.offsetWidth), bounds.left);
+      }
+    }
+  }
+}
+MenuProvider.$inject = ["$$interimElementProvider"];
+
+// Annoying method to copy nodes to an array, thanks to IE
+function nodesToArray(nodes) {
+  var results = [];
+  for (var i = nodes.length; i--; results.unshift(nodes[i]))
+  return results;
+}
+
+})();
+(function(){
+"use strict";
+
+/**
+ * @ngdoc module
  * @name material.components.progressCircular
  * @description Circular Progress module!
  */
@@ -7645,127 +8797,6 @@ function MdProgressCircularDirective($mdConstant, $mdTheming) {
   }
 }
 MdProgressCircularDirective.$inject = ["$mdConstant", "$mdTheming"];
-
-})();
-(function(){
-"use strict";
-
-/**
- * @ngdoc module
- * @name material.components.progressLinear
- * @description Linear Progress module!
- */
-angular.module('material.components.progressLinear', [
-  'material.core'
-])
-  .directive('mdProgressLinear', MdProgressLinearDirective);
-
-/**
- * @ngdoc directive
- * @name mdProgressLinear
- * @module material.components.progressLinear
- * @restrict E
- *
- * @description
- * The linear progress directive is used to make loading content in your app as delightful and painless as possible by minimizing the amount of visual change a user sees before they can view and interact with content. Each operation should only be represented by one activity indicator—for example, one refresh operation should not display both a refresh bar and an activity circle.
- *
- * For operations where the percentage of the operation completed can be determined, use a determinate indicator. They give users a quick sense of how long an operation will take.
- *
- * For operations where the user is asked to wait a moment while something finishes up, and it’s not necessary to expose what's happening behind the scenes and how long it will take, use an indeterminate indicator.
- *
- * @param {string} md-mode Select from one of four modes: determinate, indeterminate, buffer or query.
- * @param {number=} value In determinate and buffer modes, this number represents the percentage of the primary progress bar. Default: 0
- * @param {number=} md-buffer-value In the buffer mode, this number represents the precentage of the secondary progress bar. Default: 0
- *
- * @usage
- * <hljs lang="html">
- * <md-progress-linear md-mode="determinate" value="..."></md-progress-linear>
- *
- * <md-progress-linear md-mode="determinate" ng-value="..."></md-progress-linear>
- *
- * <md-progress-linear md-mode="indeterminate"></md-progress-linear>
- *
- * <md-progress-linear md-mode="buffer" value="..." md-buffer-value="..."></md-progress-linear>
- *
- * <md-progress-linear md-mode="query"></md-progress-linear>
- * </hljs>
- */
-function MdProgressLinearDirective($$rAF, $mdConstant, $mdTheming) {
-
-  return {
-    restrict: 'E',
-    template: '<div class="md-container">' +
-      '<div class="md-dashed"></div>' +
-      '<div class="md-bar md-bar1"></div>' +
-      '<div class="md-bar md-bar2"></div>' +
-      '</div>',
-    compile: compile
-  };
-  
-  function compile(tElement, tAttrs, transclude) {
-    tElement.attr('aria-valuemin', 0);
-    tElement.attr('aria-valuemax', 100);
-    tElement.attr('role', 'progressbar');
-
-    return postLink;
-  }
-  function postLink(scope, element, attr) {
-    $mdTheming(element);
-    var bar1Style = element[0].querySelector('.md-bar1').style,
-      bar2Style = element[0].querySelector('.md-bar2').style,
-      container = angular.element(element[0].querySelector('.md-container'));
-
-    attr.$observe('value', function(value) {
-      if (attr.mdMode == 'query') {
-        return;
-      }
-
-      var clamped = clamp(value);
-      element.attr('aria-valuenow', clamped);
-      bar2Style[$mdConstant.CSS.TRANSFORM] = transforms[clamped];
-    });
-
-    attr.$observe('mdBufferValue', function(value) {
-      bar1Style[$mdConstant.CSS.TRANSFORM] = transforms[clamp(value)];
-    });
-
-    $$rAF(function() {
-      container.addClass('md-ready');
-    });
-  }
-
-  function clamp(value) {
-    if (value > 100) {
-      return 100;
-    }
-
-    if (value < 0) {
-      return 0;
-    }
-
-    return Math.ceil(value || 0);
-  }
-}
-MdProgressLinearDirective.$inject = ["$$rAF", "$mdConstant", "$mdTheming"];
-
-
-// **********************************************************
-// Private Methods
-// **********************************************************
-var transforms = (function() {
-  var values = new Array(101);
-  for(var i = 0; i < 101; i++){
-    values[i] = makeTransform(i);
-  }
-
-  return values;
-
-  function makeTransform(value){
-    var scale = value/100;
-    var translateX = (value-100)/2;
-    return 'translateX(' + translateX.toString() + '%) scale(' + scale.toString() + ', 1)';
-  }
-})();
 
 })();
 (function(){
@@ -8080,6 +9111,545 @@ mdRadioButtonDirective.$inject = ["$mdAria", "$mdUtil", "$mdTheming"];
 
 /**
  * @ngdoc module
+ * @name material.components.progressLinear
+ * @description Linear Progress module!
+ */
+angular.module('material.components.progressLinear', [
+  'material.core'
+])
+  .directive('mdProgressLinear', MdProgressLinearDirective);
+
+/**
+ * @ngdoc directive
+ * @name mdProgressLinear
+ * @module material.components.progressLinear
+ * @restrict E
+ *
+ * @description
+ * The linear progress directive is used to make loading content in your app as delightful and painless as possible by minimizing the amount of visual change a user sees before they can view and interact with content. Each operation should only be represented by one activity indicator—for example, one refresh operation should not display both a refresh bar and an activity circle.
+ *
+ * For operations where the percentage of the operation completed can be determined, use a determinate indicator. They give users a quick sense of how long an operation will take.
+ *
+ * For operations where the user is asked to wait a moment while something finishes up, and it’s not necessary to expose what's happening behind the scenes and how long it will take, use an indeterminate indicator.
+ *
+ * @param {string} md-mode Select from one of four modes: determinate, indeterminate, buffer or query.
+ * @param {number=} value In determinate and buffer modes, this number represents the percentage of the primary progress bar. Default: 0
+ * @param {number=} md-buffer-value In the buffer mode, this number represents the precentage of the secondary progress bar. Default: 0
+ *
+ * @usage
+ * <hljs lang="html">
+ * <md-progress-linear md-mode="determinate" value="..."></md-progress-linear>
+ *
+ * <md-progress-linear md-mode="determinate" ng-value="..."></md-progress-linear>
+ *
+ * <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+ *
+ * <md-progress-linear md-mode="buffer" value="..." md-buffer-value="..."></md-progress-linear>
+ *
+ * <md-progress-linear md-mode="query"></md-progress-linear>
+ * </hljs>
+ */
+function MdProgressLinearDirective($$rAF, $mdConstant, $mdTheming) {
+
+  return {
+    restrict: 'E',
+    template: '<div class="md-container">' +
+      '<div class="md-dashed"></div>' +
+      '<div class="md-bar md-bar1"></div>' +
+      '<div class="md-bar md-bar2"></div>' +
+      '</div>',
+    compile: compile
+  };
+  
+  function compile(tElement, tAttrs, transclude) {
+    tElement.attr('aria-valuemin', 0);
+    tElement.attr('aria-valuemax', 100);
+    tElement.attr('role', 'progressbar');
+
+    return postLink;
+  }
+  function postLink(scope, element, attr) {
+    $mdTheming(element);
+    var bar1Style = element[0].querySelector('.md-bar1').style,
+      bar2Style = element[0].querySelector('.md-bar2').style,
+      container = angular.element(element[0].querySelector('.md-container'));
+
+    attr.$observe('value', function(value) {
+      if (attr.mdMode == 'query') {
+        return;
+      }
+
+      var clamped = clamp(value);
+      element.attr('aria-valuenow', clamped);
+      bar2Style[$mdConstant.CSS.TRANSFORM] = transforms[clamped];
+    });
+
+    attr.$observe('mdBufferValue', function(value) {
+      bar1Style[$mdConstant.CSS.TRANSFORM] = transforms[clamp(value)];
+    });
+
+    $$rAF(function() {
+      container.addClass('md-ready');
+    });
+  }
+
+  function clamp(value) {
+    if (value > 100) {
+      return 100;
+    }
+
+    if (value < 0) {
+      return 0;
+    }
+
+    return Math.ceil(value || 0);
+  }
+}
+MdProgressLinearDirective.$inject = ["$$rAF", "$mdConstant", "$mdTheming"];
+
+
+// **********************************************************
+// Private Methods
+// **********************************************************
+var transforms = (function() {
+  var values = new Array(101);
+  for(var i = 0; i < 101; i++){
+    values[i] = makeTransform(i);
+  }
+
+  return values;
+
+  function makeTransform(value){
+    var scale = value/100;
+    var translateX = (value-100)/2;
+    return 'translateX(' + translateX.toString() + '%) scale(' + scale.toString() + ', 1)';
+  }
+})();
+
+})();
+(function(){
+"use strict";
+
+/**
+ * @ngdoc module
+ * @name material.components.sidenav
+ *
+ * @description
+ * A Sidenav QP component.
+ */
+angular.module('material.components.sidenav', [
+    'material.core',
+    'material.components.backdrop'
+  ])
+  .factory('$mdSidenav', SidenavService )
+  .directive('mdSidenav', SidenavDirective)
+  .directive('mdSidenavFocus', SidenavFocusDirective)
+  .controller('$mdSidenavController', SidenavController);
+
+
+/**
+ * @private
+ * @ngdoc service
+ * @name $mdSidenav
+ * @module material.components.sidenav
+ *
+ * @description
+ * `$mdSidenav` makes it easy to interact with multiple sidenavs
+ * in an app.
+ *
+ * @usage
+ * <hljs lang="js">
+ * // Async lookup for sidenav instance; will resolve when the instance is available
+ * $mdSidenav(componentId).then(function(instance) {
+ *   $log.debug( componentId + "is now ready" );
+ * });
+ * // Async toggle the given sidenav;
+ * // when instance is known ready and lazy lookup is not needed.
+ * $mdSidenav(componentId)
+ *    .toggle()
+ *    .then(function(){
+ *      $log.debug('toggled');
+ *    });
+ * // Async open the given sidenav
+ * $mdSidenav(componentId)
+ *    .open()
+ *    .then(function(){
+ *      $log.debug('opened');
+ *    });
+ * // Async close the given sidenav
+ * $mdSidenav(componentId)
+ *    .close()
+ *    .then(function(){
+ *      $log.debug('closed');
+ *    });
+ * // Sync check to see if the specified sidenav is set to be open
+ * $mdSidenav(componentId).isOpen();
+ * // Sync check to whether given sidenav is locked open
+ * // If this is true, the sidenav will be open regardless of close()
+ * $mdSidenav(componentId).isLockedOpen();
+ * </hljs>
+ */
+function SidenavService($mdComponentRegistry, $q) {
+  return function(handle) {
+
+    // Lookup the controller instance for the specified sidNav instance
+    var self;
+    var errorMsg = "SideNav '" + handle + "' is not available!";
+    var instance = $mdComponentRegistry.get(handle);
+
+    if(!instance) {
+      $mdComponentRegistry.notFoundError(handle);
+    }
+
+    return self = {
+      // -----------------
+      // Sync methods
+      // -----------------
+      isOpen: function() {
+        return instance && instance.isOpen();
+      },
+      isLockedOpen: function() {
+        return instance && instance.isLockedOpen();
+      },
+      // -----------------
+      // Async methods
+      // -----------------
+      toggle: function() {
+        return instance ? instance.toggle() : $q.reject(errorMsg);
+      },
+      open: function() {
+        return instance ? instance.open() : $q.reject(errorMsg);
+      },
+      close: function() {
+        return instance ? instance.close() : $q.reject(errorMsg);
+      },
+      then : function( callbackFn ) {
+        var promise = instance ? $q.when(instance) : waitForInstance();
+        return promise.then( callbackFn || angular.noop );
+      }
+    };
+
+    /**
+     * Deferred lookup of component instance using $component registry
+     */
+    function waitForInstance() {
+      return $mdComponentRegistry
+                .when(handle)
+                .then(function( it ){
+                  instance = it;
+                  return it;
+                });
+    }
+  };
+}
+SidenavService.$inject = ["$mdComponentRegistry", "$q"];
+/**
+ * @ngdoc directive
+ * @name mdSidenavFocus
+ * @module material.components.sidenav
+ *
+ * @restrict A
+ *
+ * @description
+ * `$mdSidenavFocus` provides a way to specify the focused element when a sidenav opens.
+ * This is completely optional, as the sidenav itself is focused by default.
+ *
+ * @usage
+ * <hljs lang="html">
+ * <md-sidenav>
+ *   <form>
+ *     <md-input-container>
+ *       <label for="testInput">Label</label>
+ *       <input id="testInput" type="text" md-sidenav-focus>
+ *     </md-input-container>
+ *   </form>
+ * </md-sidenav>
+ * </hljs>
+ **/
+function SidenavFocusDirective() {
+  return {
+    restrict: 'A',
+    require: '^mdSidenav',
+    link: function(scope, element, attr, sidenavCtrl) {
+      sidenavCtrl.focusElement(element);
+    }
+  };
+}
+/**
+ * @ngdoc directive
+ * @name mdSidenav
+ * @module material.components.sidenav
+ * @restrict E
+ *
+ * @description
+ *
+ * A Sidenav component that can be opened and closed programatically.
+ *
+ * By default, upon opening it will slide out on top of the main content area.
+ *
+ * For keyboard and screen reader accessibility, focus is sent to the sidenav wrapper by default.
+ * It can be overridden with the `md-sidenav-focus` directive on the child element you want focused.
+ *
+ * @usage
+ * <hljs lang="html">
+ * <div layout="row" ng-controller="MyController">
+ *   <md-sidenav md-component-id="left" class="md-sidenav-left">
+ *     Left Nav!
+ *   </md-sidenav>
+ *
+ *   <md-content>
+ *     Center Content
+ *     <md-button ng-click="openLeftMenu()">
+ *       Open Left Menu
+ *     </md-button>
+ *   </md-content>
+ *
+ *   <md-sidenav md-component-id="right"
+ *     md-is-locked-open="$mdMedia('min-width: 333px')"
+ *     class="md-sidenav-right">
+ *     <form>
+ *       <md-input-container>
+ *         <label for="testInput">Test input</label>
+ *         <input id="testInput" type="text"
+ *                ng-model="data" md-sidenav-focus>
+ *       </md-input-container>
+ *     </form>
+ *   </md-sidenav>
+ * </div>
+ * </hljs>
+ *
+ * <hljs lang="js">
+ * var app = angular.module('myApp', ['ngMaterial']);
+ * app.controller('MyController', function($scope, $mdSidenav) {
+ *   $scope.openLeftMenu = function() {
+ *     $mdSidenav('left').toggle();
+ *   };
+ * });
+ * </hljs>
+ *
+ * @param {expression=} md-is-open A model bound to whether the sidenav is opened.
+ * @param {string=} md-component-id componentId to use with $mdSidenav service.
+ * @param {expression=} md-is-locked-open When this expression evalutes to true,
+ * the sidenav 'locks open': it falls into the content's flow instead
+ * of appearing over it. This overrides the `is-open` attribute.
+ *
+ * The $mdMedia() service is exposed to the is-locked-open attribute, which
+ * can be given a media query or one of the `sm`, `gt-sm`, `md`, `gt-md`, `lg` or `gt-lg` presets.
+ * Examples:
+ *
+ *   - `<md-sidenav md-is-locked-open="shouldLockOpen"></md-sidenav>`
+ *   - `<md-sidenav md-is-locked-open="$mdMedia('min-width: 1000px')"></md-sidenav>`
+ *   - `<md-sidenav md-is-locked-open="$mdMedia('sm')"></md-sidenav>` (locks open on small screens)
+ */
+function SidenavDirective($timeout, $animate, $parse, $log, $mdMedia, $mdConstant, $compile, $mdTheming, $q, $document) {
+  return {
+    restrict: 'E',
+    scope: {
+      isOpen: '=?mdIsOpen'
+    },
+    controller: '$mdSidenavController',
+    compile: function(element) {
+      element.addClass('md-closed');
+      element.attr('tabIndex', '-1');
+      return postLink;
+    }
+  };
+
+  /**
+   * Directive Post Link function...
+   */
+  function postLink(scope, element, attr, sidenavCtrl) {
+    var lastParentOverFlow;
+    var triggeringElement = null;
+    var promise = $q.when(true);
+
+    var isLockedOpenParsed = $parse(attr.mdIsLockedOpen);
+    var isLocked = function() {
+      return isLockedOpenParsed(scope.$parent, {
+        $media: function(arg) {
+          $log.warn("$media is deprecated for is-locked-open. Use $mdMedia instead.");
+          return $mdMedia(arg);
+        },
+        $mdMedia: $mdMedia
+      });
+    };
+    var backdrop = $compile(
+      '<md-backdrop class="md-sidenav-backdrop md-opaque ng-enter">'
+    )(scope);
+
+    element.on('$destroy', sidenavCtrl.destroy);
+    $mdTheming.inherit(backdrop, element);
+
+    scope.$watch(isLocked, updateIsLocked);
+    scope.$watch('isOpen', updateIsOpen);
+
+
+    // Publish special accessor for the Controller instance
+    sidenavCtrl.$toggleOpen = toggleOpen;
+    sidenavCtrl.focusElement( sidenavCtrl.focusElement() || element );
+
+    /**
+     * Toggle the DOM classes to indicate `locked`
+     * @param isLocked
+     */
+    function updateIsLocked(isLocked, oldValue) {
+      scope.isLockedOpen = isLocked;
+      if (isLocked === oldValue) {
+        element.toggleClass('md-locked-open', !!isLocked);
+      } else {
+        $animate[isLocked ? 'addClass' : 'removeClass'](element, 'md-locked-open');
+      }
+      backdrop.toggleClass('md-locked-open', !!isLocked);
+    }
+
+    /**
+     * Toggle the SideNav view and attach/detach listeners
+     * @param isOpen
+     */
+    function updateIsOpen(isOpen) {
+      var parent = element.parent();
+
+      parent[isOpen ? 'on' : 'off']('keydown', onKeyDown);
+      backdrop[isOpen ? 'on' : 'off']('click', close);
+
+      if ( isOpen ) {
+        // Capture upon opening..
+        triggeringElement = $document[0].activeElement;
+      }
+      var focusEl = sidenavCtrl.focusElement();
+
+      disableParentScroll(isOpen);
+
+      return promise = $q.all([
+                isOpen ? $animate.enter(backdrop, parent) : $animate.leave(backdrop),
+                $animate[isOpen ? 'removeClass' : 'addClass'](element, 'md-closed')
+              ])
+              .then(function() {
+                // Perform focus when animations are ALL done...
+                if (scope.isOpen) {
+                  focusEl && focusEl.focus();
+                }
+              });
+    }
+
+    /**
+     * Prevent parent scrolling (when the SideNav is open)
+     */
+    function disableParentScroll(disabled) {
+      var parent = element.parent();
+      if ( disabled ) {
+        lastParentOverFlow = parent.css('overflow');
+        parent.css('overflow', 'hidden');
+      } else if (angular.isDefined(lastParentOverFlow)) {
+        parent.css('overflow', lastParentOverFlow);
+        lastParentOverFlow = undefined;
+      }
+    }
+
+    /**
+     * Toggle the sideNav view and publish a promise to be resolved when
+     * the view animation finishes.
+     *
+     * @param isOpen
+     * @returns {*}
+     */
+    function toggleOpen( isOpen ) {
+      if (scope.isOpen == isOpen ) {
+
+        return $q.when(true);
+
+      } else {
+        var deferred = $q.defer();
+
+        // Toggle value to force an async `updateIsOpen()` to run
+        scope.isOpen = isOpen;
+
+        $timeout(function() {
+
+          // When the current `updateIsOpen()` animation finishes
+          promise.then(function(result) {
+
+            if ( !scope.isOpen ) {
+              // reset focus to originating element (if available) upon close
+              triggeringElement && triggeringElement.focus();
+              triggeringElement = null;
+            }
+
+            deferred.resolve(result);
+          });
+
+        },0,false);
+
+        return deferred.promise;
+      }
+    }
+
+    /**
+     * Auto-close sideNav when the `escape` key is pressed.
+     * @param evt
+     */
+    function onKeyDown(ev) {
+      var isEscape = (ev.keyCode === $mdConstant.KEY_CODE.ESCAPE);
+      return isEscape ? close(ev) : $q.when(true);
+    }
+
+    /**
+     * With backdrop `clicks` or `escape` key-press, immediately
+     * apply the CSS close transition... Then notify the controller
+     * to close() and perform its own actions.
+     */
+    function close(ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+
+      return sidenavCtrl.close();
+    }
+
+  }
+}
+SidenavDirective.$inject = ["$timeout", "$animate", "$parse", "$log", "$mdMedia", "$mdConstant", "$compile", "$mdTheming", "$q", "$document"];
+
+/*
+ * @private
+ * @ngdoc controller
+ * @name SidenavController
+ * @module material.components.sidenav
+ *
+ */
+function SidenavController($scope, $element, $attrs, $mdComponentRegistry, $q) {
+
+  var self = this,
+      focusElement;
+
+  // Use Default internal method until overridden by directive postLink
+
+  // Synchronous getters
+  self.isOpen = function() { return !!$scope.isOpen; };
+  self.isLockedOpen = function() { return !!$scope.isLockedOpen; };
+
+  // Async actions
+  self.open   = function() { return self.$toggleOpen( true );  };
+  self.close  = function() { return self.$toggleOpen( false ); };
+  self.toggle = function() { return self.$toggleOpen( !$scope.isOpen );  };
+  self.focusElement = function(el) {
+    if ( angular.isDefined(el) ) {
+      focusElement = el;
+    }
+    return focusElement;
+  };
+
+  self.$toggleOpen = function() { return $q.when($scope.isOpen); };
+
+  self.destroy = $mdComponentRegistry.register(self, $attrs.mdComponentId);
+}
+SidenavController.$inject = ["$scope", "$element", "$attrs", "$mdComponentRegistry", "$q"];
+
+})();
+(function(){
+"use strict";
+
+/**
+ * @ngdoc module
  * @name material.components.select
  */
 
@@ -8320,6 +9890,7 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $interpolate, 
           element.on('keydown', handleKeypress);
         }
       });
+
       if (!attr.disabled && !attr.ngDisabled) {
         element.attr({'tabindex': attr.tabindex, 'aria-disabled': 'false'});
         element.on('click', openSelect);
@@ -9128,419 +10699,310 @@ function nodesToArray(nodes) {
 (function(){
 "use strict";
 
-/**
+/*
  * @ngdoc module
- * @name material.components.sidenav
- *
+ * @name material.components.sticky
  * @description
- * A Sidenav QP component.
+ *
+ * Sticky effects for md
  */
-angular.module('material.components.sidenav', [
-    'material.core',
-    'material.components.backdrop'
-  ])
-  .factory('$mdSidenav', SidenavService )
-  .directive('mdSidenav', SidenavDirective)
-  .directive('mdSidenavFocus', SidenavFocusDirective)
-  .controller('$mdSidenavController', SidenavController);
 
-
-/**
- * @private
- * @ngdoc service
- * @name $mdSidenav
- * @module material.components.sidenav
- *
- * @description
- * `$mdSidenav` makes it easy to interact with multiple sidenavs
- * in an app.
- *
- * @usage
- * <hljs lang="js">
- * // Async lookup for sidenav instance; will resolve when the instance is available
- * $mdSidenav(componentId).then(function(instance) {
- *   $log.debug( componentId + "is now ready" );
- * });
- * // Async toggle the given sidenav;
- * // when instance is known ready and lazy lookup is not needed.
- * $mdSidenav(componentId)
- *    .toggle()
- *    .then(function(){
- *      $log.debug('toggled');
- *    });
- * // Async open the given sidenav
- * $mdSidenav(componentId)
- *    .open()
- *    .then(function(){
- *      $log.debug('opened');
- *    });
- * // Async close the given sidenav
- * $mdSidenav(componentId)
- *    .close()
- *    .then(function(){
- *      $log.debug('closed');
- *    });
- * // Sync check to see if the specified sidenav is set to be open
- * $mdSidenav(componentId).isOpen();
- * // Sync check to whether given sidenav is locked open
- * // If this is true, the sidenav will be open regardless of close()
- * $mdSidenav(componentId).isLockedOpen();
- * </hljs>
- */
-function SidenavService($mdComponentRegistry, $q) {
-  return function(handle) {
-
-    // Lookup the controller instance for the specified sidNav instance
-    var self;
-    var errorMsg = "SideNav '" + handle + "' is not available!";
-    var instance = $mdComponentRegistry.get(handle);
-
-    if(!instance) {
-      $mdComponentRegistry.notFoundError(handle);
-    }
-
-    return self = {
-      // -----------------
-      // Sync methods
-      // -----------------
-      isOpen: function() {
-        return instance && instance.isOpen();
-      },
-      isLockedOpen: function() {
-        return instance && instance.isLockedOpen();
-      },
-      // -----------------
-      // Async methods
-      // -----------------
-      toggle: function() {
-        return instance ? instance.toggle() : $q.reject(errorMsg);
-      },
-      open: function() {
-        return instance ? instance.open() : $q.reject(errorMsg);
-      },
-      close: function() {
-        return instance ? instance.close() : $q.reject(errorMsg);
-      },
-      then : function( callbackFn ) {
-        var promise = instance ? $q.when(instance) : waitForInstance();
-        return promise.then( callbackFn || angular.noop );
-      }
-    };
-
-    /**
-     * Deferred lookup of component instance using $component registry
-     */
-    function waitForInstance() {
-      return $mdComponentRegistry
-                .when(handle)
-                .then(function( it ){
-                  instance = it;
-                  return it;
-                });
-    }
-  };
-}
-SidenavService.$inject = ["$mdComponentRegistry", "$q"];
-/**
- * @ngdoc directive
- * @name mdSidenavFocus
- * @module material.components.sidenav
- *
- * @restrict A
- *
- * @description
- * `$mdSidenavFocus` provides a way to specify the focused element when a sidenav opens.
- * This is completely optional, as the sidenav itself is focused by default.
- *
- * @usage
- * <hljs lang="html">
- * <md-sidenav>
- *   <form>
- *     <md-input-container>
- *       <label for="testInput">Label</label>
- *       <input id="testInput" type="text" md-sidenav-focus>
- *     </md-input-container>
- *   </form>
- * </md-sidenav>
- * </hljs>
- **/
-function SidenavFocusDirective() {
-  return {
-    restrict: 'A',
-    require: '^mdSidenav',
-    link: function(scope, element, attr, sidenavCtrl) {
-      sidenavCtrl.focusElement(element);
-    }
-  };
-}
-/**
- * @ngdoc directive
- * @name mdSidenav
- * @module material.components.sidenav
- * @restrict E
- *
- * @description
- *
- * A Sidenav component that can be opened and closed programatically.
- *
- * By default, upon opening it will slide out on top of the main content area.
- *
- * For keyboard and screen reader accessibility, focus is sent to the sidenav wrapper by default.
- * It can be overridden with the `md-sidenav-focus` directive on the child element you want focused.
- *
- * @usage
- * <hljs lang="html">
- * <div layout="row" ng-controller="MyController">
- *   <md-sidenav md-component-id="left" class="md-sidenav-left">
- *     Left Nav!
- *   </md-sidenav>
- *
- *   <md-content>
- *     Center Content
- *     <md-button ng-click="openLeftMenu()">
- *       Open Left Menu
- *     </md-button>
- *   </md-content>
- *
- *   <md-sidenav md-component-id="right"
- *     md-is-locked-open="$mdMedia('min-width: 333px')"
- *     class="md-sidenav-right">
- *     <form>
- *       <md-input-container>
- *         <label for="testInput">Test input</label>
- *         <input id="testInput" type="text"
- *                ng-model="data" md-sidenav-focus>
- *       </md-input-container>
- *     </form>
- *   </md-sidenav>
- * </div>
- * </hljs>
- *
- * <hljs lang="js">
- * var app = angular.module('myApp', ['ngMaterial']);
- * app.controller('MyController', function($scope, $mdSidenav) {
- *   $scope.openLeftMenu = function() {
- *     $mdSidenav('left').toggle();
- *   };
- * });
- * </hljs>
- *
- * @param {expression=} md-is-open A model bound to whether the sidenav is opened.
- * @param {string=} md-component-id componentId to use with $mdSidenav service.
- * @param {expression=} md-is-locked-open When this expression evalutes to true,
- * the sidenav 'locks open': it falls into the content's flow instead
- * of appearing over it. This overrides the `is-open` attribute.
- *
- * The $mdMedia() service is exposed to the is-locked-open attribute, which
- * can be given a media query or one of the `sm`, `gt-sm`, `md`, `gt-md`, `lg` or `gt-lg` presets.
- * Examples:
- *
- *   - `<md-sidenav md-is-locked-open="shouldLockOpen"></md-sidenav>`
- *   - `<md-sidenav md-is-locked-open="$mdMedia('min-width: 1000px')"></md-sidenav>`
- *   - `<md-sidenav md-is-locked-open="$mdMedia('sm')"></md-sidenav>` (locks open on small screens)
- */
-function SidenavDirective($timeout, $animate, $parse, $log, $mdMedia, $mdConstant, $compile, $mdTheming, $q, $document) {
-  return {
-    restrict: 'E',
-    scope: {
-      isOpen: '=?mdIsOpen'
-    },
-    controller: '$mdSidenavController',
-    compile: function(element) {
-      element.addClass('md-closed');
-      element.attr('tabIndex', '-1');
-      return postLink;
-    }
-  };
-
-  /**
-   * Directive Post Link function...
-   */
-  function postLink(scope, element, attr, sidenavCtrl) {
-    var lastParentOverFlow;
-    var triggeringElement = null;
-    var promise = $q.when(true);
-
-    var isLockedOpenParsed = $parse(attr.mdIsLockedOpen);
-    var isLocked = function() {
-      return isLockedOpenParsed(scope.$parent, {
-        $media: function(arg) {
-          $log.warn("$media is deprecated for is-locked-open. Use $mdMedia instead.");
-          return $mdMedia(arg);
-        },
-        $mdMedia: $mdMedia
-      });
-    };
-    var backdrop = $compile(
-      '<md-backdrop class="md-sidenav-backdrop md-opaque ng-enter">'
-    )(scope);
-
-    element.on('$destroy', sidenavCtrl.destroy);
-    $mdTheming.inherit(backdrop, element);
-
-    scope.$watch(isLocked, updateIsLocked);
-    scope.$watch('isOpen', updateIsOpen);
-
-
-    // Publish special accessor for the Controller instance
-    sidenavCtrl.$toggleOpen = toggleOpen;
-    sidenavCtrl.focusElement( sidenavCtrl.focusElement() || element );
-
-    /**
-     * Toggle the DOM classes to indicate `locked`
-     * @param isLocked
-     */
-    function updateIsLocked(isLocked, oldValue) {
-      scope.isLockedOpen = isLocked;
-      if (isLocked === oldValue) {
-        element.toggleClass('md-locked-open', !!isLocked);
-      } else {
-        $animate[isLocked ? 'addClass' : 'removeClass'](element, 'md-locked-open');
-      }
-      backdrop.toggleClass('md-locked-open', !!isLocked);
-    }
-
-    /**
-     * Toggle the SideNav view and attach/detach listeners
-     * @param isOpen
-     */
-    function updateIsOpen(isOpen) {
-      var parent = element.parent();
-
-      parent[isOpen ? 'on' : 'off']('keydown', onKeyDown);
-      backdrop[isOpen ? 'on' : 'off']('click', close);
-
-      if ( isOpen ) {
-        // Capture upon opening..
-        triggeringElement = $document[0].activeElement;
-      }
-      var focusEl = sidenavCtrl.focusElement();
-
-      disableParentScroll(isOpen);
-
-      return promise = $q.all([
-                isOpen ? $animate.enter(backdrop, parent) : $animate.leave(backdrop),
-                $animate[isOpen ? 'removeClass' : 'addClass'](element, 'md-closed')
-              ])
-              .then(function() {
-                // Perform focus when animations are ALL done...
-                if (scope.isOpen) {
-                  focusEl && focusEl.focus();
-                }
-              });
-    }
-
-    /**
-     * Prevent parent scrolling (when the SideNav is open)
-     */
-    function disableParentScroll(disabled) {
-      var parent = element.parent();
-      if ( disabled ) {
-        lastParentOverFlow = parent.css('overflow');
-        parent.css('overflow', 'hidden');
-      } else if (angular.isDefined(lastParentOverFlow)) {
-        parent.css('overflow', lastParentOverFlow);
-        lastParentOverFlow = undefined;
-      }
-    }
-
-    /**
-     * Toggle the sideNav view and publish a promise to be resolved when
-     * the view animation finishes.
-     *
-     * @param isOpen
-     * @returns {*}
-     */
-    function toggleOpen( isOpen ) {
-      if (scope.isOpen == isOpen ) {
-
-        return $q.when(true);
-
-      } else {
-        var deferred = $q.defer();
-
-        // Toggle value to force an async `updateIsOpen()` to run
-        scope.isOpen = isOpen;
-
-        $timeout(function() {
-
-          // When the current `updateIsOpen()` animation finishes
-          promise.then(function(result) {
-
-            if ( !scope.isOpen ) {
-              // reset focus to originating element (if available) upon close
-              triggeringElement && triggeringElement.focus();
-              triggeringElement = null;
-            }
-
-            deferred.resolve(result);
-          });
-
-        },0,false);
-
-        return deferred.promise;
-      }
-    }
-
-    /**
-     * Auto-close sideNav when the `escape` key is pressed.
-     * @param evt
-     */
-    function onKeyDown(ev) {
-      var isEscape = (ev.keyCode === $mdConstant.KEY_CODE.ESCAPE);
-      return isEscape ? close(ev) : $q.when(true);
-    }
-
-    /**
-     * With backdrop `clicks` or `escape` key-press, immediately
-     * apply the CSS close transition... Then notify the controller
-     * to close() and perform its own actions.
-     */
-    function close(ev) {
-      ev.preventDefault();
-      ev.stopPropagation();
-
-      return sidenavCtrl.close();
-    }
-
-  }
-}
-SidenavDirective.$inject = ["$timeout", "$animate", "$parse", "$log", "$mdMedia", "$mdConstant", "$compile", "$mdTheming", "$q", "$document"];
+angular.module('material.components.sticky', [
+  'material.core',
+  'material.components.content'
+])
+  .factory('$mdSticky', MdSticky);
 
 /*
- * @private
- * @ngdoc controller
- * @name SidenavController
- * @module material.components.sidenav
+ * @ngdoc service
+ * @name $mdSticky
+ * @module material.components.sticky
  *
+ * @description
+ * The `$mdSticky`service provides a mixin to make elements sticky.
+ *
+ * @returns A `$mdSticky` function that takes three arguments:
+ *   - `scope`
+ *   - `element`: The element that will be 'sticky'
+ *   - `elementClone`: A clone of the element, that will be shown
+ *     when the user starts scrolling past the original element.
+ *     If not provided, it will use the result of `element.clone()`.
  */
-function SidenavController($scope, $element, $attrs, $mdComponentRegistry, $q) {
 
-  var self = this,
-      focusElement;
+function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
 
-  // Use Default internal method until overridden by directive postLink
+  var browserStickySupport = checkStickySupport();
 
-  // Synchronous getters
-  self.isOpen = function() { return !!$scope.isOpen; };
-  self.isLockedOpen = function() { return !!$scope.isLockedOpen; };
+  /**
+   * Registers an element as sticky, used internally by directives to register themselves
+   */
+  return function registerStickyElement(scope, element, stickyClone) {
+    var contentCtrl = element.controller('mdContent');
+    if (!contentCtrl) return;
 
-  // Async actions
-  self.open   = function() { return self.$toggleOpen( true );  };
-  self.close  = function() { return self.$toggleOpen( false ); };
-  self.toggle = function() { return self.$toggleOpen( !$scope.isOpen );  };
-  self.focusElement = function(el) {
-    if ( angular.isDefined(el) ) {
-      focusElement = el;
+    if (browserStickySupport) {
+      element.css({
+        position: browserStickySupport,
+        top: 0,
+        'z-index': 2
+      });
+    } else {
+      var $$sticky = contentCtrl.$element.data('$$sticky');
+      if (!$$sticky) {
+        $$sticky = setupSticky(contentCtrl);
+        contentCtrl.$element.data('$$sticky', $$sticky);
+      }
+
+      var deregister = $$sticky.add(element, stickyClone || element.clone());
+      scope.$on('$destroy', deregister);
     }
-    return focusElement;
   };
 
-  self.$toggleOpen = function() { return $q.when($scope.isOpen); };
+  function setupSticky(contentCtrl) {
+    var contentEl = contentCtrl.$element;
 
-  self.destroy = $mdComponentRegistry.register(self, $attrs.mdComponentId);
+    // Refresh elements is very expensive, so we use the debounced
+    // version when possible.
+    var debouncedRefreshElements = $$rAF.throttle(refreshElements);
+
+    // setupAugmentedScrollEvents gives us `$scrollstart` and `$scroll`,
+    // more reliable than `scroll` on android.
+    setupAugmentedScrollEvents(contentEl);
+    contentEl.on('$scrollstart', debouncedRefreshElements);
+    contentEl.on('$scroll', onScroll);
+
+    var self;
+    var stickyBaseoffset = contentEl.prop('offsetTop');
+    return self = {
+      prev: null,
+      current: null, //the currently stickied item
+      next: null,
+      items: [],
+      add: add,
+      refreshElements: refreshElements
+    };
+
+    /***************
+     * Public
+     ***************/
+    // Add an element and its sticky clone to this content's sticky collection
+    function add(element, stickyClone) {
+      stickyClone.addClass('md-sticky-clone');
+      stickyClone.css('top', stickyBaseoffset + 'px');
+
+      var item = {
+        element: element,
+        clone: stickyClone
+      };
+      self.items.push(item);
+
+      contentEl.parent().prepend(item.clone);
+
+      debouncedRefreshElements();
+
+      return function remove() {
+        self.items.forEach(function(item, index) {
+          if (item.element[0] === element[0]) {
+            self.items.splice(index, 1);
+            item.clone.remove();
+          }
+        });
+        debouncedRefreshElements();
+      };
+    }
+
+    function refreshElements() {
+      // Sort our collection of elements by their current position in the DOM.
+      // We need to do this because our elements' order of being added may not
+      // be the same as their order of display.
+      self.items.forEach(refreshPosition);
+      self.items = self.items.sort(function(a, b) {
+        return a.top < b.top ? -1 : 1;
+      });
+
+      // Find which item in the list should be active, 
+      // based upon the content's current scroll position
+      var item;
+      var currentScrollTop = contentEl.prop('scrollTop');
+      for (var i = self.items.length - 1; i >= 0; i--) {
+        if (currentScrollTop > self.items[i].top) {
+          item = self.items[i];
+          break;
+        }
+      }
+      setCurrentItem(item);
+    }
+
+
+    /***************
+     * Private
+     ***************/
+
+    // Find the `top` of an item relative to the content element,
+    // and also the height.
+    function refreshPosition(item) {
+      // Find the top of an item by adding to the offsetHeight until we reach the 
+      // content element.
+      var current = item.element[0];
+      item.top = 0;
+      item.left = 0;
+      while (current && current !== contentEl[0]) {
+        item.top += current.offsetTop;
+        item.left += current.offsetLeft;
+        current = current.offsetParent;
+      }
+      item.height = item.element.prop('offsetHeight');
+      item.clone.css('margin-left', item.left + 'px');
+      if ($mdUtil.floatingScrollbars()) {
+        item.clone.css('margin-right', '0');
+      }
+    }
+
+
+    // As we scroll, push in and select the correct sticky element.
+    function onScroll() {
+      var scrollTop = contentEl.prop('scrollTop');
+      var isScrollingDown = scrollTop > (onScroll.prevScrollTop || 0);
+      onScroll.prevScrollTop = scrollTop;
+
+      // At the top?
+      if (scrollTop === 0) {
+        setCurrentItem(null);
+
+      // Going to next item?
+      } else if (isScrollingDown && self.next) {
+        if (self.next.top - scrollTop <= 0) {
+          // Sticky the next item if we've scrolled past its position.
+          setCurrentItem(self.next);
+        } else if (self.current) {
+          // Push the current item up when we're almost at the next item.
+          if (self.next.top - scrollTop <= self.next.height) {
+            translate(self.current, self.next.top - self.next.height - scrollTop);
+          } else {
+            translate(self.current, null);
+          }
+        }
+        
+      // Scrolling up with a current sticky item?
+      } else if (!isScrollingDown && self.current) {
+        if (scrollTop < self.current.top) {
+          // Sticky the previous item if we've scrolled up past
+          // the original position of the currently stickied item.
+          setCurrentItem(self.prev);
+        }
+        // Scrolling up, and just bumping into the item above (just set to current)?
+        // If we have a next item bumping into the current item, translate
+        // the current item up from the top as it scrolls into view.
+        if (self.current && self.next) {
+          if (scrollTop >= self.next.top - self.current.height) {
+            translate(self.current, self.next.top - scrollTop - self.current.height);
+          } else {
+            translate(self.current, null);
+          }
+        }
+      }
+    }
+     
+   function setCurrentItem(item) {
+     if (self.current === item) return;
+     // Deactivate currently active item
+     if (self.current) {
+       translate(self.current, null);
+       setStickyState(self.current, null);
+     }
+
+     // Activate new item if given
+     if (item) {
+       setStickyState(item, 'active');
+     }
+
+     self.current = item;
+     var index = self.items.indexOf(item);
+     // If index === -1, index + 1 = 0. It works out.
+     self.next = self.items[index + 1];
+     self.prev = self.items[index - 1];
+     setStickyState(self.next, 'next');
+     setStickyState(self.prev, 'prev');
+   }
+
+   function setStickyState(item, state) {
+     if (!item || item.state === state) return;
+     if (item.state) {
+       item.clone.attr('sticky-prev-state', item.state);
+       item.element.attr('sticky-prev-state', item.state);
+     }
+     item.clone.attr('sticky-state', state);
+     item.element.attr('sticky-state', state);
+     item.state = state;
+   }
+
+   function translate(item, amount) {
+     if (!item) return;
+     if (amount === null || amount === undefined) {
+       if (item.translateY) {
+         item.translateY = null;
+         item.clone.css($mdConstant.CSS.TRANSFORM, '');
+       }
+     } else {
+       item.translateY = amount;
+       item.clone.css(
+         $mdConstant.CSS.TRANSFORM, 
+         'translate3d(' + item.left + 'px,' + amount + 'px,0)'
+       );
+     }
+   }
+  }
+
+  // Function to check for browser sticky support
+  function checkStickySupport($el) {
+    var stickyProp;
+    var testEl = angular.element('<div>');
+    $document[0].body.appendChild(testEl[0]);
+
+    var stickyProps = ['sticky', '-webkit-sticky'];
+    for (var i = 0; i < stickyProps.length; ++i) {
+      testEl.css({position: stickyProps[i], top: 0, 'z-index': 2});
+      if (testEl.css('position') == stickyProps[i]) {
+        stickyProp = stickyProps[i];
+        break;
+      }
+    }
+    testEl.remove();
+    return stickyProp;
+  }
+
+  // Android 4.4 don't accurately give scroll events.
+  // To fix this problem, we setup a fake scroll event. We say:
+  // > If a scroll or touchmove event has happened in the last DELAY milliseconds, 
+  //   then send a `$scroll` event every animationFrame.
+  // Additionally, we add $scrollstart and $scrollend events.
+  function setupAugmentedScrollEvents(element) {
+    var SCROLL_END_DELAY = 200;
+    var isScrolling;
+    var lastScrollTime;
+    element.on('scroll touchmove', function() {
+      if (!isScrolling) {
+        isScrolling = true;
+        $$rAF(loopScrollEvent);
+        element.triggerHandler('$scrollstart');
+      }
+      element.triggerHandler('$scroll');
+      lastScrollTime = +$mdUtil.now();
+    });
+
+    function loopScrollEvent() {
+      if (+$mdUtil.now() - lastScrollTime > SCROLL_END_DELAY) {
+        isScrolling = false;
+        element.triggerHandler('$scrollend');
+      } else {
+        element.triggerHandler('$scroll');
+        $$rAF(loopScrollEvent);
+      }
+    }
+  }
+
 }
-SidenavController.$inject = ["$scope", "$element", "$attrs", "$mdComponentRegistry", "$q"];
+MdSticky.$inject = ["$document", "$mdConstant", "$compile", "$$rAF", "$mdUtil"];
 
 })();
 (function(){
@@ -9944,310 +11406,68 @@ SliderDirective.$inject = ["$$rAF", "$window", "$mdAria", "$mdUtil", "$mdConstan
 (function(){
 "use strict";
 
-/*
+/**
  * @ngdoc module
- * @name material.components.sticky
- * @description
- *
- * Sticky effects for md
+ * @name material.components.swipe
+ * @description Swipe module!
  */
-
-angular.module('material.components.sticky', [
-  'material.core',
-  'material.components.content'
-])
-  .factory('$mdSticky', MdSticky);
-
-/*
- * @ngdoc service
- * @name $mdSticky
- * @module material.components.sticky
+/**
+ * @ngdoc directive
+ * @module material.components.swipe
+ * @name mdSwipeLeft
+ *
+ * @restrict A
  *
  * @description
- * The `$mdSticky`service provides a mixin to make elements sticky.
+ * The md-swipe-left directives allows you to specify custom behavior when an element is swiped
+ * left.
  *
- * @returns A `$mdSticky` function that takes three arguments:
- *   - `scope`
- *   - `element`: The element that will be 'sticky'
- *   - `elementClone`: A clone of the element, that will be shown
- *     when the user starts scrolling past the original element.
- *     If not provided, it will use the result of `element.clone()`.
+ * @usage
+ * <hljs lang="html">
+ * <div md-swipe-left="onSwipeLeft()">Swipe me left!</div>
+ * </hljs>
+ */
+/**
+ * @ngdoc directive
+ * @module material.components.swipe
+ * @name mdSwipeRight
+ *
+ * @restrict A
+ *
+ * @description
+ * The md-swipe-right directives allows you to specify custom behavior when an element is swiped
+ * right.
+ *
+ * @usage
+ * <hljs lang="html">
+ * <div md-swipe-right="onSwipeRight()">Swipe me right!</div>
+ * </hljs>
  */
 
-function MdSticky($document, $mdConstant, $compile, $$rAF, $mdUtil) {
+angular.module('material.components.swipe', ['material.core'])
+    .directive('mdSwipeLeft', getDirective('SwipeLeft'))
+    .directive('mdSwipeRight', getDirective('SwipeRight'));
 
-  var browserStickySupport = checkStickySupport();
+function getDirective(name) {
+  var directiveName = 'md' + name;
+  var eventName = '$md.' + name.toLowerCase();
 
-  /**
-   * Registers an element as sticky, used internally by directives to register themselves
-   */
-  return function registerStickyElement(scope, element, stickyClone) {
-    var contentCtrl = element.controller('mdContent');
-    if (!contentCtrl) return;
+    DirectiveFactory.$inject = ["$parse"];
+  return DirectiveFactory;
 
-    if (browserStickySupport) {
-      element.css({
-        position: browserStickySupport,
-        top: 0,
-        'z-index': 2
-      });
-    } else {
-      var $$sticky = contentCtrl.$element.data('$$sticky');
-      if (!$$sticky) {
-        $$sticky = setupSticky(contentCtrl);
-        contentCtrl.$element.data('$$sticky', $$sticky);
-      }
-
-      var deregister = $$sticky.add(element, stickyClone || element.clone());
-      scope.$on('$destroy', deregister);
-    }
-  };
-
-  function setupSticky(contentCtrl) {
-    var contentEl = contentCtrl.$element;
-
-    // Refresh elements is very expensive, so we use the debounced
-    // version when possible.
-    var debouncedRefreshElements = $$rAF.throttle(refreshElements);
-
-    // setupAugmentedScrollEvents gives us `$scrollstart` and `$scroll`,
-    // more reliable than `scroll` on android.
-    setupAugmentedScrollEvents(contentEl);
-    contentEl.on('$scrollstart', debouncedRefreshElements);
-    contentEl.on('$scroll', onScroll);
-
-    var self;
-    var stickyBaseoffset = contentEl.prop('offsetTop');
-    return self = {
-      prev: null,
-      current: null, //the currently stickied item
-      next: null,
-      items: [],
-      add: add,
-      refreshElements: refreshElements
-    };
-
-    /***************
-     * Public
-     ***************/
-    // Add an element and its sticky clone to this content's sticky collection
-    function add(element, stickyClone) {
-      stickyClone.addClass('md-sticky-clone');
-      stickyClone.css('top', stickyBaseoffset + 'px');
-
-      var item = {
-        element: element,
-        clone: stickyClone
-      };
-      self.items.push(item);
-
-      contentEl.parent().prepend(item.clone);
-
-      debouncedRefreshElements();
-
-      return function remove() {
-        self.items.forEach(function(item, index) {
-          if (item.element[0] === element[0]) {
-            self.items.splice(index, 1);
-            item.clone.remove();
-          }
+  /* @ngInject */
+  function DirectiveFactory($parse) {
+      return { restrict: 'A', link: postLink };
+      function postLink(scope, element, attr) {
+        var fn = $parse(attr[directiveName]);
+        element.on(eventName, function(ev) {
+          scope.$apply(function() { fn(scope, { $event: ev }); });
         });
-        debouncedRefreshElements();
-      };
-    }
-
-    function refreshElements() {
-      // Sort our collection of elements by their current position in the DOM.
-      // We need to do this because our elements' order of being added may not
-      // be the same as their order of display.
-      self.items.forEach(refreshPosition);
-      self.items = self.items.sort(function(a, b) {
-        return a.top < b.top ? -1 : 1;
-      });
-
-      // Find which item in the list should be active, 
-      // based upon the content's current scroll position
-      var item;
-      var currentScrollTop = contentEl.prop('scrollTop');
-      for (var i = self.items.length - 1; i >= 0; i--) {
-        if (currentScrollTop > self.items[i].top) {
-          item = self.items[i];
-          break;
-        }
-      }
-      setCurrentItem(item);
-    }
-
-
-    /***************
-     * Private
-     ***************/
-
-    // Find the `top` of an item relative to the content element,
-    // and also the height.
-    function refreshPosition(item) {
-      // Find the top of an item by adding to the offsetHeight until we reach the 
-      // content element.
-      var current = item.element[0];
-      item.top = 0;
-      item.left = 0;
-      while (current && current !== contentEl[0]) {
-        item.top += current.offsetTop;
-        item.left += current.offsetLeft;
-        current = current.offsetParent;
-      }
-      item.height = item.element.prop('offsetHeight');
-      item.clone.css('margin-left', item.left + 'px');
-      if ($mdUtil.floatingScrollbars()) {
-        item.clone.css('margin-right', '0');
       }
     }
-
-
-    // As we scroll, push in and select the correct sticky element.
-    function onScroll() {
-      var scrollTop = contentEl.prop('scrollTop');
-      var isScrollingDown = scrollTop > (onScroll.prevScrollTop || 0);
-      onScroll.prevScrollTop = scrollTop;
-
-      // At the top?
-      if (scrollTop === 0) {
-        setCurrentItem(null);
-
-      // Going to next item?
-      } else if (isScrollingDown && self.next) {
-        if (self.next.top - scrollTop <= 0) {
-          // Sticky the next item if we've scrolled past its position.
-          setCurrentItem(self.next);
-        } else if (self.current) {
-          // Push the current item up when we're almost at the next item.
-          if (self.next.top - scrollTop <= self.next.height) {
-            translate(self.current, self.next.top - self.next.height - scrollTop);
-          } else {
-            translate(self.current, null);
-          }
-        }
-        
-      // Scrolling up with a current sticky item?
-      } else if (!isScrollingDown && self.current) {
-        if (scrollTop < self.current.top) {
-          // Sticky the previous item if we've scrolled up past
-          // the original position of the currently stickied item.
-          setCurrentItem(self.prev);
-        }
-        // Scrolling up, and just bumping into the item above (just set to current)?
-        // If we have a next item bumping into the current item, translate
-        // the current item up from the top as it scrolls into view.
-        if (self.current && self.next) {
-          if (scrollTop >= self.next.top - self.current.height) {
-            translate(self.current, self.next.top - scrollTop - self.current.height);
-          } else {
-            translate(self.current, null);
-          }
-        }
-      }
-    }
-     
-   function setCurrentItem(item) {
-     if (self.current === item) return;
-     // Deactivate currently active item
-     if (self.current) {
-       translate(self.current, null);
-       setStickyState(self.current, null);
-     }
-
-     // Activate new item if given
-     if (item) {
-       setStickyState(item, 'active');
-     }
-
-     self.current = item;
-     var index = self.items.indexOf(item);
-     // If index === -1, index + 1 = 0. It works out.
-     self.next = self.items[index + 1];
-     self.prev = self.items[index - 1];
-     setStickyState(self.next, 'next');
-     setStickyState(self.prev, 'prev');
-   }
-
-   function setStickyState(item, state) {
-     if (!item || item.state === state) return;
-     if (item.state) {
-       item.clone.attr('sticky-prev-state', item.state);
-       item.element.attr('sticky-prev-state', item.state);
-     }
-     item.clone.attr('sticky-state', state);
-     item.element.attr('sticky-state', state);
-     item.state = state;
-   }
-
-   function translate(item, amount) {
-     if (!item) return;
-     if (amount === null || amount === undefined) {
-       if (item.translateY) {
-         item.translateY = null;
-         item.clone.css($mdConstant.CSS.TRANSFORM, '');
-       }
-     } else {
-       item.translateY = amount;
-       item.clone.css(
-         $mdConstant.CSS.TRANSFORM, 
-         'translate3d(' + item.left + 'px,' + amount + 'px,0)'
-       );
-     }
-   }
-  }
-
-  // Function to check for browser sticky support
-  function checkStickySupport($el) {
-    var stickyProp;
-    var testEl = angular.element('<div>');
-    $document[0].body.appendChild(testEl[0]);
-
-    var stickyProps = ['sticky', '-webkit-sticky'];
-    for (var i = 0; i < stickyProps.length; ++i) {
-      testEl.css({position: stickyProps[i], top: 0, 'z-index': 2});
-      if (testEl.css('position') == stickyProps[i]) {
-        stickyProp = stickyProps[i];
-        break;
-      }
-    }
-    testEl.remove();
-    return stickyProp;
-  }
-
-  // Android 4.4 don't accurately give scroll events.
-  // To fix this problem, we setup a fake scroll event. We say:
-  // > If a scroll or touchmove event has happened in the last DELAY milliseconds, 
-  //   then send a `$scroll` event every animationFrame.
-  // Additionally, we add $scrollstart and $scrollend events.
-  function setupAugmentedScrollEvents(element) {
-    var SCROLL_END_DELAY = 200;
-    var isScrolling;
-    var lastScrollTime;
-    element.on('scroll touchmove', function() {
-      if (!isScrolling) {
-        isScrolling = true;
-        $$rAF(loopScrollEvent);
-        element.triggerHandler('$scrollstart');
-      }
-      element.triggerHandler('$scroll');
-      lastScrollTime = +$mdUtil.now();
-    });
-
-    function loopScrollEvent() {
-      if (+$mdUtil.now() - lastScrollTime > SCROLL_END_DELAY) {
-        isScrolling = false;
-        element.triggerHandler('$scrollend');
-      } else {
-        element.triggerHandler('$scroll');
-        $$rAF(loopScrollEvent);
-      }
-    }
-  }
-
 }
-MdSticky.$inject = ["$document", "$mdConstant", "$compile", "$$rAF", "$mdUtil"];
+
+
 
 })();
 (function(){
@@ -10335,73 +11555,6 @@ function MdSubheaderDirective($mdSticky, $compile, $mdTheming) {
   };
 }
 MdSubheaderDirective.$inject = ["$mdSticky", "$compile", "$mdTheming"];
-
-})();
-(function(){
-"use strict";
-
-/**
- * @ngdoc module
- * @name material.components.swipe
- * @description Swipe module!
- */
-/**
- * @ngdoc directive
- * @module material.components.swipe
- * @name mdSwipeLeft
- *
- * @restrict A
- *
- * @description
- * The md-swipe-left directives allows you to specify custom behavior when an element is swiped
- * left.
- *
- * @usage
- * <hljs lang="html">
- * <div md-swipe-left="onSwipeLeft()">Swipe me left!</div>
- * </hljs>
- */
-/**
- * @ngdoc directive
- * @module material.components.swipe
- * @name mdSwipeRight
- *
- * @restrict A
- *
- * @description
- * The md-swipe-right directives allows you to specify custom behavior when an element is swiped
- * right.
- *
- * @usage
- * <hljs lang="html">
- * <div md-swipe-right="onSwipeRight()">Swipe me right!</div>
- * </hljs>
- */
-
-angular.module('material.components.swipe', ['material.core'])
-    .directive('mdSwipeLeft', getDirective('SwipeLeft'))
-    .directive('mdSwipeRight', getDirective('SwipeRight'));
-
-function getDirective(name) {
-  var directiveName = 'md' + name;
-  var eventName = '$md.' + name.toLowerCase();
-
-    DirectiveFactory.$inject = ["$parse"];
-  return DirectiveFactory;
-
-  /* @ngInject */
-  function DirectiveFactory($parse) {
-      return { restrict: 'A', link: postLink };
-      function postLink(scope, element, attr) {
-        var fn = $parse(attr[directiveName]);
-        element.on(eventName, function(ev) {
-          scope.$apply(function() { fn(scope, { $event: ev }); });
-        });
-      }
-    }
-}
-
-
 
 })();
 (function(){
@@ -11026,6 +12179,16 @@ mdToolbarDirective.$inject = ["$$rAF", "$mdConstant", "$mdUtil", "$mdTheming", "
 
 /**
  * @ngdoc module
+ * @name material.components.whiteframe
+ */
+angular.module('material.components.whiteframe', []);
+
+})();
+(function(){
+"use strict";
+
+/**
+ * @ngdoc module
  * @name material.components.tooltip
  */
 angular
@@ -11286,16 +12449,6 @@ MdTooltipDirective.$inject = ["$timeout", "$window", "$$rAF", "$document", "$mdU
 (function(){
 "use strict";
 
-/**
- * @ngdoc module
- * @name material.components.whiteframe
- */
-angular.module('material.components.whiteframe', []);
-
-})();
-(function(){
-"use strict";
-
 angular
     .module('material.components.autocomplete')
     .controller('MdAutocompleteCtrl', MdAutocompleteCtrl);
@@ -11304,10 +12457,9 @@ var ITEM_HEIGHT = 41,
     MAX_HEIGHT = 5.5 * ITEM_HEIGHT,
     MENU_PADDING = 8;
 
-function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $mdTheming, $window, $animate, $rootElement) {
-
+function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $mdTheming, $window,
+                             $animate, $rootElement) {
   //-- private variables
-
   var self      = this,
       itemParts = $scope.itemsExpr.split(/ in /i),
       itemExpr  = itemParts[1],
@@ -11319,8 +12471,10 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
       hasFocus  = false,
       lastCount = 0;
 
-  //-- public variables
+  //-- public variables with handlers
+  defineProperty('hidden', handleHiddenChange, true);
 
+  //-- public variables
   self.scope    = $scope;
   self.parent   = $scope.$parent;
   self.itemName = itemParts[0];
@@ -11332,27 +12486,25 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
   self.id       = $mdUtil.nextUid();
 
   //-- public methods
-
-  self.keydown  = keydown;
-  self.blur     = blur;
-  self.focus    = focus;
-  self.clear    = clearValue;
-  self.select   = select;
+  self.keydown   = keydown;
+  self.blur      = blur;
+  self.focus     = focus;
+  self.clear     = clearValue;
+  self.select    = select;
+  self.listEnter = onListEnter;
+  self.listLeave = onListLeave;
+  self.mouseUp   = onMouseup;
   self.getCurrentDisplayValue         = getCurrentDisplayValue;
   self.registerSelectedItemWatcher    = registerSelectedItemWatcher;
   self.unregisterSelectedItemWatcher  = unregisterSelectedItemWatcher;
-
-  self.listEnter = function () { noBlur = true; };
-  self.listLeave = function () {
-    noBlur = false;
-    if (!hasFocus) self.hidden = true;
-  };
-  self.mouseUp   = function () { elements.input.focus(); };
 
   return init();
 
   //-- initialization methods
 
+  /**
+   * Initialize the controller, setup watchers, gather elements
+   */
   function init () {
     configureWatchers();
     $timeout(function () {
@@ -11362,6 +12514,10 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     });
   }
 
+  /**
+   * Calculates the dropdown's position and applies the new styles to the menu element
+   * @returns {*}
+   */
   function positionDropdown () {
     if (!elements) return $timeout(positionDropdown, 0, false);
     var hrect  = elements.wrap.getBoundingClientRect(),
@@ -11388,6 +12544,9 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     elements.$.ul.css(styles);
     $timeout(correctHorizontalAlignment, 0, false);
 
+    /**
+     * Makes sure that the menu doesn't go off of the screen on either side.
+     */
     function correctHorizontalAlignment () {
       var dropdown = elements.ul.getBoundingClientRect(),
           styles   = {};
@@ -11398,6 +12557,9 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     }
   }
 
+  /**
+   * Moves the dropdown menu to the body tag in order to avoid z-index and overflow issues.
+   */
   function moveDropdown () {
     if (!elements.$.root.length) return;
     $mdTheming(elements.$.ul);
@@ -11406,10 +12568,16 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     if ($animate.pin) $animate.pin(elements.$.ul, $rootElement);
   }
 
+  /**
+   * Sends focus to the input element.
+   */
   function focusElement () {
     if ($scope.autofocus) elements.input.focus();
   }
 
+  /**
+   * Sets up any watchers used by autocomplete
+   */
   function configureWatchers () {
     var wait = parseInt($scope.delay, 10) || 0;
     $scope.$watch('searchText', wait
@@ -11417,17 +12585,21 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
         : handleSearchText);
     registerSelectedItemWatcher(selectedItemChange);
     $scope.$watch('selectedItem', handleSelectedItemChange);
-    $scope.$watch('$mdAutocompleteCtrl.hidden', function (hidden, oldHidden) {
-      if (!hidden && oldHidden) positionDropdown();
-    });
     angular.element($window).on('resize', positionDropdown);
     $scope.$on('$destroy', cleanup);
   }
 
+  /**
+   * Removes any events or leftover elements created by this controller
+   */
   function cleanup () {
+    angular.element($window).off('resize', positionDropdown);
     elements.$.ul.remove();
   }
 
+  /**
+   * Gathers all of the elements needed for this controller
+   */
   function gatherElements () {
     elements = {
       main:  $element[0],
@@ -11441,6 +12613,10 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     elements.$ = getAngularElements(elements);
   }
 
+  /**
+   * Finds the element that the menu will base its position on
+   * @returns {*}
+   */
   function getSnapTarget () {
     for (var element = $element; element.length; element = element.parent()) {
       if (angular.isDefined(element.attr('md-autocomplete-snap'))) return element[0];
@@ -11448,6 +12624,11 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     return elements.wrap;
   }
 
+  /**
+   * Gathers angular-wrapped versions of each element
+   * @param elements
+   * @returns {{}}
+   */
   function getAngularElements (elements) {
     var obj = {};
     for (var key in elements) {
@@ -11458,6 +12639,42 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
 
   //-- event/change handlers
 
+  /**
+   * Handles changes to the `hidden` property.
+   * @param hidden
+   * @param oldHidden
+   */
+  function handleHiddenChange (hidden, oldHidden) {
+    if (!hidden && oldHidden) positionDropdown();
+  }
+
+  /**
+   * When the user mouses over the dropdown menu, ignore blur events.
+   */
+  function onListEnter () {
+    noBlur = true;
+  }
+
+  /**
+   * When the user's mouse leaves the menu, blur events may hide the menu again.
+   */
+  function onListLeave () {
+    noBlur = false;
+    if (!hasFocus) self.hidden = true;
+  }
+
+  /**
+   * When the mouse button is released, send focus back to the input field.
+   */
+  function onMouseup () {
+    element.input.focus();
+  }
+
+  /**
+   * Handles changes to the selected item.
+   * @param selectedItem
+   * @param previousSelectedItem
+   */
   function selectedItemChange (selectedItem, previousSelectedItem) {
     if (selectedItem) {
       $scope.searchText = getDisplayValue(selectedItem);
@@ -11466,6 +12683,12 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
       $scope.itemChange(getItemScope(selectedItem));
   }
 
+  /**
+   * Calls any external watchers listening for the selected item.  Used in conjunction with
+   * `registerSelectedItemWatcher`.
+   * @param selectedItem
+   * @param previousSelectedItem
+   */
   function handleSelectedItemChange(selectedItem, previousSelectedItem) {
     for (var i = 0; i < selectedItemWatchers.length; ++i) {
       selectedItemWatchers[i](selectedItem, previousSelectedItem);
@@ -11493,6 +12716,11 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     }
   }
 
+  /**
+   * Handles changes to the searchText property.
+   * @param searchText
+   * @param previousSearchText
+   */
   function handleSearchText (searchText, previousSearchText) {
     self.index = getDefaultIndex();
     //-- do nothing on init
@@ -11514,11 +12742,17 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     }
   }
 
+  /**
+   * Handles input blur event, determines if the dropdown should hide.
+   */
   function blur () {
     hasFocus = false;
     if (!noBlur) self.hidden = true;
   }
 
+  /**
+   * Handles input focus event, determines if the dropdown should show.
+   */
   function focus () {
     hasFocus = true;
     //-- if searchText is null, let's force it to be a string
@@ -11528,6 +12762,10 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     if (!self.hidden) handleQuery();
   }
 
+  /**
+   * Handles keyboard input.
+   * @param event
+   */
   function keydown (event) {
     switch (event.keyCode) {
       case $mdConstant.KEY_CODE.DOWN_ARROW:
@@ -11561,14 +12799,28 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
 
   //-- getters
 
+  /**
+   * Returns the minimum length needed to display the dropdown.
+   * @returns {*}
+   */
   function getMinLength () {
     return angular.isNumber($scope.minLength) ? $scope.minLength : 1;
   }
 
+  /**
+   * Returns the display value for an item.
+   * @param item
+   * @returns {*}
+   */
   function getDisplayValue (item) {
     return (item && $scope.itemText) ? $scope.itemText(getItemScope(item)) : item;
   }
 
+  /**
+   * Returns the locals object for compiling item templates.
+   * @param item
+   * @returns {{}}
+   */
   function getItemScope (item) {
     if (!item) return;
     var locals = {};
@@ -11576,24 +12828,61 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     return locals;
   }
 
+  /**
+   * Returns the default index based on whether or not autoselect is enabled.
+   * @returns {number}
+   */
   function getDefaultIndex () {
     return $scope.autoselect ? 0 : -1;
   }
 
+  /**
+   * Determines if the menu should be hidden.
+   * @returns {boolean}
+   */
   function shouldHide () {
     if (!isMinLengthMet()) return true;
   }
 
+  /**
+   * Returns the display value of the current item.
+   * @returns {*}
+   */
   function getCurrentDisplayValue () {
     return getDisplayValue(self.matches[self.index]);
   }
 
+  /**
+   * Determines if the minimum length is met by the search text.
+   * @returns {*}
+   */
   function isMinLengthMet () {
-    return $scope.searchText && $scope.searchText.length >= getMinLength();
+    return angular.isDefined($scope.searchText) && $scope.searchText.length >= getMinLength();
   }
 
   //-- actions
 
+  /**
+   * Defines a public property with a handler and a default value.
+   * @param key
+   * @param handler
+   * @param value
+   */
+  function defineProperty (key, handler, value) {
+    Object.defineProperty(self, key, {
+      get: function () { return value; },
+      set: function (newValue) {
+        var oldValue = value;
+        value = newValue;
+        handler(newValue, oldValue);
+      }
+    });
+  }
+
+  /**
+   * Selects the item at the given index.
+   * @param index
+   */
   function select (index) {
     $scope.selectedItem = self.matches[index];
     self.hidden = true;
@@ -11601,11 +12890,15 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     self.matches = [];
     //-- force form to update state for validation
     $timeout(function () {
-      elements.$.input.controller('ngModel').$setViewValue(getDisplayValue($scope.selectedItem) || $scope.searchText);
+      elements.$.input.controller('ngModel').$setViewValue(getDisplayValue($scope.selectedItem) ||
+          $scope.searchText);
       self.hidden = true;
     });
   }
 
+  /**
+   * Clears the searchText value and selected item.
+   */
   function clearValue () {
     $scope.searchText = '';
     select(-1);
@@ -11618,6 +12911,10 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     elements.input.focus();
   }
 
+  /**
+   * Fetches the results for the provided search text.
+   * @param searchText
+   */
   function fetchResults (searchText) {
     var items = $scope.$parent.$eval(itemExpr),
         term = searchText.toLowerCase();
@@ -11641,10 +12938,17 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     }
   }
 
+  /**
+   * Updates the ARIA messages
+   */
   function updateMessages () {
     self.messages = [ getCountMessage(), getCurrentDisplayValue() ];
   }
 
+  /**
+   * Returns the ARIA message for how many results match the current query.
+   * @returns {*}
+   */
   function getCountMessage () {
     if (lastCount === self.matches.length) return '';
     lastCount = self.matches.length;
@@ -11655,6 +12959,9 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     }
   }
 
+  /**
+   * Makes sure that the focused element is within view.
+   */
   function updateScroll () {
     if (!elements.li[self.index]) return;
     var li  = elements.li[self.index],
@@ -11668,6 +12975,10 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     }
   }
 
+  /**
+   * Starts the query to gather the results for the current searchText.  Attempts to return cached
+   * results first, then forwards the process to `fetchResults` if necessary.
+   */
   function handleQuery () {
     var searchText = $scope.searchText,
         term = searchText.toLowerCase();
@@ -13244,27 +14555,33 @@ angular
  */
 function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $mdTabInkRipple,
                            $mdUtil, $animate) {
-  var ctrl      = this,
-      locked    = false,
-      elements  = getElements(),
-      queue     = [],
-      destroyed = false;
+  //-- define private properties
+  var ctrl       = this,
+      locked     = false,
+      elements   = getElements(),
+      queue      = [],
+      destroyed  = false,
+      loaded     = false;
 
+  //-- define public properties with change handlers
+  defineProperty('focusIndex', handleFocusIndexChange, $scope.selectedIndex || 0);
+  defineProperty('offsetLeft', handleOffsetChange, 0);
+  defineProperty('hasContent', handleHasContent, false);
+
+  //-- define public properties
   ctrl.scope = $scope;
   ctrl.parent = $scope.$parent;
   ctrl.tabs = [];
   ctrl.lastSelectedIndex = null;
-  ctrl.focusIndex = $scope.selectedIndex || 0;
-  ctrl.offsetLeft = 0;
-  ctrl.hasContent = false;
   ctrl.hasFocus = false;
   ctrl.lastClick = true;
+  ctrl.shouldPaginate = false;
+  ctrl.shouldCenterTabs = shouldCenterTabs();
 
+  //-- define public methods
   ctrl.redirectFocus = redirectFocus;
   ctrl.attachRipple = attachRipple;
   ctrl.shouldStretchTabs = shouldStretchTabs;
-  ctrl.shouldPaginate = shouldPaginate;
-  ctrl.shouldCenterTabs = shouldCenterTabs;
   ctrl.insertTab = insertTab;
   ctrl.removeTab = removeTab;
   ctrl.select = select;
@@ -13281,36 +14598,58 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 
   init();
 
+  /**
+   * Perform initialization for the controller, setup events and watcher(s)
+   */
   function init () {
     $scope.$watch('selectedIndex', handleSelectedIndexChange);
-    $scope.$watch('$mdTabsCtrl.focusIndex', handleFocusIndexChange);
-    $scope.$watch('$mdTabsCtrl.offsetLeft', handleOffsetChange);
-    $scope.$watch('$mdTabsCtrl.hasContent', handleHasContent);
     angular.element($window).on('resize', handleWindowResize);
     angular.element(elements.paging).on('DOMSubtreeModified', ctrl.updateInkBarStyles);
-    $timeout(updateHeightFromContent, 0, false);
-    $timeout(adjustOffset);
+    angular.element(elements.paging).on('DOMSubtreeModified', updatePagination);
+    $timeout(function () {
+      updateHeightFromContent();
+      adjustOffset();
+      updatePagination();
+      loaded = true;
+    });
     $scope.$on('$destroy', cleanup);
   }
 
+  /**
+   * Remove any events defined by this controller
+   */
   function cleanup () {
     destroyed = true;
     angular.element($window).off('resize', handleWindowResize);
     angular.element(elements.paging).off('DOMSubtreeModified', ctrl.updateInkBarStyles);
+    angular.element(elements.paging).off('DOMSubtreeModified', updatePagination);
   }
 
   //-- Change handlers
 
+  /**
+   * Add/remove the `md-no-tab-content` class depending on `ctrl.hasContent`
+   * @param hasContent
+   */
   function handleHasContent (hasContent) {
     $element[hasContent ? 'removeClass' : 'addClass']('md-no-tab-content');
   }
 
+  /**
+   * Apply ctrl.offsetLeft to the paging element when it changes
+   * @param left
+   */
   function handleOffsetChange (left) {
-    var newValue = shouldCenterTabs() ? '' : '-' + left + 'px';
+    var newValue = ctrl.shouldCenterTabs ? '' : '-' + left + 'px';
     angular.element(elements.paging).css('transform', 'translate3d(' + newValue + ', 0, 0)');
     $scope.$broadcast('$mdTabsPaginationChanged');
   }
 
+  /**
+   * Update the UI whenever `ctrl.focusIndex` is updated
+   * @param newIndex
+   * @param oldIndex
+   */
   function handleFocusIndexChange (newIndex, oldIndex) {
     if (newIndex === oldIndex) return;
     if (!elements.tabs[newIndex]) return;
@@ -13318,6 +14657,11 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     redirectFocus();
   }
 
+  /**
+   * Update the UI whenever the selected index changes. Calls user-defined select/deselect methods.
+   * @param newValue
+   * @param oldValue
+   */
   function handleSelectedIndexChange (newValue, oldValue) {
     if (newValue === oldValue) return;
 
@@ -13325,11 +14669,16 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     ctrl.lastSelectedIndex = oldValue;
     ctrl.updateInkBarStyles();
     updateHeightFromContent();
+    adjustOffset();
     $scope.$broadcast('$mdTabsChanged');
     ctrl.tabs[oldValue] && ctrl.tabs[oldValue].scope.deselect();
     ctrl.tabs[newValue] && ctrl.tabs[newValue].scope.select();
   }
 
+  /**
+   * Queues up a call to `handleWindowResize` when a resize occurs while the tabs component is
+   * hidden.
+   */
   function handleResizeWhenVisible () {
     //-- if there is already a watcher waiting for resize, do nothing
     if (handleResizeWhenVisible.watcher) return;
@@ -13353,6 +14702,10 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 
   //-- Event handlers / actions
 
+  /**
+   * Handle user keyboard interactions
+   * @param event
+   */
   function keydown (event) {
     switch (event.keyCode) {
       case $mdConstant.KEY_CODE.LEFT_ARROW:
@@ -13372,18 +14725,30 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     ctrl.lastClick = false;
   }
 
+  /**
+   * Update the selected index and trigger a click event on the original `md-tab` element in order
+   * to fire user-added click events.
+   * @param index
+   */
   function select (index) {
     if (!locked) ctrl.focusIndex = $scope.selectedIndex = index;
     ctrl.lastClick = true;
     ctrl.tabs[index].element.triggerHandler('click');
   }
 
+  /**
+   * When pagination is on, this makes sure the selected index is in view.
+   * @param event
+   */
   function scroll (event) {
-    if (!shouldPaginate()) return;
+    if (!ctrl.shouldPaginate) return;
     event.preventDefault();
     ctrl.offsetLeft = fixOffset(ctrl.offsetLeft - event.wheelDelta);
   }
 
+  /**
+   * Slides the tabs over approximately one page forward.
+   */
   function nextPage () {
     var viewportWidth = elements.canvas.clientWidth,
         totalWidth = viewportWidth + ctrl.offsetLeft,
@@ -13395,6 +14760,9 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     ctrl.offsetLeft = fixOffset(tab.offsetLeft);
   }
 
+  /**
+   * Slides the tabs over approximately one page backward.
+   */
   function previousPage () {
     var i, tab;
     for (i = 0; i < elements.tabs.length; i++) {
@@ -13404,14 +14772,22 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     ctrl.offsetLeft = fixOffset(tab.offsetLeft + tab.offsetWidth - elements.canvas.clientWidth);
   }
 
+  /**
+   * Update size calculations when the window is resized.
+   */
   function handleWindowResize () {
     $scope.$apply(function () {
       ctrl.lastSelectedIndex = $scope.selectedIndex;
       ctrl.offsetLeft = fixOffset(ctrl.offsetLeft);
       $timeout(ctrl.updateInkBarStyles, 0, false);
+      $timeout(updatePagination);
     });
   }
 
+  /**
+   * Remove a tab from the data and select the nearest valid tab.
+   * @param tabData
+   */
   function removeTab (tabData) {
     var selectedIndex = $scope.selectedIndex,
         tab = ctrl.tabs.splice(tabData.getIndex(), 1)[0];
@@ -13423,10 +14799,17 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
       ctrl.tabs[$scope.selectedIndex] && ctrl.tabs[$scope.selectedIndex].scope.select();
     }
     $timeout(function () {
+      updatePagination();
       ctrl.offsetLeft = fixOffset(ctrl.offsetLeft);
     });
   }
 
+  /**
+   * Create an entry in the tabs array for a new tab at the specified index.
+   * @param tabData
+   * @param index
+   * @returns {*}
+   */
   function insertTab (tabData, index) {
     var proto = {
           getIndex: function () { return ctrl.tabs.indexOf(tab); },
@@ -13434,7 +14817,8 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
           isLeft:   function () { return this.getIndex() < $scope.selectedIndex; },
           isRight:  function () { return this.getIndex() > $scope.selectedIndex; },
           shouldRender: function () { return !$scope.noDisconnect || this.isActive(); },
-          hasFocus: function () { return !ctrl.lastClick && ctrl.hasFocus && this.getIndex() === ctrl.focusIndex; },
+          hasFocus: function () { return !ctrl.lastClick
+              && ctrl.hasFocus && this.getIndex() === ctrl.focusIndex; },
           id:       $mdUtil.nextUid()
         },
         tab = angular.extend(proto, tabData);
@@ -13445,11 +14829,18 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     }
     processQueue();
     updateHasContent();
+    //-- if autoselect is enabled, select the newly added tab
+    if (loaded && $scope.autoselect) $timeout(function () { select(ctrl.tabs.indexOf(tab)); });
+    $timeout(updatePagination);
     return tab;
   }
 
   //-- Getter methods
 
+  /**
+   * Gathers references to all of the DOM elements used by this controller.
+   * @returns {{}}
+   */
   function getElements () {
     var elements      = {};
 
@@ -13468,34 +14859,62 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     return elements;
   }
 
+  /**
+   * Determines whether or not the left pagination arrow should be enabled.
+   * @returns {boolean}
+   */
   function canPageBack () {
     return ctrl.offsetLeft > 0;
   }
 
+  /**
+   * Determines whether or not the right pagination arrow should be enabled.
+   * @returns {*|boolean}
+   */
   function canPageForward () {
     var lastTab = elements.tabs[elements.tabs.length - 1];
-    return lastTab && lastTab.offsetLeft + lastTab.offsetWidth > elements.canvas.clientWidth + ctrl.offsetLeft;
+    return lastTab && lastTab.offsetLeft + lastTab.offsetWidth > elements.canvas.clientWidth +
+        ctrl.offsetLeft;
   }
 
+  /**
+   * Determines if the UI should stretch the tabs to fill the available space.
+   * @returns {*}
+   */
   function shouldStretchTabs () {
     switch ($scope.stretchTabs) {
       case 'always': return true;
       case 'never':  return false;
-      default:       return !shouldPaginate() && $window.matchMedia('(max-width: 600px)').matches;
+      default:       return !ctrl.shouldPaginate
+          && $window.matchMedia('(max-width: 600px)').matches;
     }
   }
 
+  /**
+   * Determines if the tabs should appear centered.
+   * @returns {string|boolean}
+   */
   function shouldCenterTabs () {
-    return $scope.centerTabs && !shouldPaginate();
+    return $scope.centerTabs && !ctrl.shouldPaginate;
   }
 
+  /**
+   * Determines if pagination is necessary to display the tabs within the available space.
+   * @returns {boolean}
+   */
   function shouldPaginate () {
-    if ($scope.noPagination) return false;
+    if ($scope.noPagination || !loaded) return false;
     var canvasWidth = $element.prop('clientWidth');
     angular.forEach(elements.tabs, function (tab) { canvasWidth -= tab.offsetWidth; });
     return canvasWidth < 0;
   }
 
+  /**
+   * Finds the nearest tab index that is available.  This is primarily used for when the active
+   * tab is removed.
+   * @param newIndex
+   * @returns {*}
+   */
   function getNearestSafeIndex(newIndex) {
     var maxOffset = Math.max(ctrl.tabs.length - newIndex, newIndex),
         i, tab;
@@ -13510,6 +14929,36 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 
   //-- Utility methods
 
+  /**
+   * Defines a property using a getter and setter in order to trigger a change handler without
+   * using `$watch` to observe changes.
+   * @param key
+   * @param handler
+   * @param value
+   */
+  function defineProperty (key, handler, value) {
+    Object.defineProperty(ctrl, key, {
+      get: function () { return value; },
+      set: function (newValue) {
+        var oldValue = value;
+        value = newValue;
+        handler(newValue, oldValue);
+      }
+    });
+  }
+
+  /**
+   * Updates whether or not pagination should be displayed.
+   */
+  function updatePagination () {
+    ctrl.shouldPaginate = shouldPaginate();
+    ctrl.shouldCenterTabs = shouldCenterTabs();
+  }
+
+  /**
+   * Re-orders the tabs and updates the selected and focus indexes to their new positions.
+   * This is triggered by `tabDirective.js` when the user's tabs have been re-ordered.
+   */
   function updateTabOrder () {
     var selectedItem = ctrl.tabs[$scope.selectedIndex],
         focusItem = ctrl.tabs[ctrl.focusIndex];
@@ -13520,24 +14969,34 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     ctrl.focusIndex = ctrl.tabs.indexOf(focusItem);
   }
 
-  function incrementSelectedIndex (inc, focus) {
+  /**
+   * This moves the selected or focus index left or right.  This is used by the keydown handler.
+   * @param inc
+   */
+  function incrementSelectedIndex (inc) {
     var newIndex,
-        index = focus ? ctrl.focusIndex : $scope.selectedIndex;
+        index = ctrl.focusIndex;
     for (newIndex = index + inc;
          ctrl.tabs[newIndex] && ctrl.tabs[newIndex].scope.disabled;
          newIndex += inc) {}
     if (ctrl.tabs[newIndex]) {
-      if (focus) ctrl.focusIndex = newIndex;
-      else $scope.selectedIndex = newIndex;
+      ctrl.focusIndex = newIndex;
     }
   }
 
+  /**
+   * This is used to forward focus to dummy elements.  This method is necessary to avoid aniation
+   * issues when attempting to focus an item that is out of view.
+   */
   function redirectFocus () {
     elements.dummies[ctrl.focusIndex].focus();
   }
 
+  /**
+   * Forces the pagination to move the focused tab into view.
+   */
   function adjustOffset () {
-    if (shouldCenterTabs()) return;
+    if (ctrl.shouldCenterTabs) return;
     var tab = elements.tabs[ctrl.focusIndex],
         left = tab.offsetLeft,
         right = tab.offsetWidth + left;
@@ -13545,11 +15004,18 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     ctrl.offsetLeft = Math.min(ctrl.offsetLeft, fixOffset(left));
   }
 
+  /**
+   * Iterates through all queued functions and clears the queue.  This is used for functions that
+   * are called before the UI is ready, such as size calculations.
+   */
   function processQueue () {
     queue.forEach(function (func) { $timeout(func); });
     queue = [];
   }
 
+  /**
+   * Determines if the tab content area is needed.
+   */
   function updateHasContent () {
     var hasContent = false;
     angular.forEach(ctrl.tabs, function (tab) {
@@ -13558,11 +15024,18 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     ctrl.hasContent = hasContent;
   }
 
+  /**
+   * Moves the indexes to their nearest valid values.
+   */
   function refreshIndex () {
     $scope.selectedIndex = getNearestSafeIndex($scope.selectedIndex);
     ctrl.focusIndex = getNearestSafeIndex(ctrl.focusIndex);
   }
 
+  /**
+   * Calculates the content height of the current tab.
+   * @returns {*}
+   */
   function updateHeightFromContent () {
     if (!$scope.dynamicHeight) return $element.css('height', '');
     if (!ctrl.tabs.length) return queue.push(updateHeightFromContent);
@@ -13585,6 +15058,10 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
         });
   }
 
+  /**
+   * Repositions the ink bar to the selected tab.
+   * @returns {*}
+   */
   function updateInkBarStyles () {
     if (!elements.tabs[$scope.selectedIndex]) return;
     if (!ctrl.tabs.length) return queue.push(ctrl.updateInkBarStyles);
@@ -13600,6 +15077,9 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     angular.element(elements.inkBar).css({ left: left + 'px', right: right + 'px' });
   }
 
+  /**
+   * Adds left/right classes so that the ink bar will animate properly.
+   */
   function updateInkBarClassName () {
     var newIndex = $scope.selectedIndex,
         oldIndex = ctrl.lastSelectedIndex,
@@ -13613,8 +15093,13 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     }
   }
 
+  /**
+   * Takes an offset value and makes sure that it is within the min/max allowed values.
+   * @param value
+   * @returns {*}
+   */
   function fixOffset (value) {
-    if (!elements.tabs.length || !shouldPaginate()) return 0;
+    if (!elements.tabs.length || !ctrl.shouldPaginate) return 0;
     var lastTab = elements.tabs[elements.tabs.length - 1],
         totalWidth = lastTab.offsetLeft + lastTab.offsetWidth;
     value = Math.max(0, value);
@@ -13622,6 +15107,11 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     return value;
   }
 
+  /**
+   * Attaches a ripple to the tab item element.
+   * @param scope
+   * @param element
+   */
   function attachRipple (scope, element) {
     var options = { colorElement: angular.element(elements.inkBar) };
     $mdTabInkRipple.attach(scope, element, options);
@@ -13696,6 +15186,7 @@ MdTabsController.$inject = ["$scope", "$element", "$window", "$timeout", "$mdCon
  * @param {boolean=} md-no-pagination When enabled, pagination will remain off
  * @param {boolean=} md-swipe-content When enabled, swipe gestures will be enabled for the content area to jump between tabs
  * @param {boolean=} md-no-disconnect If your tab content has background tasks (ie. event listeners), you will want to include this to prevent the scope from being disconnected
+ * @param {boolean=} md-autoselect When present, any tabs added after the initial load will be automatically selected
  *
  * @usage
  * <hljs lang="html">
@@ -13731,7 +15222,8 @@ function MdTabs ($mdTheming, $mdUtil, $compile) {
       selectedIndex: '=?mdSelected',
       stretchTabs:   '@?mdStretchTabs',
       swipeContent:  '=?mdSwipeContent',
-      noDisconnect:  '=?mdNoDisconnect'
+      noDisconnect:  '=?mdNoDisconnect',
+      autoselect:    '=?mdAutoselect'
     },
     template: function (element, attr) {
       attr["$mdTabsTemplate"] = element.html();
@@ -13744,7 +15236,7 @@ function MdTabs ($mdTheming, $mdUtil, $compile) {
               aria-label="Previous Page"\
               aria-disabled="{{!$mdTabsCtrl.canPageBack()}}"\
               ng-class="{ \'md-disabled\': !$mdTabsCtrl.canPageBack() }"\
-              ng-if="$mdTabsCtrl.shouldPaginate()"\
+              ng-if="$mdTabsCtrl.shouldPaginate"\
               ng-click="$mdTabsCtrl.previousPage()">\
             <md-icon md-svg-icon="md-tabs-arrow"></md-icon>\
           </md-prev-button>\
@@ -13754,7 +15246,7 @@ function MdTabs ($mdTheming, $mdUtil, $compile) {
               aria-label="Next Page"\
               aria-disabled="{{!$mdTabsCtrl.canPageForward()}}"\
               ng-class="{ \'md-disabled\': !$mdTabsCtrl.canPageForward() }"\
-              ng-if="$mdTabsCtrl.shouldPaginate()"\
+              ng-if="$mdTabsCtrl.shouldPaginate"\
               ng-click="$mdTabsCtrl.nextPage()">\
             <md-icon md-svg-icon="md-tabs-arrow"></md-icon>\
           </md-next-button>\
@@ -13763,13 +15255,13 @@ function MdTabs ($mdTheming, $mdUtil, $compile) {
               aria-activedescendant="tab-item-{{$mdTabsCtrl.tabs[$mdTabsCtrl.focusIndex].id}}"\
               ng-focus="$mdTabsCtrl.redirectFocus()"\
               ng-class="{\
-                  \'md-paginated\': $mdTabsCtrl.shouldPaginate(),\
-                  \'md-center-tabs\': $mdTabsCtrl.shouldCenterTabs()\
+                  \'md-paginated\': $mdTabsCtrl.shouldPaginate,\
+                  \'md-center-tabs\': $mdTabsCtrl.shouldCenterTabs\
               }"\
               ng-keydown="$mdTabsCtrl.keydown($event)"\
               role="tablist">\
             <md-pagination-wrapper\
-                ng-class="{ \'md-center-tabs\': $mdTabsCtrl.shouldCenterTabs() }"\
+                ng-class="{ \'md-center-tabs\': $mdTabsCtrl.shouldCenterTabs }"\
                 md-tab-scroll="$mdTabsCtrl.scroll($event)">\
               <md-tab-item\
                   tabindex="-1"\
@@ -13902,7 +15394,7 @@ MdTemplate.$inject = ["$compile", "$mdUtil", "$timeout"];
 
 })();
 (function(){ 
-angular.module("material.core").constant("$MD_THEME_CSS", "/* mixin definition ; sets LTR and RTL within the same style call */md-autocomplete.md-THEME_NAME-theme {  background: '{{background-50}}'; }  md-autocomplete.md-THEME_NAME-theme[disabled] {    background: '{{background-100}}'; }  md-autocomplete.md-THEME_NAME-theme button md-icon path {    fill: '{{background-600}}'; }  md-autocomplete.md-THEME_NAME-theme button:after {    background: '{{background-600-0.3}}'; }.md-autocomplete-suggestions.md-THEME_NAME-theme {  background: '{{background-50}}'; }  .md-autocomplete-suggestions.md-THEME_NAME-theme li {    color: '{{background-900}}'; }    .md-autocomplete-suggestions.md-THEME_NAME-theme li .highlight {      color: '{{background-600}}'; }    .md-autocomplete-suggestions.md-THEME_NAME-theme li:hover, .md-autocomplete-suggestions.md-THEME_NAME-theme li.selected {      background: '{{background-200}}'; }md-backdrop.md-opaque.md-THEME_NAME-theme {  background-color: '{{foreground-4-0.5}}'; }md-bottom-sheet.md-THEME_NAME-theme {  background-color: '{{background-50}}';  border-top-color: '{{background-300}}'; }  md-bottom-sheet.md-THEME_NAME-theme.md-list md-list-item {    color: '{{foreground-1}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    background-color: '{{background-50}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    color: '{{foreground-1}}'; }a.md-button.md-THEME_NAME-theme, .md-button.md-THEME_NAME-theme {  border-radius: 3px; }  a.md-button.md-THEME_NAME-theme:not([disabled]):hover, .md-button.md-THEME_NAME-theme:not([disabled]):hover {    background-color: '{{background-500-0.2}}'; }  a.md-button.md-THEME_NAME-theme:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme:not([disabled]).md-focused {    background-color: '{{background-500-0.2}}'; }  a.md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover, .md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover {    background-color: transparent; }  a.md-button.md-THEME_NAME-theme.md-fab, .md-button.md-THEME_NAME-theme.md-fab {    border-radius: 50%;    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab md-icon, .md-button.md-THEME_NAME-theme.md-fab md-icon {      color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {      background-color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  a.md-button.md-THEME_NAME-theme.md-icon-button, .md-button.md-THEME_NAME-theme.md-icon-button {    border-radius: 50%; }  a.md-button.md-THEME_NAME-theme.md-primary, .md-button.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }    a.md-button.md-THEME_NAME-theme.md-primary.md-raised, a.md-button.md-THEME_NAME-theme.md-primary.md-fab, .md-button.md-THEME_NAME-theme.md-primary.md-raised, .md-button.md-THEME_NAME-theme.md-primary.md-fab {      color: '{{primary-contrast}}';      background-color: '{{primary-color}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon {        color: '{{primary-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover {        background-color: '{{primary-color}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused {        background-color: '{{primary-600}}'; }    a.md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon {      color: '{{primary-color}}'; }  a.md-button.md-THEME_NAME-theme.md-fab, .md-button.md-THEME_NAME-theme.md-fab {    border-radius: 50%;    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon {      color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {      background-color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  a.md-button.md-THEME_NAME-theme.md-raised, .md-button.md-THEME_NAME-theme.md-raised {    color: '{{background-contrast}}';    background-color: '{{background-50}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]) .md-icon, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]) .md-icon {      color: '{{background-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover {      background-color: '{{background-50}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused {      background-color: '{{background-200}}'; }  a.md-button.md-THEME_NAME-theme.md-warn, .md-button.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }    a.md-button.md-THEME_NAME-theme.md-warn.md-raised, a.md-button.md-THEME_NAME-theme.md-warn.md-fab, .md-button.md-THEME_NAME-theme.md-warn.md-raised, .md-button.md-THEME_NAME-theme.md-warn.md-fab {      color: '{{warn-contrast}}';      background-color: '{{warn-color}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon {        color: '{{warn-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover {        background-color: '{{warn-color}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused {        background-color: '{{warn-700}}'; }    a.md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon {      color: '{{warn-color}}'; }  a.md-button.md-THEME_NAME-theme.md-accent, .md-button.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-accent.md-raised, a.md-button.md-THEME_NAME-theme.md-accent.md-fab, .md-button.md-THEME_NAME-theme.md-accent.md-raised, .md-button.md-THEME_NAME-theme.md-accent.md-fab {      color: '{{accent-contrast}}';      background-color: '{{accent-color}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon {        color: '{{accent-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover {        background-color: '{{accent-color}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused {        background-color: '{{accent-700}}'; }    a.md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon {      color: '{{accent-color}}'; }  a.md-button.md-THEME_NAME-theme[disabled], a.md-button.md-THEME_NAME-theme.md-raised[disabled], a.md-button.md-THEME_NAME-theme.md-fab[disabled], a.md-button.md-THEME_NAME-theme.md-accent[disabled], a.md-button.md-THEME_NAME-theme.md-warn[disabled], .md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-accent[disabled], .md-button.md-THEME_NAME-theme.md-warn[disabled] {    color: '{{foreground-3}}';    cursor: not-allowed; }    a.md-button.md-THEME_NAME-theme[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon, .md-button.md-THEME_NAME-theme[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon {      color: '{{foreground-3}}'; }  a.md-button.md-THEME_NAME-theme.md-raised[disabled], a.md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled] {    background-color: '{{foreground-4}}'; }  a.md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme[disabled] {    background-color: transparent; }md-card.md-THEME_NAME-theme {  background-color: '{{background-color}}';  border-radius: 2px; }  md-card.md-THEME_NAME-theme .md-card-image {    border-radius: 2px 2px 0 0; }md-checkbox.md-THEME_NAME-theme .md-ripple {  color: '{{accent-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked.md-focused .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon {  background-color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ripple {  color: '{{primary-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon {  background-color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked.md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ripple {  color: '{{warn-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon {  background-color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked.md-focused:not([disabled]) .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-icon {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon {  background-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-label {  color: '{{foreground-3}}'; }md-chips.md-THEME_NAME-theme .md-chips {  box-shadow: 0 1px '{{background-300}}'; }  md-chips.md-THEME_NAME-theme .md-chips.md-focused {    box-shadow: 0 2px '{{primary-color}}'; }md-chips.md-THEME_NAME-theme .md-chip {  background: '{{background-300}}';  color: '{{background-800}}'; }  md-chips.md-THEME_NAME-theme .md-chip.md-focused {    background: '{{primary-color}}';    color: '{{primary-contrast}}'; }    md-chips.md-THEME_NAME-theme .md-chip.md-focused md-icon {      color: '{{primary-contrast}}'; }md-chips.md-THEME_NAME-theme md-chip-remove .md-button md-icon path {  fill: '{{background-500}}'; }.md-contact-suggestion span.md-contact-email {  color: '{{background-400}}'; }md-content.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }md-dialog.md-THEME_NAME-theme {  border-radius: 4px;  background-color: '{{background-color}}'; }  md-dialog.md-THEME_NAME-theme.md-content-overflow .md-actions {    border-top-color: '{{foreground-4}}'; }md-divider.md-THEME_NAME-theme {  border-top-color: '{{foreground-4}}'; }md-icon.md-THEME_NAME-theme {  color: '{{foreground-2}}'; }  md-icon.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  md-icon.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  md-icon.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-input-container.md-THEME_NAME-theme .md-input {  color: '{{foreground-1}}';  border-color: '{{foreground-4}}';  text-shadow: '{{foreground-shadow}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder, md-input-container.md-THEME_NAME-theme .md-input::-moz-placeholder, md-input-container.md-THEME_NAME-theme .md-input:-moz-placeholder, md-input-container.md-THEME_NAME-theme .md-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme > md-icon {  color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme label, md-input-container.md-THEME_NAME-theme .md-placeholder {  text-shadow: '{{foreground-shadow}}';  color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme ng-messages, md-input-container.md-THEME_NAME-theme [ng-message], md-input-container.md-THEME_NAME-theme [data-ng-message], md-input-container.md-THEME_NAME-theme [x-ng-message] {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-has-value label {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused .md-input {  border-color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused label {  color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused md-icon {  color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent .md-input {  border-color: '{{accent-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent label {  color: '{{accent-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn .md-input {  border-color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn label {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input {  border-color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid.md-input-focused label {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid data-ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid x-ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid [ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid [data-ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid [x-ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid .md-char-counter {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme .md-input[disabled], [disabled] md-input-container.md-THEME_NAME-theme .md-input {  border-bottom-color: transparent;  color: '{{foreground-3}}';  background-image: linear-gradient(to right, '{{foreground-3}}' 0%, '{{foreground-3}}' 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, '{{foreground-3}}' 100%); }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h4, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h4 {  color: '{{foreground-1}}'; }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text p, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text p {  color: '{{foreground-2}}'; }md-list.md-THEME_NAME-theme .md-proxy-focus.md-focused div.md-no-style {  background-color: '{{background-100}}'; }md-list.md-THEME_NAME-theme md-list-item > md-icon {  color: '{{foreground-2}}'; }  md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight {    color: '{{primary-color}}'; }    md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight.md-accent {      color: '{{accent-color}}'; }md-list.md-THEME_NAME-theme md-list-item button {  background-color: '{{background-color}}'; }  md-list.md-THEME_NAME-theme md-list-item button.md-button:not([disabled]):hover {    background-color: '{{background-color}}'; }md-progress-circular.md-THEME_NAME-theme {  background-color: transparent; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-gap {    border-top-color: '{{primary-color}}';    border-bottom-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme .md-inner .md-right .md-half-circle {    border-top-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-right .md-half-circle {    border-right-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-left .md-half-circle {    border-left-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-gap {    border-top-color: '{{warn-color}}';    border-bottom-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-right .md-half-circle {    border-top-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-right .md-half-circle {    border-right-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-left .md-half-circle {    border-left-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-gap {    border-top-color: '{{accent-color}}';    border-bottom-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-right .md-half-circle {    border-top-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-right .md-half-circle {    border-right-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-left .md-half-circle {    border-left-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme .md-container {  background-color: '{{primary-100}}'; }md-progress-linear.md-THEME_NAME-theme .md-bar {  background-color: '{{primary-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-container {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-bar {  background-color: '{{warn-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-container {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-bar {  background-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-bar1 {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-dashed:before {  background: radial-gradient('{{warn-100}}' 0%, '{{warn-100}}' 16%, transparent 42%); }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-bar1 {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-dashed:before {  background: radial-gradient('{{accent-100}}' 0%, '{{accent-100}}' 16%, transparent 42%); }md-radio-button.md-THEME_NAME-theme .md-off {  border-color: '{{foreground-2}}'; }md-radio-button.md-THEME_NAME-theme .md-on {  background-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-off {  border-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme .md-container .md-ripple {  color: '{{accent-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-on {  background-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off {  border-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple {  color: '{{primary-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-on {  background-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off {  border-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple {  color: '{{warn-600}}'; }md-radio-group.md-THEME_NAME-theme[disabled], md-radio-button.md-THEME_NAME-theme[disabled] {  color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-off, md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-off {    border-color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-on, md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-on {    border-color: '{{foreground-3}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked:not([disabled]).md-primary .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-primary .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-select.md-THEME_NAME-theme.ng-invalid.ng-dirty .md-select-label {  color: '{{warn-500}}' !important;  border-bottom-color: '{{warn-500}}' !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-label {  border-bottom-color: '{{primary-color}}';  color: '{{ foreground-1 }}'; }  md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-label.md-placeholder {    color: '{{ foreground-1 }}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-accent .md-select-label {  border-bottom-color: '{{accent-color}}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-warn .md-select-label {  border-bottom-color: '{{warn-color}}'; }md-select.md-THEME_NAME-theme[disabled] .md-select-label {  color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme[disabled] .md-select-label.md-placeholder {    color: '{{foreground-3}}'; }md-select.md-THEME_NAME-theme .md-select-label {  border-bottom-color: '{{foreground-4}}'; }  md-select.md-THEME_NAME-theme .md-select-label.md-placeholder {    color: '{{foreground-2}}'; }md-select-menu.md-THEME_NAME-theme md-optgroup {  color: '{{foreground-2}}'; }  md-select-menu.md-THEME_NAME-theme md-optgroup md-option {    color: '{{foreground-1}}'; }md-select-menu.md-THEME_NAME-theme md-option[selected] {  color: '{{primary-500}}'; }  md-select-menu.md-THEME_NAME-theme md-option[selected]:focus {    color: '{{primary-600}}'; }  md-select-menu.md-THEME_NAME-theme md-option[selected].md-accent {    color: '{{accent-500}}'; }    md-select-menu.md-THEME_NAME-theme md-option[selected].md-accent:focus {      color: '{{accent-600}}'; }md-select-menu.md-THEME_NAME-theme md-option:focus:not([selected]) {  background: '{{background-200}}'; }md-sidenav.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme .md-track {  background-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme .md-track-ticks {  background-color: '{{foreground-4}}'; }md-slider.md-THEME_NAME-theme .md-focus-thumb {  background-color: '{{foreground-2}}'; }md-slider.md-THEME_NAME-theme .md-focus-ring {  border-color: '{{foreground-4}}'; }md-slider.md-THEME_NAME-theme .md-disabled-thumb {  border-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme.md-min .md-thumb:after {  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme .md-track.md-track-fill {  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb:after {  border-color: '{{accent-color}}';  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-sign {  background-color: '{{accent-color}}'; }  md-slider.md-THEME_NAME-theme .md-sign:after {    border-top-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb-text {  color: '{{accent-contrast}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-track.md-track-fill {  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb:after {  border-color: '{{warn-color}}';  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-sign {  background-color: '{{warn-color}}'; }  md-slider.md-THEME_NAME-theme.md-warn .md-sign:after {    border-top-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb-text {  color: '{{warn-contrast}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-track.md-track-fill {  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb:after {  border-color: '{{primary-color}}';  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-sign {  background-color: '{{primary-color}}'; }  md-slider.md-THEME_NAME-theme.md-primary .md-sign:after {    border-top-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb-text {  color: '{{primary-contrast}}'; }md-slider.md-THEME_NAME-theme[disabled] .md-thumb:after {  border-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme[disabled]:not(.md-min) .md-thumb:after {  background-color: '{{foreground-3}}'; }.md-subheader.md-THEME_NAME-theme {  color: '{{ foreground-2-0.23 }}';  background-color: '{{background-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme .md-thumb {  background-color: '{{background-50}}'; }md-switch.md-THEME_NAME-theme .md-bar {  background-color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-thumb {  background-color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-bar {  background-color: '{{accent-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-focused .md-thumb:before {  background-color: '{{accent-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-thumb {  background-color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-bar {  background-color: '{{primary-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary.md-focused .md-thumb:before {  background-color: '{{primary-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-thumb {  background-color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-bar {  background-color: '{{warn-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn.md-focused .md-thumb:before {  background-color: '{{warn-color-0.26}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-thumb {  background-color: '{{background-400}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-bar {  background-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme .md-paginator md-icon {  color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme .md-tab {  color: '{{foreground-2}}'; }  md-tabs.md-THEME_NAME-theme .md-tab[disabled] {    color: '{{foreground-3}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-active, md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    background: '{{primary-color-0.1}}'; }  md-tabs.md-THEME_NAME-theme .md-tab .md-ripple-container {    color: '{{accent-100}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-tabs-wrapper {  background-color: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]) {  color: '{{accent-100}}'; }  md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-focused {    color: '{{accent-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-focused {    background: '{{accent-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-ink-bar {  color: '{{primary-600-1}}';  background: '{{primary-600-1}}'; }md-tabs.md-THEME_NAME-theme.md-primary md-tabs-wrapper {  background-color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]) {  color: '{{primary-100}}'; }  md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-focused {    color: '{{primary-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-focused {    background: '{{primary-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-warn md-tabs-wrapper {  background-color: '{{warn-color}}'; }md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]) {  color: '{{warn-100}}'; }  md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-focused {    color: '{{warn-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-focused {    background: '{{warn-contrast-0.1}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{primary-color}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{primary-100}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{primary-contrast}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{primary-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{accent-color}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{accent-100}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{accent-contrast}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{accent-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{primary-600-1}}';  background: '{{primary-600-1}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{warn-color}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{warn-100}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{warn-contrast}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{warn-contrast-0.1}}'; }md-toast.md-THEME_NAME-theme {  background-color: #323232;  color: '{{background-50}}'; }  md-toast.md-THEME_NAME-theme .md-button {    color: '{{background-50}}'; }    md-toast.md-THEME_NAME-theme .md-button.md-highlight {      color: '{{primary-A200}}'; }      md-toast.md-THEME_NAME-theme .md-button.md-highlight.md-accent {        color: '{{accent-A200}}'; }      md-toast.md-THEME_NAME-theme .md-button.md-highlight.md-warn {        color: '{{warn-A200}}'; }md-toolbar.md-THEME_NAME-theme {  background-color: '{{primary-color}}';  color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme md-icon {    color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme .md-button {    color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme.md-accent {    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }  md-toolbar.md-THEME_NAME-theme.md-warn {    background-color: '{{warn-color}}';    color: '{{warn-contrast}}'; }md-tooltip.md-THEME_NAME-theme {  color: '{{background-A100}}'; }  md-tooltip.md-THEME_NAME-theme .md-background {    background-color: '{{foreground-2}}'; }"); 
+angular.module("material.core").constant("$MD_THEME_CSS", "/* mixin definition ; sets LTR and RTL within the same style call */md-autocomplete.md-THEME_NAME-theme {  background: '{{background-50}}'; }  md-autocomplete.md-THEME_NAME-theme[disabled] {    background: '{{background-100}}'; }  md-autocomplete.md-THEME_NAME-theme button md-icon path {    fill: '{{background-600}}'; }  md-autocomplete.md-THEME_NAME-theme button:after {    background: '{{background-600-0.3}}'; }.md-autocomplete-suggestions.md-THEME_NAME-theme {  background: '{{background-50}}'; }  .md-autocomplete-suggestions.md-THEME_NAME-theme li {    color: '{{background-900}}'; }    .md-autocomplete-suggestions.md-THEME_NAME-theme li .highlight {      color: '{{background-600}}'; }    .md-autocomplete-suggestions.md-THEME_NAME-theme li:hover, .md-autocomplete-suggestions.md-THEME_NAME-theme li.selected {      background: '{{background-200}}'; }md-backdrop.md-opaque.md-THEME_NAME-theme {  background-color: '{{foreground-4-0.5}}'; }md-bottom-sheet.md-THEME_NAME-theme {  background-color: '{{background-50}}';  border-top-color: '{{background-300}}'; }  md-bottom-sheet.md-THEME_NAME-theme.md-list md-list-item {    color: '{{foreground-1}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    background-color: '{{background-50}}'; }  md-bottom-sheet.md-THEME_NAME-theme .md-subheader {    color: '{{foreground-1}}'; }a.md-button.md-THEME_NAME-theme, .md-button.md-THEME_NAME-theme {  border-radius: 3px; }  a.md-button.md-THEME_NAME-theme:not([disabled]):hover, .md-button.md-THEME_NAME-theme:not([disabled]):hover {    background-color: '{{background-500-0.2}}'; }  a.md-button.md-THEME_NAME-theme:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme:not([disabled]).md-focused {    background-color: '{{background-500-0.2}}'; }  a.md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover, .md-button.md-THEME_NAME-theme:not([disabled]).md-icon-button:hover {    background-color: transparent; }  a.md-button.md-THEME_NAME-theme.md-fab, .md-button.md-THEME_NAME-theme.md-fab {    border-radius: 50%;    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab md-icon, .md-button.md-THEME_NAME-theme.md-fab md-icon {      color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {      background-color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  a.md-button.md-THEME_NAME-theme.md-icon-button, .md-button.md-THEME_NAME-theme.md-icon-button {    border-radius: 50%; }  a.md-button.md-THEME_NAME-theme.md-primary, .md-button.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }    a.md-button.md-THEME_NAME-theme.md-primary.md-raised, a.md-button.md-THEME_NAME-theme.md-primary.md-fab, .md-button.md-THEME_NAME-theme.md-primary.md-raised, .md-button.md-THEME_NAME-theme.md-primary.md-fab {      color: '{{primary-contrast}}';      background-color: '{{primary-color}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]) md-icon {        color: '{{primary-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]):hover {        background-color: '{{primary-color}}'; }      a.md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-primary.md-fab:not([disabled]).md-focused {        background-color: '{{primary-600}}'; }    a.md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-primary:not([disabled]) md-icon {      color: '{{primary-color}}'; }  a.md-button.md-THEME_NAME-theme.md-fab, .md-button.md-THEME_NAME-theme.md-fab {    border-radius: 50%;    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]) .md-icon {      color: '{{accent-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]):hover {      background-color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-fab:not([disabled]).md-focused {      background-color: '{{accent-A700}}'; }  a.md-button.md-THEME_NAME-theme.md-raised, .md-button.md-THEME_NAME-theme.md-raised {    color: '{{background-contrast}}';    background-color: '{{background-50}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]) .md-icon, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]) .md-icon {      color: '{{background-contrast}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]):hover {      background-color: '{{background-50}}'; }    a.md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-raised:not([disabled]).md-focused {      background-color: '{{background-200}}'; }  a.md-button.md-THEME_NAME-theme.md-warn, .md-button.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }    a.md-button.md-THEME_NAME-theme.md-warn.md-raised, a.md-button.md-THEME_NAME-theme.md-warn.md-fab, .md-button.md-THEME_NAME-theme.md-warn.md-raised, .md-button.md-THEME_NAME-theme.md-warn.md-fab {      color: '{{warn-contrast}}';      background-color: '{{warn-color}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]) md-icon {        color: '{{warn-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]):hover {        background-color: '{{warn-color}}'; }      a.md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-warn.md-fab:not([disabled]).md-focused {        background-color: '{{warn-700}}'; }    a.md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-warn:not([disabled]) md-icon {      color: '{{warn-color}}'; }  a.md-button.md-THEME_NAME-theme.md-accent, .md-button.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }    a.md-button.md-THEME_NAME-theme.md-accent.md-raised, a.md-button.md-THEME_NAME-theme.md-accent.md-fab, .md-button.md-THEME_NAME-theme.md-accent.md-raised, .md-button.md-THEME_NAME-theme.md-accent.md-fab {      color: '{{accent-contrast}}';      background-color: '{{accent-color}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]) md-icon {        color: '{{accent-contrast}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]):hover, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]):hover {        background-color: '{{accent-color}}'; }      a.md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, a.md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-raised:not([disabled]).md-focused, .md-button.md-THEME_NAME-theme.md-accent.md-fab:not([disabled]).md-focused {        background-color: '{{accent-700}}'; }    a.md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon, .md-button.md-THEME_NAME-theme.md-accent:not([disabled]) md-icon {      color: '{{accent-color}}'; }  a.md-button.md-THEME_NAME-theme[disabled], a.md-button.md-THEME_NAME-theme.md-raised[disabled], a.md-button.md-THEME_NAME-theme.md-fab[disabled], a.md-button.md-THEME_NAME-theme.md-accent[disabled], a.md-button.md-THEME_NAME-theme.md-warn[disabled], .md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-accent[disabled], .md-button.md-THEME_NAME-theme.md-warn[disabled] {    color: '{{foreground-3}}';    cursor: not-allowed; }    a.md-button.md-THEME_NAME-theme[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, a.md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon, .md-button.md-THEME_NAME-theme[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-raised[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-fab[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-accent[disabled] md-icon, .md-button.md-THEME_NAME-theme.md-warn[disabled] md-icon {      color: '{{foreground-3}}'; }  a.md-button.md-THEME_NAME-theme.md-raised[disabled], a.md-button.md-THEME_NAME-theme.md-fab[disabled], .md-button.md-THEME_NAME-theme.md-raised[disabled], .md-button.md-THEME_NAME-theme.md-fab[disabled] {    background-color: '{{foreground-4}}'; }  a.md-button.md-THEME_NAME-theme[disabled], .md-button.md-THEME_NAME-theme[disabled] {    background-color: transparent; }md-card.md-THEME_NAME-theme {  background-color: '{{background-color}}';  border-radius: 2px; }  md-card.md-THEME_NAME-theme .md-card-image {    border-radius: 2px 2px 0 0; }md-checkbox.md-THEME_NAME-theme .md-ripple {  color: '{{accent-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme.md-checked.md-focused .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon {  background-color: '{{accent-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-ripple {  color: '{{primary-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ripple {  color: '{{background-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon {  background-color: '{{primary-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked.md-focused .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-ripple {  color: '{{warn-600}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn .md-icon {  border-color: '{{foreground-2}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon {  background-color: '{{warn-color-0.87}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked.md-focused:not([disabled]) .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-checkbox.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-icon:after {  border-color: '{{background-200}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-icon {  border-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled].md-checked .md-icon {  background-color: '{{foreground-3}}'; }md-checkbox.md-THEME_NAME-theme[disabled] .md-label {  color: '{{foreground-3}}'; }md-chips.md-THEME_NAME-theme .md-chips {  box-shadow: 0 1px '{{background-300}}'; }  md-chips.md-THEME_NAME-theme .md-chips.md-focused {    box-shadow: 0 2px '{{primary-color}}'; }md-chips.md-THEME_NAME-theme .md-chip {  background: '{{background-300}}';  color: '{{background-800}}'; }  md-chips.md-THEME_NAME-theme .md-chip.md-focused {    background: '{{primary-color}}';    color: '{{primary-contrast}}'; }    md-chips.md-THEME_NAME-theme .md-chip.md-focused md-icon {      color: '{{primary-contrast}}'; }md-chips.md-THEME_NAME-theme md-chip-remove .md-button md-icon path {  fill: '{{background-500}}'; }.md-contact-suggestion span.md-contact-email {  color: '{{background-400}}'; }md-content.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }md-dialog.md-THEME_NAME-theme {  border-radius: 4px;  background-color: '{{background-color}}'; }  md-dialog.md-THEME_NAME-theme.md-content-overflow .md-actions {    border-top-color: '{{foreground-4}}'; }md-divider.md-THEME_NAME-theme {  border-top-color: '{{foreground-4}}'; }md-icon.md-THEME_NAME-theme {  color: '{{foreground-2}}'; }  md-icon.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  md-icon.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  md-icon.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-input-container.md-THEME_NAME-theme .md-input {  color: '{{foreground-1}}';  border-color: '{{foreground-4}}';  text-shadow: '{{foreground-shadow}}'; }  md-input-container.md-THEME_NAME-theme .md-input::-webkit-input-placeholder, md-input-container.md-THEME_NAME-theme .md-input::-moz-placeholder, md-input-container.md-THEME_NAME-theme .md-input:-moz-placeholder, md-input-container.md-THEME_NAME-theme .md-input:-ms-input-placeholder {    color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme > md-icon {  color: '{{foreground-1}}'; }md-input-container.md-THEME_NAME-theme label, md-input-container.md-THEME_NAME-theme .md-placeholder {  text-shadow: '{{foreground-shadow}}';  color: '{{foreground-3}}'; }md-input-container.md-THEME_NAME-theme ng-messages, md-input-container.md-THEME_NAME-theme [ng-message], md-input-container.md-THEME_NAME-theme [data-ng-message], md-input-container.md-THEME_NAME-theme [x-ng-message] {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-has-value label {  color: '{{foreground-2}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused .md-input {  border-color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused label {  color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused md-icon {  color: '{{primary-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent .md-input {  border-color: '{{accent-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-accent label {  color: '{{accent-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn .md-input {  border-color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme:not(.md-input-invalid).md-input-focused.md-warn label {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid .md-input {  border-color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid.md-input-focused label {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme.md-input-invalid ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid data-ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid x-ng-message, md-input-container.md-THEME_NAME-theme.md-input-invalid [ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid [data-ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid [x-ng-message], md-input-container.md-THEME_NAME-theme.md-input-invalid .md-char-counter {  color: '{{warn-500}}'; }md-input-container.md-THEME_NAME-theme .md-input[disabled], [disabled] md-input-container.md-THEME_NAME-theme .md-input {  border-bottom-color: transparent;  color: '{{foreground-3}}';  background-image: linear-gradient(to right, '{{foreground-3}}' 0%, '{{foreground-3}}' 33%, transparent 0%);  background-image: -ms-linear-gradient(left, transparent 0%, '{{foreground-3}}' 100%); }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text h4, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h3, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text h4 {  color: '{{foreground-1}}'; }md-list.md-THEME_NAME-theme md-list-item.md-2-line .md-list-item-text p, md-list.md-THEME_NAME-theme md-list-item.md-3-line .md-list-item-text p {  color: '{{foreground-2}}'; }md-list.md-THEME_NAME-theme .md-proxy-focus.md-focused div.md-no-style {  background-color: '{{background-100}}'; }md-list.md-THEME_NAME-theme md-list-item > md-icon {  color: '{{foreground-2}}'; }  md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight {    color: '{{primary-color}}'; }    md-list.md-THEME_NAME-theme md-list-item > md-icon.md-highlight.md-accent {      color: '{{accent-color}}'; }md-list.md-THEME_NAME-theme md-list-item button {  background-color: '{{background-color}}'; }  md-list.md-THEME_NAME-theme md-list-item button.md-button:not([disabled]):hover {    background-color: '{{background-color}}'; }md-menu-content.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }  md-menu-content.md-THEME_NAME-theme md-menu-divider {    background-color: '{{foreground-4}}'; }md-progress-circular.md-THEME_NAME-theme {  background-color: transparent; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-gap {    border-top-color: '{{primary-color}}';    border-bottom-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme .md-inner .md-right .md-half-circle {    border-top-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-right .md-half-circle {    border-right-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme .md-inner .md-left .md-half-circle {    border-left-color: '{{primary-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-gap {    border-top-color: '{{warn-color}}';    border-bottom-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-right .md-half-circle {    border-top-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-right .md-half-circle {    border-right-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-warn .md-inner .md-left .md-half-circle {    border-left-color: '{{warn-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-gap {    border-top-color: '{{accent-color}}';    border-bottom-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-left .md-half-circle, md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-right .md-half-circle {    border-top-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-right .md-half-circle {    border-right-color: '{{accent-color}}'; }  md-progress-circular.md-THEME_NAME-theme.md-accent .md-inner .md-left .md-half-circle {    border-left-color: '{{accent-color}}'; }md-radio-button.md-THEME_NAME-theme .md-off {  border-color: '{{foreground-2}}'; }md-radio-button.md-THEME_NAME-theme .md-on {  background-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-off {  border-color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme.md-checked .md-ink-ripple {  color: '{{accent-color-0.87}}'; }md-radio-button.md-THEME_NAME-theme .md-container .md-ripple {  color: '{{accent-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-on {  background-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-off {  border-color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary.md-checked .md-ink-ripple {  color: '{{primary-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-primary .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-primary .md-container .md-ripple {  color: '{{primary-600}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-on, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-on {  background-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-off, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-off {  border-color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn.md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-checked .md-ink-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn.md-checked .md-ink-ripple {  color: '{{warn-color-0.87}}'; }md-radio-group.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-group.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]) .md-warn .md-container .md-ripple, md-radio-button.md-THEME_NAME-theme:not([disabled]).md-warn .md-container .md-ripple {  color: '{{warn-600}}'; }md-radio-group.md-THEME_NAME-theme[disabled], md-radio-button.md-THEME_NAME-theme[disabled] {  color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-off, md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-off {    border-color: '{{foreground-3}}'; }  md-radio-group.md-THEME_NAME-theme[disabled] .md-container .md-on, md-radio-button.md-THEME_NAME-theme[disabled] .md-container .md-on {    border-color: '{{foreground-3}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked .md-container:before {  background-color: '{{accent-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked:not([disabled]).md-primary .md-container:before {  background-color: '{{primary-color-0.26}}'; }md-radio-group.md-THEME_NAME-theme.md-focused:not(:empty) .md-checked.md-primary .md-container:before {  background-color: '{{warn-color-0.26}}'; }md-progress-linear.md-THEME_NAME-theme .md-container {  background-color: '{{primary-100}}'; }md-progress-linear.md-THEME_NAME-theme .md-bar {  background-color: '{{primary-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-container {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-warn .md-bar {  background-color: '{{warn-color}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-container {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme.md-accent .md-bar {  background-color: '{{accent-color}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-bar1 {  background-color: '{{warn-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-warn .md-dashed:before {  background: radial-gradient('{{warn-100}}' 0%, '{{warn-100}}' 16%, transparent 42%); }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-bar1 {  background-color: '{{accent-100}}'; }md-progress-linear.md-THEME_NAME-theme[md-mode=buffer].md-accent .md-dashed:before {  background: radial-gradient('{{accent-100}}' 0%, '{{accent-100}}' 16%, transparent 42%); }md-sidenav.md-THEME_NAME-theme {  background-color: '{{background-color}}'; }md-select.md-THEME_NAME-theme.ng-invalid.ng-dirty .md-select-label {  color: '{{warn-500}}' !important;  border-bottom-color: '{{warn-500}}' !important; }md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-label {  border-bottom-color: '{{primary-color}}';  color: '{{ foreground-1 }}'; }  md-select.md-THEME_NAME-theme:not([disabled]):focus .md-select-label.md-placeholder {    color: '{{ foreground-1 }}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-accent .md-select-label {  border-bottom-color: '{{accent-color}}'; }md-select.md-THEME_NAME-theme:not([disabled]):focus.md-warn .md-select-label {  border-bottom-color: '{{warn-color}}'; }md-select.md-THEME_NAME-theme[disabled] .md-select-label {  color: '{{foreground-3}}'; }  md-select.md-THEME_NAME-theme[disabled] .md-select-label.md-placeholder {    color: '{{foreground-3}}'; }md-select.md-THEME_NAME-theme .md-select-label {  border-bottom-color: '{{foreground-4}}'; }  md-select.md-THEME_NAME-theme .md-select-label.md-placeholder {    color: '{{foreground-2}}'; }md-select-menu.md-THEME_NAME-theme md-optgroup {  color: '{{foreground-2}}'; }  md-select-menu.md-THEME_NAME-theme md-optgroup md-option {    color: '{{foreground-1}}'; }md-select-menu.md-THEME_NAME-theme md-option[selected] {  color: '{{primary-500}}'; }  md-select-menu.md-THEME_NAME-theme md-option[selected]:focus {    color: '{{primary-600}}'; }  md-select-menu.md-THEME_NAME-theme md-option[selected].md-accent {    color: '{{accent-500}}'; }    md-select-menu.md-THEME_NAME-theme md-option[selected].md-accent:focus {      color: '{{accent-600}}'; }md-select-menu.md-THEME_NAME-theme md-option:focus:not([selected]) {  background: '{{background-200}}'; }md-slider.md-THEME_NAME-theme .md-track {  background-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme .md-track-ticks {  background-color: '{{foreground-4}}'; }md-slider.md-THEME_NAME-theme .md-focus-thumb {  background-color: '{{foreground-2}}'; }md-slider.md-THEME_NAME-theme .md-focus-ring {  border-color: '{{foreground-4}}'; }md-slider.md-THEME_NAME-theme .md-disabled-thumb {  border-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme.md-min .md-thumb:after {  background-color: '{{background-color}}'; }md-slider.md-THEME_NAME-theme .md-track.md-track-fill {  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb:after {  border-color: '{{accent-color}}';  background-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-sign {  background-color: '{{accent-color}}'; }  md-slider.md-THEME_NAME-theme .md-sign:after {    border-top-color: '{{accent-color}}'; }md-slider.md-THEME_NAME-theme .md-thumb-text {  color: '{{accent-contrast}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-track.md-track-fill {  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb:after {  border-color: '{{warn-color}}';  background-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-sign {  background-color: '{{warn-color}}'; }  md-slider.md-THEME_NAME-theme.md-warn .md-sign:after {    border-top-color: '{{warn-color}}'; }md-slider.md-THEME_NAME-theme.md-warn .md-thumb-text {  color: '{{warn-contrast}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-track.md-track-fill {  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb:after {  border-color: '{{primary-color}}';  background-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-sign {  background-color: '{{primary-color}}'; }  md-slider.md-THEME_NAME-theme.md-primary .md-sign:after {    border-top-color: '{{primary-color}}'; }md-slider.md-THEME_NAME-theme.md-primary .md-thumb-text {  color: '{{primary-contrast}}'; }md-slider.md-THEME_NAME-theme[disabled] .md-thumb:after {  border-color: '{{foreground-3}}'; }md-slider.md-THEME_NAME-theme[disabled]:not(.md-min) .md-thumb:after {  background-color: '{{foreground-3}}'; }.md-subheader.md-THEME_NAME-theme {  color: '{{ foreground-2-0.23 }}';  background-color: '{{background-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-primary {    color: '{{primary-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-accent {    color: '{{accent-color}}'; }  .md-subheader.md-THEME_NAME-theme.md-warn {    color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme .md-thumb {  background-color: '{{background-50}}'; }md-switch.md-THEME_NAME-theme .md-bar {  background-color: '{{background-500}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-thumb {  background-color: '{{accent-color}}'; }md-switch.md-THEME_NAME-theme.md-checked .md-bar {  background-color: '{{accent-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-focused .md-thumb:before {  background-color: '{{accent-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-thumb {  background-color: '{{primary-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary .md-bar {  background-color: '{{primary-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-primary.md-focused .md-thumb:before {  background-color: '{{primary-color-0.26}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-thumb {  background-color: '{{warn-color}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn .md-bar {  background-color: '{{warn-color-0.5}}'; }md-switch.md-THEME_NAME-theme.md-checked.md-warn.md-focused .md-thumb:before {  background-color: '{{warn-color-0.26}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-thumb {  background-color: '{{background-400}}'; }md-switch.md-THEME_NAME-theme[disabled] .md-bar {  background-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: transparent;  border-color: '{{foreground-4}}'; }md-tabs.md-THEME_NAME-theme .md-paginator md-icon {  color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{accent-color}}';  background: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme .md-tab {  color: '{{foreground-2}}'; }  md-tabs.md-THEME_NAME-theme .md-tab[disabled] {    color: '{{foreground-3}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-active, md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    color: '{{primary-color}}'; }  md-tabs.md-THEME_NAME-theme .md-tab.md-focused {    background: '{{primary-color-0.1}}'; }  md-tabs.md-THEME_NAME-theme .md-tab .md-ripple-container {    color: '{{accent-100}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-tabs-wrapper {  background-color: '{{accent-color}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]) {  color: '{{accent-100}}'; }  md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-focused {    color: '{{accent-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-accent md-tab-item:not([disabled]).md-focused {    background: '{{accent-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-accent md-ink-bar {  color: '{{primary-600-1}}';  background: '{{primary-600-1}}'; }md-tabs.md-THEME_NAME-theme.md-primary md-tabs-wrapper {  background-color: '{{primary-color}}'; }md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]) {  color: '{{primary-100}}'; }  md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-focused {    color: '{{primary-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-primary md-tab-item:not([disabled]).md-focused {    background: '{{primary-contrast-0.1}}'; }md-tabs.md-THEME_NAME-theme.md-warn md-tabs-wrapper {  background-color: '{{warn-color}}'; }md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]) {  color: '{{warn-100}}'; }  md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-active, md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-focused {    color: '{{warn-contrast}}'; }  md-tabs.md-THEME_NAME-theme.md-warn md-tab-item:not([disabled]).md-focused {    background: '{{warn-contrast-0.1}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{primary-color}}'; }md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{primary-100}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{primary-contrast}}'; }  md-toolbar > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{primary-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{accent-color}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{accent-100}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{accent-contrast}}'; }  md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{accent-contrast-0.1}}'; }md-toolbar.md-accent > md-tabs.md-THEME_NAME-theme md-ink-bar {  color: '{{primary-600-1}}';  background: '{{primary-600-1}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tabs-wrapper {  background-color: '{{warn-color}}'; }md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]) {  color: '{{warn-100}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    color: '{{warn-contrast}}'; }  md-toolbar.md-warn > md-tabs.md-THEME_NAME-theme md-tab-item:not([disabled]).md-focused {    background: '{{warn-contrast-0.1}}'; }md-toast.md-THEME_NAME-theme {  background-color: #323232;  color: '{{background-50}}'; }  md-toast.md-THEME_NAME-theme .md-button {    color: '{{background-50}}'; }    md-toast.md-THEME_NAME-theme .md-button.md-highlight {      color: '{{primary-A200}}'; }      md-toast.md-THEME_NAME-theme .md-button.md-highlight.md-accent {        color: '{{accent-A200}}'; }      md-toast.md-THEME_NAME-theme .md-button.md-highlight.md-warn {        color: '{{warn-A200}}'; }md-toolbar.md-THEME_NAME-theme {  background-color: '{{primary-color}}';  color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme md-icon {    color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme .md-button {    color: '{{primary-contrast}}'; }  md-toolbar.md-THEME_NAME-theme.md-accent {    background-color: '{{accent-color}}';    color: '{{accent-contrast}}'; }  md-toolbar.md-THEME_NAME-theme.md-warn {    background-color: '{{warn-color}}';    color: '{{warn-contrast}}'; }md-tooltip.md-THEME_NAME-theme {  color: '{{background-A100}}'; }  md-tooltip.md-THEME_NAME-theme .md-background {    background-color: '{{foreground-2}}'; }"); 
 })();
 
 

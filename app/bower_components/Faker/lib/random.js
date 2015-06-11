@@ -26,7 +26,7 @@ var random = {
 
         // Make the range inclusive of the max value
         var max = options.max;
-        if (max > 0) {
+        if (max >= 0) {
           max += options.precision;
         } 
           
@@ -61,6 +61,10 @@ var random = {
             return value.toString(16);
         };
         return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
+    },
+
+    boolean: function () {
+        return !!faker.random.number(1)
     }
 };
 

@@ -1,3 +1,45 @@
+<a name"0.10.0-rc2"></a>
+### 0.10.0-rc2 (2015-06-09)
+
+
+#### Features
+
+* **fabSpeedDial:** adds fabSpeedDial component ([e813dcdb](https://github.com/angular/material/commit/e813dcdb))
+* **fabToolbar:** adds fabToolbar component ([30a53c30](https://github.com/angular/material/commit/30a53c30))
+* **menu:** add a basic dropdown menu component ([3f6b4af4](https://github.com/angular/material/commit/3f6b4af4), closes [#3173](https://github.com/angular/material/issues/3173))
+* **tabs:**
+  * replaces unnecessary watches with getter/setter syntax for improved performance ([c806e8be](https://github.com/angular/material/commit/c806e8be))
+  * adds support for `md-autoselect` ([8285e2d0](https://github.com/angular/material/commit/8285e2d0))
+
+
+#### Breaking Changes
+
+* The API has changed for `md-icon` - `iconSize` has been
+changed to `viewBoxSize`
+
+ ([f93e117a](https://github.com/angular/material/commit/f93e117a))
+
+
+#### Bug Fixes
+
+* **autocomplete:** fixes issue where setting a min-length of 0 was not working ([d3f65195](https://github.com/angular/material/commit/d3f65195))
+* **button:** fixes style inconsistencies between `md-buttons` using `a` and `button` under th ([cc07e63d](https://github.com/angular/material/commit/cc07e63d), closes [#2440](https://github.com/angular/material/issues/2440))
+* **icon:** Change iconSize param to viewBoxSize. ([f93e117a](https://github.com/angular/material/commit/f93e117a), closes [#1679](https://github.com/angular/material/issues/1679), [#3123](https://github.com/angular/material/issues/3123))
+* **icons:** support for ngDirectives using compile phase ([9521a1e0](https://github.com/angular/material/commit/9521a1e0))
+* **tabs:** fixes issue with tab pagination in Angular 1.4 ([4273f52b](https://github.com/angular/material/commit/4273f52b))
+
+
+<a name="0.9.8"></a>
+### 0.9.8  (2015-06-08)
+
+
+#### Bug Fixes
+
+* **tabs:**
+  * prevents tabs from shrinking when used with flexbox ([dd041927](https://github.com/angular/material/commit/dd0419277523a44f8d06e45dc3c31b2afb3c8101), closes [#3011](https://github.com/angular/material/issues/3011))
+  * prevents select/deselect events from firing on destroy ([1ba0686e](https://github.com/angular/material/commit/1ba0686e7b42fef6072d011bf2f61fc3576a2017))
+
+
 <a name="0.9.8-rc1"></a>
 ### 0.9.8-rc1  (2015-06-05)
 

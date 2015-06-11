@@ -10,22 +10,21 @@
     blockquote, p, address,
     table,
     fieldset, figure,
-    pre {
+    pre,
+    hr,
+    iframe {
         margin-bottom: $base-spacing-unit * 3;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
     ul, ol, dd {
         margin-left: $base-spacing-unit * 6;
     }
 
-    p:last-child,
-    ul:last-child,
-    ol:last-child {
-        margin-bottom: 0;
-    }
-
     a {
-        color: $primary-color-1;
         text-decoration: none;
 
         &:hover {
