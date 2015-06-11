@@ -23,6 +23,10 @@
                     body: '='
                 },
                 link: function ($scope, el, attrs) {
+
+
+
+
                     var editorImg = el.find('.ta-scroll-window > .ta-bind >p > img');
                     editorImg.css({
                         'width': '280px',

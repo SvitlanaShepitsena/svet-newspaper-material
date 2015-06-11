@@ -8,8 +8,6 @@ div
             icon-name="fa-close" btn-url="app.home"
             method-click='cancelArticle(true)')
         div(class='p+')
-            sv-read-txt
-        div(class='p+')
             div(layout='row', layout-sm='column' layout-align='end')
                 div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-if='user.isEditor() && !article.isBlog')
                     md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
@@ -35,6 +33,8 @@ div
                 md-input-container(flex='')
                     label {{'article-summary'|translate}}
                     input(ng-model='article.summary' sv-url-decode  type="text" md-maxlength='300' name='summary')
+                md-input-container(flex='')
+                    sv-read-txt(body='article.body' )
                 md-input-container(flex='')
                     sv-svet-pad(body='article.body' )
             div(layout='column' class='mb+')
