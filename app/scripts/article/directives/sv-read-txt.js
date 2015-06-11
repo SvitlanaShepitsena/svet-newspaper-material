@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('article')
         .directive('svReadTxt', function () {
             return {
@@ -9,23 +8,24 @@
                 scope: {
                     body: '='
                 },
-
                 link: function ($scope, el, attrs) {
                     $scope.showContent = function (txtFile) {
-
-                        var arrTxtChunks = txtFile.split('\r\n\r\n');
+                        var arrTxtChunks;
+                        if (txtFile.indexOf('\r\n\r\n') > -1) {
+                            arrTxtChunks = txtFile.split('\r\n\r\n');
+                        }
+                        if (txtFile.indexOf('\r\n \r\n') > -1) {
+                            arrTxtChunks = txtFile.split('\r\n \r\n');
+                        }
                         var wrapper = $('<div></div>');
                         var paragraph, pWrapper;
-
-                        arrTxtChunks.forEach(function (p) {
-                            paragraph = p.replace(/\r\n/g, '\s');
-                            pWrapper = "<p><br></p><p>" + paragraph + "</p>";
+                        _.forEach(arrTxtChunks, function (p, i) {
+                            paragraph = p.replace(/\r\n/g, ' ');
+                            pWrapper = "<p><br/></p><p>" + paragraph + "</p>";
                             wrapper.append(pWrapper);
-
                         });
                         $scope.body = wrapper.html();
                     };
-
                 }
             };
         });

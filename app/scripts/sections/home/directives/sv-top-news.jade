@@ -4,7 +4,7 @@
     md-divider
     div.mt(layout='row' layout-align='center')
         a.text-center(ui-sref='app.article({id:topNews.fbkey})' )
-            sv-img-framed(img = 'topNews.img' max-width='500' max-height='320')
+            sv-img-framed(img = 'topNews.img' max-width='800' max-height='320')
     .p
         a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )
             .fs-title.tc-black-1(ng-bind-html='safeParsing(topNews.title)')

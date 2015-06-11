@@ -19,7 +19,7 @@
                     el.css('max-height', $scope.maxH + 'px');
                     var img = el.find('img');
                     img.css('position', 'relative');
-                    img.css('width', '50%');
+                    img.css('width', '100%');
                     img.css('display', 'block');
                 }
             };
