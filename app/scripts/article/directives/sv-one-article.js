@@ -9,11 +9,12 @@
                 },
                 templateUrl: 'scripts/article/directives/sv-one-article.html',
                 link: function ($scope, el, attrs) {
+                    $scope.params = {sectionName: $scope.news.section};
+
                     $scope.user = userAuth.profile;
                     $scope.rating1 = 5;
                     $scope.rating2 = 2;
                     $scope.isReadonly = true;
-
                     $scope.rateFunction = function (rating) {
                         console.log("Rating selected: " + rating);
                     };
