@@ -5,23 +5,23 @@ div
         div(layout='row', layout-sm='column')
             md-input-container(flex)
                 label {{'contact-name'|translate}}
-                input(ng-model='clCopy.name' name='name' required='')
+                input(ng-model='clCopy.name' name='name')
             md-input-container(flex)
                 label {{'contact-phone'|translate}}
-                input(ng-model='clCopy.phone' name='phone' required='')
+                input(ng-model='clCopy.phone' name='phone')
             md-input-container(flex)
                 label {{'contact-email'|translate}}
-                input(ng-model='clCopy.email' name='email' required='')
-        div(layout='row', layout-sm='column' )
+                input(ng-model='clCopy.email' name='email' )
+        div(layout-gt-sm='row', layout-sm='column'  layout-align-gt-sm='center end')
+            md-input-container.mr(flex)
+                label {{'city'|translate}}
+                input(ng-model='clCopy.city' name='city')
             md-input-container(flex)
                 label {{'state'|translate}}
                 input(ng-model='clCopy.state' name='state' required='')
-            md-input-container.mr(flex)
-                label {{'city'|translate}}
-                input(ng-model='clCopy.city' name='city' required='')
             md-input-container(class="mr ml" flex)
-                md-select(name="section" ng-model='clCopy.section' style='margin-bottom:0px' required)
-                    md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
+                md-select(name="section" ng-model='clCopy.section' style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left' required)
+                    md-select-label.tc-teal-400
                         i.mdi.mdi-checkbox-marked-outline.mb(style='max-width:22px') &nbsp
                         | {{clCopy.section || 'classified-section'|translate}}
                     md-option(ng-repeat='s in sections track by $index' ng-value='s.$value' style='height:38px')
@@ -42,7 +42,7 @@ div
                 label {{'price'|translate}}
                 input(ng-model='clCopy.price'
                 sv-url-decode
-                name='price' required='')
+                name='price')
         div(layout='row' layout-align='start center')
             md-checkbox(ng-model='clCopy.acceptClassifiedPolicy' aria-label='terms')
             div
