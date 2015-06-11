@@ -12,10 +12,9 @@
                         if (newValue === false) {
                             $timeout(function () {
                                 $scope.svTextAngularelected = newValue;
-                            },100)
+                            }, 100)
                         } else {
-
-                                $scope.svTextAngularelected = newValue;
+                            $scope.svTextAngularelected = newValue;
                         }
                     });
                     if (!$scope.$parent.ad) {
