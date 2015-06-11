@@ -4,10 +4,10 @@
     div(class='p+')
         form.mt(name="loginForm"  novalidate sv-form-val)
             md-input-container(class='mb+')
-                label {{email|translate}}
+                label {{'email'|translate}}
                 input(name="email" type='text', ng-model='user.email' required)
             md-input-container(class='mb+')
-                label {{password|translate}}
+                label {{'password'|translate}}
                 input(name="password" type='password', ng-model='user.password' required)
             div(class='mb+')
                 button.btn.btn--s.btn--raised.btn--white(lx-ripple ng-click='singIn()' id="svetLoginBtn")

@@ -12,11 +12,19 @@
                     newUser: '@'
                 },
                 link: function ($scope, el, attrs) {
+                    //$scope.user = {
+                    //    email: 'alex@gmail.com',
+                    //    //email: 'Icie_Ledner@yahoo.com',
+                    //    password: '123456'
+                    //}
+
                     $scope.user = {
-                        email: 'alex@gmail.com',
-                        //email: 'Icie_Ledner@yahoo.com',
-                        password: '123456'
+                        email: '',
+                        password: ''
                     }
+
+
+
                     $scope.singIn = function () {
                         AuthenticationServ.svetLogin($scope.user.email, $scope.user.password).then(function (user) {
                             if (userAuth.profile.isManager()) {

@@ -12,7 +12,6 @@
                     $scope.news = _.map(_.filter($rootScope.newsList, function (n) {
                         return n.section == $scope.sectionName;
                     }), function (n) {
-                        n.img = n.img || faker.image.city();
                         return n;
                     });
                     $scope.$watch('newsList', function (newsObj) {
