@@ -88,15 +88,15 @@
                         }
                         if (!cl) {
                             $scope.clCopy = {
-                                name: faker.internet.userName(),
-                                phone: faker.phone.phoneNumber(),
-                                email: faker.internet.email(),
-                                section: '',
-                                city: faker.address.city(),
-                                state: faker.address.state(),
-                                title: faker.lorem.sentence(),
-                                price: faker.finance.amount(),
-                                description: faker.lorem.paragraph(2)
+                                name: '',
+                                tel: '',
+                                email: '',
+                                city: '',
+                                state: '',
+                                title: '',
+                                price: '',
+                                acceptClassifiedPolicy: '',
+                                description: ''
                             };
                         }
                     };
