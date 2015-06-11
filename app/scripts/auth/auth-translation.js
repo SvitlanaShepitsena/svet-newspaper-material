@@ -57,6 +57,7 @@
                 'invitations': 'Invitations',
                 'find-people': 'Find People',
                 'subscriptions': 'Subscriptions',
+                'forgot-pass': 'Forgot password?',
                 'profile-settings': 'Profile Settings'
             });
             $translateProvider.translations('ru', {
@@ -113,6 +114,7 @@
                 'invitations': 'Приглашения',
                 'find-people': 'Поиск Людей',
                 'subscriptions': 'Подписки',
+                'forgot-pass': 'Забыди Пароль?',
                 'profile-settings': 'Настройки Профайла'
             });
             $translateProvider.preferredLanguage('en');
