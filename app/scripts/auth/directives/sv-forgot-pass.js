@@ -11,6 +11,7 @@
                 },
                 link: function ($scope, el, attrs) {
 
+                    console.log('run here sv-forgot-pass.js');
                 }
             };
         });
