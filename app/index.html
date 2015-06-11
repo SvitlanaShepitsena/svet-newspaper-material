@@ -108,16 +108,13 @@
                 </button>
                 <!--<span flex ng-if="main.showShifter"></span>-->
                 <sv-header-classified-btn></sv-header-classified-btn>
-                <sv-header-subscription-btn hide-sm></sv-header-subscription-btn>
-                <span flex></span>
+                <!--<sv-header-subscription-btn hide-sm></sv-header-subscription-btn>-->
+                <!--<span flex></span>-->
                 <sv-classified-header-phone hide-sm hide-gt-sm hide-md show-gt-md></sv-classified-header-phone>
                 <span flex></span>
                 <sv-profile-type class='mr'></sv-profile-type>
                 <sv-auth-btn class="mr"></sv-auth-btn>
-
                 <sv-notifications-list style='max-height:30px'></sv-notifications-list>
-
-
                 <div show-gt-lg class="ml"></div>
                 <button class='btn btn--xl btn--icon'
                         style="width:36px"
@@ -131,7 +128,7 @@
             <!--flex in this case stretches right sidenav vertically-->
             <md-content layout="row" flex>
                 <!-- layout-fill prevents horizontal jumping on page load-->
-                <md-content  layout-fill>
+                <md-content layout-fill>
                     <div class="mt+" ui-view="" flex></div>
 
                 </md-content>
