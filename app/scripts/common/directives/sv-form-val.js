@@ -26,27 +26,21 @@
                     var radioGroupName = radioGroup.attr('name');
                     /*for Angular Material md-select*/
                     var mdDropdown = elTemp.find('md-select');
-
                     var mdDropdownName = mdDropdown.attr('name');
                     var breakPoint = 1;
-
                     return function ($scope, el, attr, ctrl) {
                         var formName = ctrl.$name;
-
                         var requiredElements = lxTextFields.length > 0 ? lxTextFields : formElements;
                         angular.forEach(requiredElements, function (formElement, index) {
                             attachMessages(formElement, formElementsNames[index]);
                         });
-
                         attachMessages(radioGroup, radioGroupName);
                         attachMessages(mdDropdown, mdDropdownName);
-
                         function attachMessages(formElement, elementName) {
                             var appFormElement = formName + '.' + elementName;
                             var appFormElementTouched = appFormElement + '.$touched';
                             var appFormElementError = appFormElement + '.$error';
                             var appFormSubmitted = formName + '.$submitted';
-
                             /*create validation message*/
                             var message = "<div ng-if='" + appFormElementTouched + "|| " + appFormSubmitted +
                                 "'ng-messages='" + appFormElementError + "'>" +

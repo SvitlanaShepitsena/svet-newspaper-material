@@ -25,14 +25,14 @@ div
                             .fs-body-2 {{section.$id|capitalize}}
                 md-input-container(flex='')
                     label {{'article-topic'|translate}}
-                    input(ng-model='article.topic' sv-url-decode name='topic' required)
+                    input(ng-model='article.topic' sv-url-decode name='topic')
             div(layout='column')
                 md-input-container(flex='')
                     label {{'article-title'|translate}}
                     input(ng-model='article.title'  sv-url-decode type="text" md-maxlength='150' name='title' required )
                 md-input-container(flex='')
                     label {{'article-summary'|translate}}
-                    input(ng-model='article.summary' sv-url-decode  type="text" md-maxlength='250' name='summary' required)
+                    input(ng-model='article.summary' sv-url-decode  type="text" md-maxlength='300' name='summary')
                 md-input-container(flex='')
                     sv-svet-pad(body='article.body' )
             div(layout='column' class='mb+')
@@ -40,7 +40,7 @@ div
             div(layout='row')
                 md-input-container(flex)
                     label {{'tags'|translate}}
-                    input(ng-model='article.tags' sv-url-decode name='tags' type="text" md-maxlength="100" required)
+                    input(ng-model='article.tags' sv-url-decode name='tags' type="text" md-maxlength="100")
                 //img(ng-src="{{article.img}}")
         //    div(layout='row' class='mb+' layout-align='start center')
         //        md-checkbox(ng-model='user.acceptPolicy' aria-label='terms')
