@@ -356,6 +356,7 @@ md-icon {
 .sv-scrollable {
   overflow-y: scroll !important;
   position: relative !important;
+  heigth: auto;
 }
 /**********************
  = Bootstrap active button fix
