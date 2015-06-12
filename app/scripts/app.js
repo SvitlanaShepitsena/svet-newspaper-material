@@ -4,12 +4,13 @@
         // modules
         'ui.router',
         'pascalprecht.translate',
+        'underscore.string',
         'auth',
-		'ad',
+        'ad',
         'ngMaterial',
         'ngDragDrop',
         'textAngular',
-		'blogs',
+        'blogs',
         'auth.user',
         'auth.manager',
         'auth.notifications',
@@ -56,19 +57,19 @@
             //$sceProvider.enabled(false);
         })
         // COMMENT ON PRODUCTION
-        //.factory('$exceptionHandler', function ($injector) {
-        //    return function (exception, cause) {
-        //        var $rootScope = $injector.get('$rootScope');
-        //        var toastr = $injector.get('toastr');
-        //        exception.message = exception.stack;
-        //
-        //         //Comment on Production
-        //        toastr.error('ERROR!' + exception.message);
-        //        $rootScope.$broadcast('error');
-        //        throw exception;
-        //    };
-        //})
+        .factory('$exceptionHandler', function ($injector) {
+            return function (exception, cause) {
+                var $rootScope = $injector.get('$rootScope');
+                var toastr = $injector.get('toastr');
+                exception.message = exception.stack;
+
+                 //Comment on Production
+                toastr.error('ERROR!' + exception.message);
+                $rootScope.$broadcast('error');
+                throw exception;
+            };
+        })
         .config(['$compileProvider', function ($compileProvider) {
-            $compileProvider.debugInfoEnabled(false);
+            //$compileProvider.debugInfoEnabled(false);
         }]);
 })();
