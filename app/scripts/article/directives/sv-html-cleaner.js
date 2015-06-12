@@ -6,9 +6,9 @@
             return {
                 link: function ($scope, el, attrs) {
                     $scope.$watch('article.body', function (newValue, oldValue) {
-                        if (newValue === oldValue) {
-                            return;
-                        }
+                        if (newValue === oldValue) return;
+
+                        console.log(newValue);
                     });
 
                 }
