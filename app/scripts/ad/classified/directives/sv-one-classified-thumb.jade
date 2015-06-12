@@ -31,8 +31,8 @@
         .mdc-display-inline-block.mr.ml.tc-grey-500
             i.mdi.mdi-calendar-today(style="margin-right:4px")
             span.fs-caption.tc-grey-500 {{cl.timestamp|date}}
-        .mb(ng-show="!widget && user.isManager()")
-            a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='banByManager(cl)' sv-confirm-ban='classified')
+        .mb(ng-show="!widget"  )
+            a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='banByManager(cl)' sv-confirm-ban='classified' ng-hide="!user.isManager()")
                 i.fa.fa-trash.fa-fw &nbsp
                 span {{'ban'|translate}}
             //sv-ban-btn(cl='cl' sv-confirm-ban="classified")

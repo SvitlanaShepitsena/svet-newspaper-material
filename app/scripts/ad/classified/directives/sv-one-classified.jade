@@ -1,7 +1,7 @@
 div(sv-animate-on-change='cl')
     div(class='ml++ mr++ mt+ mb+')
         div(layout-gt-sm='row' layout-sm='column')
-            span.mdc-display-inline-block.fs-title.mr.tc-grey-800 {{cl.title|capitalize:first}}
+            span.mdc-display-inline-block.fs-title.mr.tc-grey-800 {{cl.title}}
             span.mdc-display-inline-block.tc-grey-700.mr.ml(style='border:#E0E0E0 1px solid;padding: 4px' ng-show="cl.price") ${{cl.price}}
             span.fs-subhead.tc-grey-600 ({{cl.state}}, {{cl.city}})
         div(layout='row' layout-align='start center')
@@ -11,8 +11,8 @@ div(sv-animate-on-change='cl')
     .bgc-grey-200(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' class='pl++ pr++ pt+ pb+')
         div
             span.fs-caption.tc-grey-600.mr Contact Info:
-            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Name: {{cl.name}},
+            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Name: {{cl.name}}
         div
-            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Phone: {{cl.phone}},
+            span.mdc-display-inline-block.fs-caption.tc-grey-800.mr Phone: {{cl.phone}}
         div
             span.mdc-display-inline-block.fs-caption.mr Email: {{cl.email}}
