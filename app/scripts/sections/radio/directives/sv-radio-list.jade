@@ -1,4 +1,8 @@
-div
-    ul
-        li(ng-repeat='p in programs')
-            div {{p}}
+.card
+    span.fs-subhead Osa Radio Programs
+    ul.p
+        li(ng-repeat='p in programs|orderBy:"-prDate"')
+            div.mb
+                i.fa.fa-headphones.fa-fw.mr
+                a.tc-grey-700(ng-href='{{p.mms}}') {{p.prDate|date}}
+

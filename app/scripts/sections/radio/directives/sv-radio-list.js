@@ -9,7 +9,7 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
                     RadioServ.getAllPrograms().then(function (streams) {
-                        $scope.programs=streams;
+                        $scope.programs = streams;
                     });
 
                 }

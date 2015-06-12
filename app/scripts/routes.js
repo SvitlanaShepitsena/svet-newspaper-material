@@ -28,11 +28,8 @@
                 .state("app.home.radio", {
                     url:'/radio-osa',
                     views: {
-                        //'@': {
-                        //    template: "<sv-radio-osa></sv-radio-osa>"
-                        //},
                         'radio.list': {
-                            template: "<sv-radio-list></sv-radio-list>"
+                            template: "<sv-radio-list class='ml mr'></sv-radio-list>"
                         }
                     }
                 })

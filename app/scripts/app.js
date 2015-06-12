@@ -6,11 +6,11 @@
         'pascalprecht.translate',
         'underscore.string',
         'auth',
-		'ad',
+        'ad',
         'ngMaterial',
         'ngDragDrop',
         'textAngular',
-		'blogs',
+        'blogs',
         'auth.user',
         'auth.manager',
         'auth.notifications',
@@ -39,7 +39,10 @@
         'mwl.calendar',
         'ui.sortable'
     ])
-        .config(function ($mdThemingProvider, $mdIconProvider) {
+
+        .config(function ($mdThemingProvider, $mdIconProvider, $compileProvider) {
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|mms):/);
+
             $mdIconProvider
                 .defaultIconSet("./assets/svg/avatars.svg", 128)
                 .icon("menu", "./assets/svg/menu.svg", 24)
@@ -55,6 +58,7 @@
         .config(function ($sceProvider, $translateProvider) {
             $translateProvider.useSanitizeValueStrategy(null);
             //$sceProvider.enabled(false);
+            /*radio programs*/
         })
         // COMMENT ON PRODUCTION
         .factory('$exceptionHandler', function ($injector) {
@@ -63,7 +67,7 @@
                 var toastr = $injector.get('toastr');
                 exception.message = exception.stack;
 
-                 //Comment on Production
+                //Comment on Production
                 toastr.error('ERROR!' + exception.message);
                 $rootScope.$broadcast('error');
                 throw exception;

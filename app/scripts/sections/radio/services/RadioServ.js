@@ -13,9 +13,14 @@
 
                         radioProgramsArr.$loaded().then(function () {
                             for (var i = 0; i < radioProgramsArr.length; i++) {
-                                var program = radioProgramsArr[i];
-                                var completeStream = template + program.$id + '.asf';
-                                arrSfs.push(completeStream);
+                                var program = radioProgramsArr[i].$id;
+                                var prDate = moment(program).format('x');
+                                var completeStream = template + program + '.asf';
+
+                                arrSfs.push({
+                                    prDate: prDate,
+                                    mms: completeStream
+                                });
                             }
                             resolve(arrSfs);
                         })
