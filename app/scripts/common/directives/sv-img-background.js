@@ -2,16 +2,19 @@
     'use strict';
 
     angular.module('common')
-        .directive('svImgBackground', function () {
+        .directive('svImgBackground', function ($state) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-img-background.html',
                 scope: {
                     svImage: '=',
                     linkRoute: '@',
+                    params:'='
                 },
                 link: function ($scope, el, attrs) {
-
+                    $scope.navigate = function () {
+                        $state.go($scope.linkRoute, {id:$scope.params});
+                    };
                     var img = new Image();
                     img.src = $scope.svImage;
                     img.onload = function () {
@@ -24,8 +27,9 @@
                         iElm.css({
                             'background-image': 'url(' + $scope.svImage + ')',
                             'background-size': 'cover',
-                            'height':'85px',
-                            'display':'block'
+                            'background-position':'50% 25%',
+                            'height': 85+ 'px',
+                            'display': 'block'
                         });
                     }
 
