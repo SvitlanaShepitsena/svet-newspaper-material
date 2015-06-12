@@ -24,6 +24,19 @@
                     controller: "HomeCtrl as home",
                     templateUrl: "scripts/sections/home/views/homeCtrl.html"
                 })
+
+                .state("app.home.radio", {
+                    url:'/radio-osa',
+                    views: {
+                        //'@': {
+                        //    template: "<sv-radio-osa></sv-radio-osa>"
+                        //},
+                        'radio.list': {
+                            template: "<sv-radio-list></sv-radio-list>"
+                        }
+                    }
+                })
+
                 .state("app.sign-up", {
                     url: "/sign-up",
                     controller: "SignUpCtrl as signUp",
