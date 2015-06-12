@@ -20,13 +20,11 @@
 
                         var breakPoint = 1;
 
-                        var iElm = el.find('i');
-                        iElm.css({
+                        var element = el.find('#articleImg');
+                        element.css({
                             'background-image': 'url(' + $scope.svImage + ')',
                             'background-size': 'cover',
-                             'z-index':10,
-                             'width':'100%',
-
+                            'width': '85px',
                         });
                     }
 
