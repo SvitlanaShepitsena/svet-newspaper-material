@@ -4,8 +4,12 @@
     angular.module('article')
         .directive('svHtmlCleaner', function () {
             return {
-                require: '?^ngModel',
-                link: function ($scope, el, attrs, ctrl) {
+                link: function ($scope, el, attrs) {
+                    $scope.$watch('article.body', function (newValue, oldValue) {
+                        if (newValue === oldValue) {
+                            return;
+                        }
+                    });
 
                 }
             };

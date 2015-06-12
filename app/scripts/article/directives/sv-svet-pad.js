@@ -23,9 +23,8 @@
                     body: '='
                 },
                 link: function ($scope, el, attrs) {
-
-
-
+                    //var textArea=el.find('textarea');
+                    //textArea.attr('aria-label','article body');
 
                     var editorImg = el.find('.ta-scroll-window > .ta-bind >p > img');
                     editorImg.css({
