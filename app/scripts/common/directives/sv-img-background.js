@@ -23,7 +23,9 @@
                         var iElm = el.find('i');
                         iElm.css({
                             'background-image': 'url(' + $scope.svImage + ')',
-                            'background-size': 'cover'
+                            'background-size': 'cover',
+                            'height':'85px',
+                            'display':'block'
                         });
                     }
 
