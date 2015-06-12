@@ -1,3 +1,4 @@
-sv-link-back(l-title="upcoming-events" url="app.events.calendar"  class='mb+')
-.card(class='p+' ng-if='event')
-    sv-one-event(event='event')
+div(class='pl pr')
+    sv-link-back(l-title="upcoming-events" url="app.events.calendar"  class='mb+')
+    .card(class='p+ ml mr' ng-if='event')
+        sv-one-event(event='event')
