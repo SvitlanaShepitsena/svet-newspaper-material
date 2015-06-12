@@ -1,7 +1,7 @@
 (function () {
     'use strict'
-    var fbDomain = 'svet';
-    //var fbDomain = 'svet-test';
+    //var fbDomain = 'svet';
+    var fbDomain = 'svet-test';
     angular.module('common')
         .constant('url', 'https://' + fbDomain + '.firebaseio.com/')
         .constant('users', 'https://' + fbDomain + '.firebaseio.com/user-management/users/')
