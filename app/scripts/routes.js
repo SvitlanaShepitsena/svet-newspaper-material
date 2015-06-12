@@ -26,13 +26,13 @@
                 })
 
                 .state("app.home.radio", {
-                    url:'/radivo',
+                    url:'/radio-osa',
                     views: {
                         //'@': {
                         //    template: "<sv-radio-osa></sv-radio-osa>"
                         //},
                         'radio.list': {
-                            template: "<sv-radio-osa></sv-radio-osa>"
+                            template: "<sv-radio-list></sv-radio-list>"
                         }
                     }
                 })
