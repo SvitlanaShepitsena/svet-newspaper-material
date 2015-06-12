@@ -68,3 +68,23 @@ p img {
     font-size: 9px !important;
   }
 }
+.sv-img-thumb {
+  width: 90px !important;
+  height: 90px !important;
+  text-align: center;
+  vertical-align: middle;
+}
+.sv-img-thumb-link {
+  display: block;
+  width: 85px;
+  heigth: 85px;
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  -webkit-background-size: 85px 85px !important;
+  -moz-background-size: 85px 85px !important;
+  background-size: 85px 85px !important;
+  border: 0px solid #e5e5e5;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
