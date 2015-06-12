@@ -13,7 +13,7 @@
                 link: function ($scope, el, attrs) {
 
                     var img = new Image();
-                    img.src = $scope.image;
+                    img.src = $scope.svImage;
                     img.onload = function () {
                         var width = img.width;
                         var height = img.height;
