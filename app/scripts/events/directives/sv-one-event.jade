@@ -5,8 +5,8 @@ div
             i.mdi.mdi-close
     div.mb(layout='row')
         sv-event-widget(type='{{event.type}}')
-    div(layout='row')
-        div()
+    div(layout-gt-sm='row' layout-sm='column')
+        div(flex-gt-sm='60')
             .mb
                 span.display-block.fs-title {{event.startsAt|date:"short"}}
                 a.tc-blue-grey-700.fs-subhead(href='{{event.locationWeb}}' target='_blank')
@@ -43,7 +43,6 @@ div
             div.mb
                 span.display-block.fs-title Admission:
                 span.display-block.fs-subhead.tc-grey-800 {{event.tickets}}
-
-        div(class='ml+')
-            img.mb(ng-src="{{event.img}}" style="max-width:500px")
+        div(flex-gt-sm='40' class='ml+')
+            img.mb(ng-src="{{event.img}}" style="max-width:80%")
 

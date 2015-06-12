@@ -1,19 +1,18 @@
-div(layout-gt-sm='row' layout-sm='column')
-    div(class='mr+')
-        img.mb(ng-src="{{event.img}}" style="max-width:200px")
-    div(layout='column')
-        span.display-block.fs-title.mb {{event.title}}
+div(layout='column')
+    span.display-block.fs-headline.mb {{event.title}}
+    div(layout-gt-sm='row' layout-sm='column')
+        div(flex-gt-sm='20' layout-sm='column' class='mr+' flex-order-sm='2')
+            img.mb(ng-src="{{event.img}}" style="max-width:100%")
+        div(flex-gt-sm='80' layout='column' class="mb+" flex-order-sm='1')
+            span.fs-caption.mdc-display-inline-block
+                i.fa.fa-calendar.fa-fw &nbsp
+                | {{event.startsAt|date:"short"}}
+            sv-event-widget(type='{{event.type}}' class='mt mb')
+            span.display-block.fs-subhead About Event:
+            span.display-block.fs-body-2.mb {{event.about}}
             div
-                //button.btn.btn--xs.btn--grey.btn--raised.mr(lx-ripple='' ng-click="quickView($event,event)")
-                //    i.fa.fa-eye.fa-fw &nbsp
-                //    | {{'quick-view'|translate}}
-        span.display-block.fs-caption.mb  {{event.startsAt|date:"short"}}
-        span.display-block.fs-subhead About Event:
-        div(layout='row' class='mb')
-            span.fs-body-2 {{event.about}}
-        div(layout='row' class='mb')
-            a.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ui-sref='app.one-event({eid:event.$id})')
-                i.mdi.mdi-arrow-right &nbsp
-                | {{'more-info'|translate}}
+                a.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ui-sref='app.one-event({eid:event.$id})')
+                    i.mdi.mdi-arrow-right &nbsp
+                    | {{'more-info'|translate}}
 
 
