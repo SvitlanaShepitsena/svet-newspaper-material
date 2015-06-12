@@ -4,6 +4,7 @@
         // modules
         'ui.router',
         'pascalprecht.translate',
+        'underscore.string',
         'auth',
 		'ad',
         'ngMaterial',
