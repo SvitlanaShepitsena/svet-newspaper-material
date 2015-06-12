@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('common')
-        .directive('svImgBackground', function ($state) {
+        .directive('svImgBackground', function ($state, defimg) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-img-background.html',
@@ -12,6 +12,7 @@
                     params: '='
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.svImage = $scope.svImage || defimg;
                     $scope.navigate = function () {
                         $state.go($scope.linkRoute, {id: $scope.params});
                     };
