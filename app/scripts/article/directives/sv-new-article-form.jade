@@ -40,7 +40,7 @@ div
                     sv-image-upload(sv-max-size='3' sv-min-width='320' sv-min-height='200' )
             div(layout='column')
                 md-input-container(flex='')
-                    sv-svet-pad(body='article.body' )
+                    sv-svet-pad(body='article.body' sv-html-cleaner)
             div(layout='column' class='mb+')
                 sv-image-upload(sv-max-size='3' sv-min-width='320' sv-min-height='200' )
                 span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}

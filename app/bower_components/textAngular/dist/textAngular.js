@@ -1983,7 +1983,7 @@
                         // we still need the hidden input even with a textarea as the textarea may have invalid/old input in it,
                         // wheras the input will ALLWAYS have the correct value.
                         forminput: angular.element("<input type='hidden' tabindex='-1' style='display: none;'>"),
-                        html: angular.element("<textarea></textarea>"),
+                        html: angular.element("<textarea aria-label='txt'></textarea>"),
                         text: angular.element("<div></div>"),
                         // other toolbased elements
                         scrollWindow: angular.element("<div class='ta-scroll-window'></div>"),
