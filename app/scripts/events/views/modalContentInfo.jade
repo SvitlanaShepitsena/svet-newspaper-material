@@ -1,3 +1,9 @@
 md-dialog(style='min-width:80%;min-height: auto' aria-label='Event dialog')
+    div.bgc-grey-200(layout="row" layout-align='space-between center' class='p+')
+        span.ml.fs-headline
+            i.mdi.mdi-tag &nbsp
+            | {{'svet-event'|translate}} &nbsp
+        button.btn.btn--s.btn--icon.btn--grey(ng-click='hide()')
+            i.mdi.mdi-close &nbsp
     md-dialog-content
         sv-one-event(event='event' dialog-hide='hide()' )
