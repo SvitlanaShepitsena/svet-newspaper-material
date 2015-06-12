@@ -23,10 +23,7 @@
                         var iElm = el.find('i');
                         iElm.css({
                             'background-image': 'url(' + $scope.svImage + ')',
-                            'background-size': 'cover',
-                             'z-index':10,
-                             'width':'100%',
-
+                            'background-size': 'cover'
                         });
                     }
 
