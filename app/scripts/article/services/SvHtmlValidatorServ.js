@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .factory('SvHtmlValidatorServ', function ($q, $sanitize, url, users, $firebaseObject, $firebaseArray, $sce) {
+        .factory('SvHtmlValidatorServ', function ($q, $sanitize, url, users, $firebaseObject, $firebaseArray, $sce,str) {
             return {
                 validate: function (html) {
                     var isValid = false;
@@ -17,6 +17,8 @@
                         if (_.isString(value)) {
                             var txtProp = $sanitize(value);
                             txtProp = txtProp.replace(/&#65533;/g, '');
+                            txtProp = str(txtProp,'unescapeHTML');
+
                             article[key] = txtProp;
                         }
                     })
