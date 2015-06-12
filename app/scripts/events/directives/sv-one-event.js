@@ -11,7 +11,7 @@
                 },
                 link: function ($scope, el, attrs) {
                     $scope.user = userAuth.profile;
-                    $scope.isRegistered = !!_.find($scope.event.users, {userName: userAuth.profile.userName});
+                    $scope.isRegistered = userAuth.profile && !!_.find($scope.event.users, {userName: userAuth.profile.userName});
                     console.log($scope.isRegistered);
                     $scope.isDialog = function () {
                         return attrs.dialogHide;
