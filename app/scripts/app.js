@@ -2,6 +2,7 @@
     'use strict';
     angular.module('app', [
         // modules
+		'oommon',
         'ui.router',
         'pascalprecht.translate',
         'auth',
