@@ -1,11 +1,15 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svNewArticleForm', function ($rootScope, SvHtmlValidatorServ, $state, toastr, SectionsServ, NewsGeneratorServ, ArticlesServ, SvobodaSaveToDbServ, userAuth, FormattedDateServ, TagsServ) {
+        .directive('svNewArticleForm', function ($sce, $rootScope, SvHtmlValidatorServ, $state, toastr, SectionsServ, NewsGeneratorServ, ArticlesServ, SvobodaSaveToDbServ, userAuth, FormattedDateServ, TagsServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-new-article-form.html',
                 link: function ($scope, el, attrs) {
+                    $scope.safeParsing = function (html) {
+                        return $sce.trustAsHtml(html);
+                    };
+
                     $scope.$watch('articleForm', function (newValue, oldValue) {
                         if (newValue) {
                             $scope.isFormChanged = newValue.$dirty;
