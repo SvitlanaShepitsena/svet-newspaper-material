@@ -202,6 +202,27 @@ p img {
     font-size: 9px !important;
   }
 }
+.sv-img-thumb {
+  width: 90px;
+  text-align: center;
+  vertical-align: middle;
+}
+.sv-img-thumb-link {
+  display: block;
+  width: 85px;
+  heigth: 85px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  border: 0px solid #e5e5e5;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+a:visited,
+a.link:visited {
+  color: #1e4ba8;
+}
 .sv-notifications-txt {
   font-weight: 500;
   font-size: 14px;

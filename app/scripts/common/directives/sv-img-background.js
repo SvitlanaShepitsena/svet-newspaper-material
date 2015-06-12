@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('oommon')
-        .directive('svImgBackground', function ($stateParams, svetNews, ArticlesServ, defimg) {
+    angular.module('common')
+        .directive('svImgBackground', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/oommon/directives/sv-img-background.html',
+                templateUrl: 'scripts/common/directives/sv-img-background.html',
                 scope: {
 
                 },
