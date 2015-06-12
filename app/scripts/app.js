@@ -2,10 +2,9 @@
     'use strict';
     angular.module('app', [
         // modules
-        'underscore.string',
         'ui.router',
         'pascalprecht.translate',
-        //'lodash.underscore.string',
+        'underscore.string',
         'auth',
         'ad',
         'ngMaterial',
