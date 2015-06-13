@@ -6,6 +6,7 @@
                 replace: true,
                 templateUrl: 'scripts/ad/classified/directives/sv-one-classified-thumb.html',
                 scope: {
+                    isNew: '=',
                     cl: '=',
                     removeCl: '&',
                     banCl: '&',
@@ -16,12 +17,21 @@
                 link: function ($scope, el, attrs) {
                     $scope.$watch('cl', function (newValue, oldValue) {
                         if (newValue) {
-                            var timeObj = TimeLeftServ.computeInDays(newValue.timestamp, 7);
-                            $scope.status = timeObj.isActive;
-                            $scope.timeLeft = timeObj.timeLeft;
-                            $scope.isNew = TimeLeftServ.isNew(newValue.timestamp, 24);
+                            $timeout(function () {
+                                $scope.currentCl = newValue;
+
+                                var timeObj = TimeLeftServ.computeInDays(newValue.timestamp, 7);
+                                $scope.status = timeObj.isActive;
+                                $scope.timeLeft = timeObj.timeLeft;
+
+                                $scope.isNewCurr= $scope.isNew;
+                            }, 400);
+
                         }
+
                     }, true);
+
+
                     $scope.banByManager = function (cl) {
                         //toastr.info('ban ban skit!'+cl.$id)
                         ClassifiedServ.banCl(cl).then(function () {

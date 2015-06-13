@@ -1,0 +1,14 @@
+[sv-animate-on-index-change] {
+  position: relative;
+  top: 0;
+  opacity: 1;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+[sv-animate-on-index-change].changed {
+  left: -900;
+  opacity: 0;
+  position: relative;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}

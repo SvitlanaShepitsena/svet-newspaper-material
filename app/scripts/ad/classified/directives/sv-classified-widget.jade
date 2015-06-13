@@ -1,2 +1,5 @@
-div.ml.mr.mdc-overflow-hidden
-    sv-one-classified-thumb(cl='cls[currentClassifiedIndex]' widget='true' is-home='isHome')
+div.ml.mr.mdc-overflow-hidden(style='height:220px')
+    div
+        button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='prevCl()') Prev
+        button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' ng-click='nextCl()') Next
+    sv-one-classified-thumb(ng-if='currentClTime' cl='cls[currentClassifiedIndex]' widget='true' is-home='isHome' is-new='isCurrentNew')

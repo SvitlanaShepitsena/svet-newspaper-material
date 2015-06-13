@@ -30,7 +30,7 @@
                             classifiedArray.$watch(function () {
                                 var newList=processClassifiedArray(classifiedArray);
                                 classified.list = newList;
-                                //$rootScope.$apply();
+                                $rootScope.$broadcast('cl-added');
                             });
                             resolve();
                         });
