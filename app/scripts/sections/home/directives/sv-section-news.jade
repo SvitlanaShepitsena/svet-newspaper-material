@@ -2,7 +2,7 @@ ul.list(class='mt++')
     li.list-row.list-row--multi-line.list-row--has-separator(ng-repeat='gn in news')
         a(ui-sref='app.article({id:gn.id})' style='text-decoration:none')
             .list-row__primary
-                img.img-round.mdc-img-bw(ng-src='{{gn.img}}', width='40', height='40')
+                img.img-round.sv-img-bw(ng-src='{{gn.img}}', width='40', height='40')
             .list-row__content
                 span.display-block {{gn.title | length:25}}
                 span.display-block.fs-body-1.tc-black-2 {{gn.body | length:50}}
