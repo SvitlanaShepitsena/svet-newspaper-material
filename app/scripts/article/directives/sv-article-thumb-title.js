@@ -6,6 +6,7 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-article-thumb-title.html',
                 scope: {
+                    tags: '@',
                     tc: '@',
                     titleTc: '@',
                     bgc: '@',
@@ -13,6 +14,10 @@
                     sectionTitle: '@'
                 },
                 link: function ($scope, el, attrs) {
+                    $scope.filterTags= $scope.tags.split(' ');
+
+
+
                     $scope.tc = $scope.tc || 'tc-grey-700';
                     $scope.bgc = $scope.bgc || 'bgc-grey-100';
                     $scope.sectionIcon = $scope.sectionIcon || 'newspaper';
