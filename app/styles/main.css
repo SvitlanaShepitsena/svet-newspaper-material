@@ -349,9 +349,9 @@ md-icon {
 .svet-corporate.ng-hide-remove,
 .svet-corporate.ng-hide-add.ng-hide-add-active,
 .svet-corporate.ng-leave.ng-leave-active {
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
+  opacity: 0.1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+  filter: alpha(opacity=10);
 }
 .svet-corporate.ng-enter.ng-enter-active,
 .svet-corporate.ng-hide-add,

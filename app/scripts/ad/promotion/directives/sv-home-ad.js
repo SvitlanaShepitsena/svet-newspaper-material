@@ -14,6 +14,7 @@
                         $scope.ads = ads;
                         AdServ.increaseShow($scope.ads[$scope.adIndex].$id);
                     });
+
                     var index;
                     $scope.showPrevAd = function () {
                         index = $scope.adIndex;

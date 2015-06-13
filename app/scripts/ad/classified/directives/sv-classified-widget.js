@@ -19,9 +19,12 @@
             }
 
             function isNew($scope) {
-                $scope.currentClTime = $scope.cls[$scope.currentClassifiedIndex].timestamp;
+                var currentSvCl = $scope.cls[$scope.currentClassifiedIndex];
+                if (!currentSvCl) {
+                    return;
+                }
+                $scope.currentClTime = currentSvCl.timestamp;
                 $scope.isCurrentNew = TimeLeftServ.isNew($scope.currentClTime, 24);
-                console.log($scope.isCurrentNew);
             }
 
             function startInterval($scope) {
