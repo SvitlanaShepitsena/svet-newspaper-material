@@ -1,16 +1,25 @@
 .card
-    a(ui-sref='app.home.radio')
-        ul.list.bgc-grey-100
-            li.list-row.list-row--has-separator(style='padding: 0px 8px')
-                .list-row__primary.mdc-text-right.img-editor-contner
-                    img.img-round.mdc-text-right.img-editor.mdc-img-bw(src='/img/auth/osa-logo.jpg')
-                .list-row__content
-                    strong.fs-headline.display-block
-                        i.mdi.mdi-microphone &nbsp
-                        | {{title|translate}} “OSA”
-        div.bgc-grey-50(class='pl pr pb')
-            span.fs-subhead.tc-black-2.display-block.radio-subhead {{subhead|translate}}
-            span.fs-body-2.tc-black-2.display-block.radio-body {{body|translate}}
-        //.card__actions
-        //    button.btn.btn--xs.btn--red.btn--flat(lx-ripple='') {{'listen'|translate}}
-        //    //button.btn.btn--xs.btn--black.btn--flat(lx-ripple='') {{'archive'|translate}}
+    div.p.bgc-grey-100
+        strong.fs-headline.display-block.text-center
+            i.mdi.mdi-microphone &nbsp
+            | {{title|translate}} “OSA”
+    md-divider.mb
+    div.bgc-grey-50(class='pl pr mt+ mb text-center')
+        span.fs-subhead.tc-red-300.display-block.radio-subhead
+            | {{'radio-subhead-1'|translate|uppercase}}
+        span.fs-subhead.tc-red-300.display-block.radio-subhead
+            | {{'radio-subhead-2'|translate}}
+    div.bgc-grey-50(class='pl pr pb')
+        span.fs-body-subhead.tc-grey-800.display-block.radio-body.text-center(style='line-height:20px')
+            | {{'radio-body-1'|translate|capitalize}}
+        span.fs-body-subhead.tc-grey-800.display-block.radio-body.text-center(style='line-height:20px')
+            i.fa.fa-clock-o.fa-fw
+            | {{'radio-body-3'|translate}}
+        span.fs-body-subhead.tc-grey-800.display-block.radio-body.text-center(style='line-height:20px')
+            i.fa.fa-wifi.fa-rotate-90.fa-fw
+            | {{'radio-body-2'|translate}}
+    .card__actions.text-right.mt
+        a.btn.btn--xs.btn--black.btn--flat.tc-red-300(ui-sref='app.home.radio' lx-ripple='')
+            i.fa.fa-headphones.fa-fw &nbsp
+            | {{'radio-files-archive'|translate}}
+    //    button.btn.btn--xs.btn--red.btn--flat(lx-ripple='') {{'listen'|translate}}
