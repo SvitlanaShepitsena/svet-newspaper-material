@@ -14,8 +14,9 @@
                     sectionTitle: '@'
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.filterTags= $scope.tags.split(' ');
+                    $scope.tags = $scope.tags || ' ';
 
+                    $scope.filterTags = $scope.tags.split(' ');
 
 
                     $scope.tc = $scope.tc || 'tc-grey-700';
