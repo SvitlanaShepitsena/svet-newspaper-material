@@ -1,1 +1,10 @@
-div sv-event-type Template
+div
+    span.fs-headline.tc-grey-700.mr( ng-if="type==='community'")
+        i.mr.mdi.mdi-city
+        | {{'chicago-community-event'|translate}}
+    span.fs-headline.tc-grey-700.mr( ng-if="type==='connection'")
+        i.mr.mdi.mdi-briefcase-check
+        | {{'svet-connection-event'|translate}}
+    span.fs-headline.tc-grey-700.mr( ng-if="type==='public'")
+        i.mr.fa.fa-users
+        | {{'svet-public-event'|translate}}

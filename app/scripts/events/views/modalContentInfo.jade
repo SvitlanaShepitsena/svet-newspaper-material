@@ -1,8 +1,7 @@
 md-dialog(style='min-width:80%;min-height: auto' aria-label='Event dialog')
     div.bgc-grey-200(layout="row" layout-align='space-between center' class='p+')
-        span.ml.fs-headline
-            | {{event.type:capitalize}} event
+        sv-event-type(type='{{event.type}}' class='mt mb')
         button.btn.btn--s.btn--icon.btn--grey(ng-click='hide()')
             i.mdi.mdi-close &nbsp
     md-dialog-content
-        sv-one-event(event='event' dialog-hide='hide()' )
+        sv-one-event(event='event' dialog-hide='hide()')
