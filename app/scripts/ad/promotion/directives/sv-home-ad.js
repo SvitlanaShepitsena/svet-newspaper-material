@@ -35,8 +35,7 @@
                         return $mdMedia('gt-lg');
                     }, function (gtLg) {
                         if (gtLg) {
-                        $scope.arrowShift = 67;
-
+                            $scope.arrowShift = 67;
                         }
                     });
                     $scope.adIndex = 0;

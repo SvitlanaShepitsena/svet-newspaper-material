@@ -1,8 +1,7 @@
 (function () {
     'use strict';
     angular.module('ad.classified')
-        .directive('svClassifiedWidget', function (ClassifiedServ, classified, $interval, classifiedInterval, TimeLeftServ) {
-
+        .directive('svClassifiedWidget', function (ClassifiedServ, classified, $interval, classifiedInterval, TimeLeftServ, $mdMedia) {
             var interval;
 
             function indexLimit(index, max, operation) {
@@ -14,7 +13,6 @@
                     index--;
                     index = index < 0 ? max : index;
                 }
-
                 return index
             }
 
@@ -32,13 +30,8 @@
                 $scope.currentClassifiedIndex = $scope.cls.length - 1;
                 isNew($scope);
                 $interval.cancel(interval);
-
-
                 interval = $interval(function () {
-
                     $scope.currentClassifiedIndex = indexLimit($scope.currentClassifiedIndex, $scope.cls.length, 'decrease');
-
-
                     isNew($scope);
                 }, classifiedInterval);
             }
@@ -50,26 +43,21 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
+
                     ClassifiedServ.bindClassifiedsLive().then(function () {
                         startInterval($scope);
                     });
-
-
                     $scope.$on('cl-added', function () {
                         startInterval($scope);
-
                     });
-
                     $scope.nextCl = function () {
-                        $scope.currentClassifiedIndex = indexLimit($scope.currentClassifiedIndex, $scope.cls.length-1, 'increase');
+                        $scope.currentClassifiedIndex = indexLimit($scope.currentClassifiedIndex, $scope.cls.length - 1, 'increase');
                         isNew($scope);
                     };
                     $scope.prevCl = function () {
-                        $scope.currentClassifiedIndex = indexLimit($scope.currentClassifiedIndex, $scope.cls.length-1, 'decrease');
+                        $scope.currentClassifiedIndex = indexLimit($scope.currentClassifiedIndex, $scope.cls.length - 1, 'decrease');
                         isNew($scope);
-
                     };
-
                 }
             };
         });
