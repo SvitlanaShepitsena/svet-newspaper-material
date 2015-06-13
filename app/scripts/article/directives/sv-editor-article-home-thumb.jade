@@ -1,6 +1,6 @@
 div
     a.tc-grey-700.sv-hover-grey(ui-sref='app.blogs.one-blog-article({authorName:post.author,blogId:post.fbkey})' style='text-decoration:none')
         div.pl.pr.pb
-            span.display-block.sv-hover-red(ng-bind-html='post.title')
+            span.display-block.tc-grey-800.sv-hover-red(ng-bind-html='post.title' style="font-weight:600")
         div.pl.pr.pb
             span.display-block.fs-body-1.tc-black-2.sv-hover-grey(ng-bind-html='post.summary')

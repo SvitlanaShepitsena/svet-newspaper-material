@@ -26,7 +26,7 @@
                 })
 
                 .state("app.home.radio", {
-                    url:'/radio-osa',
+                    url: '/radio-osa',
                     views: {
                         'radio.list': {
                             template: "<sv-radio-list class='ml mr'></sv-radio-list>"
