@@ -3,6 +3,7 @@
     //var fbDomain = 'svet';
     var fbDomain = 'svet-test';
     angular.module('common')
+        .constant('domain', fbDomain === 'svet' ? 'production' : 'test')
         .constant('url', 'https://' + fbDomain + '.firebaseio.com/')
         .constant('users', 'https://' + fbDomain + '.firebaseio.com/user-management/users/')
         .constant('corporate', 'https://' + fbDomain + '.firebaseio.com/events/corporate/')
