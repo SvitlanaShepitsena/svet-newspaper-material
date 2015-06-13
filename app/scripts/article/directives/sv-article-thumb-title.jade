@@ -5,7 +5,7 @@
             | {{sectionTitle|translate|uppercase}}
     md-divider
     .p(layout='column')
-        .mb.sv-article-thumb(ng-repeat='n in newsList|sectionNews:sectionName|limitTo:3')
+        .mb.sv-article-thumb(ng-repeat='n in newsList|tagsFr:filterTags')
             //span.display-block.fs-caption.tc-grey-500(ng-bind-html='n.timestamp|date')
             span.fs-caption By &nbsp
             span.fs-caption.tc-grey-500(ng-bind-html='n.author|authorNameFr')
