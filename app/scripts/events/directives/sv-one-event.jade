@@ -1,12 +1,8 @@
 div
     div(layout='row' layout-align='space-between center')
         span.display-block.fs-display-1.mb {{event.title}}
-        //button.btn.btn--m.btn--icon(ng-show='isDialog()' ng-click='hide()')
-        //    i.mdi.mdi-close
-    div.mb(layout='row')
-        sv-event-widget(type='{{event.type}}')
     div(layout-gt-sm='row' layout-sm='column')
-        div(flex-gt-sm='60')
+        .mrr(flex-gt-sm='60' flex-order-sm='2')
             .mb
                 span.display-block.fs-title {{event.startsAt|date:"short"}}
                 a.tc-blue-grey-700.fs-subhead(href='{{event.locationWeb}}' target='_blank')
@@ -43,6 +39,7 @@ div
             div.mb
                 span.display-block.fs-title Admission:
                 span.display-block.fs-subhead.tc-grey-800 {{event.tickets}}
-        div(flex-gt-sm='40' class='ml+')
-            img.mb(ng-src="{{event.img}}" style="max-width:80%")
+        div(flex-gt-sm='40')
+            .m(style='max-width:240px;margin:0px auto')
+                img.mb(ng-src="{{event.img}}" style="width:240px;height:auto")
 

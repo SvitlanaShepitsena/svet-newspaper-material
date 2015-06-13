@@ -1,9 +1,10 @@
 div(layout='column')
     span.display-block.fs-headline.mb {{event.title}}
     div(layout-gt-sm='row' layout-sm='column')
-        div(flex-gt-sm='20' layout-sm='column' class='mr+' flex-order-sm='2')
-            img.mb(ng-src="{{event.img}}" style="max-width:100%")
-        div(flex-gt-sm='80' layout='column' class="mb+" flex-order-sm='1')
+        div(layout-sm='column' class='mr+' flex-order-sm='2')
+            div(style='max-width:130px')
+                img.sv-filter-grey.mb(ng-src="{{event.img}}" style="max-width:100%;max-height:auto")
+        div(flex-gt-sm='70' layout='column' class="mb+ mr" flex-order-sm='1')
             span.fs-caption.mdc-display-inline-block
                 i.fa.fa-calendar.fa-fw &nbsp
                 | {{event.startsAt|date:"short"}}
