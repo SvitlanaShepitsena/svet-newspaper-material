@@ -7,6 +7,7 @@
             $translateProvider.translations('en', {
                 'chicago': 'Chicago',
                 'usa': 'USA',
+                'blog': 'Blog',
                 /*=form*/
                 'login-title': 'Log In to Your Account',
                 'not-registered': 'Not Registered',
@@ -45,6 +46,7 @@
             $translateProvider.translations('ru', {
                 'chicago': 'Чикаго',
                 'usa': 'США',
+                'blog': 'Блог',
                 /*=form*/
                 'login-title': 'Вход',
                 'quick-look': 'Просмотр',
