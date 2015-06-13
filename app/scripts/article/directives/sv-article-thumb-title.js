@@ -17,13 +17,14 @@
                     $scope.bgc = $scope.bgc || 'bgc-grey-100';
                     $scope.sectionIcon = $scope.sectionIcon || 'newspaper';
                     $scope.sectionName = $stateParams.sectionName;
-                    if (!svetNews.public) {
-                        ArticlesServ.setHomeNewsLive().then(function () {
-                            $scope.newsList = svetNews.public;
-                        })
-                    } else {
-                        $scope.newsList = svetNews.public;
-                    }
+                    $scope.newsList = svetNews.public;
+                    //if (!svetNews.public) {
+                    //    ArticlesServ.setHomeNewsLive().then(function () {
+                    //        $scope.newsList = svetNews.public;
+                    //    })
+                    //} else {
+                    //    $scope.newsList = svetNews.public;
+                    //}
                 }
             };
         });
