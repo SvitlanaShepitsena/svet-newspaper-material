@@ -1,10 +1,13 @@
 .card.pb
     div.p.bgc-grey-100
-        span.display-block.fs-subhead.tc-grey-700(style='font-weight:500') {{topNews.topic|uppercase}}
+        span.display-block.fs-subhead.tc-red-300(style='font-weight:500') {{topNews.topic|uppercase}}
     md-divider
-    div.mt(layout='row' layout-align='center')
-        a.text-center(ui-sref='app.article({id:topNews.fbkey})' )
-            sv-img-framed(img = 'topNews.img' max-width='800' max-height='320')
+    div(layout='row' layout-align='center')
+        a(ui-sref='app.article({id:topNews.fbkey})' )
+            .card__img.card__img--top(style='padding:0px !important')
+                sv-img-framed(img = 'topNews.img' max-width='800' max-height='320')
+                span.mdc-display-inline-block.fs-title.tc-white.bgc-red-300(style='padding:0px 8px;margin: 0px -15px;opacity:0.8')
+                    | Интервью с Президентом и CEO KOHL CHILDREN'S MUSEUM
     .p
         a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )
             .fs-title.tc-black-1(ng-bind-html='safeParsing(topNews.title)')
