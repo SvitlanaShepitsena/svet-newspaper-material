@@ -10,9 +10,9 @@
                     return {isActive: isActive, timeLeft: timeWeekAfter.fromNow()}
                 },
                 isNew: function (timestamp, hours) {
-                    var hours = moment(timestamp, 'x').add(hours, 'hours');
-                    //var timeLeft = moment(timestamp,'x').add(days, 'days').fromNow();
-                    return hours.isAfter();
+                    var spustya24 = moment(timestamp, 'x').add(hours, 'hours');
+                    var isBeforeNow = spustya24.isAfter();
+                    return isBeforeNow;
                 },
 
             };
