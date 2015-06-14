@@ -7,7 +7,6 @@
     .p(layout='column')
         .mb.sv-article-thumb(ng-repeat='n in newsList|tagsFr:filterTags')
             //span.display-block.fs-caption.tc-grey-500(ng-bind-html='n.timestamp|date')
-            span.fs-caption By &nbsp
             span.fs-caption.tc-grey-500(ng-bind-html='n.author|authorNameFr')
             a.tc-grey-700.display-block(ui-sref='app.article({id:n.fbkey})')
                 span.display-block(ng-bind-html='n.title|length:125' style='font-weight:500')
