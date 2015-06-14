@@ -15,3 +15,6 @@
         div.ml.mr.mb(layout="row" ng-hide='isRank' flex="30" layout-align='end')
             sv-edit-article-btn.mr(article='article')
             sv-delete-article-btn.mr(article-key='{{article.fbkey}}')
+        div.ml.mr.mb(layout="row" ng-show='isRank' flex="30" layout-align='end')
+            sv-edit-article-btn.mr(article='article')
+            sv-delete-article-btn.mr(article-key='{{article.fbkey}}')

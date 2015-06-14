@@ -37,6 +37,36 @@
 
 
 <body ng-app="app" layout="column" flow-prevent-drop ng-cloak="" ng-controller="AppCtrl" style='overflow-y: hidden'>
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1405000443143632',
+            xfbml      : true,
+            version    : 'v2.3'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
 <!--need to wrap everething in md-content with layout-fill to stretch content and sidenavs vertically and horizontally and prevents jumping top-nav on google chrome-->
 <!--it stills jumps in IE and overflow hidden on body does not help-->
 <md-content layout="column" layout-fill>
@@ -397,6 +427,7 @@
 
 <!-- article -->
 <script src="scripts/article/articleRoutes.js"></script>
+<script src="scripts/article/directives/sv-article-make-top-btn.js"></script>
 <script src="scripts/article/filters/cut.js"></script>
 <script src="scripts/article/filters/tagsFr.js"></script>
 <script src="scripts/article/directives/sv-tag-selector.js"></script>
