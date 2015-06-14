@@ -14,7 +14,7 @@
                 'radio-body-1': 'Every Sunday ',
                 'radio-body-2': 'on 1240AM',
                 'radio-body-3': '11:00 AM - 1:00 PM.',
-                'radio-archive': 'Radio OSA Archive',
+                'radio-archive': 'Radio Programs Archive',
                 'radio-files-archive': 'Archive',
                 'back': 'Back',
                 // 'eng':'eng'

@@ -43,7 +43,6 @@
                     isHome: '='
                 },
                 link: function ($scope, el, attrs) {
-
                     ClassifiedServ.bindClassifiedsLive().then(function () {
                         startInterval($scope);
                     });

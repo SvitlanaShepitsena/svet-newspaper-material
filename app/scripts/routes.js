@@ -24,7 +24,6 @@
                     controller: "HomeCtrl as home",
                     templateUrl: "scripts/sections/home/views/homeCtrl.html"
                 })
-
                 .state("app.home.radio", {
                     url: '/radio-osa',
                     views: {
@@ -33,7 +32,6 @@
                         }
                     }
                 })
-
                 .state("app.sign-up", {
                     url: "/sign-up",
                     controller: "SignUpCtrl as signUp",

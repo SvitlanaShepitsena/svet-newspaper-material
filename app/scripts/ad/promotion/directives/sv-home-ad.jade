@@ -1,12 +1,13 @@
-div(style='max-width:960px; position:relative;height:auto')
+div(style='max-width:960px; position:relative;height:100%')
     img.sv-img-bw(ng-src="{{currentAd}}" width="100%" style='max-width:960px' sv-animate-on-index-change='adIndex')
-    div(layout='row' style='position:relative; top:-{{arrowShift}}px' layout-align='space-between center' )
-        a.tc-red-300(lx-ripple='' ng-click="showPrevAd()" style='cursor:pointer;opacity:.8')
-            i.fa.fa-chevron-left.fa-2x
-        a.tc-red-300(lx-ripple='' ng-click='showNextAd()' style='cursor:pointer;opacity:.8')
-            i.fa.fa-chevron-right.fa-2x
+    div(style='position:absolute; top:50px')
+        button.btn.btn--xs.btn--white.btn--raised.tc-grey-800(lx-ripple='' ng-click="showPrevAd()" style='opacity:.8')
+            i.fa.fa-chevron-left.fa-lg
+    div(style='position:absolute; top:50px;right:0px')
+        button.btn.btn--xs.btn--white.btn--raised.tc-grey-800(lx-ripple='' ng-click='showNextAd()' style='opacity:.8')
+            i.fa.fa-chevron-right.fa-lg
     //div(layout='row' style='position:relative; top:-70px' layout-align='space-between center' hide-sm)
-    //    a.tc-red-300(lx-ripple='' ng-click="showPrevAd()" style='cursor:pointer;opacity:.8')
+    //    a.tc-red-300(lx-ripple='' ng-click="showPrevAd()" style='cursor:pointer')
     //        i.fa.fa-chevron-left.fa-2x
-    //    a.tc-red-300(lx-ripple='' ng-click='showNextAd()' style='cursor:pointer;opacity:.8')
+    //    a.tc-red-300(lx-ripple='' ng-click='showNextAd()' style='cursor:pointer')
     //        i.fa.fa-chevron-right.fa-2x

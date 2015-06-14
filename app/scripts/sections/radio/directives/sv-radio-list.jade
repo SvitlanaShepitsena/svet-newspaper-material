@@ -1,16 +1,15 @@
-.card
-    div.p.bgc-grey-100
-        span.display-block.fs-subhead.text-center.tc-grey-700
-            | {{'radio-archive'|translate|uppercase}}
-    md-divider
-    ul.list.p
+div
+    span.display-block.fs-body-2.text-center.tc-grey-600(style='font-weight:600')
+        | {{'radio-archive'|translate|uppercase}}
+    .mt.mb
+    ul.list(style='padding:0px;margin:0px')
         li(ng-repeat='p in programs|orderBy:"-prDate"' layout='row' layout-align='space-between' class='mb')
             a.tc-grey-700(ng-href="/scripts/sections/radio/0125.mp3")
                 span {{p.prDate|date}}
             span.display-block
                 a.tc-grey-700(ng-href='/scripts/sections/radio/0125.mp3')
                     i.fa.fa-headphones.fa-fw.mr
-    .card__actions.text-right
-        a.btn.btn--xs.btn--black.btn--flat.tc-grey-500(href='javascript:history.back()' lx-ripple="")
-            i.fa.fa-angle-double-left.fa-fw &nbsp
-            | {{'back'|translate}}
+        .card__actions.text-right
+            a.btn.btn--xs.btn--black.btn--flat.tc-grey-500(href='javascript:history.back()' lx-ripple="")
+                i.fa.fa-angle-double-left.fa-fw &nbsp
+                | {{'back'|translate}}
