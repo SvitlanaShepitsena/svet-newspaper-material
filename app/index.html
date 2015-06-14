@@ -144,31 +144,32 @@
                         <span class="mdc-display-inline-block mdc-subhead ml">{{'for-readers-and-partners'|translate}}</span>
                     </md-toolbar>
                     <!--if your sidenav background has color, add flex to fill sidenav vertically-->
-                    <md-content class="pr pl pt" flex>
-                        <sv-sidenav-title title="svet-on-social-media"></sv-sidenav-title>
-                        <sv-svet-social></sv-svet-social>
-                        <sv-nav-btn url="app.classified.community"
-                                    icon="tag"
-                                    title="classified"
-                                    txt-color="white-1"
-                                    bgc="red-300"
-                                    color="white" btn-size="m"
-                                    class="mb++"></sv-nav-btn>
-                        <sv-sidenav-title title="new-classified" icon-type="mdi" icon-name="mdi-clock-fast"
-                                          class='mb++'>
-                        </sv-sidenav-title>
-
-                        <sv-classified-widget is-home="true" class='mb+'></sv-classified-widget>
-
-                        <sv-nav-btn url="app.contact"
-                                    icon="map-marker"
-                                    title="{{'contacts'|translate}}"
-                                    txt-color="white-1"
-                                    custom-class="bgc-svet-700"
-                                    color="white"
-                                    btn-size="m"
-                                    class="mb++">
-                        </sv-nav-btn>
+                    <md-content class="pt" flex>
+                        <div class="mr ml">
+                            <sv-sidenav-title title="svet-on-social-media"></sv-sidenav-title>
+                            <sv-svet-social></sv-svet-social>
+                            <sv-nav-btn url="app.classified.community"
+                                        icon="tag"
+                                        title="classified"
+                                        txt-color="white-1"
+                                        bgc="red-300"
+                                        color="white" btn-size="m"
+                                        class="mb++"></sv-nav-btn>
+                            <sv-sidenav-title title="new-classified" icon-type="mdi"
+                                              icon-name="mdi-clock-fast"></sv-sidenav-title>
+                        </div>
+                        <sv-classified-widget is-home="true"></sv-classified-widget>
+                        <div class="mr ml mt+">
+                            <sv-nav-btn url="app.contact"
+                                        icon="map-marker"
+                                        title="{{'contacts'|translate}}"
+                                        txt-color="white-1"
+                                        custom-class="bgc-svet-700"
+                                        color="white"
+                                        btn-size="m"
+                                        class="mb++">
+                            </sv-nav-btn>
+                        </div>
                     </md-content>
                 </md-sidenav>
             </md-content>

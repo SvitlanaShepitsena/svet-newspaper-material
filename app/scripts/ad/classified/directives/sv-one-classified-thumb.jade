@@ -1,41 +1,42 @@
-.card('mb+' sv-animate-on-change='cl')
-    div.p.bgc-grey-200(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' )
-        div.mb.pl.pt
-            a.fs-caption.tc-grey-700.bgc-grey-300.sv-link(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{currentCl.section}}
-            span.fs-caption.tc-red-300(style='padding:4px' ng-show='isNewCurr') New!
-        div(ng-if='!currentCl.banned')
-            span(ng-show='isEditable()')
-                sv-status-label(label-title="{{status?'Active':'Not Active'}}" ng-show='!widget')
-                span.fs-caption(ng-show='status') Expires: {{timeLeft}}
-                span.fs-caption(ng-show='!status') Expired {{timeLeft}}
-        div(ng-if='currentCl.banned')
-            sv-status-label(label-title="banned" ng-show='!widget' tc="tc-white-1" bgc="bgc-red-300" label-padding="4px" fs="fs-caption")
-        span.fs-caption.tc-grey-800.mr(ng-show='!isEditable()') {{currentCl.city}}
-        div.mb.pt(ng-show='isEditable()' layout="row")
-            div(ng-show='!currentCl.banned')
-                button.btn.btn--s.btn--white.btn--raised.tc-grey-700.mr(lx-ripple='' ng-click='editCl({cl:cl})')
-                    i.fa.fa-share.fa-fw &nbsp
-                    | {{'repost'|translate}}
-                button.btn.btn--s.btn--white.btn--raised.tc-teal-300.mr(lx-ripple='' ng-click='editCl({cl:cl})')
-                    i.fa.fa-pencil.fa-fw &nbsp
-                    | {{'edit'|translate}}
-            a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='removeCl()' sv-confirm-deletion='classified')
-                i.fa.fa-trash.fa-fw &nbsp
-                span {{'delete'|translate}}
-    div.p(layout='column')
-        div.mb.pl.pr.pt
-            //a.fs-caption.tc-grey-700.bgc-grey-300.sv-link.mr(style="padding: 2px 4px; border-radius:3px;cursor:pointer" ng-show="!widget") {{currentCl.section}}
-            span.mdc-display-inline-block.fs-body-2.mr.tc-grey-800 {{currentCl.title}}
-            span.mdc-display-inline-block.tc-grey-700(style='border:#E0E0E0 1px solid;padding: 1px 4px' ng-show="currentCl.price") ${{currentCl.price}}
-    .bgc-grey-100(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' class='pl pr pt+ pb')
-        .mdc-display-inline-block.mr.ml.tc-grey-500
-            i.mdi.mdi-calendar-today(style="margin-right:4px")
-            span.fs-caption.tc-grey-500 {{currentCl.timestamp|date}}
-        .mb(ng-show="!widget"  )
-            a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='banByManager(cl)' sv-confirm-ban='classified' ng-hide="!user.isManager()")
-                i.fa.fa-trash.fa-fw &nbsp
-                span {{'ban'|translate}}
-            //sv-ban-btn(cl='cl' sv-confirm-ban="classified")
-        .mb
-            sv-quick-look-btn(modal-method='showClassifiedModal(cl)')
+div(style='min-height:180px')
+    .card(sv-animate-on-change='cl')
+        div.p.bgc-grey-200(layout-sm='column' layout-gt-sm='row' layoutkgt-sm='row' layout-align='space-between center' )
+            div.mb.pl.pt
+                a.fs-caption.tc-grey-700.bgc-grey-300.sv-link(style="padding: 2px 4px; border-radius:3px;cursor:pointer") {{currentCl.section}}
+                span.fs-caption.tc-red-300(style='padding:4px' ng-show='isNewCurr') New!
+            div(ng-if='!currentCl.banned')
+                span(ng-show='isEditable()')
+                    sv-status-label(label-title="{{status?'Active':'Not Active'}}" ng-show='!widget')
+                    span.fs-caption(ng-show='status') Expires: {{timeLeft}}
+                    span.fs-caption(ng-show='!status') Expired {{timeLeft}}
+            div(ng-if='currentCl.banned')
+                sv-status-label(label-title="banned" ng-show='!widget' tc="tc-white-1" bgc="bgc-red-300" label-padding="4px" fs="fs-caption")
+            span.fs-caption.tc-grey-800.mr(ng-show='!isEditable()') {{currentCl.city}}
+            div.mb.pt(ng-show='isEditable()' layout="row")
+                div(ng-show='!currentCl.banned')
+                    button.btn.btn--s.btn--white.btn--raised.tc-grey-700.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+                        i.fa.fa-share.fa-fw &nbsp
+                        | {{'repost'|translate}}
+                    button.btn.btn--s.btn--white.btn--raised.tc-teal-300.mr(lx-ripple='' ng-click='editCl({cl:cl})')
+                        i.fa.fa-pencil.fa-fw &nbsp
+                        | {{'edit'|translate}}
+                a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='removeCl()' sv-confirm-deletion='classified')
+                    i.fa.fa-trash.fa-fw &nbsp
+                    span {{'delete'|translate}}
+        div.p(layout='column')
+            div.mb.pl.pr.pt
+                //a.fs-caption.tc-grey-700.bgc-grey-300.sv-link.mr(style="padding: 2px 4px; border-radius:3px;cursor:pointer" ng-show="!widget") {{currentCl.section}}
+                span.mdc-display-inline-block.fs-body-2.mr.tc-grey-800 {{currentCl.title}}
+                span.mdc-display-inline-block.tc-grey-700(style='border:#E0E0E0 1px solid;padding: 1px 4px' ng-show="currentCl.price") ${{currentCl.price}}
+        .bgc-grey-100(layout-sm='column' layout-gt-sm='row' layout-align='space-between center' class='pl pr pt+ pb')
+            .mdc-display-inline-block.mr.ml.tc-grey-500
+                i.mdi.mdi-calendar-today(style="margin-right:4px")
+                span.fs-caption.tc-grey-500 {{currentCl.timestamp|date}}
+            .mb(ng-show="!widget"  )
+                a.btn.btn--s.btn--white.tc-red-300.btn--raised(lx-ripple='' ng-click='banByManager(cl)' sv-confirm-ban='classified' ng-hide="!user.isManager()")
+                    i.fa.fa-trash.fa-fw &nbsp
+                    span {{'ban'|translate}}
+                //sv-ban-btn(cl='cl' sv-confirm-ban="classified")
+            .mb
+                sv-quick-look-btn(modal-method='showClassifiedModal(cl)')
 
