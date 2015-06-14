@@ -25,7 +25,7 @@
                     }
                 });
 
-                return artWithTags;
+                return _.take(artWithTags,3);
 
             };
         });
