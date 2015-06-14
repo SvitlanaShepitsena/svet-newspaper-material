@@ -25,7 +25,7 @@
                     }
                 });
 
-                return artWithTags;
+                return _.take(_.shuffle(artWithTags),3);
 
             };
         });
