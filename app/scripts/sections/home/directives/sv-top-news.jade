@@ -7,10 +7,10 @@
             .card__img.card__img--top(style='padding:0px !important')
                 sv-img-framed(img = 'topNews.img' max-width='800' max-height='320')
                 span.mdc-display-inline-block.fs-title.tc-white.bgc-red-300(style='padding:0px 8px;margin: 0px -15px;opacity:0.8')
-                    | Интервью с Президентом и CEO KOHL CHILDREN'S MUSEUM
+                    | {{topNews.title}}
     .p
-        a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )
-            .fs-title.tc-black-1(ng-bind-html='safeParsing(topNews.title)')
+        //a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )
+        //    .fs-title.tc-black-1(ng-bind-html='safeParsing(topNews.title)')
         span.fs-caption.display-block.tc-grey-500 {{isFirst? 'Alexander Etman':topNews.author|capitalize}}
         span.fs-body-1.display-block(ng-bind-html="safeParsing(topNews.summary||(topNews.body|cut:50))")
     div(layout='row' layout-align='end start' class='pr')
