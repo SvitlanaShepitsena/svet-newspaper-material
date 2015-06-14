@@ -40,6 +40,11 @@
 					controller:"OneEventCtrl",
 					templateUrl: "scripts/events/views/one-eventCtrl.html"
 				})
+				.state("app.kohl2015", {
+					url: "/kohl2015", 
+					controller:"Kohl2015Ctrl",
+					templateUrl: "scripts/events/views/kohl2015Ctrl.html"
+				})
 //#state'
         });
 })();
