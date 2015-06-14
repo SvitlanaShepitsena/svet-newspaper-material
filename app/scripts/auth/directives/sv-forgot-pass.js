@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('auth')
         .directive('svForgotPass', function ($mdDialog, toastr, AuthenticationServ) {
             return {
@@ -9,7 +8,6 @@
                 scope: {},
                 link: function ($scope, el, attrs) {
                     $scope.showPasswordModal = function () {
-
                         $mdDialog.show(
                             {
                                 controller: PasswordRecoveryCtrl,
@@ -18,18 +16,15 @@
                         );
                     };
                     function PasswordRecoveryCtrl($scope, $mdDialog) {
-
-
                         $scope.sendPasswordRecovery = function (email) {
                             AuthenticationServ.resetPassword(email).then(function () {
                                 toastr.info("Password reset email sent successfully!");
                                 $scope.hide();
-                                $scope.user.email='';
+                                $scope.user.email = '';
                             }).catch(function (error) {
                                 toastr.error("Error: ", error);
                             });
                         };
-
                         $scope.hide = function () {
                             $mdDialog.hide();
                         };

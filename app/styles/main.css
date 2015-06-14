@@ -249,13 +249,13 @@ p img {
   border-radius: 50%;
 }
 .sv-link-visited-image {
-  opacity: 0.9 !important;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)" !important;
-  filter: alpha(opacity=90) !important;
+  opacity: 0.8 !important;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)" !important;
+  filter: alpha(opacity=80) !important;
 }
 .sv-link-visited:visited,
 .sv-link-visited.link:visited {
-  color: #607d8b !important;
+  color: #757575 !important;
 }
 .sv-notifications-txt {
   font-weight: 500;
