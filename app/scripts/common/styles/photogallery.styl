@@ -7,20 +7,20 @@
   margin-top -35px
   outline medium none
   position absolute
-  top 50%
+  //top 50%
   width 64px
   z-index 5
   &.prev
-    background-image url("../images/prev.png")
-    left 20px
-    opacity 0.2
+    background-image url("../img/gallery/arrows/prev.png")
+    left 10px
+    opacity 0.7
     transition all 0.2s linear 0s
     &:hover
       opacity 1
   &.next
-    background-image url("../images/next.png")
-    opacity 0.2
-    right 20px
+    background-image url("../img/gallery/arrows/next.png")
+    opacity 0.7
+    right 10px
     transition all 0.2s linear 0s
     &:hover
       opacity 1
@@ -54,10 +54,11 @@
 .slider
   border 15px solid #FFFFFF
   border-radius 5px
-  height 500px
+  min-height 300px
   margin 20px auto
   position relative
-  width 800px
+  width 100%
+  min-width 480px
   -webkit-perspective 1000px
   -moz-perspective 1000px
   -ms-perspective 1000px

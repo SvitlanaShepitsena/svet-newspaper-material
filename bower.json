@@ -44,7 +44,6 @@
     "angular-lodash-string": "~1.0.5",
     "angular-underscore-string": "~1.0.0",
     "ngGallery": "*",
-    "angulike": "~1.2.0",
-    "angular-socialshare": "~1.4.1"
+    "angulike": "~1.2.0"
   }
 }

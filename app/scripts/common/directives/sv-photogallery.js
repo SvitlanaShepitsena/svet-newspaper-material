@@ -7,11 +7,14 @@
                 templateUrl: 'scripts/common/directives/sv-photogallery.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
+                    //var breakPoint = 1;
                     // Set of Photos
                     $scope.photos = [
                         {src: 'img/gallery/1.jpg', desc: 'Image 01'},
                         {src: 'img/gallery/2.jpg', desc: 'Image 02'},
-                        {src: 'img/gallery/3.jpg', desc: 'Image 03'}
+                        {src: 'img/gallery/3.jpg', desc: 'Image 03'},
+                        {src: 'img/gallery/4.jpg', desc: 'Image 04'},
+                        {src: 'img/gallery/5.jpg', desc: 'Image 04'},
                     ];
                     // initial image index
                     $scope._Index = 0;
