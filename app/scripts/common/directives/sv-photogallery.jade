@@ -1,1 +1,11 @@
-div sv-photogallery Template
+div(layout='row' layout-align='center')
+    .container.slider
+        // enumerate all photos
+        img.slide(ng-repeat='photo in photos', ng-swipe-right='showPrev()', ng-swipe-left='showNext()', ng-show='isActive($index)', ng-src='{{photo.src}}')
+        // prev / next controls
+        a.arrow.prev(href='#', ng-click='showPrev()')
+        a.arrow.next(href='#', ng-click='showNext()')
+        // extra navigation controls
+        ul.nav
+            li(ng-repeat='photo in photos', ng-class="{'active':isActive($index)}")
+                img(src='{{photo.src}}', alt='{{photo.desc}}', title='{{photo.desc}}', ng-click='showPhoto($index);')
