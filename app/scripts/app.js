@@ -7,7 +7,7 @@
         'underscore.string',
         'auth',
         'jkuri.gallery',
-        'angulike',
+        'djds4rce.angular-socialshare',
         'ad',
         'ngMaterial',
         'ngDragDrop',
@@ -41,11 +41,12 @@
         'mwl.calendar',
         'ui.sortable'
     ])
-        .run([
-            '$rootScope', function ($rootScope) {
-                $rootScope.facebookAppId = '1405000443143632'; // set your facebook app id here
-            }
-        ])
+        .config(function($locationProvider){
+            $locationProvider.html5Mode(true).hashPrefix('!');
+        })
+        .run(function($FB){
+            $FB.init('1405000443143632');
+        })
 
         .config(function ($mdThemingProvider, $mdIconProvider, $compileProvider) {
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|mms):/);
