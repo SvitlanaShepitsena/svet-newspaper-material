@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <title>Svet - русскоязычный новостной портал Чикаго</title>
+    <base href="/">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -32,12 +34,16 @@
     <link rel="stylesheet" href="./bower_components/mdi/css/materialdesignicons.min.css" type="text/css"/>
     <link rel="stylesheet" href="styles/main.css"/>
     <link rel="stylesheet" type="text/css" href="bower_components/ngGallery/src/css/ngGallery.css">
+    <link rel='stylesheet' href="bower_components/angular-socialshare/angular-socialshare.min.css">
 
 
 </head>
 
 
 <body ng-app="app" layout="column" flow-prevent-drop ng-cloak="" ng-controller="AppCtrl" style='overflow-y: hidden'>
+
+
+
 
 
 <!--need to wrap everething in md-content with layout-fill to stretch content and sidenavs vertically and horizontally and prevents jumping top-nav on google chrome-->
@@ -190,7 +196,7 @@
 <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
 <scripts src="./bower_components/flow.js/dist/flow.min.js"></scripts>
 <script src="bower_components/ngGallery/src/js/ngGallery.js"></script>
-<script src="bower_components/angulike/angulike.js"></script>
+<script src="bower_components/angular-socialshare/angular-socialshare.min.js"></script>
 
 <script src="./bower_components/angular-messages/angular-messages.min.js"></script>
 <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
@@ -245,7 +251,6 @@
 
 <!-- common -->
 <script src="scripts/common/commonRoutes.js"></script>
-<script src="scripts/common/directives/sv-photogallery.js"></script>
 <script src="scripts/common/directives/sv-animate-on-index-change.js"></script>
 <script src="scripts/common/directives/sv-test-repo-informer.js"></script>
 <script src="scripts/common/directives/sv-img-background.js"></script>

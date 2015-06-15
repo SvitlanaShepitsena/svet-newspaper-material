@@ -34,5 +34,6 @@
   },
   "_source": "git://github.com/cornflourblue/angulike.git",
   "_target": "~1.2.0",
-  "_originalSource": "angulike"
+  "_originalSource": "angulike",
+  "_direct": true
 }

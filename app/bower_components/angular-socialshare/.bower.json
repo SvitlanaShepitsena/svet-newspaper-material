@@ -1,0 +1,35 @@
+{
+  "name": "angular-socialshare",
+  "main": "angular-socialshare.js",
+  "version": "1.4.1",
+  "authors": [
+    "djds4rce <djd4rce@gmail.com>"
+  ],
+  "description": "Social Share buttons for AngularJS",
+  "keywords": [
+    "social",
+    "googleplus",
+    "facebook",
+    "twitter",
+    "linkdin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/djds4rce/angular-socialshare",
+  "_release": "1.4.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.4.1",
+    "commit": "a5a59140b089444349ba3017dd8fdb8b33fca56f"
+  },
+  "_source": "git://github.com/djds4rce/angular-socialshare.git",
+  "_target": "~1.4.1",
+  "_originalSource": "angular-socialshare",
+  "_direct": true
+}
