@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('common')
-        .directive('svPhotogallery', function ($rootScope) {
+        .directive('svPhotogallery', function ($rootScope,AgentServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-photogallery.html',
@@ -14,6 +14,7 @@
                 },
                 link: function ($scope, el, attrs) {
                     //var breakPoint = 1;
+                    $scope.isIe=AgentServ.isIe();
                     // Set of Photos
                     $scope.photos = [
                         {src: 'img/gallery/1.jpg', desc: "Annual SVET Family Spring Event at KOHL Children's Museum"},
