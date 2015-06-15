@@ -8,7 +8,8 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="referrer" content="origin"/>
-    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" id="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <meta property="og:title" content="Angular"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
@@ -37,9 +38,6 @@
 
 
 <body ng-app="app" layout="column" flow-prevent-drop ng-cloak="" ng-controller="AppCtrl" style='overflow-y: hidden'>
-
-
-
 
 
 <!--need to wrap everething in md-content with layout-fill to stretch content and sidenavs vertically and horizontally and prevents jumping top-nav on google chrome-->
@@ -247,6 +245,7 @@
 
 <!-- common -->
 <script src="scripts/common/commonRoutes.js"></script>
+<script src="scripts/common/directives/sv-photogallery.js"></script>
 <script src="scripts/common/directives/sv-animate-on-index-change.js"></script>
 <script src="scripts/common/directives/sv-test-repo-informer.js"></script>
 <script src="scripts/common/directives/sv-img-background.js"></script>
