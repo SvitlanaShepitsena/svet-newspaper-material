@@ -1,12 +1,12 @@
-div(layout='row' layout-align='center')
+div(layout='row' layout-align='center center' style="width: 800px")
     .container.slider
         // enumerate all photos
-        img.slide(id='mainImg' ng-repeat='photo in photos', ng-swipe-right='showPrev()', ng-swipe-left='showNext()', ng-show='isActive($index)', ng-src='{{photo.src}}')
+        img.slide(ng-if='photos' id='main' sv-img-height ng-repeat='photo in photos', ng-swipe-right='showPrev()', ng-swipe-left='showNext()', ng-show='isActive($index)', ng-src='{{photo.src}}')
         // prev / next controls
-        div(id='arrows' style='position:relative;top:150px')
+        div(id='arrows' style='position:relative;top:{{shift}}px')
             a.arrow.prev(href='#', ng-click='showPrev()')
             a.arrow.next(href='#', ng-click='showNext()')
         // extra navigation controls
-        ul.nav
+        ul(style='position:relative;top:{{2*shift}}px').nav
             li(ng-repeat='photo in photos', ng-class="{'active':isActive($index)}")
                 img(ng-src='{{photo.src}}', alt='{{photo.desc}}', title='{{photo.desc}}', ng-click='showPhoto($index);')

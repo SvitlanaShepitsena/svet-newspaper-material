@@ -61,7 +61,6 @@
   border-radius: 5px;
   cursor: pointer;
   display: inline-block;
-  height: 30px;
   margin: 0 8px;
   position: relative;
   width: 50px;
@@ -73,14 +72,15 @@
   width: 100%;
 }
 .slider {
-  border: 15px solid #fff;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  min-height: 300px;
-  margin: 20px auto;
-  position: relative;
+  display: block;
   width: 100%;
   min-width: 480px;
+  height: 451px;
+  min-height: 300px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin: 0px auto !important;
+  position: relative;
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   -ms-perspective: 1000px;
