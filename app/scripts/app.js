@@ -2,7 +2,6 @@
     'use strict';
     angular.module('app', [
         // modules
-		'kohl-2015-report',
         'ui.router',
         'pascalprecht.translate',
         'underscore.string',
