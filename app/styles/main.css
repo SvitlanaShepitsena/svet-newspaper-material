@@ -31,16 +31,15 @@
   margin-top: -35px;
   outline: medium none;
   position: absolute;
-  top: 50%;
   width: 64px;
   z-index: 5;
 }
 .arrow.prev {
-  background-image: url("../images/prev.png");
-  left: 20px;
-  opacity: 0.2;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
+  background-image: url("../img/gallery/arrows/prev.png");
+  left: 10px;
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
   -webkit-transition: all 0.2s linear 0s;
   -moz-transition: all 0.2s linear 0s;
   -o-transition: all 0.2s linear 0s;
@@ -53,11 +52,11 @@
   filter: none;
 }
 .arrow.next {
-  background-image: url("../images/next.png");
-  opacity: 0.2;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
-  right: 20px;
+  background-image: url("../img/gallery/arrows/next.png");
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  right: 10px;
   -webkit-transition: all 0.2s linear 0s;
   -moz-transition: all 0.2s linear 0s;
   -o-transition: all 0.2s linear 0s;
@@ -88,7 +87,6 @@
   border-radius: 5px;
   cursor: pointer;
   display: inline-block;
-  height: 30px;
   margin: 0 8px;
   position: relative;
   width: 50px;
@@ -100,13 +98,15 @@
   width: 100%;
 }
 .slider {
-  border: 15px solid #fff;
+  display: block;
+  width: 100%;
+  min-width: 480px;
+  height: 451px;
+  min-height: 300px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  height: 500px;
-  margin: 20px auto;
+  margin: 0px auto !important;
   position: relative;
-  width: 800px;
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   -ms-perspective: 1000px;

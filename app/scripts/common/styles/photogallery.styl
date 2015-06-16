@@ -7,20 +7,20 @@
   margin-top -35px
   outline medium none
   position absolute
-  top 50%
+  //top 50%
   width 64px
   z-index 5
   &.prev
-    background-image url("../images/prev.png")
-    left 20px
-    opacity 0.2
+    background-image url("../img/gallery/arrows/prev.png")
+    left 10px
+    opacity 0.7
     transition all 0.2s linear 0s
     &:hover
       opacity 1
   &.next
-    background-image url("../images/next.png")
-    opacity 0.2
-    right 20px
+    background-image url("../img/gallery/arrows/next.png")
+    opacity 0.7
+    right 10px
     transition all 0.2s linear 0s
     &:hover
       opacity 1
@@ -42,7 +42,7 @@
     border-radius 5px
     cursor pointer
     display inline-block
-    height 30px
+    //height 30px
     margin 0 8px
     position relative
     width 50px
@@ -52,12 +52,15 @@
       width 100%
 
 .slider
-  border 15px solid #FFFFFF
+  display block
+  width 100%
+  min-width 480px
+  height:451px
+  min-height 300px
+  //border 15px solid #616161
   border-radius 5px
-  height 500px
-  margin 20px auto
+  margin 0px auto !important
   position relative
-  width 800px
   -webkit-perspective 1000px
   -moz-perspective 1000px
   -ms-perspective 1000px
