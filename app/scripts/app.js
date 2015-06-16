@@ -7,6 +7,8 @@
         'underscore.string',
         'auth',
         'jkuri.gallery',
+        'ui.bootstrap',
+        'bootstrapLightbox',
         'ad',
         'ngMaterial',
         'ngDragDrop',
@@ -45,7 +47,6 @@
                 $rootScope.facebookAppId = '1405000443143632'; // set your facebook app id here
             }
         ])
-
         .config(function ($mdThemingProvider, $mdIconProvider, $compileProvider) {
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|mms):/);
             $mdIconProvider
@@ -78,7 +79,6 @@
         //        throw exception;
         //    };
         //})
-
         .config(['$compileProvider', function ($compileProvider) {
             $compileProvider.debugInfoEnabled(false);
         }]);

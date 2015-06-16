@@ -1,6 +1,11 @@
 div(layout='row' layout-align='center')
     h1
         span.display-block.fs-headline Annual SVET Family Spring Event at KOHL Children's Museum
-p(layout='row' layout-align='center' class='pl+ pr+')
-    sv-photogallery
+//p(layout='row' layout-align='center' class='pl+ pr+')
+//    sv-photogallery
+div
+    ul(ng-app='demo1', ng-controller='Kohl2015Ctrl' id="gallery")
+        li(ng-repeat='image in images')
+            a(ng-click='openLightboxModal($index)')
+                img.img-thumbnail(ng-src='{{image.thumbUrl}}', alt='')
 

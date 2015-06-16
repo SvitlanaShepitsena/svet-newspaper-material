@@ -1,1 +1,1 @@
-<div>sv-lightbox-gallery Template</div>
+<div><ul ng-app="demo1" ng-controller="GalleryCtrl" id="gallery" class="list-inline"><li ng-repeat="image in images"><a ng-click="openLightboxModal($index)"><img ng-src="{{image.thumbUrl}}" alt="" class="img-thumbnail"/></a></li></ul></div>

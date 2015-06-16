@@ -44,6 +44,7 @@
     "angular-lodash-string": "~1.0.5",
     "angular-underscore-string": "~1.0.0",
     "ngGallery": "*",
-    "angulike": "~1.2.0"
+    "angulike": "~1.2.0",
+    "angular-bootstrap-lightbox": "~0.6.1"
   }
 }
