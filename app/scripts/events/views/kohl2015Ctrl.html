@@ -1,1 +1,126 @@
-<div layout="row" layout-align="center"><h1><span class="display-block fs-headline">Annual SVET Family Spring Event at KOHL Children's Museum</span></h1></div><!--p(layout='row' layout-align='center' class='pl+ pr+')--><!--    sv-photogallery--><div><ul ng-app="demo1" ng-controller="Kohl2015Ctrl" id="gallery"></ul><li ng-repeat="image in images"><a ng-click="openLightboxModal($index)"><img ng-src="{{image.thumbUrl}}" alt="" class="img-thumbnail"/></a></li></div>
+<div layout="row" layout-align="center"><h1>Annual SVET FAMILY EVENT at KOHL Children's Museum</h1><br/></div><div layout="row" layout-align="center"><div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 960px;    height: 480px; background: #191919; overflow: hidden;"><!-- Loading Screen--><div u="loading" style="position: absolute; top: 0px; left: 0px;"><div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;        background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;"></div><div style="position: absolute; display: block; background: url(img/gallery/loading.gif) no-repeat center center;        top: 0px; left: 0px;width: 100%;height:100%;"></div></div><!-- Slides Container--><div u="slides" style="cursor: move; position: absolute; left: 240px; top: 0px; width: 720px; height: 480px; overflow: hidden;"><div><img u="image" src="img/gallery/01.jpg"/><img u="thumb" src="img/gallery/01th.jpg"/></div><div><img u="image" src="img/gallery/2.jpg"/><img u="thumb" src="img/gallery/2th.jpg"/></div><div><img u="image" src="img/gallery/3.jpg"/><img u="thumb" src="img/gallery/3th.jpg"/></div><div><img u="image" src="img/gallery/4.jpg"/><img u="thumb" src="img/gallery/4th.jpg"/></div><div><img u="image" src="img/gallery/5.jpg"/><img u="thumb" src="img/gallery/5th.jpg"/></div><div><img u="image" src="img/gallery/6.jpg"/><img u="thumb" src="img/gallery/6th.jpg"/></div><div><img u="image" src="img/gallery/7.jpg"/><img u="thumb" src="img/gallery/7th.jpg"/></div><div><img u="image" src="img/gallery/8.jpg"/><img u="thumb" src="img/gallery/8th.jpg"/></div><div><img u="image" src="img/gallery/9.jpg"/><img u="thumb" src="img/gallery/9th.jpg"/></div><div><img u="image" src="img/gallery/10.jpg"/><img u="thumb" src="img/gallery/10th.jpg"/></div><div><img u="image" src="img/gallery/11.jpg"/><img u="thumb" src="img/gallery/11th.jpg"/></div><div><img u="image" src="img/gallery/12.jpg"/><img u="thumb" src="img/gallery/12th.jpg"/></div><div><img u="image" src="img/gallery/13.jpg"/><img u="thumb" src="img/gallery/13th.jpg"/></div><div><img u="image" src="img/gallery/14.jpg"/><img u="thumb" src="img/gallery/14th.jpg"/></div><div><img u="image" src="img/gallery/15.jpg"/><img u="thumb" src="img/gallery/15th.jpg"/></div><div><img u="image" src="img/gallery/16.jpg"/><img u="thumb" src="img/gallery/16th.jpg"/></div><div><img u="image" src="img/gallery/17.jpg"/><img u="thumb" src="img/gallery/17th.jpg"/></div><div><img u="image" src="img/gallery/18.jpg"/><img u="thumb" src="img/gallery/18th.jpg"/></div><div><img u="image" src="img/gallery/19.jpg"/><img u="thumb" src="img/gallery/19th.jpg"/></div><div><img u="image" src="img/gallery/20.jpg"/><img u="thumb" src="img/gallery/20th.jpg"/></div><div><img u="image" src="img/gallery/21.jpg"/><img u="thumb" src="img/gallery/21th.jpg"/></div><div><img u="image" src="img/gallery/22.jpg"/><img u="thumb" src="img/gallery/22th.jpg"/></div><div><img u="image" src="img/gallery/23.jpg"/><img u="thumb" src="img/gallery/23th.jpg"/></div><div><img u="image" src="img/gallery/24.jpg"/><img u="thumb" src="img/gallery/24th.jpg"/></div><div><img u="image" src="img/gallery/25.jpg"/><img u="thumb" src="img/gallery/25th.jpg"/></div><div><img u="image" src="img/gallery/26.jpg"/><img u="thumb" src="img/gallery/26th.jpg"/></div><div><img u="image" src="img/gallery/27.jpg"/><img u="thumb" src="img/gallery/27th.jpg"/></div><div><img u="image" src="img/gallery/28.jpg"/><img u="thumb" src="img/gallery/28th.jpg"/></div><div><img u="image" src="img/gallery/29.jpg"/><img u="thumb" src="img/gallery/29th.jpg"/></div><div><img u="image" src="img/gallery/30.jpg"/><img u="thumb" src="img/gallery/30th.jpg"/></div><div><img u="image" src="img/gallery/31.jpg"/><img u="thumb" src="img/gallery/31th.jpg"/></div></div><!-- #region Arrow Navigator Skin Begin--><style>/* jssor slider arrow navigator skin 05 css */
+/*
+.jssora05l                  (normal)
+.jssora05r                  (normal)
+.jssora05l:hover            (normal mouseover)
+.jssora05r:hover            (normal mouseover)
+.jssora05l.jssora05ldn      (mousedown)
+.jssora05r.jssora05rdn      (mousedown)
+*/
+.jssora05l, .jssora05r {
+    display: block;
+    position: absolute;
+    /* size of arrow element */
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: url(img/gallery/a17.png) no-repeat;
+    overflow: hidden;
+}
+
+.jssora05l {
+    background-position: -10px -40px;
+}
+
+.jssora05r {
+    background-position: -70px -40px;
+}
+
+.jssora05l:hover {
+    background-position: -130px -40px;
+}
+
+.jssora05r:hover {
+    background-position: -190px -40px;
+}
+
+.jssora05l.jssora05ldn {
+    background-position: -250px -40px;
+}
+
+.jssora05r.jssora05rdn {
+    background-position: -310px -40px;
+}</style><!-- Arrow Left--><span u="arrowleft" style="top: 158px; left: 248px;" class="jssora05l"></span><!-- Arrow Right--><span u="arrowright" style="top: 158px; right: 8px" class="jssora05r"></span><!-- #endregion Arrow Navigator Skin End--><!-- #region Thumbnail Navigator Skin Begin--><!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-jquery.html--><style>/* jssor slider thumbnail navigator skin 02 css */
+/*
+.jssort02 .p            (normal)
+.jssort02 .p:hover      (normal mouseover)
+.jssort02 .p.pav        (active)
+.jssort02 .p.pdn        (mousedown)
+*/
+.jssort02 {
+    position: absolute;
+    /* size of thumbnail navigator container */
+    width: 240px;
+    height: 480px;
+}
+
+.jssort02 .p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 99px;
+    height: 66px;
+}
+
+.jssort02 .t {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.jssort02 .w {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.jssort02 .c {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 95px;
+    height: 62px;
+    border: #000 2px solid;
+    box-sizing: content-box;
+    background: url(img/gallery/t1.png) -800px -800px no-repeat;
+    _background: none;
+}
+
+.jssort02 .pav .c {
+    top: 2px;
+    _top: 0px;
+    left: 2px;
+    _left: 0px;
+    width: 95px;
+    height: 62px;
+    border: #000 0px solid;
+    _border: #fff 2px solid;
+    background-position: 50% 50%;
+}
+
+.jssort02 .p:hover .c {
+    top: 0px;
+    left: 0px;
+    width: 97px;
+    height: 64px;
+    border: #fff 1px solid;
+    background-position: 50% 50%;
+}
+
+.jssort02 .p.pdn .c {
+    background-position: 50% 50%;
+    width: 95px;
+    height: 62px;
+    border: #000 2px solid;
+}
+
+* html .jssort02 .c, * html .jssort02 .pdn .c, * html .jssort02 .pav .c {
+    /* ie quirks mode adjust */
+    width /**/: 99px;
+    height /**/: 66px;
+}</style><!-- thumbnail navigator container--><div u="thumbnavigator" style="left: 0px; bottom: 0px;" class="jssort02"><!-- Thumbnail Item Skin Begin--><div u="slides" style="cursor: default;"><div u="prototype" class="p"><div class="w"><div u="thumbnailtemplate" class="t"></div></div><div class="c"></div></div></div><!-- Thumbnail Item Skin End--></div><!-- #endregion Thumbnail Navigator Skin End--><a style="display: none" href="http://www.jssor.com">Image Slider</a></div></div>
