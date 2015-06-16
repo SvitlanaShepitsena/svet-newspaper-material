@@ -1,5 +1,5 @@
 div
-    ul.list-inline(ng-app='demo1', ng-controller='GalleryCtrl' id="gallery")
-        li(ng-repeat='image in images')
+    ul(ng-app='demo1', ng-controller='GalleryCtrl' id="gallery")
+        li(ng-repeat='image in images' style='display:inline-block')
             a(ng-click='openLightboxModal($index)')
                 img.img-thumbnail(ng-src='{{image.thumbUrl}}', alt='')
