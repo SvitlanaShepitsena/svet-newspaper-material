@@ -1,7 +1,8 @@
 (function () {
     'use strict';
     angular.module('common')
-        .directive('svPhotogalleryModal', function ($mdDialog, dt) {
+        .value('s3', {files: []})
+        .directive('svPhotogalleryModal', function ($mdDialog, dt, $http, s3) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-photogallery-modal.html',
@@ -10,6 +11,24 @@
                     hide: '&dialogHide'
                 },
                 link: function ($scope, el, attrs) {
+                    var myRegexp = /<key>([^<])+/gi;
+                    var match;
+                    var files = [];
+
+                    $http.get('http://svet.com.s3.amazonaws.com').then(function (data) {
+                        var myString = data.data;
+                        match = myRegexp.exec(myString);
+                        while (match != null) {
+                            match = myRegexp.exec(myString);
+                            if (match) {
+
+                                var fileName = match[0].replace('<Key>', '');
+                                files.push(fileName);
+                            }
+                        }
+                        s3.files = files;
+                    });
+
                     $scope.viewGallery = function (domEvt, event) {
                         showModal(event);
                     };
@@ -21,9 +40,11 @@
                         });
                     }
 
-                    function DialogControllerInfo($scope, $mdDialog, dt) {
-                        $scope.awsBase = 'https://s3-us-west-2.amazonaws.com/svet.com/SVET-';
-                        $scope.imgIndex = 1;
+                    function DialogControllerInfo($scope, $mdDialog, dt, s3) {
+                        $scope.awsBase = 'https://s3-us-west-2.amazonaws.com/svet.com/';
+                        $scope.imgIndex = 22;
+
+                        $scope.files = s3.files;
 
                         var maxImg = 67;
                         $scope.event = dt.vm;
