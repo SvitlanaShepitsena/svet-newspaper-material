@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular.module('events')
         .directive('svOneEventThumb', function ($mdDialog, dt) {
             return {
@@ -14,7 +13,6 @@
                     $scope.quickView = function (domEvt, event) {
                         showModal(event);
                     };
-
                     function showModal(event) {
                         dt.vm = event;
                         $mdDialog.show({
@@ -39,7 +37,6 @@
                     $scope.isDialog = function () {
                         return attrs.dialogHide;
                     };
-
                 }
             };
         });
