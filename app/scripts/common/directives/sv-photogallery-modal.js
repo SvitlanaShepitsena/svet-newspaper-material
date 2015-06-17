@@ -32,7 +32,7 @@
                             var i = $scope.imgIndex;
                             i++;
                             if (i > maxImg) {
-                                i = 0;
+                                i = 1;
                             }
                             $scope.imgIndex = i;
                         };

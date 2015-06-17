@@ -45,36 +45,11 @@
                     });
 
                     var img = el.find('img')[0];
-                    //var domImg = img[0];
                     img.onload = function () {
                         imgScale(img, el, winHeight, winWidth);
+
+                        var breakPoint=1;
                     };
-                    //$scope.$watch(function () {
-                    //    return domImg.clientWidth;
-                    //}, function (newValue, oldValue) {
-                    //    var w = newValue;
-                    //    var h = img.height();
-                    //
-                    //    if (h >= w) {
-                    //        el.css('height','400px');
-                    //        el.css('width','auto');
-                    //
-                    //        img.css('height','100%');
-                    //        img.css('width','auto');
-                    //    } else{
-                    //        el.css('width','400px');
-                    //        el.css('height','auto');
-                    //
-                    //        img.css('width', '100%');
-                    //        img.css('height', 'auto');
-                    //    }
-                    //
-                    //    console.log(newValue);
-                    //
-                    //});
-
-                    var breakPoint = 1;
-
                 }
             };
         });
