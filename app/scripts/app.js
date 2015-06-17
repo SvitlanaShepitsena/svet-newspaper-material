@@ -46,7 +46,7 @@
     ])
         .config(function (ezfbProvider) {
             ezfbProvider.setInitParams({
-                appId: '1405000443143632',
+                appId: '258826184311868',
                 version: 'v2.3'
             });
         })
@@ -70,18 +70,18 @@
             /*radio programs*/
         })
         //// COMMENT ON PRODUCTION
-        .factory('$exceptionHandler', function ($injector) {
-            return function (exception, cause) {
-                var $rootScope = $injector.get('$rootScope');
-                var toastr = $injector.get('toastr');
-                exception.message = exception.stack;
-
-                //Comment on Production
-                toastr.error('ERROR!' + exception.message);
-                $rootScope.$broadcast('error');
-                throw exception;
-            };
-        })
+        //.factory('$exceptionHandler', function ($injector) {
+        //    return function (exception, cause) {
+        //        var $rootScope = $injector.get('$rootScope');
+        //        var toastr = $injector.get('toastr');
+        //        exception.message = exception.stack;
+        //
+        //        //Comment on Production
+        //        toastr.error('ERROR!' + exception.message);
+        //        $rootScope.$broadcast('error');
+        //        //throw exception;
+        //    };
+        //})
         .config(['$compileProvider', function ($compileProvider) {
             //$compileProvider.debugInfoEnabled(false);
         }]);
