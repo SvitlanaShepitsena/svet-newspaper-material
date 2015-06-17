@@ -25,7 +25,8 @@
   overflow-y scroll !important
   position relative !important
   heigth auto
-  //height 1000px
+
+//height 1000px
 
 /**********************
  = Bootstrap active button fix
@@ -150,7 +151,6 @@ display inline-block
 .sv-filter-grey
   -webkit-filter grayscale(100%) !important
   filter gray !important
-
 
 .sv-filter-sepia
   -webkit-filter sepia(100%) !important
@@ -432,4 +432,24 @@ md-sidenav
 //.search-filter__container
 //	width 140px !important;
 
+/**********************
+ =responsive typography
+***********************/
+.fs-headline {
+  @media screen and (max-width: 992px) {
+    font-size 18px
+  }
+}
+
+.fs-title {
+  @media screen and (max-width: 992px) {
+    font-size 16px
+  }
+}
+
+.fs-subhead {
+  @media screen and (max-width: 992px) {
+    font-size 15px
+  }
+}
 

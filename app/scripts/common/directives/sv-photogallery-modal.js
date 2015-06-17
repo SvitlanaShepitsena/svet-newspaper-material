@@ -22,7 +22,29 @@
                     }
 
                     function DialogControllerInfo($scope, $mdDialog, dt) {
+                        $scope.awsBase = 'https://s3-us-west-2.amazonaws.com/svet.com/SVET-';
+                        $scope.imgIndex = 1;
+
+                        var maxImg = 67;
                         $scope.event = dt.vm;
+
+                        $scope.nextSvImage = function () {
+                            var i = $scope.imgIndex;
+                            i++;
+                            if (i > maxImg) {
+                                i = 0;
+                            }
+                            $scope.imgIndex = i;
+                        };
+                        $scope.prevSvImage = function () {
+                            var i = $scope.imgIndex;
+                            i--;
+                            if (i <= 0) {
+                                i = maxImg;
+                            }
+                            $scope.imgIndex = i;
+                        };
+
                         $scope.hide = function () {
                             $mdDialog.hide();
                         };

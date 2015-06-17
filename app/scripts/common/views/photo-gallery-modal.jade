@@ -1,16 +1,17 @@
-md-dialog(style='min-width:100%;height:auto' class='bgc-grey-900')
+md-dialog(style='min-width:100%;height:100%' class='bgc-grey-900')
     div(layout="row" layout-align='space-between center' class='p+')
-        span.ml.fs-headline.mt.mb.tc-grey-300 SVET Annual Family Event at KOHL CHILDREN’S MUSEUM
+        //span.ml.fs-headline.mt.mb.tc-grey-300 SVET Annual Family Event at KOHL CHILDREN’S MUSEUM
         button.btn.btn--m.btn--icon.btn--white.tc-grey-300(ng-click='hide()')
             i.mdi.mdi-close &nbsp
     md-dialog-content(style='padding:0px')
-        div(style='margin:0px auto')
-            img(src="img/gallery-modal/svet-12.jpg" style='max-width:1000px;margin:10px auto')
+        div(layout='row')
+            .card.p(style='margin:0px auto;max-width:1000px;height:500px')
+                img(ng-src="{{awsBase+imgIndex}}.jpg" style='width:auto;height:100%;margin:0px auto;display:block')
         div(layout="row" layout-align='center center' class='p+')
             div
-                button.btn.btn--l.btn--icon.btn--white(lx-ripple)
+                button.btn.btn--m.btn--icon.btn--white(lx-ripple ng-click='prevSvImage()')
                     i.fa.fa-arrow-left.fa-fw
             div
-                button.btn.btn--l.btn--icon.btn--white(lx-ripple)
+                button.btn.btn--m.btn--icon.btn--white(lx-ripple ng-click='nextSvImage()')
                     i.fa.fa-arrow-right.fa-fw
 
