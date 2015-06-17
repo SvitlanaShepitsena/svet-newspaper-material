@@ -11,10 +11,6 @@
                 var width = img.naturalWidth;
 
                 if (height >= width) {
-                    console.log('height is more ');
-                    console.log(height);
-                    console.log(width);
-
                     var heightScaled = (heightScale * winHeight).toFixed(0);
                     el.css('height', heightScaled + 'px');
                     el.css('width', 'auto');

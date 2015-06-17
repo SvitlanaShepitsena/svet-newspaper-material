@@ -10,7 +10,6 @@
                     hide: '&dialogHide'
                 },
                 link: function ($scope, el, attrs) {
-                    showModal();
                     $scope.viewGallery = function (domEvt, event) {
                         showModal(event);
                     };
@@ -24,7 +23,7 @@
 
                     function DialogControllerInfo($scope, $mdDialog, dt) {
                         $scope.awsBase = 'https://s3-us-west-2.amazonaws.com/svet.com/SVET-';
-                        $scope.imgIndex = 7;
+                        $scope.imgIndex = 1;
 
                         var maxImg = 67;
                         $scope.event = dt.vm;
