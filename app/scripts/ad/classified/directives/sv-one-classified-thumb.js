@@ -19,19 +19,13 @@
                         if (newValue) {
                             $timeout(function () {
                                 $scope.currentCl = newValue;
-
                                 var timeObj = TimeLeftServ.computeInDays(newValue.timestamp, 7);
                                 $scope.status = timeObj.isActive;
                                 $scope.timeLeft = timeObj.timeLeft;
-
-                                $scope.isNewCurr= $scope.isNew;
+                                $scope.isNewCurr = $scope.isNew;
                             }, 400);
-
                         }
-
                     }, true);
-
-
                     $scope.banByManager = function (cl) {
                         //toastr.info('ban ban skit!'+cl.$id)
                         ClassifiedServ.banCl(cl).then(function () {
