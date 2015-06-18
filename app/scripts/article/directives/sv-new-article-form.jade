@@ -7,52 +7,57 @@ div
             sv-lumx-button(btn-size="m" btn-color="red" text-color="red-300" btn-type="flat" btn-title="cancel" icon-type="fa"
             icon-name="fa-close" btn-url="app.home"
             method-click='cancelArticle(true)')
-        div(class='p+')
-            div(layout='row', layout-sm='column' layout-align='end')
-                div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm='start center' ng-if='user.isEditor() && !article.isBlog')
-                    md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
-                    span.mdc-display-inline-block.fs-body-2 {{'svet-recommends'|translate}}
+        div(class='pl+ pr+ pb++ pt')
             div(layout='row', layout-sm='column' layout-align-gt-sm='space-between center')
-                md-input-container(flex)
+                md-input-container.md-input-container-article(flex)
                     label {{'article-author'|translate}}
                     input(ng-model='article.author' sv-url-decode sv-author-humanize name='author' required='')
-                md-input-container(class='ml sv-select-container' flex='' class='padding:0px !important')
-                    md-select(name="section" ng-model='article.section' style='padding:0px !important' ng-show='sections' required  )
+                md-input-container.md-input-container-article(class='ml sv-select-container' flex='' class='padding:0px !important')
+                    md-select.md-select-article(name="section" ng-model='article.section' ng-show='sections' required  )
                         md-select-label.tc-teal-400(style='')
                             i.mdi.mdi-checkbox-marked-outline.mr.mb(style='max-width:22px')
                             | {{article.section?article.section:'article-section'|translate}}
                         md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' id="{{$index}}" style='height:38px')
                             .fs-body-2 {{section.$id|capitalize}}
-                md-input-container(flex='')
+                .mt(show-sm)
+                md-input-container.md-input-container-article(flex='')
                     label {{'article-topic'|translate}}
                     input(ng-model='article.topic' sv-url-decode name='topic')
             div(layout='column' layout-align='center')
-                md-input-container(flex='')
+                md-input-container.md-input-container-article-sarticle(flex='')
                     label {{'article-title'|translate}}
                     input(ng-model='article.title'  sv-url-decode type="text" md-maxlength='150' name='title' required )
-                md-input-container(flex='')
-                    label {{'article-summary'|translate}}
-                    input(ng-model='article.summary' sv-url-decode  type="text" md-maxlength='300' name='summary')
-            div(layout='row' layout-align='space-between center')
-                md-input-container(flex='')
-                    sv-read-txt(body='article.body' )
-                md-input-container(flex='')
-                    sv-image-upload(sv-max-size='3' sv-min-width='180' sv-min-height='150' )
+            div(layout-gt-sm='row' layout-sm='column' layout-align='center')
+                div(layout='row' flex)
+                    md-input-container.md-input-container-article
+                        sv-read-txt(body='article.body' )
+                    md-input-container.md-input-container-article
+                        sv-image-upload(sv-max-size='3' sv-min-width='180' sv-min-height='150' )
+                div(layout='row' layout-align='end center' flex)
+                    div(layout='row' layout-align='start center' ng-if='user.isEditor() && !article.isBlog')
+                        md-checkbox(ng-model="article.svetRecommends" aria-label="Checkbox")
+                        span.mdc-display-inline-block.fs-caption(style='font-weight:600') {{'svet-recommends'|translate}}
             div(layout='column' class='mb')
                 span.mdc-display-inline-block.fs-caption.tc-red-300
                     | To upload an image from your PC, put a cursor in the article description field, where you want your image to be placed,
                     | then click on "Chose and Image" button.
                 div
-                    span.tc-grey-700.fs-caption.display-block {{'image-format'|translate}}
-                    span.tc-grey-700.fs-caption.display-block {{'image-max-size'|translate}}.
-                    span.tc-grey-700.fs-caption.display-block {{'image-min-dimensions'|translate}}.
+                    span.tc-grey-700.fs-caption.display-block {{'image-format'|translate}} {{'image-max-size'|translate}} {{'image-min-dimensions'|translate}}.
             div(layout='column')
-                md-input-container(flex='')
+                md-input-container.md-input-container-article(flex='')
                     sv-svet-pad(body='article.body' sv-html-cleaner)
+            div(layout='column')
+                md-input-container.md-input-container-article(flex='')
+                    label {{'article-summary'|translate}}
+                    input(ng-model='article.summary' sv-url-decode  type="text" md-maxlength='300' name='summary')
             div(layout='row')
-                md-input-container(flex)
+                md-input-container.md-input-container-article(flex)
                     label {{'tags'|translate}}
                     input(ng-model='article.tags' sv-url-decode name='tags' type="text" md-maxlength="100")
+            div(layout='row')
+                md-input-container.md-input-container-article(flex)
+                    label {{'photo-source'|translate}}
+                    input(ng-model='article.imgsource' sv-url-decode name='imgsource' type="text" md-maxlength="200")
         .bgc-grey-200.p(layout='row' layout-align="space-around center")
             button.btn.btn--m.btn--teal.btn--flat.tc-teal-300(lx-ripple='' type='submit' id='saveBtn' ng-disabled="articleForm.$pristine")
                 i.fa.fa-save.fa-fw &nbsp
