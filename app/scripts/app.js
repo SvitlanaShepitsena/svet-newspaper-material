@@ -4,6 +4,7 @@
 
     angular.module('app', [
         // modules
+        'seo',
         'ui.router',
         'pascalprecht.translate',
         'underscore.string',
@@ -59,11 +60,10 @@
                 version: 'v2.3'
             });
         })
-        .config(function ($locationProvider) {
-            $locationProvider
-                .html5Mode(true)
-                .hashPrefix('!');
-        })
+        //.config(function ($locationProvider) { $locationProvider
+        //        .html5Mode(true)
+        //        .hashPrefix('!');
+        //})
         .config(function ($mdThemingProvider, $mdIconProvider, $compileProvider) {
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|mms):/);
             $mdIconProvider
