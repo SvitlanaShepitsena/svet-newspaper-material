@@ -64,6 +64,7 @@
                             $scope.article.tags = $scope.article.tags ? $scope.article.tags.split(',').join(', ') : "";
                             $scope.article.isBlog = $scope.artType === 'blog';
                             $scope.article.topic = 'news';
+                            $scope.article.topic = 'svoboda.org';
                             $scope.article.summary = randomSvobodaArticle ? randomSvobodaArticle.contentSnippet : 'Summary';
                             $scope.article.section = 'Politics';
                             $scope.article.svetRecommends = false;
