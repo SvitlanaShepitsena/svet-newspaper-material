@@ -28,7 +28,7 @@
                 'banking': 'Banking',
                 'world': 'World News',
                 'technology': 'Technology',
-                'art': 'Art',
+                'art': 'Showtime',
                 'sport': 'Sport',
                 'health': 'Health',
                 'food': 'Food',
