@@ -282,10 +282,6 @@
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
-            $timeout(function () {
-
-                $scope.htmlReady();
-            }, 2000);
         });
 })();
 
