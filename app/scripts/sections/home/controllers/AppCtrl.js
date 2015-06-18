@@ -2,7 +2,7 @@
     'use strict';
     angular.module('sections.home')
         .controller('AppCtrl', function AppCtrl(AgentServ, NotificationsServ, userAuth, $timeout, $mdSidenav, $mdMedia,
-                                                NewsProcessServ, $state, $scope, $rootScope, toastr) {
+                                                NewsProcessServ, $state, $scope, $rootScope, toastr, SOCIAL_PLUGINS) {
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 toastr.warning(error);
             });
@@ -35,6 +35,8 @@
                     $scope.showShifter = true;
                 }
             });
+
+
         });
 })();
 

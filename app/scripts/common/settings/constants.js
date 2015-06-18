@@ -1,7 +1,7 @@
 (function () {
     'use strict'
-    var fbDomain = 'svet';
-    //var fbDomain = 'svet-test';
+    //var fbDomain = 'svet';
+    var fbDomain = 'svet-test';
     angular.module('common')
         .constant('domain', fbDomain === 'svet' ? 'production' : 'test')
         .constant('url', 'https://' + fbDomain + '.firebaseio.com/')
@@ -23,6 +23,10 @@
         .service('urlUsers', function (url) {
             this.url = url + '/user-management/users/';
         })
+        .constant('SOCIAL_PLUGINS', [
+            'like', 'share-button', 'send', 'post', 'video',
+            'comments', 'page', 'follow'
+        ])
         .value('weather', 'https://publicdata-weather.firebaseio.com/chicago')
         .value('avatar', '/img/auth/user.png')
         .value('defimg', '/img/common/picture-thumb.png')
