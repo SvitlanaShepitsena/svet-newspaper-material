@@ -46,7 +46,7 @@
     ])
         .config(function (ezfbProvider) {
             ezfbProvider.setInitParams({
-                appId: '258826184311868',
+                appId: '1405000443143632',
                 version: 'v2.3'
             });
         })
