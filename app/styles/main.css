@@ -976,17 +976,26 @@ md-sidenav.md-locked-open {
  =responsive typography
 ***********************/
 @media screen and (max-width: 992px) {
+  .fs-display-1 {
+    font-size: 21px;
+    line-height: 27px;
+  }
+}
+@media screen and (max-width: 992px) {
   .fs-headline {
     font-size: 18px;
+    line-height: 25px;
   }
 }
 @media screen and (max-width: 992px) {
   .fs-title {
     font-size: 16px;
+    line-height: 20px;
   }
 }
 @media screen and (max-width: 992px) {
   .fs-subhead {
     font-size: 15px;
+    line-height: 18px;
   }
 }
