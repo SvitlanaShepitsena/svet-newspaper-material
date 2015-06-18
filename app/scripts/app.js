@@ -1,14 +1,16 @@
 (function () {
-    'use strict';
+
+
+
     angular.module('app', [
         // modules
+        'seo',
         'ui.router',
         'pascalprecht.translate',
         'underscore.string',
         'auth',
         'jkuri.gallery',
         //'ui.bootstrap',
-
         //'bootstrapLightbox',
         'ezfb',
         'ad',
@@ -44,12 +46,24 @@
         'mwl.calendar',
         'ui.sortable'
     ])
+
+        .directive("fbLike", function($rootScope) {
+            return function (scope, iElement, iAttrs) {
+                if (FB && scope.$last) {
+                    FB.XFBML.parse(iElement[0]);
+                }
+            };
+        })
         .config(function (ezfbProvider) {
             ezfbProvider.setInitParams({
                 appId: '1405000443143632',
                 version: 'v2.3'
             });
         })
+        //.config(function ($locationProvider) { $locationProvider
+        //        .html5Mode(true)
+        //        .hashPrefix('!');
+        //})
         .config(function ($mdThemingProvider, $mdIconProvider, $compileProvider) {
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|mms):/);
             $mdIconProvider

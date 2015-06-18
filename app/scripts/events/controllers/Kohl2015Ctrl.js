@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('events')
-        .controller('Kohl2015Ctrl', function ($scope) {
+        .controller('Kohl2015Ctrl', function ($scope, $timeout) {
             $scope.imgesNumb = _.range(1, 26);
 
             var _SlideshowTransitions = [
@@ -282,6 +282,10 @@
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
+            $timeout(function () {
+
+                $scope.htmlReady();
+            }, 2000);
         });
 })();
 
