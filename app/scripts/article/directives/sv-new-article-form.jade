@@ -37,32 +37,22 @@ div
                 md-input-container(flex='')
                     sv-read-txt(body='article.body' )
                 md-input-container(flex='')
-                    sv-image-upload(sv-max-size='3' sv-min-width='320' sv-min-height='200' )
+                    sv-image-upload(sv-max-size='3' sv-min-width='180' sv-min-height='150' )
+            div(layout='column' class='mb')
+                span.mdc-display-inline-block.fs-caption.tc-red-300
+                    | To upload an image from your PC, put a cursor in the article description field, where you want your image to be placed,
+                    | then click on "Chose and Image" button.
+                div
+                    span.tc-grey-700.fs-caption.display-block {{'image-format'|translate}}
+                    span.tc-grey-700.fs-caption.display-block {{'image-max-size'|translate}}.
+                    span.tc-grey-700.fs-caption.display-block {{'image-min-dimensions'|translate}}.
             div(layout='column')
                 md-input-container(flex='')
                     sv-svet-pad(body='article.body' sv-html-cleaner)
-            div(layout='column' class='mb+')
-                sv-image-upload(sv-max-size='3' sv-min-width='320' sv-min-height='200' )
-                span.mdc-display-inline-block.fs-subhead.tc-grey-700(class='mt') {{'upload-img'|translate}}
-                    p.tc-red-300 Put a cursor in the article description field, where you want your image to be placed,
-                    p.tc-red-300 then click on "Chose and Image" button.
-                    div
-                        span.fs-caption.display-block {{'image-format'|translate}}
-                        span.fs-caption.display-block {{'image-max-size'|translate}}.
-                        span.fs-caption.display-block {{'image-min-dimensions'|translate}}.
             div(layout='row')
                 md-input-container(flex)
                     label {{'tags'|translate}}
                     input(ng-model='article.tags' sv-url-decode name='tags' type="text" md-maxlength="100")
-                //img(ng-src="{{article.img}}")
-        //    div(layout='row' class='mb+' layout-align='start center')
-        //        md-checkbox(ng-model='user.acceptPolicy' aria-label='terms')
-        //        span.tc-grey-700 I accept &nbsp
-        //        a
-        //            span.tc-grey-900(style='font-weight:600') Terms and conditions about uploading and using images and photo materials
-        //    div(layout='row' class='mb+' layout-align='start center')
-        //        md-checkbox(ng-model='user.acceptPolicy' aria-label='terms')
-        //        span.tc-grey-700 Turn off comments
         .bgc-grey-200.p(layout='row' layout-align="space-around center")
             button.btn.btn--m.btn--teal.btn--flat.tc-teal-300(lx-ripple='' type='submit' id='saveBtn' ng-disabled="articleForm.$pristine")
                 i.fa.fa-save.fa-fw &nbsp

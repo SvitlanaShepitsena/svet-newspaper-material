@@ -57,7 +57,7 @@
                 // =images
                 'image-format': 'You can upload images in JPG, JPEG, PNG format.',
                 'image-max-size': 'Maximum image size: 3MB',
-                'image-min-dimensions': 'Minimum image dimensions: 320x240px',
+                'image-min-dimensions': 'Minimum image dimensions: 180x150px',
                 'image-width': 'Minimum image width is 320px',
                 'image-height': 'Minimum image height is 240px',
                 'image-terms-conditions': 'I accept uploading and using photo and images terms and conditions'
@@ -119,7 +119,7 @@
                 // =images
                 'image-format': 'Допустимые форматы для фото: JPG, JPEG, PNG',
                 'image-max-size': 'Максимальный размер фото: 3 Мб',
-                'image-min-dimensions': 'Изображение должно быть не менее 320x240 пикселей',
+                'image-min-dimensions': 'Изображение должно быть не менее 180x150 пикселей',
                 'image-width': 'Мимимальная ширина фото 320px',
                 'image-height': 'Мимимальная высота фото 240px',
                 'image-terms-conditions': 'Я принимаю Соглашение о передаче фото- и видеоматериалов'
