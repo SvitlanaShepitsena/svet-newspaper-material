@@ -66,20 +66,20 @@
             //$sceProvider.enabled(false);
             /*radio programs*/
         })
-        //// COMMENT ON PRODUCTION
-        //.factory('$exceptionHandler', function ($injector) {
-        //    return function (exception, cause) {
-        //        var $rootScope = $injector.get('$rootScope');
-        //        var toastr = $injector.get('toastr');
-        //        exception.message = exception.stack;
-        //
-        //        //Comment on Production
-        //        toastr.error('ERROR!' + exception.message);
-        //        $rootScope.$broadcast('error');
-        //        throw exception;
-        //    };
-        //})
+        // COMMENT ON PRODUCTION
+        .factory('$exceptionHandler', function ($injector) {
+            return function (exception, cause) {
+                var $rootScope = $injector.get('$rootScope');
+                var toastr = $injector.get('toastr');
+                exception.message = exception.stack;
+
+                //Comment on Production
+                toastr.error('ERROR!' + exception.message);
+                $rootScope.$broadcast('error');
+                throw exception;
+            };
+        })
         .config(['$compileProvider', function ($compileProvider) {
-            $compileProvider.debugInfoEnabled(false);
+            //$compileProvider.debugInfoEnabled(false);
         }]);
 })();
