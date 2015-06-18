@@ -16,9 +16,9 @@ div
                 md-input-container(flex)
                     label {{'article-author'|translate}}
                     input(ng-model='article.author' sv-url-decode sv-author-humanize name='author' required='')
-                md-input-container(class='ml' flex='')
-                    md-select(name="section" ng-model='article.section' style='margin-bottom:0px' ng-show='sections' required  )
-                        md-select-label.tc-teal-400(style='margin-top:4px;padding-top:24px;padding-bottom:0px;text-align:left')
+                md-input-container(class='ml sv-select-container' flex='' class='padding:0px !important')
+                    md-select(name="section" ng-model='article.section' style='padding:0px !important' ng-show='sections' required  )
+                        md-select-label.tc-teal-400(style='')
                             i.mdi.mdi-checkbox-marked-outline.mr.mb(style='max-width:22px')
                             | {{article.section?article.section:'article-section'|translate}}
                         md-option(ng-repeat='section in sections track by $index' ng-value='section.$id' id="{{$index}}" style='height:38px')
@@ -26,7 +26,7 @@ div
                 md-input-container(flex='')
                     label {{'article-topic'|translate}}
                     input(ng-model='article.topic' sv-url-decode name='topic')
-            div(layout='column')
+            div(layout='column' layout-align='center')
                 md-input-container(flex='')
                     label {{'article-title'|translate}}
                     input(ng-model='article.title'  sv-url-decode type="text" md-maxlength='150' name='title' required )
