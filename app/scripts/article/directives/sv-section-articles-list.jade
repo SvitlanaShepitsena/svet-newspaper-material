@@ -1,5 +1,5 @@
 ul.list-unstyled(layout='column')
-    li(class="mb" ng-repeat='n in newsList|sectionNews:sectionName')
+    li(class="mb" ng-repeat='n in newsList|sectionNews:sectionName|orderBy:"-timestamp"')
         .card(layout-gt-sm="row" layout-sm='column' class='pt pb')
             .p(style='min-width: 100px'  ng-if='n.fbkey')
                 a.display-block.text-center.sv-link-visited-image(ui-sref='app.article({id:n.fbkey})' style='text-decoration:none')

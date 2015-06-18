@@ -1,5 +1,5 @@
 ul.list-unstyled(layout='column')
-    li(class="mb" ng-repeat='n in blogs')
+    li(class="mb" ng-repeat='n in blogs|orderBy:"-timestamp"')
         .card(layout="row" class='pt pb' layout-sm='column')
             div.p(style='min-width: 100px')
                 a.display-block.text-center.sv-link-visited-image(ui-sref='app.blogs.one-blog-article({authorName:n.author,blogId:n.fbkey})' style='text-decoration:none')
