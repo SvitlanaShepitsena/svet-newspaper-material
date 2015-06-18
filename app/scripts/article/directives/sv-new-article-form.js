@@ -47,7 +47,7 @@
                             isBlog: $scope.artType === 'blog',
                             //img: '',
                             ////author: '',
-                            author: userAuth.profile.isEditor() ? 'Alexander Etman' : userAuth.profile.userName
+                            author: userAuth.profile.isEditor() ? 'Александр Этман' : userAuth.profile.userName
                             //section: '',
                             //topic: 'Chicago Community',
                             //title: '',
