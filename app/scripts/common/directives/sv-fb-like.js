@@ -2,13 +2,21 @@
     'use strict';
 
     angular.module('common')
-        .directive('svFbLike', function ($location) {
+        .directive('svFbLike', function ($location, ezfb, $timeout) {
             return {
-                replace: true,
                 templateUrl: 'scripts/common/directives/sv-fb-like.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
                     $scope.pageUrl = $location.absUrl();
+
+                    $scope.showMe = true;
+                    $timeout(function () {
+                        var elementById = document.getElementById('kohlGallery');
+
+                        ezfb.XFBML.parse(elementById);
+                        var breakPoint = 1;
+
+                    }, 1000);
                 }
             };
         });
