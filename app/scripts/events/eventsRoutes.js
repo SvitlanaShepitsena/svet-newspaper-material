@@ -45,6 +45,11 @@
 					controller:"Kohl2015Ctrl",
 					templateUrl: "scripts/events/views/kohl2015Ctrl.html"
 				})
+				.state("app.event-pdf-report", {
+					url: "/event-pdf-report", 
+					controller:"EventPdfReportCtrl",
+					templateUrl: "scripts/events/views/event-pdf-reportCtrl.html"
+				})
 //#state'
         });
 })();
