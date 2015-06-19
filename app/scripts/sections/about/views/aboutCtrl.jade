@@ -1,49 +1,20 @@
-div(layout='column' flex='' layout-align='center center')
-    sv-profile-title(header-title="Advertise with us!")
-    .card.p.mb
-        span.display-block.fs-subhead
-            i.mdi.mdi-phone
-            | &nbsp (847)715-9407
-        span.display-block.fs-subhead
-            i.mdi.mdi-deskphone
-            | &nbsp (847)715-9677
-        span.display-block.fs-subhead
-            i.mdi.mdi-email
-            | &nbsp manager@svet.com
-    div.mb
+div(layout='column' class='ml mr')
+    div.text-center.pl.pr
+        sv-profile-title(header-title="Advertise with us!")
+    div(layout='column' layout-align='center center')
+        .card.p(class='mb+')
+            span.display-block.fs-subhead
+                i.mdi.mdi-phone
+                | &nbsp (847)715-9407
+            span.display-block.fs-subhead
+                i.mdi.mdi-deskphone
+                | &nbsp (847)715-9677
+            span.display-block.fs-subhead
+                i.mdi.mdi-email
+                | &nbsp manager@svet.com
+    div(layout='column' layout-align='center center' class='mb+' flex)
         iframe(src="https://www.google.com/maps/d/embed?mid=zdTHzl0THQeM.k_tB4rfOIVEo" width="640" height="480")
-    div(layout='column' layout-align="center center")
-        span.fs-body-1.display-block The Russian - American population in the United States is estimated at nearly 2.9 million people.
-        span.fs-body-1.display-block It is the second largest ethnic market, making up &nbsp
-            strong 10.4% &nbsp
-            | of
-            strong 28.4 million &nbsp
-            | foreign born people in the country.
-        span.fs-body-1.display-block.fs-subhead.mt States with the highest concentration of the Russian-American population:
-        span.fs-body-1.display-block(class="ml++")
-            i.mdi.mdi-checkbox-blank-circle-outline.mr.fs-caption
-            | New York Tri-State area – &nbsp
-            strong 24%
-            | (approx. &nbsp
-            strong 696,000 people)
-        span.fs-body-1.display-block(class="ml++")
-            i.mdi.mdi-checkbox-blank-circle-outline.mr.fs-caption
-            | California – &nbsp
-            strong 17% &nbsp
-            | (approx. &nbsp
-            strong 493,000 &nbsp
-            | people)
-        span.fs-body-1.display-block(class="ml++")
-            i.mdi.mdi-checkbox-blank-circle-outline.mr.fs-caption
-            | Illinois – &nbsp
-            strong 16% &nbsp
-            | (approx. &nbsp
-            strong 464,000 plus &nbsp
-            | people)
-        span.fs-body-1.display-block.mt.mb Is the Russian-speaking population &nbsp
-            strong in the U.S. an attractive market?
-        span.fs-body-1.display-block
-            strong Definitely! &nbsp
-            | Russian-American community consists not only of Russians, but Russian speaking ethnicities such as Ukrainians, Bulgarians, Lithuanian, and other Eastern European nationalities. With an average household income of $87,500, the Russian-speaking community is among the wealthiest, most educated groups in Chicagoland. Their lifestyle preferences and wealth make the Russian speaking segment of Chicago an attractive target market for advertisement.
-    div.mt.mb
+    div(class='mb+')
+        sv-about-svet
+    div(layout='column' layout-align='center center')
         sv-top-ru-speaking
