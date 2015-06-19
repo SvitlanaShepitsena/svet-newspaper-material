@@ -1,6 +1,15 @@
-div(layout='row' layout-align='start' class="ml+ mr+" id='kohlGallery')
+div(layout='row' layout-align='space-between start' class="ml+ mr+" id='kohlGallery')
     sv-fb-like
-div(layout='row' layout-align='start' class="ml+ mr+")
+    div(layout='row')
+        div(class='mr ml')
+            a.btn.btn--xs.btn--black.bgc-grey-600.tc-grey-100(href='https://s3-us-west-2.amazonaws.com/svet.com/home/kohl-2015/kohl-2015.pdf' target='_blank')
+                i.mdi.mdi-file-image &nbsp
+                | {{'open-pdf'|translate}}
+        div(class='mr ml')
+            a.btn.btn--xs.btn--black.bgc-grey-600.tc-grey-100(lx-ripple='' href='img/event-reports/kohl-2015.pdf' download="report.pdf")
+                i.mdi.mdi-download &nbsp
+                | {{'download'|translate}}
+div(layout='column' layout-align='start' class="ml+ mr+")
     sv-profile-title(header-title="SVET Annual Family Event at KOHL CHILDREN’S MUSEUM")
 div(class="ml+ mr+")
     p.mb Last Sunday, June 14, 2015, &nbsp
@@ -14,9 +23,6 @@ div(class="ml+ mr+")
 
 div(layout='row' class='mb ml mr' layout-align='space-between center')
     sv-photogallery-modal
-    div
-        a.btn.btn--xs.btn--blue.btn--raised(lx-ripple='' href='img/event-reports/kohl-2015.pdf' download="report.pdf")
-            | Download (PDF)
 div(layout='row' layout-align='center' class='mb+')
     #slider1_container(style='position: relative; top: 0px; left: 0px; width: 960px;\
     height: 480px; background: #191919; overflow: hidden;')
