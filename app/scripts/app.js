@@ -4,7 +4,6 @@
 
     angular.module('app', [
         // modules
-		'sections.about',
         'ui.router',
         'pascalprecht.translate',
         'underscore.string',
@@ -24,6 +23,7 @@
         'events',
         'common',
         'sections.header',
+		'sections.about',
         'sections.archive',
         'sections.home',
         'sections.contact',
