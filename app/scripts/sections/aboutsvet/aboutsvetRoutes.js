@@ -5,13 +5,8 @@
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
 
-				.state("app.", {
-					url: "/", 
-					controller:"Ctrl",
-					templateUrl: "scripts/sections/aboutsvet/views/Ctrl.html"
-				})
+				
 //#state'
 
     });
 })();
-
