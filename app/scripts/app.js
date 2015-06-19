@@ -4,6 +4,7 @@
 
     angular.module('app', [
         // modules
+		'sections.aboutsvet',
         'ui.router',
         'pascalprecht.translate',
         'underscore.string',
