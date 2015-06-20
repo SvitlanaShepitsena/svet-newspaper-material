@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.0-rc2
+ * v0.10.0-master-dd11583
  */
 goog.provide('ng.material.components.menu');
 goog.require('ng.material.components.backdrop');
@@ -31,8 +31,9 @@ angular.module('material.components.menu', [
  *
  * Every `md-menu` must specify exactly two child elements. The first element is what is
  * left in the DOM and is used to open the menu. This element is called the trigger element.
- * The trigger element's scope has access to `$mdOpenMenu()`
- * which it may call to open the menu.
+ * The trigger element's scope has access to `$mdOpenMenu($event)`
+ * which it may call to open the menu. By passing $event as argument, the
+ * corresponding event is stopped from propagating up the DOM-tree.
  *
  * The second element is the `md-menu-content` element which represents the
  * contents of the menu when it is open. Typically this will contain `md-menu-item`s,
@@ -41,7 +42,7 @@ angular.module('material.components.menu', [
  * <hljs lang="html">
  * <md-menu>
  *  <!-- Trigger element is a md-button with an icon -->
- *  <md-button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open sample menu">
+ *  <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
  *    <md-icon md-svg-icon="call:phone"></md-icon>
  *  </md-button>
  *  <md-menu-content>
@@ -83,7 +84,7 @@ angular.module('material.components.menu', [
  *
  * <hljs lang="html">
  * <md-menu>
- *  <md-button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open some menu">
+ *  <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open some menu">
  *    <md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>
  *  </md-button>
  *  <md-menu-content>
@@ -126,7 +127,7 @@ angular.module('material.components.menu', [
  * @usage
  * <hljs lang="html">
  * <md-menu>
- *  <md-button ng-click="$mdOpenMenu()" class="md-icon-button">
+ *  <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button">
  *    <md-icon md-svg-icon="call:phone"></md-icon>
  *  </md-button>
  *  <md-menu-content>
@@ -154,7 +155,11 @@ function MenuDirective($mdMenu) {
 
   function compile(templateElement) {
     templateElement.addClass('md-menu');
-    templateElement.children().eq(0).attr('aria-haspopup', 'true');
+    var triggerElement = templateElement.children()[0];
+    if (!triggerElement.hasAttribute('ng-click')) {
+      triggerElement = triggerElement.querySelector('[ng-click]');
+    }
+    triggerElement && triggerElement.setAttribute('aria-haspopup', 'true');
     if (templateElement.children().length != 2) {
       throw Error('Invalid HTML for md-menu. Expected two children elements.');
     }
@@ -171,6 +176,13 @@ function MenuDirective($mdMenu) {
     menuContainer.append(menuContents);
     mdMenuCtrl.init(menuContainer);
 
+    scope.$on('$destroy', function() {
+      if (mdMenuCtrl.isOpen) {
+        menuContainer.remove();
+        mdMenuCtrl.close();
+      }
+    });
+
   }
 }
 MenuDirective.$inject = ["$mdMenu"];
@@ -179,16 +191,21 @@ function MenuController($mdMenu, $attrs, $element, $scope) {
 
   var menuContainer;
   var ctrl = this;
+  var triggerElement;
 
   // Called by our linking fn to provide access to the menu-content
   // element removed during link
   this.init = function(setMenuContainer) {
     menuContainer = setMenuContainer;
+    triggerElement = $element[0].querySelector('[ng-click]');
   };
 
   // Uses the $mdMenu interim element service to open the menu contents
-  this.open = function openMenu() {
-    $element.attr('aria-expanded', 'true');
+  this.open = function openMenu(ev) {
+    ev && ev.stopPropagation();
+
+    ctrl.isOpen = true;
+    triggerElement.setAttribute('aria-expanded', 'true');
     $mdMenu.show({
       mdMenuCtrl: ctrl,
       element: menuContainer,
@@ -200,7 +217,8 @@ function MenuController($mdMenu, $attrs, $element, $scope) {
 
   // Use the $mdMenu interim element service to close the menu contents
   this.close = function closeMenu(skipFocus) {
-    $element.attr('aria-expanded', 'false');
+    ctrl.isOpen = false;
+    triggerElement.setAttribute('aria-expanded', 'false');
     $mdMenu.hide();
 
     if (!skipFocus) {
@@ -281,7 +299,7 @@ function MenuProvider($$interimElementProvider) {
       themable: true
     };
 
-    /** 
+    /**
      * Boilerplate interimElement onShow function
      * Handles inserting the menu into the DOM, positioning it, and wiring up
      * various interaction events
@@ -299,7 +317,7 @@ function MenuProvider($$interimElementProvider) {
 
       // Disable scrolling
       if (opts.disableParentScroll) {
-        opts.restoreScroll = $mdUtil.disableScrollAround(opts.target);
+        opts.restoreScroll = $mdUtil.disableScrollAround(opts.element);
       }
 
       // Only activate click listeners after a short time to stop accidental double taps/clicks
@@ -335,7 +353,7 @@ function MenuProvider($$interimElementProvider) {
       /** Wireup various resize listeners for screen changes */
       function handleResizing() {
         opts.resizeFn = function() {
-          positionMenu(scope, element, opts);
+          positionMenu(element, opts);
         };
         angular.element($window).on('resize', opts.resizeFn);
         angular.element($window).on('orientationchange', opts.resizeFn);
@@ -352,7 +370,7 @@ function MenuProvider($$interimElementProvider) {
         // so all of our computed positions/sizes are accurate
         $$rAF(function() {
           $$rAF(function() {
-            positionMenu(scope, element, opts);
+            positionMenu(element, opts);
             // Wait a frame before fading in menu (md-active) so that we don't trigger
             // transitions on the menu position changing
             $$rAF(function() {
@@ -430,7 +448,7 @@ function MenuProvider($$interimElementProvider) {
     function focusMenuItem(e, menuEl, opts, direction) {
       var currentItem = $mdUtil.getClosest(e.target, 'MD-MENU-ITEM');
 
-      var items = nodesToArray(menuEl[0].children);
+      var items = $mdUtil.nodesToArray(menuEl[0].children);
       var currentIndex = items.indexOf(currentItem);
 
       // Traverse through our elements in the specified direction (+/-1) and try to
@@ -523,8 +541,8 @@ function MenuProvider($$interimElementProvider) {
         alignTargetRect = alignTarget.getBoundingClientRect();
 
         existingOffsets = {
-          top: containerNode.style.top,
-          left: containerNode.style.left
+          top: parseFloat(containerNode.style.top || 0),
+          left: parseFloat(containerNode.style.left || 0)
         };
       }
 
@@ -601,12 +619,5 @@ function MenuProvider($$interimElementProvider) {
   }
 }
 MenuProvider.$inject = ["$$interimElementProvider"];
-
-// Annoying method to copy nodes to an array, thanks to IE
-function nodesToArray(nodes) {
-  var results = [];
-  for (var i = nodes.length; i--; results.unshift(nodes[i]))
-  return results;
-}
 
 ng.material.components.menu = angular.module("material.components.menu");

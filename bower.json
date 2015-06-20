@@ -12,7 +12,7 @@
     "angular-sanitize": "v1.4.0",
     "angular-touch": "v1.4.0",
     "angular-aria": "v1.4.0",
-    "angular-material": "0.10.0-rc2",
+    "angular-material": "master",
     "mdi": "~1.0.62-beta",
     "angular-ui-router": "~0.2.13",
     "firebase": "~2.2.3",
