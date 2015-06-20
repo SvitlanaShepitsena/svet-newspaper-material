@@ -20,9 +20,12 @@
                         AuthenticationServ.authWithProvider(provider).then(function () {
                             if (userAuth.profile && userAuth.profile.isManager()) {
                                 $state.go('app.manager.dashboard', {uid: userAuth.key})
-                            } else {
+                            }
+
+                            if (userAuth.profile && userAuth.profile.isCustomer()) {
                                 $state.go('app.user.dashboard', {uid: userAuth.profile.userName})
                             }
+
                         });
                     };
                     $scope.logout = function () {
