@@ -16,6 +16,7 @@
                         }
                         $scope.user = newValue;
                     });
+
                     $scope.loginProvider = function (provider) {
                         AuthenticationServ.authWithProvider(provider).then(function () {
                             if (userAuth.profile && userAuth.profile.isManager()) {
@@ -23,7 +24,7 @@
                             }
 
                             if (userAuth.profile && userAuth.profile.isCustomer()) {
-                                $state.go('app.user.dashboard', {uid: userAuth.profile.userName})
+                                $state.go('app.user.ad.promotion', {uid: userAuth.profile.userName})
                             }
 
                         });
