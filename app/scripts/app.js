@@ -4,6 +4,7 @@
 
     angular.module('app', [
         // modules
+		'sections.demographics',
 		'sections',
         'ui.router',
         'pascalprecht.translate',
