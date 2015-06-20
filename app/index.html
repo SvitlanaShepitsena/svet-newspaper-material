@@ -159,15 +159,24 @@
                     <!--if your sidenav background has color, add flex to fill sidenav vertically-->
                     <md-content class="pt" flex>
                         <div class="mr ml">
+                            <sv-sidenav-title title="why svet media group?"></sv-sidenav-title>
                             <sv-nav-btn url="app.about"
                                         icon="information-outline"
-                                        title="about us"
+                                        title="advertise with us"
                                         txt-color="white-1"
                                         custom-class="bgc-svet-700"
                                         color="white" btn-size="m"
-                                        class="mb++">
+                                        class="mb+">
                             </sv-nav-btn>
-                            <sv-sidenav-title title="svet-on-social-media"></sv-sidenav-title>
+                            <sv-nav-btn url="app.contact"
+                                        icon="map-marker"
+                                        title="{{'contacts'|translate}}"
+                                        txt-color="white-1"
+                                        custom-class="bgc-svet-700"
+                                        color="white"
+                                        btn-size="m"
+                                        class="mb">
+                            </sv-nav-btn>
                             <sv-svet-social></sv-svet-social>
                             <sv-nav-btn url="app.classified.community"
                                         icon="tag"
@@ -180,17 +189,6 @@
                                               icon-name="mdi-clock-fast"></sv-sidenav-title>
                         </div>
                         <sv-classified-widget is-home="true"></sv-classified-widget>
-                        <div class="mr ml mt+">
-                            <sv-nav-btn url="app.contact"
-                                        icon="map-marker"
-                                        title="{{'contacts'|translate}}"
-                                        txt-color="white-1"
-                                        custom-class="bgc-svet-700"
-                                        color="white"
-                                        btn-size="m"
-                                        class="mb++">
-                            </sv-nav-btn>
-                        </div>
                     </md-content>
                 </md-sidenav>
             </md-content>
