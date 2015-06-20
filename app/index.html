@@ -162,15 +162,15 @@
                             <sv-sidenav-title title="why svet media group?"></sv-sidenav-title>
                             <sv-nav-btn url="app.about"
                                         icon="information-outline"
-                                        title="russian-american demographics"
+                                        title="about us"
                                         txt-color="white-1"
                                         custom-class="bgc-svet-700"
                                         color="white" btn-size="m"
                                         class="mb+">
                             </sv-nav-btn>
                             <sv-nav-btn url="app.demographics"
-                                        icon="information-outline"
-                                        title="russian-american demographics"
+                                        icon="chart-pie"
+                                        title="demographics"
                                         txt-color="white-1"
                                         custom-class="bgc-svet-700"
                                         color="white" btn-size="m"
@@ -535,11 +535,13 @@
 <script src="scripts/sections/about/directives/sv-top-ru-speaking.js"></script>
 
 <!-- sections.demographics -->
-<script src="scripts/sections/demographics/about-translation.js"></script>
+<script src="scripts/sections/demographics/demographicsRoutes.js"></script>
+<script src="scripts/sections/demographics/directives/sv-ru-demographics.js"></script>
+<script src="scripts/sections/demographics/controllers/DemographicsCtrl.js"></script>
+<script src="scripts/sections/demographics/demographics-translation.js"></script>
 
 <!-- sections.contact -->
 <script src="scripts/sections/contact/contactRoutes.js"></script>
-<script src="scripts/sections/demographics/controllers/DemographicsCtrl.js"></script>
 <script src="scripts/sections/contact/contact-translation.js"></script>
 <script src="scripts/sections/contact/controllers/ContactCtrl.js"></script>
 <script src="scripts/sections/contact/controllers/GetSvobodaNewsCtrl.js"></script>
