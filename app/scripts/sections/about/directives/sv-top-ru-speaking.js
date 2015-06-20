@@ -6,9 +6,7 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/sections/about/directives/sv-top-ru-speaking.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
 
                 }
