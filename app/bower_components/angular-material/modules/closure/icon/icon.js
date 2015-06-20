@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.0-rc2
+ * v0.10.0-master-dd11583
  */
 goog.provide('ng.material.components.icon');
 goog.require('ng.material.core');
@@ -125,11 +125,12 @@ angular.module('material.components.icon', [
  * When using Material Font Icons with ligatures:
  * <hljs lang="html">
  *  <!-- For Material Design Icons -->
- *  <!-- The class '.material-icons' is auto-added. -->
+ *  <!-- The class '.material-icons' is auto-added if a style has NOT been specified -->
  *  <md-icon> face </md-icon>
- *  <md-icon class="md-light md-48"> face </md-icon>
  *  <md-icon md-font-set="material-icons"> face </md-icon>
  *  <md-icon> #xE87C; </md-icon>
+ *  <!-- The class '.material-icons' must be manually added if other styles are also specified-->
+ *  <md-icon class="material-icons md-light md-48"> face </md-icon>
  * </hljs>
  *
  * When using other Font-Icon libraries:
@@ -217,11 +218,22 @@ function mdIconDirective($mdIcon, $mdTheming, $mdAria, $interpolate ) {
 
     function prepareForFontIcon () {
       if (!scope.svgIcon && !scope.svgSrc) {
+
         if (scope.fontIcon) {
           element.addClass('md-font');
           element.addClass(scope.fontIcon);
-        } else {
+        }
+
+        if (scope.fontSet) {
           element.addClass($mdIcon.fontSet(scope.fontSet));
+        }
+
+        // For Material Design font icons, the class '.material-icons'
+        // is auto-added IF a style has not been specified
+
+        if (!scope.fontIcon && !scope.fontSet && !angular.isDefined(attr.class)) {
+
+            element.addClass('material-icons');
         }
       }
 

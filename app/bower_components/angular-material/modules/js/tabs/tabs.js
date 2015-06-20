@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.0-rc2
+ * v0.10.0-master-dd11583
  */
 (function( window, angular, undefined ){
 "use strict";
@@ -106,7 +106,7 @@ function MdTab () {
         return getLabelElement() || getLabelAttribute() || getElementContents();
         function getLabelAttribute () { return attr.label; }
         function getLabelElement () {
-          var label = element.find('md-tab-label');
+          var label = element.find('md-tab-label').eq(0);
           if (label.length) return label.remove().html();
         }
         function getElementContents () {
@@ -116,7 +116,7 @@ function MdTab () {
         }
       }
       function getTemplate () {
-        var content = element.find('md-tab-body'),
+        var content = element.find('md-tab-body').eq(0),
             template = content.length ? content.html() : attr.label ? element.html() : '';
         if (content.length) content.remove();
         else if (attr.label) element.empty();
@@ -136,8 +136,8 @@ function MdTab () {
     if (!ctrl) return;
     var tabs = element.parent()[0].getElementsByTagName('md-tab'),
         index = Array.prototype.indexOf.call(tabs, element[0]),
-        body = element.find('md-tab-body').remove(),
-        label = element.find('md-tab-label').remove(),
+        body = element.find('md-tab-body').eq(0).remove(),
+        label = element.find('md-tab-label').eq(0).remove(),
         data = ctrl.insertTab({
           scope:    scope,
           parent:   scope.$parent,
@@ -215,7 +215,7 @@ angular
  * ngInject
  */
 function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $mdTabInkRipple,
-                           $mdUtil, $animate) {
+                           $mdUtil, $animate, $attrs, $compile, $mdTheming) {
   //-- define private properties
   var ctrl       = this,
       locked     = false,
@@ -263,15 +263,41 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
    * Perform initialization for the controller, setup events and watcher(s)
    */
   function init () {
-    $scope.$watch('selectedIndex', handleSelectedIndexChange);
-    angular.element($window).on('resize', handleWindowResize);
-    angular.element(elements.paging).on('DOMSubtreeModified', ctrl.updateInkBarStyles);
-    angular.element(elements.paging).on('DOMSubtreeModified', updatePagination);
+    $scope.selectedIndex = $scope.selectedIndex || 0;
+    compileTemplate();
+    configureWatchers();
+    bindEvents();
+    $mdTheming($element);
     $timeout(function () {
       updateHeightFromContent();
       adjustOffset();
       updatePagination();
+      ctrl.tabs[$scope.selectedIndex] && ctrl.tabs[$scope.selectedIndex].scope.select();
       loaded = true;
+    });
+  }
+
+  function compileTemplate () {
+    var template = $attrs.$mdTabsTemplate,
+        element  = angular.element(elements.data);
+    element.html(template);
+    $compile(element.contents())(ctrl.parent);
+    delete $attrs.$mdTabsTemplate;
+  }
+
+  function bindEvents () {
+    angular.element($window).on('resize', handleWindowResize);
+    angular.element(elements.paging).on('DOMSubtreeModified', ctrl.updateInkBarStyles);
+    angular.element(elements.paging).on('DOMSubtreeModified', updatePagination);
+  }
+
+  function configureWatchers () {
+    $mdUtil.initOptionalProperties($scope, $attrs);
+    $attrs.$observe('mdNoBar', function (value) { $scope.noInkBar = angular.isDefined(value); });
+    $scope.$watch('selectedIndex', handleSelectedIndexChange);
+    $scope.$watch('dynamicHeight', function (value) {
+      if (value) $element.addClass('md-dynamic-height');
+      else $element.removeClass('md-dynamic-height');
     });
     $scope.$on('$destroy', cleanup);
   }
@@ -302,7 +328,7 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
    */
   function handleOffsetChange (left) {
     var newValue = ctrl.shouldCenterTabs ? '' : '-' + left + 'px';
-    angular.element(elements.paging).css('transform', 'translate3d(' + newValue + ', 0, 0)');
+    angular.element(elements.paging).css($mdConstant.CSS.TRANSFORM, 'translate3d(' + newValue + ', 0, 0)');
     $scope.$broadcast('$mdTabsPaginationChanged');
   }
 
@@ -330,7 +356,7 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     ctrl.lastSelectedIndex = oldValue;
     ctrl.updateInkBarStyles();
     updateHeightFromContent();
-    adjustOffset();
+    adjustOffset(newValue);
     $scope.$broadcast('$mdTabsChanged');
     ctrl.tabs[oldValue] && ctrl.tabs[oldValue].scope.deselect();
     ctrl.tabs[newValue] && ctrl.tabs[newValue].scope.select();
@@ -507,6 +533,7 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 
     //-- gather tab bar elements
     elements.wrapper  = $element[0].getElementsByTagName('md-tabs-wrapper')[0];
+    elements.data     = $element[0].getElementsByTagName('md-tab-data')[0];
     elements.canvas   = elements.wrapper.getElementsByTagName('md-tabs-canvas')[0];
     elements.paging   = elements.canvas.getElementsByTagName('md-pagination-wrapper')[0];
     elements.tabs     = elements.paging.getElementsByTagName('md-tab-item');
@@ -566,7 +593,7 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
   function shouldPaginate () {
     if ($scope.noPagination || !loaded) return false;
     var canvasWidth = $element.prop('clientWidth');
-    angular.forEach(elements.tabs, function (tab) { canvasWidth -= tab.offsetWidth; });
+    angular.forEach(elements.dummies, function (tab) { canvasWidth -= tab.offsetWidth; });
     return canvasWidth < 0;
   }
 
@@ -614,6 +641,9 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
   function updatePagination () {
     ctrl.shouldPaginate = shouldPaginate();
     ctrl.shouldCenterTabs = shouldCenterTabs();
+    $timeout(function () {
+      adjustOffset($scope.selectedIndex);
+    });
   }
 
   /**
@@ -656,9 +686,11 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
   /**
    * Forces the pagination to move the focused tab into view.
    */
-  function adjustOffset () {
+  function adjustOffset (index) {
+    if (!elements.tabs[index]) return;
     if (ctrl.shouldCenterTabs) return;
-    var tab = elements.tabs[ctrl.focusIndex],
+    if (index == null) index = ctrl.focusIndex;
+    var tab = elements.tabs[index],
         left = tab.offsetLeft,
         right = tab.offsetWidth + left;
     ctrl.offsetLeft = Math.max(ctrl.offsetLeft, fixOffset(right - elements.canvas.clientWidth));
@@ -745,12 +777,11 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     var newIndex = $scope.selectedIndex,
         oldIndex = ctrl.lastSelectedIndex,
         ink = angular.element(elements.inkBar);
-    ink.removeClass('md-left md-right');
     if (!angular.isNumber(oldIndex)) return;
     if (newIndex < oldIndex) {
-      ink.addClass('md-left');
+      ink.addClass('md-left').removeClass('md-right');
     } else if (newIndex > oldIndex) {
-      ink.addClass('md-right');
+      ink.addClass('md-right').removeClass('md-left');
     }
   }
 
@@ -778,7 +809,7 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
     $mdTabInkRipple.attach(scope, element, options);
   }
 }
-MdTabsController.$inject = ["$scope", "$element", "$window", "$timeout", "$mdConstant", "$mdTabInkRipple", "$mdUtil", "$animate"];
+MdTabsController.$inject = ["$scope", "$element", "$window", "$timeout", "$mdConstant", "$mdTabInkRipple", "$mdUtil", "$animate", "$attrs", "$compile", "$mdTheming"];
 
 /**
  * @ngdoc directive
@@ -944,6 +975,7 @@ function MdTabs ($mdTheming, $mdUtil, $compile) {
             </md-pagination-wrapper>\
             <div class="md-visually-hidden md-dummy-wrapper">\
               <md-dummy-tab\
+                  class="md-tab"\
                   tabindex="-1"\
                   id="tab-item-{{tab.id}}"\
                   role="tab"\
@@ -984,26 +1016,7 @@ function MdTabs ($mdTheming, $mdUtil, $compile) {
       ';
     },
     controller: 'MdTabsController',
-    controllerAs: '$mdTabsCtrl',
-    link: function (scope, element, attr) {
-      compileTabData(attr.$mdTabsTemplate);
-      delete attr.$mdTabsTemplate;
-
-      $mdUtil.initOptionalProperties(scope, attr);
-
-      //-- watch attributes
-      attr.$observe('mdNoBar', function (value) { scope.noInkBar = angular.isDefined(value); });
-      //-- set default value for selectedIndex
-      scope.selectedIndex = angular.isNumber(scope.selectedIndex) ? scope.selectedIndex : 0;
-      //-- apply themes
-      $mdTheming(element);
-
-      function compileTabData (template) {
-        var dataElement = element.find('md-tab-data');
-        dataElement.html(template);
-        $compile(dataElement.contents())(scope.$parent);
-      }
-    }
+    controllerAs: '$mdTabsCtrl'
   };
 }
 MdTabs.$inject = ["$mdTheming", "$mdUtil", "$compile"];
