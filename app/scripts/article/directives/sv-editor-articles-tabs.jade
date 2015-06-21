@@ -1,7 +1,7 @@
 div
     button.btn.btn--xs.btn--black.bgc-red-300.btn--raised(lx-ripple='' ng-click='saveArticlesRank()' ng-disabled='!isRankChanged') Save Ranking
     md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
-        md-tab.sv-tabs(md-stretch-tabs="always" ng-if='!user.isReader()')
+        md-tab.sv-tabs(md-stretch-tabs="never" ng-if='!user.isReader()')
             md-tab-label {{'news-articles'|translate}}
             md-tab-body
                 div(ui-sortable='sortableOptions' ng-model='articles')

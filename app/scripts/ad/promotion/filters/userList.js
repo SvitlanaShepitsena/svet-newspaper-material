@@ -6,7 +6,7 @@
                 if (!userAuth || !list || list.length === 0) {
                     return;
                 }
-                if (userAuth.profile.isManager()) {
+                if (userAuth.profile && userAuth.profile.isManager()) {
                     return list;
                 }
                 return _.filter(list, function (el) {

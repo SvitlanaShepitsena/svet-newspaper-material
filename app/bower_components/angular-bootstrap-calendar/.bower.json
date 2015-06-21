@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-calendar",
-  "version": "0.10.7",
+  "version": "0.11.2",
   "homepage": "https://github.com/mattlewis92/angular-bootstrap-calendar",
   "authors": [
     "Matt Lewis"
@@ -34,13 +34,14 @@
   "devDependencies": {
     "angular-mocks": ">=1.2.0 <1.5"
   },
-  "_release": "0.10.7",
+  "_release": "0.11.2",
   "_resolution": {
     "type": "version",
-    "tag": "0.10.7",
-    "commit": "c9439c30018d405bdb60fa70d9c1dd55f34eec4d"
+    "tag": "0.11.2",
+    "commit": "ebe3cb01e0dd434547a92c9ee309f6cd50f4ff2e"
   },
   "_source": "git://github.com/mattlewis92/angular-bootstrap-calendar.git",
-  "_target": "~0.10.1",
-  "_originalSource": "angular-bootstrap-calendar"
+  "_target": "0.11.2",
+  "_originalSource": "angular-bootstrap-calendar",
+  "_direct": true
 }

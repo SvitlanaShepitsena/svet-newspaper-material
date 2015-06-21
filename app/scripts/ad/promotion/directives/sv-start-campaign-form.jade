@@ -9,7 +9,7 @@ div(flow-init='')
             div(flex-item='')
                 md-select(ng-model='ad.customer')
                     md-select-label {{ad.customer?ad.customer:'Select Customer'}}
-                    md-option(ng-repeat='customer in customers' ng-value='customer' ) {{customer.profile.userName}}
+                    md-option(ng-repeat='customer in customers' ng-value='customer.profile.userName' ) {{customer.profile.userName}}
         div(class='mb+ pl pr')
             sv-image-upload()
         div(class='mb+' pl pr)

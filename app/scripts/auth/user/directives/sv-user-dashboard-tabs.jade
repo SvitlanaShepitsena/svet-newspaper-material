@@ -1,12 +1,12 @@
-div()
-    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
-        md-tab.sv-tabs(md-stretch-tabs="always" )
+div
+    md-tabs.sv-user-list(md-selected='selectedIndex', md-border-bottom='' )
+        md-tab.sv-tabs(md-stretch-tabs="never" )
             md-tab-label {{'my-profile'|translate}}
             md-tab-body
                 sv-user-profile-summary
-        //md-tab.sv-tabs(md-stretch-tabs="always" )
+        //md-tab.sv-tabs(md-stretch-tabs="never" )
         //    md-tab-label {{'comments'|translate}}
         //    md-tab-body Comments
-        //md-tab.sv-tabs(md-stretch-tabs="always" )
+        //md-tab.sv-tabs(md-stretch-tabs="never" )
         //    md-tab-label {{'bookmarks'|translate}}
         //    md-tab-body Bookmarks

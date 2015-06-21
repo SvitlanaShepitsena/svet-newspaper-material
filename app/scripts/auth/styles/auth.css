@@ -57,3 +57,6 @@ md-icon {
 .checkbox {
   martin-top: 10px !important;
 }
+.sv-user-list {
+  min-height: 600px !important;
+}

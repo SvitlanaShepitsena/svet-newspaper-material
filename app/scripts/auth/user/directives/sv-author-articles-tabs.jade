@@ -1,11 +1,11 @@
 div
     md-tabs.tabs-classified.tc-black-2(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
-        md-tab.sv-tabs(md-stretch-tabs="always" ng-if='!user.isReader()')
+        md-tab.sv-tabs(md-stretch-tabs="never" ng-if='!user.isReader()')
             md-tab-label
                 span.display-block.sv-tab-span(ui-sref='app.user.news.articles') {{'news-articles'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs(md-stretch-tabs="always")
+        md-tab.sv-tabs(md-stretch-tabs="never")
             md-tab-label
                 span.display-block.sv-tab-span(ui-sref='app.user.news.blogs') {{'blogs'|translate}}
             md-tab-body

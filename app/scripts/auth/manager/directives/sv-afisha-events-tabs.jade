@@ -1,14 +1,14 @@
 div
     md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
-        md-tab.sv-tabs(md-stretch-tabs="always" )
+        md-tab.sv-tabs(md-stretch-tabs="never" )
             md-tab-label {{'all-events'|translate}}
             md-tab-body
                 sv-events-list(event-filter="all" events='events')
-        md-tab.sv-tabs(md-stretch-tabs="always" )
+        md-tab.sv-tabs(md-stretch-tabs="never" )
             md-tab-label {{'svet-public-events'|translate}}
             md-tab-body
                 sv-events-list(event-filter="public" events='events')
-        md-tab.sv-tabs(md-stretch-tabs="always" )
+        md-tab.sv-tabs(md-stretch-tabs="never" )
             md-tab-label {{'svet-network-events'|translate}}
             md-tab-body
                 sv-events-list(event-filter="connection" events='events')

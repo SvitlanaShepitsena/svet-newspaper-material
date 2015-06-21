@@ -1,11 +1,11 @@
 div
-    md-tabs.tabs-classified.tc-black-2( md-selected='selectedIndex'  md-border-bottom='' md-dynamic-height )
-        md-tab(md-stretch-tabs="always" )
+    md-tabs.tabs-classified.tc-black-2( md-selected='selectedIndex'  md-border-bottom='')
+        md-tab(ng-if='!user.isReader() && !user.isAuthor()')
             md-tab-label
-                span.display-block.sv-tab-span(ui-sref='app.user.ad.promotion' ) {{"business-ad"|translate}}
+                span.display-block.sv-tab-span(ui-sref='app.user.ad.promotion' )  {{"business-ad"|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs(md-stretch-tabs="always" )
+        md-tab.sv-tabs( )
             md-tab-label
                 span.display-block.sv-tab-span(ui-sref='app.user.ad.classified' ) {{"classified"|translate}}
             md-tab-body
