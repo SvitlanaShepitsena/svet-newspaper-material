@@ -10,7 +10,11 @@
 
                 },
                 link: function ($scope, el, attrs) {
-
+                    $scope.options = {
+                        limit: 1,
+                        immediate: true,
+                        multiple:true
+                    }
                 }
             };
         });

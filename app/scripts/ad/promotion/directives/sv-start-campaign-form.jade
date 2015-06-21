@@ -9,7 +9,7 @@ div(flow-init='')
             div(flex-item='')
                 sv-customers-dropdown(customers='customers' selected-customer='ad.customer')
         div(class='mb+ pl pr')
-            sv-image-upload()
+            sv-s3-upload
         div(class='mb+' pl pr)
             span.fs-subhead.display-block.pl.pr Current Campaign Banner:
             img(ng-src="{{ad.banner}}")
