@@ -5,6 +5,7 @@
     angular.module('app', [
         // modules
         'ui.router',
+        'angular.aws.s3',
         'pascalprecht.translate',
         'underscore.string',
         'auth',
