@@ -1,1 +1,1 @@
-<div>sv-customer-avatar Template</div>
+<div><div layout="row" layout-align="start center" ng-if="customer"><img ng-src="{{customer.profile.avatar || defaultAvatar}}" width="20px" height="20px"/><span class="l-padding-10">{{customer.profile.userName}}</span></div><div layout="row" layout-align="start center" ng-if="!customer"><span>Select Customer</span></div></div>

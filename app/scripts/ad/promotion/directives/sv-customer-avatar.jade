@@ -1,1 +1,6 @@
-div sv-customer-avatar Template
+div
+    div(layout='row' layout-align='start center' ng-if='customer')
+        img(ng-src='{{customer.profile.avatar || defaultAvatar}}' width='20px' height='20px')
+        span.l-padding-10 {{customer.profile.userName}}
+    div(layout='row' layout-align='start center' ng-if='!customer')
+        span Select Customer
