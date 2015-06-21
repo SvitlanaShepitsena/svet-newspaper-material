@@ -7,13 +7,13 @@
             $translateProvider.useCookieStorage();
 
             $translateProvider.translations('en', {
-               // 'eng':'eng'
-               // 'eng':'eng',
+                // 'eng':'eng'
+                // 'eng':'eng',
             });
 
             $translateProvider.translations('ru', {
-               // 'ru':'ru'
-               // 'ru':'ru',
+                // 'ru':'ru'
+                // 'ru':'ru',
             });
 
             $translateProvider.preferredLanguage('en');

@@ -119,7 +119,9 @@
                 <sv-header-classified-btn></sv-header-classified-btn>
                 <!--<sv-header-subscription-btn hide-sm></sv-header-subscription-btn>-->
                 <!--<span flex></span>-->
-                <sv-classified-header-phone hide-sm hide-gt-sm hide-md show-gt-md></sv-classified-header-phone>
+                <div class='md-whiteframe-z1 p'>
+                    <sv-classified-header-phone hide-sm hide-gt-sm hide-md show-gt-md></sv-classified-header-phone>
+                </div>
                 <span flex></span>
                 <sv-profile-type class='mr'></sv-profile-type>
                 <sv-auth-btn class="mr"></sv-auth-btn>
@@ -162,27 +164,27 @@
                             <sv-sidenav-title title="why svet media group?"></sv-sidenav-title>
                             <sv-nav-btn url="app.about"
                                         icon="information-outline"
+                                        custom-style="font-weight:600"
                                         title="about us"
-                                        txt-color="white-1"
-                                        custom-class="bgc-svet-700"
-                                        color="white" btn-size="m"
+                                        txt-color="grey-700"
+                                        color="white" btn-size="l"
                                         class="mb+">
                             </sv-nav-btn>
                             <sv-nav-btn url="app.demographics"
                                         icon="chart-pie"
-                                        title="demographics"
-                                        txt-color="white-1"
-                                        custom-class="bgc-svet-700"
-                                        color="white" btn-size="m"
+                                        custom-style="font-weight:600"
+                                        title="Advertise with us!"
+                                        txt-color="grey-700"
+                                        color="white" btn-size="l"
                                         class="mb+">
                             </sv-nav-btn>
                             <sv-nav-btn url="app.contact"
                                         icon="map-marker"
+                                        custom-style="font-weight:600"
                                         title="{{'contacts'|translate}}"
-                                        txt-color="white-1"
-                                        custom-class="bgc-svet-700"
+                                        txt-color="grey-700"
                                         color="white"
-                                        btn-size="m"
+                                        btn-size="l"
                                         class="mb">
                             </sv-nav-btn>
                             <sv-svet-social></sv-svet-social>
