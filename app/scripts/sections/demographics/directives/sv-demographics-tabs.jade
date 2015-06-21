@@ -1,1 +1,31 @@
-div sv-demographics-tabs Template
+div
+    md-tabs.sv-user-list(md-selected='selectedIndex')
+        md-tab.sv-tabs(md-stretch-tabs="never" )
+            md-tab-label Demographics
+            md-tab-body
+                sv-ru-demographics.mb
+        md-tab.sv-tabs(md-stretch-tabs="never" )
+            md-tab-label Language
+            md-tab-body
+                sv-profile-subheader(subhead-title="Russian-American Demographics")
+        md-tab.sv-tabs(md-stretch-tabs="never" )
+            md-tab-label Household
+            md-tab-body
+                sv-profile-subheader(subhead-title="customers")
+        md-tab.sv-tabs(md-stretch-tabs="never" )
+            md-tab-label Income
+            md-tab-body
+                sv-profile-subheader(subhead-title="authors")
+        md-tab.sv-tabs(md-stretch-tabs="never" )
+            md-tab-label Education
+            md-tab-body
+                sv-profile-subheader(subhead-title="authors")
+        md-tab.sv-tabs(md-stretch-tabs="never" )
+            md-tab-label Age Everage
+            md-tab-body
+                sv-profile-subheader(subhead-title="authors")
+        md-tab.sv-tabs(md-stretch-tabs="never" )
+            md-tab-label Employment
+            md-tab-body
+                sv-profile-subheader(subhead-title="authors")
+
