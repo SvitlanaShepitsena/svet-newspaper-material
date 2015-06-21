@@ -1,13 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('common')
-        .directive('svContactInfo', function () {
+    angular.module('sections.demographics')
+        .directive('svTopRuStates', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/common/directives/sv-contact-info.html',
+                templateUrl: 'scripts/sections/demographics/directives/sv-top-ru-states.html',
                 scope: {
-                    bgc: '@',
+
                 },
                 link: function ($scope, el, attrs) {
 
