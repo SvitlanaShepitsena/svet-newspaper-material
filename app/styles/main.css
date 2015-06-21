@@ -600,8 +600,9 @@ embed {
  = Bootstrap active button fix
 ***********************/
 p {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 400;
+  line-height: 1.7em;
 }
 .ta-scroll-window > .ta-bind > p > img {
   max-width: 100%;

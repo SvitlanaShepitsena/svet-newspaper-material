@@ -14,6 +14,7 @@
                     btnSize: '@',
                     bgc: '@',
                     txtColor: '@',
+                    customStyle: '@',
                     icon: '@'
                 },
                 link: function ($scope, el, attrs) {

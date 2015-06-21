@@ -1,5 +1,5 @@
 div(layout='row')
-    button.btn.btn--raised( lx-ripple='' ui-sref="{{url}}"  class='btn--{{color}} btn--{{btnSize}}  bgc-{{bgc}} btn--{{btnStyle}} tc-{{txtColor}} {{customClass}}' flex ng-click='closeSideBar()')
+    button.btn.btn--raised( lx-ripple='' ui-sref="{{url}}"  class='btn--{{color}} btn--{{btnSize}}  bgc-{{bgc}} btn--{{btnStyle}} tc-{{txtColor}} {{customClass}}' flex ng-click='closeSideBar()' style='{{customStyle}}')
         i(class='mdi mdi-{{icon}} mr')
         span {{title|translate}}
 
