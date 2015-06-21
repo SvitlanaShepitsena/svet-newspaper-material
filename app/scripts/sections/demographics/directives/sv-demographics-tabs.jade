@@ -1,31 +1,52 @@
-div
-    md-tabs.sv-user-list(md-selected='selectedIndex')
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+md-content.card
+    md-tabs(md-selected='selectedIndex' md-dynamic-height='' style='min-height:230px')
+        md-tab
             md-tab-label Demographics
             md-tab-body
                 sv-ru-demographics.mb
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+        md-tab
             md-tab-label Language
             md-tab-body
-                sv-profile-subheader(subhead-title="Russian-American Demographics")
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+                div(layout-gt-sm='row' layout-sm='column' layout-align='center top' class='ml+ mr pb mb')
+                    p.pr.pl Ukrainian, Lithuanian, Bulgarian, and other Eastern European communities speak Russian, which makes the Russian speaking community the second largest segment of the foreign born US population, which is estimated at 5 million people.
+                    div(style='width:170px;height:170px')
+                        img.image-responsive(ng-src="https://s3-us-west-2.amazonaws.com/svet.com/home/about-us/ru-demographics-200.png" style='width:150px;height:150px')
+        md-tab
             md-tab-label Household
             md-tab-body
-                sv-profile-subheader(subhead-title="customers")
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+                div(class='ml++ mr+ mb')
+                    p • 64% are married with an average of 1.6 children per family
+                    p • 57% are homeowners (compared to 41% for all US foreign born)
+        md-tab
             md-tab-label Income
             md-tab-body
-                sv-profile-subheader(subhead-title="authors")
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+                div(class='ml++ mr+ mb')
+                    p • Average Annual Household Income is $87,500.
+                    p • 27.4% have an income of $100,000 or higher.
+        md-tab
             md-tab-label Education
             md-tab-body
-                sv-profile-subheader(subhead-title="authors")
-        md-tab.sv-tabs(md-stretch-tabs="never" )
-            md-tab-label Age Everage
+                div(class='ml++ mr+ mb')
+                    div(class='ml++')
+                        p The inclination of this second largest foreign-born market segment towards higher education and high-paying employment ultimately leads to higher readership.
+                            p • 63% of the population hold a bachelor's degree or higher
+                            p • 82.3% have a High School Diplomas (compared to 67% for all foreign born population).
+        md-tab
+            md-tab-label Age Average
             md-tab-body
-                sv-profile-subheader(subhead-title="authors")
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+                div(class='ml++ mr+ mb')
+                    p The median age is 32.5 years (compared to 38.1 years for all foreign born).
+                    div(class='ml++')
+                        p • 33.8% are 55 years old and over
+                        p • 57.6% are 25-54 years old
+                        p • 8.6% are 0-24 years old
+        md-tab
             md-tab-label Employment
             md-tab-body
-                sv-profile-subheader(subhead-title="authors")
+                div(class='ml++ mr+ mb')
+                    p As an educated community, Russian-Americans focus more on business ownership and post-collegiate work, which results in higher-paying employment.
+                    div(class='ml++')
+                        p • 67.5% hold managerial, technical and sales occupations (compared to 45.6% within these same areas for all foreign-born).
+                        p • 21.4% are employed in service occupations (compared to 31.2% for all foreign-born).
+                        p • 11.9% are employed as operators, fabricators and/or laborers (compared to 18.7% for all foreign-born).
 

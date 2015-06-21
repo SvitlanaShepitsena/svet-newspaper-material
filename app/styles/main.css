@@ -604,6 +604,11 @@ p {
   font-weight: 400;
   line-height: 1.7em;
 }
+@media screen and (max-width: 992px) {
+  p {
+    font-size: 1em;
+  }
+}
 .ta-scroll-window > .ta-bind > p > img {
   max-width: 100%;
 }
@@ -796,7 +801,6 @@ md-tab-item span {
 }
 md-tab-content {
   margin-top: 16px;
-  height: 100%;
 }
 /***************/
 /*=lumx custom typography*/

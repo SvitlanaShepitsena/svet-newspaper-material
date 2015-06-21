@@ -34,10 +34,14 @@
 /**********************
  = Bootstrap active button fix
 ***********************/
-p
+p {
   font-size 1.1em
   font-weight 400
   line-height 1.7em
+  @media screen and (max-width: 992px) {
+    font-size 1em
+  }
+}
 
 .ta-scroll-window > .ta-bind > p > img
   max-width 100%
@@ -229,7 +233,8 @@ md-tab-item
 
 md-tab-content
   margin-top 16px
-  height 100%
+
+//height 100%
 
 /***************/
 /*=lumx custom typography*/
