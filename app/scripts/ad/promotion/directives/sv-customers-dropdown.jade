@@ -1,1 +1,12 @@
-div sv-customers-dropdown Template
+div
+    lx-dropdown(over-toggle='true')
+        button.btn.btn--m.btn--black.btn--flat(lx-ripple='', lx-dropdown-toggle='')
+            span {{selectedCustomer.profile.userName ||'Select Customer'}}
+            i.mdi.mdi-chevron-double-down
+        lx-dropdown-menu
+            ul
+                li(ng-repeat='customer in customers')
+                    a.dropdown-link(ng-click='setSelectedCustomer(customer)')
+                        div(layout='row' layout-align='start center')
+                            img(ng-src='{{customer.profile.avatar || defaultAvatar}}' width='20px' height='20px')
+                            span.l-padding-10 {{customer.profile.userName}}

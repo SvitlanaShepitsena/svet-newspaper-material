@@ -41,6 +41,9 @@
   transition: all 1s;
   -webkit-transition: all 1s;
 }
+.l-padding-10 {
+  padding-left: 10px;
+}
 [sv-animate-on-index-change] {
   position: relative;
   top: 0;

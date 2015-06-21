@@ -7,9 +7,7 @@ div(flow-init='')
             input(type='text' ng-model='ad.name' name='name' required )
         md-input-container.pl.pr(ng-if='user.isManager()')
             div(flex-item='')
-                md-select(ng-model='ad.customer')
-                    md-select-label {{ad.customer?ad.customer:'Select Customer'}}
-                    md-option(ng-repeat='customer in customers' ng-value='customer.profile.userName' ) {{customer.profile.userName}}
+                sv-customers-dropdown(customers='customers' selected-customer='ad.customer')
         div(class='mb+ pl pr')
             sv-image-upload()
         div(class='mb+' pl pr)
