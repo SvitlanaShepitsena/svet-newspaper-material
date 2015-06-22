@@ -47,6 +47,11 @@
 				})
 				
 				
+				.state("app.event-article", {
+					url: "/event-article", 
+					controller:"Event-articleCtrl",
+					templateUrl: "scripts/events/views/event-articleCtrl.html"
+				})
 //#state'
         });
 })();
