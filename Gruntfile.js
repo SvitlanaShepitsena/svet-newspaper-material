@@ -26,6 +26,8 @@ var enterInside = function (target, before, insert, isModule) {
         start = target.indexOf(wrapper) + 1;
         start = target.indexOf('>', start) + 1;
         start = target.indexOf('Routes', start) + 1;
+        start = target.indexOf('>', start) + 1;
+        start = target.indexOf('>', start) + 1;
     } else {
 
 
