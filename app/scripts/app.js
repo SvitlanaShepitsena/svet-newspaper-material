@@ -2,6 +2,7 @@
 
     angular.module('app', [
         // modules
+		'sections.testimonials',
         'ui.router',
         'pascalprecht.translate',
         'underscore.string',
