@@ -51,6 +51,11 @@
                     templateUrl: "scripts/events/views/event-articleCtrl.html"
                 })
 				
+				.state("app.test-delete", {
+					url: "/test-delete", 
+					controller:"TestDeleteCtrl",
+					templateUrl: "scripts/events/views/test-deleteCtrl.html"
+				})
 //#state'
         });
 })();
