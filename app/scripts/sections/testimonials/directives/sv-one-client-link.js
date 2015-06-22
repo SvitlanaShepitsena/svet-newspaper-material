@@ -7,7 +7,10 @@
                 replace: true,
                 templateUrl: 'scripts/sections/testimonials/directives/sv-one-client-link.html',
                 scope: {
-
+                    webAddress: '@',
+                    clientLogo: '@',
+                    imgWidth: '@',
+                    imgHeight: '@',
                 },
                 link: function ($scope, el, attrs) {
 
