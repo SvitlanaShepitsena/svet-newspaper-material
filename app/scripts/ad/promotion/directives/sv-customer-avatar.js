@@ -8,7 +8,6 @@
                 templateUrl: 'scripts/ad/promotion/directives/sv-customer-avatar.html',
                 scope: {
                     customer:'='
-
                 },
                 link: function ($scope, el, attrs) {
                     $scope.defaultAvatar=avatar;

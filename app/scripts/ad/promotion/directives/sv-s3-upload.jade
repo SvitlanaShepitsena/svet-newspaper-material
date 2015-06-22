@@ -1,0 +1,20 @@
+div
+    input(type='checkbox', ng-model='multiple')
+    | upload multiple file
+    |     watching model:
+    .button(ngf-select='', ng-model='files', ngf-multiple='multiple') Select File
+    |     on file change:
+    .button(ngf-select='', ngf-change='upload($files)', ngf-multiple='multiple') Select File
+    |     Drop File:
+    .drop-box(ngf-drop='', ngf-select='', ng-model='files', ngf-drag-over-class='dragover', ngf-multiple='true', ngf-allow-dir='true', accept='image/*,application/pdf') Drop pdfs or images here or click to upload
+    div(ngf-no-file-drop='') File Drag/Drop is not supported for this browser
+    |     Files:
+    ul
+        li(ng-repeat='f in files', style='font:smaller') {{f.name}}
+    |     Upload Log:
+    pre {{log}}
+
+
+
+
+

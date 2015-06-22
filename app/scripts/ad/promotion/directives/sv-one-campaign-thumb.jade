@@ -3,7 +3,9 @@
         span.display-block.fs-title.tc-grey-800 {{'campaign-name'|translate}}: {{ad.name}}
         span.display-block.fs-caption.tc-grey-600 {{'date-created'|translate}}: {{ad.timestamp|date}}
     div(class='m+')
-        img(ng-src="{{ad.banner}}")
+        sv-customer-avatar(customer='ad.customer')
+    div(class='m+')
+        img(ng-src="{{ad.banner}}" width='30%')
     div(class='ml+ mr+ mb+')
         span.display-block.fs-subhead {{'showing-stat'|translate}}
         //span.display-block.fs-subhead.tc-grey-700(style='text-decoration:underline') {{'unique'|translate}}: {{ad.shows.unique}}
