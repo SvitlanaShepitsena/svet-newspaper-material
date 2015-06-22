@@ -46,11 +46,7 @@
 					templateUrl: "scripts/events/views/kohl2015Ctrl.html"
 				})
 				
-				.state("app.event-aricle", {
-					url: "/event-aricle", 
-					controller:"Event-aricleCtrl",
-					templateUrl: "scripts/events/views/event-aricleCtrl.html"
-				})
+				
 //#state'
         });
 })();
