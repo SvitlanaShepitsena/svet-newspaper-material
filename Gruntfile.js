@@ -416,7 +416,7 @@ module.exports = function (grunt) {
 
         } else {
 
-            indf = enterInside(indf, before, src);
+            indf = enterInside(indf, before, src, true);
         }
 
         if (rm) {
@@ -513,7 +513,7 @@ module.exports = function (grunt) {
 
         } else {
 
-            indf = enterInside(indf, before, src);
+            indf = enterInside(indf, before, src, true);
         }
 
         if (rm) {
@@ -624,7 +624,7 @@ module.exports = function (grunt) {
 
         } else {
 
-            indf = enterInside(indf, before, src);
+            indf = enterInside(indf, before, src, true);
         }
         if (!attr) {
 
