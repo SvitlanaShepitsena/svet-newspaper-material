@@ -1,0 +1,5 @@
+.sv-iframe-responsive-wrap iframe,
+.sv-iframe-responsive-wrap object,
+.sv-iframe-responsive-wrap embed {
+  max-width: 100%;
+}
