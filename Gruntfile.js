@@ -4,6 +4,8 @@ var processModule = function (module) {
 }
 
 var enterInside = function (target, before, insert) {
+    console.log(before);
+
     var newLine = '';
     if (target === undefined) {
         return target;
