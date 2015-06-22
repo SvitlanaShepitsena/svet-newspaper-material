@@ -6,9 +6,7 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/events/directives/sv-one-event-article.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
 
                 }
