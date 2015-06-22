@@ -2,6 +2,7 @@
 
     angular.module('app', [
         // modules
+		'sections.testimoniasl',
         'ui.router',
         'ngFileUpload',
         'pascalprecht.translate',
