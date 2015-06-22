@@ -5,7 +5,7 @@
     angular.module('app', [
         // modules
         'ui.router',
-        'angular.aws.s3',
+        'ngFileUpload',
         'pascalprecht.translate',
         'underscore.string',
         'auth',
