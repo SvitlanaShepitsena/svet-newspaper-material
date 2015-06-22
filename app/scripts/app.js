@@ -2,7 +2,6 @@
 
     angular.module('app', [
         // modules
-		'sections.testimonials',
         'ui.router',
         'pascalprecht.translate',
         'underscore.string',
@@ -27,6 +26,7 @@
         'sections.archive',
         'sections.home',
         'sections.contact',
+		'sections.testimonials',
         'sections.radio',
         'sections.widgets',
         // 3rd party modules
