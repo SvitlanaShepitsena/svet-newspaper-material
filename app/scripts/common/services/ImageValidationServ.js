@@ -14,6 +14,14 @@
                     if (attrs.svMinHeight && img.height < attrs.svMinHeight) {
                         errMessages.push('Image height is below the limit');
                     }
+                    if (attrs.svMaxWidth && img.width > attrs.svMaxWidth) {
+                        errMessages.push('Should be in '+attrs.svMinWidth +'px - '+attrs.svMaxWidth+'px range.');
+                        errMessages.push('Image width is above  the limit');
+                    }
+                    if (attrs.svMaxHeight && img.height > attrs.svMaxHeight) {
+                        errMessages.push('Should be in '+attrs.svMinHeight+'px - '+attrs.svMaxHeight+'px range.');
+                        errMessages.push('Image height is above the limit');
+                    }
                     return errMessages;
                 }
             }

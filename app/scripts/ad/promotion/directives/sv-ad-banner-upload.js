@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('ad.promotion')
-        .directive('svAdBannerUpload', function (ImageValidationServ) {
+        .directive('svAdBannerUpload', function (ImageValidationServ,toastr) {
             return {
                 templateUrl: 'scripts/ad/promotion/directives/sv-ad-banner-upload.html',
                 link: function ($scope, el, attrs) {
