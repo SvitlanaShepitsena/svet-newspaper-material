@@ -1,7 +1,5 @@
 (function () {
 
-
-
     angular.module('app', [
         // modules
         'ui.router',
@@ -24,11 +22,12 @@
         'events',
         'common',
         'sections.header',
-		'sections.about',
-		'sections.demographics',
+        'sections.about',
+        'sections.demographics',
         'sections.archive',
         'sections.home',
         'sections.contact',
+		'sections.testimonials',
         'sections.radio',
         'sections.widgets',
         // 3rd party modules
@@ -50,7 +49,7 @@
             ezfbProvider.setInitParams({
                 //appId: '258826184311868',
                 appId: '1405000443143632',
-                xfbml      : true,
+                xfbml: true,
                 version: 'v2.3'
             });
         })
@@ -74,19 +73,19 @@
             /*radio programs*/
         })
         //// COMMENT ON PRODUCTION
-        .factory('$exceptionHandler', function ($injector) {
-            return function (exception, cause) {
-                var $rootScope = $injector.get('$rootScope');
-                var toastr = $injector.get('toastr');
-                exception.message = exception.stack;
-
-                //Comment on Production
-                toastr.error('ERROR!' + exception.message);
-                $rootScope.$broadcast('error');
-                throw exception;
-            };
-        })
+        //.factory('$exceptionHandler', function ($injector) {
+        //    return function (exception, cause) {
+        //        var $rootScope = $injector.get('$rootScope');
+        //        var toastr = $injector.get('toastr');
+        //        exception.message = exception.stack;
+        //
+        //        //Comment on Production
+        //        toastr.error('ERROR!' + exception.message);
+        //        $rootScope.$broadcast('error');
+        //        throw exception;
+        //    };
+        //})
         .config(['$compileProvider', function ($compileProvider) {
-            //$compileProvider.debugInfoEnabled(false);
+            $compileProvider.debugInfoEnabled(false);
         }]);
 })();

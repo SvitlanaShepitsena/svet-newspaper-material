@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('sections.about')
-        .directive('svAboutSvet', function () {
+    angular.module('sections.demographics')
+        .directive('svDemographicsTabs', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/sections/about/directives/sv-about-svet.html',
+                templateUrl: 'scripts/sections/demographics/directives/sv-demographics-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
 

@@ -2,22 +2,6 @@ div.mt(layout='column' flex='' layout-align='center center' class='ml mr')
     div.text-center.pl.pr
         sv-profile-title(header-title="Contact Us")
     div(flex)
-        .card(class='mb++')
-            .bgc-grey-200.p
-                span.display-block.fs-headline.m SVET Media Group
-            md-divider
-            .p.ml.mr
-                span.display-block.fs-body-1.mt 900 Skokie Blvd., Suite 103,
-                span.display-block.fs-body-1 Northbrook, IL 60062
-                span.display-block.fs-body-1
-                    i.mdi.mdi-phone
-                    | &nbsp (847)715-9407
-                span.display-block.fs-body-1
-                    i.mdi.mdi-deskphone
-                    | &nbsp (847)715-9677
-                span.display-block.fs-body-1
-                    i.mdi.mdi-email
-                    | &nbsp manager@svet.com
-                //img.img-responsive.display-inline-block.mt(src="../img/contact/address-map.jpg")
+        sv-contact-us
     div(layout='column' layout-align='center center' class='mb+ ml mr')
-            iframe(src="https://www.google.com/maps/d/embed?mid=zdTHzl0THQeM.kJQxl2t2rCe0" width="640" height="680")
+        iframe(src="https://www.google.com/maps/d/embed?mid=zdTHzl0THQeM.kJQxl2t2rCe0" width="640" height="680")

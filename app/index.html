@@ -119,8 +119,8 @@
                 <sv-header-classified-btn></sv-header-classified-btn>
                 <!--<sv-header-subscription-btn hide-sm></sv-header-subscription-btn>-->
                 <!--<span flex></span>-->
-                <div class='md-whiteframe-z1 p'>
-                    <sv-classified-header-phone hide-sm hide-gt-sm hide-md show-gt-md></sv-classified-header-phone>
+                <div class='md-whiteframe-z1 p' hide-sm hide-gt-sm hide-md show-gt-md>
+                    <sv-classified-header-phone></sv-classified-header-phone>
                 </div>
                 <span flex></span>
                 <sv-profile-type class='mr'></sv-profile-type>
@@ -166,6 +166,7 @@
                                         icon="information-outline"
                                         custom-style="font-weight:600"
                                         title="about us"
+                                        bgc="grey-300"
                                         txt-color="grey-700"
                                         color="white" btn-size="l"
                                         class="mb+">
@@ -173,15 +174,27 @@
                             <sv-nav-btn url="app.demographics"
                                         icon="chart-pie"
                                         custom-style="font-weight:600"
+                                        bgc="red-300"
                                         title="Advertise with us!"
-                                        txt-color="grey-700"
+                                        txt-color="grey-50"
                                         color="white" btn-size="l"
+                                        class="mb+">
+                            </sv-nav-btn>
+                            <sv-nav-btn url="app.testimonials"
+                                        icon="account-multiple"
+                                        custom-style="font-weight:600"
+                                        title="{{'our-clients'|translate}}"
+                                        bgc="grey-300"
+                                        txt-color="grey-700"
+                                        color="white"
+                                        btn-size="l"
                                         class="mb+">
                             </sv-nav-btn>
                             <sv-nav-btn url="app.contact"
                                         icon="map-marker"
                                         custom-style="font-weight:600"
                                         title="{{'contacts'|translate}}"
+                                        bgc="grey-300"
                                         txt-color="grey-700"
                                         color="white"
                                         btn-size="l"
@@ -543,13 +556,21 @@
 
 <!-- sections.demographics -->
 <script src="scripts/sections/demographics/demographicsRoutes.js"></script>
+<script src="scripts/sections/demographics/directives/sv-ru-attractive-market.js"></script>
+<script src="scripts/sections/demographics/controllers/DemographicsCtrl.js"></script>
 <script src="scripts/sections/demographics/directives/sv-top-ru-states.js"></script>
 <script src="scripts/sections/demographics/directives/sv-ru-demographics.js"></script>
-<script src="scripts/sections/demographics/controllers/DemographicsCtrl.js"></script>
+<script src="scripts/sections/demographics/directives/sv-demographics-tabs.js"></script>
 <script src="scripts/sections/demographics/demographics-translation.js"></script>
+
+<!-- sections.testimonials -->
+<script src="scripts/sections/testimonials/testimonialsRoutes.js"></script>
+<script src="scripts/sections/testimonials/testimonials-translation.js"></script>
+<script src="scripts/sections/testimonials/controllers/TestimonialsCtrl.js"></script>
 
 <!-- sections.contact -->
 <script src="scripts/sections/contact/contactRoutes.js"></script>
+<script src="scripts/sections/contact/directives/sv-contact-us.js"></script>
 <script src="scripts/sections/contact/contact-translation.js"></script>
 <script src="scripts/sections/contact/controllers/ContactCtrl.js"></script>
 <script src="scripts/sections/contact/controllers/GetSvobodaNewsCtrl.js"></script>

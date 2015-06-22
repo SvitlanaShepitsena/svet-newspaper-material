@@ -8,6 +8,7 @@
                 'chicago': 'Chicago',
                 'usa': 'USA',
                 'blog': 'Blog',
+                'our-clients': 'Our Clients',
                 /*=form*/
                 'login-title': 'Log In to Your Account',
                 'not-registered': 'Not Registered',
@@ -50,6 +51,7 @@
                 'chicago': 'Чикаго',
                 'usa': 'США',
                 'blog': 'Блог',
+                'our-clients': 'Наши клиенты',
                 /*=form*/
                 'login-title': 'Вход',
                 'quick-look': 'Просмотр',

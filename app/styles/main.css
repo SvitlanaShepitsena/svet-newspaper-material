@@ -463,6 +463,12 @@ md-icon {
   display: block;
   margin-bottom: 4px !important;
 }
+.head-ad:hover,
+.head-ad:active,
+.head-ad:focus {
+  text-decoration: none;
+  color: #757575;
+}
 @media screen and (max-width: 992px) {
   .head-ad {
     font-size: 10px;
@@ -628,6 +634,11 @@ p {
   font-size: 1.1em;
   font-weight: 400;
   line-height: 1.7em;
+}
+@media screen and (max-width: 992px) {
+  p {
+    font-size: 1em;
+  }
 }
 .ta-scroll-window > .ta-bind > p > img {
   max-width: 100%;
@@ -821,7 +832,6 @@ md-tab-item span {
 }
 md-tab-content {
   margin-top: 16px;
-  height: 100%;
 }
 /***************/
 /*=lumx custom typography*/
