@@ -19,7 +19,7 @@ var enterInside = function (target, before, insert, isModule) {
     var start, startAfterIndex;
 
     if (isModule) {
-        var moduleToInsert = before.join(',');
+        var moduleToInsert = before.join('.');
         var wrapper = '<!-- ' + moduleToInsert + ' -->';
 
 
