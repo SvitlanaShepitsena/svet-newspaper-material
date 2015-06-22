@@ -50,6 +50,9 @@
                     controller: "Event-articleCtrl",
                     templateUrl: "scripts/events/views/event-articleCtrl.html"
                 })
+				
+				
+				
 //#state'
         });
 })();

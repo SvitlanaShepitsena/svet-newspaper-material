@@ -3,7 +3,9 @@ var processModule = function (module) {
     return module;
 }
 
-var enterInside = function (target, before, insert) {
+var enterInside = function (target, before, insert, isModule) {
+    console.log(before);
+
     var newLine = '';
     if (target === undefined) {
         return target;
@@ -15,37 +17,53 @@ var enterInside = function (target, before, insert) {
     if (test > 0)return target;
 
     var start, startAfterIndex;
-    try {
-        var temp = 0;
-        before.forEach(function (txt) {
-            // need to have a space in order not to be included in submodules. eg. common not to common.test
-            txt += ' ';
-            temp = target.indexOf(txt, temp);
-        });
-        start = target.indexOf('>', temp) + 1;
+
+    if (isModule) {
+        var moduleToInsert = before.join('.');
+        var wrapper = '<!-- ' + moduleToInsert + ' -->';
+
+
+        start = target.indexOf(wrapper) + 1;
+        start = target.indexOf('>', start) + 1;
         start = target.indexOf('Routes', start) + 1;
-        if (start === 0) {
-            start = target.indexOf('//#state', start) + 1;
-        }
-        if (start === 0) {
-            start = target.indexOf('translation', start) + 1;
-        }
-
         start = target.indexOf('>', start) + 1;
         start = target.indexOf('>', start) + 1;
+    } else {
 
-    } catch (e) {
-        var planB = "<!-- ALL CHECK GENERSTORS -->";
-        var planC = "//#state";
 
-        start = target.indexOf(planB);
-        if (start === -1) {
-            start = target.indexOf(planC);
-        } else {
-            //start += planB.length;
+        try {
+            var temp = 0;
+            before.forEach(function (txt) {
+                // need to have a space in order not to be included in submodules. eg. common not to common.test
+                txt += ' ';
+
+                temp = target.indexOf(txt, temp);
+            });
+            start = target.indexOf('>', temp) + 1;
+            start = target.indexOf('Routes', start) + 1;
+            if (start === 0) {
+                start = target.indexOf('//#state', start) + 1;
+            }
+            if (start === 0) {
+                start = target.indexOf('translation', start) + 1;
+            }
+
+            start = target.indexOf('>', start) + 1;
+            start = target.indexOf('>', start) + 1;
+
+        } catch (e) {
+            var planB = "<!-- ALL CHECK GENERSTORS -->";
+            var planC = "//#state";
+
+            start = target.indexOf(planB);
+            if (start === -1) {
+                start = target.indexOf(planC);
+            } else {
+                //start += planB.length;
+            }
         }
+
     }
-
     var p1 = target.substring(0, start) + newLine;
     var p2 = target.substring(start);
     return p1 + insert + p2;
@@ -309,7 +327,7 @@ module.exports = function (grunt) {
 
         } else {
 
-            indf = enterInside(indf, before, src);
+            indf = enterInside(indf, before, src, true);
         }
 
         if (rm) {
@@ -398,7 +416,7 @@ module.exports = function (grunt) {
 
         } else {
 
-            indf = enterInside(indf, before, src);
+            indf = enterInside(indf, before, src, true);
         }
 
         if (rm) {
@@ -495,7 +513,7 @@ module.exports = function (grunt) {
 
         } else {
 
-            indf = enterInside(indf, before, src);
+            indf = enterInside(indf, before, src, true);
         }
 
         if (rm) {
@@ -606,7 +624,7 @@ module.exports = function (grunt) {
 
         } else {
 
-            indf = enterInside(indf, before, src);
+            indf = enterInside(indf, before, src, true);
         }
         if (!attr) {
 
@@ -688,9 +706,9 @@ module.exports = function (grunt) {
             indexAddition += '\r\n<script src="' + moduleTranslation + '"></script>';
         }
 
-        var indexFile=grunt.file.read(INDEXHTML);
+        var indexFile = grunt.file.read(INDEXHTML);
 
-        enterInside(indexFile,module.split('.'),indexAddition);
+        enterInside(indexFile, module.split('.'), indexAddition);
 
 
         includeStyleCreateImgFolder();
