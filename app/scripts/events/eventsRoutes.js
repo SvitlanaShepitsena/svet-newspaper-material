@@ -1,6 +1,6 @@
 (function () {
     'use strict'
-    angular.module('events', ['ui.router','mwl.calendar'])
+    angular.module('events', ['ui.router', 'mwl.calendar'])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                 /*=events*/
@@ -35,17 +35,21 @@
                     controller: "EventsPhotoGalleryCtrl as eventsPhotoGallery",
                     templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
                 })
-				.state("app.one-event", {
-					url: "/one-event/:eid",
-					controller:"OneEventCtrl",
-					templateUrl: "scripts/events/views/one-eventCtrl.html"
-				})
-				.state("app.kohl2015", {
-					url: "/kohl2015", 
-					controller:"Kohl2015Ctrl",
-					templateUrl: "scripts/events/views/kohl2015Ctrl.html"
-				})
-				
+                .state("app.one-event", {
+                    url: "/one-event/:eid",
+                    controller: "OneEventCtrl",
+                    templateUrl: "scripts/events/views/one-eventCtrl.html"
+                })
+                .state("app.kohl2015", {
+                    url: "/kohl2015",
+                    controller: "Kohl2015Ctrl",
+                    templateUrl: "scripts/events/views/kohl2015Ctrl.html"
+                })
+                .state("app.event-article", {
+                    url: "/event-article",
+                    controller: "Event-articleCtrl",
+                    templateUrl: "scripts/events/views/event-articleCtrl.html"
+                })
 //#state'
         });
 })();
