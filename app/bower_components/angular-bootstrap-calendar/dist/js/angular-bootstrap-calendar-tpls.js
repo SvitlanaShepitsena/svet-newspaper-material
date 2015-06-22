@@ -36,16 +36,20 @@
             function day(currentDay) {
                 return calendarHelper.formatDate(currentDay, calendarConfig.titleFormats.day);
             }
+
             function week(currentDay) {
                 var weekTitleLabel = calendarConfig.titleFormats.week;
                 return weekTitleLabel.replace('{week}', moment(currentDay).week()).replace('{year}', moment(currentDay).format('YYYY'));
             }
+
             function month(currentDay) {
                 return calendarHelper.formatDate(currentDay, calendarConfig.titleFormats.month);
             }
+
             function year(currentDay) {
                 return calendarHelper.formatDate(currentDay, calendarConfig.titleFormats.year);
             }
+
             return {
                 day: day,
                 week: week,
@@ -67,6 +71,7 @@
                     return moment(date).format(format);
                 }
             }
+
             function adjustEndDateFromStartDiff(oldStart, newStart, oldEnd) {
                 if (!oldEnd) {
                     return oldEnd;
@@ -74,6 +79,7 @@
                 var diffInSeconds = moment(newStart).diff(moment(oldStart));
                 return moment(oldEnd).add(diffInSeconds);
             }
+
             function eventIsInPeriod(event, periodStart, periodEnd) {
                 var eventStart = moment(event.startsAt);
                 var eventEnd = moment(event.endsAt || event.startsAt);
@@ -81,37 +87,41 @@
                 periodEnd = moment(periodEnd);
                 if (angular.isDefined(event.recursOn)) {
                     switch (event.recursOn) {
-                    case 'year':
-                        eventStart.set({ year: periodStart.year() });
-                        break;
-                    case 'month':
-                        eventStart.set({
-                            year: periodStart.year(),
-                            month: periodStart.month()
-                        });
-                        break;
-                    default:
-                        throw new Error('Invalid value (' + event.recursOn + ') given for recurs on. Can only be year, month or week.');
+                        case 'year':
+                            eventStart.set({year: periodStart.year()});
+                            break;
+                        case 'month':
+                            eventStart.set({
+                                year: periodStart.year(),
+                                month: periodStart.month()
+                            });
+                            break;
+                        default:
+                            throw new Error('Invalid value (' + event.recursOn + ') given for recurs on. Can only be year, month or week.');
                     }
                     eventEnd = adjustEndDateFromStartDiff(event.startsAt, eventStart, eventEnd);
                 }
                 return eventStart.isAfter(periodStart) && eventStart.isBefore(periodEnd) || eventEnd.isAfter(periodStart) && eventEnd.isBefore(periodEnd) || eventStart.isBefore(periodStart) && eventEnd.isAfter(periodEnd) || eventStart.isSame(periodStart) || eventEnd.isSame(periodEnd);
             }
+
             function filterEventsInPeriod(events, startPeriod, endPeriod) {
                 return events.filter(function (event) {
                     return eventIsInPeriod(event, startPeriod, endPeriod);
                 });
             }
+
             function getEventsInPeriod(calendarDate, period, allEvents) {
                 var startPeriod = moment(calendarDate).startOf(period);
                 var endPeriod = moment(calendarDate).endOf(period);
                 return filterEventsInPeriod(allEvents, startPeriod, endPeriod);
             }
+
             function getBadgeTotal(events) {
                 return events.filter(function (event) {
                     return event.incrementsBadgeTotal !== false;
                 }).length;
             }
+
             function getWeekDayNames() {
                 var weekdays = [];
                 var count = 0;
@@ -120,6 +130,7 @@
                 }
                 return weekdays;
             }
+
             function getYearView(events, currentDay) {
                 var view = [];
                 var eventsInPeriod = getEventsInPeriod(currentDay, 'year', events);
@@ -141,6 +152,7 @@
                 }
                 return view;
             }
+
             function getMonthView(events, currentDay) {
                 var startOfMonth = moment(currentDay).startOf('month');
                 var day = startOfMonth.clone().startOf('week');
@@ -177,6 +189,7 @@
                 }
                 return view;
             }
+
             function getWeekView(events, currentDay) {
                 var startOfWeek = moment(currentDay).startOf('week');
                 var endOfWeek = moment(currentDay).endOf('week');
@@ -225,6 +238,7 @@
                     events: eventsSorted
                 };
             }
+
             function getDayView(events, currentDay, dayViewStart, dayViewEnd, dayViewSplit) {
                 var dayStartHour = moment(dayViewStart || '00:00', 'HH:mm').hours();
                 var dayEndHour = moment(dayViewEnd || '23:00', 'HH:mm').hours();
@@ -283,6 +297,7 @@
                     return event;
                 });
             }
+
             function getWeekViewWithTimes(events, currentDay, dayViewStart, dayViewEnd, dayViewSplit) {
                 var weekView = getWeekView(events, currentDay);
                 var newEvents = [];
@@ -296,12 +311,14 @@
                 weekView.events = newEvents;
                 return weekView;
             }
+
             function getDayViewHeight(dayViewStart, dayViewEnd, dayViewSplit) {
                 var dayViewStartM = moment(dayViewStart || '00:00', 'HH:mm');
                 var dayViewEndM = moment(dayViewEnd || '23:00', 'HH:mm');
                 var hourHeight = 60 / dayViewSplit * 30;
                 return (dayViewEndM.diff(dayViewStartM, 'hours') + 1) * hourHeight + 2;
             }
+
             return {
                 getWeekDayNames: getWeekDayNames,
                 getYearView: getYearView,
@@ -324,12 +341,14 @@
                 var timeout;
                 return function () {
                     var context = this, args = arguments;
+
                     function later() {
                         timeout = null;
                         if (!immediate) {
                             func.apply(context, args);
                         }
                     }
+
                     var callNow = immediate && !timeout;
                     $timeout.cancel(timeout);
                     timeout = $timeout(later, wait);
@@ -338,6 +357,7 @@
                     }
                 };
             }
+
             return debounce;
         }
     ]);
@@ -492,6 +512,7 @@
                 }
                 return calendarHelper.formatDate(date, format);
             }
+
             calendarDate.$stateful = true;
             return calendarDate;
         }
@@ -537,7 +558,7 @@
                 },
                 ondrop: function (event) {
                     if (event.relatedTarget.dropData) {
-                        $parse($attrs.onDrop)($scope, { dropData: event.relatedTarget.dropData });
+                        $parse($attrs.onDrop)($scope, {dropData: event.relatedTarget.dropData});
                         $scope.$apply();
                     }
                 }
@@ -569,14 +590,16 @@
             var snap, snapGridDimensions;
             if ($attrs.snapGrid) {
                 snapGridDimensions = $parse($attrs.snapGrid)($scope);
-                snap = { targets: [interact.createSnapGrid(snapGridDimensions)] };
+                snap = {targets: [interact.createSnapGrid(snapGridDimensions)]};
             }
             function translateElement(elm, transformValue) {
                 return elm.css('transform', transformValue).css('-ms-transform', transformValue).css('-webkit-transform', transformValue);
             }
+
             function canDrag() {
                 return $parse($attrs.mwlDraggable)($scope);
             }
+
             function getUnitsMoved(x, y, gridDimensions) {
                 var result = {
                     x: x,
@@ -590,6 +613,7 @@
                 }
                 return result;
             }
+
             interact($element[0]).draggable({
                 snap: snap,
                 onstart: function (event) {
@@ -609,13 +633,13 @@
                         var x = (parseFloat(elm.attr('data-x')) || 0) + (event.dx || 0);
                         var y = (parseFloat(elm.attr('data-y')) || 0) + (event.dy || 0);
                         switch ($parse($attrs.axis)($scope)) {
-                        case 'x':
-                            y = 0;
-                            break;
-                        case 'y':
-                            x = 0;
-                            break;
-                        default:
+                            case 'x':
+                                y = 0;
+                                break;
+                            case 'y':
+                                x = 0;
+                                break;
+                            default:
                         }
                         if ($window.getComputedStyle(elm[0]).position === 'static') {
                             elm.css('position', 'relative');
@@ -671,6 +695,7 @@
                 }
                 $scope.$apply();
             }
+
             $element.bind('click', onClick);
             $scope.$on('$destroy', function () {
                 $element.unbind('click', onClick);
@@ -739,7 +764,7 @@
             });
             vm.monthClicked = function (month, monthClickedFirstRun) {
                 if (!monthClickedFirstRun) {
-                    $scope.onTimespanClick({ calendarDate: month.date.toDate() });
+                    $scope.onTimespanClick({calendarDate: month.date.toDate()});
                 }
                 vm.openRowIndex = null;
                 var monthIndex = vm.view.indexOf(month);
@@ -912,7 +937,7 @@
             });
             vm.dayClicked = function (day, dayClickedFirstRun) {
                 if (!dayClickedFirstRun) {
-                    $scope.onTimespanClick({ calendarDate: day.date.toDate() });
+                    $scope.onTimespanClick({calendarDate: day.date.toDate()});
                 }
                 vm.openRowIndex = null;
                 var dayIndex = vm.view.indexOf(day);
@@ -978,6 +1003,7 @@
         function ($scope, moment, calendarConfig, calendarHelper) {
             var vm = this;
             var dayViewStart, dayViewEnd;
+
             function updateDays() {
                 dayViewStart = moment($scope.dayViewStart || '00:00', 'HH:mm');
                 dayViewEnd = moment($scope.dayViewEnd || '23:00', 'HH:mm');
@@ -985,10 +1011,11 @@
                 vm.hours = [];
                 var dayCounter = moment(dayViewStart);
                 for (var i = 0; i <= dayViewEnd.diff(dayViewStart, 'hours'); i++) {
-                    vm.hours.push({ label: calendarHelper.formatDate(dayCounter, calendarConfig.dateFormats.hour) });
+                    vm.hours.push({label: calendarHelper.formatDate(dayCounter, calendarConfig.dateFormats.hour)});
                     dayCounter.add(1, 'hour');
                 }
             }
+
             var originalLocale = moment.locale();
             $scope.$on('calendar.refreshView', function () {
                 if (originalLocale !== moment.locale()) {
@@ -1096,13 +1123,16 @@
                 if (calendarTitle[$scope.view]) {
                     $scope.viewTitle = calendarTitle[$scope.view]($scope.currentDay);
                 }
-                $scope.events = $scope.events.map(function (event, index) {
-                    Object.defineProperty(event, '$id', {
-                        enumerable: false,
-                        value: index
+                if ($scope.events.map) {
+
+                    $scope.events = $scope.events.map(function (event, index) {
+                        Object.defineProperty(event, '$id', {
+                            enumerable: false,
+                            value: index
+                        });
+                        return event;
                     });
-                    return event;
-                });
+                }
                 //if on-timespan-click="calendarDay = calendarDate" is set then dont update the view as nothing needs to change
                 var currentDate = moment($scope.currentDay);
                 var shouldUpdate = true;
