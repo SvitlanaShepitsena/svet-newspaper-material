@@ -8,6 +8,7 @@
                 templateUrl: 'scripts/common/directives/sv-photogallery-modal.html',
                 scope: {
                     event: '=',
+                    btnSize: '@',
                     hide: '&dialogHide'
                 },
                 link: function ($scope, el, attrs) {

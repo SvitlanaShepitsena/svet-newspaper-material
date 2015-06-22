@@ -5,6 +5,7 @@
             $translateProvider.useCookieStorage();
             $translateProvider.translations('en', {
                 'events': 'Events',
+                'event-photo-gallery': 'Event Photo Gallery',
                 'active-events': 'Active Events',
                 'cancel-registration': 'Cancel Registration',
                 'ended-events': 'Ended Events',
@@ -40,6 +41,7 @@
                 'quick-view': 'Quick View'
             });
             $translateProvider.translations('ru', {
+                'event-photo-gallery': 'Event Photo Gallery',
                 'save-changes': 'Сохранить Изменения',
                 'events': 'Мероприятия',
                 'ended-events': 'Прошедшие Мероприятия',
