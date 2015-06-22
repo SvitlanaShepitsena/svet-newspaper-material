@@ -479,11 +479,6 @@ md-icon {
     font-size: 13px !important;
   }
 }
-iframe,
-object,
-embed {
-  max-width: 100%;
-}
 .nav-link {
   background-color: #e0e0e0 !important;
 }
