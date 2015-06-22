@@ -41,6 +41,7 @@
                     $scope.adIndex = 0;
                     AdServ.allArrShuffled().then(function (ads) {
                         $scope.ads = ads;
+                        $scope.ad = $scope.ads[$scope.adIndex];
                         $scope.currentAd = $scope.ads[$scope.adIndex].banner;
                         AdServ.increaseShow($scope.ads[$scope.adIndex].$id);
                     });
@@ -51,6 +52,8 @@
                         index = index < 0 ? $scope.ads.length - 1 : index;
                         $scope.adIndex = index;
                         $timeout(function () {
+
+                            $scope.ad = $scope.ads[$scope.adIndex];
                             $scope.currentAd = $scope.ads[$scope.adIndex].banner;
                         }, 700);
                         AdServ.increaseShow($scope.ads[$scope.adIndex].$id);
@@ -61,6 +64,8 @@
                         index = index === $scope.ads.length ? 0 : index;
                         $scope.adIndex = index;
                         $timeout(function () {
+
+                            $scope.ad = $scope.ads[$scope.adIndex];
                             $scope.currentAd = $scope.ads[$scope.adIndex].banner;
                         }, 700);
                         AdServ.increaseShow($scope.ads[$scope.adIndex].$id);

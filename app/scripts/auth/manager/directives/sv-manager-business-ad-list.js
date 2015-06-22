@@ -9,6 +9,7 @@
                 link: function ($scope, el, attrs) {
                     $scope.ads = AdServ.all();
                     $scope.user = userAuth.profile;
+
                     $scope.removeAd = function (ad) {
                         AdServ.removeAd(ad).then(function () {
                             toastr.warning('You campaign has been deleted');

@@ -13,7 +13,10 @@
                 'my-ad': 'My Advertisement',
                 'my-ad-campaign': 'My Advertisement Campaign',
                 'campaign-name': 'Campaign Name',
-                'ad-place': 'Advertisement Place'
+                'ad-place': 'Advertisement Place',
+                'www': 'Company Web Site',
+                'anchor': 'Outbound Anchor Text'
+
             });
             $translateProvider.translations('ru', {
                 'business-promotion': 'Продвижение Вашего Бизнеса',
@@ -25,7 +28,10 @@
                 'my-ad': 'Объявления',
                 'my-ad-campaign': 'Моя Рекламная Кампания',
                 'campaign-name': 'Название Кампании',
-                'ad-place': 'Место показа рекламы'
+                'ad-place': 'Место показа рекламы',
+
+                'www': 'Сайт компании',
+                'anchor': 'Текст Ссылки'
             });
             $translateProvider.preferredLanguage('en');
         }]);

@@ -8,8 +8,9 @@
                 require: '?^form',
                 compile: function (elTemp, attr) {
                     /*find required form elements with JQuery*/
-                    var inputs = elTemp.find('input[required]');
+                    var inputs = elTemp.find('input');
                     var textAreas = elTemp.find('textarea[required]');
+
                     var formElements = _.union(inputs, textAreas);
                     var formElementsNames = _.pluck(formElements, 'name');
                     /*for Lumx Form*/
