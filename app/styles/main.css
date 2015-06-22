@@ -438,6 +438,12 @@ md-icon {
   display: block;
   margin-bottom: 4px !important;
 }
+.head-ad:hover,
+.head-ad:active,
+.head-ad:focus {
+  text-decoration: none;
+  color: #757575;
+}
 @media screen and (max-width: 992px) {
   .head-ad {
     font-size: 10px;

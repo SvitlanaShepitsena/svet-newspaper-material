@@ -1,5 +1,5 @@
-md-content.card
-    md-tabs(md-selected='selectedIndex' md-dynamic-height='' style='min-height:230px')
+md-content.md-padding.card
+    md-tabs(md-selected='selectedIndex' md-dynamic-height='' style='min-height:230px' md-autoselect md-border-bottom)
         md-tab
             md-tab-label Demographics
             md-tab-body
@@ -7,10 +7,16 @@ md-content.card
         md-tab
             md-tab-label Language
             md-tab-body
-                div(layout-gt-sm='row' layout-sm='column' layout-align='center top' class='ml+ mr pb mb')
-                    p.pr.pl Ukrainian, Lithuanian, Bulgarian, and other Eastern European communities speak Russian, which makes the Russian speaking community the second largest segment of the foreign born US population, which is estimated at 5 million people.
-                    div(style='width:170px;height:170px')
-                        img.image-responsive(ng-src="https://s3-us-west-2.amazonaws.com/svet.com/home/about-us/ru-demographics-200.png" style='width:150px;height:150px')
+                div(layout-gt-sm='row' layout-sm='column' layout-align='center top' )
+                    p.pr.pl.tc-grey-800
+                        em Ukrainian, Lithuanian, Bulgarian, and other Eastern European communities speak &nbsp
+                        span(style='font-weight:bold') Russian, &nbsp
+                        | which makes &nbsp
+                        strong the Russian speaking community &nbsp
+                        em the second largest segment of the foreign born US population, &nbsp
+                        | which is estimated at 5 million people.
+                    div(style='width:200px')
+                        img(ng-src="https://s3-us-west-2.amazonaws.com/svet.com/home/about-us/ru-demographics-200.png" style='width:150px;height:150px')
         md-tab
             md-tab-label Household
             md-tab-body

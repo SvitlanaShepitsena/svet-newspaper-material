@@ -6,9 +6,7 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/sections/about/directives/sv-about-svet.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
 
                 }
