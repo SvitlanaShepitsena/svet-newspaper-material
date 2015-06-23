@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('events')
-        .directive('svEventArticleThumb', function () {
+        .directive('svEventArticleThumbRu', function () {
             return {
-                templateUrl: 'scripts/events/directives/sv-event-article-thumb.html',
+                templateUrl: 'scripts/events/directives/sv-event-article-thumb-ru.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
 
