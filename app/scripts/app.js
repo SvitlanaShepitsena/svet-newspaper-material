@@ -2,7 +2,6 @@
 
     angular.module('app', [
         // modules
-		'sections.events',
         'ui.router',
         'ngFileUpload',
         'pascalprecht.translate',
