@@ -11,7 +11,7 @@
     .p
         //a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )
         //    .fs-title.tc-black-1(ng-bind-html='safeParsing(topNews.title)')
-        span.fs-caption.display-block.tc-grey-500 {{isFirst? 'Alexander Etman':topNews.author|capitalize}}
+        span.fs-caption.display-block.tc-grey-500 {{isFirst? 'Alexander Etman':topNews.author}}
         span.fs-body-1.display-block(ng-bind-html="safeParsing(topNews.summary||(topNews.body|cut:50))")
     div(layout='row' layout-align='end start' class='pr')
         button.btn.btn--xs.btn--grey.btn--flat(ui-sref='app.article({id:topNews.fbkey})' ) {{'read-more'|translate}} >>

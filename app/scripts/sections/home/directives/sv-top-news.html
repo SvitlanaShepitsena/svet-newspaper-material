@@ -1,1 +1,21 @@
-<div class="card pb"><div class="p bgc-grey-100"><span style="font-weight:600" class="display-block fs-subhead tc-red-300">{{topNews.topic|uppercase}}</span></div><md-divider></md-divider><div layout="row" layout-align="center"><a ui-sref="app.article({id:topNews.fbkey})"><div style="padding:0px !important" class="card__img card__img--top"><sv-img-framed img="topNews.img" max-width="800" max-height="320"></sv-img-framed><span style="padding:0px 8px;margin: 0px -15px;opacity:0.8" class="mdc-display-inline-block fs-title tc-white bgc-red-300">{{topNews.title}}</span></div></a></div><div class="p"><!--a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )--><!--    .fs-title.tc-black-1(ng-bind-html='safeParsing(topNews.title)')--><span class="fs-caption display-block tc-grey-500">{{isFirst? 'Alexander Etman':topNews.author|capitalize}}</span><span ng-bind-html="safeParsing(topNews.summary||(topNews.body|cut:50))" class="fs-body-1 display-block"></span></div><div layout="row" layout-align="end start" class="pr"><button ui-sref="app.article({id:topNews.fbkey})" class="btn btn--xs btn--grey btn--flat">{{'read-more'|translate}} >></button><!--sv-read-more(url='app.article({id:topNews.fbkey})' read-more="read-more")--></div><!--.p.bgc-grey-100//sv-article-public-statistics--></div>
+<div class="card pb">
+    <div class="p bgc-grey-100"><span style="font-weight:600" class="display-block fs-subhead tc-red-300">{{topNews.topic|uppercase}}</span>
+    </div>
+    <md-divider></md-divider>
+    <div layout="row" layout-align="center"><a ui-sref="app.article({id:topNews.fbkey})">
+        <div style="padding:0px !important" class="card__img card__img--top">
+            <sv-img-framed img="topNews.img" max-width="800" max-height="320"></sv-img-framed>
+            <span style="padding:0px 8px;margin: 0px -15px;opacity:0.8"
+                  class="mdc-display-inline-block fs-title tc-white bgc-red-300">{{topNews.title}}</span></div>
+    </a></div>
+    <div class="p"><!--a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:topNews.fbkey})' )-->
+        <!--    .fs-title.tc-black-1(ng-bind-html='safeParsing(topNews.title)')--><span
+                class="fs-caption display-block tc-grey-500">{{isFirst? 'Alexander Etman':topNews.author}}</span><span
+                ng-bind-html="safeParsing(topNews.summary||(topNews.body|cut:50))"
+                class="fs-body-1 display-block"></span></div>
+    <div layout="row" layout-align="end start" class="pr">
+        <button ui-sref="app.article({id:topNews.fbkey})" class="btn btn--xs btn--grey btn--flat">
+            {{'read-more'|translate}} >>
+        </button>
+        <!--sv-read-more(url='app.article({id:topNews.fbkey})' read-more="read-more")--></div>
+    <!--.p.bgc-grey-100//sv-article-public-statistics--></div>
