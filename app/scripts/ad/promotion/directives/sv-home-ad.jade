@@ -1,6 +1,6 @@
 div
     div(ng-if='!ad.www' style='max-width:960px; position:relative;height:100%')
-        img.sv-img-bw(ng-src="{{currentAd}}" alt='{{ad.anchor || "company banner"}}'  width="100%" style='max-width:960px' sv-animate-on-index-change='adIndex')
+        img(ng-src="{{currentAd}}" alt='{{ad.anchor || "company banner"}}'  width="100%" style='max-width:960px' sv-animate-on-index-change='adIndex')
         div(style='position:absolute; top:50px')
             button.btn.btn--xs.btn--white.btn--raised.tc-grey-800(lx-ripple='' ng-click="showPrevAd()" style='opacity:.8')
                 i.fa.fa-chevron-left.fa-lg
@@ -9,7 +9,7 @@ div
                 i.fa.fa-chevron-right.fa-lg
     div(ng-if='ad.www' style='max-width:960px; position:relative;height:100%')
         a(href='{{ad.www}}' target='_blank')
-            img.sv-img-bw(ng-src="{{currentAd}}" alt='{{ad.anchor}}' width="100%" style='max-width:960px' sv-animate-on-index-change='adIndex')
+            img(ng-src="{{currentAd}}" alt='{{ad.anchor}}' width="100%" style='max-width:960px' sv-animate-on-index-change='adIndex')
             div(style='position:absolute; top:50px')
                 button.btn.btn--xs.btn--white.btn--raised.tc-grey-800(lx-ripple='' ng-click="showPrevAd()" style='opacity:.8')
                     i.fa.fa-chevron-left.fa-lg
