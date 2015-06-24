@@ -31,6 +31,7 @@
         'sections.radio',
         'sections.widgets',
         // 3rd party modules
+        'angulartics',
         'ngCookies',
         'angular-capitalize-filter',
         'ngAnimate',
