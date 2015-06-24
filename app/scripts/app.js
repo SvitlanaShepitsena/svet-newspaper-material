@@ -27,7 +27,7 @@
         'sections.archive',
         'sections.home',
         'sections.contact',
-		'sections.testimonials',
+        'sections.testimonials',
         'sections.radio',
         'sections.widgets',
         // 3rd party modules

@@ -1,6 +1,6 @@
 .card.pb.bgc-grey-100(class='ml mr mb+')
     div.p(layout='row' layout-align='space-between center')
-        sv-svet-label(section-title="{{oneNews.section}}" route-name='app.section' params="params"  text-decoration="none"  cursor-type="pointer" )
+        sv-svet-label(tc="tc-grey-800" bgc="bgc-grey-300" label-padding="2px 4px" fs="fs-caption" section-title="{{oneNews.section}}" route-name='app.section' params="params"  text-decoration="none"  cursor-type="pointer" )
         span.fs-caption.display-block(style='font-weight:300;text-decoration:underline') {{oneNews.topic|uppercase}}
     .pl.pr
         a.article-thumb-link.tc-grey-800(ui-sref='app.article({id:oneNews.fbkey})')
