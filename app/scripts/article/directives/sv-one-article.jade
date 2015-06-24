@@ -27,8 +27,5 @@ div(flex-container='column' flex)
             div
                 ul
                     li(ng-repeat='c in comments|orderBy:"-timestamp"' layout='row' layout-align="start center")
-                        div
-                            img(ng-src='{{c.avatar}}' style='max-width:30px')
-                        span {{c.body}}
-
+                        sv-one-comment(comment='c')
 

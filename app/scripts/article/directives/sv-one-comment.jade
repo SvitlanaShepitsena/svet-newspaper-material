@@ -1,1 +1,8 @@
-div sv-one-comment Template
+div
+    img(ng-src='{{comment.avatar}}' style='max-width:30px')
+    span {{comment.body}}
+    div(ng-show='isEditable()')
+        button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='') Edit
+        button.btn.btn--xs.btn--red.btn--raised(lx-ripple='') Delete
+
+
