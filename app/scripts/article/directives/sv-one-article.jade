@@ -19,8 +19,16 @@ div(flex-container='column' flex)
                     span.fs-caption {{news.timestamp|date}}
                 div(class='mb+')
                     div(class='mb+ ml' style='float:right;width:200px;height:auto')
-                    p(ng-bind-html='news.body').fs-body-2
+                    //p(ng-bind-html='news.body').fs-body-2
             sv-one-article-menu(news='news')
+
         div
             sv-add-comment(article-key='news.$id')
+            div
+                ul
+                    li(ng-repeat='c in comments|orderBy:"-timestamp"' layout='row' layout-align="start center")
+                        div
+                            img(ng-src='{{c.avatar}}' style='max-width:30px')
+                        span {{c.body}}
+
 

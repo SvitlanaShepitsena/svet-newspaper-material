@@ -18,6 +18,13 @@
                     $scope.rateFunction = function (rating) {
                         console.log("Rating selected: " + rating);
                     };
+                    $scope.$watch('news.comments', function (newValue, oldValue) {
+                        if (newValue) {
+                            $scope.comments = _.toArray(newValue);
+                            console.log(newValue);
+                        }
+                    });
+
                 }
             };
         });

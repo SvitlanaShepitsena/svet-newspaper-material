@@ -13,7 +13,8 @@
                     if ($scope.user) {
                         $scope.comment = {
                             body: '',
-                            user: $scope.user.fname || $scope.user.login,
+                            user: $scope.user.userName,
+                            timestamp:moment().format('x'),
                             avatar: $scope.user.avatar || ''
                         }
                     }
