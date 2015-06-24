@@ -6,16 +6,19 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-add-comment.html',
                 scope: {
-                    key: '='
+                    articleKey: '='
                 },
                 link: function ($scope, el, attrs) {
                     $scope.user = userAuth.profile;
-                    $scope.comment = {
-                        body: '',
-                        user: $scope.user.fname || $scope.user.login,
-                        avatar: $scope.user.avatar || ''
+                    if ($scope.user) {
+                        $scope.comment = {
+                            body: '',
+                            user: $scope.user.fname || $scope.user.login,
+                            avatar: $scope.user.avatar || ''
+                        }
                     }
                     $scope.submitComment = function () {
+                        console.log($scope.articleKey);
                     };
                 }
             };

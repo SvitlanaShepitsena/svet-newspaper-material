@@ -1,23 +1,26 @@
 div(flex-container='column' flex)
     .card(class='m')
-        sv-one-article-menu(news='news')
-        div(class='p+')
-            div.p(layout='row' layout-align='space-between center')
-                span.fs-caption.display-block(style='font-weight:300;text-decoration:underline') {{news.topic|urlDecoderFr |uppercase}}
-                sv-svet-label(section-title="{{news.section}}" route-name='app.section' params="params"  text-decoration="none"  cursor-type="pointer" )
-            div
-                span.display-block.fs-display-1 {{news.title|urlDecoderFr}}
-            div.tc-grey-600
-                span.fs-caption Svet Media Group
-                span.mdc-display-inline-block.mt.mb.fs-caption.tc-grey-500 {{article.timestamp|date}}
-            div.tc-grey-600
-                span.fs-body-1 {{'author'|translate}}: &nbsp
-                span.fs-body-2 {{news.author|authorNameFr}}
-            div.tc-grey-600.mb
-                span.fs-body-1 {{'date'|translate}}: &nbsp
-                span.fs-caption {{news.timestamp|date}}
-            div(class='mb+')
-                div(class='mb+ ml' style='float:right;width:200px;height:auto')
-                p(ng-bind-html='news.body').fs-body-2
-        sv-one-article-menu(news='news')
+        div
+            sv-one-article-menu(news='news')
+            div(class='p+')
+                div.p(layout='row' layout-align='space-between center')
+                    span.fs-caption.display-block(style='font-weight:300;text-decoration:underline') {{news.topic|urlDecoderFr |uppercase}}
+                    sv-svet-label(section-title="{{news.section}}" route-name='app.section' params="params"  text-decoration="none"  cursor-type="pointer" )
+                div
+                    span.display-block.fs-display-1 {{news.title|urlDecoderFr}}
+                div.tc-grey-600
+                    span.fs-caption Svet Media Group
+                    span.mdc-display-inline-block.mt.mb.fs-caption.tc-grey-500 {{article.timestamp|date}}
+                div.tc-grey-600
+                    span.fs-body-1 {{'author'|translate}}: &nbsp
+                    span.fs-body-2 {{news.author|authorNameFr}}
+                div.tc-grey-600.mb
+                    span.fs-body-1 {{'date'|translate}}: &nbsp
+                    span.fs-caption {{news.timestamp|date}}
+                div(class='mb+')
+                    div(class='mb+ ml' style='float:right;width:200px;height:auto')
+                    p(ng-bind-html='news.body').fs-body-2
+            sv-one-article-menu(news='news')
+        div
+            sv-add-comment(article-key='news.$id')
 
