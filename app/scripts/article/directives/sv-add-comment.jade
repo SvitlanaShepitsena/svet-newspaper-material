@@ -4,7 +4,7 @@ div(layout='column')
     div(ng-if='!!user' layout='column')
         form.mt(layout='column' name='addComment' ng-submit='submitComment()')
             md-input-container
-                label {{'comment'|translate}}'
+                label {{'comment'|translate}}
                 textarea(ng-model='comment.body') {{comment.body}}
             button.btn.btn--m.btn--white.btn--raised(type='submit' ng-if='comment.body') Add Comment
 

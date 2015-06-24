@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svAddComment', function (userAuth) {
+        .directive('svAddComment', function (userAuth,CommentsServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-add-comment.html',
@@ -18,7 +18,10 @@
                         }
                     }
                     $scope.submitComment = function () {
-                        console.log($scope.articleKey);
+                        CommentsServ.saveComment($scope.articleKey, $scope.comment).then(function (uid) {
+                            console.log(uid);
+
+                        });
                     };
                 }
             };
