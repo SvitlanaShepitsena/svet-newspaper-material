@@ -14,6 +14,21 @@
                             resolve(uid);
                         });
                     });
+                },
+                removeComment: function (articleKey, commentKey) {
+                    var commentUrl = url + 'articles/' + articleKey + '/comments/'+commentKey;
+
+                    return $q(function (resolve, reject) {
+                        var commentObj = $firebaseObject(new Firebase(commentUrl));
+                        commentObj.$loaded().then(function () {
+
+                            commentObj.$remove().then(function (ref) {
+                                resolve(ref.key());
+                            });
+                        });
+
+
+                    });
                 }
             };
         });

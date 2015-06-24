@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('article')
-        .directive('svOneArticle', function (userAuth) {
+        .directive('svOneArticle', function (userAuth, CommentsServ) {
             return {
                 replace: true,
                 scope: {
@@ -19,11 +19,27 @@
                         console.log("Rating selected: " + rating);
                     };
                     $scope.$watch('news.comments', function (newValue, oldValue) {
+                        var comments = [];
                         if (newValue) {
-                            $scope.comments = _.toArray(newValue);
-                            console.log(newValue);
+                            var keys = _.keys(newValue);
+                            for (var i = 0; i < keys.length; i++) {
+                                var key = keys[i];
+                                var value = newValue[key];
+                                value.$id = key;
+                                comments.push(value);
+                            }
                         }
+                        $scope.comments = comments;
                     });
+
+                    $scope.removeComment = function (comment) {
+                        console.log(comment);
+                        CommentsServ.removeComment($scope.news.$id, comment).then(function (id) {
+                            console.log(id);
+
+                        })
+
+                    };
 
                 }
             };

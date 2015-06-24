@@ -7,7 +7,8 @@
                 replace: true,
                 templateUrl: 'scripts/article/directives/sv-one-comment.html',
                 scope: {
-                    comment: '='
+                    comment: '=',
+                    removeComment:'&'
                 },
                 link: function ($scope, el, attrs) {
                     $scope.isEditable = function () {
@@ -25,6 +26,7 @@
                             return true;
                         }
                     };
+
 
                 }
             };

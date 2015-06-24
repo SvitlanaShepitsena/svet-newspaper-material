@@ -20,7 +20,7 @@
                     }
                     $scope.submitComment = function () {
                         CommentsServ.saveComment($scope.articleKey, $scope.comment).then(function (uid) {
-                            console.log(uid);
+                            $scope.comment.body='';
 
                         });
                     };

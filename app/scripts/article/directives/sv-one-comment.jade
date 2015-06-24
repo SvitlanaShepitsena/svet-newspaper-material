@@ -3,6 +3,6 @@ div
     span {{comment.body}}
     div(ng-show='isEditable()')
         button.btn.btn--xs.btn--blue.btn--raised(lx-ripple='') Edit
-        button.btn.btn--xs.btn--red.btn--raised(lx-ripple='') Delete
+        button.btn.btn--xs.btn--red.btn--raised(lx-ripple='' ng-click='removeComment()') Delete
 
 
