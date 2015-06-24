@@ -1,5 +1,5 @@
-div
-    md-tabs.tabs-classified.tc-black-2( md-selected='selectedIndex'  md-border-bottom='')
+md-content
+    md-tabs.tabs-classified.tc-black-2( md-selected='selectedIndex'  md-border-bottom='' md-dynamic-height="")
         md-tab(ng-if='!user.isReader() && !user.isAuthor()')
             md-tab-label
                 span.display-block.sv-tab-span(ui-sref='app.user.ad.promotion' )  {{"business-ad"|translate}}

@@ -15,6 +15,7 @@
                 'campaign-name': 'Campaign Name',
                 'ad-place': 'Advertisement Place',
                 'www': 'Company Web Site',
+                'advertise-with-us': 'Advertise with us!',
                 'anchor': 'Outbound Anchor Text'
 
             });
@@ -29,6 +30,7 @@
                 'my-ad-campaign': 'Моя Рекламная Кампания',
                 'campaign-name': 'Название Кампании',
                 'ad-place': 'Место показа рекламы',
+                'advertise-with-us': 'Продвигайте бизнес с нами!',
 
                 'www': 'Сайт компании',
                 'anchor': 'Текст Ссылки'

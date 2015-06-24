@@ -49,10 +49,17 @@
 
 <body ng-app="app" layout="column" flow-prevent-drop ng-cloak="" ng-controller="AppCtrl" style='overflow-y: hidden'>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-64398019-1', 'auto');
     ga('send', 'pageview');
@@ -87,15 +94,7 @@
                 <sv-news-sections-nav class="mb"></sv-news-sections-nav>
                 <sv-sidenav-title title="Svet family event" class="mb"></sv-sidenav-title>
                 <sv-event-sidenav-ad event-title="event-ad-title" body="event-ad-body"></sv-event-sidenav-ad>
-                <div class='mt++'></div>
-                <sv-nav-btn url="app.blogs"
-                            title="svet-blog"
-                            color="white"
-                            txt-color="grey-200"
-                            custom-class="bgc-svet-700"
-                            icon="blogger"
-                            btn-size="l"
-                            class="mb"></sv-nav-btn>
+                <div class='mt+'></div>
                 <sv-nav-btn url="app.section({sectionName:'svet-recommends'})"
                             title="{{'svet-recommends'|translate}}"
                             icon="compass"
@@ -109,7 +108,15 @@
                             custom-class="bgc-svet-700"
                             icon="calendar"
                             btn-size="l"
-                            class="mb+++"></sv-nav-btn>
+                            class="mb"></sv-nav-btn>
+                <sv-nav-btn url="app.blogs"
+                            title="svet-blog"
+                            color="white"
+                            txt-color="grey-200"
+                            custom-class="bgc-svet-700"
+                            icon="blogger"
+                            btn-size="l"
+                            class="mb"></sv-nav-btn>
             </md-content>
         </md-sidenav>
 
@@ -177,16 +184,16 @@
                                         bgc="grey-300"
                                         txt-color="grey-700"
                                         color="white" btn-size="l"
-                                        class="mb+">
+                                        class="mb">
                             </sv-nav-btn>
                             <sv-nav-btn url="app.demographics"
-                                        icon="chart-pie"
+                                        icon="chart-areaspline"
                                         custom-style="font-weight:600"
                                         bgc="red-300"
-                                        title="Advertise with us!"
+                                        title="{{'advertise-with-us'|translate}}"
                                         txt-color="grey-50"
                                         color="white" btn-size="l"
-                                        class="mb+">
+                                        class="mb">
                             </sv-nav-btn>
                             <sv-nav-btn url="app.testimonials"
                                         icon="account-multiple"
@@ -196,7 +203,7 @@
                                         txt-color="grey-700"
                                         color="white"
                                         btn-size="l"
-                                        class="mb+">
+                                        class="mb">
                             </sv-nav-btn>
                             <sv-nav-btn url="app.contact"
                                         icon="map-marker"
@@ -515,7 +522,6 @@
 
 <!-- events -->
 <script src="scripts/events/eventsRoutes.js"></script>
-<script src="scripts/events/directives/sv-event-article-thumb-en.js"></script>
 <script src="scripts/events/events-translation.js"></script>
 <script src="scripts/events/directives/sv-one-event-article.js"></script>
 <script src="scripts/events/controllers/Event-articleCtrl.js"></script>
@@ -544,6 +550,7 @@
 <script src="scripts/events/directives/sv-kohl-event2015.js"></script>
 <script src="scripts/events/directives/sv-ravinia-event.js"></script>
 <script src="scripts/events/directives/sv-event-article-thumb-ru.js"></script>
+<script src="scripts/events/directives/sv-event-article-thumb-en.js"></script>
 <script src="scripts/events/filters/previosFutureFr.js"></script>
 <script src="scripts/events/filters/noticeStatus.js"></script>
 <script src="scripts/events/filters/eventsInvitation.js"></script>
