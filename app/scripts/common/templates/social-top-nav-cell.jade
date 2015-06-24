@@ -1,23 +1,16 @@
-md-bottom-sheet.md-list.md-has-header.bgc-grey-800
-    md-subheader.bgc-grey-800(style='color:#999999 !important') {{'svet-on-social-media'|translate|uppercase}}
-    md-divider(style='border-top-color:#888888 !important')
+md-bottom-sheet.md-list.md-has-header.bgc-grey-800(class='pt+')
+    span.display-block.fs-subhead.bgc-grey-800.mb(style='color:#999999 !important; margin-bottom:0px') {{'svet-on-social-media'|translate|uppercase}}
+    md-divider(style='border-top-color:#888888 !important' class='mb')
     div(layout='row' layout-align='start center')
         md-item
-            a.btn.btn--flat(href='http://www.yelp.com/biz/svet-russian-media-group-northrbook')
-                img.header-social-img(src='../img/social/yelp.png', style='max-width:34px;display:block;margin:4px')
+            a.btn.btn--flat(href='http://www.yelp.com/biz/svet-russian-media-group-northrbook' style='margin:4px')
+                img.header-social-img(src='../img/social/color/yelp.png')
         md-item
-            a.btn.btn--flat(href='https://www.youtube.com/watch?v=fuVyrMp3BpI')
-                img.header-social-img(src='../img/social/youtube.png')
-        md-item.pl.ml
-            a.btn.btn--flat(href='https://www.facebook.com/svetmedia')
-                img.header-social-img(src='../img/social/google-plus.png' style='width:25px')
-    div(layout='row' layout-align='start center')
+            a.btn.btn--flat(href='https://www.youtube.com/watch?v=fuVyrMp3BpI' style='margin:4px')
+                img.header-social-img(src='../img/social/color/youtube.png')
         md-item
-            a.btn.btn--flat(href='https://www.facebook.com/svetmedia')
-                img.header-social-img(src='../img/social/facebook.png')
+            a.btn.btn--flat(href='https://www.facebook.com/svetmedia' style='margin:4px')
+                img.header-social-img(src='../img/social/color/fb.png')
         md-item
-            a.btn.btn--flat(href='https://www.linkedin.com/company/svet-russian-media-group')
-                img.header-social-img(src='../img/social/linkedin.png')
-        md-item
-            a.btn.btn--flat(href='https://www.youtube.com/watch?v=fuVyrMp3BpI')
-                img.header-social-img(src='../img/social/twitter.png')
+            a.btn.btn--flat(href='https://www.linkedin.com/company/svet-russian-media-group' style='margin:4px')
+                img.header-social-img(src='../img/social/color/linkedin.png')
