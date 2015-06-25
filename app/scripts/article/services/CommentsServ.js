@@ -15,8 +15,22 @@
                         });
                     });
                 },
+                updateComment: function (articleKey, comment) {
+                    var articleCommentUrl = url + 'articles/' + articleKey + '/comments/' + comment.$id;
+
+                    return $q(function (resolve, reject) {
+                        var dbComment = $firebaseObject(new Firebase(articleCommentUrl));
+                        dbComment.$loaded().then(function () {
+                           dbComment.body=comment.body;
+                           dbComment.$save().then(function (ref) {
+                               resolve(ref.key());
+                           })
+                        });
+
+                    });
+                },
                 removeComment: function (articleKey, commentKey) {
-                    var commentUrl = url + 'articles/' + articleKey + '/comments/'+commentKey;
+                    var commentUrl = url + 'articles/' + articleKey + '/comments/' + commentKey;
 
                     return $q(function (resolve, reject) {
                         var commentObj = $firebaseObject(new Firebase(commentUrl));
