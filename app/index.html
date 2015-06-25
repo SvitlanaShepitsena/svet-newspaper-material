@@ -67,6 +67,16 @@
 
 </script>
 
+<script>
+    (function(w,d,s,g,js,fs){
+        g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+        js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+        js.src='https://apis.google.com/js/platform.js';
+        fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+    }(window,document,'script'));
+</script>
+
+
 <md-content layout="column" layout-fill>
     <md-toolbar class="sv-toolbar md-hue-3 md-primary  tc-white-1 pl" layout="row" layout-align="space-between center"
                 style="background-color:#474341">
@@ -307,6 +317,7 @@
 
 <!-- common -->
 <script src="scripts/common/commonRoutes.js"></script>
+<script src="scripts/common/directives/sv-analytics-info.js"></script>
 <script src="scripts/common/directives/sv-image-thumb.js"></script>
 <script src="scripts/common/directives/sv-contact-info.js"></script>
 <script src="scripts/common/common-translation.js"></script>
