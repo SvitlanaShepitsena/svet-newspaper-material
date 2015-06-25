@@ -7,10 +7,9 @@
                 replace: true,
                 templateUrl: 'scripts/sections/demographics/directives/sv-demographics-map.html',
                 scope: {
-
+                    modalMethod: '&'
                 },
                 link: function ($scope, el, attrs) {
-
                 }
             };
         });
