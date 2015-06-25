@@ -1,8 +1,3 @@
-				.state("app.google-analitics", {
-					url: "/google-analitics", 
-					controller:"GoogleAnaliticsCtrl",
-					templateUrl: "scripts/sections/about/views/google-analiticsCtrl.html"
-				})
 (function () {
     'use strict'
 
@@ -25,6 +20,10 @@
                     controller: "DemographicsTabContentCtrl",
                     templateUrl: "scripts/sections/about/views/demographics-tab-contentCtrl.html"
                 })
+                .state("app.about.google-analitics", {
+                    url: "/google-analitics",
+                    controller: "GoogleAnaliticsCtrl",
+                    templateUrl: "scripts/sections/about/views/google-analiticsCtrl.html"
+                })
         });
 })();
-
