@@ -1,43 +1,35 @@
 md-content
-    md-tabs.sv-tabs-container(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height="" md-stretch-tabs="never")
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.community' ) {{'community'|translate}}
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height="" md-stretch-tabs="never")
+        md-tab()
+            md-tab-label(ui-sref='app.classified.community' ) {{'community'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.job' ) {{'job'|translate}}
+        md-tab()
+            md-tab-label(ui-sref='app.classified.job' ) {{'job'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.lessons' ) {{'lessons'|translate}}
+        md-tab()
+            md-tab-label(ui-sref='app.classified.lessons' ) {{'lessons'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.housing' ) {{'housing'|translate}}
+        md-tab()
+            md-tab-label(ui-sref='app.classified.housing' ) {{'housing'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs( )
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.sale' ) {{'sale'|translate}}
+        md-tab( )
+            md-tab-label(ui-sref='app.classified.sale' ) {{'sale'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs( )
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.services' ) {{'services'|translate}}
+        md-tab( )
+            md-tab-label(ui-sref='app.classified.services' ) {{'services'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.personal' ) {{'personal'|translate}}
+        md-tab()
+            md-tab-label(ui-sref='app.classified.personal' ) {{'personal'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.cars' ) {{'cars'|translate}}
+        md-tab()
+            md-tab-label(ui-sref='app.classified.cars' ) {{'cars'|translate}}
             md-tab-body
                 div(ui-view='')
 

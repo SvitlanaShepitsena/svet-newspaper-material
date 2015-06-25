@@ -1,13 +1,11 @@
 md-content
-    md-tabs.tabs-classified.tc-black-2(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height)
-        md-tab.sv-tabs(md-stretch-tabs="never" ng-if='!user.isReader()')
-            md-tab-label
-                span.display-block.sv-tab-span(ui-sref='app.user.news.articles') {{'news-articles'|translate}}
+    md-tabs.tc-black-2(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height="" md-stretch-tabs="never")
+        md-tab(ng-if='!user.isReader()')
+            md-tab-label(ui-sref='app.user.news.articles') {{'news-articles'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs(md-stretch-tabs="never")
-            md-tab-label
-                span.display-block.sv-tab-span(ui-sref='app.user.news.blogs') {{'blogs'|translate}}
+        md-tab
+            md-tab-label(ui-sref='app.user.news.blogs') {{'blogs'|translate}}
             md-tab-body
                 div(ui-view='')
 

@@ -1,13 +1,11 @@
 md-content
-    md-tabs.sv-tabs-container.tc-black-2( md-selected='selectedIndex'  md-border-bottom='' md-dynamic-height="")
-        md-tab(ng-if='!user.isReader() && !user.isAuthor()')
-            md-tab-label
-                span.display-block.sv-tab-span(ui-sref='app.user.ad.promotion' )  {{"business-ad"|translate}}
+    md-tabs.tc-black-2( md-selected='selectedIndex'  md-border-bottom='' md-dynamic-height="" md-stretch-tabs="never")
+        md-tab(ng-if='!user.isReader() && !user.isAuthor()' ui-sref='app.user.ad.promotion' )
+            md-tab-label  {{"business-ad"|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs( )
-            md-tab-label
-                span.display-block.sv-tab-span(ui-sref='app.user.ad.classified' ) {{"classified"|translate}}
+        md-tab(ui-sref='app.user.ad.classified')
+            md-tab-label {{"classified"|translate}}
             md-tab-body
                 div(ui-view='')
     //div(ng-show='!user.isCustomer()')
