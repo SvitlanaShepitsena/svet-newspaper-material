@@ -1,7 +1,7 @@
-				.state("app.about-tab-content", {
-					url: "/about-tab-content", 
-					controller:"AboutTabContentCtrl",
-					templateUrl: "scripts/sections/about/views/about-tab-contentCtrl.html"
+				.state("app.demographics-tab-content", {
+					url: "/demographics-tab-content", 
+					controller:"DemographicsTabContentCtrl",
+					templateUrl: "scripts/sections/about/views/demographics-tab-contentCtrl.html"
 				})
 (function () {
     'use strict'
@@ -16,9 +16,10 @@
                     controller: "AboutCtrl",
                     templateUrl: "scripts/sections/about/views/aboutCtrl.html"
                 })
-                .state("app.about.svet", {
-                    url: "/about-svet-russian-media-group",
-                    templateUrl: "scripts/sections/about/views/about-tab-content.html"
+                .state("app.about.about-tab-content", {
+                    url: "/about-tab-content",
+                    controller:"AboutTabContentCtrl",
+                    templateUrl: "scripts/sections/about/views/about-tab-contentCtrl.html"
                 })
                 .state("app.about.demographics", {
                     url: "/demographics",
