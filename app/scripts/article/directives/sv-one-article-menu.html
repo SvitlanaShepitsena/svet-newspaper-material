@@ -1,1 +1,1 @@
-<div layout="row" layout-align="space-between center" style="padding:8px 12px" class="bgc-grey-200"><sv-edit-article-btn ng-if="user &amp;&amp; news.authorKey===user.key" article="news"></sv-edit-article-btn></div>
+<div layout="row" layout-align="space-between center" style="padding:8px 12px" ng-show="user &amp;&amp; news.authorKey===user.key" class="bgc-grey-200"><sv-edit-article-btn article="news"></sv-edit-article-btn></div>

@@ -7,6 +7,7 @@
                 // 'eng':'eng'
                 'svet-recommends': 'Endorsed by Svet',
                 'featured': 'featured',
+                'your-comment': 'Your Comment',
                 'this-week': 'This Week',
                 'this-week-news': 'This Week News',
                 'image-source-website': 'Open Image Source Website',
@@ -70,6 +71,7 @@
                 'svet-recommends': 'Свет Рекомендует',
                 'recommended': 'Рекомендуемое',
                 'featured': 'Похожее',
+                'your-comment': 'Ваш Комментарий',
                 'this-week': 'На етой неделе',
                 'this-week-news': 'Новости недели',
                 'image-source-website': 'Открыть Ресурс Изображения',

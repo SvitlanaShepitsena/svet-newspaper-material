@@ -45,6 +45,7 @@
                 //    Change Fields
                 'fname': 'First Name',
                 'lname': 'Last Name',
+                'delete-confirm': 'Click delete to confirm',
                 'uname': 'User Name'
             });
             $translateProvider.translations('ru', {
@@ -89,7 +90,8 @@
                 //    Change Fields
                 'fname': 'Имя',
                 'lname': 'Фамилия',
-                'uname': 'Имя Пользователя'
+                'uname': 'Имя Пользователя',
+                'delete-confirm': 'Нажмите на "Удалить" для подтверждения',
             });
             $translateProvider.preferredLanguage('en');
         }]);

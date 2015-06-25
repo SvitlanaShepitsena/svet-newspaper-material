@@ -5,6 +5,7 @@
             $translateProvider.useCookieStorage()
             $translateProvider.translations('en', {
                 'terms-conditions': 'Svet Media Group Statement of Rights and Responsibilities',
+                'comment-auth': 'Please log in to leave a comment',
                 'all-rights-reserved': 'All rights reserved',
                 'all-registered-users': 'Full List',
                 'account-status': 'Account Status',
@@ -65,6 +66,7 @@
             });
             $translateProvider.translations('ru', {
                 'terms-conditions': 'Правила пользования интерактивными ресурсами сайта Svet Media Group',
+                'comment-auth': 'Авторизируйтесь, чтобы оставить комментарий',
                 'all-rights-reserved': 'Все права защищены',
                 'all-registered-users': 'Весь Список',
                 'account-status': 'Статус Профайла',

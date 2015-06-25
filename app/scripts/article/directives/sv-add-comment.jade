@@ -1,10 +1,13 @@
 div(layout='column')
-    div(ng-if='!user')
-        span.display-block.fs-body-1 Войдите, чтобы оставить комментарий.
+    .text-center.mt(ng-if='!user')
+        button.btn.btn--s.btn--red.btn--raised.bgc-red-300(lx-ripple='' ui-sref='app.svet-login')
+            i.fa.fa-pencil.fa-fw.mr
+            | {{'comment-auth'|translate}}
     div(ng-if='!!user' layout='column')
-        form.mt(layout='column' name='addComment' ng-submit='submitComment()')
-            md-input-container
-                label {{'comment'|translate}}
+        form(layout='column' name='addComment' ng-submit='submitComment()')
+            md-input-container.ml.mr
+                label {{'your-comment'|translate}}
                 textarea(ng-model='comment.body') {{comment.body}}
-            button.btn.btn--m.btn--white.btn--raised(type='submit' ng-if='comment.body') Add Comment
+            .ml.mr.mb(layout-sm='row' layout-align-sm='center')
+                button.btn.btn--m.btn--white.btn--raised(type='submit' ng-if='comment.body') {{'post'|translate}}
 

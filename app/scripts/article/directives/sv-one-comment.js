@@ -8,7 +8,7 @@
                 templateUrl: 'scripts/article/directives/sv-one-comment.html',
                 scope: {
                     comment: '=',
-                    removeComment:'&'
+                    removeComment: '&'
                 },
                 link: function ($scope, el, attrs) {
                     $scope.isEditable = function () {
@@ -22,11 +22,10 @@
                         if (userAuth.profile.isEditor()) {
                             return true;
                         }
-                        if ($scope.comment.user===userAuth.key) {
+                        if ($scope.comment.user === userAuth.key) {
                             return true;
                         }
                     };
-
 
                 }
             };
