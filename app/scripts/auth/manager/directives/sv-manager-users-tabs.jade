@@ -1,16 +1,16 @@
-div
-    md-tabs.sv-user-list(md-selected='selectedIndex')
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+md-content
+    md-tabs(md-selected='selectedIndex' md-dynamic-height="" md-stretch-tabs="never")
+        md-tab
             md-tab-label {{'all-users'|translate}} ({{count.all || 0}})
             md-tab-body
                 sv-profile-subheader(subhead-title="all-users")
                 sv-users-list(group-filter='all')
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+        md-tab
             md-tab-label {{'customers'|translate}}({{count.customer || 0}})
             md-tab-body
                 sv-profile-subheader(subhead-title="customers")
                 sv-users-list(group-filter='customer')
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+        md-tab
             md-tab-label {{'authors'|translate}} ({{count.author || 0}})
             md-tab-body
                 sv-profile-subheader(subhead-title="authors")

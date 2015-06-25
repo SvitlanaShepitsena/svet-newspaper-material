@@ -1,6 +1,6 @@
-div
-    md-tabs.sv-user-list(md-selected='selectedIndex', md-border-bottom='' )
-        md-tab.sv-tabs(md-stretch-tabs="never" )
+md-content
+    md-tabs.sv-user-list(md-selected='selectedIndex', md-border-bottom='' md-stretch-tabs="never")
+        md-tab
             md-tab-label {{'my-profile'|translate}}
             md-tab-body
                 sv-user-profile-summary

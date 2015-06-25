@@ -1,15 +1,13 @@
 md-content.md-padding
-    md-tabs.sv-tabs-container(md-selected='selectedIndex' md-dynamic-height='' style='min-height:230px' md-autoselect md-border-bottom)
-        md-tab.sv-tabs
+    md-tabs(md-selected='selectedIndex' md-dynamic-height="" md-stretch-tabs="never" style='min-height:230px' md-autoselect md-border-bottom)
+        md-tab(ui-sref='app.about.about-tab-content')
             md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.about.about-tab-content')
-                    | About Us
+                | About Us
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs
+        md-tab(ui-sref='app.about.demographics-tab-content')
             md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.about.demographics-tab-content')
-                    | Demographics
+                | Demographics
             md-tab-body
                 div(ui-view='')
 

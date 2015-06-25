@@ -250,6 +250,15 @@ md-icon {
 .sv-user-list {
   min-height: 600px !important;
 }
+.sv-modal-sm {
+  max-width: 700px;
+}
+@media screen and (max-width: 500px) {
+  .sv-modal-sm {
+    min-width: 99%;
+    min-height: 100% !important;
+  }
+}
 .arrow {
   cursor: pointer;
   display: block;

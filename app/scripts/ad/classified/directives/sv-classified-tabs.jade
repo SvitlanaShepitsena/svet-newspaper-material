@@ -1,43 +1,35 @@
 md-content
-    md-tabs.sv-tabs-container(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height="" md-stretch-tabs="never")
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.community' ) {{'community'|translate}}
+    md-tabs(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height="" md-stretch-tabs="never")
+        md-tab(ui-sref='app.classified.community')
+            md-tab-label {{'community'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.job' ) {{'job'|translate}}
+        md-tab(ui-sref='app.classified.job')
+            md-tab-label {{'job'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.lessons' ) {{'lessons'|translate}}
+        md-tab(ui-sref='app.classified.lessons')
+            md-tab-label {{'lessons'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.housing' ) {{'housing'|translate}}
+        md-tab(ui-sref='app.classified.housing')
+            md-tab-label {{'housing'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs( )
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.sale' ) {{'sale'|translate}}
+        md-tab(ui-sref='app.classified.sale')
+            md-tab-label {{'sale'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs( )
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.services' ) {{'services'|translate}}
+        md-tab(ui-sref='app.classified.services')
+            md-tab-label {{'services'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.personal' ) {{'personal'|translate}}
+        md-tab(ui-sref='app.classified.personal')
+            md-tab-label {{'personal'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab.sv-tabs()
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.classified.cars' ) {{'cars'|translate}}
+        md-tab(ui-sref='app.classified.cars')
+            md-tab-label {{'cars'|translate}}
             md-tab-body
                 div(ui-view='')
 

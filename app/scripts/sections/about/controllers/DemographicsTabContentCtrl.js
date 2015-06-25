@@ -3,7 +3,6 @@
 
     angular.module('sections.about')
         .controller('DemographicsTabContentCtrl', function ($scope, $mdDialog) {
-            console.log('run here DemographicsTabContentCtrl.js');
             $scope.showDemographicsMapModal = function () {
                 $mdDialog.show(
                     {
