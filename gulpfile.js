@@ -4,9 +4,15 @@ var p = require('gulp-load-plugins')();
 var requireDir = require('require-dir');
 requireDir('./gulp/ng');
 var browserSync = require("browser-sync");
+var spa         = require("browser-sync-spa");
 var reload = browserSync.reload;
 var cmq = require('gulp-combine-media-queries');
 var nib = require('nib');
+
+browserSync.use(spa({
+    selector: "[ng-app]" // Only needed for angular apps
+}));
+
 
 ///////////////////////////// Error Handling ////////////////////////////////////////////////
 var onError = function (err) {
@@ -62,7 +68,9 @@ gulp.task('js-watch', browserSync.reload);
 ///////////////////////////// SERVER  ////////////////////////////////////////////////
 gulp.task('serve', ['stylus:main', 'jade'], function () {
     browserSync({
+        open:false,
         server: "./app",
+        files: "./app/*",
         logLevel: "silent",
         notify: false,
         scrollProportionally: false,

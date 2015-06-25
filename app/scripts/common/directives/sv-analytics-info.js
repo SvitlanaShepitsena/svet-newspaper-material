@@ -12,21 +12,12 @@
                 link: function ($scope, el, attrs) {
                     gapi.analytics.ready(function() {
 
-                        /**
-                         * Authorize the user immediately if the user has already granted access.
-                         * If no access has been created, render an authorize button inside the
-                         * element with the ID "embed-api-auth-container".
-                         */
                         gapi.analytics.auth.authorize({
                             container: 'embed-api-auth-container',
                             clientid: '991720460723-mlnvtm42c5c8b2623r7ing1srdi9n326.apps.googleusercontent.com',
                         });
 
 
-                        /**
-                         * Create a new ViewSelector instance to be rendered inside of an
-                         * element with the id "view-selector-container".
-                         */
                         var viewSelector = new gapi.analytics.ViewSelector({
                             container: 'view-selector-container'
                         });
@@ -35,11 +26,6 @@
                         viewSelector.execute();
 
 
-                        /**
-                         * Create a new DataChart instance with the given query parameters
-                         * and Google chart options. It will be rendered inside an element
-                         * with the id "chart-container".
-                         */
                         var dataChart = new gapi.analytics.googleCharts.DataChart({
                             query: {
                                 metrics: 'ga:sessions',
@@ -57,9 +43,6 @@
                         });
 
 
-                        /**
-                         * Render the dataChart on the page whenever a new view is selected.
-                         */
                         viewSelector.on('change', function(ids) {
                             dataChart.set({query: {ids: ids}}).execute();
                         });
