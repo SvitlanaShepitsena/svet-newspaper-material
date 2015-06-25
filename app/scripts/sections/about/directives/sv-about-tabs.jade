@@ -1,14 +1,14 @@
 md-content.md-padding
     md-tabs.sv-tabs-container(md-selected='selectedIndex' md-dynamic-height='' style='min-height:230px' md-autoselect md-border-bottom)
         md-tab.sv-tabs
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.about.about-tab-content')
+            md-tab-label(ui-sref='app.about.about-tab-content')
+                span.sv-tab-span.display-block
                     | About Us
             md-tab-body
                 div(ui-view='')
         md-tab.sv-tabs
-            md-tab-label
-                span.sv-tab-span.display-block(ui-sref='app.about.demographics-tab-content')
+            md-tab-label(ui-sref='app.about.demographics-tab-content')
+                span.sv-tab-span.display-block
                     | Demographics
             md-tab-body
                 div(ui-view='')
