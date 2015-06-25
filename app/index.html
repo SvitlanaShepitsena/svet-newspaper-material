@@ -61,8 +61,9 @@
         m.parentNode.insertBefore(a, m)
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-//    ga('create', 'UA-64398019-1', 'auto');
-//    ga('send', 'pageview');
+    ga('create', 'UA-64398019-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
 
 </script>
 
@@ -243,6 +244,7 @@
 <script src="./bower_components/velocity/velocity.min.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angulartics/dist/angulartics.min.js"></script>
+<script src="./bower_components/angulartics/dist/angulartics-ga.min.js"></script>
 
 <script src="./bower_components/ng-file-upload/ng-file-upload.min.js"></script>
 
