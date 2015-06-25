@@ -8,6 +8,11 @@
                     controller: "SectionCtrl",
                     templateUrl: "scripts/common/views/sectionCtrl.html"
                 })
+				.state("app.ga", {
+					url: "/ga", 
+					controller:"GaCtrl",
+					templateUrl: "scripts/common/views/gaCtrl.html"
+				})
 //#state'
         });
 })();
