@@ -4,12 +4,8 @@
     angular.module('common')
         .directive('svModalWindowSizeMedia', function () {
             return {
-                replace: true,
-                templateUrl: 'scripts/common/directives/sv-modal-window-size-media.html',
-                scope: {
-
-                },
-                link: function ($scope, el, attrs) {
+                require: '?^ngModel',
+                link: function ($scope, el, attrs, ctrl) {
 
                 }
             };
