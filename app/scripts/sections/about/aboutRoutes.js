@@ -1,8 +1,3 @@
-				.state("app.demographics-tab-content", {
-					url: "/demographics-tab-content", 
-					controller:"DemographicsTabContentCtrl",
-					templateUrl: "scripts/sections/about/views/demographics-tab-contentCtrl.html"
-				})
 (function () {
     'use strict'
 
@@ -18,12 +13,12 @@
                 })
                 .state("app.about.about-tab-content", {
                     url: "/about-tab-content",
-                    controller:"AboutTabContentCtrl",
                     templateUrl: "scripts/sections/about/views/about-tab-contentCtrl.html"
                 })
-                .state("app.about.demographics", {
-                    url: "/demographics",
-                    templateUrl: "scripts/sections/about/views/demographicsTabsContent.html"
+                .state("app.about.demographics-tab-content", {
+                    url: "/demographics-tab-content",
+                    controller: "DemographicsTabContentCtrl",
+                    templateUrl: "scripts/sections/about/views/demographics-tab-contentCtrl.html"
                 })
         });
 })();
