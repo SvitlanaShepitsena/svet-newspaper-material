@@ -2,30 +2,16 @@
     'use strict';
 
     angular.module('sections.about')
-        .directive('svAboutTabs', function ($mdDialog) {
+        .directive('svAboutTabs', function ($mdDialog, $state) {
             return {
                 replace: true,
                 templateUrl: 'scripts/sections/about/directives/sv-about-tabs.html',
                 scope: {},
                 link: function ($scope, el, attrs) {
-                    $scope.showDemographicsMapModal = function () {
-                        $mdDialog.show(
-                            {
-                                controller: DemographicsModalController,
-                                templateUrl: 'scripts/sections/demographics/views/modalDemographicsMap.html',
-                            }
-                        );
-                    };
-                    function DemographicsModalController($scope, $mdDialog) {
-                        $scope.hide = function () {
-                            $mdDialog.hide();
-                        };
-                        $scope.cancel = function () {
-                            $mdDialog.cancel();
-                        };
-                        $scope.answer = function (answer) {
-                            $mdDialog.hide(answer);
-                        };
+                    var currentState = $state.current.name;
+
+                    if (currentState && _.contains(currentState, 'demographics')) {
+                        $scope.selectedIndex = 1;
                     }
 
                 }

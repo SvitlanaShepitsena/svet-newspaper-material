@@ -1,26 +1,15 @@
 md-content.md-padding
-    md-tabs(md-selected='selectedIndex' md-dynamic-height='' style='min-height:230px' md-autoselect md-border-bottom)
-        md-tab
-            md-tab-label About Us
+    md-tabs.sv-tabs-container(md-selected='selectedIndex' md-dynamic-height='' style='min-height:230px' md-autoselect md-border-bottom)
+        md-tab.sv-tabs
+            md-tab-label
+                span.sv-tab-span.display-block(ui-sref='app.about.about-tab-content')
+                    | About Us
             md-tab-body
-                sv-about-svet
-        md-tab
-            md-tab-label Demographics
+                div(ui-view='')
+        md-tab.sv-tabs
+            md-tab-label
+                span.sv-tab-span.display-block(ui-sref='app.about.demographics-tab-content')
+                    | Demographics
             md-tab-body
-                sv-ru-demographics.mb
-                div.text-center
-                sv-demographics-tabs(class='mb+')
-                div(layout='row' layout-align='center' class='mb+')
-                    sv-top-ru-states
-                div.text-center
-                    sv-ru-attractive-market(class='mb')
-                div.mb.text-center
-                    sv-demographics-map(modal-method="showDemographicsMapModal()")
-                div(layout='row' layout-align='center' class='mb+')
-                    sv-top-ru-speaking
-                div
-                    span.fs-caption.display-block *Sources:
-                    div(class='ml++')
-                        span.display-block.fs-caption 1. Wikipedia
-                        span.display-block.fs-caption 2. Ameredia study Integrated Multicultural Marketing, US Census Bureau, 2000
+                div(ui-view='')
 

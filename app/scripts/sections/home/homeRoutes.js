@@ -5,8 +5,6 @@
             $stateProvider
             /*=home*/
 
-
-
 //#state'
         });
 })();

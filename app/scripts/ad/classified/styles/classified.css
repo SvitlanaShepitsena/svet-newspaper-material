@@ -8,10 +8,6 @@
     min-height: auto;
   }
 }
-.tabs-classified {
-  overflow: hidden;
-  min-height: 200px;
-}
 .cl-height {
   height: 200px;
 }
