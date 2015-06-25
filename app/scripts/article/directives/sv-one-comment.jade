@@ -3,10 +3,14 @@ div
         md-list-item(layout-sm='column' layout-align-sm="start" layout-gt-sm='row' layout-align-gt-sm='start start')
             div
                 img.img-round(ng-src='{{comment.avatar}}' style='max-width:30px' width="30px" height="30px")
-            p.ml.mr {{comment.body}}
-            div(layout='row')
-                button.btn.btn--s.btn--grey.btn--icon.ml.mr(lx-ripple='' ng-show='isEditable()' )
+            p.ml.mr(ng-show='!editState') {{comment.body}}
+            input(ng-show='editState' ng-model='comment.body' flex)
+            div(layout='row' ng-show='!editState')
+                button.btn.btn--s.btn--grey.btn--icon.ml.mr(lx-ripple='' ng-show='isEditable()' ng-click='editState=true' )
                     i.fa.fa-edit.fa-fw
                 button.btn.btn--s.btn--red.btn--icon.ml.mr(lx-ripple='' ng-click='removeComment()' ng-show='isEditable()' sv-confirm-deletion='comment')
                     i.fa.fa-remove.fa-fw
+            div(layout='row' ng-show='editState')
+                button.btn.btn--s.btn--grey.btn--icon.ml.mr(lx-ripple='' ng-show='isEditable()' ng-click='saveCommentChanges()' )
+                    i.fa.fa-save.fa-fw
         md-divider.ml.mr
