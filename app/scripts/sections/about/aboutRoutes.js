@@ -1,3 +1,8 @@
+				.state("app.google-analitics", {
+					url: "/google-analitics", 
+					controller:"GoogleAnaliticsCtrl",
+					templateUrl: "scripts/sections/about/views/google-analiticsCtrl.html"
+				})
 (function () {
     'use strict'
 
