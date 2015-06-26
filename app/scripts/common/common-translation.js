@@ -8,6 +8,7 @@
                 'chicago': 'Chicago',
                 'usa': 'USA',
                 'blog': 'Blog',
+                'about-us': 'About Us',
                 'our-clients': 'Our Clients',
                 /*=form*/
                 'login-title': 'Log In to Your Account',
@@ -52,12 +53,13 @@
                 'chicago': 'Чикаго',
                 'usa': 'США',
                 'blog': 'Блог',
+                'about-us': 'О нас',
                 'our-clients': 'Наши клиенты',
                 /*=form*/
                 'login-title': 'Вход',
                 'quick-look': 'Просмотр',
                 'full-description': 'Подробнее',
-                'login:title': 'Авторизация Svet Media Group',
+                'login:title': 'Авторизация Svet Russian Media Group',
                 'not-registered': 'Не зарегистрированы',
                 'registered-users': 'Зарегистрировались',
                 'required-field': '* Обязательное Поле',

@@ -1,8 +1,3 @@
-				.state("app.google-analytics", {
-					url: "/google-analytics", 
-					controller:"GoogleAnalyticsCtrl",
-					templateUrl: "scripts/sections/about/views/google-analyticsCtrl.html"
-				})
 (function () {
     'use strict'
 
@@ -25,10 +20,9 @@
                     controller: "DemographicsTabContentCtrl",
                     templateUrl: "scripts/sections/about/views/demographics-tab-contentCtrl.html"
                 })
-                .state("app.about.google-analitics", {
-                    url: "/google-analitics",
-                    controller: "GoogleAnaliticsCtrl",
-                    templateUrl: "scripts/sections/about/views/google-analiticsCtrl.html"
+                .state("app.about.google-analytics", {
+                    url: "/google-analytics",
+                    templateUrl: "scripts/sections/about/views/google-analyticsCtrl.html"
                 })
         });
 })();

@@ -632,6 +632,9 @@ md-icon {
   position: relative !important;
   heigth: auto;
 }
+.sv-g-analytics table tbody tr td {
+  padding-bottom: 12px;
+}
 /**********************
  = Bootstrap active button fix
 ***********************/
@@ -724,7 +727,27 @@ body {
 .mdc-link:active,
 .mdc-link:focus {
   text-decoration: none !important;
-  color: #e57373 !important;
+  color: #757575 !important;
+}
+.sv-color-9 {
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
+}
+.sv-color-8 {
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.sv-color-7 {
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+}
+.sv-color-6 {
+  opacity: 0.6;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  filter: alpha(opacity=60);
 }
 .sv-hover-red {
   text-decoration: none !important;
@@ -733,7 +756,7 @@ body {
 .sv-hover-red:active,
 .sv-hover-red:focus {
   text-decoration: none !important;
-  color: #e57373 !important;
+  color: #616161 !important;
 }
 .sv-hover-grey {
   text-decoration: none !important;

@@ -9,6 +9,7 @@
                     url: '@',
                     title: '@',
                     customClass: '@',
+                    iconType: '@',
                     color: '@',
                     btnStyle: '@',
                     btnSize: '@',
