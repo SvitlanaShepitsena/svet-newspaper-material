@@ -102,7 +102,7 @@
                     md-is-locked-open="$mdMedia('gt-md')">
             <md-toolbar class="md-hue-1 text-center" layout='row' sv-nav-bar-media layout-align='space-around center'>
                 <!--<span class="mdc-subhead" hide-sm hide-gt-sm show-gt-md>Наши новости</span>-->
-                <a class="logo-link" ui-sref="app.home">
+                <a class="logo-link fs-caption" ui-sref="app.home">
                     <img src="img/logo/logo.png" class="logo-img" alt="Svet Russian Media Group">
                 </a>
                 <button class='btn btn--m btn--icon btn--black mr' sv-left-click-handler="" hide-gt-md=""
@@ -210,6 +210,16 @@
                                         title="about us"
                                         bgc="red-900"
                                         color="red"
+                                        btn-size="l"
+                                        class="mb">
+                            </sv-nav-btn>
+                            <sv-nav-btn url="app.testimonials"
+                                        icon-type="mdi"
+                                        icon="account-star"
+                                        custom-style="font-weight:500"
+                                        title="Testimonials"
+                                        custom-class="bgc-svet-700"
+                                        color="black"
                                         btn-size="l"
                                         class="mb">
                             </sv-nav-btn>
