@@ -2,10 +2,10 @@ div(layout='column')
     div(ng-if='!!user' layout='column')
         form(layout='column' name='addFeedback' ng-submit='submitFeedback()')
             md-input-container.ml.mr
-                label {{'your-feedback'|translate}}
+                label Your Company Name
                 input(ng-model='feedback.company')
             md-input-container.ml.mr
-                label {{'your-feedback'|translate}}
+                label Your Feedback
                 textarea(ng-model='feedback.body') {{feedback.body}}
             .ml.mr.mb(layout-sm='row' layout-align-sm='center' ng-disabled='!feedback.body')
                 button.btn.btn--m.btn--white.btn--raised(type='submit' )

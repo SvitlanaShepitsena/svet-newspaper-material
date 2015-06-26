@@ -1,0 +1,10 @@
+md-dialog.sv-dialog-md(aria-label='Feedback' min-width="80%" min-height="auto")
+    div.bgc-grey-200(layout="row" layout-align='space-between center' class='pl+ pr+ pt+ pb')
+        div.fs-headline.mt.mb.tc-grey-800.display-block(style='font-weight:500')
+            img.mdc-display-inline-block.mr(ng-src="img/common/feedback.png" width="22px" height="22px")
+            span.mdc-display-inline-block Feedback for Svet Media Group
+        button.btn.btn--s.btn--icon.btn--grey(ng-click='hide()')
+            i.mdi.mdi-close &nbsp
+    md-dialog-content(style='margin:0px;padding:0px')
+        sv-add-feedback.p
+

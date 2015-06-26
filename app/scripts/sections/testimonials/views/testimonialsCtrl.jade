@@ -1,5 +1,7 @@
 div(layout='column' class='pl pr mb')
     div.text-center.pl.pr
         sv-profile-title(header-title="Testimonials")
-    md-divider
-    sv-add-feedback
+    md-divider.mt.mb
+    sv-open-dialog-btn(link-name="Add your feedback"
+    modal-method="showFeedbackModal()" btn-img-icon="img/common/feedback.png"
+    img-width="22px" img-height="22px" ng-if='user.isManager() || user.isCustomer()')
