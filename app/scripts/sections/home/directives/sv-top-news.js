@@ -12,6 +12,7 @@
                     $scope.topNews = _.first($scope.news);
                     $scope.safeParsing = function (html) {
                         return $sce.trustAsHtml(html);
+                        $scope.htmlReady();
                     };
                 }
             };

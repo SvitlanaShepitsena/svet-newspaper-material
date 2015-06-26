@@ -47,7 +47,8 @@
     "angular-bootstrap-calendar": "0.11.2",
     "angular-aws-s3-upload": "~1.0.2-beta",
     "ng-file-upload": "~5.0.9",
-    "angulartics": "~0.18.0"
+    "angulartics": "~0.18.0",
+    "angular-seo": "*"
   },
   "resolutions": {
     "mdi": "1.1.34"

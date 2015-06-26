@@ -4,6 +4,7 @@
         // modules
         'ui.router',
         'ngFileUpload',
+        'seo',
         'pascalprecht.translate',
         'underscore.string',
         'auth',
@@ -33,7 +34,6 @@
         // 3rd party modules
         'angulartics',
         'angulartics.google.analytics',
-
         'ngCookies',
         'angular-capitalize-filter',
         'ngAnimate',
@@ -47,6 +47,7 @@
         'mwl.calendar',
         'ui.sortable'
     ])
+
 
         .config(function (ezfbProvider) {
             ezfbProvider.setInitParams({
@@ -75,20 +76,56 @@
             //$sceProvider.enabled(false);
             /*radio programs*/
         })
-        //// COMMENT ON PRODUCTION
-        .factory('$exceptionHandler', function ($injector) {
-            return function (exception, cause) {
-                var $rootScope = $injector.get('$rootScope');
-                var toastr = $injector.get('toastr');
-                exception.message = exception.stack;
+        .config(function ($httpProvider,$locationProvider) {
+            $locationProvider
+                .html5Mode(true)
+                .hashPrefix('!');
 
-                //Comment on Production
-                toastr.error('ERROR!' + exception.message);
-                $rootScope.$broadcast('error');
-                throw exception;
-            };
+            var $http,
+                interceptor = ['$q', '$injector', function ($q, $injector) {
+                    var error;
+                    function success(response) {
+                        $http = $http || $injector.get('$http');
+                        var $timeout = $injector.get('$timeout');
+                        var $rootScope = $injector.get('$rootScope');
+                        if($http.pendingRequests.length < 1) {
+                            $timeout(function(){
+                                if($http.pendingRequests.length < 1){
+                                    $rootScope.htmlReady();
+                                }
+                            }, 700);//an 0.7 seconds safety interval, if there are no requests for 0.7 seconds, it means that the app is through rendering
+                        }
+                        return response;
+                    }
+
+                    function error(response) {
+                        $http = $http || $injector.get('$http');
+
+                        return $q.reject(response);
+                    }
+
+                    return function (promise) {
+                        return promise.then(success, error);
+                    }
+                }];
+
+            $httpProvider.interceptors.push(interceptor);
+
         })
+        //// COMMENT ON PRODUCTION
+        //.factory('$exceptionHandler', function ($injector) {
+        //    return function (exception, cause) {
+        //        var $rootScope = $injector.get('$rootScope');
+        //        var toastr = $injector.get('toastr');
+        //        exception.message = exception.stack;
+        //
+        //        //Comment on Production
+        //        toastr.error('ERROR!' + exception.message);
+        //        $rootScope.$broadcast('error');
+        //        throw exception;
+        //    };
+        //})
         .config(['$compileProvider', function ($compileProvider) {
-            //$compileProvider.debugInfoEnabled(false);
+            $compileProvider.debugInfoEnabled(false);
         }]);
 })();

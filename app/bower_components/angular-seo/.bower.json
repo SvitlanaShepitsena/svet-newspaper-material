@@ -1,0 +1,19 @@
+{
+  "name": "angular-seo",
+  "main": "./angular-seo.js",
+  "ignore": [],
+  "dependencies": {
+    "angular": "1.3.13"
+  },
+  "homepage": "https://github.com/steeve/angular-seo",
+  "_release": "d6b50c5b48",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d6b50c5b48296f42afcd920cba48e158bb66ef01"
+  },
+  "_source": "git://github.com/steeve/angular-seo.git",
+  "_target": "*",
+  "_originalSource": "angular-seo",
+  "_direct": true
+}

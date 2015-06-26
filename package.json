@@ -45,6 +45,7 @@
     "gulp-watch": "^4.2.4",
     "merge-stream": "^0.1.7",
     "nib": "^1.1.0",
+    "phantomjs": "^1.9.17",
     "require-dir": "^0.3.0",
     "underscore": "^1.8.3",
     "underscore.string": "^3.0.3",
