@@ -5,4 +5,4 @@ div(layout='column' class='pl pr mb')
     sv-open-dialog-btn(link-name="Add your feedback"
     modal-method="showFeedbackModal()" btn-img-icon="img/common/feedback.png"
     img-width="22px" img-height="22px" ng-if='user.isManager() || user.isCustomer()')
-    sv-feedback-list
+    sv-feedback-list(show-feedback-modal='showFeedbackModal()')

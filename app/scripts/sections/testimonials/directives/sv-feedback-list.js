@@ -6,7 +6,9 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/sections/testimonials/directives/sv-feedback-list.html',
-                scope: {},
+                scope: {
+                    showFeedbackModal:'&'
+                },
                 link: function ($scope, el, attrs) {
                     var feedbacks = FeedbackServ.all();
 

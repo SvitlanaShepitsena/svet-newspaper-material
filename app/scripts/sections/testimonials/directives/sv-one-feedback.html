@@ -1,1 +1,1 @@
-<div>sv-one-feedback Template</div>
+<div class="card m p"><div>{{feedback.body}}</div><div>{{feedback.company}}</div><div>{{feedback.timestamp|date}}</div><div ng-if="user.isManager() || feedback.authorKey==user.key"><button lx-ripple="" ng-click="editFeedback()" class="btn btn--xs btn--blue btn--raised">Edit</button><button lx-ripple="" ng-click="removeSvFeedback(feedback)" sv-confirm-deletion="feedback" class="btn btn--xs btn--red btn--raised">Delete</button></div></div>

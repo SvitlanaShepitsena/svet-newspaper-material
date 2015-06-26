@@ -1,5 +1,3 @@
 ul.list-unstyled(layout='column')
     li(ng-repeat='f in feedbacks')
-        div {{f.body}}
-        div {{company}}
-        div {{f.timestamp|date}}
+        sv-one-feedback(feedback='f' show-feedback-modal='showFeedbackModal()')

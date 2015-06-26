@@ -12,7 +12,10 @@
                     }
                 );
             };
-            function FeedbackModalController($scope, $mdDialog) {
+            function FeedbackModalController($scope, $mdDialog, feedbackConst) {
+                if (feedbackConst.feedback) {
+                    $scope.feedback = feedbackConst.feedback;
+                }
                 $scope.hide = function () {
                     $mdDialog.hide();
                 };
