@@ -1,14 +1,14 @@
 div.ml.mr.mdc-overflow-hidden.text-center
     div.mb(layout='row' layout-align='center')
-        button.btn-flat.btn-red.btn.btn--xs.tc-red-300(lx-ripple='' ng-click="prevCl()" style='cursor:pointer;opacity:.8')
+        a.btn-raised.btn-white.btn.btn--xs.tc-red-800.sv-color-7(lx-ripple='' ng-click="prevCl()" style='cursor:pointer')
             i.fa.fa-chevron-up.fa-lg
-        button.btn-flat.btn-red.btn.btn--xs.tc-red-300(lx-ripple='' ng-click='nextCl()' style='cursor:pointer;opacity:.8')
+        a.btn-icon.btn-red.btn.btn--xs.tc-red-800.sv-color-7(lx-ripple='' ng-click='nextCl()' style='cursor:pointer')
             i.fa.fa-chevron-down.fa-lg
     div(style='min-height:200px')
         sv-one-classified-thumb(ng-if='currentClTime' cl='cls[currentClassifiedIndex]' widget='true' is-home='isHome' is-new='isCurrentNew' )
     div(layout='row' layout-align='center')
-        button.btn-flat.btn-red.btn.btn--xs.tc-red-300(lx-ripple='' ng-click="prevCl()" style='cursor:pointer;opacity:.8')
+        a.btn-icon.btn-red.btn.btn--xs.tc-red-800.sv-color-7(lx-ripple='' ng-click="prevCl()" style='cursor:pointer')
             i.fa.fa-chevron-up.fa-lg
-        button.btn-flat.btn-red.btn.btn--xs.tc-red-300(lx-ripple='' ng-click='nextCl()' style='cursor:pointer;opacity:.8')
+        a.btn-icon.btn-red.btn.btn--xs.tc-red-800.sv-color-7(lx-ripple='' ng-click='nextCl()' style='cursor:pointer')
             i.fa.fa-chevron-down.fa-lg
 

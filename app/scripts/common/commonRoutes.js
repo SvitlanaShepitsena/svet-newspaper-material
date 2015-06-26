@@ -8,11 +8,11 @@
                     controller: "SectionCtrl",
                     templateUrl: "scripts/common/views/sectionCtrl.html"
                 })
-				.state("app.ga", {
-					url: "/svet-analytics-data",
-					controller:"GaCtrl",
-					templateUrl: "scripts/common/views/gaCtrl.html"
-				})
+                .state("app.ga", {
+                    url: "/svet-analytics-data",
+                    controller: "GaCtrl",
+                    templateUrl: "scripts/common/views/gaCtrl.html"
+                })
 //#state'
         });
 })();

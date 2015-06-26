@@ -20,6 +20,9 @@
                     controller: "DemographicsTabContentCtrl",
                     templateUrl: "scripts/sections/about/views/demographics-tab-contentCtrl.html"
                 })
+                .state("app.about.google-analytics", {
+                    url: "/google-analytics",
+                    templateUrl: "scripts/sections/about/views/google-analyticsCtrl.html"
+                })
         });
 })();
-

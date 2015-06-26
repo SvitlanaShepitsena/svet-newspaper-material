@@ -10,8 +10,6 @@
                     controller: "TestimonialsCtrl",
                     templateUrl: "scripts/sections/testimonials/views/testimonialsCtrl.html"
                 })
-//#state'
-
         });
 })();
 

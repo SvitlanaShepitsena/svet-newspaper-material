@@ -8,6 +8,8 @@ div(layout='column')
             md-input-container.ml.mr
                 label {{'your-comment'|translate}}
                 textarea(ng-model='comment.body') {{comment.body}}
-            .ml.mr.mb(layout-sm='row' layout-align-sm='center')
-                button.btn.btn--m.btn--white.btn--raised(type='submit' ng-if='comment.body') {{'post'|translate}}
+            .ml.mr.mb(layout-sm='row' layout-align-sm='center' ng-if='comment.body')
+                button.btn.btn--m.btn--white.btn--raised(type='submit' )
+                    i.fa.fa-send-o.fa-fw &nbsp
+                    | {{'post'|translate}}
 

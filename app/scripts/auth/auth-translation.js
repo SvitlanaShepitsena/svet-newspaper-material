@@ -4,8 +4,9 @@
         .config(['$translateProvider', function ($translateProvider) {
             $translateProvider.useCookieStorage()
             $translateProvider.translations('en', {
-                'terms-conditions': 'Svet Media Group Statement of Rights and Responsibilities',
+                'terms-conditions': 'Svet Russian Media Group Statement of Rights and Responsibilities',
                 'comment-auth': 'Please log in to leave a comment',
+                'feedback-auth': 'Please log in to leave a feedback',
                 'all-rights-reserved': 'All rights reserved',
                 'all-registered-users': 'Full List',
                 'account-status': 'Account Status',
@@ -18,7 +19,7 @@
                 'register-account': 'Please Register',
                 'new-user': 'if you do not have an account',
                 'by-registering': 'By clicking Register',
-                'registering-conditions': 'I have read and agree to the Svet Media Group Website Terms & Conditions ',
+                'registering-conditions': 'I have read and agree to the Svet Russian Media Group Website Terms & Conditions ',
                 'already-registered': 'Already registered?',
                 'registration': 'Registration',
                 'author-dashboard': 'Dashboard',
@@ -58,15 +59,16 @@
                 'invitations': 'Invitations',
                 'find-people': 'Find People',
                 'subscriptions': 'Subscriptions',
-                'recovery-header': 'Svet Media Group Password Recovery',
+                'recovery-header': 'Svet Russian Media Group Password Recovery',
                 'forgot-pass': 'Forgot password?',
                 'email-recovery': 'Email used for registration',
                 'send-temp-pass': 'Send',
                 'profile-settings': 'Profile Settings'
             });
             $translateProvider.translations('ru', {
-                'terms-conditions': 'Правила пользования интерактивными ресурсами сайта Svet Media Group',
+                'terms-conditions': 'Правила пользования интерактивными ресурсами сайта Svet Russian Media Group',
                 'comment-auth': 'Авторизируйтесь, чтобы оставить комментарий',
+                'feedback-auth': 'Авторизируйтесь, чтобы оставить отзыв',
                 'all-rights-reserved': 'Все права защищены',
                 'all-registered-users': 'Весь Список',
                 'account-status': 'Статус Профайла',
@@ -79,7 +81,7 @@
                 'register-account': 'Зарегистрируйтесь',
                 'new-user': 'Eсли Вы новый пользователь',
                 'by-registering': 'Регистрируясь, вы принимаете',
-                'registering-conditions': 'Я прочитал и принимаю условия использования портала Svet Media Group',
+                'registering-conditions': 'Я прочитал и принимаю условия использования портала Svet Russian Media Group',
                 'already-registered': 'Уже зарегистрированы',
                 'registration': 'Регистрация',
                 'author-dashboard': 'Панель Управления',

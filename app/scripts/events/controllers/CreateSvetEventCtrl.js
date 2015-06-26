@@ -5,7 +5,7 @@
             $scope.event = {
                 type: 'corporates',
                 title: 'Svet Connection Meeting',
-                description: 'Svet Connection networking event helps to increase collaboration among Svet Media Group Partners and build lasting relationships where all parties can help one another',
+                description: 'Svet Connection networking event helps to increase collaboration among Svet Russian Media Group Partners and build lasting relationships where all parties can help one another',
                 date: new Date('01/06/2015'),
                 startTime: new Date('01/06/2015 10:00:AM'),
                 endTime: new Date('01/06/2015 1:00:PM'),

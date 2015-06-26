@@ -16,6 +16,7 @@
         .constant('svetEventsConst', {})
         .constant('svetPost', {})
         .constant('classified', {})
+        .constant('feedback', {})
         .constant('viewModalConst', {})
         .constant('dt', {})
         .constant('classifiedInterval', 63000)

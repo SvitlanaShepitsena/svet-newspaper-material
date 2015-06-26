@@ -3,16 +3,16 @@ div(layout='column')
         ul.list
             li.list-row.list-row--has-separator
                 .list-row__primary
-                    a(href="https://www.youtube.com/watch?v=fuVyrMp3BpI")
-                        img.sv-img-bw(src="../img/ad/youtube-sepia.png" style='width:32px')
+                    a(href="https://itunes.apple.com/us/app/svet-local/id592739995?mt=8")
+                        img(src="../img/ad/svet-app.png" style='width:32px; display:inline-block;opacity:.9')
                 .list-row__content
-                    a.mdc-link.tc-black-2(href="https://www.youtube.com/watch?v=fuVyrMp3BpI")
-                        .fs-subhead.text-subheader {{'youtube'|translate}}
+                    a.mdc-link.tc-grey-800(href="https://itunes.apple.com/us/app/svet-local/id592739995?mt=8")
+                        .fs-subhead.text-subheader Svet Local App
             li.list-row.list-row--has-separator
                 .list-row__primary
-                    a(href="https://itunes.apple.com/us/app/svet-local/id592739995?mt=8")
-                        img(src="../img/ad/svet-app-64-sepia.png" style='width:32px; display:inline-block;')
+                    a(ui-sref="app.ga")
+                        img.mdc-display-inline-block.mr(ng-src="img/common/google-analytics-2.png" style='' width="34px" )
                 .list-row__content
-                    a.mdc-link.tc-black-2(href="https://itunes.apple.com/us/app/svet-local/id592739995?mt=8")
-                        .fs-subhead.text-subheader {{'svetApp'|translate}}
+                    a.mdc-link.tc-grey-800(ui-sref="app.ga")
+                        .fs-subhead.text-subheader Svet.com Analytics
 

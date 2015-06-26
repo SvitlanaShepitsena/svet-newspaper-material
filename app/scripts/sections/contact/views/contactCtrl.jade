@@ -1,7 +1,9 @@
 div.mt(layout='column' flex='' layout-align='center center' class='ml mr')
     div.text-center.pl.pr
         sv-profile-title(header-title="Contact Us")
-    div(flex)
+    div.text-center.pl.pr
         sv-contact-us
-    div(layout='column' layout-align='center center' class='mb+ ml mr sv-iframe-responsive-wrap')
+    div(layout='column' layout-align='center center' class='mb+ ml mr' hide-sm )
         iframe(src="https://www.google.com/maps/d/embed?mid=zdTHzl0THQeM.kJQxl2t2rCe0" width="640" height="680")
+    div(layout='column' layout-align='center center' class='mb+ ml mr' hide-gt-sm)
+        sv-open-dialog-btn(link-name="Contact Us Map" modal-method="showContactMapModal()" btn-img-icon="img/common/google-map.png")

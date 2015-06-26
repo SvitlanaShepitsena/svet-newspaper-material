@@ -1,6 +1,6 @@
 div(style='margin-bottom:5px' ng-if='!!user')
     a.tc-grey-700(ng-click='goToDashboard()' style='cursor:pointer;text-decoration:none')
-        span.sv-cell-13.tc-red-300(style='margin-right:2px;font-size:16.5px;font-weight:bold;line-height:20px !important')
+        span.sv-cell-13.tc-red-800.sv-color-7(style='margin-right:2px;font-size:16.5px;font-weight:bold;line-height:20px !important')
             | SVET
         span.sv-cell-13(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-if='user.isManager()')   {{'manager'|translate|uppercase}}
         span.sv-cell-13(style='margin-right:4px;font-size:16.5px;font-weight:bold;line-height:20px !important' ng-if='user.isEditor()')  {{'editor'|translate|uppercase}}
