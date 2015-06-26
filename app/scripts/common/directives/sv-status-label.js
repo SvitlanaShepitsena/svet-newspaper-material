@@ -4,7 +4,7 @@
         .directive('svStatusLabel', function () {
             return {
                 replace: true,
-                templateUrl: 'scripts/common/directives/sv-status-label.html',
+                templateUrl: '/scripts/common/directives/sv-status-label.html',
                 scope: {
                     labelTitle: '@',
                     fs: '@',
