@@ -1,2 +1,5 @@
 ul.list-unstyled(layout='column')
-    li Test
+    li(ng-repeat='f in feedbacks')
+        div {{f.body}}
+        div {{company}}
+        div {{f.timestamp|date}}

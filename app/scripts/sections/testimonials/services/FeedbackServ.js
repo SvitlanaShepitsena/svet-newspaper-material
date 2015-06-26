@@ -13,6 +13,9 @@
                             reject(error);
                         });
                     });
+                },
+                all: function () {
+                    return $firebaseArray(ref);
                 }
             };
         });
