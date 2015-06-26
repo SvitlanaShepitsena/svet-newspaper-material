@@ -21,10 +21,10 @@
                     return $q(function (resolve, reject) {
                         var dbComment = $firebaseObject(new Firebase(articleCommentUrl));
                         dbComment.$loaded().then(function () {
-                           dbComment.body=comment.body;
-                           dbComment.$save().then(function (ref) {
-                               resolve(ref.key());
-                           })
+                            dbComment.body = comment.body;
+                            dbComment.$save().then(function (ref) {
+                                resolve(ref.key());
+                            })
                         });
 
                     });
@@ -40,7 +40,6 @@
                                 resolve(ref.key());
                             });
                         });
-
 
                     });
                 }
