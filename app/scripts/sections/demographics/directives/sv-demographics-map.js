@@ -7,7 +7,8 @@
                 replace: true,
                 templateUrl: 'scripts/sections/demographics/directives/sv-demographics-map.html',
                 scope: {
-                    modalMethod: '&'
+                    modalMethod: '&',
+                    linkName: '@'
                 },
                 link: function ($scope, el, attrs) {
                 }
