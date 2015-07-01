@@ -1,1 +1,7 @@
-div sv-one-photo-gallery Template
+div
+    .js-masonry(data-masonry-options='{ "itemSelector": ".item", "columnWidth": 200 }')
+        .item
+            img(ng-src="img/gallery/01.jpg")
+        .item
+            img(ng-src="img/gallery/02.jpg")
+
