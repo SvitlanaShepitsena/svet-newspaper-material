@@ -13,11 +13,11 @@
                     controller: "GaCtrl",
                     templateUrl: "scripts/common/views/gaCtrl.html"
                 })
-				.state("app.one-photo-gallery", {
-					url: "/one-photo-gallery", 
-					controller:"One-photo-galleryCtrl",
-					templateUrl: "scripts/common/views/one-photo-galleryCtrl.html"
-				})
+                .state("app.one-photo-gallery", {
+                    url: "/one-photo-gallery",
+                    controller: "One-photo-galleryCtrl",
+                    templateUrl: "scripts/common/views/one-photo-galleryCtrl.html"
+                })
 //#state'
         });
 })();

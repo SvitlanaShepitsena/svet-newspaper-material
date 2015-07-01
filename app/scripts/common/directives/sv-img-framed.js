@@ -6,7 +6,7 @@
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-img-framed.html',
                 scope: {
-                    img: '=',
+                    svImg: '=',
                     maxWidth: '=',
                     maxHeight: '='
                 },

@@ -5,7 +5,7 @@
     div(layout='row' layout-align='center')
         a(ui-sref='app.article({id:topNews.fbkey})' )
             .card__img.card__img--top(style='padding:0px !important')
-                sv-img-framed(img = 'topNews.img' max-width='800' max-height='320')
+                sv-img-framed(sv-img = 'topNews.img' max-width='800' max-height='320')
                 span.mdc-display-inline-block.fs-title.tc-white.bgc-white.sv-color-8(style='padding:4px 8px;margin: 0px -15px')
                     | {{topNews.title}}
                 span.mdc-display-inline-block.fs-title.tc-white.bgc-red-800.sv-color-7(style='padding:4px 8px;margin: 0px -15px')
