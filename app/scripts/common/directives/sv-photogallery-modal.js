@@ -42,12 +42,13 @@
                     }
 
                     function DialogControllerInfo($scope, $mdDialog, dt, s3) {
-                        $scope.awsBase = 'https://s3-us-west-2.amazonaws.com/svet.com/';
-                        $scope.imgIndex = 22;
+                        //$scope.awsBase = 'https://s3-us-west-2.amazonaws.com/svet.com/';
+                        $scope.awsBase = 'https://s3-us-west-2.amazonaws.com/svet.com/events/public/kohl/';
+                        $scope.imgIndex = 137;
 
                         $scope.files = s3.files;
 
-                        var maxImg = 67;
+                        var maxImg = 200;
                         $scope.event = dt.vm;
 
                         $scope.nextSvImage = function () {
