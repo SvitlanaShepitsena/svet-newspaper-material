@@ -17,6 +17,8 @@
                         $scope.calendarView = 'year';
                         $scope.calendarDay = new Date();
                         $scope.events = svetEventsConst.evts;
+
+                        console.log($scope.events);
                         $scope.eventClicked = function (domEvt, event) {
                             showModal(event);
                         };

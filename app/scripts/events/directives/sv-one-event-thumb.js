@@ -13,6 +13,9 @@
                     $scope.quickView = function (domEvt, event) {
                         showModal(event);
                     };
+                    console.log($scope.event);
+                    var breakPoint = 1;
+
                     function showModal(event) {
                         dt.vm = event;
                         $mdDialog.show({

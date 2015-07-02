@@ -22,6 +22,7 @@
             function preprocess(events) {
                 for (var i = 0; i < events.length; i++) {
                     var event = events[i];
+                    event.svId=event.$id;
                     event.startsAt = moment(event.startsAt, 'x').toDate();
                     event.endsAt = moment(event.endsAt, 'x').toDate();
                 }
@@ -51,10 +52,11 @@
                         var eventsArr = $firebaseArray(new Firebase(eventsPublicUrl));
                         eventsArr.$loaded(function () {
                             svetEventsConst.evts = preprocess(eventsArr);
-                            eventsArr.$watch(function (change) {
-                                var processedEvent = preprocessWithKey(eventsArr, change.key);
-                                svetEventsConst.evts = processedEvent;
-                            });
+                            console.log(eventsArr);
+                            //eventsArr.$watch(function (change) {
+                            //    var processedEvent = preprocess(eventsArr, change.key);
+                            //    svetEventsConst.evts = processedEvent;
+                            //});
                             resolve();
                         })
                     });

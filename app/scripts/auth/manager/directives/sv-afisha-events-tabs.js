@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('auth.manager')
-        .directive('svAfishaEventsTabs', function () {
+        .directive('svAfishaEventsTabs', function (svetEventsConst) {
             return {
                 replace: true,
                 templateUrl: 'scripts/auth/manager/directives/sv-afisha-events-tabs.html',
@@ -15,6 +15,14 @@
                         previous = selected;
                         selected = tabs[current];
                     });
+                    //$scope.$watchCollection(function () {
+                    //    return svetEventsConst.evts;
+                    //}, function (newValue, oldValue) {
+                    //    if (newValue !== oldValue) {
+                    //        $scope.evtsReady = true;
+                    //        console.log(newValue[0]);
+                    //    }
+                    //});
                 }
             };
         });
