@@ -35,11 +35,6 @@
                     controller: "Kohl2015Ctrl",
                     templateUrl: "scripts/events/views/kohl2015Ctrl.html"
                 })
-                .state("app.events.photo-gallery", {
-                    url: "/events-photo-gallery",
-                    controller: "EventsPhotoGalleryCtrl as eventsPhotoGallery",
-                    templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
-                })
                 .state("app.events.one-event", {
                     url: "/one-event/:eid",
                     controller: "OneEventCtrl",
@@ -51,8 +46,11 @@
                     templateUrl: "scripts/events/views/event-articleCtrl.html"
                 })
 
-
-
+				.state("app.one-event-gallery", {
+					url: "/one-event-gallery", 
+					controller:"One-event-galleryCtrl",
+					templateUrl: "scripts/events/views/one-event-galleryCtrl.html"
+				})
 //#state'
         });
 })();
