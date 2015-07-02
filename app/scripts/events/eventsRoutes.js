@@ -46,11 +46,11 @@
                     templateUrl: "scripts/events/views/event-articleCtrl.html"
                 })
 
-				.state("app.one-event-gallery", {
-					url: "/one-event-gallery", 
-					controller:"One-event-galleryCtrl",
-					templateUrl: "scripts/events/views/one-event-galleryCtrl.html"
-				})
+                .state("app.events.one-event-gallery", {
+                    url: "/one-event-gallery",
+                    controller: "One-event-galleryCtrl",
+                    templateUrl: "scripts/events/views/one-event-galleryCtrl.html"
+                })
 //#state'
         });
 })();
