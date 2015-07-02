@@ -1,7 +1,7 @@
-div
-    .greed.js-masonry(data-masonry-options='{ "itemSelector": ".item", "columnWidth": 200 }')
-        .greed-item
-            img(ng-src="img/gallery/01.jpg")
-        .greed-item
-            img(ng-src="img/gallery/02.jpg")
-
+div(layout-gt-sm='row' layout-sm='column')
+    div(flex='' class='p')
+        sv-img-framed-string(sv-img="img/gallery/01.jpg" max-width='800' max-height='320')
+    div(flex='' class='p')
+        sv-img-framed-string(sv-img="img/gallery/02.jpg" max-width='800' max-height='320')
+    div(flex='' class='p')
+        sv-img-framed-string(sv-img="img/gallery/03.jpg" max-width='800' max-height='320')
