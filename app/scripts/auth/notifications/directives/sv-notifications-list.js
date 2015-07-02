@@ -19,7 +19,7 @@
                     };
                     $scope.markOpened = function (notification) {
                         NotificationsServ.markNotificationOpened(notification.$id);
-                        $state.go('app.one-event', {eid: notification.eid});
+                        $state.go('app.events.one-event', {eid: notification.eid});
                     };
                 }
             };

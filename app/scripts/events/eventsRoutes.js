@@ -30,29 +30,29 @@
                     controller: "RaviniaEventCtrl as raviniaEvent",
                     templateUrl: "scripts/events/views/ravinia-eventCtrl.html"
                 })
+                .state("app.events.kohl2015", {
+                    url: "/kohl2015",
+                    controller: "Kohl2015Ctrl",
+                    templateUrl: "scripts/events/views/kohl2015Ctrl.html"
+                })
                 .state("app.events.photo-gallery", {
                     url: "/events-photo-gallery",
                     controller: "EventsPhotoGalleryCtrl as eventsPhotoGallery",
                     templateUrl: "scripts/events/views/events-photo-galleryCtrl.html"
                 })
-                .state("app.one-event", {
+                .state("app.events.one-event", {
                     url: "/one-event/:eid",
                     controller: "OneEventCtrl",
                     templateUrl: "scripts/events/views/one-eventCtrl.html"
                 })
-                .state("app.kohl2015", {
-                    url: "/kohl2015",
-                    controller: "Kohl2015Ctrl",
-                    templateUrl: "scripts/events/views/kohl2015Ctrl.html"
-                })
-                .state("app.event-article", {
+                .state("app.events.event-article", {
                     url: "/event-article",
                     controller: "Event-articleCtrl",
                     templateUrl: "scripts/events/views/event-articleCtrl.html"
                 })
-				
-				
-				
+
+
+
 //#state'
         });
 })();

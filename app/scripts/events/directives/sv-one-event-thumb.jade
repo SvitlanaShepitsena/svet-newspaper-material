@@ -12,7 +12,7 @@ div(layout='column')
             span.display-block.fs-subhead About Event:
             span.display-block.fs-body-2.mb {{event.about}}
             div
-                a.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ui-sref='app.one-event({eid:event.$id})')
+                a.btn.btn--xs.btn--white.btn--raised(lx-ripple='' ui-sref='app.events.one-event({eid:event.$id})')
                     i.mdi.mdi-arrow-right &nbsp
                     | {{'more-info'|translate}}
 
