@@ -1,7 +1,7 @@
-div(layout-gt-md='row' layout-sm='column')
-    div(flex='' class='p')
-        sv-img-framed(sv-img="img/gallery/back.jpg" max-width='800' max-height='320')
-    div(flex='' class='p')
-        img(ng-src="img/gallery/03.jpg")
-    div(flex='' class='p')
-        img(ng-src="img/gallery/02.jpg")
+div
+    .js-masonry(data-masonry-options='{ "itemSelector": ".item", "columnWidth": 200 }')
+        .item
+            img(ng-src="img/gallery/01.jpg")
+        .item
+            img(ng-src="img/gallery/02.jpg")
+
