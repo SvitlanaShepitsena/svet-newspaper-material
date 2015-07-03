@@ -259,6 +259,33 @@ md-icon {
     min-height: 100% !important;
   }
 }
+.sv-gallery-thumb-dir,
+.sv-gallery-thumb {
+  margin: 0px auto;
+  width: 200px;
+  height: 200px;
+}
+@media screen and (min-width: 300px) {
+  .sv-gallery-thumb-dir,
+  .sv-gallery-thumb {
+    width: 120px;
+    height: 120px;
+  }
+}
+@media screen and (min-width: 350px) {
+  .sv-gallery-thumb-dir,
+  .sv-gallery-thumb {
+    width: 150px;
+    height: 150px;
+  }
+}
+@media screen and (min-width: 400px) {
+  .sv-gallery-thumb-dir,
+  .sv-gallery-thumb {
+    width: 180px;
+    height: 180px;
+  }
+}
 .arrow {
   cursor: pointer;
   display: block;
@@ -1087,4 +1114,32 @@ md-sidenav.md-locked-open {
     font-size: 15px;
     line-height: 18px;
   }
+}
+.gridListdemoBasicUsage md-grid-list {
+  margin: 8px;
+}
+.gridListdemoBasicUsage .gray {
+  background: #f5f5f5;
+}
+.gridListdemoBasicUsage .green {
+  background: #b9f6ca;
+}
+.gridListdemoBasicUsage .yellow {
+  background: #ffff8d;
+}
+.gridListdemoBasicUsage .blue {
+  background: #84ffff;
+}
+.gridListdemoBasicUsage .purple {
+  background: #b388ff;
+}
+.gridListdemoBasicUsage .red {
+  background: #ff8a80;
+}
+.gridListdemoBasicUsage md-grid-tile {
+  -webkit-transition: all 400ms ease-out 50ms;
+  -moz-transition: all 400ms ease-out 50ms;
+  -o-transition: all 400ms ease-out 50ms;
+  -ms-transition: all 400ms ease-out 50ms;
+  transition: all 400ms ease-out 50ms;
 }

@@ -12,16 +12,16 @@
                     maxHeight: '@'
                 },
                 link: function ($scope, el, attrs) {
-                    $scope.maxW = $scope.maxWidth || 600;
-                    $scope.maxH = $scope.maxHeight || 400;
+                    $scope.maxW = $scope.maxWidth || 250;
+                    $scope.maxH = $scope.maxHeight || 150;
                     el.css('position', 'relative');
                     el.css('overflow', 'hidden');
                     el.css('max-width', $scope.maxW + 'px');
                     el.css('max-height', $scope.maxH + 'px');
                     var img = el.find('img');
                     img.css('position', 'relative');
-                    img.css('width', '100%');
                     img.css('display', 'block');
+                    img.css('height', '150px');
                 }
             };
         });

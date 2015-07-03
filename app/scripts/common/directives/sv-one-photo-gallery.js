@@ -6,12 +6,11 @@
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-one-photo-gallery.html',
-                scope: {
-
-                },
+                scope: {},
                 link: function ($scope, el, attrs) {
 
                 }
+                
             };
         });
 })();

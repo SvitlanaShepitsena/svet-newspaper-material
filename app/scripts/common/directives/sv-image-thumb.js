@@ -7,7 +7,7 @@
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-image-thumb.html',
                 scope: {
-                    svImage: '=',
+                    svImage: '@',
                     linkRoute: '@',
                     params: '='
                 },
