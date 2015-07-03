@@ -1,6 +1,5 @@
 md-dialog(style='min-width:100%;min-height:100%' class='bgc-grey-900' aria-label='gallery modal')
     div(layout="row" layout-align='space-between center' class='p+')
-        //span.ml.fs-headline.mt.mb.tc-grey-300 SVET Annual Family Event at KOHL CHILDREN’S MUSEUM
         div(flex='')
         div(layout="row" layout-align='center center' class='pb' flex)
             div
@@ -14,6 +13,5 @@ md-dialog(style='min-width:100%;min-height:100%' class='bgc-grey-900' aria-label
                 i.mdi.mdi-close &nbsp
     md-dialog-content(style='padding:0px')
         div(layout='row')
-            div(style='margin:0px auto' sv-image-scale)
-                img(ng-src="{{awsBase+files[imgIndex]}}"   style='margin:0px auto')
-
+            div(style='margin:0px auto;position:relative' sv-image-scale)
+                img.animate-show(ng-src="{{currentImage}}" sv-fade-in='imgIndex'  style='margin:0px auto')

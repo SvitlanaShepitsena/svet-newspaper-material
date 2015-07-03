@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('common')
-        .directive('svOnePhotoGallery', function (AWSServ, $mdDialog,dt) {
+        .directive('svOnePhotoGallery', function (AWSServ, $mdDialog, dt, $timeout) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-one-photo-gallery.html',
@@ -15,10 +15,10 @@
                     });
 
                     $scope.showGalleryModal = function (index) {
-                       var imgCollection={
-                           images: $scope.images,
-                           currentIndex:index
-                       }
+                        var imgCollection = {
+                            images: $scope.images,
+                            currentIndex: index
+                        }
                         showModal(imgCollection);
                     };
 
@@ -31,12 +31,15 @@
                     }
 
                     function DialogControllerInfo($scope, $mdDialog, dt, s3) {
+                        var delay = 400;
+
                         $scope.awsBase = 'https://s3-us-west-2.amazonaws.com/kohl/';
                         $scope.imgIndex = dt.vm.currentIndex;
 
                         $scope.files = dt.vm.images;
 
-                        var maxImg = $scope.files.length-1;
+                        var maxImg = $scope.files.length - 1;
+                        $scope.currentImage = $scope.awsBase + $scope.files[$scope.imgIndex];
                         //$scope.event = dt.vm;
 
                         $scope.nextSvImage = function () {
@@ -46,6 +49,9 @@
                                 i = 0;
                             }
                             $scope.imgIndex = i;
+                            $timeout(function () {
+                                $scope.currentImage = $scope.awsBase + $scope.files[$scope.imgIndex];
+                            }, delay);
                         };
                         $scope.prevSvImage = function () {
                             var i = $scope.imgIndex;
@@ -54,6 +60,9 @@
                                 i = maxImg;
                             }
                             $scope.imgIndex = i;
+                            $timeout(function () {
+                                $scope.currentImage = $scope.awsBase + $scope.files[$scope.imgIndex];
+                            }, delay);
                         };
 
                         $scope.hide = function () {
