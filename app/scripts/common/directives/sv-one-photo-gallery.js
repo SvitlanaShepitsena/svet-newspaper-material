@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('common')
+        .value('s3', {files: []})
         .directive('svOnePhotoGallery', function (AWSServ, $mdDialog, dt, $timeout) {
             return {
                 replace: true,
@@ -31,7 +32,7 @@
                     }
 
                     function DialogControllerInfo($scope, $mdDialog, dt, s3) {
-                        var delay = 400;
+                        var delay = 700;
 
                         $scope.awsBase = 'https://s3-us-west-2.amazonaws.com/kohl/';
                         $scope.imgIndex = dt.vm.currentIndex;
