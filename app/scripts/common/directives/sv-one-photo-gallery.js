@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('common')
-        .directive('svOnePhotoGallery', function () {
+        .directive('svOnePhotoGallery', function (AWSServ) {
             return {
                 replace: true,
                 templateUrl: 'scripts/common/directives/sv-one-photo-gallery.html',
