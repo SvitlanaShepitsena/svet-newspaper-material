@@ -1,11 +1,7 @@
 (function () {
     'use strict'
     angular.module('app')
-        .config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
-
-
-
-
+        .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
             $urlRouterProvider.otherwise('/home');
             $stateProvider

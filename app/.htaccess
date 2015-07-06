@@ -6,3 +6,9 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /#/$1 [L]
+
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
+RewriteCond %{REQUEST_URI} !.*/static/.*
+RewriteRule (.*) http://www.svet.com/static/$1
+
+
