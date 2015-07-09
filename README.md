@@ -1,2 +1,3 @@
-# svet-newspaper-material
-Ethnic newspaper
+# Automatic social update for business and personal services
+
+Website App
