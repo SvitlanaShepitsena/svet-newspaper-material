@@ -17,7 +17,6 @@
         span.fs-body-1.display-block(ng-bind-html="safeParsing(topNews.summary||(topNews.body|cut:50))")
     div(layout='row' layout-align='end start' class='pr')
         button.btn.btn--xs.btn--grey.btn--flat(ui-sref='app.article({id:topNews.fbkey})' ) {{'read-more'|translate}} >>
-        //sv-read-more(url='app.article({id:topNews.fbkey})' read-more="read-more")
     //.p.bgc-grey-100
         //sv-article-public-statistics
 
