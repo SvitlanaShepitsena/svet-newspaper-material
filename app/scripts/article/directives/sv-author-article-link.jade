@@ -6,7 +6,7 @@
             span.mdc-display-inline-block.mt.mb.fs-caption.tc-grey-500 {{article.timestamp|date}}
         div.ml.mr.mb(layout="row" ng-show='isRank' flex="30" layout-align='end')
             sv-article-make-top-btn(article='article' index='index')
-        sv-article-status(key='article.$id' property='isPublic')
+        sv-article-status(article='article' key='article.$id' property='isPublic')
     div(layout-gt-sm='row' layout-sm='column' layout-align-gt-sm="space-between center" layout-align-sm="start")
         div.p
             a.tc-grey-700(ui-sref='app.article({id:article.$id})' style='text-decoration:none;font-weight:bold')

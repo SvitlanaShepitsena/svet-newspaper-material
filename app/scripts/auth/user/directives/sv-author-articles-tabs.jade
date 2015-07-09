@@ -1,11 +1,11 @@
 md-content
     md-tabs.tc-black-2(md-selected='selectedIndex', md-border-bottom='' md-dynamic-height="" md-stretch-tabs="never")
-        md-tab(ng-if='!user.isReader()')
-            md-tab-label(ui-sref='app.user.news.articles') {{'news-articles'|translate}}
+        md-tab(ng-if='!user.isReader()' ui-sref='app.user.news.articles')
+            md-tab-label {{'news-articles'|translate}}
             md-tab-body
                 div(ui-view='')
-        md-tab
-            md-tab-label(ui-sref='app.user.news.blogs') {{'blogs'|translate}}
+        md-tab(ui-sref='app.user.news.blogs')
+            md-tab-label {{'blogs'|translate}}
             md-tab-body
                 div(ui-view='')
 
