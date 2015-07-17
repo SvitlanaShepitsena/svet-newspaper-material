@@ -28,6 +28,7 @@ module.exports = function homeRouter(express) {
             firebaseServ.getAll(postsUrl).then(function (data) {
                 vm.posts = data;
                 res.render('home', {vm: vm});
+
             }, function (Error) {
                 console.log(Error.message);
             });
