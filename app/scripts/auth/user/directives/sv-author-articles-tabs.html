@@ -1,17 +1,1 @@
-<md-content>
-    <md-tabs md-selected="selectedIndex" md-border-bottom="" md-dynamic-height="" md-stretch-tabs="never"
-             class="tc-black-2">
-        <md-tab ng-if="!user.isReader()" ui-sref="app.user.news.articles">
-            <md-tab-label>{{'news-articles'|translate}}</md-tab-label>
-            <md-tab-body>
-                <div ui-view=""></div>
-            </md-tab-body>
-        </md-tab>
-        <md-tab ui-sref="app.user.news.blogs">
-            <md-tab-label>{{'blogs'|translate}}</md-tab-label>
-            <md-tab-body>
-                <div ui-view=""></div>
-            </md-tab-body>
-        </md-tab>
-    </md-tabs>
-</md-content>
+<md-content><md-tabs md-selected="selectedIndex" md-border-bottom="" md-dynamic-height="" md-stretch-tabs="never" class="tc-black-2"><md-tab ng-if="!user.isReader()" ui-sref="app.user.news.articles"><md-tab-label>{{'news-articles'|translate}}</md-tab-label><md-tab-body><div ui-view=""></div></md-tab-body></md-tab><md-tab ui-sref="app.user.news.blogs"><md-tab-label>{{'blogs'|translate}}</md-tab-label><md-tab-body><div ui-view=""></div></md-tab-body></md-tab></md-tabs></md-content>
