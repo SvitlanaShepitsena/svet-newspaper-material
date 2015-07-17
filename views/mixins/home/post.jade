@@ -1,0 +1,6 @@
+mixin post(p)
+    li.card.m.md-padding
+        span.display-block.fs-display-1.text-center !{p.title}
+        md-divider(class='mt mb+')
+        span.display-block.fs-title !{p.subtitle}
+        p= p.body

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    a.btn.btn--xs.btn--grey.btn--flat.mt(href='javascript:history.back()' id="linkBack")
+        i.fa.fa-arrow-left.mr
+        | Back
+    span.fs-title.display-block.text-center Album Name
+    ul.list-inline(class='row')
+        if vm !== undefined
+            if vm.activeImg === undefined
+                each photo,index in vm.files
+                    li.card.m(style='overflow:hidden;position:relative;width:180px')
+                        a(style='cursor:pointer' href='#{photo.url}')
+                            img(src='http://s3-us-west-2.amazonaws.com/chicagoview/#{photo.imgName}')
+            else
+                li.card.m
+                    img(src='http://s3-us-west-2.amazonaws.com/chicagoview/#{(vm.files[vm.activeImg]).imgName}' width="100%")
+

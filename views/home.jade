@@ -1,0 +1,8 @@
+extends layout
+include mixins/home/post
+
+block content
+    ul.list-unstyled
+        if vm !== undefined
+            each p in vm.posts
+                +post(p)

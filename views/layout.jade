@@ -1,0 +1,33 @@
+doctype html
+html
+    head
+        title Your Company Information
+        link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet' href='/bower_components/angular-material/angular-material.min.css')
+        link(rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css")
+        link(rel='stylesheet' href='/bower_components/lumx/dist/lumx.css')
+
+        //If OG properties are defined they will be added to head/meta
+        if vm !== undefined && vm.og !== undefined && vm.og.title !== undefined
+            meta(property='og:title' content='#{vm.og.title}')
+        if vm !== undefined && vm.og !== undefined && vm.og.img !== undefined
+            meta(property='og:image' content='#{vm.og.img}')
+        if vm !== undefined && vm.og !== undefined && vm.og.description !== undefined
+            meta(property='og:description' content='#{vm.og.description}')
+
+        link(rel='stylesheet' href='/styles/main.css')
+    body
+        div(style='width:980px;margin:0px auto')
+            include header/header
+        div(style='width:980px;margin:0px auto')
+            .m(style='float:left;display:block;width:180px')
+                include menu/left-nav
+                span.fs-subhead.display-block.text-center.m My Photos
+                .card
+                    a(style='cursor:pointer' href="#{vm.rootUrl}/events/one-event-gallery" target='_blank')
+                        img(src="https://s3-us-west-2.amazonaws.com/chicagopics/chicago-view-color.jpg" )
+                        .p Album info...
+            .m(style='float:left;display:block;width:570px;margin:0px auto')
+                block content
+            .m(style='float:right;display:block;width:180px')
+                include menu/right-nav
